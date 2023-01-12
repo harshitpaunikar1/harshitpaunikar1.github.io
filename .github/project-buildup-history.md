@@ -1,0 +1,10 @@
+# Project Buildup History: Harshitpaunikar1 Github Io
+
+- Repository: `harshitpaunikar1.github.io`
+- Category: `portfolio_site`
+- Subtype: `generic`
+- Source: `project_buildup_2021_2025_daily_plan.csv`
+## 2023-01-12 - Day 1: Research start
+
+- Task summary: Started this one by sitting down and trying to understand what Harshitpaunikar1 Github Io should actually become. I did not rush into code yet. The main thing here was to collect the personal story, projects, resume points, and references needed for the Harshitpaunikar1 Github Io site so the project had a decent base. At this stage nothing was fully locked, so I kept a rough list of things that looked useful and ignored the rest for now. Small layout choices mattered more than I first expected, so I ended up tweaking them more than once.
+- Deliverable: By the end of the day I had site content inventory written down in a rough way, which was enough to stop guessing and move into the next step. It was not super polished, just stable enough that I felt okay moving forward.

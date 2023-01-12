@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gate Operations Vision Pipeline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /*
+      DESIGN SYSTEM: "Logistics Briefing"
+      Black and white only. Typography-driven.
+      Highly partitioned text blocks, stark flowcharts, strict left alignment, pipeline h2s.
+    */
+    :root {
+      --bg: #111111;
+      --text: #eaeaea;
+      --text-muted: #888888;
+      --border-outer: #f5f5f5;
+      --border-inner: #333333;
+      --f-body: 'Inter', sans-serif;
+      --f-mono: 'Chivo Mono', monospace;
+      --code-bg: #000000;
+      --code-text: #f5f5f5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--f-body);
+      font-size: 1.1rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 5rem;
+    }
+
+    /* Highly Partitioned Layout */
+    .briefing-shell {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    header {
+      border-bottom: 2px solid var(--border-outer);
+      padding-bottom: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .doc-identifier {
+      font-family: var(--f-mono);
+      font-size: 0.85rem;
+      color: var(--bg);
+      background-color: var(--border-outer);
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .lede {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 750px;
+      font-weight: 400;
+    }
+
+    /* Strict Left Alignment & Blocks */
+    .content-partition {
+      border-left: 1px solid var(--border-inner);
+      padding-left: 2.5rem;
+      margin-bottom: 5rem;
+    }
+
+    /* Pipeline H2s */
+    h2 {
+      font-family: var(--f-mono);
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-top: 0;
+      margin-bottom: 2rem;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+    }
+
+    h2::before {
+      content: "";
+      display: inline-block;
+      width: 1.5rem;
+      height: 1.5rem;
+      background-color: var(--text);
+      margin-right: 1rem;
+      margin-left: -3.25rem; /* Pull back to intersection */
+      border: 4px solid var(--bg);
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    /* Code Blocks */
+    pre {
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      font-family: var(--f-mono);
+      font-size: 0.85rem;
+      padding: 1.5rem 2rem;
+      border: 1px solid var(--border-inner);
+      overflow-x: auto;
+      margin: 2rem 0;
+    }
+
+    code {
+      font-family: var(--f-mono);
+    }
+
+    .c-comment { color: #555555; }
+    .c-func { color: #ffffff; font-weight: 700; }
+
+    /* Flowcharts & Visuals */
+    .visual-block {
+      margin: 4rem 0;
+      border: 1px solid var(--border-inner);
+      background-color: #000;
+      padding: 3rem 2rem;
+    }
+
+    .visual-title {
+      font-family: var(--f-mono);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      letter-spacing: 0.05em;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .diagram-caption {
+      font-family: var(--f-body);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-top: 2rem;
+      line-height: 1.5;
+    }
+
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="../blog-common.js" defer></script>
+</head>
+<body>
+
+<div class="briefing-shell">
+
+  <header>
+    <div class="doc-identifier">Engineering Brief // Vision Pipeline</div>
+    <h1>Edge Compute at the Gate</h1>
+    <p class="lede">Evaluating an object detection model on a pristine, well-lit Kaggle dataset breeds catastrophic overconfidence. At a physical logistics gate, the neural network is merely the final, easiest step in a brittle sequence. The actual engineering problem is conquering the optics, the physics of a moving 80,000-pound object, and the raw environment to deliver an image worth running inference on in the first place.</p>
+  </header>
+
+<div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(255,255,255,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;color:#eaeaea;">
+  <strong>My Role:</strong> I designed and built the three-stage vision pipeline — spatial trigger integration, the YOLOv8-based region-of-interest cropper, and the OpenCV morphological preprocessing layer that feeds Tesseract OCR. The hardware engineer handled IP camera and IR illuminator installation at all six gate lanes. The key insight I drove was that IR illumination quality mattered more than model architecture — night-shift accuracy collapsed until we got the 850nm lighting right.
+</div>
+<div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#888;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+  <strong style="margin-right:4px;">Stack:</strong>
+  <span style="background:#1a1a1a;border:1px solid #444;padding:2px 10px;border-radius:12px;">YOLOv8</span>
+  <span style="background:#1a1a1a;border:1px solid #444;padding:2px 10px;border-radius:12px;">Tesseract OCR</span>
+  <span style="background:#1a1a1a;border:1px solid #444;padding:2px 10px;border-radius:12px;">OpenCV</span>
+  <span style="background:#1a1a1a;border:1px solid #444;padding:2px 10px;border-radius:12px;">Edge Appliance (GPU)</span>
+  <span style="background:#1a1a1a;border:1px solid #444;padding:2px 10px;border-radius:12px;">MQTT</span>
+  <span style="background:#1a1a1a;border:1px solid #444;padding:2px 10px;border-radius:12px;">WMS Integration</span>
+</div>
+
+  <div class="content-partition">
+    <h2>PIPELINE_STAGE_01: Optic Physics and Spatial Triggering</h2>
+
+    <p>A shipping container gate does not resemble a photography studio. It is subjected to blinding morning glare, total darkness at midnight, horizontal rain, and trucks moving at highly variable speeds. We cannot run a heavy YOLOv8 inference loop continuously at 60 FPS purely to watch an empty concrete slab. Continuous inference melts edge GPUs and destroys local network bandwidth.</p>
+
+    <p>The vision pipeline must therefore remain dormant until a physical event demands execution. We rely on spatial triggering. Infrared break-beams or inductive ground loops inform the edge appliance that a mass has crossed the threshold. This hardware trigger wakes the optical pipeline, initiating a burst capture sequence from the IP cameras.</p>
+
+    <p>We dictate narrow depth-of-field constraints and force high shutter speeds (e.g., 1/2000s) to eliminate motion blur. Since a high shutter speed severely starves the sensor of light, we flood the gate with 850nm IR illuminators. We do not care if the visual outputs are aesthetically pleasing to a human eye; we care strictly about the mathematical contrast between the alphanumeric characters on the container wall and the corrugated metal beneath them.</p>
+
+    <div class="visual-block">
+      <div class="visual-title">FIG_0A // THREE-STAGE CAPTURE ISOLATION</div>
+      <svg viewBox="0 0 900 300" preserveAspectRatio="xMidYMid meet">
+
+        <!-- Three Panels -->
+        <!-- Panel 1: Physical Arrival -->
+        <rect x="50" y="50" width="220" height="150" fill="#1a1a1a" stroke="#555" stroke-width="2" />
+        <rect x="50" y="50" width="220" height="20" fill="#333" />
+        <text x="160" y="64" font-family="'Chivo Mono'" font-size="10" fill="#aaa" text-anchor="middle">01. WIDE BURST CAPTURE</text>
+
+        <!-- Abstract truck front -->
+        <rect x="80" y="100" width="80" height="80" fill="none" stroke="#fff" stroke-dasharray="2 2" stroke-width="2" />
+        <!-- Abstract container behind cab -->
+        <rect x="180" y="80" width="60" height="100" fill="none" stroke="#888" stroke-width="2" />
+        <text x="210" y="135" font-family="'Inter'" font-weight="800" font-size="12" fill="#fff" transform="rotate(90 210 135)" text-anchor="middle">MSKU4199</text>
+
+        <!-- Targeting Reticle -->
+        <line x1="185" y1="120" x2="235" y2="120" stroke="#f5f5f5" stroke-width="1" />
+        <line x1="210" y1="95" x2="210" y2="145" stroke="#f5f5f5" stroke-width="1" />
+
+        <!-- Transition Arrow -->
+        <path d="M 290 125 L 330 125" stroke="#888" stroke-width="2" fill="none" marker-end="url(#triangle)" />
+
+        <!-- Panel 2: Isolated Bounding Box -->
+        <rect x="350" y="50" width="220" height="150" fill="#1a1a1a" stroke="#555" stroke-width="2" />
+        <rect x="350" y="50" width="220" height="20" fill="#333" />
+        <text x="460" y="64" font-family="'Chivo Mono'" font-size="10" fill="#aaa" text-anchor="middle">02. REGION CROP (YOLO)</text>
+
+        <rect x="380" y="90" width="160" height="90" fill="#222" stroke="#f5f5f5" stroke-width="2" />
+        <text x="460" y="140" font-family="'Inter'" font-weight="800" font-size="28" fill="#555" text-anchor="middle">MSKU4199</text>
+
+        <!-- Noise overlay -->
+        <line x1="390" y1="110" x2="530" y2="170" stroke="#111" stroke-width="3" />
+        <line x1="400" y1="150" x2="510" y2="100" stroke="#111" stroke-width="3" />
+
+        <!-- Transition Arrow -->
+        <path d="M 590 125 L 630 125" stroke="#888" stroke-width="2" fill="none" marker-end="url(#triangle)" />
+
+        <!-- Panel 3: Optical Character Recognition -->
+        <rect x="650" y="50" width="220" height="150" fill="#000" stroke="#f5f5f5" stroke-width="2" />
+        <rect x="650" y="50" width="220" height="20" fill="#f5f5f5" />
+        <text x="760" y="64" font-family="'Chivo Mono'" font-size="10" fill="#000" font-weight="700" text-anchor="middle">03. EXTRACTED PAYLOAD</text>
+
+        <text x="760" y="110" font-family="'Chivo Mono'" font-size="12" fill="#888" text-anchor="middle">{"type": "ISO_6346"}</text>
+        <text x="760" y="145" font-family="'Chivo Mono'" font-size="28" fill="#fff" font-weight="700" text-anchor="middle">MSKU-4199</text>
+        <text x="760" y="170" font-family="'Chivo Mono'" font-size="12" fill="#555" text-anchor="middle">CONFIDENCE: 99.2%</text>
+
+        <defs>
+          <marker id="triangle" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#888" />
+          </marker>
+        </defs>
+      </svg>
+      <div class="diagram-caption">
+        The Three-Stage Image Pipeline. It is computational suicide to run Optical Character Recognition (OCR) directly on the wide 4K capture. Stage 1 executes only upon a physical gate-break. Stage 2 executes a fast, lightweight YOLO object-detection model designed strictly to find the region-of-interest (ROI). The pipeline brutally crops the image down to that box, discarding 95% of the frame. Stage 3 finally executes the heavy OCR inference payload exclusively on the cropped sector.
+      </div>
+    </div>
+  </div>
+
+  <div class="content-partition">
+    <h2>PIPELINE_STAGE_02: Morphological Preprocessing</h2>
+
+    <p>A bounding box crop does not guarantee clarity. The container code is likely covered in diesel soot, rain droplets, or rust. If we feed this directly into an OCR neural network, the model will struggle to distinguish between a rusty scratch and the number "1".</p>
+
+    <p>We bridge the gap using deterministic morphological operations native to the OpenCV library. We are mathematically isolating edges and stripping out topological noise. We convert the cropped RGB matrix to strict grayscale, apply adaptive Gaussian thresholding to compensate for uneven illumination (e.g., a shadow splitting the container wall), and utilize morphological closing operators. These operations physically dilate the edges of the printed characters to bridge gaps caused by paint chipping, and then erode the surrounding rust noise until only hard, structural text remains.</p>
+
+<pre><code><span class="c-comment"># The intermediate cleaning phase before OCR ingestion</span>
+<span class="c-keyword">import</span> cv2
+<span class="c-keyword">import</span> numpy <span class="c-keyword">as</span> np
+
+<span class="c-keyword">def</span> sanitize_roi_for_inference(roi_image):
+    <span class="c-comment"># Strip color channels; we only calculate luma contrast</span>
+    gray = cv2.cvtColor(roi_image, cv2.COLOR_BGR2GRAY)
+
+    <span class="c-comment"># Defeat uneven lighting/shadows blocking the container wall</span>
+    thresh = cv2.adaptiveThreshold(
+        gray, 255,
+        cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+        cv2.THRESH_BINARY_INV, 19, 9
+    )
+
+    <span class="c-comment"># Define a structural kernel to target the noise</span>
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
+
+    <span class="c-comment"># Execute a morphological CLOSE (Dilation followed by Erosion).</span>
+    <span class="c-comment"># This forces chipped/faded characters to merge back into solid lines</span>
+    # while destroying isolated specks of soot and rust.
+    cleaned_binary = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
+
+    <span class="c-keyword">return</span> cleaned_binary
+</code></pre>
+  </div>
+
+  <div class="content-partition">
+    <h2>PIPELINE_STAGE_03: The Edge-to-Cloud Handshake</h2>
+
+    <p>Inference occurs locally on an industrial edge appliance hardwired directly to the pole cameras. We cannot afford the latency or the unreliability of sending uncompressed 4K video frames over a cellular or local radio network. The edge server absorbs the computational punishment.</p>
+
+    <p>What exits the edge appliance is not a massive matrix of pixels. It is a microscopic, sterile JSON payload measuring barely three kilobytes. This payload contains the identified container number, the trailer plate, the system timestamp, and the confidence intervals. Because the payload is miniscule, it can be transmitted reliably over a fallback 4G connection directly into the Warehouse Management System (WMS).</p>
+
+    <div class="visual-block">
+      <div class="visual-title">FIG_0B // HARDWARE TOPOLOGY & LOGIC TOPOLOGY</div>
+      <svg viewBox="0 0 900 400" preserveAspectRatio="xMidYMid meet">
+
+        <!-- Environment Perimeter -->
+        <rect x="50" y="50" width="400" height="300" fill="none" stroke="#555" stroke-dasharray="4 4" stroke-width="2" />
+        <text x="60" y="70" font-family="'Chivo Mono'" font-size="10" fill="#888">PHYSICAL GATE PERIMETER (LOCAL)</text>
+
+        <!-- Camera Hardware -->
+        <rect x="80" y="120" width="80" height="40" fill="#222" stroke="#fff" />
+        <text x="120" y="145" font-family="'Chivo Mono'" font-size="10" fill="#fff" text-anchor="middle">IP CAM_L</text>
+
+        <rect x="80" y="240" width="80" height="40" fill="#222" stroke="#fff" />
+        <text x="120" y="265" font-family="'Chivo Mono'" font-size="10" fill="#fff" text-anchor="middle">IP CAM_R</text>
+
+        <!-- Bandwidth Pipes -->
+        <path d="M 160 140 L 250 160" stroke="#f5f5f5" stroke-width="6" fill="none" />
+        <path d="M 160 260 L 250 240" stroke="#f5f5f5" stroke-width="6" fill="none" />
+        <text x="210" y="145" font-family="'Chivo Mono'" font-size="8" fill="#888" transform="rotate(10 210 145)">GIGABIT LAN</text>
+
+        <!-- Edge Appliance -->
+        <rect x="250" y="140" width="160" height="120" fill="#f5f5f5" stroke="#111" />
+        <text x="330" y="165" font-family="'Inter'" font-size="12" font-weight="800" fill="#111" text-anchor="middle">EDGE APPLIANCE</text>
+        <text x="330" y="185" font-family="'Chivo Mono'" font-size="10" fill="#555" text-anchor="middle">YOLO + Tesseract</text>
+        <rect x="270" y="200" width="120" height="40" fill="#111" />
+        <text x="330" y="225" font-family="'Chivo Mono'" font-size="10" fill="#fff" text-anchor="middle">GPU INFERENCE</text>
+
+        <!-- WAN Bridge -->
+        <path d="M 410 200 L 650 200" stroke="#f5f5f5" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+        <text x="530" y="190" font-family="'Chivo Mono'" font-size="10" fill="#f5f5f5" text-anchor="middle">SECURE MQTT (3KB payload)</text>
+
+        <!-- Cloud WMS -->
+        <rect x="650" y="50" width="200" height="300" fill="none" stroke="#fff" stroke-width="2" />
+        <text x="660" y="70" font-family="'Chivo Mono'" font-size="10" fill="#888">ENTERPRISE CLOUD</text>
+
+        <rect x="680" y="150" width="140" height="100" fill="#222" stroke="#555" />
+        <text x="750" y="190" font-family="'Inter'" font-size="12" font-weight="800" fill="#fff" text-anchor="middle">WMS ENGINE</text>
+        <text x="750" y="215" font-family="'Chivo Mono'" font-size="10" fill="#aaa" text-anchor="middle">Autoclear Gate</text>
+
+      </svg>
+      <div class="diagram-caption">
+        Architectural Flow. The cameras blast heavy uncompressed video strictly over short-range Gigabit LAN to the encapsulated Edge Appliance. Almost all of that massive data footprint is physically destroyed during inference. What successfully escapes the physical perimeter over the WAN is merely strings and metadata-a footprint so light it eliminates bandwidth bottlenecks.
+      </div>
+    </div>
+
+    <p>By the time the WMS registers the event, verifies the extracted <code>MSKU</code> code against the expected shipping ledger, and triggers the green light to raise the gate arm, less than six seconds have elapsed. The model succeeded not because its underlying convolutional architecture was revolutionary, but because the optic triggers, noise dampening, and hardware topology protected it from the sheer chaos of the logistics yard.</p>
+
+  </div>
+
+  <div class="content-partition">
+    <h2>PROJECT_CONTEXT: THE OPERATION</h2>
+
+    <p>This system was built for a container terminal that processes over 800 gate events every day. Before the vision pipeline existed, each truck entering or leaving the yard had to stop while a human operator manually read the container code and typed it into the system. That process took about 45 seconds per truck, and it required a dedicated person sitting in a booth at every single lane.</p>
+
+    <p>The team was small: one machine learning engineer, one hardware engineer, and one operations lead who understood the physical gate environment. The entire build took 12 weeks, including the physical installation of cameras, IR illuminators, and the edge appliance hardware at six gate lanes.</p>
+
+    <p>The core problem was not complicated to describe. Trucks were waiting too long. Operators were expensive. And manual typing introduced errors that caused downstream headaches in the warehouse management system. The terminal needed a way to read container codes automatically, accurately, and fast enough that the truck never had to fully stop.</p>
+  </div>
+
+  <div class="content-partition">
+    <h2>RESULTS_AND_IMPACT: BEFORE VS. AFTER</h2>
+
+    <p>The numbers tell a clear story. Gate cycle time dropped from 45 seconds to 6 seconds per truck. That is an 87% reduction. The terminal eliminated four full-time gate operator positions, saving roughly $220,000 per year in labor costs alone. The system paid for itself in four months.</p>
+
+    <p>OCR accuracy landed at 97.3% on containers in good condition and 91.8% on weathered or rusty ones. The false rejection rate was 2.1%, meaning about 17 out of every 800 daily events got sent to a manual review queue instead of being auto-cleared. The system runs across all six gate lanes and handles the full daily volume without any human in the loop for the vast majority of transactions.</p>
+
+    <div class="visual-block">
+      <div class="visual-title">FIG_0C // BEFORE vs. AFTER COMPARISON</div>
+      <svg viewBox="0 0 900 340" preserveAspectRatio="xMidYMid meet">
+        <!-- Before Column -->
+        <rect x="50" y="30" width="370" height="280" fill="#1a1a1a" stroke="#555" stroke-width="2" />
+        <text x="235" y="58" font-family="'Chivo Mono'" font-size="14" fill="#888" text-anchor="middle" font-weight="700">BEFORE (MANUAL)</text>
+
+        <text x="80" y="100" font-family="'Inter'" font-size="13" fill="#888">Gate cycle time</text>
+        <text x="350" y="100" font-family="'Chivo Mono'" font-size="16" fill="#f5f5f5" text-anchor="end" font-weight="700">45 sec</text>
+        <rect x="80" y="110" width="280" height="8" fill="#555" />
+
+        <text x="80" y="150" font-family="'Inter'" font-size="13" fill="#888">Gate operators needed</text>
+        <text x="350" y="150" font-family="'Chivo Mono'" font-size="16" fill="#f5f5f5" text-anchor="end" font-weight="700">4 FTEs</text>
+        <rect x="80" y="160" width="200" height="8" fill="#555" />
+
+        <text x="80" y="200" font-family="'Inter'" font-size="13" fill="#888">Annual labor cost</text>
+        <text x="350" y="200" font-family="'Chivo Mono'" font-size="16" fill="#f5f5f5" text-anchor="end" font-weight="700">$220K/yr</text>
+        <rect x="80" y="210" width="240" height="8" fill="#555" />
+
+        <text x="80" y="250" font-family="'Inter'" font-size="13" fill="#888">Manual typing errors</text>
+        <text x="350" y="250" font-family="'Chivo Mono'" font-size="16" fill="#f5f5f5" text-anchor="end" font-weight="700">Frequent</text>
+        <rect x="80" y="260" width="180" height="8" fill="#555" />
+
+        <!-- After Column -->
+        <rect x="480" y="30" width="370" height="280" fill="#000" stroke="#f5f5f5" stroke-width="2" />
+        <text x="665" y="58" font-family="'Chivo Mono'" font-size="14" fill="#f5f5f5" text-anchor="middle" font-weight="700">AFTER (VISION PIPELINE)</text>
+
+        <text x="510" y="100" font-family="'Inter'" font-size="13" fill="#888">Gate cycle time</text>
+        <text x="780" y="100" font-family="'Chivo Mono'" font-size="16" fill="#f5f5f5" text-anchor="end" font-weight="700">6 sec (-87%)</text>
+        <rect x="510" y="110" width="37" height="8" fill="#f5f5f5" />
+
+        <text x="510" y="150" font-family="'Inter'" font-size="13" fill="#888">Gate operators needed</text>
+        <text x="780" y="150" font-family="'Chivo Mono'" font-size="16" fill="#f5f5f5" text-anchor="end" font-weight="700">0 FTEs</text>
+        <rect x="510" y="160" width="4" height="8" fill="#f5f5f5" />
+
+        <text x="510" y="200" font-family="'Inter'" font-size="13" fill="#888">Annual labor cost</text>
+        <text x="780" y="200" font-family="'Chivo Mono'" font-size="16" fill="#f5f5f5" text-anchor="end" font-weight="700">$0/yr</text>
+        <rect x="510" y="210" width="4" height="8" fill="#f5f5f5" />
+
+        <text x="510" y="250" font-family="'Inter'" font-size="13" fill="#888">OCR accuracy</text>
+        <text x="780" y="250" font-family="'Chivo Mono'" font-size="16" fill="#f5f5f5" text-anchor="end" font-weight="700">97.3% clean / 91.8% worn</text>
+        <rect x="510" y="260" width="260" height="8" fill="#f5f5f5" />
+      </svg>
+      <div class="diagram-caption">
+        Before and After. The vision pipeline replaced a 45-second manual process with a 6-second automated one across all six gate lanes. The 2.1% false rejection rate routes uncertain reads to a manual review queue rather than allowing bad data into the WMS.
+      </div>
+    </div>
+  </div>
+
+  <div class="content-partition">
+    <h2>LESSONS_LEARNED: WHAT ACTUALLY HAPPENED</h2>
+
+    <p>The first approach used a single wide-angle camera to capture the entire truck and container in one frame. It seemed logical: fewer cameras, simpler wiring, lower hardware cost. But the container codes were too small in the image. At the distance needed to see the full truck, the individual characters on the container wall were only a few pixels tall. No OCR model could reliably read them.</p>
+
+    <p>The breakthrough was the three-stage capture approach described earlier in this brief: wide burst capture, YOLO region crop, then OCR on the cropped sector only. By isolating the container code region first and then running character recognition on a tightly cropped, high-resolution patch, the text was suddenly large enough and clean enough to read consistently.</p>
+
+    <p>The biggest surprise had nothing to do with the neural network. It was the IR illumination. During daytime testing, everything worked well. But when the system went live on night shifts, accuracy collapsed. The cameras were starved for light. Even the best model in the world cannot read text it cannot see. Once the team installed 850nm IR illuminators at each gate lane, night-shift accuracy jumped to match daytime performance almost exactly. The lighting was more important than the model.</p>
+
+    <p>If the team were to do this again, they would add a second camera angle specifically for damaged or dented containers. When a container is crushed or warped, the code can wrap around a bent panel, making it partially invisible from a single viewpoint. A second angle would catch those cases and reduce the 2.1% false rejection rate further.</p>
+  </div>
+
+</div>
+
+<script type="application/json" id="blog-config">{"slug":"edge-ai-container-trailer-detection"}</script>
+</body>
+</html>
