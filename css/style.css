@@ -1,0 +1,340 @@
+/*
+ * Base site styles.
+ * Bootstrap provides the grid/components; custom.css owns the portfolio layout.
+ */
+
+body {
+  font-family: "Karla", Arial, sans-serif;
+  line-height: 1.8;
+  font-size: 16px;
+  font-weight: 400;
+  background: #f8fafc;
+  color: #374151;
+}
+
+body.menu-show {
+  overflow: hidden;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}
+
+a {
+  color: #2563eb;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+a:hover,
+a:focus {
+  color: #1d4ed8;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+p,
+ul,
+ol {
+  margin-bottom: 1.5em;
+}
+
+p,
+span,
+li {
+  font-family: "Karla", Arial, sans-serif;
+  font-weight: 400;
+}
+
+span {
+  color: rgba(114, 114, 114, 0.8);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: rgba(0, 0, 0, 0.8);
+  font-family: "Playfair Display", Georgia, serif;
+  margin: 0 0 30px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  color: #13233a;
+  background: #dbeafe;
+}
+
+#colorlib-page {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  transition: transform 0.35s ease;
+  transform: scale(1);
+}
+
+.menu-show #colorlib-page {
+  position: relative;
+  transform: scale(0.99);
+}
+
+.menu-show #colorlib-page::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1001;
+  content: "";
+  background: rgba(15, 23, 42, 0.38);
+}
+
+#colorlib-main-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1002;
+  width: 360px;
+  max-width: min(360px, 88vw);
+  height: 100%;
+  padding: 4rem 2.5rem 2.5rem;
+  overflow-y: auto;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;
+  background: #ffffff;
+  transform: translateX(100%);
+  transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+}
+
+.menu-show #colorlib-main-nav {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#colorlib-main-nav .colorlib-table,
+#colorlib-main-nav .colorlib-table-cell {
+  width: 100%;
+  height: 100%;
+}
+
+#colorlib-main-nav ul {
+  padding: 4rem 0 0;
+  margin: 0;
+}
+
+#colorlib-main-nav ul li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#colorlib-main-nav ul li a {
+  display: block;
+  padding: 0.85rem 0;
+  color: #13233a;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+#colorlib-main-nav ul li a:hover,
+#colorlib-main-nav ul li a:focus,
+#colorlib-main-nav ul li.active a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+#colorlib-main-nav > .colorlib-nav-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1.75rem;
+  visibility: hidden;
+  opacity: 0;
+}
+
+#colorlib-main-nav > .colorlib-nav-toggle.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 9;
+  padding: 2rem 0;
+}
+
+header .colorlib-navbar-brand {
+  float: left;
+}
+
+header .colorlib-navbar-brand .colorlib-logo {
+  display: block;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #000000;
+}
+
+header .colorlib-navbar-brand .colorlib-logo span {
+  display: block;
+  margin-bottom: 0;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.btn {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  border-radius: 1px;
+  font-size: 13px !important;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn:hover,
+.btn:active,
+.btn:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.btn-primary {
+  color: #ffffff;
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  color: #ffffff;
+  background: #1d4ed8 !important;
+  border-color: #1d4ed8 !important;
+}
+
+.btn-primary.btn-outline {
+  color: #4d4d4d;
+  background: transparent;
+  border-color: #d9d9d9;
+}
+
+.btn-primary.btn-outline:hover,
+.btn-primary.btn-outline:focus,
+.btn-primary.btn-outline:active {
+  color: #ffffff;
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.colorlib-nav-toggle {
+  position: relative;
+  z-index: 1003;
+  display: block;
+  float: right;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.colorlib-nav-toggle:hover,
+.colorlib-nav-toggle:focus,
+.colorlib-nav-toggle:active {
+  outline: none;
+  text-decoration: none;
+}
+
+.colorlib-nav-toggle i {
+  position: absolute;
+  top: 21px;
+  left: 12px;
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #13233a;
+  transition: background-color 0.2s ease;
+}
+
+.colorlib-nav-toggle i::before,
+.colorlib-nav-toggle i::after {
+  position: absolute;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  content: "";
+  background: #13233a;
+  transition: transform 0.2s ease, top 0.2s ease, bottom 0.2s ease;
+}
+
+.colorlib-nav-toggle i::before {
+  top: -7px;
+}
+
+.colorlib-nav-toggle i::after {
+  bottom: -7px;
+}
+
+.colorlib-nav-toggle.active i {
+  background: transparent;
+}
+
+.colorlib-nav-toggle.active i::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.colorlib-nav-toggle.active i::after {
+  bottom: 0;
+  transform: rotate(-45deg);
+}
+
+.colorlib-social-icons a:hover,
+.colorlib-social-icons a:focus {
+  text-decoration: none !important;
+}
+
+.colorlib-social-icons i {
+  color: #2563eb;
+  font-size: 24px;
+}
+
+.col-pb-sm {
+  margin-bottom: 5rem !important;
+}
+
+#footer {
+  display: block;
+  width: 100%;
+}
+
+.js .animate-box {
+  opacity: 0;
+}
+
+@media (max-width: 767px) {
+  body.menu-show {
+    position: fixed;
+  }
+
+  header {
+    padding: 1rem 0;
+  }
+}

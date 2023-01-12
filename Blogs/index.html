@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technical Case Studies — 56 Shipped AI, Full-Stack &amp; Production Engineering Projects | Harshit Paunikar</title>
+<meta name="description" content="A curated library of 56 real-world case studies covering AI/ML, LLM/RAG, computer vision, real-time systems, full-stack platforms, analytics, logistics, and DevOps — by Harshit Paunikar.">
+<meta property="og:title" content="Technical Case Studies — Harshit Paunikar">
+<meta property="og:description" content="56 shipped case studies across AI/ML, LLMs, computer vision, real-time systems, full-stack platforms, and production engineering.">
+<meta property="og:url" content="https://harshitpaunikar1.github.io/Blogs/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="shortcut icon" href="../favicon.ico">
+<link rel="canonical" href="https://harshitpaunikar1.github.io/Blogs/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ── */
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f8fafc;
+  --bg-muted: #f1f5f9;
+  --surface: #ffffff;
+  --text: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-soft: #94a3b8;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-soft: #eff6ff;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --shadow-soft: 0 1px 3px rgba(15,23,42,0.04), 0 4px 12px rgba(15,23,42,0.03);
+  --shadow-md: 0 4px 16px rgba(15,23,42,0.06);
+  --font: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: 'SF Mono', ui-monospace, SFMono-Regular, 'Fira Code', monospace;
+  --header-h: 64px;
+  --max-w: 1120px;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* ── SKIP LINK ── */
+.skip { position: absolute; top: -100px; left: 16px; background: var(--text); color: #fff; padding: 8px 16px; border-radius: 0 0 8px 8px; font-size: 0.875rem; z-index: 10000; transition: top 0.15s; }
+.skip:focus { top: 0; }
+
+/* ── HEADER — matches main site ── */
+.header {
+  position: sticky; top: 0; z-index: 1000;
+  height: var(--header-h);
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s;
+}
+.header-inner { display: flex; align-items: center; height: 100%; width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 24px; gap: 32px; }
+.logo { font-size: 1.15rem; font-weight: 700; color: var(--text); white-space: nowrap; letter-spacing: -0.01em; flex-shrink: 0; }
+.logo:hover { color: var(--text); }
+.nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+.nav a { display: inline-flex; align-items: center; padding: 8px 14px; border-radius: 6px; font-size: 0.875rem; font-weight: 500; color: var(--text-secondary); transition: color 0.2s, background 0.2s; text-decoration: none; }
+.nav a:hover { color: var(--text); background: var(--bg-soft); }
+.nav a.active { color: var(--text); background: var(--bg-soft); }
+.header-cta { display: inline-flex; align-items: center; justify-content: center; padding: 8px 16px; border-radius: var(--radius-sm); font-size: 0.82rem; font-weight: 600; background: var(--text); color: #fff; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: all 0.2s; line-height: 1; }
+.header-cta:hover { background: #1e293b; color: #fff; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(15,23,42,0.1); }
+.nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; padding: 6px; background: none; border: none; cursor: pointer; border-radius: 6px; transition: background 0.2s; margin-left: auto; }
+.nav-toggle:hover { background: var(--bg-soft); }
+.nav-toggle span { display: block; height: 2px; background: var(--text); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+.nav-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.is-open span:nth-child(2) { opacity: 0; }
+.nav-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-nav { display: none; position: fixed; top: var(--header-h); left: 0; right: 0; bottom: 0; z-index: 999; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); flex-direction: column; padding: 24px; }
+.mobile-nav.open { display: flex; }
+.mobile-nav a { display: block; padding: 16px 0; font-size: 1.1rem; font-weight: 500; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--bg-muted); }
+.mobile-nav a:last-child { border-bottom: none; }
+.mobile-nav a:hover { color: var(--accent); }
+.mobile-nav .mobile-cta { display: inline-flex; align-items: center; justify-content: center; margin-top: 24px; padding: 12px 24px; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 600; background: var(--text); color: #fff; text-align: center; text-decoration: none; border-bottom: none; }
+.mobile-nav .mobile-cta:hover { background: #1e293b; color: #fff; }
+
+/* ── FOOTER — matches main site ── */
+.site-footer { background: var(--text); color: rgba(255,255,255,0.6); padding: 40px 0; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+.footer-brand { font-size: 0.9rem; }
+.footer-name { color: #fff; font-weight: 600; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: #fff; }
+.footer-top { font-size: 0.82rem; color: rgba(255,255,255,0.5); display: inline-flex; align-items: center; gap: 6px; text-decoration: none; transition: color 0.2s; }
+.footer-top:hover { color: #fff; }
+
+/* ── CONTAINER ── */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 clamp(1rem, 3vw, 2rem); }
+
+/* ── HERO ── */
+.hero { padding: clamp(2rem, 5vw, 3rem) 0 clamp(1.5rem, 3vw, 2rem); }
+.hero-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.hero h1 { font-size: clamp(1.8rem, 4.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; color: var(--text); max-width: 800px; }
+.hero-sub { font-size: clamp(1rem, 2vw, 1.15rem); color: var(--text-secondary); max-width: 680px; margin-top: 16px; line-height: 1.65; }
+
+/* ── METRICS STRIP ── */
+.metrics { display: flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg-soft); margin: 2rem 0 3rem; overflow: hidden; }
+.metric { flex: 1 1 0; min-width: 140px; padding: 24px 20px; text-align: center; border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.metric:last-child { border-right: none; }
+.metric-value { display: block; font-size: 2rem; font-weight: 800; color: var(--text); letter-spacing: -0.02em; line-height: 1.1; }
+.metric-label { display: block; font-size: 0.75rem; font-weight: 500; color: var(--text-muted); margin-top: 6px; letter-spacing: 0.02em; line-height: 1.35; }
+
+/* ── SECTION ── */
+.section { padding: clamp(2rem, 5vw, 3.5rem) 0; }
+.section + .section { border-top: 1px solid var(--border); }
+.section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+.section-title { font-size: clamp(1.3rem, 3vw, 1.65rem); font-weight: 700; letter-spacing: -0.015em; color: var(--text); margin-bottom: 8px; }
+.section-desc { font-size: 0.95rem; color: var(--text-secondary); max-width: 600px; margin-bottom: 24px; line-height: 1.6; }
+
+/* ── FEATURED CARDS ── */
+.featured-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+.featured-card { padding: 24px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s; }
+.featured-card:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.featured-card-cat { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.featured-card-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 6px; line-height: 1.3; }
+.featured-card-summary { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55; margin-bottom: 12px; }
+.featured-card-why { font-size: 0.78rem; color: var(--text-muted); line-height: 1.45; padding-top: 10px; border-top: 1px solid var(--border); }
+.featured-card-why strong { color: var(--text-secondary); }
+.featured-card-link { display: inline-flex; align-items: center; gap: 4px; font-size: 0.84rem; font-weight: 600; color: var(--accent); margin-top: 12px; }
+.featured-card-link:hover { color: var(--accent-hover); }
+
+/* ── FILTER TABS ── */
+.filter-bar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+.filter-chip { padding: 6px 16px; border-radius: 100px; font-size: 0.78rem; font-weight: 500; background: var(--surface); border: 1px solid var(--border); color: var(--text-secondary); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+.filter-chip:hover { border-color: var(--accent); color: var(--accent); }
+.filter-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* ── SEARCH ── */
+.search-wrap { margin-bottom: 20px; }
+.search-input { width: 100%; max-width: 400px; padding: 10px 16px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); font-family: var(--font); font-size: 0.88rem; color: var(--text); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
+.search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+.search-input::placeholder { color: var(--text-soft); }
+
+/* ── PROJECT CARDS ── */
+.project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+.project-card { display: flex; flex-direction: column; padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); transition: border-color 0.15s, box-shadow 0.15s; }
+.project-card:hover { border-color: var(--accent); box-shadow: var(--shadow-soft); }
+.project-card.hidden { display: none; }
+.card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.card-cat { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); white-space: nowrap; padding: 3px 10px; background: var(--accent-soft); border-radius: 100px; }
+.card-type { font-size: 0.66rem; font-weight: 500; color: #16a34a; background: #f0fdf4; padding: 3px 10px; border-radius: 100px; white-space: nowrap; }
+.card-title { font-size: 0.95rem; font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 6px; }
+.card-summary { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px; flex: 1; }
+.card-skills { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
+.card-skill { font-size: 0.66rem; font-weight: 500; padding: 2px 8px; border-radius: 100px; background: var(--bg-muted); color: var(--text-muted); }
+.card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid var(--border); }
+.card-domain { font-size: 0.72rem; color: var(--text-muted); }
+.card-link { font-size: 0.8rem; font-weight: 600; color: var(--accent); }
+.card-link:hover { color: var(--accent-hover); }
+
+/* ── SKILL MAP ── */
+.skill-map { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.skill-group { padding: 16px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.skill-group-title { font-size: 0.84rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.skill-group-links { display: flex; flex-direction: column; gap: 4px; }
+.skill-group-links a { font-size: 0.78rem; color: var(--accent); line-height: 1.4; }
+.skill-group-links a:hover { color: var(--accent-hover); }
+
+/* ── GUIDE ── */
+.guide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+.guide-card { padding: 20px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.guide-role { font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.guide-desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; }
+.guide-links { margin-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+.guide-links a { font-size: 0.78rem; color: var(--accent); }
+
+/* ── PROOF ── */
+.proof-list { list-style: none; display: flex; flex-direction: column; gap: 12px; max-width: 700px; }
+.proof-list li { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; padding-left: 24px; position: relative; }
+.proof-list li::before { content: ''; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+/* ── HOW TO READ ── */
+.read-steps { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+.read-step { padding: 14px; background: var(--bg-soft); border-radius: var(--radius-sm); border: 1px solid var(--border); text-align: center; }
+.read-step-num { font-size: 0.68rem; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 4px; }
+.read-step-label { font-size: 0.8rem; font-weight: 600; color: var(--text); }
+
+/* ── CTA ── */
+.cta { padding: clamp(2.5rem, 6vw, 4rem) 0; text-align: center; }
+.cta-title { font-size: clamp(1.2rem, 3vw, 1.5rem); font-weight: 700; color: var(--text); margin-bottom: 16px; }
+.cta-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 20px; }
+.btn { display: inline-flex; align-items: center; padding: 10px 24px; border-radius: var(--radius-sm); font-size: 0.88rem; font-weight: 600; transition: all 0.15s; }
+.btn-primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+.btn-primary:hover { background: var(--accent-hover); color: #fff; }
+.btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover { background: var(--bg-soft); border-color: var(--border-strong); }
+.cta-links { display: flex; justify-content: center; gap: 20px; font-size: 0.82rem; color: var(--text-muted); }
+.cta-links a { color: var(--accent); }
+
+/* ── NO RESULTS ── */
+.no-results { display: none; padding: 48px 24px; text-align: center; color: var(--text-muted); font-size: 0.95rem; }
+.no-results.visible { display: block; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  :root { --header-h: 56px; }
+  .nav { display: none; }
+  .header-cta { display: none; }
+  .nav-toggle { display: flex; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .footer-links { flex-wrap: wrap; gap: 16px; }
+  .metrics { flex-direction: column; }
+  .metric { border-right: none; border-bottom: 1px solid var(--border); padding: 16px 20px; flex-direction: row; align-items: baseline; gap: 8px; text-align: left; }
+  .metric:last-child { border-bottom: none; }
+  .metric-value { font-size: 1.5rem; }
+  .metric-label { margin-top: 0; }
+  .featured-grid { grid-template-columns: 1fr; }
+  .project-grid { grid-template-columns: 1fr; }
+  .skill-map { grid-template-columns: 1fr; }
+  .guide-grid { grid-template-columns: 1fr; }
+  .filter-bar { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .filter-chip { flex-shrink: 0; }
+  .read-steps { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .read-steps { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── FOCUS ── */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#library">Skip to case studies</a>
+
+<!-- ── HEADER ── -->
+<header class="header" role="banner">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">Harshit Paunikar</a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#education">Education</a>
+      <a href="index.html" class="active">Case Studies</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+    <a class="header-cta" href="http://drive.google.com/file/d/1jET0PqPdHKjui3PRrpxlMgI0cNJIRpjj/view" target="_blank" rel="noopener">View Resume</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+  <a href="../index.html#about">About</a>
+  <a href="../index.html#projects">Projects</a>
+  <a href="../index.html#skills">Skills</a>
+  <a href="../index.html#education">Education</a>
+  <a href="index.html">Case Studies</a>
+  <a href="../index.html#contact">Contact</a>
+  <a class="mobile-cta" href="http://drive.google.com/file/d/1jET0PqPdHKjui3PRrpxlMgI0cNJIRpjj/view" target="_blank" rel="noopener">View Resume</a>
+</nav>
+
+<main>
+
+<!-- ── HERO ── -->
+<section class="hero container" aria-label="Introduction">
+  <p class="hero-eyebrow">Technical Case Study Library</p>
+  <h1>56 Shipped Projects Across AI, Full-Stack, Data, and Production Engineering</h1>
+  <p class="hero-sub">A curated library of real systems I have built across AI/ML, LLMs, RAG, computer vision, real-time communication, backend platforms, analytics, logistics, DevOps, and production deployment.</p>
+</section>
+
+<!-- ── BEST STARTING POINTS ── -->
+<section class="section container" aria-labelledby="featured-heading">
+  <p class="section-label">Where to Start</p>
+  <h2 class="section-title" id="featured-heading">Recommended Case Studies</h2>
+  <p class="section-desc">Six projects that best demonstrate the depth and range of my work. Recommended for recruiters, CTOs, and hiring managers short on time.</p>
+  <div class="featured-grid">
+
+    <a class="featured-card" href="windows-offline-ai-app/index.html">
+      <p class="featured-card-cat">Edge AI / Deployment</p>
+      <h3 class="featured-card-title">Windows Offline AI Application</h3>
+      <p class="featured-card-summary">CPU-only offline edge AI system using ONNX INT8 quantization, local SQLite persistence, and deferred sync for unreliable field environments.</p>
+      <p class="featured-card-why"><strong>Why this matters:</strong> Edge constraints, CPU-only inference, model reduction from 148MB to 37MB, ~320ms/frame, offline-first sync.</p>
+      <span class="featured-card-link">Read case study &rarr;</span>
+    </a>
+
+    <a class="featured-card" href="medical-evidence-qa-assistant/index.html">
+      <p class="featured-card-cat">LLM / RAG / Healthcare</p>
+      <h3 class="featured-card-title">Medical Evidence Q&amp;A Assistant</h3>
+      <p class="featured-card-summary">Safety-aware RAG architecture for medical evidence retrieval, citation-grounded answers, and refusal behavior.</p>
+      <p class="featured-card-why"><strong>Why this matters:</strong> RAG safety, retrieval discipline, citation integrity, refusal logic for regulated medical domain.</p>
+      <span class="featured-card-link">Read case study &rarr;</span>
+    </a>
+
+    <a class="featured-card" href="realtime-voice-agent/index.html">
+      <p class="featured-card-cat">Voice AI / Real-Time</p>
+      <h3 class="featured-card-title">Real-Time Voice Agent</h3>
+      <p class="featured-card-summary">Latency-first voice pipeline using LiveKit, faster-whisper, Gemini Flash, Piper TTS, turn tracing, and interruption handling.</p>
+      <p class="featured-card-why"><strong>Why this matters:</strong> 866ms clean-turn latency budget, sub-150ms interruption target, diagnosable turn-level tracing.</p>
+      <span class="featured-card-link">Read case study &rarr;</span>
+    </a>
+
+    <a class="featured-card" href="private-search-research-assistant/index.html">
+      <p class="featured-card-cat">LLM / RAG / Search</p>
+      <h3 class="featured-card-title">Private Search Research Assistant</h3>
+      <p class="featured-card-summary">Source-backed research assistant with search aggregation, deduplication, and structured summary workflow for privacy-conscious research.</p>
+      <p class="featured-card-why"><strong>Why this matters:</strong> Source-backed search, cross-source aggregation, deduplication, privacy-preserving architecture.</p>
+      <span class="featured-card-link">Read case study &rarr;</span>
+    </a>
+
+    <a class="featured-card" href="reliable-browser-video-calling/index.html">
+      <p class="featured-card-cat">Real-Time / WebRTC</p>
+      <h3 class="featured-card-title">Reliable Browser Video Calling</h3>
+      <p class="featured-card-summary">Browser-based video calling designed around WebRTC reliability, TURN/STUN fallback, and real-world network constraints.</p>
+      <p class="featured-card-why"><strong>Why this matters:</strong> WebRTC connection management, NAT traversal, TURN/STUN fallback, real-world browser reliability.</p>
+      <span class="featured-card-link">Read case study &rarr;</span>
+    </a>
+
+    <a class="featured-card" href="edge-ai-container-trailer-detection/index.html">
+      <p class="featured-card-cat">Computer Vision / Edge AI</p>
+      <h3 class="featured-card-title">Edge AI Container &amp; Trailer Detection</h3>
+      <p class="featured-card-summary">Computer vision system for detecting and classifying containers and trailers in logistics yards using edge-deployed models.</p>
+      <p class="featured-card-why"><strong>Why this matters:</strong> Full CV deployment lifecycle — training, edge optimization, production monitoring in demanding physical environments.</p>
+      <span class="featured-card-link">Read case study &rarr;</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ── HOW TO READ ── -->
+<section class="section container" aria-labelledby="howto-heading">
+  <p class="section-label">How to Read These</p>
+  <h2 class="section-title" id="howto-heading">What Each Case Study Covers</h2>
+  <p class="section-desc">Every case study follows a structured format designed to show production thinking, not just code.</p>
+  <div class="read-steps">
+    <div class="read-step"><p class="read-step-num">01</p><p class="read-step-label">Problem Framing</p></div>
+    <div class="read-step"><p class="read-step-num">02</p><p class="read-step-label">Architecture</p></div>
+    <div class="read-step"><p class="read-step-num">03</p><p class="read-step-label">Constraints</p></div>
+    <div class="read-step"><p class="read-step-num">04</p><p class="read-step-label">Implementation</p></div>
+    <div class="read-step"><p class="read-step-num">05</p><p class="read-step-label">Tradeoffs</p></div>
+    <div class="read-step"><p class="read-step-num">06</p><p class="read-step-label">Production Thinking</p></div>
+  </div>
+</section>
+
+<!-- ── CASE STUDY LIBRARY ── -->
+<section class="section container" id="library" aria-labelledby="library-heading">
+  <p class="section-label">All Projects</p>
+  <h2 class="section-title" id="library-heading">Case Study Library</h2>
+
+  <div class="search-wrap">
+    <input type="text" class="search-input" id="searchInput" placeholder="Search case studies..." autocomplete="off" aria-label="Search case studies">
+  </div>
+
+  <div class="filter-bar" id="filterBar" role="tablist" aria-label="Filter by category">
+    <button class="filter-chip active" data-filter="all" role="tab" aria-selected="true">All (56)</button>
+    <button class="filter-chip" data-filter="ai-ml" role="tab" aria-selected="false">AI / ML</button>
+    <button class="filter-chip" data-filter="llm-rag" role="tab" aria-selected="false">LLM / RAG</button>
+    <button class="filter-chip" data-filter="cv" role="tab" aria-selected="false">Computer Vision</button>
+    <button class="filter-chip" data-filter="realtime" role="tab" aria-selected="false">Real-Time</button>
+    <button class="filter-chip" data-filter="fullstack" role="tab" aria-selected="false">Full-Stack</button>
+    <button class="filter-chip" data-filter="data" role="tab" aria-selected="false">Data / Analytics</button>
+    <button class="filter-chip" data-filter="logistics" role="tab" aria-selected="false">Logistics</button>
+    <button class="filter-chip" data-filter="devops" role="tab" aria-selected="false">DevOps / Infra</button>
+  </div>
+
+  <div class="project-grid" id="projectGrid">
+    <!-- Cards injected by JS for maintainability; data below matches all 56 case studies -->
+  </div>
+
+  <div class="no-results" id="noResults">No case studies match your search. Try a different keyword or clear filters.</div>
+</section>
+
+<!-- ── SKILL COVERAGE MAP ── -->
+<section class="section container" aria-labelledby="skills-heading">
+  <p class="section-label">Skill Coverage</p>
+  <h2 class="section-title" id="skills-heading">Skills Demonstrated Across Projects</h2>
+  <p class="section-desc">Each skill family links to the case studies that demonstrate it.</p>
+  <div class="skill-map">
+    <div class="skill-group">
+      <h3 class="skill-group-title">AI / Machine Learning</h3>
+      <div class="skill-group-links">
+        <a href="npa-risk-prediction/index.html">NPA Risk Prediction</a>
+        <a href="data-driven-aid-allocation-model/index.html">Data-Driven Aid Allocation</a>
+        <a href="carsharing-availability-eda/index.html">Car-Sharing EDA</a>
+        <a href="edge-ai-runtime-evaluation/index.html">Edge AI Runtime Evaluation</a>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3 class="skill-group-title">LLM / RAG / Agents</h3>
+      <div class="skill-group-links">
+        <a href="medical-evidence-qa-assistant/index.html">Medical Evidence QA</a>
+        <a href="retrieval-tool-use-assistant/index.html">Retrieval Tool-Use Assistant</a>
+        <a href="private-search-research-assistant/index.html">Private Search Assistant</a>
+        <a href="prompt-reliability-workflow/index.html">Prompt Reliability</a>
+        <a href="llm-sales-assistant/index.html">LLM Sales Assistant</a>
+        <a href="support-inbox-copilot/index.html">Support Inbox Copilot</a>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3 class="skill-group-title">Computer Vision / OCR</h3>
+      <div class="skill-group-links">
+        <a href="edge-ai-container-trailer-detection/index.html">Container &amp; Trailer Detection</a>
+        <a href="android-edge-vision-logistics/index.html">Android Edge Vision</a>
+        <a href="model-free-vertical-text-ocr/index.html">Vertical Text OCR</a>
+        <a href="onprem-vision-inference-pipeline/index.html">On-Prem Inference Pipeline</a>
+        <a href="realtime-web-object-detection/index.html">Web Object Detection</a>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3 class="skill-group-title">Speech / Voice AI</h3>
+      <div class="skill-group-links">
+        <a href="realtime-voice-agent/index.html">Real-Time Voice Agent</a>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3 class="skill-group-title">Real-Time Communication</h3>
+      <div class="skill-group-links">
+        <a href="reliable-browser-video-calling/index.html">Browser Video Calling</a>
+        <a href="rtsp-camera-browser-streaming/index.html">RTSP Camera Streaming</a>
+        <a href="realtime-voice-agent/index.html">Real-Time Voice Agent</a>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3 class="skill-group-title">Backend APIs / Microservices</h3>
+      <div class="skill-group-links">
+        <a href="scalable-image-processing-api/index.html">Scalable Image Processing API</a>
+        <a href="enterprise-yms-integration/index.html">Enterprise YMS Integration</a>
+        <a href="realtime-marketing-decision-engine/index.html">Marketing Decision Engine</a>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3 class="skill-group-title">Data Engineering / Analytics</h3>
+      <div class="skill-group-links">
+        <a href="marketing-process-analytics-dashboard/index.html">Marketing Analytics Dashboard</a>
+        <a href="realtime-sales-signal-dashboard/index.html">Sales Signal Dashboard</a>
+        <a href="unified-analytics-lead-growth/index.html">Unified Analytics</a>
+        <a href="local-business-profit-planning/index.html">Profit Planning</a>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3 class="skill-group-title">Edge AI / On-Device</h3>
+      <div class="skill-group-links">
+        <a href="windows-offline-ai-app/index.html">Windows Offline AI App</a>
+        <a href="android-edge-vision-logistics/index.html">Android Edge Vision</a>
+        <a href="edge-ai-runtime-evaluation/index.html">Runtime Evaluation</a>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3 class="skill-group-title">Cloud / DevOps / CI-CD</h3>
+      <div class="skill-group-links">
+        <a href="small-team-devops-delivery-pipeline/index.html">DevOps Delivery Pipeline</a>
+        <a href="scalable-image-processing-api/index.html">Scalable Image API</a>
+        <a href="onprem-vision-inference-pipeline/index.html">On-Prem Inference Pipeline</a>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3 class="skill-group-title">Full-Stack / Product / SaaS</h3>
+      <div class="skill-group-links">
+        <a href="yard-management-platform/index.html">Yard Management Platform</a>
+        <a href="unified-course-management-platform/index.html">Course Management Platform</a>
+        <a href="sponsorsync-influencer-marketplace/index.html">Influencer Marketplace</a>
+        <a href="nocode-logistics-form-builder/index.html">No-Code Form Builder</a>
+        <a href="lead-management-product-launch/index.html">Lead Management</a>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3 class="skill-group-title">Security / Compliance / Reliability</h3>
+      <div class="skill-group-links">
+        <a href="medical-evidence-qa-assistant/index.html">Medical QA (Safety Boundaries)</a>
+        <a href="ttil-barcode-coldchain-tracking/index.html">Cold-Chain Compliance</a>
+        <a href="prompt-reliability-workflow/index.html">Prompt Reliability</a>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3 class="skill-group-title">Product / Growth / Execution</h3>
+      <div class="skill-group-links">
+        <a href="lead-management-product-launch/index.html">Lead Management Launch</a>
+        <a href="sponsorsync-influencer-marketplace/index.html">Influencer Marketplace</a>
+        <a href="engagement-triggered-followup-automation/index.html">Follow-Up Automation</a>
+        <a href="unified-analytics-lead-growth/index.html">Lead Growth Analytics</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── RECRUITER / CTO GUIDE ── -->
+<section class="section container" aria-labelledby="guide-heading">
+  <p class="section-label">Reading Guide</p>
+  <h2 class="section-title" id="guide-heading">If You Are Hiring For&hellip;</h2>
+  <div class="guide-grid">
+    <div class="guide-card">
+      <h3 class="guide-role">AI / ML Engineer</h3>
+      <p class="guide-desc">Focus on model deployment, RAG safety, retrieval systems, and edge inference.</p>
+      <div class="guide-links">
+        <a href="medical-evidence-qa-assistant/index.html">Medical Evidence QA</a>
+        <a href="windows-offline-ai-app/index.html">Windows Offline AI</a>
+        <a href="npa-risk-prediction/index.html">NPA Risk Prediction</a>
+        <a href="edge-ai-runtime-evaluation/index.html">Edge AI Runtime</a>
+        <a href="prompt-reliability-workflow/index.html">Prompt Reliability</a>
+      </div>
+    </div>
+    <div class="guide-card">
+      <h3 class="guide-role">Full-Stack Engineer</h3>
+      <p class="guide-desc">See SaaS platforms, dashboards, APIs, form builders, and course management.</p>
+      <div class="guide-links">
+        <a href="yard-management-platform/index.html">Yard Management Platform</a>
+        <a href="unified-course-management-platform/index.html">Course Management</a>
+        <a href="nocode-logistics-form-builder/index.html">No-Code Form Builder</a>
+        <a href="marketing-process-analytics-dashboard/index.html">Marketing Dashboard</a>
+        <a href="sponsorsync-influencer-marketplace/index.html">Influencer Marketplace</a>
+      </div>
+    </div>
+    <div class="guide-card">
+      <h3 class="guide-role">Computer Vision Engineer</h3>
+      <p class="guide-desc">Explore edge vision, OCR, real-time detection, and on-prem inference.</p>
+      <div class="guide-links">
+        <a href="edge-ai-container-trailer-detection/index.html">Container Detection</a>
+        <a href="android-edge-vision-logistics/index.html">Android Edge Vision</a>
+        <a href="model-free-vertical-text-ocr/index.html">Vertical Text OCR</a>
+        <a href="onprem-vision-inference-pipeline/index.html">On-Prem Inference</a>
+        <a href="realtime-web-object-detection/index.html">Web Object Detection</a>
+      </div>
+    </div>
+    <div class="guide-card">
+      <h3 class="guide-role">Backend / Platform Engineer</h3>
+      <p class="guide-desc">Review scalable APIs, enterprise integration, WebRTC, and delivery pipelines.</p>
+      <div class="guide-links">
+        <a href="scalable-image-processing-api/index.html">Scalable Image API</a>
+        <a href="enterprise-yms-integration/index.html">Enterprise YMS Integration</a>
+        <a href="reliable-browser-video-calling/index.html">Browser Video Calling</a>
+        <a href="small-team-devops-delivery-pipeline/index.html">DevOps Pipeline</a>
+      </div>
+    </div>
+    <div class="guide-card">
+      <h3 class="guide-role">Data / Analytics Role</h3>
+      <p class="guide-desc">See dashboards, decision engines, NPA modeling, EDA, and growth analytics.</p>
+      <div class="guide-links">
+        <a href="marketing-process-analytics-dashboard/index.html">Marketing Dashboard</a>
+        <a href="realtime-marketing-decision-engine/index.html">Decision Engine</a>
+        <a href="npa-risk-prediction/index.html">NPA Risk Prediction</a>
+        <a href="carsharing-availability-eda/index.html">Car-Sharing EDA</a>
+        <a href="unified-analytics-lead-growth/index.html">Lead Growth Analytics</a>
+      </div>
+    </div>
+    <div class="guide-card">
+      <h3 class="guide-role">Founder / Client</h3>
+      <p class="guide-desc">Review productized systems, automation, lead growth, and marketplace platforms.</p>
+      <div class="guide-links">
+        <a href="lead-management-product-launch/index.html">Lead Management Launch</a>
+        <a href="sponsorsync-influencer-marketplace/index.html">Influencer Marketplace</a>
+        <a href="engagement-triggered-followup-automation/index.html">Follow-Up Automation</a>
+        <a href="unified-course-management-platform/index.html">Course Platform</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHAT THESE PROVE ── -->
+<section class="section container" aria-labelledby="proof-heading">
+  <p class="section-label">What This Library Proves</p>
+  <h2 class="section-title" id="proof-heading">Production Thinking, Not Just Code</h2>
+  <ul class="proof-list">
+    <li>I can turn ambiguous requirements into working, deployed systems.</li>
+    <li>I build across frontend, backend, AI/ML, data, deployment, and operations.</li>
+    <li>I understand production constraints: latency, reliability, offline mode, security, scaling, monitoring, cost, and maintainability.</li>
+    <li>I communicate architecture clearly — these case studies are the proof.</li>
+    <li>I work across industries, not just toy datasets or tutorial projects.</li>
+  </ul>
+</section>
+
+<!-- ── FOOTER CTA ── -->
+<section class="section cta container" aria-label="Call to action">
+  <h2 class="cta-title">Looking for someone who can build AI systems end-to-end?</h2>
+  <div class="cta-actions">
+    <a class="btn btn-primary" href="../index.html#contact">Contact Me</a>
+    <a class="btn btn-secondary" href="../index.html">Back to Portfolio</a>
+  </div>
+  <div class="cta-links">
+    <a href="https://github.com/harshitpaunikar1" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/harsh2025" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ── FOOTER — matches main site ── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-name">Harshit Paunikar</span> - AI/ML Engineer &amp; Full-Stack AI Builder
+    </div>
+    <div class="footer-links">
+      <a href="mailto:paunikarharshit1995@gmail.com">Email</a>
+      <a href="tel:+917503217372">Phone</a>
+      <a href="https://www.linkedin.com/in/harsh2025" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/harshitpaunikar1" target="_blank" rel="noopener">GitHub</a>
+      <a href="http://drive.google.com/file/d/1jET0PqPdHKjui3PRrpxlMgI0cNJIRpjj/view" target="_blank" rel="noopener">Resume</a>
+    </div>
+    <a class="footer-top" href="#">&#8593; Back to top</a>
+  </div>
+</footer>
+
+<script>
+/* ── PROJECT DATA ── */
+var projects = [
+  { slug: "windows-offline-ai-app", title: "Windows Offline AI Application", summary: "CPU-only offline edge AI system using ONNX INT8 quantization, local SQLite persistence, and deferred sync.", cats: ["cv","devops"], skills: ["Edge AI","ONNX","INT8","Offline-First","SQLite","Windows"], domain: "Logistics", type: "Architecture Review" },
+  { slug: "medical-evidence-qa-assistant", title: "Medical Evidence Q&A Assistant", summary: "Safety-aware RAG architecture for medical evidence retrieval, citation-grounded answers, and refusal behavior.", cats: ["llm-rag","ai-ml"], skills: ["RAG","FastAPI","Qdrant","Retrieval","Refusal Logic","Citations"], domain: "Healthcare", type: "Architecture Review" },
+  { slug: "realtime-voice-agent", title: "Real-Time Voice Agent", summary: "Latency-first voice pipeline using LiveKit, faster-whisper, Gemini Flash, Piper TTS, and interruption handling.", cats: ["realtime","ai-ml"], skills: ["Voice AI","LiveKit","STT","TTS","LLM","Latency"], domain: "Voice AI", type: "Architecture Review" },
+  { slug: "private-search-research-assistant", title: "Private Search Research Assistant", summary: "Source-backed research assistant with search aggregation, deduplication, and privacy-preserving summary workflow.", cats: ["llm-rag"], skills: ["Search","RAG","Deduplication","Privacy","Source Attribution"], domain: "Research", type: "Build Breakdown" },
+  { slug: "reliable-browser-video-calling", title: "Reliable Browser Video Calling", summary: "Browser video calling designed around WebRTC reliability, TURN/STUN fallback, and real-world network constraints.", cats: ["realtime"], skills: ["WebRTC","TURN","STUN","Real-Time","Browser","Media"], domain: "EdTech", type: "Architecture Review" },
+  { slug: "edge-ai-container-trailer-detection", title: "Edge AI Container & Trailer Detection", summary: "Computer vision for detecting containers and trailers in logistics yards using edge-deployed models.", cats: ["cv","logistics"], skills: ["Object Detection","YOLO","Edge AI","Model Optimization","CV"], domain: "Logistics", type: "Architecture Review" },
+  { slug: "android-edge-vision-logistics", title: "Android Edge Vision for Logistics", summary: "On-device computer vision for logistics asset identification on Android hardware in field conditions.", cats: ["cv","logistics"], skills: ["Android","TFLite","CV","Edge Inference","Mobile"], domain: "Logistics", type: "Build Breakdown" },
+  { slug: "adaptive-yard-routing", title: "Adaptive Yard Routing System", summary: "Dynamic routing for yard operations optimizing trailer movement and dock assignment under real-time constraints.", cats: ["logistics"], skills: ["Routing","Optimization","Python","Backend","Logistics"], domain: "Logistics", type: "Systems Analysis" },
+  { slug: "realtime-web-object-detection", title: "Real-Time Web Object Detection", summary: "Browser-based real-time object detection with WebGL-accelerated inference and camera streaming.", cats: ["cv","realtime"], skills: ["WebGL","Browser AI","CV","Real-Time","JavaScript"], domain: "Logistics", type: "Build Breakdown" },
+  { slug: "yard-management-platform", title: "Yard Management Platform", summary: "Full-stack platform for trailer tracking, dock scheduling, and operational visibility in logistics yards.", cats: ["fullstack","logistics"], skills: ["Full-Stack","Real-Time","Dashboard","API Design","Logistics"], domain: "Logistics", type: "Product Case Study" },
+  { slug: "enterprise-yms-integration", title: "Enterprise YMS Integration", summary: "Integration layer connecting enterprise YMS with logistics operations through real-time data sync.", cats: ["fullstack","logistics"], skills: ["Integration","REST APIs","Enterprise","Real-Time Sync","Data Mapping"], domain: "Logistics", type: "Architecture Review" },
+  { slug: "nocode-logistics-form-builder", title: "No-Code Logistics Form Builder", summary: "No-code platform for building logistics data capture forms with validation, offline support, and workflow integration.", cats: ["fullstack","logistics"], skills: ["No-Code","Form Builder","Full-Stack","Offline","Workflow"], domain: "Logistics", type: "Product Case Study" },
+  { slug: "offline-inspection-capture-platform", title: "Offline Inspection Capture Platform", summary: "Field inspection platform with offline-first data capture, photo documentation, and deferred sync.", cats: ["fullstack","logistics"], skills: ["Offline-First","IndexedDB","Service Workers","Photo Capture","Sync"], domain: "Logistics", type: "Build Breakdown" },
+  { slug: "scalable-image-processing-api", title: "Scalable Image Processing API", summary: "Backend image-processing service designed for throughput, queue management, and production delivery.", cats: ["devops"], skills: ["API Design","Queue Management","Image Processing","Scalability","Backend"], domain: "Logistics", type: "Build Breakdown" },
+  { slug: "model-free-vertical-text-ocr", title: "Model-Free Vertical Text OCR", summary: "OCR for vertical text using geometric analysis and rule-based segmentation without ML model dependency.", cats: ["cv"], skills: ["OCR","Image Processing","Algorithm Design","Geometric Analysis","Python"], domain: "Logistics", type: "Build Breakdown" },
+  { slug: "ttil-barcode-coldchain-tracking", title: "TTIL Barcode Cold-Chain Tracking", summary: "Cold-chain tracking with barcode scanning, temperature compliance monitoring, and alert workflows.", cats: ["logistics"], skills: ["Barcode","Cold Chain","Compliance","Alert Systems","Mobile"], domain: "Logistics / Cold Chain", type: "Build Breakdown" },
+  { slug: "onprem-vision-inference-pipeline", title: "On-Prem Vision Inference Pipeline", summary: "Production inference pipeline for CV models on-premises with batch/real-time processing and monitoring.", cats: ["cv","devops"], skills: ["Inference Pipeline","CV","On-Prem","GPU Management","Monitoring"], domain: "Manufacturing", type: "Architecture Review" },
+  { slug: "npa-risk-prediction", title: "NPA Risk Prediction Model", summary: "ML model predicting Non-Performing Asset risk in banking using borrower features and repayment signals.", cats: ["ai-ml","data"], skills: ["ML Modeling","Classification","Feature Engineering","Risk Modeling","Banking"], domain: "Banking", type: "Data Case Study" },
+  { slug: "onprem-comment-intelligence-engine", title: "On-Prem Comment Intelligence Engine", summary: "On-premises NLP engine extracting sentiment, topics, and actionable insights from customer feedback.", cats: ["llm-rag"], skills: ["NLP","Sentiment Analysis","On-Prem","Text Classification","Python"], domain: "Marketing", type: "Architecture Review" },
+  { slug: "llm-sales-assistant", title: "LLM Sales Assistant", summary: "LLM-powered sales assistant with product knowledge retrieval, objection handling, and contextual responses.", cats: ["llm-rag"], skills: ["LLM","RAG","Prompt Engineering","FastAPI","Sales Domain"], domain: "SalesTech", type: "Build Breakdown" },
+  { slug: "realtime-marketing-decision-engine", title: "Real-Time Marketing Decision Engine", summary: "Event-driven decision engine processing behavioral signals for real-time marketing interventions.", cats: ["data","realtime"], skills: ["Event-Driven","Real-Time","Decision Logic","Stream Processing","APIs"], domain: "Marketing", type: "Architecture Review" },
+  { slug: "sponsorsync-influencer-marketplace", title: "SponsorSync Influencer Marketplace", summary: "Two-sided marketplace for sponsors and influencers with matching, campaign tracking, and payment workflow.", cats: ["fullstack"], skills: ["Marketplace","Full-Stack","Matching","Payment","Campaign Tracking"], domain: "Marketing / AdTech", type: "Product Case Study" },
+  { slug: "engagement-triggered-followup-automation", title: "Engagement-Triggered Follow-Up Automation", summary: "Automation triggering personalized follow-ups based on engagement signals and behavioral scoring.", cats: ["fullstack","data"], skills: ["Automation","Event Processing","Backend","Behavioral Scoring","Marketing"], domain: "Marketing", type: "Build Breakdown" },
+  { slug: "realtime-sales-signal-dashboard", title: "Real-Time Sales Signal Dashboard", summary: "Live dashboard surfacing sales signals from CRM, email, and engagement data with real-time scoring.", cats: ["data","realtime"], skills: ["Real-Time Data","Dashboard","WebSocket","Sales Analytics","Full-Stack"], domain: "Marketing / AdTech", type: "Build Breakdown" },
+  { slug: "marketing-process-analytics-dashboard", title: "Marketing Process Analytics Dashboard", summary: "Full-stack analytics dashboard for marketing process visibility with campaign flow and conversion metrics.", cats: ["data","fullstack"], skills: ["Dashboard","Analytics","Full-Stack","Data Viz","React"], domain: "Marketing", type: "Build Breakdown" },
+  { slug: "unified-analytics-lead-growth", title: "Unified Analytics for Lead Growth", summary: "Consolidated analytics unifying lead tracking, growth metrics, and conversion analysis across channels.", cats: ["data"], skills: ["Analytics","Data Integration","Growth Metrics","Dashboard","Full-Stack"], domain: "Marketing / AdTech", type: "Build Breakdown" },
+  { slug: "carsharing-availability-eda", title: "Car-Sharing Availability EDA", summary: "Exploratory data analysis identifying availability patterns, demand-supply gaps, and usage optimization.", cats: ["data","ai-ml"], skills: ["EDA","Python","Pandas","Data Viz","Statistics"], domain: "Mobility", type: "Data Case Study" },
+  { slug: "data-driven-aid-allocation-model", title: "Data-Driven Aid Allocation Model", summary: "Predictive model for humanitarian aid distribution using historical data and need indicators.", cats: ["ai-ml","data"], skills: ["ML Modeling","Feature Engineering","Classification","Python","Impact Analysis"], domain: "Financial Analysis", type: "Data Case Study" },
+  { slug: "local-business-profit-planning", title: "Local Business Profit Planning", summary: "Financial planning tool combining revenue forecasting, cost modeling, and profit optimization scenarios.", cats: ["data"], skills: ["Financial Modeling","Forecasting","Data Viz","Python","Scenario Analysis"], domain: "Business Analysis", type: "Data Case Study" },
+  { slug: "lead-management-product-launch", title: "Lead Management Product Launch", summary: "End-to-end lead management platform with pipeline tracking, scoring, and conversion analytics.", cats: ["fullstack"], skills: ["Product Execution","Full-Stack","CRM","Analytics","Pipeline"], domain: "Project Management", type: "Product Case Study" },
+  { slug: "unified-course-management-platform", title: "Unified Course Management Platform", summary: "Full-stack course management with enrollment, content delivery, assessments, and instructor workflows.", cats: ["fullstack"], skills: ["Full-Stack","EdTech","React","API Design","Database Design"], domain: "EdTech", type: "Product Case Study" },
+  { slug: "brand-tuned-support-assistant", title: "Brand-Tuned Support Assistant", summary: "LLM support assistant calibrated for brand voice consistency across real customer interactions.", cats: ["llm-rag"], skills: ["LLM","Brand Tuning","RAG","Prompt Engineering","Support"], domain: "E-commerce", type: "Build Breakdown" },
+  { slug: "support-inbox-copilot", title: "Support Inbox Copilot", summary: "AI copilot for support inboxes drafting responses, classifying tickets, and suggesting actions.", cats: ["llm-rag"], skills: ["LLM","RAG","Classification","Knowledge Retrieval","Support Ops"], domain: "E-commerce", type: "Build Breakdown" },
+  { slug: "retrieval-tool-use-assistant", title: "Retrieval Tool-Use Assistant", summary: "Agentic assistant combining RAG with tool-use for multi-step task execution and safety boundaries.", cats: ["llm-rag"], skills: ["LLM Agents","RAG","Tool Use","Function Calling","Orchestration"], domain: "Internal AI", type: "Architecture Review" },
+  { slug: "rtsp-camera-browser-streaming", title: "RTSP Camera Browser Streaming", summary: "Streaming RTSP camera feeds to browsers with transcoding, adaptive bitrate, and low-latency delivery.", cats: ["realtime","devops"], skills: ["RTSP","Video Transcoding","Adaptive Bitrate","WebSocket","FFmpeg"], domain: "Video / Security", type: "Build Breakdown" },
+  { slug: "edge-ai-runtime-evaluation", title: "Edge AI Runtime Evaluation", summary: "Systematic benchmarking of ONNX, TFLite, and native frameworks on edge hardware targets.", cats: ["devops","ai-ml"], skills: ["ONNX","TFLite","Benchmarking","Performance Profiling","Edge Hardware"], domain: "Edge AI", type: "Systems Analysis" },
+  { slug: "prompt-reliability-workflow", title: "Prompt Reliability Workflow", summary: "Framework for testing, evaluating, and improving LLM prompt reliability across edge cases.", cats: ["llm-rag"], skills: ["Prompt Engineering","LLM Evaluation","Testing","Reliability","Metrics"], domain: "GenAI Ops", type: "Systems Analysis" },
+  { slug: "small-team-devops-delivery-pipeline", title: "Small-Team DevOps Delivery Pipeline", summary: "Practical CI/CD for small teams balancing deployment speed, reliability, and rollback discipline.", cats: ["devops"], skills: ["CI/CD","Docker","GitLab","Deployment","Rollback","Monitoring"], domain: "DevOps", type: "Systems Analysis" },
+  { slug: "airline-passenger-forecasting", title: "What I Trust in an Airline Passenger Forecast", summary: "A forecast postmortem on monthly airline passenger demand: decomposition, stationarity, seasonality, backtesting, and why exogenous promotion signals changed the result.", cats: ["data","ai-ml"], skills: ["Forecasting","ARIMA","SARIMA","SARIMAX","Backtesting"], domain: "Aviation / Forecasting", type: "Data Case Study" },
+  { slug: "co2-emissions-prediction", title: "What This CO2 Model Can Say, and What It Cannot", summary: "A cautious policy-analysis brief on country-level CO2 emissions modeling: what the notebook measures, where inference must stop, and how regulation can use the output without pretending it is causal.", cats: ["data","ai-ml"], skills: ["Regression","Lasso","Policy Analytics","Emissions","Interpretation"], domain: "Climate / Policy", type: "Data Case Study" },
+  { slug: "digital-media-view-prediction", title: "Forecasting an Audience Before the Launch Window Closes", summary: "A case study on forecasting show views for a digital media company: launch timing, weekend lift, promo pressure, and which variables actually help editorial planning.", cats: ["data","ai-ml"], skills: ["Forecasting","Media Analytics","Feature Analysis","Planning","Python"], domain: "Media / Forecasting", type: "Data Case Study" },
+  { slug: "housing-pca-case-study", title: "Does PCA Actually Help a Housing Model?", summary: "A comparative analysis of PCA in housing-price prediction: cleaner geometry, weaker interpretability, and only a marginal change in model performance.", cats: ["ai-ml","data"], skills: ["PCA","Regression","Interpretability","Model Comparison","Python"], domain: "Real Estate / ML", type: "Data Case Study" },
+  { slug: "housing-price-prediction", title: "What a Housing Regression Can and Cannot Tell You About Price", summary: "A practical valuation guide: what the Delhi housing regression model reveals about feature elasticity, where its predictions drift from market reality, and when an appraiser's judgment outperforms the equation.", cats: ["data","ai-ml"], skills: ["Regression","Valuation","Residual Analysis","Elasticity","Python"], domain: "Real Estate / Analytics", type: "Data Case Study" },
+  { slug: "india-budget-2020-economic-analysis", title: "Reading the Economy Before Budget 2020: A Policy Briefing", summary: "A policy-style analytical briefing for decision-makers preparing for India's Union Budget 2020. Growth slowdown, inflation, sectoral stress, and fiscal room — ranked by urgency.", cats: ["data"], skills: ["Macroeconomics","Policy Briefing","Sector Analysis","Economic Analysis","Python"], domain: "Economic Analysis", type: "Data Case Study" },
+  { slug: "iris-pca-analysis", title: "The Geometry of Less — PCA from First Principles", summary: "Why principal component analysis rotates axes rather than drops columns and what survives the compression.", cats: ["ai-ml","data"], skills: ["PCA","Iris Dataset","Standardization","Explained Variance","Python"], domain: "ML Foundations", type: "Data Case Study" },
+  { slug: "linear-regression-cross-validation", title: "Cross-Validation Does Not Guarantee a Honest Model", summary: "A myth-busting explainer on cross-validation: what k-fold actually measures, the three ways practitioners break it quietly, and a checklist for when CV scores are actually informative.", cats: ["ai-ml","data"], skills: ["Cross-Validation","Data Leakage","Regression","Validation","Python"], domain: "Model Evaluation", type: "Data Case Study" },
+  { slug: "loan-default-risk-prediction", title: "Lending Into the Unknown: A Credit-Risk Decision System for NPA Reduction", summary: "How a classification model built on the Home Credit dataset becomes a scoreband-driven approval policy — and why the model's value only becomes legible once it's embedded in a lending decision chain.", cats: ["ai-ml","data"], skills: ["Credit Risk","Classification","Scorecards","Imbalance","Banking"], domain: "Banking / Credit Risk", type: "Data Case Study" },
+  { slug: "marriage-age-prediction-flask-app", title: "An Honest Retrofit: Cleaning Up a Rough ML Deployment", summary: "When evaluating a rudimentary Flask deployment for a marriage age prediction model, simply hitting run is not enough. The artifact demands editorial cleanup, explicit boundary-setting, and an unsparing assessment of what the system can and cannot claim to accomplish.", cats: ["fullstack","ai-ml"], skills: ["Flask","ML Deployment","Form Handling","Python","Cleanup"], domain: "Full-Stack / ML Deployment", type: "Build Breakdown" },
+  { slug: "ngo-resource-allocation-model", title: "Allocating Under Scarcity: An Ethics-Aware Resource Memo", summary: "How an international NGO translates socioeconomic indicators into ranked country allocations — the indicators, the weights, the constraints, and the tradeoffs that scoring cannot hide.", cats: ["data","ai-ml"], skills: ["Resource Allocation","Clustering","Scoring","Social Impact","Python"], domain: "Social Impact / Analytics", type: "Data Case Study" },
+  { slug: "online-retail-customer-clustering", title: "Who Actually Shops Here: Five Customer Archetypes from a UK Retail Dataset", summary: "How RFM features and K-means clustering turn 541,000 transactions into five recognizable customer types — and what each archetype tells the merchandising and CRM team.", cats: ["ai-ml","data"], skills: ["K-Means","RFM","Segmentation","E-commerce","Python"], domain: "E-commerce / Segmentation", type: "Data Case Study" },
+  { slug: "power-user-curve-analysis", title: "Reading the Power User Curve", summary: "DAU/MAU is a blunt instrument that collapses human behavior into a single ambiguous percentage. To understand whether a product actually commands attention, we must transition from stickiness shorthand to distributional thinking.", cats: ["data"], skills: ["Product Analytics","DAU/MAU","Retention","Segmentation","Visualization"], domain: "Product Analytics", type: "Data Case Study" },
+  { slug: "property-valuation-model", title: "Investment Committee Memo: Property Valuation Model", summary: "This memorandum presents the underlying logic, assumptions, and scenario sensitivities for the proposed property investment model, shifting the discussion from model accuracy alone toward cashflow discipline and downside risk.", cats: ["data","ai-ml"], skills: ["Valuation","Cashflow","Scenario Analysis","IRR","Python"], domain: "Real Estate / Investment", type: "Data Case Study" },
+  { slug: "salary-estimation-flask-app", title: "The Interesting Part Starts After model.fit()", summary: "An engineer's walkthrough of turning a tiny salary model into a usable Flask interface, and why that still does not count as production readiness.", cats: ["fullstack","ai-ml"], skills: ["Flask","API Design","Deployment","Model Serialization","Python"], domain: "Full-Stack / ML Deployment", type: "Build Breakdown" },
+  { slug: "telecom-churn-prediction", title: "The Churn Retention Playbook: From Signal to Save Offer", summary: "A telecom churn-retention playbook: how a classification model connects to a tiered intervention strategy, what a false positive costs, and which signals actually predict who is about to leave.", cats: ["ai-ml","data"], skills: ["Churn Prediction","Classification","Retention","Telecom","Python"], domain: "Telecom / Retention", type: "Data Case Study" },
+  { slug: "used-car-price-prediction", title: "What Actually Moves a Used Car's Price", summary: "A market-translation article: what regression reveals about used-car pricing pressure, which signals matter, and where the model becomes a poor guide to real negotiation.", cats: ["data","ai-ml"], skills: ["Regression","Price Modeling","Automotive","Residuals","Python"], domain: "Automotive / Analytics", type: "Data Case Study" },
+  { slug: "x-education-lead-prioritization", title: "Revenue Operations Brief: Lead Prioritization at X Education", summary: "Production-grade routing overriding CRM defaults, using prioritized lead scoring and cutoff calibration to improve close-rate-focused sales operations.", cats: ["ai-ml","data"], skills: ["Lead Scoring","Classification","RevOps","Cutoffs","Python"], domain: "Sales / RevOps", type: "Data Case Study" }
+];
+
+/* ── RENDER CARDS ── */
+function renderCards() {
+  var grid = document.getElementById('projectGrid');
+  var html = '';
+  for (var i = 0; i < projects.length; i++) {
+    var p = projects[i];
+    var catStr = p.cats.join(' ');
+    var skillsHtml = '';
+    for (var j = 0; j < Math.min(p.skills.length, 5); j++) {
+      skillsHtml += '<span class="card-skill">' + p.skills[j] + '</span>';
+    }
+    html += '<div class="project-card" data-cats="' + catStr + '" data-search="' + (p.title + ' ' + p.summary + ' ' + p.skills.join(' ') + ' ' + p.domain).toLowerCase() + '">' +
+      '<div class="card-header"><span class="card-cat">' + getCatLabel(p.cats[0]) + '</span><span class="card-type">' + p.type + '</span></div>' +
+      '<h3 class="card-title">' + p.title + '</h3>' +
+      '<p class="card-summary">' + p.summary + '</p>' +
+      '<div class="card-skills">' + skillsHtml + '</div>' +
+      '<div class="card-footer"><span class="card-domain">' + p.domain + '</span><a class="card-link" href="' + p.slug + '/index.html">Read case study &rarr;</a></div>' +
+    '</div>';
+  }
+  grid.innerHTML = html;
+}
+
+function getCatLabel(cat) {
+  var map = { "ai-ml": "AI / ML", "llm-rag": "LLM / RAG", "cv": "Computer Vision", "realtime": "Real-Time", "fullstack": "Full-Stack", "data": "Data / Analytics", "logistics": "Logistics", "devops": "DevOps / Infra" };
+  return map[cat] || cat;
+}
+
+/* ── FILTER ── */
+function bindFilters() {
+  var bar = document.getElementById('filterBar');
+  bar.addEventListener('click', function(e) {
+    var chip = e.target.closest('.filter-chip');
+    if (!chip) return;
+    bar.querySelectorAll('.filter-chip').forEach(function(c) { c.classList.remove('active'); c.setAttribute('aria-selected','false'); });
+    chip.classList.add('active');
+    chip.setAttribute('aria-selected','true');
+    applyFilters();
+  });
+}
+
+function bindSearch() {
+  document.getElementById('searchInput').addEventListener('input', function() { applyFilters(); });
+}
+
+function applyFilters() {
+  var filter = document.querySelector('.filter-chip.active').getAttribute('data-filter');
+  var query = document.getElementById('searchInput').value.toLowerCase().trim();
+  var cards = document.querySelectorAll('.project-card');
+  var visible = 0;
+  for (var i = 0; i < cards.length; i++) {
+    var card = cards[i];
+    var catMatch = filter === 'all' || (' ' + card.getAttribute('data-cats') + ' ').indexOf(filter) !== -1;
+    var searchMatch = !query || card.getAttribute('data-search').indexOf(query) !== -1;
+    var show = catMatch && searchMatch;
+    card.classList.toggle('hidden', !show);
+    if (show) visible++;
+  }
+  document.getElementById('noResults').classList.toggle('visible', visible === 0);
+}
+
+/* ── MOBILE NAV ── */
+function bindNav() {
+  var toggle = document.getElementById('navToggle');
+  var mobileNav = document.getElementById('mobileNav');
+  toggle.addEventListener('click', function() {
+    var isOpen = mobileNav.classList.toggle('open');
+    toggle.classList.toggle('is-open', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded', function() {
+  renderCards();
+  bindFilters();
+  bindSearch();
+  bindNav();
+
+  // Handle legacy hash links
+  var hash = window.location.hash.replace('#', '');
+  if (hash && hash !== 'library') {
+    window.location.href = hash + '/index.html';
+  }
+});
+</script>
+</body>
+</html>
