@@ -16,3 +16,7 @@
 
 - Task summary: By this point I had the rough direction, so the work became more practical. I spent most of the day trying to draw low-fidelity layouts for desktop and mobile views before touching code and make the whole thing feel less half baked. Once the base made some sense, I could finally move a bit faster and stop second guessing every tiny decision. I was also thinking about first impression stuff the whole time, since this kind of project gets judged very quickly.
 - Deliverable: I wrapped up the day with homepage wireframe mostly in place. It was not perfect, but it was good enough to keep the project moving. There were still a couple of loose parts, but nothing serious enough to block the next step.
+## 2023-01-16 - Day 3: Wireframe pass
+
+- Task summary: One more pass: found a duplicate function that slipped in during copy-paste. Removed it.
+- Deliverable: One of those satisfying small wins.
