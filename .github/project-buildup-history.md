@@ -12,3 +12,7 @@
 
 - Task summary: Used the next day to keep the momentum going for Harshitpaunikar1 Github Io. I was still piecing things together, so I focused on trying to sketch the site map and decide which sections belong on the landing page versus subpages and wrote down the stuff that looked important. This was still the messy setup part where I was opening files, checking examples, and trying not to overthink it too early. Even simple portfolio sections can eat time when the wording and visuals both need to feel right.
 - Deliverable: I wrapped up the day with simple site map mostly in place. It was not perfect, but it was good enough to keep the project moving. I also left myself a few rough reminders for the next day so I would not have to rediscover the same context again.
+## 2023-01-16 - Day 3: Wireframe pass
+
+- Task summary: By this point I had the rough direction, so the work became more practical. I spent most of the day trying to draw low-fidelity layouts for desktop and mobile views before touching code and make the whole thing feel less half baked. Once the base made some sense, I could finally move a bit faster and stop second guessing every tiny decision. I was also thinking about first impression stuff the whole time, since this kind of project gets judged very quickly.
+- Deliverable: I wrapped up the day with homepage wireframe mostly in place. It was not perfect, but it was good enough to keep the project moving. There were still a couple of loose parts, but nothing serious enough to block the next step.
