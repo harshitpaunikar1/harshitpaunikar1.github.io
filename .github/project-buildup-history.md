@@ -20,3 +20,7 @@
 
 - Task summary: One more pass: found a duplicate function that slipped in during copy-paste. Removed it.
 - Deliverable: One of those satisfying small wins.
+## 2023-01-16 - Day 3: Wireframe pass
+
+- Task summary: After stepping away for a bit, came back and the variable names were inconsistent so cleaned those up across the notebook before calling it done.
+- Deliverable: Pushed before end of day.
