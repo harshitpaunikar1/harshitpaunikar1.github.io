@@ -24,3 +24,7 @@
 
 - Task summary: After stepping away for a bit, came back and the variable names were inconsistent so cleaned those up across the notebook before calling it done.
 - Deliverable: Pushed before end of day.
+## 2023-01-17 - Day 4: Branding
+
+- Task summary: By this point I had the rough direction, so the work became more practical. I spent most of the day trying to pick fonts, colors, spacing rules, and a visual direction that feels intentional and make the whole thing feel less half baked. The middle part always takes longer than it should, mostly becuase one fix usually reveals two more things to clean up. Small layout choices mattered more than I first expected, so I ended up tweaking them more than once.
+- Deliverable: I wrapped up the day with style direction mostly in place. It was not perfect, but it was good enough to keep the project moving. It was not super polished, just stable enough that I felt okay moving forward.
