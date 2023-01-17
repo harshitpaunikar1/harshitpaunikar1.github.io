@@ -16,3 +16,7 @@
 
 - Task summary: By this point I had the rough direction, so the work became more practical. I spent most of the day trying to draw low-fidelity layouts for desktop and mobile views before touching code and make the whole thing feel less half baked. Once the base made some sense, I could finally move a bit faster and stop second guessing every tiny decision. I was also thinking about first impression stuff the whole time, since this kind of project gets judged very quickly.
 - Deliverable: I wrapped up the day with homepage wireframe mostly in place. It was not perfect, but it was good enough to keep the project moving. There were still a couple of loose parts, but nothing serious enough to block the next step.
+## 2023-01-17 - Day 4: Branding
+
+- Task summary: By this point I had the rough direction, so the work became more practical. I spent most of the day trying to pick fonts, colors, spacing rules, and a visual direction that feels intentional and make the whole thing feel less half baked. The middle part always takes longer than it should, mostly becuase one fix usually reveals two more things to clean up. Small layout choices mattered more than I first expected, so I ended up tweaking them more than once.
+- Deliverable: I wrapped up the day with style direction mostly in place. It was not perfect, but it was good enough to keep the project moving. It was not super polished, just stable enough that I felt okay moving forward.
