@@ -20,3 +20,7 @@
 
 - Task summary: By this point I had the rough direction, so the work became more practical. I spent most of the day trying to pick fonts, colors, spacing rules, and a visual direction that feels intentional and make the whole thing feel less half baked. The middle part always takes longer than it should, mostly becuase one fix usually reveals two more things to clean up. Small layout choices mattered more than I first expected, so I ended up tweaking them more than once.
 - Deliverable: I wrapped up the day with style direction mostly in place. It was not perfect, but it was good enough to keep the project moving. It was not super polished, just stable enough that I felt okay moving forward.
+## 2023-01-18 - Day 5: HTML scaffold
+
+- Task summary: By this point I had the rough direction, so the work became more practical. I spent most of the day trying to build the base HTML structure for hero, about, work, and contact sections and make the whole thing feel less half baked. By now I had enough structure to keep going without staring at the screen too long, which honestly helped a lot. Even simple portfolio sections can eat time when the wording and visuals both need to feel right.
+- Deliverable: I wrapped up the day with page skeleton mostly in place. It was not perfect, but it was good enough to keep the project moving. I also left myself a few rough reminders for the next day so I would not have to rediscover the same context again.
