@@ -32,3 +32,7 @@
 
 - Task summary: By this point I had the rough direction, so the work became more practical. I spent most of the day trying to build the base HTML structure for hero, about, work, and contact sections and make the whole thing feel less half baked. By now I had enough structure to keep going without staring at the screen too long, which honestly helped a lot. Even simple portfolio sections can eat time when the wording and visuals both need to feel right.
 - Deliverable: I wrapped up the day with page skeleton mostly in place. It was not perfect, but it was good enough to keep the project moving. I also left myself a few rough reminders for the next day so I would not have to rediscover the same context again.
+## 2023-01-19 - Day 6: Core styling
+
+- Task summary: By this point I had the rough direction, so the work became more practical. I spent most of the day trying to create the main layout, typography, buttons, and spacing rules in CSS and make the whole thing feel less half baked. Once the base made some sense, I could finally move a bit faster and stop second guessing every tiny decision. I was also thinking about first impression stuff the whole time, since this kind of project gets judged very quickly.
+- Deliverable: I wrapped up the day with core styles mostly in place. It was not perfect, but it was good enough to keep the project moving. There were still a couple of loose parts, but nothing serious enough to block the next step.
