@@ -36,3 +36,7 @@
 
 - Task summary: By this point I had the rough direction, so the work became more practical. I spent most of the day trying to create the main layout, typography, buttons, and spacing rules in CSS and make the whole thing feel less half baked. Once the base made some sense, I could finally move a bit faster and stop second guessing every tiny decision. I was also thinking about first impression stuff the whole time, since this kind of project gets judged very quickly.
 - Deliverable: I wrapped up the day with core styles mostly in place. It was not perfect, but it was good enough to keep the project moving. There were still a couple of loose parts, but nothing serious enough to block the next step.
+## 2023-01-20 - Day 7: Responsive styling
+
+- Task summary: This was the middle stretch where the project started feeling real. I kept going and tried to adjust the layout so the site works cleanly on phones, tablets, and laptops, then cleaned up whatever looked confusing or weak from the earlier days. The middle part always takes longer than it should, mostly becuase one fix usually reveals two more things to clean up. Small layout choices mattered more than I first expected, so I ended up tweaking them more than once.
+- Deliverable: Ended the day with responsive layout in hand, plus a few side notes on what still needed fixing later. It was not super polished, just stable enough that I felt okay moving forward.
