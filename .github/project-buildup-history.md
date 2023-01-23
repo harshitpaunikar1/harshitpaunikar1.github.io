@@ -40,3 +40,7 @@
 
 - Task summary: This was the middle stretch where the project started feeling real. I kept going and tried to adjust the layout so the site works cleanly on phones, tablets, and laptops, then cleaned up whatever looked confusing or weak from the earlier days. The middle part always takes longer than it should, mostly becuase one fix usually reveals two more things to clean up. Small layout choices mattered more than I first expected, so I ended up tweaking them more than once.
 - Deliverable: Ended the day with responsive layout in hand, plus a few side notes on what still needed fixing later. It was not super polished, just stable enough that I felt okay moving forward.
+## 2023-01-23 - Day 8: Project cards
+
+- Task summary: This was the middle stretch where the project started feeling real. I kept going and tried to add real project content, summaries, links, and thumbnails to the portfolio area, then cleaned up whatever looked confusing or weak from the earlier days. By now I had enough structure to keep going without staring at the screen too long, which honestly helped a lot. Even simple portfolio sections can eat time when the wording and visuals both need to feel right.
+- Deliverable: Ended the day with project section in hand, plus a few side notes on what still needed fixing later. I also left myself a few rough reminders for the next day so I would not have to rediscover the same context again.
