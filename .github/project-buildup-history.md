@@ -44,3 +44,7 @@
 
 - Task summary: This was the middle stretch where the project started feeling real. I kept going and tried to add real project content, summaries, links, and thumbnails to the portfolio area, then cleaned up whatever looked confusing or weak from the earlier days. By now I had enough structure to keep going without staring at the screen too long, which honestly helped a lot. Even simple portfolio sections can eat time when the wording and visuals both need to feel right.
 - Deliverable: Ended the day with project section in hand, plus a few side notes on what still needed fixing later. I also left myself a few rough reminders for the next day so I would not have to rediscover the same context again.
+## 2023-01-24 - Day 9: Interaction
+
+- Task summary: This was the middle stretch where the project started feeling real. I kept going and tried to add only the useful JavaScript interactions such as filtering, navigation, or section reveals, then cleaned up whatever looked confusing or weak from the earlier days. Once the base made some sense, I could finally move a bit faster and stop second guessing every tiny decision. I was also thinking about first impression stuff the whole time, since this kind of project gets judged very quickly.
+- Deliverable: Ended the day with working interactions in hand, plus a few side notes on what still needed fixing later. There were still a couple of loose parts, but nothing serious enough to block the next step.
