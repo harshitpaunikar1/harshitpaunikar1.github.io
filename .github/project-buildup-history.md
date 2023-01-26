@@ -52,3 +52,7 @@
 
 - Task summary: This was the middle stretch where the project started feeling real. I kept going and tried to compress images, organize icons/fonts, and remove anything that slows the page without helping, then cleaned up whatever looked confusing or weak from the earlier days. The middle part always takes longer than it should, mostly becuase one fix usually reveals two more things to clean up. Small layout choices mattered more than I first expected, so I ended up tweaking them more than once.
 - Deliverable: Ended the day with optimized assets in hand, plus a few side notes on what still needed fixing later. It was not super polished, just stable enough that I felt okay moving forward.
+## 2023-01-26 - Day 11: QA
+
+- Task summary: Closer to the end, I was mostly tightening things up instead of inventing new scope. The job for the day was to check links, alignment, scroll behavior, and browser compatibility so the final result looked a bit more complete. By now I had enough structure to keep going without staring at the screen too long, which honestly helped a lot. Even simple portfolio sections can eat time when the wording and visuals both need to feel right.
+- Deliverable: Ended the day with qA pass in hand, plus a few side notes on what still needed fixing later. I also left myself a few rough reminders for the next day so I would not have to rediscover the same context again.
