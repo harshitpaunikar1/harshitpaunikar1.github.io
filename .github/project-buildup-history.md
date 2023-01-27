@@ -56,3 +56,7 @@
 
 - Task summary: Closer to the end, I was mostly tightening things up instead of inventing new scope. The job for the day was to check links, alignment, scroll behavior, and browser compatibility so the final result looked a bit more complete. By now I had enough structure to keep going without staring at the screen too long, which honestly helped a lot. Even simple portfolio sections can eat time when the wording and visuals both need to feel right.
 - Deliverable: Ended the day with qA pass in hand, plus a few side notes on what still needed fixing later. I also left myself a few rough reminders for the next day so I would not have to rediscover the same context again.
+## 2023-01-27 - Day 12: Launch prep
+
+- Task summary: Closer to the end, I was mostly tightening things up instead of inventing new scope. The job for the day was to write final copy, metadata, and deployment notes for a GitHub Pages style release so the final result looked a bit more complete. I was not trying to add anything fancy here, just making sure the thing looked complete enough to show someone. I was also thinking about first impression stuff the whole time, since this kind of project gets judged very quickly.
+- Deliverable: Ended the day with launch-ready site in hand, plus a few side notes on what still needed fixing later. There were still a couple of loose parts, but nothing serious enough to block the next step.
