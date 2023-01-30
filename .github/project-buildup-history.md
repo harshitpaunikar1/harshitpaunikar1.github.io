@@ -60,3 +60,7 @@
 
 - Task summary: Closer to the end, I was mostly tightening things up instead of inventing new scope. The job for the day was to write final copy, metadata, and deployment notes for a GitHub Pages style release so the final result looked a bit more complete. I was not trying to add anything fancy here, just making sure the thing looked complete enough to show someone. I was also thinking about first impression stuff the whole time, since this kind of project gets judged very quickly.
 - Deliverable: Ended the day with launch-ready site in hand, plus a few side notes on what still needed fixing later. There were still a couple of loose parts, but nothing serious enough to block the next step.
+## 2023-01-30 - Day 13: Portfolio polish check
+
+- Task summary: Closer to the end, I was mostly tightening things up instead of inventing new scope. The job for the day was to refine visuals, trim weak sections, and improve the first impression for recruiters or clients so the final result looked a bit more complete. Most of the heavy lifting was already done, so this part was more about making the rough edges less obvious. Small layout choices mattered more than I first expected, so I ended up tweaking them more than once.
+- Deliverable: Ended the day with final visual polish in hand, plus a few side notes on what still needed fixing later. It was not super polished, just stable enough that I felt okay moving forward.
