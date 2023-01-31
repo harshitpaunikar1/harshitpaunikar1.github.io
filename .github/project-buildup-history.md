@@ -64,3 +64,7 @@
 
 - Task summary: Closer to the end, I was mostly tightening things up instead of inventing new scope. The job for the day was to refine visuals, trim weak sections, and improve the first impression for recruiters or clients so the final result looked a bit more complete. Most of the heavy lifting was already done, so this part was more about making the rough edges less obvious. Small layout choices mattered more than I first expected, so I ended up tweaking them more than once.
 - Deliverable: Ended the day with final visual polish in hand, plus a few side notes on what still needed fixing later. It was not super polished, just stable enough that I felt okay moving forward.
+## 2023-01-31 - Day 14: Portfolio review wrap
+
+- Task summary: Used the last day on Harshitpaunikar1 Github Io to slow down and finish the loose ends. I mainly had to do a final walkthrough as if you were a visitor deciding whether the work looks credible and make sure the project told a clean story from start to finish. Toward the end I mostly kept trimming weird bits, fixing wording, and tying the loose parts together. Even simple portfolio sections can eat time when the wording and visuals both need to feel right.
+- Deliverable: Finished with final review checklist looking decent enough to call this version done, even if I could still nitpick a few things. I also left myself a few rough reminders for the next day so I would not have to rediscover the same context again.
