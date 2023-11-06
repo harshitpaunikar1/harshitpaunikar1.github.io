@@ -12,3 +12,7 @@
 
 - Task summary: Noticed the portfolio site was loading slowly on mobile due to uncompressed images. Compressed all the project thumbnails and also added lazy loading for images below the fold. The Lighthouse performance score improved meaningfully after these changes.
 - Deliverable: Images compressed and lazy loading added. Mobile performance improved.
+## 2023-11-06 - Day 6: Performance improvements
+
+- Task summary: Also added a meta description and Open Graph tags for the project pages so they look reasonable when shared on social platforms.
+- Deliverable: Open Graph and meta description tags added.
