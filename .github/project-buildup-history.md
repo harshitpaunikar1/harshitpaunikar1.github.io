@@ -20,3 +20,7 @@
 
 - Task summary: Updated the About page on the portfolio site. The existing version was written about 18 months ago and no longer reflected the current focus areas or skill set. Rewrote the bio, updated the skills section with more recent technologies, and added a section about what kinds of problems are most interesting to work on.
 - Deliverable: About page rewritten. Skills updated. Professional focus section added.
+## 2023-12-11 - Day 7: About page update
+
+- Task summary: Fixed a broken link in the project index that had been pointing to an old repo URL.
+- Deliverable: Broken project link fixed.
