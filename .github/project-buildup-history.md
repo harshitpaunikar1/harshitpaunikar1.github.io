@@ -16,3 +16,7 @@
 
 - Task summary: Also added a meta description and Open Graph tags for the project pages so they look reasonable when shared on social platforms.
 - Deliverable: Open Graph and meta description tags added.
+## 2023-12-11 - Day 7: About page update
+
+- Task summary: Updated the About page on the portfolio site. The existing version was written about 18 months ago and no longer reflected the current focus areas or skill set. Rewrote the bio, updated the skills section with more recent technologies, and added a section about what kinds of problems are most interesting to work on.
+- Deliverable: About page rewritten. Skills updated. Professional focus section added.
