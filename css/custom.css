@@ -466,22 +466,21 @@ button.hp-cta {
 .hp-more-education-btn {
   min-width: auto;
   min-height: auto;
-  padding: 0;
-  border-radius: 0;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid #c8c8c8;
-  color: #b0b0b0 !important;
-  font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0.02em;
+  padding: 2px 9px;
+  border-radius: 3px;
+  background: rgba(96, 165, 250, 0.1);
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  color: #60a5fa !important;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
 }
 
 .hp-more-education-btn:hover,
 .hp-more-education-btn:focus {
-  background: transparent;
-  border-bottom-color: var(--hp-ink);
-  color: var(--hp-ink) !important;
+  background: rgba(96, 165, 250, 0.18);
+  border-color: rgba(96, 165, 250, 0.5);
+  color: #93c5fd !important;
 }
 
 .hp-education-item {
