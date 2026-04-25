@@ -22,7 +22,7 @@ body {
   overflow-x: hidden;
   background: var(--hp-page);
   color: var(--hp-ink);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.62;
   -webkit-font-smoothing: antialiased;
@@ -54,7 +54,7 @@ h2,
 h3,
 h4 {
   color: var(--hp-ink);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
   letter-spacing: 0;
 }
@@ -386,8 +386,9 @@ p {
 .hp-contact-block h2 {
   margin-bottom: 10px;
   color: var(--hp-ink);
-  font-size: 1.55rem;
-  line-height: 1.25;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
 .hp-text-block p,
@@ -607,13 +608,13 @@ button.hp-cta {
 }
 
 .hp-domain-body {
-  padding: 38px 0 44px;
+  padding: 32px 0 28px;
 }
 
 .hp-domain-list {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--hp-ink);
-  line-height: 2;
+  line-height: 1.9;
   margin: 0;
 }
 
@@ -655,8 +656,11 @@ button.hp-cta {
 }
 
 .hp-project-index-panel h2 em {
-  margin-left: 16px;
-  font-weight: 700;
+  margin-left: 6px;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: rgba(242, 245, 247, 0.55);
+  letter-spacing: 0;
 }
 
 .hp-project-index {
@@ -752,25 +756,25 @@ button.hp-cta {
 }
 
 .hp-skills-copy {
-  padding-top: 38px;
+  padding-top: 32px;
 }
 
 .hp-skills-copy p {
-  margin-bottom: 1.35rem;
+  margin-bottom: 1.1rem;
   color: var(--hp-ink);
   font-size: 1rem;
-  line-height: 1.92;
+  line-height: 1.72;
 }
 
 .hp-contact-block {
-  margin-top: 78px;
-  margin-bottom: 54px;
+  margin-top: 56px;
+  margin-bottom: 40px;
 }
 
 .hp-contact-block p {
-  margin-bottom: 1.1rem;
-  font-size: 1.25rem;
-  line-height: 1.6;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.7;
 }
 
 .hp-site-footer {
@@ -891,11 +895,11 @@ button.hp-cta {
   .hp-iiit-mark img { width: 108px; }
 
   .hp-title-band {
-    padding: 30px 0;
+    padding: 14px 0 13px;
   }
 
   .hp-title-band h1 {
-    font-size: 1.85rem;
+    font-size: 1rem;
   }
 
   .hp-about-hero {
