@@ -1,176 +1,125 @@
 ;(function () {
-	
 	'use strict';
 
-
-
-	// iPad and iPod detection	
-	var isiPad = function(){
-		return (navigator.platform.indexOf("iPad") != -1);
-	};
-
-	var isiPhone = function(){
-	    return (
-			(navigator.platform.indexOf("iPhone") != -1) || 
-			(navigator.platform.indexOf("iPod") != -1)
-	    );
-	};
-
-
 	var fullHeight = function() {
-
-		$('.js-fullheight').css('height', $(window).height());
-		$(window).resize(function(){
+		var setHeight = function() {
 			$('.js-fullheight').css('height', $(window).height());
-		});
+		};
 
+		setHeight();
+		$(window).on('resize', setHeight);
 	};
 
 	var burgerMenu = function() {
-
 		$('.js-colorlib-nav-toggle').on('click', function(event) {
 			event.preventDefault();
-			var $this = $(this);
-			if( $('body').hasClass('menu-show') ) {
+
+			if ($('body').hasClass('menu-show')) {
 				$('body').removeClass('menu-show');
 				$('#colorlib-main-nav > .js-colorlib-nav-toggle').removeClass('show');
 			} else {
 				$('body').addClass('menu-show');
-				setTimeout(function(){
+				setTimeout(function() {
 					$('#colorlib-main-nav > .js-colorlib-nav-toggle').addClass('show');
-				}, 900);
+				}, 250);
 			}
-		})
+		});
+
+		$('#colorlib-main-nav a[href^="#"]').on('click', function() {
+			$('body').removeClass('menu-show');
+			$('#colorlib-main-nav > .js-colorlib-nav-toggle').removeClass('show');
+		});
 	};
 
-	// Animations
-
 	var contentWayPoint = function() {
-		var i = 0;
-		$('.animate-box').waypoint( function( direction ) {
+		if (!$.fn.waypoint || !$('.animate-box').length) return;
 
-			if( direction === 'down' && !$(this.element).hasClass('animated') ) {
-				
+		var i = 0;
+		$('.animate-box').waypoint(function(direction) {
+			if (direction === 'down' && !$(this.element).hasClass('animated')) {
 				i++;
 
 				$(this.element).addClass('item-animate');
-				setTimeout(function(){
-
-					$('body .animate-box.item-animate').each(function(k){
+				setTimeout(function() {
+					$('body .animate-box.item-animate').each(function(k) {
 						var el = $(this);
-						setTimeout( function () {
+						setTimeout(function() {
 							var effect = el.data('animate-effect');
-							if ( effect === 'fadeIn') {
-								el.addClass('fadeIn animated');
-							} else {
-								el.addClass('fadeInUp animated');
-							}
-
+							el.addClass((effect === 'fadeIn' ? 'fadeIn' : 'fadeInUp') + ' animated');
 							el.removeClass('item-animate');
-						},  k * 200, 'easeInOutExpo' );
+						}, k * 200);
 					});
-					
 				}, 100);
-				
 			}
-
-		} , { offset: '85%' } );
-	};
-
-
-	var counter = function() {
-		$('.js-counter').countTo({
-			 formatter: function (value, options) {
-	      return value.toFixed(options.decimals);
-	    },
-		});
+		}, { offset: '85%' });
 	};
 
 	var counterWayPoint = function() {
-		if ($('#colorlib-counter').length > 0 ) {
-			$('#colorlib-counter').waypoint( function( direction ) {
-										
-				if( direction === 'down' && !$(this.element).hasClass('animated') ) {
-					setTimeout( counter , 400);					
-					$(this.element).addClass('animated');
-				}
-			} , { offset: '90%' } );
+		if (!$.fn.waypoint || !$.fn.countTo || !$('#colorlib-counter').length) return;
+
+		$('#colorlib-counter').waypoint(function(direction) {
+			if (direction === 'down' && !$(this.element).hasClass('animated')) {
+				setTimeout(function() {
+					$('.js-counter').countTo({
+						formatter: function(value, options) {
+							return value.toFixed(options.decimals);
+						}
+					});
+				}, 400);
+				$(this.element).addClass('animated');
+			}
+		}, { offset: '90%' });
+	};
+
+	var owlCarouselFeatureSlide = function() {
+		if (!$.fn.owlCarousel) return;
+
+		if ($('.owl-carousel1').length) {
+			$('.owl-carousel1').owlCarousel({
+				animateOut: 'fadeOut',
+				animateIn: 'fadeIn',
+				autoplay: true,
+				loop: true,
+				margin: 0,
+				nav: true,
+				dots: false,
+				autoHeight: true,
+				responsive: {
+					0: { items: 1 },
+					600: { items: 2 },
+					1000: { items: 3 }
+				},
+				navText: [
+					"<i class='icon-arrow-left3 owl-direction'></i>",
+					"<i class='icon-arrow-right3 owl-direction'></i>"
+				]
+			});
+		}
+
+		if ($('.owl-carousel, .owl-carousel3').length) {
+			$('.owl-carousel, .owl-carousel3').owlCarousel({
+				animateOut: 'fadeOut',
+				animateIn: 'fadeIn',
+				autoplay: true,
+				loop: true,
+				margin: 0,
+				nav: false,
+				dots: true,
+				autoHeight: true,
+				items: 1,
+				navText: [
+					"<i class='icon-arrow-left3 owl-direction'></i>",
+					"<i class='icon-arrow-right3 owl-direction'></i>"
+				]
+			});
 		}
 	};
 
-	// Owl Carousel
-	var owlCarouselFeatureSlide = function() {
-		var owl = $('.owl-carousel1');
-		owl.owlCarousel({
-			animateOut: 'fadeOut',
-		   animateIn: 'fadeIn',
-		   autoplay: true,
-		   loop:true,
-		   margin:0,
-		   nav:true,
-		   dots: false,
-		   autoHeight: true,
-		   responsive:{
-		      0:{
-		         items:1
-		      },
-		      600:{
-		         items:2
-		      },
-		      1000:{
-		         items:3
-		      }
-		   },
-		   navText: [
-		      "<i class='icon-arrow-left3 owl-direction'></i>",
-		      "<i class='icon-arrow-right3 owl-direction'></i>"
-	     	]
-		});
-		var owl2 = $('.owl-carousel');
-		owl2.owlCarousel({
-			animateOut: 'fadeOut',
-		   animateIn: 'fadeIn',
-		   autoplay: true,
-		   loop:true,
-		   margin:0,
-		   nav:false,
-		   dots: true,
-		   autoHeight: true,
-		   items: 1,
-		   navText: [
-		      "<i class='icon-arrow-left3 owl-direction'></i>",
-		      "<i class='icon-arrow-right3 owl-direction'></i>"
-	     	]
-		});
-		var owl3 = $('.owl-carousel3');
-		owl3.owlCarousel({
-			animateOut: 'fadeOut',
-		   animateIn: 'fadeIn',
-		   autoplay: true,
-		   loop:true,
-		   margin:0,
-		   nav:false,
-		   dots: false,
-		   autoHeight: true,
-		   items: 1,
-		   navText: [
-		      "<i class='icon-arrow-left3 owl-direction'></i>",
-		      "<i class='icon-arrow-right3 owl-direction'></i>"
-	     	]
-		});	
-	};
-
-	
-
-
-	// Document on load.
-	$(function(){
+	$(function() {
 		fullHeight();
 		burgerMenu();
 		counterWayPoint();
 		contentWayPoint();
 		owlCarouselFeatureSlide();
 	});
-
-
 }());

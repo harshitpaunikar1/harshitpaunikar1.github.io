@@ -404,49 +404,62 @@ var projects = [
   }
 ];
 
-function renderList() {
-  var list = document.getElementById('projectsList');
+var referenceProjectOrder = [
+  5, 3, 13, 1, 0, 10, 12, 16, 14, 15, 23, 22, 19, 21,
+  20, 4, 2, 6, 11, 8, 9, 7, 26, 17, 18, 25, 24
+];
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function orderedProjects() {
+  return referenceProjectOrder.map(function(idx) {
+    return projects[idx];
+  }).filter(Boolean);
+}
+
+function projectId(index) {
+  return 'project-' + (index + 1);
+}
+
+function renderProjectIndex() {
+  var list = document.getElementById('projectsIndex');
   if (!list) return;
-  list.innerHTML = projects.map(function(p, i) {
-    return '<div class="hp-proj-item" data-idx="' + i + '" onclick="showDetail(' + i + ')">' +
-      '<div class="hp-proj-num">0' + (i < 9 ? '0' : '') + (i + 1) + '</div>' +
-      '<div class="hp-proj-item-title">' + p.title + '</div>' +
-      '<div class="hp-proj-item-domain">' + p.domain + '</div>' +
-    '</div>';
+
+  list.innerHTML = orderedProjects().map(function(p, i) {
+    return '<li><a href="#' + projectId(i) + '">' +
+      escapeHtml(p.title) + ' [Domain : ' + escapeHtml(p.domain) + ']' +
+    '</a></li>';
   }).join('');
 }
 
-function showDetail(idx) {
-  var p = projects[idx];
-  var detail = document.getElementById('projectDetail');
+function renderProjectDetails() {
+  var detail = document.getElementById('projectsDetails');
   if (!detail) return;
 
-  document.querySelectorAll('.hp-proj-item').forEach(function(el) {
-    el.classList.remove('active');
-  });
-  var active = document.querySelector('[data-idx="' + idx + '"]');
-  if (active) active.classList.add('active');
+  detail.innerHTML = orderedProjects().map(function(p, i) {
+    var approach = p.approach.map(function(item) {
+      return '<li>' + escapeHtml(item) + '</li>';
+    }).join('');
 
-  var approach = p.approach.map(function(a) {
-    return '<li>' + a + '</li>';
+    return '<article class="hp-project-entry" id="' + projectId(i) + '">' +
+      '<h2>' + (i + 1) + '. ' + escapeHtml(p.title) +
+      ' <span class="hp-project-domain">[Domain : ' + escapeHtml(p.domain) + ']</span></h2>' +
+      '<p>' + escapeHtml(p.desc) + '</p>' +
+      '<h3>Methodology</h3>' +
+      '<ul>' + approach + '</ul>' +
+      '<p><strong>Skills used:</strong> ' + escapeHtml(p.skills.join(', ')) + '</p>' +
+    '</article>';
   }).join('');
-
-  var skills = p.skills.map(function(s) {
-    return '<span class="hp-skill-tag">' + s + '</span>';
-  }).join('');
-
-  detail.innerHTML =
-    '<div class="hp-detail-domain">' + p.domain + '</div>' +
-    '<h2 class="hp-detail-title">' + p.title + '</h2>' +
-    '<p class="hp-detail-desc">' + p.desc + '</p>' +
-    '<div class="hp-detail-section-title">Approach</div>' +
-    '<ul class="hp-detail-approach">' + approach + '</ul>' +
-    '<div class="hp-detail-section-title">Skills &amp; Technologies</div>' +
-    '<div class="hp-detail-skills-wrap">' + skills + '</div>' +
-    '<a href="https://github.com/harshitpaunikar1/' + p.repo + '" target="_blank" class="hp-detail-github">View on GitHub &rarr;</a>';
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  renderList();
-  showDetail(0);
+  renderProjectIndex();
+  renderProjectDetails();
 });
