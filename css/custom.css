@@ -10,6 +10,13 @@
   --hp-page: #ffffff;
   --hp-rule: #d5d5d5;
   --hp-content: 1152px;
+  --hp-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --hp-text-xs: 0.72rem;
+  --hp-text-sm: 0.84rem;
+  --hp-text-md: 0.94rem;
+  --hp-text-base: 1rem;
+  --hp-text-lg: 1.28rem;
+  --hp-text-xl: 1.55rem;
 }
 
 html {
@@ -22,9 +29,9 @@ body {
   overflow-x: hidden;
   background: var(--hp-page);
   color: var(--hp-ink);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--hp-font-sans);
   font-size: 16px;
-  line-height: 1.62;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -54,9 +61,16 @@ h2,
 h3,
 h4 {
   color: var(--hp-ink);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--hp-font-sans);
   font-weight: 700;
   letter-spacing: 0;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: var(--hp-font-sans);
 }
 
 p {
@@ -94,7 +108,7 @@ p {
 
 .hp-site-title {
   color: var(--hp-white) !important;
-  font-size: 1.55rem;
+  font-size: 1.38rem;
   font-weight: 700;
   line-height: 1;
   text-decoration: none !important;
@@ -169,9 +183,9 @@ p {
 .hp-title-band h1 {
   margin: 0;
   color: var(--hp-white);
-  font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-size: var(--hp-text-base);
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   line-height: 1;
 }
@@ -211,7 +225,7 @@ p {
   max-width: 820px;
   margin: 0 0 10px;
   color: #fff;
-  font-size: 1.65rem;
+  font-size: var(--hp-text-xl);
   font-weight: 700;
   line-height: 1.25;
 }
@@ -220,10 +234,10 @@ p {
   max-width: 820px;
   margin: 0;
   color: rgba(255, 255, 255, 0.82);
-  font-size: 1rem;
+  font-size: var(--hp-text-base);
   font-style: italic;
   font-weight: 400;
-  line-height: 1.72;
+  line-height: 1.68;
 }
 
 .hp-hero-stats {
@@ -311,7 +325,7 @@ p {
 .hp-hero-tabs a {
   padding: 11px 18px 10px;
   color: rgba(255, 255, 255, 0.45);
-  font-size: 0.68rem;
+  font-size: var(--hp-text-xs);
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -378,19 +392,19 @@ p {
 
 .hp-institute-name {
   margin: 0;
-  font-size: 0.82rem;
+  font-size: var(--hp-text-sm);
   font-weight: 600;
   color: #b0b0b0;
   text-align: center;
-  line-height: 1.5;
+  line-height: 1.35;
 }
 
 .hp-institute-cgpa {
   margin: -8px 0 0;
-  font-size: 0.82rem;
+  font-size: var(--hp-text-sm);
   color: #b0b0b0;
   text-align: center;
-  line-height: 1.5;
+  line-height: 1.35;
 }
 
 .hp-text-block {
@@ -403,7 +417,7 @@ p {
 .hp-contact-block h2 {
   margin-bottom: 10px;
   color: var(--hp-ink);
-  font-size: 1.25rem;
+  font-size: var(--hp-text-lg);
   font-weight: 700;
   line-height: 1.3;
 }
@@ -412,8 +426,8 @@ p {
 .hp-simple-list,
 .hp-contact-block p {
   color: var(--hp-ink);
-  font-size: 1.25rem;
-  line-height: 1.78;
+  font-size: var(--hp-text-base);
+  line-height: 1.62;
   overflow-wrap: anywhere;
 }
 
@@ -456,7 +470,7 @@ p {
   border-radius: 2px;
   background: #1f3e56;
   color: #f2f5f7 !important;
-  font-size: 1rem;
+  font-size: var(--hp-text-md);
   line-height: 1.2;
   text-align: center;
   text-decoration: none !important;
@@ -488,7 +502,7 @@ button.hp-more-education-btn {
   background: rgba(96, 165, 250, 0.1);
   border: 1px solid rgba(96, 165, 250, 0.28);
   color: #60a5fa !important;
-  font-size: 0.68rem;
+  font-size: var(--hp-text-xs);
   font-weight: 500;
   letter-spacing: 0.03em;
 }
@@ -514,7 +528,7 @@ button.hp-more-education-btn {
 .hp-education-item h3 {
   margin-bottom: 5px;
   color: var(--hp-muted);
-  font-size: 0.8rem;
+  font-size: var(--hp-text-sm);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -524,7 +538,7 @@ button.hp-more-education-btn {
 .hp-education-item p {
   margin-bottom: 2px;
   color: var(--hp-ink);
-  font-size: 0.9rem;
+  font-size: var(--hp-text-md);
   line-height: 1.5;
 }
 
@@ -555,13 +569,13 @@ button.hp-more-education-btn {
 .hp-recommendations h2 {
   margin-bottom: 10px;
   color: var(--hp-blue);
-  font-size: 1.25rem;
+  font-size: var(--hp-text-lg);
 }
 
 .hp-recommendations p {
   color: #111;
-  font-size: 0.9rem;
-  line-height: 1.7;
+  font-size: var(--hp-text-md);
+  line-height: 1.62;
 }
 
 .hp-education-modal {
@@ -686,7 +700,7 @@ button.hp-more-education-btn {
 .hp-project-index-panel h2 {
   margin-bottom: 20px;
   color: #f2f5f7;
-  font-size: 1.25rem;
+  font-size: var(--hp-text-lg);
   line-height: 1.35;
 }
 
@@ -708,8 +722,8 @@ button.hp-more-education-btn {
   margin-bottom: 2px;
   padding-left: 2px;
   color: #e3e9ed;
-  font-size: 0.88rem;
-  line-height: 1.4;
+  font-size: var(--hp-text-md);
+  line-height: 1.42;
 }
 
 .hp-project-index a {
@@ -737,7 +751,7 @@ button.hp-more-education-btn {
   border-radius: 3px;
   background: rgba(74, 222, 128, 0.13);
   color: #15803d;
-  font-size: 0.68rem;
+  font-size: var(--hp-text-xs);
   font-weight: 500;
   letter-spacing: 0.02em;
   vertical-align: middle;
@@ -762,10 +776,10 @@ button.hp-more-education-btn {
 .hp-project-entry h2 {
   margin-bottom: 6px;
   color: var(--hp-ink);
-  font-size: 1.45rem;
+  font-size: var(--hp-text-lg);
   font-weight: 700;
-  line-height: 1.28;
-  letter-spacing: -0.01em;
+  line-height: 1.3;
+  letter-spacing: 0;
 }
 
 .hp-project-domain-line {
@@ -780,14 +794,14 @@ button.hp-more-education-btn {
 .hp-project-entry p,
 .hp-project-entry li {
   color: var(--hp-muted);
-  font-size: 1rem;
-  line-height: 1.68;
+  font-size: var(--hp-text-md);
+  line-height: 1.62;
 }
 
 .hp-project-entry h3 {
   margin: 30px 0 4px;
   color: var(--hp-ink);
-  font-size: 1rem;
+  font-size: var(--hp-text-base);
   line-height: 1.45;
 }
 
@@ -807,8 +821,8 @@ button.hp-more-education-btn {
 .hp-skills-copy p {
   margin-bottom: 1.1rem;
   color: var(--hp-ink);
-  font-size: 1rem;
-  line-height: 1.72;
+  font-size: var(--hp-text-base);
+  line-height: 1.65;
 }
 
 .hp-skills-grid {
@@ -829,7 +843,7 @@ button.hp-more-education-btn {
 .hp-skill-group h2 {
   margin: 0 0 8px;
   color: var(--hp-navy-deep);
-  font-size: 0.92rem;
+  font-size: var(--hp-text-md);
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: 0;
@@ -838,8 +852,45 @@ button.hp-more-education-btn {
 .hp-skills-copy .hp-skill-group p {
   margin: 0;
   color: var(--hp-muted);
-  font-size: 0.9rem;
+  font-size: var(--hp-text-md);
   line-height: 1.58;
+}
+
+.hp-programming-card {
+  grid-column: 1 / -1;
+}
+
+.hp-programming-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.hp-programming-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid #dce4ea;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.hp-programming-item img {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.hp-programming-item span {
+  min-width: 0;
+  color: var(--hp-ink);
+  font-size: var(--hp-text-sm);
+  font-weight: 600;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 .hp-contact-block {
@@ -1081,6 +1132,14 @@ button.hp-more-education-btn {
 
   .hp-skill-group {
     padding: 14px 15px;
+  }
+
+  .hp-programming-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hp-programming-item {
+    padding: 9px;
   }
 
   .hp-cta-row {
