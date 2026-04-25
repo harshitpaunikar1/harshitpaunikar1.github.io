@@ -445,8 +445,8 @@ function projectMarkup(p, i) {
   }).join('');
 
   return '<article class="hp-project-entry" id="' + projectId(i) + '">' +
-    '<h2>' + (i + 1) + '. ' + escapeHtml(p.title) +
-    ' <span class="hp-project-domain">[Domain : ' + escapeHtml(p.domain) + ']</span></h2>' +
+    '<h2>' + (i + 1) + '. ' + escapeHtml(p.title) + '</h2>' +
+    '<p class="hp-project-domain-line"><span class="hp-domain-tag hp-domain-tag--detail">' + escapeHtml(p.domain) + '</span></p>' +
     '<p>' + escapeHtml(p.desc) + '</p>' +
     '<h3>Methodology</h3>' +
     '<ul>' + approach + '</ul>' +
