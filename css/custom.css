@@ -221,6 +221,10 @@ p {
   object-position: center top;
 }
 
+.hp-mobile-name {
+  display: none;
+}
+
 .hp-hero-heading {
   max-width: 820px;
   margin: 0 0 10px;
@@ -228,6 +232,52 @@ p {
   font-size: var(--hp-text-xl);
   font-weight: 700;
   line-height: 1.25;
+}
+
+.hp-hero-subhead {
+  position: relative;
+  max-width: 820px;
+  margin: 0 0 12px;
+  padding-left: 18px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: var(--hp-text-base);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.hp-hero-subhead::before {
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 8px;
+  height: 8px;
+  content: "";
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.38);
+  animation: hpSubheadPulse 2.2s ease-out infinite;
+}
+
+@keyframes hpSubheadPulse {
+  0%,
+  68%,
+  100% {
+    opacity: 0.78;
+    background: #4ade80;
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.28);
+  }
+
+  72% {
+    opacity: 0.38;
+    background: #22c55e;
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.18);
+  }
+
+  78% {
+    opacity: 1;
+    background: #86efac;
+    box-shadow: 0 0 0 7px rgba(74, 222, 128, 0);
+  }
 }
 
 .hp-hero-copy {
@@ -444,7 +494,7 @@ p {
   margin: 0;
   font-size: var(--hp-text-sm);
   font-weight: 600;
-  color: #b0b0b0;
+  color: var(--hp-black);
   text-align: center;
   line-height: 1.35;
 }
@@ -452,7 +502,7 @@ p {
 .hp-institute-cgpa {
   margin: -8px 0 0;
   font-size: var(--hp-text-sm);
-  color: #b0b0b0;
+  color: var(--hp-black);
   text-align: center;
   line-height: 1.35;
 }
@@ -719,10 +769,12 @@ button.hp-more-education-btn {
 .hp-project-index-panel {
   position: sticky;
   top: 76px;
+  --hp-project-hint-icon-left: 34px;
+  --hp-project-hint-text-left: 66px;
   max-height: calc(100vh - 100px);
   min-width: 0;
   overflow-y: auto;
-  padding: 34px 26px 26px;
+  padding: 0 26px 26px;
   background: var(--hp-navy);
   border-radius: 6px;
   color: #e8eef2;
@@ -747,19 +799,57 @@ button.hp-more-education-btn {
   border-radius: 999px;
 }
 
-.hp-project-index-panel h2 {
-  margin-bottom: 20px;
-  color: #f2f5f7;
-  font-size: var(--hp-text-lg);
+.hp-project-index-hint {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  margin: 0 -26px 14px;
+  padding: 18px 26px 14px var(--hp-project-hint-text-left);
+  background: var(--hp-navy);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: var(--hp-text-sm);
+  font-weight: 500;
   line-height: 1.35;
 }
 
-.hp-project-index-panel h2 em {
-  margin-left: 6px;
-  font-size: 0.82rem;
-  font-weight: 400;
-  color: rgba(242, 245, 247, 0.55);
-  letter-spacing: 0;
+.hp-project-index-hint .bi {
+  position: absolute;
+  left: var(--hp-project-hint-icon-left);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  color: #ffffff;
+  line-height: 1;
+  transform-origin: 40% 70%;
+  animation: hpHintClick 1.8s ease-in-out infinite;
+}
+
+@keyframes hpHintClick {
+  0%,
+  72%,
+  100% {
+    transform: translateY(-50%) scale(1);
+  }
+
+  82% {
+    transform: translateY(-50%) scale(0.88);
+  }
+
+  90% {
+    transform: translateY(-50%) scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hp-hero-subhead::before,
+  .hp-project-index-hint .bi {
+    animation: none;
+  }
 }
 
 .hp-project-index {
@@ -864,6 +954,33 @@ button.hp-more-education-btn {
   content: "\2022 ";
 }
 
+.hp-project-readmore {
+  display: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--hp-blue);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.hp-project-readmore:hover,
+.hp-project-readmore:focus {
+  color: #083866;
+  outline: none;
+}
+
+.hp-project-rest {
+  display: block;
+}
+
+.hp-project-rest.is-open {
+  display: block;
+}
+
 .hp-skills-copy {
   padding-top: 32px;
 }
@@ -891,12 +1008,22 @@ button.hp-more-education-btn {
 }
 
 .hp-skill-group h2 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
   margin: 0 0 8px;
   color: var(--hp-navy-deep);
   font-size: var(--hp-text-md);
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: 0;
+}
+
+.hp-skill-group h2 .bi {
+  flex-shrink: 0;
+  font-size: 1.15em;
+  color: var(--hp-blue);
+  line-height: 1;
 }
 
 .hp-skills-copy .hp-skill-group p {
@@ -911,36 +1038,34 @@ button.hp-more-education-btn {
 }
 
 .hp-programming-grid {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .hp-programming-item {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  min-width: 0;
-  padding: 10px;
+  gap: 6px;
+  padding: 5px 10px;
   border: 1px solid #dce4ea;
   border-radius: 6px;
   background: #ffffff;
+  white-space: nowrap;
 }
 
 .hp-programming-item img {
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   flex: 0 0 auto;
   object-fit: contain;
 }
 
 .hp-programming-item span {
-  min-width: 0;
   color: var(--hp-ink);
   font-size: var(--hp-text-sm);
   font-weight: 600;
   line-height: 1.2;
-  overflow-wrap: anywhere;
 }
 
 .hp-contact-block {
@@ -980,7 +1105,20 @@ button.hp-more-education-btn {
 
 @media (max-width: 991px) {
   .hp-site-header {
-    padding: 0 18px;
+    display: none;
+  }
+
+  .hp-project-readmore {
+    display: inline;
+  }
+
+  .hp-project-rest {
+    display: none;
+  }
+
+  .hp-hero-tabs-bar,
+  .hp-hero-tabs-bar.is-fixed {
+    top: 0;
   }
 
   .hp-top-nav {
@@ -988,22 +1126,61 @@ button.hp-more-education-btn {
   }
 
   .hp-about-hero {
-    grid-template-columns: 120px minmax(0, 1fr);
-    gap: 22px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "portrait name"
+      "text     text";
+    gap: 18px 18px;
+    align-items: center;
+    text-align: left;
+    padding-bottom: 22px;
   }
 
   .hp-portrait {
+    grid-area: portrait;
     width: 120px;
     height: 120px;
+    margin: 0;
+  }
+
+  .hp-mobile-name {
+    grid-area: name;
+    display: block;
+    align-self: center;
+    margin: 0;
+    color: var(--hp-white);
+    font-size: 1.85rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .hp-hero-text {
+    grid-area: text;
+    min-width: 0;
   }
 
   .hp-hero-heading {
-    font-size: 1.35rem;
+    max-width: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .hp-hero-subhead {
+    max-width: none;
+    font-size: 0.95rem;
+    line-height: 1.55;
   }
 
   .hp-hero-copy {
+    max-width: none;
     font-size: 0.95rem;
     line-height: 1.62;
+  }
+
+  .hp-hero-social {
+    justify-content: flex-start;
   }
 
   .hp-hero-stat {
@@ -1055,16 +1232,8 @@ button.hp-more-education-btn {
     width: min(calc(100% - 32px), var(--hp-content));
   }
 
-  .hp-site-header {
-    min-height: 52px;
-    flex-direction: row;
-    align-items: center;
-    gap: 0;
-    padding: 0 16px;
-  }
-
-  .hp-site-title {
-    font-size: 1.2rem;
+  .hp-mobile-name {
+    font-size: 1.5rem;
   }
 
   .hp-iim-mark img { width: 88px; }
@@ -1080,21 +1249,30 @@ button.hp-more-education-btn {
   }
 
   .hp-about-hero {
-    grid-template-columns: 100px minmax(0, 1fr);
-    gap: 18px;
+    gap: 14px 14px;
     padding-bottom: 18px;
   }
 
   .hp-portrait {
-    width: 100px;
-    height: 100px;
+    width: 96px;
+    height: 96px;
   }
 
   .hp-hero-heading {
-    font-size: 1.15rem;
+    max-width: none;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .hp-hero-subhead {
+    max-width: none;
+    font-size: 0.88rem;
+    line-height: 1.5;
   }
 
   .hp-hero-copy {
+    max-width: none;
     margin-top: 0;
     font-size: 0.88rem;
     line-height: 1.6;
@@ -1132,8 +1310,9 @@ button.hp-more-education-btn {
     font-size: 1.1rem;
   }
 
-  .hp-hero-tabs-bar {
-    top: 52px;
+  .hp-hero-tabs-bar,
+  .hp-hero-tabs-bar.is-fixed {
+    top: 0;
   }
 
   .hp-hero-tabs {
@@ -1184,12 +1363,8 @@ button.hp-more-education-btn {
     padding: 14px 15px;
   }
 
-  .hp-programming-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .hp-programming-item {
-    padding: 9px;
+    padding: 5px 9px;
   }
 
   .hp-cta-row {
@@ -1226,8 +1401,15 @@ button.hp-more-education-btn {
   .hp-project-index-panel {
     position: relative;
     top: auto;
+    --hp-project-hint-icon-left: 30px;
+    --hp-project-hint-text-left: 62px;
     max-height: 360px;
-    padding: 28px 22px 22px;
+    padding: 0 22px 22px;
+  }
+
+  .hp-project-index-hint {
+    margin-right: -22px;
+    margin-left: -22px;
   }
 
   .hp-project-entry h2 {

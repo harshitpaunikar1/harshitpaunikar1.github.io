@@ -447,10 +447,12 @@ function projectMarkup(p, i) {
   return '<article class="hp-project-entry" id="' + projectId(i) + '">' +
     '<h2>' + (i + 1) + '. ' + escapeHtml(p.title) + '</h2>' +
     '<p class="hp-project-domain-line"><span class="hp-domain-tag hp-domain-tag--detail">' + escapeHtml(p.domain) + '</span></p>' +
-    '<p>' + escapeHtml(p.desc) + '</p>' +
-    '<h3>Methodology</h3>' +
-    '<ul>' + approach + '</ul>' +
-    '<p><strong>Skills used:</strong> ' + escapeHtml(p.skills.join(', ')) + '</p>' +
+    '<p>' + escapeHtml(p.desc) + ' <button type="button" class="hp-project-readmore" aria-expanded="false">... click here to read more</button></p>' +
+    '<div class="hp-project-rest">' +
+      '<h3>Methodology</h3>' +
+      '<ul>' + approach + '</ul>' +
+      '<p><strong>Skills used:</strong> ' + escapeHtml(p.skills.join(', ')) + '</p>' +
+    '</div>' +
   '</article>';
 }
 
@@ -503,8 +505,26 @@ function bindProjectIndex() {
   });
 }
 
+function bindReadMoreToggle() {
+  var details = document.getElementById('projectsDetails');
+  if (!details) return;
+
+  details.addEventListener('click', function(event) {
+    var btn = event.target.closest('.hp-project-readmore');
+    if (!btn) return;
+    var entry = btn.closest('.hp-project-entry');
+    if (!entry) return;
+    var rest = entry.querySelector('.hp-project-rest');
+    if (!rest) return;
+    var isOpen = rest.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    btn.textContent = isOpen ? 'Show less' : '... click here to read more';
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   renderProjectIndex();
   bindProjectIndex();
+  bindReadMoreToggle();
   renderProjectDetails(0);
 });
