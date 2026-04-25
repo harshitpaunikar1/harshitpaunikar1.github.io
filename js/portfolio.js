@@ -467,6 +467,29 @@ function renderProjectDetails(idx) {
   });
 }
 
+function scrollProjectDetailsIntoView() {
+  var detail = document.getElementById('projectsDetails');
+  if (!detail) return;
+
+  var header = document.querySelector('.hp-site-header');
+  var tabs = document.querySelector('.hp-hero-tabs-bar');
+  var headerHeight = header ? Math.ceil(header.offsetHeight) : 0;
+  var tabsHeight = tabs ? Math.ceil(tabs.offsetHeight) : 0;
+  var targetTop = detail.getBoundingClientRect().top + window.pageYOffset - headerHeight - tabsHeight - 12;
+
+  if (window.jQuery) {
+    window.jQuery('html, body').stop().animate({
+      scrollTop: Math.max(0, targetTop)
+    }, 650);
+    return;
+  }
+
+  window.scrollTo({
+    top: Math.max(0, targetTop),
+    behavior: 'smooth'
+  });
+}
+
 function bindProjectIndex() {
   var list = document.getElementById('projectsIndex');
   if (!list) return;
@@ -476,6 +499,7 @@ function bindProjectIndex() {
     if (!anchor) return;
     event.preventDefault();
     renderProjectDetails(Number(anchor.getAttribute('data-project-idx')));
+    scrollProjectDetailsIntoView();
   });
 }
 
