@@ -401,12 +401,178 @@ var projects = [
       "Executed QA with automated tests, accessibility checks, load testing; ran sprint demos, UAT, and phased rollout"
     ],
     skills: ["Product Discovery", "Requirements Elicitation", "Information Architecture", "UX/UI Design", "Relational Data Modeling", "API Design", "Role-Based Access Control", "Agile Delivery"]
+  },
+  {
+    repo: "brand-tuned-support-assistant",
+    title: "Brand-Tuned Support Assistant",
+    domain: "E-commerce / Customer Support",
+    desc: "Lightweight fine-tuning workflow for turning messy support conversations into a customer-support assistant that answers in the company's tone. Balanced local small-model adaptation with a hosted baseline so the team could compare control, cost, and response quality honestly.",
+    approach: [
+      "Audited support chats, FAQs, ticket labels, and tone inconsistencies to define what the assistant should learn and what data needed masking",
+      "Built data-preparation flow to remove duplicates, strip sensitive content, and convert cleaned conversations into instruction-response examples",
+      "Selected small-model path around TinyLlama and Qwen-class models with LoRA-style tuning to stay within limited hardware constraints",
+      "Used Transformers, Datasets, and PEFT to fine-tune adapters, validate outputs, and compare behaviour against Gemini Flash as a baseline",
+      "Focused evaluation on correctness, tone consistency, and domain fit so the client could decide whether local tuning was worth the effort",
+      "Wrapped the tuned model path in a simple FastAPI service to make downstream integration realistic for future product use"
+    ],
+    skills: ["LLM Fine-Tuning", "Transformers", "PEFT / LoRA", "TinyLlama / Qwen", "Instruction Dataset Design", "Data Cleaning", "Gemini Flash Benchmarking", "FastAPI"]
+  },
+  {
+    repo: "medical-evidence-qa-assistant",
+    title: "Medical Evidence Q&A Assistant",
+    domain: "Healthcare / MedTech",
+    desc: "Safety-aware medical question-answering system that retrieves trusted evidence before responding, cites its sources, and refuses unsupported or risky questions. Designed as an education-focused assistant rather than a diagnosis engine.",
+    approach: [
+      "Defined trusted-source scope around medical PDFs, guidelines, and PubMed-style references so the system answered from controlled evidence only",
+      "Built ingestion and parsing flow with PDF extraction, cleanup, chunking, embeddings, and Qdrant indexing for retrieval-ready medical content",
+      "Added reranking so the strongest evidence surfaced first before answer generation, improving citation quality and grounding",
+      "Constrained Gemini Flash to answer only from retrieved context and designed response patterns for citations, uncertainty, and disclaimers",
+      "Treated refusal behaviour as a product feature by warning or declining when evidence was weak or the request moved into unsafe territory",
+      "Exposed the pipeline through FastAPI so the assistant could be integrated into a lightweight healthcare education workflow"
+    ],
+    skills: ["RAG", "PyMuPDF", "MiniLM Embeddings", "Qdrant", "Reranking", "Gemini Flash", "Safety Guardrails", "FastAPI"]
+  },
+  {
+    repo: "support-inbox-copilot",
+    title: "Support Inbox Copilot",
+    domain: "E-commerce / Support Ops",
+    desc: "Human-in-the-loop email support workflow that reads incoming Gmail messages, classifies intent, drafts responses, and flags urgent cases before anything is sent. Reduced repetitive inbox work without giving up review control.",
+    approach: [
+      "Mapped common support cases such as order status, refunds, and shipping delays to decide which emails were safe to assist and which needed escalation",
+      "Used n8n to orchestrate Gmail intake, message parsing, AI classification, reply drafting, and downstream review steps without a heavy custom backend",
+      "Designed Gemini Flash prompts to separate intent detection from response drafting so the workflow stayed safer on messy customer messages",
+      "Added urgency logic and Slack-style alerting for sensitive cases where fast human review mattered more than automation speed",
+      "Kept a human approval step in the middle of the flow so the team could edit, approve, or stop replies before sending",
+      "Logged outputs and decisions in Google Sheets to preserve an audit trail for missed priorities, bad drafts, and workflow tuning"
+    ],
+    skills: ["n8n", "Gmail Automation", "Gemini Flash", "Human-in-the-Loop Workflow Design", "Slack Alerting", "Google Sheets Logging", "Prompt Design", "Support Operations Automation"]
+  },
+  {
+    repo: "reliable-browser-video-calling",
+    title: "Reliable Browser Video Calling",
+    domain: "EdTech / Real-Time Communication",
+    desc: "One-to-one browser calling system built for networks where direct peer connections often fail. Used WebRTC for live media, room-based signaling for session setup, and TURN fallback so calls still connected on restrictive Wi-Fi or office networks.",
+    approach: [
+      "Framed the problem around one-to-one tutor and student calls, keeping the first version focused on dependable connection setup rather than feature sprawl",
+      "Built signaling flow in Node.js and Socket.IO to handle room joins, offer-answer exchange, ICE candidate sharing, and connection-state visibility",
+      "Configured STUN and Coturn-backed TURN support so browsers attempted direct media first and relayed only when network conditions required it",
+      "Secured the call path behind HTTPS and Nginx because browser camera and microphone access depend on a trusted transport setup",
+      "Added room-status feedback so users could understand whether they were connecting directly, waiting on negotiation, or falling back to relay",
+      "Kept the architecture intentionally small and explainable, making NAT and firewall handling the core engineering story instead of hiding it"
+    ],
+    skills: ["WebRTC", "Node.js", "Socket.IO Signaling", "Coturn / TURN Infrastructure", "STUN / ICE", "Nginx", "HTTPS / TLS", "Real-Time Session Design"]
+  },
+  {
+    repo: "rtsp-camera-browser-streaming",
+    title: "RTSP Camera Browser Streaming",
+    domain: "Video Infrastructure / Security",
+    desc: "Low-latency camera-to-browser streaming pipeline for existing RTSP feeds, using GStreamer to ingest and adapt the media path before delivering it to a normal browser over WebRTC. Added optional recording without overloading the live path.",
+    approach: [
+      "Started from the client's existing RTSP camera setup and focused on fixing the last-mile browser experience rather than replacing the camera system",
+      "Used GStreamer to ingest, decode, transform, and re-encode only when browser compatibility required it, keeping latency as low as practical",
+      "Delivered the live stream through WebRTC so operators could open the feed in a browser instead of relying on specialist desktop viewers",
+      "Coordinated browser connection setup through a lightweight Node.js signaling layer, with Coturn available for difficult network paths",
+      "Included optional FFmpeg recording so the same pipeline could support demo playback or evidence capture without redefining the streaming flow",
+      "Logged stream health and failure points to make camera disconnects, browser issues, and pipeline instability easier to diagnose"
+    ],
+    skills: ["RTSP", "GStreamer", "WebRTC", "Node.js", "Coturn", "FFmpeg Recording", "Low-Latency Streaming", "Stream Health Monitoring"]
+  },
+  {
+    repo: "edge-ai-runtime-evaluation",
+    title: "Edge AI Runtime Evaluation",
+    domain: "Logistics / Edge AI",
+    desc: "On-device AI evaluation project comparing practical deployment paths for Jetson- or Snapdragon-class hardware. Focused on runtime choice, model conversion, and measuring whether a small model could run smoothly within real device limits.",
+    approach: [
+      "Scoped the work around one target device at a time so runtime tuning and packaging stayed realistic instead of becoming an overly broad benchmark exercise",
+      "Selected compact models and input paths that could support live demos while fitting tight memory and power budgets on edge hardware",
+      "Prepared device-friendly model exports and compared runtime options such as ONNX Runtime, TensorRT, and TensorFlow Lite based on the chosen target",
+      "Integrated OpenCV-driven live or sample input so the demo showed local inference behaviour rather than only offline benchmark numbers",
+      "Measured latency, memory use, and power behaviour together because edge-readiness depends on the overall operating profile, not raw speed alone",
+      "Documented the tradeoffs clearly so the client could choose a runtime and device path based on deployability rather than hype"
+    ],
+    skills: ["Edge AI Deployment", "ONNX Runtime", "TensorRT", "TensorFlow Lite", "OpenCV", "Model Conversion", "Latency / Power Profiling", "Runtime Optimization"]
+  },
+  {
+    repo: "prompt-reliability-workflow",
+    title: "Prompt Reliability Workflow",
+    domain: "Operations / GenAI",
+    desc: "Prompt testing project for repeated business tasks like summarization, extraction, and support drafting. Turned prompt writing into a repeatable evaluation process so teams could get more stable outputs instead of relying on one-off prompt experiments.",
+    approach: [
+      "Grouped business tasks by pattern such as summarize, extract, classify, and reply so each task type could use the right prompt structure",
+      "Created baseline prompts and structured variations using role instructions, few-shot examples, formatting rules, and task-specific wording",
+      "Built a lightweight Python test harness to run repeated examples through Gemini Flash and collect outputs across multiple prompt versions",
+      "Scored results against simple checks for format stability, completeness, and usefulness instead of trusting a single impressive run",
+      "Tracked prompt versions, notes, and scores in Google Sheets so the team could understand why a prompt was selected and reused later",
+      "Packaged the best-performing prompts into a reusable library and handbook that made prompt engineering feel operational rather than ad hoc"
+    ],
+    skills: ["Prompt Engineering", "Prompt Evaluation", "Gemini Flash", "Python Automation", "Google Sheets", "Few-Shot Design", "Output Format Control", "Prompt Library Design"]
+  },
+  {
+    repo: "retrieval-tool-use-assistant",
+    title: "Retrieval & Tool-Use Assistant",
+    domain: "Internal AI Systems",
+    desc: "Assistant orchestration project that combined retrieval, tool calling, short-term memory, and trace logging into one maintainable backend. Designed to decide when each capability was actually needed instead of routing every request through every subsystem.",
+    approach: [
+      "Broke the assistant into routing, retrieval, tool use, memory, and response generation so the overall flow stayed understandable for a small team",
+      "Used LangChain to connect direct-answer paths, Qdrant-backed retrieval, external tool invocation, and recent conversation context in one service",
+      "Kept routing intentionally selective so simple questions could be answered directly while document-heavy or tool-dependent requests took richer paths",
+      "Stored traces and logs in SQLite so debugging could show what the assistant retrieved, which tool it called, and how it reached an answer",
+      "Used Gemini Flash for final reasoning and synthesis after retrieval or tool calls, keeping the answer path grounded but still responsive",
+      "Exposed the orchestration through FastAPI so the system behaved like a practical internal service rather than a prototype notebook"
+    ],
+    skills: ["LangChain", "Gemini Flash", "Qdrant", "FastAPI", "SQLite", "Tool Calling", "Short-Term Memory Design", "Trace Logging"]
+  },
+  {
+    repo: "realtime-voice-agent",
+    title: "Real-Time Voice Agent",
+    domain: "Voice AI / Real-Time Systems",
+    desc: "Room-based voice AI system where a user speaks naturally, the system transcribes the audio, generates a response, and plays it back as speech. Designed to keep the full STT-LLM-TTS loop understandable and fast enough to feel conversational.",
+    approach: [
+      "Scoped the product to one user and one AI agent in one room so latency and turn-taking quality stayed visible from the beginning",
+      "Used LiveKit for real-time room transport, keeping audio capture and playback reliable without building the media layer from scratch",
+      "Connected faster-whisper for transcription, Gemini Flash for response generation, and Piper for lightweight speech synthesis",
+      "Organized the backend around clear pipeline stages so delays in transcription, reasoning, or speech output could be traced separately",
+      "Focused on cumulative latency because even small delays across each stage add up quickly and make voice interactions feel unnatural",
+      "Logged room and pipeline events so session behaviour, response timing, and future tuning work had a concrete debugging trail"
+    ],
+    skills: ["LiveKit", "faster-whisper", "Gemini Flash", "Piper TTS", "FastAPI", "Voice Pipeline Orchestration", "Latency Optimization", "Session Logging"]
+  },
+  {
+    repo: "private-search-research-assistant",
+    title: "Private Search Research Assistant",
+    domain: "Research / Search",
+    desc: "Self-hosted search assistant that aggregates results through SearXNG, removes duplicate links, extracts useful page content, and returns short cited summaries. Built to reduce research friction without hiding the underlying sources.",
+    approach: [
+      "Started from the client's research workflow and targeted repeated pain points such as too many tabs, repeated links, and slow first-pass reading",
+      "Used SearXNG to aggregate results from multiple search sources so the team was not tied to a single commercial search experience",
+      "Added deduplication and candidate filtering before summarization so the assistant surfaced fewer but more useful links",
+      "Extracted content from selected pages and asked Gemini Flash to write short summaries that still preserved source visibility",
+      "Kept citations and links central to the output because the goal was to support research, not replace it with an opaque answer engine",
+      "Introduced Redis caching so repeated or similar queries returned faster and felt more practical in day-to-day usage"
+    ],
+    skills: ["SearXNG", "Python", "Gemini Flash", "Redis", "FastAPI", "Content Extraction", "Deduplication", "Citation-Aware Summarization"]
+  },
+  {
+    repo: "small-team-devops-delivery-pipeline",
+    title: "Small-Team DevOps Delivery Pipeline",
+    domain: "Platform Engineering / DevOps",
+    desc: "Repeatable deployment pipeline for taking an application from developer laptop to a monitored running service. Combined container packaging, CI automation, security scanning, and rollback-aware operations without overengineering the infrastructure.",
+    approach: [
+      "Framed the deployment problem around small-team practicality, choosing Docker Compose over heavier orchestration because the system size did not justify Kubernetes",
+      "Standardized runtime packaging with Docker so the app could move cleanly from local development into a consistent deployment environment",
+      "Automated test, build, and release steps through Jenkins to remove fragile manual deployment work and make the process repeatable",
+      "Integrated Trivy scanning before deployment so image security checks became part of the normal delivery path instead of an afterthought",
+      "Added Prometheus and Grafana for health visibility, making release quality observable once the app was running in production-like conditions",
+      "Designed the process with rollback and operational handover in mind so another teammate could run and recover the system later without guesswork"
+    ],
+    skills: ["Docker", "Docker Compose", "Jenkins", "Trivy", "Prometheus", "Grafana", "Deployment Automation", "Rollback Planning"]
   }
 ];
 
 var referenceProjectOrder = [
   5, 3, 13, 1, 0, 10, 12, 16, 14, 15, 23, 22, 19, 21,
-  20, 4, 2, 6, 11, 8, 9, 7, 26, 17, 18, 25, 24
+  20, 4, 2, 6, 11, 8, 9, 7, 26, 17, 18, 25, 24,
+  27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37
 ];
 
 function escapeHtml(value) {
