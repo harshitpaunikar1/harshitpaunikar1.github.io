@@ -25,7 +25,8 @@
   --radius-xl: 30px;
   --radius-lg: 22px;
   --radius-md: 18px;
-  --section-pad: clamp(4.5rem, 7vw, 6.5rem);
+  --content-max: 1320px;
+  --section-pad: clamp(3.75rem, 6vw, 5.5rem);
 }
 
 html {
@@ -68,12 +69,12 @@ header .container,
 #colorlib-services .container,
 #colorlib-work .container,
 footer .container {
-  max-width: 1240px;
+  max-width: var(--content-max);
   width: 100%;
 }
 
 #colorlib-about .container-fluid {
-  max-width: 1320px;
+  max-width: var(--content-max);
   margin: 0 auto;
   padding: 0 1.25rem !important;
 }
@@ -217,8 +218,8 @@ header .colorlib-navbar-brand .colorlib-logo span {
 #colorlib-about {
   position: relative;
   background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-main) 42%, #ffffff 100%);
-  padding-top: clamp(5.5rem, 8vw, 7.5rem);
-  padding-bottom: clamp(2rem, 4vw, 3rem);
+  padding-top: clamp(4.75rem, 7vw, 6.25rem);
+  padding-bottom: clamp(1.75rem, 3vw, 2.5rem);
 }
 
 #colorlib-about::before {
@@ -234,7 +235,7 @@ header .colorlib-navbar-brand .colorlib-logo span {
 
 .hp-hero-row {
   position: relative;
-  min-height: calc(100vh - 6rem);
+  min-height: clamp(760px, 78vh, 840px);
   display: flex;
   align-items: stretch;
   overflow: hidden;
@@ -243,14 +244,24 @@ header .colorlib-navbar-brand .colorlib-logo span {
   background: rgba(255, 255, 255, 0.82);
   box-shadow: var(--shadow);
   backdrop-filter: blur(10px);
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.hp-hero-row > [class*="col-"] {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .hp-about-col {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  flex: 0 0 clamp(340px, 31%, 420px);
+  width: auto;
+  max-width: clamp(340px, 31%, 420px);
   gap: 1rem;
-  padding: clamp(3rem, 5vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
+  padding: clamp(2.5rem, 4vw, 3.5rem) clamp(1.85rem, 3vw, 2.75rem);
   background:
     radial-gradient(circle at 0 0, rgba(96, 165, 250, 0.18), rgba(96, 165, 250, 0) 36%),
     linear-gradient(180deg, var(--sidebar) 0%, var(--sidebar-deep) 100%);
@@ -329,7 +340,8 @@ header .colorlib-navbar-brand .colorlib-logo span {
   display: flex;
   flex-wrap: wrap;
   gap: 0.85rem;
-  margin: 0.2rem 0 0;
+  margin: auto 0 0;
+  padding-top: 1.25rem;
 }
 
 .hp-about-col .colorlib-social-icons a {
@@ -358,7 +370,7 @@ header .colorlib-navbar-brand .colorlib-logo span {
 
 .hp-about-col .btn-primary.btn-outline {
   align-self: flex-start;
-  margin-top: 0.2rem;
+  margin-top: 0.9rem;
   min-height: 3.2rem;
   padding: 0.92rem 1.45rem;
   border-radius: 999px;
@@ -379,15 +391,18 @@ header .colorlib-navbar-brand .colorlib-logo span {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: clamp(3rem, 5vw, 4.5rem) clamp(2rem, 4vw, 4rem);
-  overflow-y: auto;
+  flex: 1 1 0;
+  min-width: 0;
+  width: auto;
+  padding: clamp(2.5rem, 4vw, 3.5rem) clamp(1.85rem, 3vw, 3rem);
+  overflow: visible;
   background: linear-gradient(180deg, #ffffff 0%, #f9fbfd 100%);
 }
 
 .hp-edu-timeline {
   position: relative;
   padding-left: 2.15rem;
-  margin-top: 1.2rem;
+  margin-top: 1rem;
 }
 
 .hp-edu-timeline::before {
@@ -402,8 +417,8 @@ header .colorlib-navbar-brand .colorlib-logo span {
 
 .hp-edu-entry {
   position: relative;
-  margin-bottom: 1rem;
-  padding: 1.1rem 1.3rem 1rem 1.65rem;
+  margin-bottom: 0.85rem;
+  padding: 0.95rem 1.15rem 0.92rem 1.45rem;
   background: var(--surface-soft);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
@@ -473,13 +488,13 @@ header .colorlib-navbar-brand .colorlib-logo span {
 }
 
 #colorlib-services .row.text-center {
-  margin-bottom: 3rem;
+  margin-bottom: 2.4rem;
 }
 
 .hp-skills-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .hp-skill-card {
@@ -489,7 +504,8 @@ header .colorlib-navbar-brand .colorlib-logo span {
   border: 1px solid rgba(201, 212, 224, 0.9);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
-  padding: 1.9rem 1.7rem;
+  height: 100%;
+  padding: 1.6rem 1.45rem;
   transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 }
 
@@ -519,7 +535,7 @@ header .colorlib-navbar-brand .colorlib-logo span {
 }
 
 .hp-skill-card h4 {
-  margin: 0 0 1rem;
+  margin: 0 0 0.85rem;
   color: var(--ink);
   font-family: "Playfair Display", Georgia, serif;
   font-size: 1.16rem;
@@ -533,11 +549,11 @@ header .colorlib-navbar-brand .colorlib-logo span {
 }
 
 .hp-skill-card ul li {
-  padding: 0.7rem 0;
+  padding: 0.6rem 0;
   border-bottom: 1px solid #e8eef5;
   color: var(--body);
-  font-size: 0.95rem;
-  line-height: 1.65;
+  font-size: 0.93rem;
+  line-height: 1.55;
 }
 
 .hp-skill-card ul li:last-child {
@@ -550,7 +566,7 @@ header .colorlib-navbar-brand .colorlib-logo span {
    ============================================================ */
 
 #colorlib-work {
-  padding: var(--section-pad) 0 0;
+  padding: var(--section-pad) 0;
   background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%);
 }
 
@@ -570,11 +586,12 @@ header .colorlib-navbar-brand .colorlib-logo span {
 }
 
 .hp-projects-panel {
-  width: min(100%, 1280px);
-  min-height: 72vh;
-  max-height: 82vh;
+  width: min(calc(100% - 2rem), var(--content-max));
+  height: clamp(620px, 68vh, 720px);
+  min-height: 0;
+  max-height: none;
   display: flex;
-  margin: 3rem auto 0;
+  margin: 2.5rem auto 0;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius-xl);
@@ -583,8 +600,8 @@ header .colorlib-navbar-brand .colorlib-logo span {
 }
 
 .hp-projects-list {
-  width: 360px;
-  min-width: 360px;
+  width: 340px;
+  min-width: 340px;
   overflow-y: auto;
   border-right: 1px solid var(--line);
   background: linear-gradient(180deg, var(--surface-soft) 0%, var(--surface-muted) 100%);
@@ -603,7 +620,7 @@ header .colorlib-navbar-brand .colorlib-logo span {
 }
 
 .hp-proj-item {
-  padding: 1.05rem 1.4rem 1rem 1.55rem;
+  padding: 0.98rem 1.25rem 0.92rem 1.35rem;
   border-bottom: 1px solid rgba(201, 212, 224, 0.7);
   border-left: 3px solid transparent;
   cursor: pointer;
@@ -636,8 +653,8 @@ header .colorlib-navbar-brand .colorlib-logo span {
   margin-bottom: 0.22rem;
   color: var(--ink);
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 1rem;
-  line-height: 1.45;
+  font-size: 0.98rem;
+  line-height: 1.38;
 }
 
 .hp-proj-item-domain {
@@ -651,13 +668,13 @@ header .colorlib-navbar-brand .colorlib-logo span {
 .hp-projects-detail {
   flex: 1;
   overflow-y: auto;
-  padding: clamp(2rem, 4vw, 3.25rem);
+  padding: clamp(1.9rem, 3vw, 2.5rem);
   background: var(--white);
   scrollbar-color: var(--line-strong) transparent;
 }
 
 .hp-projects-detail > * {
-  max-width: 760px;
+  max-width: 720px;
 }
 
 .hp-detail-domain {
@@ -677,18 +694,18 @@ header .colorlib-navbar-brand .colorlib-logo span {
   margin: 1rem 0 1.25rem;
   color: var(--ink);
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2rem, 4vw, 3.15rem);
-  line-height: 1.1;
+  font-size: clamp(1.95rem, 3.4vw, 2.9rem);
+  line-height: 1.08;
   letter-spacing: -0.04em;
 }
 
 .hp-detail-desc {
-  margin-bottom: 2rem;
+  margin-bottom: 1.7rem;
   padding-left: 1.25rem;
   border-left: 2px solid var(--accent);
   color: var(--body);
-  font-size: 1.04rem;
-  line-height: 1.9;
+  font-size: 1rem;
+  line-height: 1.82;
 }
 
 .hp-detail-section-title {
@@ -795,7 +812,7 @@ header .colorlib-navbar-brand .colorlib-logo span {
 #footer {
   position: relative;
   overflow: hidden;
-  padding: clamp(4rem, 6vw, 5.5rem) 0 2rem;
+  padding: clamp(3.5rem, 5vw, 5rem) 0 1.75rem;
   background: linear-gradient(180deg, var(--sidebar) 0%, #101a2b 100%);
   border-top: 1px solid #18283d;
 }
@@ -912,7 +929,7 @@ header .colorlib-navbar-brand .colorlib-logo span {
 }
 
 #footer .row:last-child {
-  margin-top: 3rem;
+  margin-top: 2.5rem;
   padding-top: 1.35rem;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
@@ -928,19 +945,8 @@ header .colorlib-navbar-brand .colorlib-logo span {
    ============================================================ */
 
 @media (max-width: 1199px) {
-  .hp-skills-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .hp-projects-list {
-    width: 320px;
-    min-width: 320px;
-  }
-}
-
-@media (max-width: 991px) {
   #colorlib-about .container-fluid {
-    padding: 0 0.95rem !important;
+    padding: 0 1rem !important;
   }
 
   .hp-hero-row {
@@ -949,6 +955,8 @@ header .colorlib-navbar-brand .colorlib-logo span {
   }
 
   .hp-about-col {
+    flex-basis: auto;
+    max-width: none;
     border-right: none;
     border-bottom: 1px solid rgba(219, 228, 237, 0.14);
   }
@@ -957,38 +965,131 @@ header .colorlib-navbar-brand .colorlib-logo span {
     overflow: visible;
   }
 
+  .hp-skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .hp-projects-panel {
-    min-height: auto;
-    max-height: none;
+    height: auto;
     flex-direction: column;
   }
 
   .hp-projects-list {
     width: 100%;
     min-width: 0;
-    max-height: 320px;
+    max-height: 300px;
     border-right: none;
     border-bottom: 1px solid var(--line);
   }
 
   .hp-projects-detail {
-    min-height: 60vh;
+    min-height: auto;
+  }
+
+  #footer .row:first-child {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  #footer .row:first-child > .col-md-4 {
+    width: 50%;
+  }
+
+  #footer .row:first-child > .col-md-4:last-child {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .hp-about-col {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    grid-template-areas:
+      "photo name"
+      "photo role"
+      "photo bio"
+      "photo tags"
+      "photo social"
+      "photo cta";
+    align-items: start;
+    column-gap: 1.6rem;
+    row-gap: 0.9rem;
+  }
+
+  .hp-photo-wrap {
+    grid-area: photo;
+    width: 220px;
+    height: 220px;
+    margin-bottom: 0;
+  }
+
+  .hp-name {
+    grid-area: name;
+    align-self: end;
+  }
+
+  .hp-role {
+    grid-area: role;
+  }
+
+  .hp-bio {
+    grid-area: bio;
+    max-width: 40ch;
+  }
+
+  .hp-tags {
+    grid-area: tags;
+    max-width: none;
+  }
+
+  .hp-about-col .colorlib-social-icons {
+    grid-area: social;
+    margin: 0;
+    padding-top: 0.2rem;
+  }
+
+  .hp-about-col .btn-primary.btn-outline {
+    grid-area: cta;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  #colorlib-about .container-fluid {
+    padding: 0 0.95rem !important;
+  }
+
+  .hp-projects-list {
+    max-height: 280px;
+  }
+
+  .hp-projects-detail {
+    padding: 1.75rem 1.5rem;
   }
 }
 
 @media (max-width: 767px) {
+  #colorlib-page {
+    padding-top: 0 !important;
+  }
+
+  header {
+    padding: 1rem 0 0;
+  }
+
   header .colorlib-navbar-brand .colorlib-logo {
     letter-spacing: 0.26em;
   }
 
   .hp-photo-wrap {
-    width: 156px;
-    height: 156px;
+    width: 136px;
+    height: 136px;
     border-radius: 24px;
   }
 
   .hp-name {
-    font-size: 2.45rem;
+    font-size: 2.35rem;
   }
 
   .hp-sec-title,
@@ -998,15 +1099,15 @@ header .colorlib-navbar-brand .colorlib-logo span {
   }
 
   .hp-edu-timeline {
-    padding-left: 1.45rem;
+    padding-left: 1.6rem;
   }
 
   .hp-edu-entry {
-    padding: 1rem 1rem 1rem 1.15rem;
+    padding: 0.95rem 0.95rem 0.92rem 1rem;
   }
 
   .hp-edu-entry::before {
-    left: -1.34rem;
+    left: -1.46rem;
   }
 
   .hp-skills-grid {
@@ -1014,15 +1115,19 @@ header .colorlib-navbar-brand .colorlib-logo span {
   }
 
   .hp-skill-card {
-    padding: 1.65rem 1.4rem;
+    padding: 1.35rem 1.2rem;
   }
 
   .hp-detail-title {
-    font-size: 1.85rem;
+    font-size: clamp(1.6rem, 7.8vw, 2rem);
   }
 
   #footer {
-    padding-top: 3.6rem;
+    padding-top: 3.1rem;
+  }
+
+  #footer .row:first-child > .col-md-4 {
+    width: 100%;
   }
 }
 
@@ -1039,20 +1144,40 @@ header .colorlib-navbar-brand .colorlib-logo span {
     justify-content: center;
   }
 
+  .hp-about-col .colorlib-social-icons {
+    padding-top: 0.9rem;
+  }
+
   .hp-proj-header {
     padding: 0 1rem;
   }
 
   .hp-proj-subtitle {
     font-size: 0.93rem;
+    line-height: 1.65;
   }
 
   .hp-proj-item {
-    padding: 0.95rem 1rem 0.92rem 1.15rem;
+    padding: 0.9rem 1rem 0.88rem 1.05rem;
+  }
+
+  .hp-proj-item-title {
+    font-size: 0.95rem;
   }
 
   .hp-detail-desc {
     padding-left: 1rem;
+    font-size: 0.98rem;
+    line-height: 1.76;
+  }
+
+  .hp-projects-list {
+    max-height: 240px;
+  }
+
+  #footer .subscribe .btn-custom {
+    width: 100% !important;
+    min-width: 0;
   }
 }
 
