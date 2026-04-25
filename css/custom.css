@@ -65,7 +65,8 @@ p {
 
 #colorlib-page {
   width: 100%;
-  overflow-x: hidden;
+  overflow-x: visible;
+  transform: none;
   background: #fff;
 }
 
@@ -140,7 +141,6 @@ p {
 
 .hp-hero-band {
   position: relative;
-  overflow: hidden;
   background:
     url("../images/google-sites/google-bg-education.jpg") center center / cover no-repeat,
     linear-gradient(145deg, rgba(9, 22, 29, 0.92) 0%, rgba(9, 22, 29, 0.92) 25%, rgba(13, 60, 82, 0.84) 25%, rgba(13, 60, 82, 0.84) 48%, rgba(15, 74, 103, 0.8) 48%, rgba(15, 74, 103, 0.8) 69%, rgba(11, 49, 66, 0.86) 69%, rgba(11, 49, 66, 0.86) 100%),
@@ -292,6 +292,14 @@ p {
   background: #1a3549;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hp-hero-tabs-bar.is-fixed {
+  position: fixed;
+  top: var(--hp-tabs-top, 56px);
+  right: 0;
+  left: 0;
+  z-index: 990;
 }
 
 .hp-hero-tabs {
@@ -650,6 +658,7 @@ button.hp-cta {
   overflow-y: auto;
   padding: 34px 26px 26px;
   background: var(--hp-navy);
+  border-radius: 6px;
   color: #e8eef2;
   scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
 }

@@ -212,7 +212,7 @@ var projects = [
     repo: "onprem-comment-intelligence-engine",
     title: "On-Prem Comment Intelligence Engine",
     domain: "Marketing / AdTech",
-    desc: "Private, always-on assistant for comment streams using local Gemma-31B with retrieval-augmented generation for summarisation and Q&A. No data leaves the organisation — all inference runs on local infrastructure.",
+    desc: "Private, always-on assistant for comment streams using local Gemma-31B with retrieval-augmented generation for summarisation and Q&A. No data leaves the organisation; all inference runs on local infrastructure.",
     approach: [
       "Mapped comment sources, triage rules, and escalation paths with stakeholders; defined critical signals and SLAs",
       "Connected to internal database; indexed updates for retrieval so answers reflect most recent records",
@@ -271,7 +271,7 @@ var projects = [
     repo: "engagement-triggered-followup-automation",
     title: "Engagement-Triggered Follow-Up Automation",
     domain: "Marketing / AdTech",
-    desc: "Rules-driven automation system triggering personalised follow-up emails based on engagement signals — opens, clicks, page visits, or inactivity. Reduced manual workload and accelerated pipeline velocity for sales teams.",
+    desc: "Rules-driven automation system triggering personalised follow-up emails based on engagement signals: opens, clicks, page visits, or inactivity. Reduced manual workload and accelerated pipeline velocity for sales teams.",
     approach: [
       "Mapped buyer journey and defined follow-up SLAs by segment and stage",
       "Captured engagement signals (opens, clicks, visits, replies, inactivity) and built lightweight lead score",
@@ -361,7 +361,7 @@ var projects = [
     repo: "local-business-profit-planning",
     title: "Local Business Profit Planning",
     domain: "Business Analysis",
-    desc: "Data-backed planning service for neighbourhood businesses — consolidating records, profiling seasonality, quantifying product and customer profitability, and building simple what-if planning models to improve margins and working capital.",
+    desc: "Data-backed planning service for neighbourhood businesses, consolidating records, profiling seasonality, quantifying product and customer profitability, and building simple what-if planning models to improve margins and working capital.",
     approach: [
       "Engaged nearby organisations; mapped processes, objectives, constraints, and decision cadence via structured interviews",
       "Consolidated ledgers, invoices, POS exports, and surveys; cleaned and reconciled into analysis-ready dataset",
@@ -376,7 +376,7 @@ var projects = [
     repo: "lead-management-product-launch",
     title: "Lead Management Product Launch",
     domain: "Project Management",
-    desc: "End-to-end productisation of an internal lead management tool — including cost modelling, MVP scoping, sprint delivery, and production deployment with analytics. Turned a working internal tool into a market-ready product.",
+    desc: "End-to-end productisation of an internal lead management tool, including cost modelling, MVP scoping, sprint delivery, and production deployment with analytics. Turned a working internal tool into a market-ready product.",
     approach: [
       "Conducted discovery interviews and mapped end-to-end lead workflows to define must-have outcomes and adoption blockers",
       "Built cost model (engineering, hosting, support) to set price floors and target margins with sensitivity scenarios",
@@ -391,7 +391,7 @@ var projects = [
     repo: "unified-course-management-platform",
     title: "Unified Course Management Platform",
     domain: "EdTech",
-    desc: "All-in-one learning platform for institutes and training businesses — covering enrolment, content authoring, scheduling, assessments, certifications, payments, and learner analytics. Replaced multiple disconnected tools with a single source of truth.",
+    desc: "All-in-one learning platform for institutes and training businesses, covering enrolment, content authoring, scheduling, assessments, certifications, payments, and learner analytics. Replaced multiple disconnected tools with a single source of truth.",
     approach: [
       "Mapped workflows with admins, instructors, and learners; captured pain points; prioritised MVP aligned to business goals",
       "Designed scalable data model for courses, modules, users, enrolments, assessments, certifications, and payments",
