@@ -1073,10 +1073,58 @@ button.hp-more-education-btn {
   margin-bottom: 40px;
 }
 
-.hp-contact-block p {
-  margin-bottom: 0.75rem;
+.hp-contact-list {
+  display: grid;
+  gap: 8px;
+  max-width: 620px;
+  margin: 0;
+}
+
+.hp-contact-row {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 16px;
+  align-items: baseline;
+}
+
+.hp-contact-row dt,
+.hp-contact-row dd {
+  margin: 0;
   font-size: 1rem;
-  line-height: 1.7;
+  line-height: 1.55;
+}
+
+.hp-contact-row dt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--hp-muted);
+  font-weight: 700;
+}
+
+.hp-contact-row dt .bi {
+  width: 1em;
+  flex: 0 0 1em;
+  color: var(--hp-blue);
+  font-size: 0.95em;
+  line-height: 1;
+}
+
+.hp-contact-row dd {
+  color: var(--hp-ink);
+  overflow-wrap: anywhere;
+}
+
+.hp-contact-row a {
+  color: var(--hp-blue);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.hp-contact-row a:hover,
+.hp-contact-row a:focus {
+  color: #083866;
+  text-decoration: underline;
 }
 
 .hp-site-footer {
@@ -1355,6 +1403,11 @@ button.hp-more-education-btn {
     font-size: 1rem;
   }
 
+  .hp-contact-row {
+    grid-template-columns: 112px minmax(0, 1fr);
+    gap: 12px;
+  }
+
   .hp-skills-grid {
     grid-template-columns: 1fr;
   }
@@ -1424,5 +1477,14 @@ button.hp-more-education-btn {
 
   .hp-logo-row {
     gap: 32px;
+  }
+
+  .hp-contact-list {
+    gap: 12px;
+  }
+
+  .hp-contact-row {
+    grid-template-columns: 1fr;
+    gap: 2px;
   }
 }
