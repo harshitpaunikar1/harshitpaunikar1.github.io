@@ -3,114 +3,423 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Harshit Paunikar</title>
+  <title>Harshit Paunikar — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="nav-logo">HP</div>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
+  <!-- ===== NAV TOGGLE ===== -->
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- ===== OVERLAY MENU ===== -->
+  <nav class="overlay-nav" id="overlayNav">
+    <button class="overlay-close" id="overlayClose" aria-label="Close menu">&#x2715;</button>
+    <ul>
+      <li><a href="#home"         class="nav-link">Home</a></li>
+      <li><a href="#about"        class="nav-link">About</a></li>
+      <li><a href="#services"     class="nav-link">Services</a></li>
+      <li><a href="#work"         class="nav-link">Work</a></li>
+      <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+      <li><a href="#contact"      class="nav-link">Contact</a></li>
     </ul>
-    <button class="hamburger" id="hamburger">&#9776;</button>
+    <div class="overlay-footer">
+      <a href="https://github.com/harshitpaunikar1"           target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/harsh2025"         target="_blank">LinkedIn</a>
+      <a href="mailto:paunikarharshit1995@gmail.com">Email</a>
+    </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <p class="greeting">Hello, I'm</p>
-      <h1 class="name">Harshit Paunikar</h1>
-      <p class="tagline" id="typewriter"></p>
-      <div class="hero-buttons">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
+  <!-- ===== HERO ===== -->
+  <section id="home" class="section hero-section">
+    <div class="hero-inner">
+      <p class="hero-sub">Hello, I'm</p>
+      <h1 class="hero-name">Harshit<br>Paunikar</h1>
+      <p class="hero-role"><span id="typewriter"></span></p>
+      <div class="hero-btns">
+        <a href="#work"    class="btn btn-primary">View My Work</a>
         <a href="#contact" class="btn btn-outline">Contact Me</a>
       </div>
     </div>
-    <div class="hero-shape"></div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
   </section>
 
-  <!-- About Section -->
-  <section class="about" id="about">
-    <div class="container">
-      <h2 class="section-title">About Me</h2>
-      <div class="about-grid">
-        <div class="about-text">
-          <p>I'm a passionate developer who loves building clean, functional, and beautiful web experiences. I enjoy solving problems and turning ideas into reality with code.</p>
-          <div class="skills">
-            <span class="skill-tag">HTML</span>
-            <span class="skill-tag">CSS</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">Git</span>
-            <span class="skill-tag">GitHub</span>
-          </div>
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="section about-section">
+    <div class="container about-grid">
+      <div class="about-image-col">
+        <div class="about-img-frame">
+          <div class="about-img-placeholder">HP</div>
         </div>
-        <div class="stats-grid">
-          <div class="stat-card">
-            <span class="stat-num" data-target="18">0</span>
-            <span class="stat-label">Projects</span>
+        <div class="about-socials">
+          <a href="https://github.com/harshitpaunikar1"       target="_blank">GH</a>
+          <a href="https://www.linkedin.com/in/harsh2025"     target="_blank">LI</a>
+          <a href="mailto:paunikarharshit1995@gmail.com">EM</a>
+        </div>
+      </div>
+      <div class="about-text-col">
+        <p class="section-label">About</p>
+        <h2 class="section-heading">I'm a Data &amp; AI Professional</h2>
+        <p class="about-bio">I build intelligent systems at the intersection of computer vision, machine learning, and operational technology. From edge AI deployment in logistics yards to LLM-powered sales assistants, I turn complex data problems into reliable, production-grade solutions.</p>
+        <p class="about-bio">With 27 projects spanning logistics, banking, marketing, and EdTech, I bring a track record of delivering measurable business outcomes through end-to-end data and AI work.</p>
+        <a href="#contact" class="btn btn-primary" style="margin-top:1.5rem">Contact Me!</a>
+
+        <div class="skills-bars">
+          <div class="skill-bar">
+            <div class="skill-label"><span>Computer Vision &amp; Edge AI</span><span>92%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-w="92"></div></div>
           </div>
-          <div class="stat-card">
-            <span class="stat-num" data-target="100">0</span>
-            <span class="stat-label">Commits</span>
+          <div class="skill-bar">
+            <div class="skill-label"><span>Machine Learning &amp; Data Science</span><span>88%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-w="88"></div></div>
           </div>
-          <div class="stat-card">
-            <span class="stat-num" data-target="5">0</span>
-            <span class="stat-label">Technologies</span>
+          <div class="skill-bar">
+            <div class="skill-label"><span>Product &amp; Analytics</span><span>85%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-w="85"></div></div>
           </div>
-          <div class="stat-card">
-            <span class="stat-num" data-target="1">0</span>
-            <span class="stat-label">Years Coding</span>
+          <div class="skill-bar">
+            <div class="skill-label"><span>Logistics Technology</span><span>90%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-w="90"></div></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Projects Section -->
-  <section class="projects" id="projects">
+  <!-- ===== SERVICES ===== -->
+  <section id="services" class="section services-section">
     <div class="container">
-      <h2 class="section-title">Projects</h2>
-      <div class="projects-grid" id="projects-grid">
-        <!-- Cards injected by JS -->
-      </div>
-      <div class="projects-cta">
-        <a href="https://github.com/harshitpaunikar1" target="_blank" class="btn btn-primary">View All on GitHub</a>
+      <p class="section-label">What I Do</p>
+      <h2 class="section-heading">My Services &amp; Skills</h2>
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-icon">&#9671;</div>
+          <h3>Computer Vision &amp; Edge AI</h3>
+          <ul>
+            <li>Object Detection &amp; Tracking</li>
+            <li>Edge Deployment (TFLite, ONNX)</li>
+            <li>Model Quantization</li>
+            <li>OCR &amp; Document Intelligence</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">&#9675;</div>
+          <h3>Machine Learning &amp; Data Science</h3>
+          <ul>
+            <li>Predictive Modelling &amp; Scoring</li>
+            <li>Exploratory Data Analysis</li>
+            <li>NLP &amp; LLM Integration</li>
+            <li>Feature Engineering</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">&#9632;</div>
+          <h3>Data Engineering &amp; Analytics</h3>
+          <ul>
+            <li>ETL / ELT Pipeline Design</li>
+            <li>Data Warehousing &amp; Star Schema</li>
+            <li>Real-Time Dashboards (Tableau)</li>
+            <li>SQL Optimization &amp; Python</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">&#9650;</div>
+          <h3>Product &amp; Platform</h3>
+          <ul>
+            <li>REST API &amp; Microservices Design</li>
+            <li>Android Offline-First Apps</li>
+            <li>Agile Product Management</li>
+            <li>Stakeholder &amp; Discovery Workshops</li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section class="contact" id="contact">
+  <!-- ===== WORK / PROJECTS ===== -->
+  <section id="work" class="section work-section">
     <div class="container">
-      <h2 class="section-title">Get In Touch</h2>
-      <div class="contact-wrapper">
-        <div class="contact-info">
-          <p>Have a project idea or just want to say hi? My inbox is always open.</p>
-          <a href="mailto:paunikarharshit2025@gmail.com" class="contact-email">paunikarharshit2025@gmail.com</a>
-          <div class="social-links">
-            <a href="https://github.com/harshitpaunikar1" target="_blank" class="social-btn">GitHub</a>
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-heading">Featured Projects</h2>
+
+      <div class="work-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="logistics">Logistics</button>
+        <button class="filter-btn" data-filter="ai">AI / ML</button>
+        <button class="filter-btn" data-filter="marketing">Marketing</button>
+        <button class="filter-btn" data-filter="product">Product</button>
+      </div>
+
+      <div class="work-grid" id="workGrid">
+
+        <div class="work-card" data-cat="ai logistics">
+          <div class="work-thumb" style="background:#e8d5fb">
+            <div class="work-overlay">
+              <a href="https://github.com/harshitpaunikar1/edge-ai-container-trailer-detection" target="_blank" class="work-link">View Project</a>
+            </div>
+            <span class="work-icon">&#128247;</span>
+          </div>
+          <div class="work-info">
+            <span class="work-cat">Logistics &amp; AI</span>
+            <h4>Edge AI Container &amp; Trailer Detection</h4>
           </div>
         </div>
-        <form class="contact-form" id="contact-form">
-          <input type="text" placeholder="Your Name" required />
-          <input type="email" placeholder="Your Email" required />
-          <textarea rows="5" placeholder="Your Message" required></textarea>
+
+        <div class="work-card" data-cat="ai">
+          <div class="work-thumb" style="background:#d5e8fb">
+            <div class="work-overlay">
+              <a href="https://github.com/harshitpaunikar1/npa-risk-prediction" target="_blank" class="work-link">View Project</a>
+            </div>
+            <span class="work-icon">&#128200;</span>
+          </div>
+          <div class="work-info">
+            <span class="work-cat">Banking &amp; ML</span>
+            <h4>NPA Risk Prediction</h4>
+          </div>
+        </div>
+
+        <div class="work-card" data-cat="logistics ai">
+          <div class="work-thumb" style="background:#fbd5e8">
+            <div class="work-overlay">
+              <a href="https://github.com/harshitpaunikar1/onprem-vision-inference-pipeline" target="_blank" class="work-link">View Project</a>
+            </div>
+            <span class="work-icon">&#129302;</span>
+          </div>
+          <div class="work-info">
+            <span class="work-cat">Manufacturing &amp; AI</span>
+            <h4>On-Prem Vision Inference Pipeline</h4>
+          </div>
+        </div>
+
+        <div class="work-card" data-cat="marketing">
+          <div class="work-thumb" style="background:#fbebd5">
+            <div class="work-overlay">
+              <a href="https://github.com/harshitpaunikar1/realtime-marketing-decision-engine" target="_blank" class="work-link">View Project</a>
+            </div>
+            <span class="work-icon">&#128202;</span>
+          </div>
+          <div class="work-info">
+            <span class="work-cat">Marketing Analytics</span>
+            <h4>Real-Time Marketing Decision Engine</h4>
+          </div>
+        </div>
+
+        <div class="work-card" data-cat="logistics product">
+          <div class="work-thumb" style="background:#d5fbe8">
+            <div class="work-overlay">
+              <a href="https://github.com/harshitpaunikar1/yard-management-platform" target="_blank" class="work-link">View Project</a>
+            </div>
+            <span class="work-icon">&#128666;</span>
+          </div>
+          <div class="work-info">
+            <span class="work-cat">Logistics</span>
+            <h4>Yard Management Platform</h4>
+          </div>
+        </div>
+
+        <div class="work-card" data-cat="ai">
+          <div class="work-thumb" style="background:#fbd5d5">
+            <div class="work-overlay">
+              <a href="https://github.com/harshitpaunikar1/llm-sales-assistant" target="_blank" class="work-link">View Project</a>
+            </div>
+            <span class="work-icon">&#129303;</span>
+          </div>
+          <div class="work-info">
+            <span class="work-cat">SalesTech &amp; LLM</span>
+            <h4>LLM Sales Assistant</h4>
+          </div>
+        </div>
+
+        <div class="work-card" data-cat="marketing">
+          <div class="work-thumb" style="background:#e8fbd5">
+            <div class="work-overlay">
+              <a href="https://github.com/harshitpaunikar1/sponsorsync-influencer-marketplace" target="_blank" class="work-link">View Project</a>
+            </div>
+            <span class="work-icon">&#127775;</span>
+          </div>
+          <div class="work-info">
+            <span class="work-cat">Marketing / AdTech</span>
+            <h4>SponsorSync Influencer Marketplace</h4>
+          </div>
+        </div>
+
+        <div class="work-card" data-cat="product">
+          <div class="work-thumb" style="background:#d5d5fb">
+            <div class="work-overlay">
+              <a href="https://github.com/harshitpaunikar1/unified-course-management-platform" target="_blank" class="work-link">View Project</a>
+            </div>
+            <span class="work-icon">&#127979;</span>
+          </div>
+          <div class="work-info">
+            <span class="work-cat">EdTech</span>
+            <h4>Unified Course Management Platform</h4>
+          </div>
+        </div>
+
+        <div class="work-card" data-cat="logistics ai">
+          <div class="work-thumb" style="background:#fbf0d5">
+            <div class="work-overlay">
+              <a href="https://github.com/harshitpaunikar1/android-edge-vision-logistics" target="_blank" class="work-link">View Project</a>
+            </div>
+            <span class="work-icon">&#128241;</span>
+          </div>
+          <div class="work-info">
+            <span class="work-cat">Logistics &amp; Mobile AI</span>
+            <h4>Android Edge Vision for Logistics</h4>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="work-cta">
+        <a href="https://github.com/harshitpaunikar1" target="_blank" class="btn btn-outline">View All 27 Projects on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS / STATS ===== -->
+  <section id="testimonials" class="section testimonials-section">
+    <div class="container">
+      <p class="section-label">Impact</p>
+      <h2 class="section-heading">By The Numbers</h2>
+
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-num" data-target="27">0</span>
+          <span class="stat-label">Projects Delivered</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="8">0</span>
+          <span class="stat-label">Industries Covered</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="15">0</span>
+          <span class="stat-label">Technologies Used</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="100">0</span>
+          <span class="stat-label">GitHub Commits</span>
+        </div>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"Built a computer vision system that processes edge camera feeds for real-time container detection — reducing manual yard checks and improving turnaround time significantly."</p>
+          <div class="testimonial-meta">
+            <span class="testimonial-name">Edge AI Project</span>
+            <span class="testimonial-role">Logistics &amp; Transportation</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"Designed a predictive NPA scorecard that converts default probabilities into risk-tiered lending decisions — enabling faster approvals with lower credit loss exposure."</p>
+          <div class="testimonial-meta">
+            <span class="testimonial-name">NPA Risk Model</span>
+            <span class="testimonial-role">Banking &amp; Finance</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"Delivered a private LLM assistant that summarises comment streams and answers questions without any data leaving the organisation — all running on local infrastructure."</p>
+          <div class="testimonial-meta">
+            <span class="testimonial-name">Comment Intelligence Engine</span>
+            <span class="testimonial-role">Marketing / AdTech</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section contact-section">
+    <div class="container contact-grid">
+      <div class="contact-info-col">
+        <p class="section-label">Get In Touch</p>
+        <h2 class="section-heading">Let's Talk</h2>
+        <p class="contact-desc">Have a project, collaboration, or opportunity you'd like to discuss? My inbox is always open.</p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <span class="contact-item-label">Email</span>
+            <a href="mailto:paunikarharshit1995@gmail.com">paunikarharshit1995@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">Phone</span>
+            <a href="tel:+917503217372">+91 7503217372</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/harsh2025" target="_blank">linkedin.com/in/harsh2025</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">GitHub</span>
+            <a href="https://github.com/harshitpaunikar1" target="_blank">github.com/harshitpaunikar1</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-col">
+        <form id="contactForm" class="contact-form">
+          <div class="form-row">
+            <input type="text"  placeholder="Your Name"    required />
+            <input type="email" placeholder="Your Email"   required />
+          </div>
+          <input type="text" placeholder="Subject" />
+          <textarea rows="6"  placeholder="Your Message"  required></textarea>
           <button type="submit" class="btn btn-primary">Send Message</button>
-          <p class="form-status" id="form-status"></p>
+          <p class="form-msg" id="formMsg"></p>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>Designed &amp; Built by <strong>Harshit Paunikar</strong></p>
-    <p class="footer-sub">Hosted on GitHub Pages</p>
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <h4 class="footer-brand">Harshit Paunikar</h4>
+        <p>Data &amp; AI Professional building intelligent systems across logistics, banking, and marketing.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Featured Projects</h4>
+        <ul>
+          <li><a href="https://github.com/harshitpaunikar1/edge-ai-container-trailer-detection" target="_blank">Edge AI Detection</a></li>
+          <li><a href="https://github.com/harshitpaunikar1/npa-risk-prediction" target="_blank">NPA Risk Prediction</a></li>
+          <li><a href="https://github.com/harshitpaunikar1/llm-sales-assistant" target="_blank">LLM Sales Assistant</a></li>
+          <li><a href="https://github.com/harshitpaunikar1/yard-management-platform" target="_blank">Yard Management Platform</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <div class="footer-socials">
+          <a href="https://github.com/harshitpaunikar1"       target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/harsh2025"     target="_blank">LinkedIn</a>
+          <a href="mailto:paunikarharshit1995@gmail.com">Email</a>
+          <a href="http://drive.google.com/file/d/1jET0PqPdHKjui3PRrpxlMgI0cNJIRpjj/view" target="_blank">Resume</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Harshit Paunikar. All rights reserved.</p>
+    </div>
   </footer>
 
   <script src="script.js"></script>
