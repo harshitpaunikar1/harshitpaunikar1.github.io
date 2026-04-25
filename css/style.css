@@ -16,8 +16,8 @@ body {
   line-height: 1.8;
   font-size: 16px;
   font-weight: 400;
-  background: #fafafa;
-  color: gray; }
+  background: #f8fafc;
+  color: #374151; }
   body.menu-show {
     overflow: hidden;
     position: fixed;
