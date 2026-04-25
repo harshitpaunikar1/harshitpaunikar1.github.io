@@ -434,7 +434,7 @@ function renderProjectIndex() {
 
   list.innerHTML = orderedProjects().map(function(p, i) {
     return '<li><a href="#' + projectId(i) + '" data-project-idx="' + i + '">' +
-      escapeHtml(p.title) + ' [Domain : ' + escapeHtml(p.domain) + ']' +
+      escapeHtml(p.title) + ' <span class="hp-domain-tag">' + escapeHtml(p.domain) + '</span>' +
     '</a></li>';
   }).join('');
 }
