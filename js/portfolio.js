@@ -433,33 +433,54 @@ function renderProjectIndex() {
   if (!list) return;
 
   list.innerHTML = orderedProjects().map(function(p, i) {
-    return '<li><a href="#' + projectId(i) + '">' +
+    return '<li><a href="#' + projectId(i) + '" data-project-idx="' + i + '">' +
       escapeHtml(p.title) + ' [Domain : ' + escapeHtml(p.domain) + ']' +
     '</a></li>';
   }).join('');
 }
 
-function renderProjectDetails() {
+function projectMarkup(p, i) {
+  var approach = p.approach.map(function(item) {
+    return '<li>' + escapeHtml(item) + '</li>';
+  }).join('');
+
+  return '<article class="hp-project-entry" id="' + projectId(i) + '">' +
+    '<h2>' + (i + 1) + '. ' + escapeHtml(p.title) +
+    ' <span class="hp-project-domain">[Domain : ' + escapeHtml(p.domain) + ']</span></h2>' +
+    '<p>' + escapeHtml(p.desc) + '</p>' +
+    '<h3>Methodology</h3>' +
+    '<ul>' + approach + '</ul>' +
+    '<p><strong>Skills used:</strong> ' + escapeHtml(p.skills.join(', ')) + '</p>' +
+  '</article>';
+}
+
+function renderProjectDetails(idx) {
   var detail = document.getElementById('projectsDetails');
   if (!detail) return;
+  var list = orderedProjects();
+  var safeIdx = Math.max(0, Math.min(idx || 0, list.length - 1));
 
-  detail.innerHTML = orderedProjects().map(function(p, i) {
-    var approach = p.approach.map(function(item) {
-      return '<li>' + escapeHtml(item) + '</li>';
-    }).join('');
+  detail.innerHTML = projectMarkup(list[safeIdx], safeIdx);
 
-    return '<article class="hp-project-entry" id="' + projectId(i) + '">' +
-      '<h2>' + (i + 1) + '. ' + escapeHtml(p.title) +
-      ' <span class="hp-project-domain">[Domain : ' + escapeHtml(p.domain) + ']</span></h2>' +
-      '<p>' + escapeHtml(p.desc) + '</p>' +
-      '<h3>Methodology</h3>' +
-      '<ul>' + approach + '</ul>' +
-      '<p><strong>Skills used:</strong> ' + escapeHtml(p.skills.join(', ')) + '</p>' +
-    '</article>';
-  }).join('');
+  document.querySelectorAll('#projectsIndex a').forEach(function(anchor) {
+    anchor.classList.toggle('active', Number(anchor.getAttribute('data-project-idx')) === safeIdx);
+  });
+}
+
+function bindProjectIndex() {
+  var list = document.getElementById('projectsIndex');
+  if (!list) return;
+
+  list.addEventListener('click', function(event) {
+    var anchor = event.target.closest('a[data-project-idx]');
+    if (!anchor) return;
+    event.preventDefault();
+    renderProjectDetails(Number(anchor.getAttribute('data-project-idx')));
+  });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
   renderProjectIndex();
-  renderProjectDetails();
+  bindProjectIndex();
+  renderProjectDetails(0);
 });
