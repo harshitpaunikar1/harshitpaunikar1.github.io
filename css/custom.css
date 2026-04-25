@@ -235,7 +235,7 @@ header .colorlib-navbar-brand .colorlib-logo span {
 
 .hp-hero-row {
   position: relative;
-  min-height: clamp(760px, 78vh, 840px);
+  min-height: clamp(680px, 72vh, 780px);
   display: flex;
   align-items: stretch;
   overflow: hidden;
@@ -257,11 +257,11 @@ header .colorlib-navbar-brand .colorlib-logo span {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  flex: 0 0 clamp(340px, 31%, 420px);
+  flex: 0 0 clamp(360px, 33%, 450px);
   width: auto;
-  max-width: clamp(340px, 31%, 420px);
+  max-width: clamp(360px, 33%, 450px);
   gap: 1rem;
-  padding: clamp(2.5rem, 4vw, 3.5rem) clamp(1.85rem, 3vw, 2.75rem);
+  padding: clamp(2.25rem, 3.5vw, 3.1rem) clamp(1.85rem, 2.75vw, 2.6rem);
   background:
     radial-gradient(circle at 0 0, rgba(96, 165, 250, 0.18), rgba(96, 165, 250, 0) 36%),
     linear-gradient(180deg, var(--sidebar) 0%, var(--sidebar-deep) 100%);
@@ -394,15 +394,15 @@ header .colorlib-navbar-brand .colorlib-logo span {
   flex: 1 1 0;
   min-width: 0;
   width: auto;
-  padding: clamp(2.5rem, 4vw, 3.5rem) clamp(1.85rem, 3vw, 3rem);
+  padding: clamp(2.25rem, 3.5vw, 3.1rem) clamp(2.1rem, 3.1vw, 3.4rem);
   overflow: visible;
   background: linear-gradient(180deg, #ffffff 0%, #f9fbfd 100%);
 }
 
 .hp-edu-timeline {
   position: relative;
-  padding-left: 2.15rem;
-  margin-top: 1rem;
+  padding-left: 2.35rem;
+  margin-top: 0.85rem;
 }
 
 .hp-edu-timeline::before {
@@ -481,20 +481,20 @@ header .colorlib-navbar-brand .colorlib-logo span {
 
 #colorlib-services {
   position: relative;
-  padding: var(--section-pad) 0;
+  padding: clamp(3.15rem, 4.8vw, 4.35rem) 0 clamp(3rem, 4.6vw, 4.15rem);
   background: linear-gradient(180deg, #f7fafe 0%, #edf3f8 100%);
   border-top: 1px solid rgba(201, 212, 224, 0.75);
   border-bottom: 1px solid rgba(201, 212, 224, 0.75);
 }
 
 #colorlib-services .row.text-center {
-  margin-bottom: 2.4rem;
+  margin-bottom: 2rem;
 }
 
 .hp-skills-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .hp-skill-card {
@@ -566,12 +566,12 @@ header .colorlib-navbar-brand .colorlib-logo span {
    ============================================================ */
 
 #colorlib-work {
-  padding: var(--section-pad) 0;
+  padding: clamp(3.35rem, 4.8vw, 4.5rem) 0;
   background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%);
 }
 
 .hp-proj-header {
-  max-width: 760px;
+  max-width: 720px;
   margin: 0 auto;
   padding: 0 1.25rem;
   text-align: center;
@@ -586,12 +586,12 @@ header .colorlib-navbar-brand .colorlib-logo span {
 }
 
 .hp-projects-panel {
-  width: min(calc(100% - 2rem), var(--content-max));
+  width: min(calc(100% - 1.875rem), 1290px);
   height: clamp(620px, 68vh, 720px);
   min-height: 0;
   max-height: none;
   display: flex;
-  margin: 2.5rem auto 0;
+  margin: 2rem auto 0;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius-xl);
@@ -675,6 +675,67 @@ header .colorlib-navbar-brand .colorlib-logo span {
 
 .hp-projects-detail > * {
   max-width: 720px;
+}
+
+@media (min-width: 1200px) {
+  .hp-about-col {
+    display: grid;
+    grid-template-columns: 170px minmax(0, 1fr);
+    grid-template-areas:
+      "photo name"
+      "photo role"
+      "bio bio"
+      "tags tags"
+      "social cta";
+    align-content: start;
+    align-items: start;
+    column-gap: 1.35rem;
+    row-gap: 0.85rem;
+  }
+
+  .hp-photo-wrap {
+    grid-area: photo;
+    width: 170px;
+    height: 170px;
+    margin-bottom: 0;
+  }
+
+  .hp-name {
+    grid-area: name;
+    align-self: end;
+    font-size: clamp(2.4rem, 3.4vw, 3.35rem);
+  }
+
+  .hp-role {
+    grid-area: role;
+    margin-top: -0.1rem;
+  }
+
+  .hp-bio {
+    grid-area: bio;
+    max-width: none;
+    font-size: 1rem;
+    line-height: 1.74;
+  }
+
+  .hp-tags {
+    grid-area: tags;
+    max-width: none;
+    line-height: 1.76;
+  }
+
+  .hp-about-col .colorlib-social-icons {
+    grid-area: social;
+    margin: 0;
+    padding-top: 0.15rem;
+  }
+
+  .hp-about-col .btn-primary.btn-outline {
+    grid-area: cta;
+    align-self: center;
+    justify-self: start;
+    margin-top: 0;
+  }
 }
 
 .hp-detail-domain {
