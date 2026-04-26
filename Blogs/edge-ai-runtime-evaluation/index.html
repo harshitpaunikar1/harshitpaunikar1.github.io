@@ -206,6 +206,10 @@
       h1 { font-size: 2.5rem; }
     }
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../blog-theme.css">
 </head>
 <body>
 
@@ -225,7 +229,7 @@
 
   <p>The first step in escaping the Python bottleneck is graph sterilization. PyTorch uses a dynamic computation graph (which allows for extreme flexibility during backpropagation). At the edge, flexibility is poison; we need absolute static determinism.</p>
 
-  <p>We execute an Open Neural Network Exchange (ONNX) export. This process traces the entire execution path of the model—running a dummy tensor through every convolutional layer and activation function—and freezes it into a singular, static, language-agnostic graph.</p>
+  <p>We execute an Open Neural Network Exchange (ONNX) export. This process traces the entire execution path of the model-running a dummy tensor through every convolutional layer and activation function-and freezes it into a singular, static, language-agnostic graph.</p>
 
 <pre><code><span class="c-comment"># Sterilizing the PyTorch dynamic graph into static ONNX</span>
 <span class="c-keyword">import</span> torch

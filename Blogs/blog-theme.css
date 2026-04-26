@@ -1,0 +1,911 @@
+/* ============================================================
+   BLOG POST THEME OVERRIDE
+   Apple-style white design system for all blog posts.
+   Loaded AFTER each post's embedded <style> to win cascade.
+   ============================================================ */
+
+/* ── 1. GLOBAL OVERFLOW PREVENTION ── */
+*, *::before, *::after {
+  box-sizing: border-box !important;
+}
+
+html {
+  overflow-x: hidden !important;
+  background: #ffffff !important;
+}
+
+body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+}
+
+/* ── 2. CSS CUSTOM PROPERTIES ── */
+:root {
+  --bg: #ffffff !important;
+  --page: #ffffff !important;
+  --paper: #ffffff !important;
+  --text: #0f172a !important;
+  --ink: #0f172a !important;
+  --fg: #0f172a !important;
+  --ink-1: #0f172a !important;
+  --ink-2: #1e293b !important;
+  --ink-3: #334155 !important;
+  --ink-4: #475569 !important;
+  --ink-5: #64748b !important;
+  --ink-6: #94a3b8 !important;
+  --muted: #475569 !important;
+  --text-muted: #64748b !important;
+  --text-mute: #64748b !important;
+  --text-dim: #64748b !important;
+  --soft: #f1f5f9 !important;
+  --rule: #e2e8f0 !important;
+  --border: #e2e8f0 !important;
+  --border-outer: #0f172a !important;
+  --border-inner: #e2e8f0 !important;
+  --border-light: #e2e8f0 !important;
+  --border-heavy: #cbd5e1 !important;
+  --line: #e2e8f0 !important;
+  --line-2: #cbd5e1 !important;
+  --strong: #0f172a !important;
+  --panel: #f8fafc !important;
+  --panel-2: #f1f5f9 !important;
+  --panel-bg: #ffffff !important;
+  --code-bg: #1e293b !important;
+  --code-text: #e2e8f0 !important;
+  --f-body: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  --line-strong: #cbd5e1 !important;
+  --chip: #eff6ff !important;
+  --chip-text: #1e40af !important;
+  --accent: #2563eb !important;
+  --accent-text: #ffffff !important;
+  --highlight: #fef9c3 !important;
+  --surface: #ffffff !important;
+  --surface-2: #f8fafc !important;
+}
+
+/* ── 3. BODY & PAGE-LEVEL ── */
+body {
+  background: #ffffff !important;
+  background-image: none !important;
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-size: 1rem !important;
+  line-height: 1.7 !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  padding-bottom: 3rem !important;
+}
+
+/* ── 4. TYPOGRAPHY ── */
+h1 {
+  color: #0f172a !important;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif !important;
+  letter-spacing: -0.025em !important;
+  line-height: 1.1 !important;
+  font-weight: 800 !important;
+  text-transform: none !important;
+}
+
+h2 {
+  color: #0f172a !important;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.25 !important;
+  font-weight: 700 !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 1rem !important;
+  padding-bottom: 0.5rem !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  border-top: none !important;
+  text-transform: none !important;
+  background: transparent !important;
+  color: #0f172a !important;
+  display: block !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 0 !important;
+}
+
+h2::before {
+  display: none !important;
+}
+
+h3 {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+  font-size: 1.15rem !important;
+  margin-top: 1.75rem !important;
+  margin-bottom: 0.75rem !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  border: none !important;
+}
+
+h4, h5, h6 {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+}
+
+p {
+  color: #475569 !important;
+  line-height: 1.75 !important;
+  margin-bottom: 1.25rem !important;
+  max-width: 72ch !important;
+}
+
+li {
+  color: #475569 !important;
+  line-height: 1.7 !important;
+  margin-bottom: 0.35rem !important;
+}
+
+dd, dt {
+  color: #475569 !important;
+}
+
+strong, b {
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+em, i {
+  color: inherit !important;
+}
+
+blockquote {
+  color: #475569 !important;
+  border-left: 3px solid #2563eb !important;
+  background: #f8fafc !important;
+  padding: 1rem 1.5rem !important;
+  margin: 1.5rem 0 !important;
+  border-radius: 0 8px 8px 0 !important;
+}
+
+/* ── 5. LINKS ── */
+a {
+  color: #2563eb !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease !important;
+}
+
+a:hover {
+  color: #1d4ed8 !important;
+  text-decoration: underline !important;
+}
+
+/* ── 6. CONTAINER BACKGROUND OVERRIDES ──
+   Override all section/panel/card backgrounds to light theme.
+   Uses broad selectors to catch all patterns across posts.     */
+
+/* Page-level wrappers */
+.page,
+.console,
+.viewport,
+.article-shell,
+.content,
+body > div:first-child {
+  background: transparent !important;
+  background-image: none !important;
+  max-width: 1100px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+/* Section-level containers */
+header,
+.masthead,
+.mast,
+.hero,
+.hero-copy,
+.hero-side,
+.section,
+.section-body,
+article,
+.article,
+main,
+.lane,
+.closing,
+.closing-panel,
+footer,
+.footer-note {
+  background: transparent !important;
+  background-image: none !important;
+  color: #0f172a !important;
+}
+
+/* Sticky headers/navs - clean style */
+.topbar,
+.topnav {
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: saturate(180%) blur(20px) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Sidebar/rail panels */
+.rail,
+.toc,
+.sidebar {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  color: #0f172a !important;
+}
+
+.rail a,
+.toc a {
+  color: #475569 !important;
+}
+
+.rail a:hover,
+.toc a:hover {
+  color: #2563eb !important;
+}
+
+/* Card/panel elements */
+.summary-card,
+.score-card,
+.mast-card,
+.comparison-card,
+.policy-card,
+.meta-box,
+.budget-cell {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  color: #0f172a !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04) !important;
+}
+
+/* Metric/stat cells */
+.metric,
+.metrics-rail {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  color: #0f172a !important;
+}
+
+/* Grid containers */
+.summary-strip,
+.summary-grid,
+.metrics-rail,
+.role-grid,
+.decision-grid,
+.governance-grid,
+.score-row,
+.mast-grid {
+  background: transparent !important;
+}
+
+/* Band/section panels */
+.band {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  margin-bottom: 1.5rem !important;
+}
+
+/* Debate grids */
+.debate-grid {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+}
+
+.debate-side {
+  color: #0f172a !important;
+}
+
+.debate-side h4 {
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Trace/table-like grids */
+.trace-list {
+  background: #e2e8f0 !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.trace-list div {
+  background: #ffffff !important;
+  color: #475569 !important;
+}
+
+/* ── 7. CALLOUT & HIGHLIGHT BOXES ── */
+.callout,
+.utility-callout,
+[class*="callout"],
+[class*="highlight-box"],
+[class*="note-box"] {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-left: 3px solid #2563eb !important;
+  border-radius: 0 8px 8px 0 !important;
+  color: #475569 !important;
+  box-shadow: none !important;
+  padding: 1rem 1.25rem !important;
+  margin: 1.5rem 0 !important;
+}
+
+/* ── 8. SVG & DIAGRAM CONTAINERS ──
+   Keep diagrams on dark backgrounds so inline SVG colors remain visible.
+   Add proper containment and rounded corners.                           */
+
+/* Named SVG container classes */
+.visual-block,
+.flow-block,
+.diagram-block,
+.figure-band,
+.figure-frame,
+.figure-container,
+.svg-panel,
+[class*="visual-"],
+[class*="diagram-"],
+[class*="ascii"] {
+  background: #0f172a !important;
+  border: 1px solid #334155 !important;
+  border-radius: 12px !important;
+  padding: 1.5rem !important;
+  margin: 1.5rem 0 !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  max-width: 100% !important;
+}
+
+/* Figure elements containing SVGs */
+figure {
+  background: #0f172a !important;
+  border: 1px solid #334155 !important;
+  border-radius: 12px !important;
+  padding: 1.5rem !important;
+  margin: 1.5rem 0 !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  max-width: 100% !important;
+}
+
+/* :has() fallback for divs containing SVGs */
+@supports selector(:has(*)) {
+  div:has(> svg):not(header):not(body > div):not(.page):not(.console):not(.viewport):not(.article-shell) {
+    background: #0f172a !important;
+    border: 1px solid #334155 !important;
+    border-radius: 12px !important;
+    padding: 1.5rem !important;
+    margin: 1.5rem 0 !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+  }
+}
+
+/* SVG elements themselves */
+svg {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+/* Diagram titles & captions */
+figcaption,
+.diagram-caption,
+.caption,
+.visual-title,
+.figure-caption,
+.diagram-title {
+  color: #64748b !important;
+  font-size: 0.88rem !important;
+  line-height: 1.55 !important;
+  margin-top: 0.75rem !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* Captions inside dark SVG containers */
+figure figcaption,
+.figure-band .diagram-caption,
+.figure-frame .figure-caption,
+.visual-block .diagram-caption {
+  color: #94a3b8 !important;
+}
+
+/* ── 9. IMAGE CONTAINMENT ── */
+img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  object-fit: contain !important;
+  border-radius: 8px !important;
+}
+
+/* ── 10. CODE BLOCKS ── */
+pre {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #334155 !important;
+  border-radius: 10px !important;
+  padding: 1.25rem 1.5rem !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  font-family: 'SF Mono', ui-monospace, SFMono-Regular, 'Cascadia Code', 'Fira Code', monospace !important;
+  font-size: 0.85rem !important;
+  line-height: 1.65 !important;
+  margin: 1.5rem 0 !important;
+  max-width: 100% !important;
+  -webkit-overflow-scrolling: touch !important;
+  border-left-width: 1px !important;
+}
+
+pre code {
+  color: inherit !important;
+  background: transparent !important;
+  font-size: inherit !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+pre span {
+  color: inherit;
+}
+
+/* Syntax highlight tokens */
+pre .c-comment, pre .comment { color: #94a3b8 !important; }
+pre .c-keyword, pre .keyword { color: #93c5fd !important; }
+pre .c-func, pre .function { color: #f8fafc !important; font-weight: 600; }
+pre .c-string, pre .string { color: #86efac !important; }
+
+/* Inline code */
+code:not(pre code) {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  padding: 0.15em 0.45em !important;
+  border-radius: 5px !important;
+  font-size: 0.88em !important;
+  font-family: 'SF Mono', ui-monospace, SFMono-Regular, monospace !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* Output blocks (same as code) */
+.output-block {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #334155 !important;
+  border-radius: 10px !important;
+  border-left-width: 1px !important;
+  padding: 1.25rem 1.5rem !important;
+  overflow-x: auto !important;
+  max-width: 100% !important;
+}
+
+/* Code frame containers */
+.code-block,
+.code-frame {
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+  margin: 1rem 0 !important;
+}
+
+.code-block header,
+.code-frame h3 {
+  background: #f8fafc !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  color: #475569 !important;
+  padding: 0.6rem 1rem !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+
+.code-block pre,
+.code-frame pre {
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+/* ── 11. TABLE HANDLING ── */
+table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  font-size: 0.88rem !important;
+  margin: 1.5rem 0 !important;
+  background: #ffffff !important;
+}
+
+th {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  font-weight: 600 !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  padding: 0.75rem 1rem !important;
+  border-bottom: 2px solid #e2e8f0 !important;
+  text-align: left !important;
+}
+
+td {
+  padding: 0.75rem 1rem !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  color: #475569 !important;
+  vertical-align: top !important;
+}
+
+tr:hover td {
+  background: #f8fafc !important;
+}
+
+/* Scrollable table wrapper - applies to known table containers */
+.latency-table,
+.committee-table,
+[class*="table-wrap"] {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  max-width: 100% !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  margin: 1.5rem 0 !important;
+}
+
+/* ── 12. HEADER OVERRIDES ── */
+header {
+  background: transparent !important;
+  background-image: none !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  border-top: none !important;
+  box-shadow: none !important;
+  padding-bottom: 2rem !important;
+  margin-bottom: 2.5rem !important;
+}
+
+.lede,
+.deck,
+.directive {
+  color: #64748b !important;
+  font-size: 1.05rem !important;
+  line-height: 1.7 !important;
+}
+
+/* Eyebrow / tag / badge elements */
+.doc-identifier,
+.eyebrow,
+.protocol-tag,
+.kicker,
+.section-kicker,
+.marker,
+.margin-note,
+[class*="identifier"],
+[class*="eyebrow"],
+[class*="kicker"],
+[class*="tag"]:not(body) {
+  color: #2563eb !important;
+  background: #eff6ff !important;
+  border: 1px solid rgba(37, 99, 235, 0.15) !important;
+  border-radius: 6px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  padding: 0.3rem 0.75rem !important;
+  display: inline-block !important;
+}
+
+/* Timestamp badges */
+.timestamp,
+[class*="timestamp"] {
+  color: #64748b !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 6px !important;
+}
+
+/* Status dots */
+.status-dot,
+[class*="status-dot"] {
+  background: #22c55e !important;
+}
+
+/* ── 13. BORDER NORMALIZATION ── */
+hr {
+  border: none !important;
+  border-top: 1px solid #e2e8f0 !important;
+  margin: 2rem 0 !important;
+}
+
+/* ── 14. FOOTER ── */
+.footer-note {
+  background: #f8fafc !important;
+  border-top: 1px solid #e2e8f0 !important;
+  border-radius: 0 0 12px 12px !important;
+  color: #64748b !important;
+  margin-top: 2rem !important;
+}
+
+/* ── 15. GRID LAYOUT DEFAULTS ── */
+.code-grid {
+  gap: 16px !important;
+}
+
+.hardware-diagram-grid,
+.stage-grid,
+.drift-grid {
+  gap: 1.5rem !important;
+}
+
+/* ── 16. ACCESSIBILITY ── */
+:focus-visible {
+  outline: 2px solid #2563eb !important;
+  outline-offset: 2px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   17. RESPONSIVE - TABLET (max 1024px)
+   ============================================================ */
+@media (max-width: 1024px) {
+  .page, .console, .viewport, .article-shell,
+  body > div:first-child {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* Collapse 2-column layouts to single column */
+  .layout,
+  .content,
+  .rail,
+  .section,
+  .band,
+  .hero,
+  .closing-panel,
+  .debate-grid,
+  .code-grid,
+  .hardware-diagram-grid,
+  .stage-grid,
+  .drift-grid,
+  .comparison-grid,
+  .policy-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Collapse multi-column grids */
+  .role-grid,
+  .decision-grid,
+  .governance-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .metrics-rail {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .summary-strip,
+  .summary-grid,
+  .score-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .mast-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Sidebar becomes non-sticky */
+  .rail, .toc {
+    position: static !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Sticky topbar */
+  .topbar {
+    position: relative !important;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem) !important;
+  }
+
+  h2 {
+    font-size: clamp(1.3rem, 3.5vw, 1.8rem) !important;
+  }
+}
+
+/* ============================================================
+   18. RESPONSIVE - MOBILE (max 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+  body {
+    font-size: 0.95rem !important;
+  }
+
+  .page, .console, .viewport, .article-shell,
+  body > div:first-child {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-top: 1.5rem !important;
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 6vw, 2.4rem) !important;
+    line-height: 1.15 !important;
+  }
+
+  h2 {
+    font-size: clamp(1.15rem, 4vw, 1.5rem) !important;
+    margin-top: 2rem !important;
+  }
+
+  h3 {
+    font-size: 1rem !important;
+  }
+
+  p {
+    font-size: 0.95rem !important;
+    max-width: none !important;
+  }
+
+  /* Stack ALL multi-column grids */
+  .layout,
+  .content,
+  .section,
+  .band,
+  .hero,
+  .closing-panel,
+  .debate-grid,
+  .code-grid,
+  .role-grid,
+  .decision-grid,
+  .governance-grid,
+  .metrics-rail,
+  .summary-strip,
+  .summary-grid,
+  .score-row,
+  .mast-grid,
+  .comparison-grid,
+  .policy-grid,
+  .hardware-diagram-grid,
+  .stage-grid,
+  .drift-grid,
+  .section-head,
+  .rail {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Margin notes become inline badges */
+  .margin-note,
+  .marker {
+    position: static !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* Diagrams */
+  figure,
+  .figure-band,
+  .figure-frame,
+  .figure-container,
+  .svg-panel,
+  .visual-block {
+    padding: 1rem !important;
+    margin: 1rem 0 !important;
+    border-radius: 8px !important;
+  }
+
+  /* Code blocks */
+  pre {
+    font-size: 0.78rem !important;
+    padding: 1rem !important;
+    border-radius: 8px !important;
+    margin: 1rem 0 !important;
+  }
+
+  /* Cards */
+  .summary-card,
+  .score-card,
+  .mast-card,
+  .metric {
+    padding: 14px !important;
+  }
+
+  /* Callouts */
+  .callout, .utility-callout {
+    padding: 0.75rem 1rem !important;
+  }
+
+  .band {
+    padding: 16px !important;
+  }
+
+  /* Header */
+  header {
+    padding-bottom: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .lede, .deck, .directive {
+    font-size: 0.95rem !important;
+  }
+}
+
+/* ============================================================
+   19. RESPONSIVE - SMALL MOBILE (max 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+  .page, .console, .viewport, .article-shell,
+  body > div:first-child {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  h1 {
+    font-size: 1.5rem !important;
+  }
+
+  h2 {
+    font-size: 1.15rem !important;
+  }
+
+  .summary-strip,
+  .summary-grid,
+  .score-row,
+  .mast-grid,
+  .metrics-rail {
+    grid-template-columns: 1fr !important;
+  }
+
+  figure, .figure-band, .figure-frame, .svg-panel {
+    padding: 0.75rem !important;
+  }
+
+  pre {
+    font-size: 0.72rem !important;
+    padding: 0.75rem !important;
+  }
+
+  .band {
+    padding: 12px !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* ============================================================
+   20. PRINT STYLES
+   ============================================================ */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+  }
+
+  pre {
+    background: #f5f5f5 !important;
+    color: #000000 !important;
+    border: 1px solid #cccccc !important;
+  }
+
+  figure, .visual-block, .figure-band {
+    background: #f5f5f5 !important;
+  }
+
+  a { color: #000000 !important; text-decoration: underline !important; }
+
+  .topbar, .toc, .rail { display: none !important; }
+}
