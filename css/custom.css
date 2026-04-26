@@ -114,6 +114,39 @@ p {
   text-decoration: none !important;
 }
 
+.hp-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.hp-header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--hp-white) !important;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.25);
+  text-decoration: none !important;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.hp-header-btn:hover,
+.hp-header-btn:focus {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.5);
+  color: var(--hp-white) !important;
+  text-decoration: none !important;
+}
+
 .hp-top-nav {
   display: flex;
   align-items: center;

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Blogs - Harshit Paunikar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Project blogs and detailed write-ups by Harshit Paunikar." />
+<link rel="shortcut icon" href="../favicon.ico">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<style>
+:root {
+  --hp-black: #000000;
+  --hp-ink: #252525;
+  --hp-muted: #3f3f3f;
+  --hp-blue: #0b4f8e;
+  --hp-teal: #367f8d;
+  --hp-navy: #1f3e56;
+  --hp-navy-deep: #0d2a39;
+  --hp-white: #ffffff;
+  --hp-page: #ffffff;
+  --hp-rule: #d5d5d5;
+  --hp-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --sidebar-width: 340px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; }
+
+body {
+  background: var(--hp-page);
+  color: var(--hp-ink);
+  font-family: var(--hp-font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+a:hover, a:focus { color: var(--hp-blue); }
+
+/* ── Header ── */
+.hp-site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--hp-black);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 16px;
+}
+
+.hp-site-title {
+  color: var(--hp-white);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hp-site-title:hover,
+.hp-site-title:focus { color: var(--hp-white); opacity: 0.85; }
+
+.hp-header-nav { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+
+.hp-header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--hp-white);
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.25);
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.hp-header-btn:hover,
+.hp-header-btn:focus {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.5);
+  color: var(--hp-white);
+}
+
+.hp-header-btn.active {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.5);
+}
+
+/* ── Layout ── */
+.hp-blogs-layout {
+  display: flex;
+  margin-top: 56px;
+  height: calc(100vh - 56px);
+}
+
+/* ── Sidebar ── */
+.hp-blogs-sidebar {
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  background: var(--hp-navy-deep);
+  color: var(--hp-white);
+  overflow-y: auto;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.hp-sidebar-header {
+  padding: 20px 20px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.hp-sidebar-header h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 10px;
+}
+
+.hp-sidebar-search {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.06);
+  color: var(--hp-white);
+  font-size: 0.88rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.hp-sidebar-search::placeholder { color: rgba(255,255,255,0.35); }
+.hp-sidebar-search:focus { border-color: rgba(255,255,255,0.4); }
+
+.hp-sidebar-list {
+  list-style: none;
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+.hp-sidebar-list li { border-bottom: 1px solid rgba(255,255,255,0.04); }
+
+.hp-sidebar-list a {
+  display: block;
+  padding: 12px 20px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.82);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  cursor: pointer;
+}
+
+.hp-sidebar-list a:hover {
+  background: rgba(255,255,255,0.06);
+  color: var(--hp-white);
+}
+
+.hp-sidebar-list a.active {
+  background: rgba(255,255,255,0.1);
+  color: var(--hp-white);
+  border-left: 3px solid var(--hp-teal);
+  padding-left: 17px;
+}
+
+.hp-sidebar-list .hp-sidebar-number {
+  display: inline-block;
+  min-width: 26px;
+  color: rgba(255,255,255,0.4);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.hp-sidebar-list .hp-sidebar-domain {
+  display: block;
+  font-size: 0.73rem;
+  color: rgba(255,255,255,0.38);
+  margin-top: 2px;
+  letter-spacing: 0.03em;
+}
+
+.hp-sidebar-list li.hidden { display: none; }
+
+/* ── Content area ── */
+.hp-blogs-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.hp-blogs-iframe {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: var(--hp-white);
+}
+
+/* ── Welcome state ── */
+.hp-blogs-welcome {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  color: var(--hp-muted);
+}
+
+.hp-blogs-welcome i {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  color: var(--hp-rule);
+}
+
+.hp-blogs-welcome h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--hp-ink);
+  margin-bottom: 8px;
+}
+
+.hp-blogs-welcome p {
+  font-size: 0.95rem;
+  max-width: 400px;
+}
+
+/* ── Mobile sidebar toggle ── */
+.hp-sidebar-toggle {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1100;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--hp-navy-deep);
+  color: var(--hp-white);
+  border: 2px solid rgba(255,255,255,0.2);
+  font-size: 1.3rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+}
+
+.hp-sidebar-toggle:active { transform: scale(0.92); }
+
+/* ── Mobile overlay ── */
+.hp-sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1049;
+  background: rgba(0,0,0,0.5);
+}
+
+/* ── Responsive: Tablet ── */
+@media (max-width: 991px) {
+  :root { --sidebar-width: 290px; }
+
+  .hp-sidebar-list a { padding: 10px 16px; font-size: 0.85rem; }
+}
+
+/* ── Responsive: Mobile ── */
+@media (max-width: 767px) {
+  .hp-sidebar-toggle { display: flex; }
+
+  .hp-blogs-sidebar {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    min-width: 300px;
+    z-index: 1050;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .hp-blogs-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .hp-sidebar-overlay.open { display: block; }
+
+  .hp-blogs-content { width: 100%; }
+
+  .hp-blogs-welcome { padding: 24px; }
+  .hp-blogs-welcome h2 { font-size: 1.1rem; }
+}
+
+/* ── Scrollbar styling ── */
+.hp-blogs-sidebar::-webkit-scrollbar,
+.hp-sidebar-list::-webkit-scrollbar { width: 5px; }
+.hp-blogs-sidebar::-webkit-scrollbar-track,
+.hp-sidebar-list::-webkit-scrollbar-track { background: transparent; }
+.hp-blogs-sidebar::-webkit-scrollbar-thumb,
+.hp-sidebar-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header class="hp-site-header">
+  <a class="hp-site-title" href="../index.html">Harshit Paunikar</a>
+  <nav class="hp-header-nav">
+    <a class="hp-header-btn" href="../index.html"><i class="bi bi-house-door"></i> Home</a>
+    <a class="hp-header-btn active" href="index.html"><i class="bi bi-journal-text"></i> Blogs</a>
+  </nav>
+</header>
+
+<div class="hp-blogs-layout">
+  <aside class="hp-blogs-sidebar" id="blogsSidebar">
+    <div class="hp-sidebar-header">
+      <h2>Project Blogs</h2>
+      <input type="text" class="hp-sidebar-search" id="sidebarSearch" placeholder="Search projects..." autocomplete="off">
+    </div>
+    <ol class="hp-sidebar-list" id="sidebarList"></ol>
+  </aside>
+
+  <div class="hp-sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="hp-blogs-content" id="blogsContent">
+    <div class="hp-blogs-welcome" id="blogsWelcome">
+      <i class="bi bi-journal-richtext"></i>
+      <h2>Select a Project</h2>
+      <p>Choose a project from the sidebar to view its detailed write-up.</p>
+    </div>
+  </div>
+</div>
+
+<button class="hp-sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+  <i class="bi bi-list"></i>
+</button>
+
+<script>
+var projects = [
+  { repo: "windows-offline-ai-app", title: "Windows CPU-Only Offline AI Application", domain: "Logistics" },
+  { repo: "android-edge-vision-logistics", title: "Android Edge Vision for Logistics", domain: "Logistics" },
+  { repo: "adaptive-yard-routing", title: "Adaptive Yard Routing", domain: "Logistics" },
+  { repo: "realtime-web-object-detection", title: "Real-Time Web Object Detection", domain: "Logistics" },
+  { repo: "yard-management-platform", title: "Yard Management Platform", domain: "Logistics" },
+  { repo: "edge-ai-container-trailer-detection", title: "Edge AI Container & Trailer Detection", domain: "Logistics" },
+  { repo: "enterprise-yms-integration", title: "Enterprise YMS Integration for Logistics", domain: "Logistics" },
+  { repo: "nocode-logistics-form-builder", title: "No-Code Logistics Form Builder", domain: "Logistics" },
+  { repo: "offline-inspection-capture-platform", title: "Offline Inspection Capture Platform", domain: "Logistics" },
+  { repo: "scalable-image-processing-api", title: "Scalable Image Processing API", domain: "Logistics" },
+  { repo: "model-free-vertical-text-ocr", title: "Model-Free Vertical Text OCR", domain: "Logistics" },
+  { repo: "ttil-barcode-coldchain-tracking", title: "TTIL Barcode Cold-Chain Tracking", domain: "Logistics / Cold Chain" },
+  { repo: "onprem-vision-inference-pipeline", title: "On-Prem Vision Inference Pipeline", domain: "Manufacturing" },
+  { repo: "npa-risk-prediction", title: "NPA Risk Prediction", domain: "Banking" },
+  { repo: "onprem-comment-intelligence-engine", title: "On-Prem Comment Intelligence Engine", domain: "Marketing / AdTech" },
+  { repo: "llm-sales-assistant", title: "LLM Sales Assistant", domain: "SalesTech" },
+  { repo: "realtime-marketing-decision-engine", title: "Real-Time Marketing Decision Engine", domain: "Marketing" },
+  { repo: "sponsorsync-influencer-marketplace", title: "SponsorSync Influencer Marketplace", domain: "Marketing / AdTech" },
+  { repo: "engagement-triggered-followup-automation", title: "Engagement-Triggered Follow-Up Automation", domain: "Marketing / AdTech" },
+  { repo: "realtime-sales-signal-dashboard", title: "Real-Time Sales Signal Dashboard", domain: "Marketing / AdTech" },
+  { repo: "marketing-process-analytics-dashboard", title: "Marketing Process Analytics Dashboard", domain: "Marketing / AdTech" },
+  { repo: "unified-analytics-lead-growth", title: "Unified Analytics & Lead Growth", domain: "Marketing / AdTech" },
+  { repo: "carsharing-availability-eda", title: "Car-Sharing Availability Uplift via EDA", domain: "Mobility / Transportation" },
+  { repo: "data-driven-aid-allocation-model", title: "Data-Driven Aid Allocation Model", domain: "Financial Analysis" },
+  { repo: "local-business-profit-planning", title: "Local Business Profit Planning", domain: "Business Analysis" },
+  { repo: "lead-management-product-launch", title: "Lead Management Product Launch", domain: "Project Management" },
+  { repo: "unified-course-management-platform", title: "Unified Course Management Platform", domain: "EdTech" },
+  { repo: "brand-tuned-support-assistant", title: "Brand-Tuned Support Assistant", domain: "E-commerce / Customer Support" },
+  { repo: "medical-evidence-qa-assistant", title: "Medical Evidence Q&A Assistant", domain: "Healthcare / MedTech" },
+  { repo: "support-inbox-copilot", title: "Support Inbox Copilot", domain: "E-commerce / Support Ops" },
+  { repo: "reliable-browser-video-calling", title: "Reliable Browser Video Calling", domain: "EdTech / Real-Time Communication" },
+  { repo: "rtsp-camera-browser-streaming", title: "RTSP Camera Browser Streaming", domain: "Video Infrastructure / Security" },
+  { repo: "edge-ai-runtime-evaluation", title: "Edge AI Runtime Evaluation", domain: "Logistics / Edge AI" },
+  { repo: "prompt-reliability-workflow", title: "Prompt Reliability Workflow", domain: "Operations / GenAI" },
+  { repo: "retrieval-tool-use-assistant", title: "Retrieval & Tool-Use Assistant", domain: "Internal AI Systems" },
+  { repo: "realtime-voice-agent", title: "Real-Time Voice Agent", domain: "Voice AI / Real-Time Systems" },
+  { repo: "private-search-research-assistant", title: "Private Search Research Assistant", domain: "Research / Search" },
+  { repo: "small-team-devops-delivery-pipeline", title: "Small-Team DevOps Delivery Pipeline", domain: "Platform Engineering / DevOps" }
+];
+
+var referenceProjectOrder = [
+  5, 3, 13, 1, 0, 10, 12, 16, 14, 15, 23, 22, 19, 21,
+  20, 4, 2, 6, 11, 8, 9, 7, 26, 17, 18, 25, 24,
+  27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37
+];
+
+function orderedProjects() {
+  return referenceProjectOrder.map(function(idx) { return projects[idx]; }).filter(Boolean);
+}
+
+function escapeHtml(val) {
+  return String(val).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function renderSidebar() {
+  var list = document.getElementById('sidebarList');
+  var ordered = orderedProjects();
+  list.innerHTML = ordered.map(function(p, i) {
+    return '<li>' +
+      '<a href="#" data-repo="' + escapeHtml(p.repo) + '" data-idx="' + i + '">' +
+        '<span class="hp-sidebar-number">' + (i + 1) + '.</span> ' +
+        escapeHtml(p.title) +
+        '<span class="hp-sidebar-domain">' + escapeHtml(p.domain) + '</span>' +
+      '</a>' +
+    '</li>';
+  }).join('');
+}
+
+function loadProject(repo, clickedAnchor) {
+  var content = document.getElementById('blogsContent');
+  var welcome = document.getElementById('blogsWelcome');
+  if (welcome) welcome.remove();
+
+  var existing = content.querySelector('.hp-blogs-iframe');
+  if (existing) existing.remove();
+
+  var iframe = document.createElement('iframe');
+  iframe.className = 'hp-blogs-iframe';
+  iframe.src = repo + '/index.html';
+  iframe.title = 'Project blog';
+  iframe.setAttribute('loading', 'lazy');
+  content.appendChild(iframe);
+
+  document.querySelectorAll('#sidebarList a').forEach(function(a) { a.classList.remove('active'); });
+  if (clickedAnchor) clickedAnchor.classList.add('active');
+
+  // Close sidebar on mobile
+  if (window.innerWidth <= 767) {
+    document.getElementById('blogsSidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('open');
+  }
+}
+
+function bindSidebar() {
+  document.getElementById('sidebarList').addEventListener('click', function(e) {
+    var anchor = e.target.closest('a[data-repo]');
+    if (!anchor) return;
+    e.preventDefault();
+    loadProject(anchor.getAttribute('data-repo'), anchor);
+  });
+}
+
+function bindSearch() {
+  document.getElementById('sidebarSearch').addEventListener('input', function() {
+    var query = this.value.toLowerCase().trim();
+    document.querySelectorAll('#sidebarList li').forEach(function(li) {
+      var text = li.textContent.toLowerCase();
+      li.classList.toggle('hidden', query !== '' && text.indexOf(query) === -1);
+    });
+  });
+}
+
+function bindMobileToggle() {
+  var sidebar = document.getElementById('blogsSidebar');
+  var overlay = document.getElementById('sidebarOverlay');
+  var toggle = document.getElementById('sidebarToggle');
+
+  toggle.addEventListener('click', function() {
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('open');
+  });
+
+  overlay.addEventListener('click', function() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  renderSidebar();
+  bindSidebar();
+  bindSearch();
+  bindMobileToggle();
+
+  // Auto-load from URL hash
+  var hash = window.location.hash.replace('#', '');
+  if (hash) {
+    var anchor = document.querySelector('#sidebarList a[data-repo="' + hash + '"]');
+    if (anchor) loadProject(hash, anchor);
+  }
+});
+</script>
+
+</body>
+</html>
