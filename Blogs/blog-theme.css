@@ -1,20 +1,54 @@
 /* ============================================================
-   BLOG POST THEME OVERRIDE
-   Fixes: whitespace, alignment, diagram sizing, borders,
-   overlapping grids, dark backgrounds.
+   BLOG DESIGN SYSTEM
+   Shared stylesheet for all case-study pages.
+   Layer 1: Override individual blog custom styles → unified theme
+   Layer 2: Component styles for elements injected by blog-common.js
    ============================================================ */
+
+/* ── DESIGN TOKENS ── */
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f8fafc;
+  --bg-muted: #f1f5f9;
+  --surface: #ffffff;
+  --surface-muted: #f1f5f9;
+  --text: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-soft: #94a3b8;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-soft: #eff6ff;
+  --code-bg: #0f172a;
+  --code-text: #e2e8f0;
+  --code-border: #334155;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --shadow-soft: 0 1px 3px rgba(15, 23, 42, 0.04), 0 4px 12px rgba(15, 23, 42, 0.03);
+  --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.06);
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: 'SF Mono', ui-monospace, SFMono-Regular, 'Fira Code', 'Cascadia Code', monospace;
+  --bc-header-h: 60px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LAYER 1 — OVERRIDE INDIVIDUAL BLOG STYLES
+   Each blog has unique colors, fonts, layouts. This layer
+   forces visual consistency across all 38 pages.
+   ══════════════════════════════════════════════════════════════ */
 
 /* ── OVERFLOW ── */
 *, *::before, *::after { box-sizing: border-box !important; }
 html { overflow-x: hidden !important; background: #fff !important; }
 body { overflow-x: hidden !important; overflow-wrap: break-word !important; }
 
-/* ── CSS VARIABLES ── */
+/* ── CSS VARIABLE OVERRIDES ── */
 :root {
-  --bg: #ffffff !important;
   --page: #ffffff !important;
   --paper: #ffffff !important;
-  --text: #0f172a !important;
   --ink: #0f172a !important;
   --fg: #0f172a !important;
   --fg-black: #0f172a !important;
@@ -25,12 +59,10 @@ body { overflow-x: hidden !important; overflow-wrap: break-word !important; }
   --ink-5: #64748b !important;
   --ink-6: #94a3b8 !important;
   --muted: #475569 !important;
-  --text-muted: #64748b !important;
   --text-mute: #64748b !important;
   --text-dim: #64748b !important;
   --soft: #f1f5f9 !important;
   --rule: #e2e8f0 !important;
-  --border: #e2e8f0 !important;
   --border-outer: #e2e8f0 !important;
   --border-inner: #e2e8f0 !important;
   --border-light: #e2e8f0 !important;
@@ -47,13 +79,8 @@ body { overflow-x: hidden !important; overflow-wrap: break-word !important; }
   --panel-2: #f1f5f9 !important;
   --panel-bg: #ffffff !important;
   --gray-light: #f1f5f9 !important;
-  --code-bg: #1e293b !important;
-  --code-text: #e2e8f0 !important;
   --chip: #f1f5f9 !important;
   --chip-text: #334155 !important;
-  --accent: #2563eb !important;
-  --surface: #ffffff !important;
-  --surface-2: #f8fafc !important;
   --shadow: transparent !important;
 }
 
@@ -67,16 +94,11 @@ body {
   -webkit-font-smoothing: antialiased !important;
   margin: 0 !important;
   padding: 0 !important;
-  padding-bottom: 2rem !important;
+  padding-top: var(--bc-header-h) !important;
+  padding-bottom: 0 !important;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   LAYOUT FIX: Remove whitespace, widen all page wrappers.
-   Every blog uses different class names. Override ALL known
-   outer AND inner wrappers to use full width with sane padding.
-   ══════════════════════════════════════════════════════════════ */
-
-/* Outer page wrappers */
+/* ── LAYOUT NORMALIZATION ── */
 .viewport,
 .page,
 .console,
@@ -86,7 +108,7 @@ body {
 .dashboard-shell,
 .briefing-shell,
 .grid-container,
-body > div:first-child,
+body > div:first-child:not(.bc-header):not([class^="bc-"]),
 body > main {
   max-width: 100% !important;
   width: 100% !important;
@@ -99,12 +121,11 @@ body > main {
   outline: none !important;
 }
 
-/* Inner content wrappers that restrict width */
-.content,
+.content:not(.bc-header *),
 .article-body,
 .main-content,
 .sheet,
-.hero,
+.hero:not(.bc-hero),
 .hero-copy,
 .hero-grid,
 .lede,
@@ -119,8 +140,7 @@ body > main {
   padding-right: 0 !important;
 }
 
-/* Header elements with narrow max-widths */
-header {
+header:not(.bc-header) {
   max-width: 100% !important;
   margin-left: 0 !important;
   margin-right: 0 !important;
@@ -128,13 +148,11 @@ header {
   padding-right: 0 !important;
 }
 
-/* Sections with margin-left offsets (lab-note rail layouts) */
-.hero, .stage, .appendix {
+.hero:not(.bc-hero), .stage, .appendix {
   margin-left: 0 !important;
   max-width: 100% !important;
 }
 
-/* Sheet containers with borders/shadows */
 .sheet {
   border: none !important;
   box-shadow: none !important;
@@ -142,27 +160,12 @@ header {
   padding-right: 0 !important;
 }
 
-/* Sheet decorative lines */
-.sheet::before {
-  display: none !important;
-}
+.sheet::before { display: none !important; }
 
-/* Vertical rail (lab-note sidebar) */
-.rail {
-  display: none !important;
-}
+.rail { display: none !important; }
+.infrastructure-line { display: none !important; }
+h1::before { display: none !important; }
 
-/* Fixed infrastructure lines */
-.infrastructure-line {
-  display: none !important;
-}
-
-/* h1 decorative pseudo-elements */
-h1::before {
-  display: none !important;
-}
-
-/* Grid centering containers - flatten */
 .machine-grid,
 .grid-container {
   display: block !important;
@@ -171,41 +174,22 @@ h1::before {
   padding-right: clamp(1.25rem, 4vw, 3rem) !important;
 }
 
-/* Content in grid layouts */
-.main-content {
-  grid-column: unset !important;
-}
+.main-content { grid-column: unset !important; }
+.stage { display: block !important; }
+.stage-tag { display: inline-block !important; margin-bottom: 0.5rem !important; }
+.timestamp-callout { float: none !important; width: 100% !important; margin: 1rem 0 !important; }
 
-/* Stage grids with left tags */
-.stage {
-  display: block !important;
-}
-
-.stage-tag {
-  display: inline-block !important;
-  margin-bottom: 0.5rem !important;
-}
-
-/* Timestamp callouts that float off-screen */
-.timestamp-callout {
-  float: none !important;
-  width: 100% !important;
-  margin: 1rem 0 !important;
-}
-
-/* ══════════════════════════════════════════════════════════════
-   REMOVE ALL EXTERNAL BORDERS & SHADOWS on outer containers
-   ══════════════════════════════════════════════════════════════ */
+/* ── REMOVE OUTER BORDERS & SHADOWS ── */
 .page, .viewport, .console, .article-shell, .container,
 .directive-shell, .dashboard-shell, .briefing-shell,
-.sheet, .hero, .masthead, .section, .closing-note,
-.status-panel, .layout, .content, .article,
-body > div:first-child {
+.sheet, .hero:not(.bc-hero), .masthead, .section, .closing-note,
+.status-panel, .layout, .content:not(.bc-header *), .article,
+body > div:first-child:not(.bc-header):not([class^="bc-"]) {
   border: none !important;
   box-shadow: none !important;
 }
 
-header {
+header:not(.bc-header) {
   background: transparent !important;
   background-image: none !important;
   border: none !important;
@@ -216,9 +200,7 @@ header {
   margin-bottom: 2rem !important;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   TYPOGRAPHY
-   ══════════════════════════════════════════════════════════════ */
+/* ── TYPOGRAPHY ── */
 h1 {
   color: #0f172a !important;
   font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif !important;
@@ -228,10 +210,7 @@ h1 {
   font-size: clamp(1.8rem, 5vw, 2.6rem) !important;
 }
 
-/* CRITICAL: Many posts give h2 a dark background block,
-   inline-block display, negative margins, border-left accents.
-   Override ALL of that to a clean text heading. */
-h2 {
+h2:not([class^="bc-"] h2) {
   color: #0f172a !important;
   font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif !important;
   background: none !important;
@@ -248,13 +227,12 @@ h2 {
   border-left: none !important;
   font-size: clamp(1.3rem, 3.5vw, 1.75rem) !important;
   font-weight: 700 !important;
-  padding-bottom: 0.5rem !important;
   box-shadow: none !important;
   text-transform: none !important;
   letter-spacing: -0.01em !important;
 }
 
-h2::before { display: none !important; }
+h2:not([class^="bc-"] h2)::before { display: none !important; }
 
 h3, h4, h5, h6 {
   color: #0f172a !important;
@@ -275,8 +253,8 @@ blockquote {
 }
 
 /* ── LINKS ── */
-a { color: #2563eb !important; text-decoration: none !important; }
-a:hover { color: #1d4ed8 !important; }
+a:not([class^="bc-"] a) { color: #2563eb !important; text-decoration: none !important; }
+a:not([class^="bc-"] a):hover { color: #1d4ed8 !important; }
 
 /* ── CAPTIONS ── */
 figcaption, .diagram-caption, .caption, .visual-title, .figure-caption, .diagram-title {
@@ -300,17 +278,14 @@ figcaption, .diagram-caption, .caption, .visual-title, .figure-caption, .diagram
 }
 
 .status-dot, [class*="status-dot"] { background: #22c55e !important; }
-
 .lede, .deck, .directive { color: #64748b !important; }
 
-/* ══════════════════════════════════════════════════════════════
-   CONTAINER BACKGROUNDS - transparent/white
-   ══════════════════════════════════════════════════════════════ */
-.mast, .hero, .hero-copy, .hero-side,
+/* ── CONTAINER BACKGROUNDS ── */
+.mast, .hero:not(.bc-hero), .hero-copy, .hero-side,
 .section, .section-body, .section-head,
 article, .article, main, .lane,
 .closing, .closing-panel, .closing-note,
-footer, .footer-note, .band, .debate-grid,
+footer:not(.bc-footer), .footer-note, .band, .debate-grid,
 .debate-side, .summary-strip, .summary-grid,
 .metrics-rail, .masthead, .frame {
   background: transparent !important;
@@ -324,13 +299,13 @@ footer, .footer-note, .band, .debate-grid,
   color: #0f172a !important;
 }
 
-.rail, .toc, .sidebar {
+.rail, .toc:not(.bc-toc), .sidebar:not(.bc-header *) {
   background: #f8fafc !important;
   color: #0f172a !important;
 }
 
-.rail a, .toc a { color: #475569 !important; }
-.rail a:hover, .toc a:hover { color: #2563eb !important; }
+.rail a, .toc:not(.bc-toc) a { color: #475569 !important; }
+.rail a:hover, .toc:not(.bc-toc) a:hover { color: #2563eb !important; }
 
 .topbar, .topnav {
   background: rgba(255,255,255,0.92) !important;
@@ -351,16 +326,9 @@ footer, .footer-note, .band, .debate-grid,
   box-shadow: none !important;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   SVG DIAGRAMS - full width, readable
-   ══════════════════════════════════════════════════════════════ */
-svg {
-  display: block !important;
-  width: 100% !important;
-  height: auto !important;
-}
+/* ── SVG DIAGRAMS ── */
+svg { display: block !important; width: 100% !important; height: auto !important; }
 
-/* SVG containers get horizontal scroll only if truly needed */
 figure,
 .figure-band, .figure-frame, .figure-container,
 .svg-panel, .svg-blueprint,
@@ -372,27 +340,22 @@ figure,
   box-shadow: none !important;
 }
 
-/* Named dark SVG containers */
 .visual-block, .flow-block, .diagram-block, [class*="ascii"] {
   background: #0f172a !important;
   border: 1px solid #334155 !important;
   border-radius: 10px !important;
 }
 
-/* Dark SVG captions */
 .visual-block .diagram-caption,
 .visual-block .visual-title {
   color: #94a3b8 !important;
 }
 
-/* Images */
 img { max-width: 100% !important; height: auto !important; }
 
-/* ══════════════════════════════════════════════════════════════
-   CODE BLOCKS
-   ══════════════════════════════════════════════════════════════ */
+/* ── CODE BLOCKS ── */
 pre {
-  background: #1e293b !important;
+  background: #0f172a !important;
   color: #e2e8f0 !important;
   border: 1px solid #334155 !important;
   border-radius: 10px !important;
@@ -420,7 +383,7 @@ code:not(pre code) {
 }
 
 .output-block, .code-dark {
-  background: #1e293b !important;
+  background: #0f172a !important;
   color: #e2e8f0 !important;
   border: 1px solid #334155 !important;
   border-radius: 10px !important;
@@ -440,7 +403,6 @@ table { background: #fff !important; }
 th { background: #f8fafc !important; color: #0f172a !important; border-bottom-color: #e2e8f0 !important; }
 td { border-bottom-color: #f1f5f9 !important; color: #475569 !important; }
 
-/* Table containers */
 .latency-table, .committee-table, [class*="table-wrap"] {
   overflow-x: auto !important;
   -webkit-overflow-scrolling: touch !important;
@@ -450,20 +412,10 @@ td { border-bottom-color: #f1f5f9 !important; color: #475569 !important; }
 /* ── HR ── */
 hr { border-color: #e2e8f0 !important; }
 
-/* ── ACCESSIBILITY ── */
-:focus-visible { outline: 2px solid #2563eb !important; outline-offset: 2px !important; }
-
-@media (prefers-reduced-motion: reduce) {
-  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-}
-
-/* ══════════════════════════════════════════════════════════════
-   RESPONSIVE - COLLAPSE ALL GRIDS
-   ══════════════════════════════════════════════════════════════ */
+/* ── RESPONSIVE GRID COLLAPSE ── */
 @media (max-width: 900px) {
-  /* Collapse ALL multi-column layouts */
-  .layout, .content, .section, .section-head,
-  .band, .hero, .hero-grid, .closing-panel,
+  .layout, .content:not(.bc-header *), .section, .section-head,
+  .band, .hero:not(.bc-hero), .hero-grid, .closing-panel,
   .debate-grid, .code-grid, .comparison-grid,
   .policy-grid, .hardware-diagram-grid, .stage-grid,
   .drift-grid, .frame, .masthead, .mirror-grid,
@@ -478,11 +430,8 @@ hr { border-color: #e2e8f0 !important; }
     grid-template-columns: repeat(2, 1fr) !important;
   }
 
-  /* Sidebars unstick */
-  .rail, .toc { position: static !important; }
+  .rail, .toc:not(.bc-toc) { position: static !important; }
   .topbar { position: relative !important; }
-
-  /* Mirror grid divider line */
   .mirror-grid > div:nth-child(2) { display: none !important; }
 }
 
@@ -494,9 +443,491 @@ hr { border-color: #e2e8f0 !important; }
   }
 
   .marker, .margin-note { position: static !important; }
-
   pre { font-size: 0.78rem !important; padding: 1rem !important; }
-
   h1 { font-size: clamp(1.4rem, 6vw, 2rem) !important; }
-  h2 { font-size: clamp(1.1rem, 4vw, 1.4rem) !important; }
+  h2:not([class^="bc-"] h2) { font-size: clamp(1.1rem, 4vw, 1.4rem) !important; }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   LAYER 2 — BLOG COMMON COMPONENTS
+   Styles for elements injected by blog-common.js
+   All classes prefixed with bc- to avoid conflicts.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── SKIP LINK ── */
+.bc-skip {
+  position: absolute !important;
+  top: -100px !important;
+  left: 16px !important;
+  background: #0f172a !important;
+  color: #fff !important;
+  padding: 8px 16px !important;
+  border-radius: 0 0 8px 8px !important;
+  font-size: 0.875rem !important;
+  z-index: 10000 !important;
+  text-decoration: none !important;
+  transition: top 0.15s ease !important;
+}
+
+.bc-skip:focus {
+  top: 0 !important;
+}
+
+/* ── GLOBAL HEADER ── */
+.bc-header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 9999 !important;
+  height: var(--bc-header-h) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: saturate(180%) blur(20px) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
+  border: none !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 clamp(1rem, 3vw, 2rem) !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+.bc-header-inner {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  gap: 16px !important;
+}
+
+.bc-logo {
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  letter-spacing: -0.01em !important;
+}
+
+.bc-logo:hover { color: #0f172a !important; }
+
+.bc-nav {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+  margin-left: auto !important;
+}
+
+.bc-nav a {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 6px 14px !important;
+  border-radius: 8px !important;
+  font-size: 0.84rem !important;
+  font-weight: 500 !important;
+  color: #475569 !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease, background 0.15s ease !important;
+  white-space: nowrap !important;
+}
+
+.bc-nav a:hover {
+  color: #0f172a !important;
+  background: #f8fafc !important;
+}
+
+.bc-nav a.bc-nav-active {
+  color: #2563eb !important;
+  background: #eff6ff !important;
+}
+
+.bc-nav-toggle {
+  display: none !important;
+  background: none !important;
+  border: none !important;
+  font-size: 1.3rem !important;
+  color: #0f172a !important;
+  cursor: pointer !important;
+  padding: 8px !important;
+  margin-left: auto !important;
+  line-height: 1 !important;
+}
+
+.bc-mobile-nav {
+  display: none !important;
+  position: fixed !important;
+  top: var(--bc-header-h) !important;
+  left: 0 !important;
+  right: 0 !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  padding: 12px clamp(1rem, 3vw, 2rem) !important;
+  z-index: 9998 !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08) !important;
+}
+
+.bc-mobile-nav.bc-open {
+  display: flex !important;
+}
+
+.bc-mobile-nav a {
+  display: block !important;
+  padding: 10px 14px !important;
+  border-radius: 8px !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  color: #475569 !important;
+  text-decoration: none !important;
+}
+
+.bc-mobile-nav a:hover {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+@media (max-width: 640px) {
+  .bc-nav { display: none !important; }
+  .bc-nav-toggle { display: block !important; }
+}
+
+/* ── ARTICLE META STRIP ── */
+.bc-article-meta {
+  max-width: 100% !important;
+  padding: 0 clamp(1.25rem, 4vw, 3rem) !important;
+  margin: 0 0 1.5rem !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.bc-badges {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-bottom: 10px !important;
+}
+
+.bc-badge {
+  display: inline-block !important;
+  padding: 4px 12px !important;
+  border-radius: 100px !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em !important;
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  border: 1px solid #e2e8f0 !important;
+  white-space: nowrap !important;
+}
+
+.bc-badge-category {
+  background: #eff6ff !important;
+  color: #2563eb !important;
+  border-color: rgba(37, 99, 235, 0.15) !important;
+}
+
+.bc-badge-type {
+  background: #f0fdf4 !important;
+  color: #16a34a !important;
+  border-color: rgba(22, 163, 74, 0.15) !important;
+}
+
+.bc-best-for {
+  font-size: 0.8rem !important;
+  color: #64748b !important;
+  font-weight: 500 !important;
+}
+
+/* ── EXECUTIVE SUMMARY BOX ── */
+.bc-summary-box {
+  max-width: 100% !important;
+  margin: 0 clamp(1.25rem, 4vw, 3rem) 2.5rem !important;
+  padding: 1.5rem !important;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+
+.bc-summary-box h2 {
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: #64748b !important;
+  margin: 0 0 1rem !important;
+  padding: 0 !important;
+  border: none !important;
+  border-bottom: none !important;
+}
+
+.bc-summary-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 1rem !important;
+}
+
+.bc-summary-item strong {
+  display: block !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: #0f172a !important;
+  margin-bottom: 4px !important;
+}
+
+.bc-summary-item p {
+  font-size: 0.88rem !important;
+  color: #475569 !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 600px) {
+  .bc-summary-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── TABLE OF CONTENTS ── */
+.bc-toc {
+  max-width: 100% !important;
+  margin: 0 clamp(1.25rem, 4vw, 3rem) 2rem !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  position: static !important;
+}
+
+.bc-toc summary {
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: #64748b !important;
+  cursor: pointer !important;
+  padding: 8px 0 !important;
+  list-style: none !important;
+  user-select: none !important;
+}
+
+.bc-toc summary::-webkit-details-marker { display: none !important; }
+
+.bc-toc summary::before {
+  content: '+ ' !important;
+  font-weight: 700 !important;
+}
+
+.bc-toc[open] summary::before {
+  content: '- ' !important;
+}
+
+.bc-toc nav {
+  padding: 12px 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.bc-toc nav a {
+  display: block !important;
+  padding: 6px 12px !important;
+  border-radius: 6px !important;
+  font-size: 0.84rem !important;
+  color: #475569 !important;
+  text-decoration: none !important;
+  transition: background 0.15s ease, color 0.15s ease !important;
+  line-height: 1.4 !important;
+}
+
+.bc-toc nav a:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* ── BOTTOM SECTIONS ── */
+.bc-section {
+  max-width: 100% !important;
+  padding: 2.5rem clamp(1.25rem, 4vw, 3rem) !important;
+  border-top: 1px solid #e2e8f0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.bc-section h2 {
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  margin: 0 0 1.25rem !important;
+  padding: 0 !important;
+  border: none !important;
+  border-bottom: none !important;
+  letter-spacing: -0.01em !important;
+  text-transform: none !important;
+}
+
+/* ── SKILLS CHIPS ── */
+.bc-skill-chips {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+
+.bc-skill-chip {
+  display: inline-block !important;
+  padding: 6px 14px !important;
+  border-radius: 100px !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  background: #f8fafc !important;
+  color: #334155 !important;
+  border: 1px solid #e2e8f0 !important;
+  white-space: nowrap !important;
+}
+
+/* ── WHY THIS MATTERS ── */
+.bc-why-text {
+  font-size: 1rem !important;
+  color: #475569 !important;
+  line-height: 1.75 !important;
+  max-width: 720px !important;
+}
+
+/* ── RELATED CASE STUDIES ── */
+.bc-related-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+  gap: 12px !important;
+}
+
+.bc-related-card {
+  display: block !important;
+  padding: 16px !important;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  text-decoration: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.bc-related-card:hover {
+  border-color: #2563eb !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08) !important;
+}
+
+.bc-related-category {
+  display: block !important;
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: #2563eb !important;
+  margin-bottom: 4px !important;
+}
+
+.bc-related-title {
+  display: block !important;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  color: #0f172a !important;
+  line-height: 1.35 !important;
+}
+
+.bc-related-summary {
+  display: block !important;
+  font-size: 0.78rem !important;
+  color: #64748b !important;
+  margin-top: 6px !important;
+  line-height: 1.45 !important;
+}
+
+/* ── FOOTER CTA ── */
+.bc-footer {
+  max-width: 100% !important;
+  padding: 3rem clamp(1.25rem, 4vw, 3rem) !important;
+  background: #f8fafc !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  margin-top: 2rem !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.bc-footer p {
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
+  color: #0f172a !important;
+  margin: 0 0 1rem !important;
+}
+
+.bc-footer-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 10px !important;
+}
+
+.bc-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 10px 22px !important;
+  border-radius: 8px !important;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.15s ease !important;
+  white-space: nowrap !important;
+}
+
+.bc-btn-primary {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border: 1px solid #2563eb !important;
+}
+
+.bc-btn-primary:hover {
+  background: #1d4ed8 !important;
+  color: #ffffff !important;
+}
+
+.bc-btn-secondary {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.bc-btn-secondary:hover {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ACCESSIBILITY
+   ══════════════════════════════════════════════════════════════ */
+:focus-visible {
+  outline: 2px solid #2563eb !important;
+  outline-offset: 2px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── PRINT ── */
+@media print {
+  .bc-header, .bc-nav-toggle, .bc-mobile-nav, .bc-footer { display: none !important; }
+  body { padding-top: 0 !important; }
+  a { color: #0f172a !important; }
+  pre { border: 1px solid #ccc !important; }
 }
