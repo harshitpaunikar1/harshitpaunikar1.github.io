@@ -37,8 +37,8 @@
   --shadow-md: 0 4px 16px rgba(15,23,42,0.06);
   --font: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --mono: 'SF Mono', ui-monospace, SFMono-Regular, 'Fira Code', monospace;
-  --header-h: 60px;
-  --max-w: 1200px;
+  --header-h: 64px;
+  --max-w: 1120px;
 }
 
 /* ── RESET ── */
@@ -58,29 +58,49 @@ img { max-width: 100%; height: auto; display: block; }
 .skip { position: absolute; top: -100px; left: 16px; background: var(--text); color: #fff; padding: 8px 16px; border-radius: 0 0 8px 8px; font-size: 0.875rem; z-index: 10000; transition: top 0.15s; }
 .skip:focus { top: 0; }
 
-/* ── HEADER ── */
+/* ── HEADER — matches main site ── */
 .header {
   position: sticky; top: 0; z-index: 1000;
   height: var(--header-h);
-  background: rgba(255,255,255,0.92);
+  background: rgba(255,255,255,0.85);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid var(--border);
-  display: flex; align-items: center;
-  padding: 0 clamp(1rem, 3vw, 2rem);
+  transition: box-shadow 0.3s;
 }
-.header-inner { display: flex; align-items: center; width: 100%; max-width: var(--max-w); margin: 0 auto; gap: 16px; }
-.logo { font-size: 1.05rem; font-weight: 700; color: var(--text); white-space: nowrap; letter-spacing: -0.01em; }
+.header-inner { display: flex; align-items: center; height: 100%; width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 24px; gap: 32px; }
+.logo { font-size: 1.15rem; font-weight: 700; color: var(--text); white-space: nowrap; letter-spacing: -0.01em; flex-shrink: 0; }
 .logo:hover { color: var(--text); }
-.nav { display: flex; align-items: center; gap: 2px; margin-left: auto; }
-.nav a { display: inline-flex; align-items: center; padding: 6px 14px; border-radius: var(--radius-sm); font-size: 0.84rem; font-weight: 500; color: var(--text-secondary); transition: color 0.15s, background 0.15s; }
+.nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+.nav a { display: inline-flex; align-items: center; padding: 8px 14px; border-radius: 6px; font-size: 0.875rem; font-weight: 500; color: var(--text-secondary); transition: color 0.2s, background 0.2s; text-decoration: none; }
 .nav a:hover { color: var(--text); background: var(--bg-soft); }
-.nav a.active { color: var(--accent); background: var(--accent-soft); }
-.nav-toggle { display: none; background: none; border: none; font-size: 1.3rem; color: var(--text); cursor: pointer; padding: 8px; margin-left: auto; }
-.mobile-nav { display: none; position: fixed; top: var(--header-h); left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--border); padding: 12px clamp(1rem,3vw,2rem); z-index: 999; flex-direction: column; gap: 4px; box-shadow: 0 8px 24px rgba(15,23,42,0.08); }
+.nav a.active { color: var(--text); background: var(--bg-soft); }
+.header-cta { display: inline-flex; align-items: center; justify-content: center; padding: 8px 16px; border-radius: var(--radius-sm); font-size: 0.82rem; font-weight: 600; background: var(--text); color: #fff; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: all 0.2s; line-height: 1; }
+.header-cta:hover { background: #1e293b; color: #fff; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(15,23,42,0.1); }
+.nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; padding: 6px; background: none; border: none; cursor: pointer; border-radius: 6px; transition: background 0.2s; margin-left: auto; }
+.nav-toggle:hover { background: var(--bg-soft); }
+.nav-toggle span { display: block; height: 2px; background: var(--text); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+.nav-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.is-open span:nth-child(2) { opacity: 0; }
+.nav-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-nav { display: none; position: fixed; top: var(--header-h); left: 0; right: 0; bottom: 0; z-index: 999; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); flex-direction: column; padding: 24px; }
 .mobile-nav.open { display: flex; }
-.mobile-nav a { padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); }
-.mobile-nav a:hover { background: var(--bg-soft); color: var(--text); }
+.mobile-nav a { display: block; padding: 16px 0; font-size: 1.1rem; font-weight: 500; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--bg-muted); }
+.mobile-nav a:last-child { border-bottom: none; }
+.mobile-nav a:hover { color: var(--accent); }
+.mobile-nav .mobile-cta { display: inline-flex; align-items: center; justify-content: center; margin-top: 24px; padding: 12px 24px; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 600; background: var(--text); color: #fff; text-align: center; text-decoration: none; border-bottom: none; }
+.mobile-nav .mobile-cta:hover { background: #1e293b; color: #fff; }
+
+/* ── FOOTER — matches main site ── */
+.site-footer { background: var(--text); color: rgba(255,255,255,0.6); padding: 40px 0; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+.footer-brand { font-size: 0.9rem; }
+.footer-name { color: #fff; font-weight: 600; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: #fff; }
+.footer-top { font-size: 0.82rem; color: rgba(255,255,255,0.5); display: inline-flex; align-items: center; gap: 6px; text-decoration: none; transition: color 0.2s; }
+.footer-top:hover { color: #fff; }
 
 /* ── CONTAINER ── */
 .container { max-width: var(--max-w); margin: 0 auto; padding: 0 clamp(1rem, 3vw, 2rem); }
@@ -93,10 +113,10 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ── METRICS STRIP ── */
 .metrics { display: flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg-soft); margin: 2rem 0 3rem; overflow: hidden; }
-.metric { flex: 1 1 0; min-width: 140px; padding: 20px 24px; text-align: center; border-right: 1px solid var(--border); }
+.metric { flex: 1 1 0; min-width: 140px; padding: 24px 20px; text-align: center; border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .metric:last-child { border-right: none; }
-.metric-value { font-size: 1.5rem; font-weight: 800; color: var(--text); letter-spacing: -0.02em; }
-.metric-label { font-size: 0.75rem; font-weight: 500; color: var(--text-muted); margin-top: 2px; letter-spacing: 0.02em; }
+.metric-value { display: block; font-size: 2rem; font-weight: 800; color: var(--text); letter-spacing: -0.02em; line-height: 1.1; }
+.metric-label { display: block; font-size: 0.75rem; font-weight: 500; color: var(--text-muted); margin-top: 6px; letter-spacing: 0.02em; line-height: 1.35; }
 
 /* ── SECTION ── */
 .section { padding: clamp(2rem, 5vw, 3.5rem) 0; }
@@ -191,11 +211,17 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
+  :root { --header-h: 56px; }
   .nav { display: none; }
-  .nav-toggle { display: block; }
+  .header-cta { display: none; }
+  .nav-toggle { display: flex; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .footer-links { flex-wrap: wrap; gap: 16px; }
   .metrics { flex-direction: column; }
-  .metric { border-right: none; border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex; align-items: center; gap: 8px; text-align: left; }
+  .metric { border-right: none; border-bottom: 1px solid var(--border); padding: 16px 20px; flex-direction: row; align-items: baseline; gap: 8px; text-align: left; }
   .metric:last-child { border-bottom: none; }
+  .metric-value { font-size: 1.5rem; }
+  .metric-label { margin-top: 0; }
   .featured-grid { grid-template-columns: 1fr; }
   .project-grid { grid-template-columns: 1fr; }
   .skill-map { grid-template-columns: 1fr; }
@@ -223,17 +249,27 @@ img { max-width: 100%; height: auto; display: block; }
   <div class="header-inner">
     <a class="logo" href="../index.html">Harshit Paunikar</a>
     <nav class="nav" aria-label="Main navigation">
-      <a href="../index.html">Home</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#education">Education</a>
       <a href="index.html" class="active">Case Studies</a>
       <a href="../index.html#contact">Contact</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+    <a class="header-cta" href="http://drive.google.com/file/d/1jET0PqPdHKjui3PRrpxlMgI0cNJIRpjj/view" target="_blank" rel="noopener">View Resume</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-  <a href="../index.html">Home</a>
+  <a href="../index.html#about">About</a>
+  <a href="../index.html#projects">Projects</a>
+  <a href="../index.html#skills">Skills</a>
+  <a href="../index.html#education">Education</a>
   <a href="index.html">Case Studies</a>
   <a href="../index.html#contact">Contact</a>
+  <a class="mobile-cta" href="http://drive.google.com/file/d/1jET0PqPdHKjui3PRrpxlMgI0cNJIRpjj/view" target="_blank" rel="noopener">View Resume</a>
 </nav>
 
 <main>
@@ -252,7 +288,7 @@ img { max-width: 100%; height: auto; display: block; }
     <div class="metric" role="listitem"><span class="metric-value">12+</span><span class="metric-label">Industries</span></div>
     <div class="metric" role="listitem"><span class="metric-value">7</span><span class="metric-label">Years Full-Stack Dev</span></div>
     <div class="metric" role="listitem"><span class="metric-value">6+</span><span class="metric-label">Years AI/ML &amp; Data Science</span></div>
-    <div class="metric" role="listitem"><span class="metric-value">End-to-End</span><span class="metric-label">Prototype to Deployment</span></div>
+    <div class="metric" role="listitem"><span class="metric-value" style="font-size:1.35rem">End-to-End</span><span class="metric-label">Prototype to Deployment</span></div>
   </div>
 </div>
 
@@ -564,11 +600,28 @@ img { max-width: 100%; height: auto; display: block; }
   </div>
   <div class="cta-links">
     <a href="https://github.com/harshitpaunikar1" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://www.linkedin.com/in/harshitpaunikar/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/harsh2025" target="_blank" rel="noopener">LinkedIn</a>
   </div>
 </section>
 
 </main>
+
+<!-- ── FOOTER — matches main site ── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-name">Harshit Paunikar</span> - AI/ML Engineer &amp; Full-Stack AI Builder
+    </div>
+    <div class="footer-links">
+      <a href="mailto:paunikarharshit1995@gmail.com">Email</a>
+      <a href="tel:+917503217372">Phone</a>
+      <a href="https://www.linkedin.com/in/harsh2025" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/harshitpaunikar1" target="_blank" rel="noopener">GitHub</a>
+      <a href="http://drive.google.com/file/d/1jET0PqPdHKjui3PRrpxlMgI0cNJIRpjj/view" target="_blank" rel="noopener">Resume</a>
+    </div>
+    <a class="footer-top" href="#">&#8593; Back to top</a>
+  </div>
+</footer>
 
 <script>
 /* ── PROJECT DATA ── */
@@ -679,8 +732,8 @@ function bindNav() {
   var mobileNav = document.getElementById('mobileNav');
   toggle.addEventListener('click', function() {
     var isOpen = mobileNav.classList.toggle('open');
+    toggle.classList.toggle('is-open', isOpen);
     toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    toggle.innerHTML = isOpen ? '&#10005;' : '&#9776;';
   });
 }
 

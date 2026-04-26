@@ -650,27 +650,40 @@
 
   /* ── INJECT HEADER ── */
   function injectHeader() {
+    var R = '../../index.html';
+    var RESUME = 'http://drive.google.com/file/d/1jET0PqPdHKjui3PRrpxlMgI0cNJIRpjj/view';
+
     var header = document.createElement('header');
     header.className = 'bc-header';
     header.setAttribute('role', 'banner');
     header.innerHTML =
       '<div class="bc-header-inner">' +
-        '<a class="bc-logo" href="../index.html">Harshit Paunikar</a>' +
+        '<a class="bc-logo" href="' + R + '">Harshit Paunikar</a>' +
         '<nav class="bc-nav" aria-label="Main navigation">' +
-          '<a href="../../index.html">Home</a>' +
+          '<a href="' + R + '#about">About</a>' +
+          '<a href="' + R + '#projects">Projects</a>' +
+          '<a href="' + R + '#skills">Skills</a>' +
+          '<a href="' + R + '#education">Education</a>' +
           '<a href="../index.html" class="bc-nav-active">Case Studies</a>' +
-          '<a href="../../index.html#contact">Contact</a>' +
+          '<a href="' + R + '#contact">Contact</a>' +
         '</nav>' +
-        '<button class="bc-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>' +
+        '<a class="bc-header-cta" href="' + RESUME + '" target="_blank" rel="noopener">View Resume</a>' +
+        '<button class="bc-nav-toggle" id="bcMenuToggle" aria-label="Toggle navigation" aria-expanded="false">' +
+          '<span></span><span></span><span></span>' +
+        '</button>' +
       '</div>';
 
     var mobileNav = document.createElement('nav');
     mobileNav.className = 'bc-mobile-nav';
     mobileNav.setAttribute('aria-label', 'Mobile navigation');
     mobileNav.innerHTML =
-      '<a href="../../index.html">Home</a>' +
+      '<a href="' + R + '#about">About</a>' +
+      '<a href="' + R + '#projects">Projects</a>' +
+      '<a href="' + R + '#skills">Skills</a>' +
+      '<a href="' + R + '#education">Education</a>' +
       '<a href="../index.html">Case Studies</a>' +
-      '<a href="../../index.html#contact">Contact</a>';
+      '<a href="' + R + '#contact">Contact</a>' +
+      '<a class="bc-mobile-cta" href="' + RESUME + '" target="_blank" rel="noopener">View Resume</a>';
 
     document.body.insertBefore(mobileNav, document.body.firstChild);
     document.body.insertBefore(header, document.body.firstChild);
@@ -678,8 +691,8 @@
     var toggle = header.querySelector('.bc-nav-toggle');
     toggle.addEventListener('click', function () {
       var isOpen = mobileNav.classList.toggle('bc-open');
+      toggle.classList.toggle('bc-open', isOpen);
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      toggle.innerHTML = isOpen ? '&#10005;' : '&#9776;';
     });
   }
 
@@ -824,14 +837,25 @@
 
   /* ── INJECT FOOTER CTA ── */
   function injectFooter() {
+    var R = '../../index.html';
+    var RESUME = 'http://drive.google.com/file/d/1jET0PqPdHKjui3PRrpxlMgI0cNJIRpjj/view';
+
     var footer = document.createElement('footer');
     footer.className = 'bc-footer';
     footer.setAttribute('role', 'contentinfo');
     footer.innerHTML =
-      '<p>Want to discuss this kind of system?</p>' +
-      '<div class="bc-footer-actions">' +
-        '<a class="bc-btn bc-btn-primary" href="../../index.html#contact">Contact Me</a>' +
-        '<a class="bc-btn bc-btn-secondary" href="../index.html">Explore More Case Studies</a>' +
+      '<div class="bc-footer-inner">' +
+        '<div class="bc-footer-brand">' +
+          '<span class="bc-footer-name">Harshit Paunikar</span> - AI/ML Engineer &amp; Full-Stack AI Builder' +
+        '</div>' +
+        '<div class="bc-footer-links">' +
+          '<a href="mailto:paunikarharshit1995@gmail.com">Email</a>' +
+          '<a href="tel:+917503217372">Phone</a>' +
+          '<a href="https://www.linkedin.com/in/harsh2025" target="_blank" rel="noopener">LinkedIn</a>' +
+          '<a href="https://github.com/harshitpaunikar1" target="_blank" rel="noopener">GitHub</a>' +
+          '<a href="' + RESUME + '" target="_blank" rel="noopener">Resume</a>' +
+        '</div>' +
+        '<a class="bc-footer-top" href="#">\u2191 Back to top</a>' +
       '</div>';
 
     document.body.appendChild(footer);
