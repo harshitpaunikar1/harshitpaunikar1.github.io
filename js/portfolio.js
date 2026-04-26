@@ -1,3 +1,6 @@
+/* ============================================================
+   PROJECT DATA — 38 projects (do not remove any)
+   ============================================================ */
 var projects = [
   {
     repo: "windows-offline-ai-app",
@@ -241,7 +244,7 @@ var projects = [
     repo: "realtime-marketing-decision-engine",
     title: "Real-Time Marketing Decision Engine",
     domain: "Marketing",
-    desc: "Framework transforming weekly reporting into real-time evidence-based decisions through unified feedback collection, KPI taxonomy, and role-based dashboards with alerts. Delivered +56–82% revenue lift across client engagements.",
+    desc: "Framework transforming weekly reporting into real-time evidence-based decisions through unified feedback collection, KPI taxonomy, and role-based dashboards with alerts. Delivered +56\u201382% revenue lift across client engagements.",
     approach: [
       "Ran stakeholder workshops to map decision moments, prioritise use-cases, inventory feedback sources (surveys, chat, social, CRM)",
       "Defined KPI taxonomy and lifecycle: clear formulas, owners, thresholds, and review cadence aligned to marketing funnel",
@@ -406,7 +409,7 @@ var projects = [
     repo: "brand-tuned-support-assistant",
     title: "Brand-Tuned Support Assistant",
     domain: "E-commerce / Customer Support",
-    desc: "Lightweight fine-tuning workflow for turning messy support conversations into a customer-support assistant that answers in the company's tone. Balanced local small-model adaptation with a hosted baseline so the team could compare control, cost, and response quality honestly.",
+    desc: "Lightweight fine-tuning workflow for turning messy support conversations into a customer-support assistant that answers in the company\u2019s tone. Balanced local small-model adaptation with a hosted baseline so the team could compare control, cost, and response quality honestly.",
     approach: [
       "Audited support chats, FAQs, ticket labels, and tone inconsistencies to define what the assistant should learn and what data needed masking",
       "Built data-preparation flow to remove duplicates, strip sensitive content, and convert cleaned conversations into instruction-response examples",
@@ -468,7 +471,7 @@ var projects = [
     domain: "Video Infrastructure / Security",
     desc: "Low-latency camera-to-browser streaming pipeline for existing RTSP feeds, using GStreamer to ingest and adapt the media path before delivering it to a normal browser over WebRTC. Added optional recording without overloading the live path.",
     approach: [
-      "Started from the client's existing RTSP camera setup and focused on fixing the last-mile browser experience rather than replacing the camera system",
+      "Started from the client\u2019s existing RTSP camera setup and focused on fixing the last-mile browser experience rather than replacing the camera system",
       "Used GStreamer to ingest, decode, transform, and re-encode only when browser compatibility required it, keeping latency as low as practical",
       "Delivered the live stream through WebRTC so operators could open the feed in a browser instead of relying on specialist desktop viewers",
       "Coordinated browser connection setup through a lightweight Node.js signaling layer, with Coturn available for difficult network paths",
@@ -543,7 +546,7 @@ var projects = [
     domain: "Research / Search",
     desc: "Self-hosted search assistant that aggregates results through SearXNG, removes duplicate links, extracts useful page content, and returns short cited summaries. Built to reduce research friction without hiding the underlying sources.",
     approach: [
-      "Started from the client's research workflow and targeted repeated pain points such as too many tabs, repeated links, and slow first-pass reading",
+      "Started from the client\u2019s research workflow and targeted repeated pain points such as too many tabs, repeated links, and slow first-pass reading",
       "Used SearXNG to aggregate results from multiple search sources so the team was not tied to a single commercial search experience",
       "Added deduplication and candidate filtering before summarization so the assistant surfaced fewer but more useful links",
       "Extracted content from selected pages and asked Gemini Flash to write short summaries that still preserved source visibility",
@@ -575,6 +578,9 @@ var referenceProjectOrder = [
   27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37
 ];
 
+/* ============================================================
+   HELPERS
+   ============================================================ */
 function escapeHtml(value) {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -590,107 +596,183 @@ function orderedProjects() {
   }).filter(Boolean);
 }
 
-function projectId(index) {
-  return 'project-' + (index + 1);
+/* ============================================================
+   FEATURED PROJECT CARDS (top 8)
+   ============================================================ */
+function renderFeaturedProjects() {
+  var container = document.getElementById('featuredProjects');
+  if (!container) return;
+
+  var ordered = orderedProjects();
+  var featured = ordered.slice(0, 8);
+
+  container.innerHTML = featured.map(function(p) {
+    var skillsHtml = p.skills.slice(0, 5).map(function(s) {
+      return '<span class="project-card__skill">' + escapeHtml(s) + '</span>';
+    }).join('');
+    if (p.skills.length > 5) {
+      skillsHtml += '<span class="project-card__skill">+' + (p.skills.length - 5) + ' more</span>';
+    }
+
+    return '<div class="project-card">' +
+      '<span class="project-card__domain">' + escapeHtml(p.domain) + '</span>' +
+      '<h3 class="project-card__title">' + escapeHtml(p.title) + '</h3>' +
+      '<p class="project-card__desc">' + escapeHtml(p.desc) + '</p>' +
+      '<div class="project-card__skills">' + skillsHtml + '</div>' +
+      '<div class="project-card__actions">' +
+        '<a class="project-card__link" href="Blogs/index.html#' + escapeHtml(p.repo) + '">Read Case Study <i class="bi bi-arrow-right"></i></a>' +
+      '</div>' +
+    '</div>';
+  }).join('');
 }
 
+/* ============================================================
+   ALL PROJECTS BROWSER
+   ============================================================ */
 function renderProjectIndex() {
-  var list = document.getElementById('projectsIndex');
+  var list = document.getElementById('projectsList');
   if (!list) return;
 
   list.innerHTML = orderedProjects().map(function(p, i) {
-    return '<li><a href="#' + projectId(i) + '" data-project-idx="' + i + '">' +
-      escapeHtml(p.title) + ' <span class="hp-domain-tag">' + escapeHtml(p.domain) + '</span>' +
+    return '<li><a href="#" data-project-idx="' + i + '">' +
+      '<span class="project-num">' + (i + 1) + '.</span> ' +
+      escapeHtml(p.title) +
+      '<span class="project-domain">' + escapeHtml(p.domain) + '</span>' +
     '</a></li>';
   }).join('');
 }
 
-function projectMarkup(p, i) {
+function renderProjectDetail(idx) {
+  var detail = document.getElementById('projectDetail');
+  if (!detail) return;
+
+  var list = orderedProjects();
+  var safeIdx = Math.max(0, Math.min(idx || 0, list.length - 1));
+  var p = list[safeIdx];
+
   var approach = p.approach.map(function(item) {
     return '<li>' + escapeHtml(item) + '</li>';
   }).join('');
 
-  return '<article class="hp-project-entry" id="' + projectId(i) + '">' +
-    '<h2>' + (i + 1) + '. ' + escapeHtml(p.title) + '</h2>' +
-    '<p class="hp-project-domain-line"><span class="hp-domain-tag hp-domain-tag--detail">' + escapeHtml(p.domain) + '</span></p>' +
-    '<p>' + escapeHtml(p.desc) + ' <button type="button" class="hp-project-readmore" aria-expanded="false">... click here to read more</button></p>' +
-    '<div class="hp-project-rest">' +
-      '<h3>Methodology</h3>' +
-      '<ul>' + approach + '</ul>' +
-      '<p><strong>Skills used:</strong> ' + escapeHtml(p.skills.join(', ')) + '</p>' +
-    '</div>' +
-  '</article>';
-}
+  var skillChips = p.skills.map(function(s) {
+    return '<span class="chip">' + escapeHtml(s) + '</span>';
+  }).join('');
 
-function renderProjectDetails(idx) {
-  var detail = document.getElementById('projectsDetails');
-  if (!detail) return;
-  var list = orderedProjects();
-  var safeIdx = Math.max(0, Math.min(idx || 0, list.length - 1));
+  detail.innerHTML =
+    '<div class="project-detail">' +
+      '<span class="project-detail__domain">' + escapeHtml(p.domain) + '</span>' +
+      '<h3 class="project-detail__title">' + escapeHtml(p.title) + '</h3>' +
+      '<p class="project-detail__desc">' + escapeHtml(p.desc) + '</p>' +
+      '<p class="project-detail__section-title">Methodology</p>' +
+      '<ul class="project-detail__approach">' + approach + '</ul>' +
+      '<p class="project-detail__section-title">Skills Used</p>' +
+      '<div class="project-detail__skills-list">' + skillChips + '</div>' +
+      '<div class="project-detail__blog-link">' +
+        '<a class="btn btn--ghost" href="Blogs/index.html#' + escapeHtml(p.repo) + '"><i class="bi bi-journal-text"></i> Read Full Case Study</a>' +
+      '</div>' +
+    '</div>';
 
-  detail.innerHTML = projectMarkup(list[safeIdx], safeIdx);
-
-  document.querySelectorAll('#projectsIndex a').forEach(function(anchor) {
+  document.querySelectorAll('#projectsList a').forEach(function(anchor) {
     anchor.classList.toggle('active', Number(anchor.getAttribute('data-project-idx')) === safeIdx);
   });
 }
 
-function scrollProjectDetailsIntoView() {
-  var detail = document.getElementById('projectsDetails');
-  if (!detail) return;
-
-  var header = document.querySelector('.hp-site-header');
-  var tabs = document.querySelector('.hp-hero-tabs-bar');
-  var headerHeight = header ? Math.ceil(header.offsetHeight) : 0;
-  var tabsHeight = tabs ? Math.ceil(tabs.offsetHeight) : 0;
-  var targetTop = detail.getBoundingClientRect().top + window.pageYOffset - headerHeight - tabsHeight - 12;
-
-  if (window.jQuery) {
-    window.jQuery('html, body').stop().animate({
-      scrollTop: Math.max(0, targetTop)
-    }, 650);
-    return;
-  }
-
-  window.scrollTo({
-    top: Math.max(0, targetTop),
-    behavior: 'smooth'
-  });
-}
-
-function bindProjectIndex() {
-  var list = document.getElementById('projectsIndex');
+function bindProjectBrowser() {
+  var list = document.getElementById('projectsList');
   if (!list) return;
 
   list.addEventListener('click', function(event) {
     var anchor = event.target.closest('a[data-project-idx]');
     if (!anchor) return;
     event.preventDefault();
-    renderProjectDetails(Number(anchor.getAttribute('data-project-idx')));
-    scrollProjectDetailsIntoView();
+    renderProjectDetail(Number(anchor.getAttribute('data-project-idx')));
+  });
+
+  // Toggle browser
+  var toggle = document.getElementById('allProjectsToggle');
+  var content = document.getElementById('allProjectsContent');
+  if (toggle && content) {
+    toggle.addEventListener('click', function() {
+      var isOpen = content.classList.toggle('is-open');
+      toggle.classList.toggle('is-open', isOpen);
+      toggle.setAttribute('aria-expanded', isOpen);
+
+      if (isOpen && !document.querySelector('#projectsList a.active')) {
+        renderProjectDetail(0);
+      }
+    });
+  }
+
+  // Project search
+  var search = document.getElementById('projectSearch');
+  if (search) {
+    search.addEventListener('input', function() {
+      var query = this.value.toLowerCase().trim();
+      document.querySelectorAll('#projectsList li').forEach(function(li) {
+        var text = li.textContent.toLowerCase();
+        li.classList.toggle('hidden', query !== '' && text.indexOf(query) === -1);
+      });
+    });
+  }
+}
+
+/* ============================================================
+   BLOG PREVIEW CARDS (6 diverse projects)
+   ============================================================ */
+var blogPreviewIndices = [5, 28, 12, 35, 13, 27];
+
+function renderBlogPreview() {
+  var container = document.getElementById('blogsPreview');
+  if (!container) return;
+
+  var categoryMap = {
+    'Logistics': 'Computer Vision',
+    'Healthcare / MedTech': 'RAG / Healthcare',
+    'Manufacturing': 'LLM / Vision',
+    'Voice AI / Real-Time Systems': 'Voice AI',
+    'Banking': 'Machine Learning',
+    'E-commerce / Customer Support': 'LLM Fine-tuning',
+    'Marketing': 'Data / Analytics',
+    'Marketing / AdTech': 'Marketing / AdTech',
+    'SalesTech': 'LLM / Sales',
+    'Internal AI Systems': 'AI Systems',
+    'Research / Search': 'AI Search'
+  };
+
+  container.innerHTML = blogPreviewIndices.map(function(idx) {
+    var p = projects[idx];
+    if (!p) return '';
+    var category = categoryMap[p.domain] || p.domain;
+
+    return '<div class="blog-card">' +
+      '<span class="blog-card__category">' + escapeHtml(category) + '</span>' +
+      '<h3 class="blog-card__title">' + escapeHtml(p.title) + '</h3>' +
+      '<p class="blog-card__desc">' + escapeHtml(p.desc) + '</p>' +
+      '<a class="blog-card__link" href="Blogs/index.html#' + escapeHtml(p.repo) + '">Read Deep Dive <i class="bi bi-arrow-right"></i></a>' +
+    '</div>';
+  }).join('');
+}
+
+/* ============================================================
+   SKILL CHIPS — convert paragraph text to chips
+   ============================================================ */
+function renderSkillChips() {
+  document.querySelectorAll('.skill-text').forEach(function(p) {
+    var skills = p.textContent.split(',').map(function(s) { return s.trim(); }).filter(Boolean);
+    var html = '<div class="skill-category__chips">' +
+      skills.map(function(s) { return '<span class="chip">' + escapeHtml(s) + '</span>'; }).join('') +
+    '</div>';
+    p.outerHTML = html;
   });
 }
 
-function bindReadMoreToggle() {
-  var details = document.getElementById('projectsDetails');
-  if (!details) return;
-
-  details.addEventListener('click', function(event) {
-    var btn = event.target.closest('.hp-project-readmore');
-    if (!btn) return;
-    var entry = btn.closest('.hp-project-entry');
-    if (!entry) return;
-    var rest = entry.querySelector('.hp-project-rest');
-    if (!rest) return;
-    var isOpen = rest.classList.toggle('is-open');
-    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    btn.textContent = isOpen ? 'Show less' : '... click here to read more';
-  });
-}
-
+/* ============================================================
+   INIT
+   ============================================================ */
 document.addEventListener('DOMContentLoaded', function() {
+  renderFeaturedProjects();
   renderProjectIndex();
-  bindProjectIndex();
-  bindReadMoreToggle();
-  renderProjectDetails(0);
+  bindProjectBrowser();
+  renderBlogPreview();
+  renderSkillChips();
 });
