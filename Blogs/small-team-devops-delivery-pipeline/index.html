@@ -170,6 +170,20 @@
       <p class="deck">Operational fragility is rarely solved by adopting massive, sprawling orchestration frameworks. For a small engineering team, reliability is achieved by enforcing rigid, unglamorous stage gates-packaging, scanning, deploying, and observing-without pretending to be a hyperscaler.</p>
     </header>
 
+    <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
+      <strong>My Role:</strong> I was the sole engineer on this pipeline — I designed and built every stage gate from Docker packaging through Trivy scanning, Jenkins automation, and the Prometheus/Grafana observation layer. The hardest part wasn't the tooling; it was convincing the team to trust a boring, unglamorous pipeline over the Kubernetes architecture they kept proposing.
+    </div>
+    <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+      <strong style="margin-right:4px;">Stack:</strong>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Docker</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Jenkins</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Trivy</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Docker Compose</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Prometheus</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Grafana</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">nginx</span>
+    </div>
+
     <main>
       <p>The standard DevOps narrative sold to small teams is profoundly hazardous. It encourages adopting Kubernetes when a single virtual machine will do, and pushes sprawling microservice meshes when the actual underlying business logic fits in a single Docker container. This "infrastructure tourism" inevitably leads to operational fragility: the team spends more time tending to the deployment machinery than advancing the product.</p>
 

@@ -172,6 +172,19 @@
     <p class="abstract">Cold-chain logistics is an exercise in paranoia. When a shipping system handles vaccines, highly perishable food, or chemical reagents, a simple location ping is meaningless. The product is viable only if you can mathematically prove uninterrupted temperature control and authoritative possession at every handoff across the world.</p>
   </header>
 
+  <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
+    <strong>My Role:</strong> I built the cryptographic chain of custody system — the payload UUID binding at dispatch, the Bluetooth temperature logger handshake logic, the offline-first event capture on mobile, and the server-side reconciliation that correlates barcode handoffs against the thermal logger's continuous telemetry. A regulatory compliance specialist defined the exact evidence requirements; their knowledge of what a pharmaceutical regulator would actually audit shaped every field in the event schema.
+  </div>
+  <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+    <strong style="margin-right:4px;">Stack:</strong>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">DataMatrix / QR barcodes</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Bluetooth BLE loggers</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Offline-first mobile</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Cryptographic signing</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Telemetry reconciliation</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Python</span>
+  </div>
+
   <main class="article-body">
     
     <p>A shipping system fails the moment the physical reality diverges from the database. In standard freight logistics, a missed scan is an annoyance-a package is delayed, a customer calls, and the tracking page updates the next day. In a critical cold-chain network, a missed scan breaks the chain of custody. Without proof of temperature and possession during a handoff, the payload must be assumed compromised and destroyed.</p>

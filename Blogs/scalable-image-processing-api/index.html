@@ -131,6 +131,20 @@
       <p class="hero-summary">When multiple engineering teams depend on computational vision, deploying isolated models per team rapidly creates a maintenance crisis. Building a shared API platform forces explicit boundaries: the gateway claims the routing, the worker pool handles the compute, and the async contract keeps the system transparent to its clients.</p>
     </header>
 
+    <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
+      <strong>My Role:</strong> I designed the shared platform architecture — the async gateway contract, worker pool isolation, and the adaptive batching strategy that groups queue jobs before GPU dispatch. Two other teams contributed models (the retail team's object detector and the logistics team's barcode extractor); my job was building the infrastructure layer that let both run without starving each other.
+    </div>
+    <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+      <strong style="margin-right:4px;">Stack:</strong>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">FastAPI</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">RabbitMQ / Redis</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Python workers</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">PyTorch / OpenCV</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">S3 (object storage)</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Docker</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Adaptive batching</span>
+    </div>
+
     <h2>API_STATE_01: The Gateway Contract</h2>
 
     <p>The core problem of an internal image processing service is heterogeneous demand. The retail division requests low-latency object detection on individual catalog uploads. The logistics team wants bulk barcode extraction from daily PDF manifests. If both groups hit a raw Python Flask/FastAPI endpoint concurrently, the logistics batch process will immediately consume the thread pool, starving the retail team's interactive queries.</p>

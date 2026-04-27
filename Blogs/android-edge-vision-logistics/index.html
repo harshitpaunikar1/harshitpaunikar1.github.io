@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* 
+    /*
       DESIGN SYSTEM: "Engineering Tear-Down"
       Black and white only. Typography-driven.
       Dense multi-column structure, monospace parameter callouts, debug log headings.
@@ -130,7 +130,7 @@
       padding-top: 1rem;
       color: var(--border-thick);
     }
-    
+
     h2::before {
       content: "> ";
       color: var(--text-muted);
@@ -148,7 +148,7 @@
       margin: 2rem 0;
       border: 1px solid var(--border-thick);
     }
-    
+
     .c-comment { color: #888888; }
     .c-keyword { color: #ffffff; font-weight: 700; }
     .c-type { color: #cccccc; }
@@ -203,15 +203,28 @@
 <body>
 
 <div class="tear-down-shell">
-  
+
   <header>
     <div class="meta-tag">Post-Mortem / Mobile Edge Ops</div>
     <h1>Edge Vision Diagnostics</h1>
     <p class="abstract">Computer vision tutorials love to pretend hardware is infinite. In reality, deploying an object-detection model to a $150 Android handheld in a poorly lit warehouse is essentially a fight against hardware physics. This is a tear-down of the memory limits, battery bleed, and camera-thread contention that dictate true edge performance.</p>
   </header>
 
+<div style="border-left:3px solid #111;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
+  <strong>My Role:</strong> I owned the on-device inference pipeline — the TensorFlow Lite model conversion, INT8 quantization, CameraX ImageAnalysis integration, and the custom inference executor that bypassed buggy NNAPI drivers on Zebra hardware. The other two engineers handled the backend API and warehouse workflow integration. The key challenge I had to solve was thermal throttling silently degrading inference from 45ms to 180ms during sustained operation.
+</div>
+<div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+  <strong style="margin-right:4px;">Stack:</strong>
+  <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">TensorFlow Lite</span>
+  <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">INT8 Quantization</span>
+  <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">CameraX</span>
+  <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Android (Kotlin)</span>
+  <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">NNAPI</span>
+  <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Zebra TC52</span>
+</div>
+
   <div class="content-grid">
-    
+
     <aside class="param-column">
       <div class="param-box">
         <strong>Hardware Target</strong>
@@ -236,9 +249,9 @@
     </aside>
 
     <div class="main-column">
-      
+
       <p>The original architecture for this logistics scanning tool was built on a lie: that mobile internet inside a concrete fulfillment center is reliable. We attempted to stream camera frames to a cloud-based inference API. In lab testing, the latency was 150ms. On the warehouse floor, surrounded by metal racking and competing Wi-Fi signals, latency spiked to 2.5 seconds. For a worker attempting to scan 40 boxes a minute, a 2.5-second freeze on a viewfinder isn't just annoying-it effectively destroys the operational utility of the application.</p>
-      
+
       <p>If you cannot guarantee network transit time, you cannot execute on the cloud. The model had to be forced down to the client device. But shifting inference to the edge meant trading network latency for local hardware constraints. We were no longer fighting Wi-Fi dropouts; we were fighting RAM allocation limits, CPU thermal throttling, and battery drain on cheap, three-year-old Android scanners.</p>
 
       <h2>> TRACE_01: FORCED LOCAL ISOLATION</h2>
@@ -249,7 +262,7 @@
         <svg viewBox="0 0 800 350" preserveAspectRatio="xMidYMid meet">
           <!-- Separator Line -->
           <line x1="400" y1="20" x2="400" y2="330" stroke="#111" stroke-width="2" stroke-dasharray="8 4" />
-          
+
           <!-- Headers -->
           <text x="200" y="40" font-family="'JetBrains Mono'" font-size="14" font-weight="700" text-anchor="middle">CLOUD ROUNDTRIP (ABANDONED)</text>
           <text x="600" y="40" font-family="'JetBrains Mono'" font-size="14" font-weight="700" text-anchor="middle">EDGE INFERENCE (DEPLOYED)</text>
@@ -267,14 +280,14 @@
           <rect x="120" y="180" width="160" height="80" fill="#e8e8e8" stroke="#111" />
           <text x="200" y="210" font-family="'JetBrains Mono'" font-size="12" fill="#111" font-weight="700" text-anchor="middle">GPU CLUSTER</text>
           <text x="200" y="235" font-family="'JetBrains Mono'" font-size="10" fill="#555" text-anchor="middle">Inference: 15ms</text>
-          
+
           <path d="M 120 220 L 50 220 L 50 100 L 140 100" stroke="#555" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
           <text x="30" y="150" font-family="'JetBrains Mono'" font-size="10" fill="#888" transform="rotate(-90 30 150)" text-anchor="middle">JSON Payload Return</text>
 
           <!-- Edge Side (Right) -->
           <rect x="520" y="80" width="160" height="200" fill="none" stroke="#111" stroke-width="3" />
           <text x="600" y="70" font-family="'JetBrains Mono'" font-size="10" fill="#111" text-anchor="middle">DEVICE SECURE BOUNDARY</text>
-          
+
           <rect x="540" y="100" width="120" height="30" fill="#f5f5f5" stroke="#111" />
           <text x="600" y="120" font-family="'JetBrains Mono'" font-size="10" fill="#111" font-weight="700" text-anchor="middle">CAMERA SENSOR</text>
 
@@ -301,7 +314,7 @@
       <h2>> THREAD_02: CAMERAX AND CONTINUOUS ANALYSIS</h2>
 
       <p>Android's original <code>Camera2</code> API is notoriously hostile to computer vision because manually managing device-specific sensor states usually triggers memory leaks on mid-tier hardware. We shifted to the Jetpack <code>CameraX</code> library, specifically isolating the <code>ImageAnalysis</code> use case. Unlike a standard camera app that fires an intent to take a static JPEG, <code>ImageAnalysis</code> buffers a continuous, real-time feed.</p>
-      
+
       <p>The trap engineers fall into here is frame starvation. If you run the TensorFlow Lite interpreter directly on the main UI thread, every time the model processes an image (say, taking 60ms), the UI freezes. The app stutters. To solve this, execution must be explicitly bifurcated. The rendering happens on the Main Thread, while frame capture and inference are banished to a designated background Executor.</p>
 
 <pre><code><span class="c-comment">// Android Kotlin: Hooking CameraX ImageAnalysis to a TFLite Interpreter</span>
@@ -313,16 +326,16 @@
 imageAnalyzer.setAnalyzer(cameraExecutor, { imageProxy <span class="c-type">-></span>
     <span class="c-comment">// 1: Convert YUV_420_888 to RGB Bitmap</span>
     <span class="c-keyword">val</span> bitmap = yuvToRgbConverter.toBitmap(imageProxy)
-    
+
     <span class="c-comment">// 2: Feed the tensor in the background thread</span>
     <span class="c-keyword">val</span> inputTensor = TensorImage.fromBitmap(bitmap)
     <span class="c-keyword">val</span> results = tfLiteInterpreter.process(inputTensor)
-    
+
     <span class="c-comment">// 3: Switch back to UI thread purely to draw the bounding box overlay</span>
     runOnUiThread {
         overlayView.drawBoundingBoxes(results)
     }
-    
+
     <span class="c-comment">// Critical: Release the frame block or the buffer overflows in &lt;2 secs</span>
     imageProxy.close()
 })
@@ -352,7 +365,7 @@ imageAnalyzer.setAnalyzer(cameraExecutor, { imageProxy <span class="c-type">-></
           <!-- Frame 1 lifecycle -->
           <rect x="250" y="130" width="80" height="40" fill="#e8e8e8" stroke="#111" />
           <text x="290" y="155" font-family="'JetBrains Mono'" font-size="10" fill="#111" text-anchor="middle">Frame[N]</text>
-          
+
           <path d="M 290 170 L 290 200" stroke="#111" stroke-width="2" fill="none" marker-end="url(#arrow-dark)" />
 
           <rect x="270" y="210" width="100" height="40" fill="#111" stroke="#fff" />

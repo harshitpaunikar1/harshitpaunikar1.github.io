@@ -175,6 +175,20 @@
       <p class="synopsis">The central metric of customer support is resolution accuracy, not reply speed. When artificial intelligence is integrated into an inbox purely to maximize ticket deflection, the result is hallucinated policies, infuriated users, and severe reputational damage. A sustainable support architecture treats AI not as an autonomous responder, but as a rigid drafting layer gated by human oversight.</p>
     </header>
 
+    <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
+      <strong>My Role:</strong> I built the ML pipeline — the embedding-based semantic triage, confidence threshold system, retrieval grounding against Shopify/Zendesk/Stripe, and the draft generation layer. The support ops lead was the other half of the team: they set the confidence thresholds based on real historical ticket data, and when the first version over-automated (causing an incorrect refund confirmation in week one), it was their domain knowledge that identified exactly where the cutoff needed to drop.
+    </div>
+    <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+      <strong style="margin-right:4px;">Stack:</strong>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Vector embeddings</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">LLM</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Python</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Zendesk API</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Shopify API</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Stripe API</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Confidence thresholds</span>
+    </div>
+
     <p>Deploying a Large Language Model directly connected to a customer email address is a profound operational error. LLMs are structurally designed to appease the user, meaning they are inherently predisposed to issuing unauthorized refunds, inventing feature timelines, and apologizing for system mechanics that are functioning exactly as intended.</p>
 
     <p>A Support Copilot should not be defined by its text generation capabilities. Its value is defined by its routing thresholds. A system must know precisely when to act, when to prepare a draft for a human, and when to refuse engagement entirely. We achieve this by inserting a deterministic confidence threshold meter into the semantic triage pipeline.</p>

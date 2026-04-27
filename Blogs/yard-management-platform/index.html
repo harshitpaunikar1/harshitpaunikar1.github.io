@@ -153,6 +153,18 @@
       <p class="synopsis">A distribution yard operates on the edge of chaos. When eighty fifty-foot trailers are bottlenecked at the gate, dock doors are double-booked, and shunters are driving blind, software brochures describing "digital transformation" are worse than useless. A functional Yard Management System replaces ambiguity with strict entity logic, mapping the physical footprint into a deterministic control surface.</p>
     </header>
 
+    <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
+      <strong>My Role:</strong> I designed the entity state machines — the trailer lifecycle from gate-in to gate-out — and the algorithmic dock assignment logic that replaced the manual whiteboard system. Two other engineers built the GPS tracking integration and the driver-facing mobile dispatch UI. An embedded operations manager was the most valuable team member: his domain knowledge about live loads, reefer priority, and driver shift handoffs prevented three major design mistakes before we wrote a line of code.
+    </div>
+    <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+      <strong style="margin-right:4px;">Stack:</strong>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Real-time state machines</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">GPS tracking (3m precision)</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Mobile dispatch UI</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Algorithmic dock assignment</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Audit trail logging</span>
+    </div>
+
     <p>Congestion is rarely a problem of physical space; it is a problem of informational latency. When a supervisor is standing in an elevated portakabin looking out over two hundred staging slots, the danger lies not in the trailers they can see, but in the status of the trailers they cannot verify.</p>
 
     <p>Is that reefer in slot B4 empty, loaded, or broken? Is the yard truck deadheading across the tarmac because it wasn't assigned a return move? To govern a yard, the software must strip away operational ambiguity. It does this by binding physical objects to digital state machines, enforcing a rigid lifecycle from gate arrival to gate departure, and exposing every variance immediately to the command layer.</p>

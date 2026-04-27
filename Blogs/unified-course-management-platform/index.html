@@ -193,6 +193,19 @@
       <p class="subtitle">Higher education technology suffers from tool sprawl. An institution typically runs a video platform, a separate grading rubric logic module, a third-party assessment engine, and an early-warning analytics dashboard. A unified course management platform replaces these fractured silos with a connected operating surface, defined by how data flows gracefully from the instructor's desk to the learner's screen.</p>
     </header>
 
+    <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
+      <strong>My Role:</strong> I led the platform architecture — the DAG-based course state machine, unified gradebook module, and the at-risk learner analytics pipeline. The pivotal decision was abandoning the build-everything approach at week 6 and integrating best-of-breed services behind a unified interface instead; that call cut our timeline by 60% and was driven by what the instructors told us they actually needed.
+    </div>
+    <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+      <strong style="margin-right:4px;">Stack:</strong>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">LTI integration</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">DAG-based course model</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">REST APIs</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Video streaming API</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Assessment engine</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Analytics pipeline</span>
+    </div>
+
     <p>A learning platform is not a collection of web forms for uploading PDFs. It is an orchestration engine. When a university strings together disparate software packages via loose LTI (Learning Tools Interoperability) links, they offload the integration pain directly onto the users. Instructors are forced to duplicate rubrics across three systems, and learners are forced to authenticate into distinct portals to match their lecture video with their quiz assignment.</p>
 
     <p>A unified architecture solves this by treating the course as a central state machine. Assessments, gradebooks, and analytics are not separate apps; they are strictly defined views querying the exact same underlying course data structure. To understand the architectural value, we must trace how a single educational intent travels through the platform.</p>

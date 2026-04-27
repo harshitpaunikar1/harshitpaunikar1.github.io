@@ -200,6 +200,19 @@
     <p class="subtitle">When an architecture integrates search, vector retrieval, APIs, calculator functions, and memory logs, the primary engineering problem is no longer capability. The primary problem is the control logic that decides when to do exactly nothing.</p>
   </header>
 
+  <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
+    <strong>My Role:</strong> I designed the routing control layer — the intent classifier, branch isolation strategy, and the selective activation rules that prevent over-routing. The over-routing failure mode I was trying to fix was discovered after watching the original assistant invoke the vector store on simple greeting messages, tripling latency on zero-value queries.
+  </div>
+  <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+    <strong style="margin-right:4px;">Stack:</strong>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Vector retrieval (RAG)</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Tool use / function calling</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Python</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Intent router</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Conversational memory</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">LLM</span>
+  </div>
+
   <main class="main-content">
     <p>A mature multi-tool assistant rarely fails because it lacks the capacity to retrieve a document or invoke a weather API. It fails because it invokes both simultaneously, searches memory for related context it doesn't need, and synthesizes the noisy results into an incoherent response riddled with hallucinations. This is the over-routed system: a platform where every subsystem acts as a default rather than as a deliberate exception.</p>
 

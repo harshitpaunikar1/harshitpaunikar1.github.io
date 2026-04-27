@@ -222,6 +222,19 @@
     <p class="lede">A persistent delusion in machine learning is that the neural network architecture dictates inference speed. It doesn't. Model architecture dictates theoretical FLOPs. The execution runtime dictates actual latency. Failing to drag a model out of its native Python environment and into a compiled hardware-accelerated engine guarantees that your edge hardware will choke.</p>
   </header>
 
+  <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
+    <strong>My Role:</strong> I built and ran the runtime optimization pipeline — PyTorch to ONNX export, TensorRT engine compilation, INT8 calibration, and the benchmark harness that measured latency and throughput across all three runtimes on the actual Jetson Nano hardware. The benchmarks were run in production conditions (device strapped to a forklift, ambient temperature, competing background processes) rather than in a lab, which is why the numbers look different from published benchmarks.
+  </div>
+  <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+    <strong style="margin-right:4px;">Stack:</strong>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">PyTorch</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">ONNX</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">TensorRT</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">INT8 calibration</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Nvidia Jetson Nano</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Python</span>
+  </div>
+
   <p>The vast majority of object detection and classification models are trained in PyTorch. For rapid prototyping inside a cloud cluster with 80GB VRAM A100 GPUs, native PyTorch execution is frictionless. But when you move that exact same <code>.pt</code> weights file to an Nvidia Jetson Nano strapped to a warehouse forklift, the application will hemorrhage RAM and drop to 4 frames per second.</p>
 
   <p>Python is an aggressively interpreted language laced with Global Interpreter Lock (GIL) friction, immense memory overhead, and highly unoptimized dispatch operations. Treating PyTorch as a production edge runtime is engineering negligence. To hit production targets, the model must be frozen, serialized out of Python entirely, and chemically bonded to the physical silicon executing it.</p>

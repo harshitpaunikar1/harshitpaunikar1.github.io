@@ -194,6 +194,19 @@
     <p class="lede">Every modern LLM sounds the same. They are pre-trained to be impossibly helpful, rigidly structured, and excruciatingly polite. Overwriting that sterile, generic tone to match a specific brand requires a brutal architectural choice: do we feed the model contextual knowledge, or do we fundamentally alter its vocal range through fine-tuning?</p>
   </header>
 
+  <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
+    <strong>My Role:</strong> I designed and implemented the dual-track architecture — RAG for volatile fact injection and LoRA for brand voice adaptation. A brand strategist provided the reference conversation samples and the tone brief that the LoRA training data was derived from; without those real examples, the fine-tuned model would have learned the wrong cadence entirely.
+  </div>
+  <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+    <strong style="margin-right:4px;">Stack:</strong>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">RAG</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">LoRA fine-tuning</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Vector store</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">LLM</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Python</span>
+    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Embeddings</span>
+  </div>
+
   <p>The standard industry response to the "brand voice" problem is a prompt-engineering band-aid. You inject a rigid system prompt detailing exactly how to behave: <em>"You are a sarcastic but helpful skateboard brand assistant. Be edgy."</em> The result is practically unreadable. The model doesn't understand subtext or pacing; it simply begins appending exclamation points and using the word "dude" while retaining a fundamentally academic sentence structure. It is the conversational equivalent of a spreadsheet wearing a backwards baseball cap.</p>
 
   <p>If a support assistant cannot natively mimic the cadences, the brevity, and the highly specific jargon of your human staff, it will relentlessly alienate the customer base. Solving this is an engineering problem, not a prompting exercise. We must split the deployment strategy between <strong>Retrieval-Augmented Generation (RAG)</strong> for factual knowledge isolation, and <strong>Low-Rank Adaptation (LoRA)</strong> for native vocal alteration.</p>
