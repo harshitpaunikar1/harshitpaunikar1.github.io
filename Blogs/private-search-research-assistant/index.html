@@ -525,15 +525,15 @@
 <rect fill="#ffffff" height="90" stroke="#111111" stroke-width="2" width="190" x="585" y="292"/>
 <rect fill="#f5f5f5" height="90" stroke="#111111" stroke-width="2" width="190" x="585" y="409"/>
 <text fill="#111111" font-family="IBM Plex Mono" font-size="16.4" font-weight="700" text-anchor="middle" x="680.0" y="210.6"><tspan x="680.0" y="210.6">candidate</tspan><tspan x="680.0" y="230.6">filter</tspan></text>
-<text fill="#111111" font-family="Source Serif 4" font-size="13.9" text-anchor="middle" x="680.0" y="254.6"><tspan x="680.0" y="254.6">title, host, rank,</tspan><tspan x="680.0" y="271.6">freshness</tspan></text>
+<text fill="#111111" font-family="Source Serif 4" font-size="13.9" text-anchor="middle" x="680.0" y="252.6"><tspan x="680.0" y="252.6">title, host, rank,</tspan><tspan x="680.0" y="268.6">freshness</tspan></text>
 <text fill="#111111" font-family="IBM Plex Mono" font-size="16.4" font-weight="700" text-anchor="middle" x="680.0" y="327.6">page fetch</text>
 <text fill="#111111" font-family="Source Serif 4" font-size="13.9" text-anchor="middle" x="680.0" y="351.6"><tspan x="680.0" y="351.6">extract readable</tspan><tspan x="680.0" y="368.6">text</tspan></text>
 <text fill="#111111" font-family="IBM Plex Mono" font-size="16.4" font-weight="700" text-anchor="middle" x="680.0" y="444.6"><tspan x="680.0" y="444.6">dedupe +</tspan><tspan x="680.0" y="464.6">evidence set</tspan></text>
 <text fill="#111111" font-family="Source Serif 4" font-size="13.9" text-anchor="middle" x="680.0" y="488.6"><tspan x="680.0" y="488.6">merge mirrors, keep</tspan><tspan x="680.0" y="505.6">canonicals</tspan></text>
-<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="500" x2="585" y1="128" y2="220"/>
-<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="500" x2="585" y1="238" y2="220"/>
-<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="500" x2="585" y1="348" y2="220"/>
-<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="500" x2="585" y1="458" y2="220"/>
+<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="500" x2="585" y1="128" y2="195"/>
+<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="500" x2="585" y1="238" y2="215"/>
+<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="500" x2="585" y1="348" y2="235"/>
+<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="500" x2="585" y1="458" y2="255"/>
 <line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="680" x2="680" y1="265" y2="292"/>
 <line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="680" x2="680" y1="382" y2="409"/>
 <rect fill="#ffffff" height="175" stroke="#111111" stroke-width="2" width="250" x="865" y="247"/>
@@ -547,7 +547,7 @@
 <text fill="#111111" font-family="IBM Plex Mono" font-size="21" font-weight="700" text-anchor="middle" x="972.5" y="122.0">Redis cache shelf</text>
 <text fill="#111111" font-family="Source Serif 4" font-size="17" font-weight="700" text-anchor="start" x="852.0" y="149.2">search:{query_fingerprint}</text>
 <text fill="#111111" font-family="Source Serif 4" font-size="17" font-weight="700" text-anchor="start" x="852.0" y="176.2">extract:{canonical_url_hash}</text>
-<line marker-end="url(#arrow)" stroke="#111111" stroke-dasharray="8 7" stroke-width="1.8" x1="215" x2="830" y1="268" y2="140"/>
+<path d="M215 268 L250 268 L250 70 L830 140" fill="none" marker-end="url(#arrow)" stroke="#111111" stroke-dasharray="8 7" stroke-width="1.8"/>
 <line marker-end="url(#arrow)" stroke="#111111" stroke-dasharray="8 7" stroke-width="1.8" x1="775" x2="830" y1="336" y2="168"/>
 </svg>
             <figcaption>The fan matters because the assistant is meant to behave like a careful research aide rather than a one-engine wrapper. Each branch can return overlapping or conflicting candidates, so the system delays summarization until title, host, canonical URL hints, and extracted text have been inspected. The side cache is not just a performance trick; it is part of the research ergonomics. Queries repeat. Investigations get reframed. Follow-up prompts often differ by only a few tokens. Reusing earlier search pools and page extracts lowers latency, but it also stabilizes the evidence set, which means a second pass is more likely to cite the same source lineage instead of drifting because a remote ranking changed.</figcaption>
@@ -696,9 +696,9 @@
 <text fill="#111111" font-family="Source Serif 4" font-size="18" font-weight="700" text-anchor="start" x="667.0" y="459.1"><tspan x="667.0" y="459.1">[1] Official docs, canonical URL, extracted</tspan><tspan x="667.0" y="481.1">on latest fetch</tspan></text>
 <text fill="#111111" font-family="Source Serif 4" font-size="18" font-weight="700" text-anchor="start" x="667.0" y="509.1"><tspan x="667.0" y="509.1">[2] Reporting article, distinct</tspan><tspan x="667.0" y="531.0">interpretation, link retained</tspan></text>
 <text fill="#111111" font-family="Source Serif 4" font-size="18" font-weight="700" text-anchor="start" x="667.0" y="559.0"><tspan x="667.0" y="559.0">[3] Community thread, useful but lower</tspan><tspan x="667.0" y="581.0">authority, flagged</tspan></text>
-<line marker-end="url(#arrow-two)" stroke="#111111" stroke-dasharray="9 8" stroke-width="2" x1="280" x2="645" y1="457" y2="250"/>
-<text fill="#111111" font-family="Source Serif 4" font-size="18" x="396" y="321">cache hit reuses evidence objects</text>
-<text fill="#111111" font-family="Source Serif 4" font-size="18" x="414" y="347">so the same citations remain stable</text>
+<path d="M280 457 C360 410 470 350 628 286" fill="none" marker-end="url(#arrow-two)" stroke="#111111" stroke-dasharray="9 8" stroke-width="2"/>
+<text fill="#111111" font-family="Source Serif 4" font-size="18" text-anchor="middle" x="470" y="332">cache hit reuses evidence objects</text>
+<text fill="#111111" font-family="Source Serif 4" font-size="18" text-anchor="middle" x="470" y="358">so the same citations remain stable</text>
 </svg>
             <figcaption>This companion figure pairs two ideas that are usually treated separately. On the left, caching is shown as a discipline of stable fingerprints rather than a raw key-value shortcut: normalize the query, generate a reusable query fingerprint, then store search pools, extracted pages, and possibly answer objects with clear boundaries. On the right, citation presentation is shown as a first-class interface rather than a footer. The value of the cache is not just speed. It helps keep the evidence objects stable across repeat investigations, which means the answer is less likely to cite a different mix of sources simply because the user asked the same question twice in slightly different wording.</figcaption>
           </figure>

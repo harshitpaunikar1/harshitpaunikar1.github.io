@@ -508,13 +508,16 @@
           <text x="592" y="94" fill="#ffffff">24 ms</text>
           <rect x="758" y="76" width="100" height="26" rx="13" fill="#434343"/>
           <text x="808" y="94" fill="#ffffff">3.8 ms</text>
-          <rect x="974" y="76" width="100" height="26" rx="13" fill="#111111"/>
+          <rect x="964" y="76" width="120" height="26" rx="13" fill="#111111"/>
           <text x="1024" y="94" fill="#ffffff">async 40 ms</text>
-          <rect x="1180" y="76" width="120" height="26" rx="13" fill="#434343"/>
+          <rect x="1168" y="76" width="144" height="26" rx="13" fill="#434343"/>
           <text x="1240" y="94" fill="#ffffff">operator paced</text>
         </g>
         <path d="M1024 236 C1080 270, 1160 270, 1240 246" fill="none" stroke="#757575" stroke-width="4" stroke-dasharray="8 8"/>
-        <text x="1012" y="292" font-family="IBM Plex Mono, monospace" font-size="15" fill="#5b5b5b">async evidence branch keeps report work off the hot frame path</text>
+        <text x="1180" y="286" font-family="IBM Plex Mono, monospace" font-size="15" fill="#5b5b5b" text-anchor="middle">
+          <tspan x="1180" y="286">async evidence branch keeps</tspan>
+          <tspan x="1180" y="308">report work off the hot frame path</tspan>
+        </text>
       </svg>
       <figcaption id="rail-caption"><span class="caption-kicker">Figure 01</span>The main rail should remain narrow and predictable: capture, handoff, inference, and render stay on the hot path; crop logging and report generation branch out asynchronously so the browser can keep moving.</figcaption>
     </figure>
