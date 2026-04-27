@@ -1,0 +1,1074 @@
+============================================================
+SVG / PNG / HTML REPAIR TRACKER
+Folder: images_saved
+Last Updated: 2026-04-27 18:32
+============================================================
+
+SUMMARY
+Total SVG files: 130
+Total PNG/image files: 130
+Total index.html files: 0
+Completed: 130
+Pending: 0
+Blocked: 0
+Needs Review: 0
+
+Final summary:
+- Reset all 130 SVG files from the original project `index.html` sources to remove prior overcorrections and restore intact standalone geometry.
+- Added standalone-safe SVG root attributes where missing during re-extraction, including `xmlns`, `width`, and `height` derived from `viewBox`.
+- Applied a targeted second-pass text layout repair to 14 diagrams with verified overflow or overlap in standalone rendering, focusing on single-column card and panel text.
+- Normalized malformed source markup that blocked SVG parsing or PNG export, including smart quotes in SVG attributes, raw `<` characters inside text content, raw `&` in text labels, and unsupported named entities such as `&mdash;` and `&middot;`.
+- Replaced all 130 PNG previews with fresh renders from the current SVGs using `@resvg/resvg-js`, replacing the earlier `sips` exports that distorted or clipped text.
+- Verified representative repaired outputs directly from the final replacement PNGs; no `index.html` files exist inside `images_saved`.
+
+------------------------------------------------------------
+TASK LOG
+------------------------------------------------------------
+
+0. File/Component: second-pass standalone SVG repair batch
+   Related files: 130 SVG files, 130 PNG files, manifest.csv
+   Status: [Done]
+   Issues found: User-reported text overflow and overlap remained in a subset of standalone SVG exports; some source SVGs also contained malformed XML-safe markup that blocked modern SVG rendering.
+   Fixes applied: Re-extracted SVGs from source HTML, applied targeted text reflow to 14 affected diagrams, normalized invalid smart quotes and text-level XML characters, and regenerated all PNG previews with `@resvg/resvg-js`.
+   Verification: Final folder contains 130 SVG files and 130 PNG files; all PNGs were refreshed in the second pass; representative repaired diagrams and unaffected storyboard layouts were visually checked from final replacement PNGs.
+   Notes: No `index.html` files were present inside `images_saved`, so HTML-side repair was not applicable in this folder.
+
+1. File/Component: adaptive-yard-routing__01__diagram-01
+   Related files: adaptive-yard-routing__01__diagram-01.svg, adaptive-yard-routing__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+2. File/Component: adaptive-yard-routing__02__diagram-02
+   Related files: adaptive-yard-routing__02__diagram-02.svg, adaptive-yard-routing__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+3. File/Component: adaptive-yard-routing__03__diagram-03
+   Related files: adaptive-yard-routing__03__diagram-03.svg, adaptive-yard-routing__03__diagram-03.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+4. File/Component: airline-passenger-forecasting__01__layered-seasonal-strip-showing-raw-passenger-series-monthly-seasonal-pat
+   Related files: airline-passenger-forecasting__01__layered-seasonal-strip-showing-raw-passenger-series-monthly-seasonal-pat.svg, airline-passenger-forecasting__01__layered-seasonal-strip-showing-raw-passenger-series-monthly-seasonal-pat.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+5. File/Component: airline-passenger-forecasting__02__rolling-origin-evaluation-timeline-for-airline-forecasting
+   Related files: airline-passenger-forecasting__02__rolling-origin-evaluation-timeline-for-airline-forecasting.svg, airline-passenger-forecasting__02__rolling-origin-evaluation-timeline-for-airline-forecasting.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+6. File/Component: android-edge-vision-logistics__01__diagram-01
+   Related files: android-edge-vision-logistics__01__diagram-01.svg, android-edge-vision-logistics__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+7. File/Component: android-edge-vision-logistics__02__diagram-02
+   Related files: android-edge-vision-logistics__02__diagram-02.svg, android-edge-vision-logistics__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+8. File/Component: android-edge-vision-logistics__03__diagram-03
+   Related files: android-edge-vision-logistics__03__diagram-03.svg, android-edge-vision-logistics__03__diagram-03.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+9. File/Component: brand-tuned-support-assistant__01__diagram-01
+   Related files: brand-tuned-support-assistant__01__diagram-01.svg, brand-tuned-support-assistant__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+10. File/Component: brand-tuned-support-assistant__02__diagram-02
+   Related files: brand-tuned-support-assistant__02__diagram-02.svg, brand-tuned-support-assistant__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+11. File/Component: brand-tuned-support-assistant__03__diagram-03
+   Related files: brand-tuned-support-assistant__03__diagram-03.svg, brand-tuned-support-assistant__03__diagram-03.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+12. File/Component: carsharing-availability-eda__01__diagram-01
+   Related files: carsharing-availability-eda__01__diagram-01.svg, carsharing-availability-eda__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+13. File/Component: carsharing-availability-eda__02__diagram-02
+   Related files: carsharing-availability-eda__02__diagram-02.svg, carsharing-availability-eda__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+14. File/Component: carsharing-availability-eda__03__diagram-03
+   Related files: carsharing-availability-eda__03__diagram-03.svg, carsharing-availability-eda__03__diagram-03.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+15. File/Component: co2-emissions-prediction__01__emissions-web-showing-measured-variables-around-a-central-per-capita-co2
+   Related files: co2-emissions-prediction__01__emissions-web-showing-measured-variables-around-a-central-per-capita-co2.svg, co2-emissions-prediction__01__emissions-web-showing-measured-variables-around-a-central-per-capita-co2.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+16. File/Component: data-driven-aid-allocation-model__01__diagram-01
+   Related files: data-driven-aid-allocation-model__01__diagram-01.svg, data-driven-aid-allocation-model__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+17. File/Component: data-driven-aid-allocation-model__02__diagram-02
+   Related files: data-driven-aid-allocation-model__02__diagram-02.svg, data-driven-aid-allocation-model__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+18. File/Component: data-driven-aid-allocation-model__03__diagram-03
+   Related files: data-driven-aid-allocation-model__03__diagram-03.svg, data-driven-aid-allocation-model__03__diagram-03.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+19. File/Component: digital-media-view-prediction__01__calendar-rail-showing-launch-timeline-promo-pulses-weekend-peaks-and-exp
+   Related files: digital-media-view-prediction__01__calendar-rail-showing-launch-timeline-promo-pulses-weekend-peaks-and-exp.svg, digital-media-view-prediction__01__calendar-rail-showing-launch-timeline-promo-pulses-weekend-peaks-and-exp.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+20. File/Component: edge-ai-container-trailer-detection__01__diagram-01
+   Related files: edge-ai-container-trailer-detection__01__diagram-01.svg, edge-ai-container-trailer-detection__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+21. File/Component: edge-ai-container-trailer-detection__02__diagram-02
+   Related files: edge-ai-container-trailer-detection__02__diagram-02.svg, edge-ai-container-trailer-detection__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+22. File/Component: edge-ai-container-trailer-detection__03__diagram-03
+   Related files: edge-ai-container-trailer-detection__03__diagram-03.svg, edge-ai-container-trailer-detection__03__diagram-03.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+23. File/Component: edge-ai-runtime-evaluation__01__diagram-01
+   Related files: edge-ai-runtime-evaluation__01__diagram-01.svg, edge-ai-runtime-evaluation__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+24. File/Component: edge-ai-runtime-evaluation__02__diagram-02
+   Related files: edge-ai-runtime-evaluation__02__diagram-02.svg, edge-ai-runtime-evaluation__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+25. File/Component: edge-ai-runtime-evaluation__03__diagram-03
+   Related files: edge-ai-runtime-evaluation__03__diagram-03.svg, edge-ai-runtime-evaluation__03__diagram-03.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+26. File/Component: engagement-triggered-followup-automation__01__diagram-01
+   Related files: engagement-triggered-followup-automation__01__diagram-01.svg, engagement-triggered-followup-automation__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+27. File/Component: engagement-triggered-followup-automation__02__diagram-02
+   Related files: engagement-triggered-followup-automation__02__diagram-02.svg, engagement-triggered-followup-automation__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+28. File/Component: engagement-triggered-followup-automation__03__diagram-03
+   Related files: engagement-triggered-followup-automation__03__diagram-03.svg, engagement-triggered-followup-automation__03__diagram-03.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+29. File/Component: enterprise-yms-integration__01__interface-constellation-around-the-yard-management-system
+   Related files: enterprise-yms-integration__01__interface-constellation-around-the-yard-management-system.svg, enterprise-yms-integration__01__interface-constellation-around-the-yard-management-system.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+30. File/Component: enterprise-yms-integration__02__reconciliation-swimlane-for-failed-yard-events
+   Related files: enterprise-yms-integration__02__reconciliation-swimlane-for-failed-yard-events.svg, enterprise-yms-integration__02__reconciliation-swimlane-for-failed-yard-events.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+31. File/Component: enterprise-yms-integration__03__before-and-after-integration-metrics
+   Related files: enterprise-yms-integration__03__before-and-after-integration-metrics.svg, enterprise-yms-integration__03__before-and-after-integration-metrics.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+32. File/Component: housing-pca-case-study__01__comparison-dial-showing-original-feature-model-on-the-left-pca-model-on
+   Related files: housing-pca-case-study__01__comparison-dial-showing-original-feature-model-on-the-left-pca-model-on.svg, housing-pca-case-study__01__comparison-dial-showing-original-feature-model-on-the-left-pca-model-on.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+33. File/Component: housing-pca-case-study__02__decision-matrix-comparing-original-features-and-pca-across-interpretabil
+   Related files: housing-pca-case-study__02__decision-matrix-comparing-original-features-and-pca-across-interpretabil.svg, housing-pca-case-study__02__decision-matrix-comparing-original-features-and-pca-across-interpretabil.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+34. File/Component: housing-price-prediction__01__fig-1-valuation-board-left-feature-elasticity-strip-showing-direction-an
+   Related files: housing-price-prediction__01__fig-1-valuation-board-left-feature-elasticity-strip-showing-direction-an.svg, housing-price-prediction__01__fig-1-valuation-board-left-feature-elasticity-strip-showing-direction-an.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+35. File/Component: india-budget-2020-economic-analysis__01__fig-1-four-macro-indicators-aligned-to-the-budget-2020-window-shaded-bar
+   Related files: india-budget-2020-economic-analysis__01__fig-1-four-macro-indicators-aligned-to-the-budget-2020-window-shaded-bar.svg, india-budget-2020-economic-analysis__01__fig-1-four-macro-indicators-aligned-to-the-budget-2020-window-shaded-bar.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+36. File/Component: iris-pca-analysis__01__pca-axes-rotation-diagram-with-scree-plot
+   Related files: iris-pca-analysis__01__pca-axes-rotation-diagram-with-scree-plot.svg, iris-pca-analysis__01__pca-axes-rotation-diagram-with-scree-plot.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+37. File/Component: lead-management-product-launch__01__launch-timeline-ribbon-with-scope-and-cost-inflection-points
+   Related files: lead-management-product-launch__01__launch-timeline-ribbon-with-scope-and-cost-inflection-points.svg, lead-management-product-launch__01__launch-timeline-ribbon-with-scope-and-cost-inflection-points.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+38. File/Component: lead-management-product-launch__02__before-and-after-lead-management-metrics
+   Related files: lead-management-product-launch__02__before-and-after-lead-management-metrics.svg, lead-management-product-launch__02__before-and-after-lead-management-metrics.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+39. File/Component: linear-regression-cross-validation__01__fig-1-top-correct-5-fold-mechanism-each-pass-uses-a-fresh-non-overlappin
+   Related files: linear-regression-cross-validation__01__fig-1-top-correct-5-fold-mechanism-each-pass-uses-a-fresh-non-overlappin.svg, linear-regression-cross-validation__01__fig-1-top-correct-5-fold-mechanism-each-pass-uses-a-fresh-non-overlappin.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+40. File/Component: llm-sales-assistant__01__conversation-spine-for-the-llm-sales-assistant
+   Related files: llm-sales-assistant__01__conversation-spine-for-the-llm-sales-assistant.svg, llm-sales-assistant__01__conversation-spine-for-the-llm-sales-assistant.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+41. File/Component: llm-sales-assistant__02__before-and-after-metrics-for-the-sales-assistant-deployment
+   Related files: llm-sales-assistant__02__before-and-after-metrics-for-the-sales-assistant-deployment.svg, llm-sales-assistant__02__before-and-after-metrics-for-the-sales-assistant-deployment.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+42. File/Component: loan-default-risk-prediction__01__fig-1-left-panel-credit-approval-ladder-each-scoreband-maps-to-an-instit
+   Related files: loan-default-risk-prediction__01__fig-1-left-panel-credit-approval-ladder-each-scoreband-maps-to-an-instit.svg, loan-default-risk-prediction__01__fig-1-left-panel-credit-approval-ladder-each-scoreband-maps-to-an-instit.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+43. File/Component: local-business-profit-planning__01__margin-ledger-from-revenue-to-weekly-operating-profit
+   Related files: local-business-profit-planning__01__margin-ledger-from-revenue-to-weekly-operating-profit.svg, local-business-profit-planning__01__margin-ledger-from-revenue-to-weekly-operating-profit.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+44. File/Component: local-business-profit-planning__02__scenario-board-comparing-price-and-reorder-strategies
+   Related files: local-business-profit-planning__02__scenario-board-comparing-price-and-reorder-strategies.svg, local-business-profit-planning__02__scenario-board-comparing-price-and-reorder-strategies.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+45. File/Component: local-business-profit-planning__03__before-and-after-metrics-for-the-pilot-group-of-15-retailers
+   Related files: local-business-profit-planning__03__before-and-after-metrics-for-the-pilot-group-of-15-retailers.svg, local-business-profit-planning__03__before-and-after-metrics-for-the-pilot-group-of-15-retailers.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+46. File/Component: marketing-process-analytics-dashboard__01__panel-stack-for-a-marketing-process-analytics-dashboard
+   Related files: marketing-process-analytics-dashboard__01__panel-stack-for-a-marketing-process-analytics-dashboard.svg, marketing-process-analytics-dashboard__01__panel-stack-for-a-marketing-process-analytics-dashboard.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+47. File/Component: marketing-process-analytics-dashboard__02__throughput-timeline-from-send-to-follow-up
+   Related files: marketing-process-analytics-dashboard__02__throughput-timeline-from-send-to-follow-up.svg, marketing-process-analytics-dashboard__02__throughput-timeline-from-send-to-follow-up.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+48. File/Component: marketing-process-analytics-dashboard__03__before-and-after-metrics-for-the-marketing-dashboard
+   Related files: marketing-process-analytics-dashboard__03__before-and-after-metrics-for-the-marketing-dashboard.svg, marketing-process-analytics-dashboard__03__before-and-after-metrics-for-the-marketing-dashboard.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+49. File/Component: marriage-age-prediction-flask-app__01__diagram-01
+   Related files: marriage-age-prediction-flask-app__01__diagram-01.svg, marriage-age-prediction-flask-app__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+50. File/Component: medical-evidence-qa-assistant__01__citation-loom-diagram
+   Related files: medical-evidence-qa-assistant__01__citation-loom-diagram.svg, medical-evidence-qa-assistant__01__citation-loom-diagram.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+51. File/Component: medical-evidence-qa-assistant__02__refusal-tree-diagram
+   Related files: medical-evidence-qa-assistant__02__refusal-tree-diagram.svg, medical-evidence-qa-assistant__02__refusal-tree-diagram.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+52. File/Component: medical-evidence-qa-assistant__03__before-and-after-metrics-for-the-medical-evidence-qa-assistant
+   Related files: medical-evidence-qa-assistant__03__before-and-after-metrics-for-the-medical-evidence-qa-assistant.svg, medical-evidence-qa-assistant__03__before-and-after-metrics-for-the-medical-evidence-qa-assistant.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+53. File/Component: model-free-vertical-text-ocr__01__monochrome-storyboard-of-one-vertical-label-through-deterministic-ocr-st
+   Related files: model-free-vertical-text-ocr__01__monochrome-storyboard-of-one-vertical-label-through-deterministic-ocr-st.svg, model-free-vertical-text-ocr__01__monochrome-storyboard-of-one-vertical-label-through-deterministic-ocr-st.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+54. File/Component: model-free-vertical-text-ocr__02__failure-strip-for-deterministic-vertical-ocr
+   Related files: model-free-vertical-text-ocr__02__failure-strip-for-deterministic-vertical-ocr.svg, model-free-vertical-text-ocr__02__failure-strip-for-deterministic-vertical-ocr.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+55. File/Component: model-free-vertical-text-ocr__03__before-and-after-metrics-for-the-vertical-ocr-pipeline
+   Related files: model-free-vertical-text-ocr__03__before-and-after-metrics-for-the-vertical-ocr-pipeline.svg, model-free-vertical-text-ocr__03__before-and-after-metrics-for-the-vertical-ocr-pipeline.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+56. File/Component: ngo-resource-allocation-model__01__fig-1-allocation-decision-slate-countries-land-in-the-matrix-based-on-th
+   Related files: ngo-resource-allocation-model__01__fig-1-allocation-decision-slate-countries-land-in-the-matrix-based-on-th.svg, ngo-resource-allocation-model__01__fig-1-allocation-decision-slate-countries-land-in-the-matrix-based-on-th.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+57. File/Component: ngo-resource-allocation-model__02__fig-2-score-to-recommendation-ladder-each-tier-maps-a-cluster-profile-to
+   Related files: ngo-resource-allocation-model__02__fig-2-score-to-recommendation-ladder-each-tier-maps-a-cluster-profile-to.svg, ngo-resource-allocation-model__02__fig-2-score-to-recommendation-ladder-each-tier-maps-a-cluster-profile-to.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+58. File/Component: nocode-logistics-form-builder__01__schema-loom-for-logistics-form-builder
+   Related files: nocode-logistics-form-builder__01__schema-loom-for-logistics-form-builder.svg, nocode-logistics-form-builder__01__schema-loom-for-logistics-form-builder.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+59. File/Component: nocode-logistics-form-builder__02__task-template-workflow-diagram
+   Related files: nocode-logistics-form-builder__02__task-template-workflow-diagram.svg, nocode-logistics-form-builder__02__task-template-workflow-diagram.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+60. File/Component: nocode-logistics-form-builder__03__before-and-after-comparison-of-form-change-operations
+   Related files: nocode-logistics-form-builder__03__before-and-after-comparison-of-form-change-operations.svg, nocode-logistics-form-builder__03__before-and-after-comparison-of-form-change-operations.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+61. File/Component: npa-risk-prediction__01__card-explaining-auc-ks-lift-and-operational-interpretation
+   Related files: npa-risk-prediction__01__card-explaining-auc-ks-lift-and-operational-interpretation.svg, npa-risk-prediction__01__card-explaining-auc-ks-lift-and-operational-interpretation.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+62. File/Component: npa-risk-prediction__02__monochrome-escalator-showing-applicants-entering-at-the-base-and-moving
+   Related files: npa-risk-prediction__02__monochrome-escalator-showing-applicants-entering-at-the-base-and-moving.svg, npa-risk-prediction__02__monochrome-escalator-showing-applicants-entering-at-the-base-and-moving.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+63. File/Component: npa-risk-prediction__03__before-and-after-comparison-of-npa-prediction-system-performance
+   Related files: npa-risk-prediction__03__before-and-after-comparison-of-npa-prediction-system-performance.svg, npa-risk-prediction__03__before-and-after-comparison-of-npa-prediction-system-performance.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+64. File/Component: offline-inspection-capture-platform__01__operator-journey-through-the-on-device-inspection-path
+   Related files: offline-inspection-capture-platform__01__operator-journey-through-the-on-device-inspection-path.svg, offline-inspection-capture-platform__01__operator-journey-through-the-on-device-inspection-path.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+65. File/Component: offline-inspection-capture-platform__02__sync-braid-diagram-for-one-offline-inspection
+   Related files: offline-inspection-capture-platform__02__sync-braid-diagram-for-one-offline-inspection.svg, offline-inspection-capture-platform__02__sync-braid-diagram-for-one-offline-inspection.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+66. File/Component: offline-inspection-capture-platform__03__before-and-after-comparison-of-inspection-operations
+   Related files: offline-inspection-capture-platform__03__before-and-after-comparison-of-inspection-operations.svg, offline-inspection-capture-platform__03__before-and-after-comparison-of-inspection-operations.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+67. File/Component: online-retail-customer-clustering__01__fig-2-cluster-separation-in-2-component-pca-space-pc1-captures-the-value
+   Related files: online-retail-customer-clustering__01__fig-2-cluster-separation-in-2-component-pca-space-pc1-captures-the-value.svg, online-retail-customer-clustering__01__fig-2-cluster-separation-in-2-component-pca-space-pc1-captures-the-value.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+68. File/Component: onprem-comment-intelligence-engine__01__ingestion-lattice-with-permission-boundary
+   Related files: onprem-comment-intelligence-engine__01__ingestion-lattice-with-permission-boundary.svg, onprem-comment-intelligence-engine__01__ingestion-lattice-with-permission-boundary.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+69. File/Component: onprem-comment-intelligence-engine__02__permission-bound-alert-routing
+   Related files: onprem-comment-intelligence-engine__02__permission-bound-alert-routing.svg, onprem-comment-intelligence-engine__02__permission-bound-alert-routing.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+70. File/Component: onprem-comment-intelligence-engine__03__before-and-after-comparison-of-comment-intelligence-operations
+   Related files: onprem-comment-intelligence-engine__03__before-and-after-comparison-of-comment-intelligence-operations.svg, onprem-comment-intelligence-engine__03__before-and-after-comparison-of-comment-intelligence-operations.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+71. File/Component: onprem-vision-inference-pipeline__01__gateway-spine-for-on-prem-multimodal-extraction
+   Related files: onprem-vision-inference-pipeline__01__gateway-spine-for-on-prem-multimodal-extraction.svg, onprem-vision-inference-pipeline__01__gateway-spine-for-on-prem-multimodal-extraction.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+72. File/Component: onprem-vision-inference-pipeline__02__schema-and-error-handling-companion-figure
+   Related files: onprem-vision-inference-pipeline__02__schema-and-error-handling-companion-figure.svg, onprem-vision-inference-pipeline__02__schema-and-error-handling-companion-figure.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+73. File/Component: onprem-vision-inference-pipeline__03__before-and-after-comparison-of-document-processing
+   Related files: onprem-vision-inference-pipeline__03__before-and-after-comparison-of-document-processing.svg, onprem-vision-inference-pipeline__03__before-and-after-comparison-of-document-processing.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+74. File/Component: power-user-curve-analysis__01__diagram-01
+   Related files: power-user-curve-analysis__01__diagram-01.svg, power-user-curve-analysis__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+75. File/Component: power-user-curve-analysis__02__diagram-02
+   Related files: power-user-curve-analysis__02__diagram-02.svg, power-user-curve-analysis__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+76. File/Component: power-user-curve-analysis__03__diagram-03
+   Related files: power-user-curve-analysis__03__diagram-03.svg, power-user-curve-analysis__03__diagram-03.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+77. File/Component: private-search-research-assistant__01__search-fanout-extraction-deduplication-and-cited-answer-diagram
+   Related files: private-search-research-assistant__01__search-fanout-extraction-deduplication-and-cited-answer-diagram.svg, private-search-research-assistant__01__search-fanout-extraction-deduplication-and-cited-answer-diagram.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+78. File/Component: private-search-research-assistant__02__cache-and-citation-presentation-companion-diagram
+   Related files: private-search-research-assistant__02__cache-and-citation-presentation-companion-diagram.svg, private-search-research-assistant__02__cache-and-citation-presentation-companion-diagram.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+79. File/Component: private-search-research-assistant__03__before-and-after-comparison-of-research-workflow-metrics
+   Related files: private-search-research-assistant__03__before-and-after-comparison-of-research-workflow-metrics.svg, private-search-research-assistant__03__before-and-after-comparison-of-research-workflow-metrics.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+80. File/Component: prompt-reliability-workflow__01__rubric-and-regression-companion-diagram
+   Related files: prompt-reliability-workflow__01__rubric-and-regression-companion-diagram.svg, prompt-reliability-workflow__01__rubric-and-regression-companion-diagram.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+81. File/Component: prompt-reliability-workflow__02__evaluation-wheel-with-historical-drift-strip
+   Related files: prompt-reliability-workflow__02__evaluation-wheel-with-historical-drift-strip.svg, prompt-reliability-workflow__02__evaluation-wheel-with-historical-drift-strip.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+82. File/Component: prompt-reliability-workflow__03__before-and-after-comparison-of-prompt-reliability-metrics
+   Related files: prompt-reliability-workflow__03__before-and-after-comparison-of-prompt-reliability-metrics.svg, prompt-reliability-workflow__03__before-and-after-comparison-of-prompt-reliability-metrics.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+83. File/Component: property-valuation-model__01__diagram-01
+   Related files: property-valuation-model__01__diagram-01.svg, property-valuation-model__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+84. File/Component: property-valuation-model__02__diagram-02
+   Related files: property-valuation-model__02__diagram-02.svg, property-valuation-model__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+85. File/Component: realtime-marketing-decision-engine__01__signal-conveyor-from-left-side-sources-to-role-specific-decision-surface
+   Related files: realtime-marketing-decision-engine__01__signal-conveyor-from-left-side-sources-to-role-specific-decision-surface.svg, realtime-marketing-decision-engine__01__signal-conveyor-from-left-side-sources-to-role-specific-decision-surface.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+86. File/Component: realtime-marketing-decision-engine__02__kpi-assembly-and-role-hierarchy-companion-figure
+   Related files: realtime-marketing-decision-engine__02__kpi-assembly-and-role-hierarchy-companion-figure.svg, realtime-marketing-decision-engine__02__kpi-assembly-and-role-hierarchy-companion-figure.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+87. File/Component: realtime-marketing-decision-engine__03__before-and-after-comparison-of-marketing-decision-metrics
+   Related files: realtime-marketing-decision-engine__03__before-and-after-comparison-of-marketing-decision-metrics.svg, realtime-marketing-decision-engine__03__before-and-after-comparison-of-marketing-decision-metrics.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+88. File/Component: realtime-sales-signal-dashboard__01__monochrome-territory-pulse-map-feeding-dashboard-tiles-and-alert-bands
+   Related files: realtime-sales-signal-dashboard__01__monochrome-territory-pulse-map-feeding-dashboard-tiles-and-alert-bands.svg, realtime-sales-signal-dashboard__01__monochrome-territory-pulse-map-feeding-dashboard-tiles-and-alert-bands.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+89. File/Component: realtime-sales-signal-dashboard__02__slim-flow-from-mobile-submission-to-tableau-refresh
+   Related files: realtime-sales-signal-dashboard__02__slim-flow-from-mobile-submission-to-tableau-refresh.svg, realtime-sales-signal-dashboard__02__slim-flow-from-mobile-submission-to-tableau-refresh.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+90. File/Component: realtime-sales-signal-dashboard__03__before-and-after-comparison-of-field-operations-metrics
+   Related files: realtime-sales-signal-dashboard__03__before-and-after-comparison-of-field-operations-metrics.svg, realtime-sales-signal-dashboard__03__before-and-after-comparison-of-field-operations-metrics.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+91. File/Component: realtime-voice-agent__01__latency-ribbon-for-the-voice-pipeline
+   Related files: realtime-voice-agent__01__latency-ribbon-for-the-voice-pipeline.svg, realtime-voice-agent__01__latency-ribbon-for-the-voice-pipeline.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+92. File/Component: realtime-voice-agent__02__turn-taking-state-machine
+   Related files: realtime-voice-agent__02__turn-taking-state-machine.svg, realtime-voice-agent__02__turn-taking-state-machine.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+93. File/Component: realtime-voice-agent__03__before-and-after-comparison-of-voice-agent-deployment-metrics
+   Related files: realtime-voice-agent__03__before-and-after-comparison-of-voice-agent-deployment-metrics.svg, realtime-voice-agent__03__before-and-after-comparison-of-voice-agent-deployment-metrics.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+94. File/Component: realtime-web-object-detection__01__monochrome-frame-rail-showing-capture-handoff-inference-render-crop-log
+   Related files: realtime-web-object-detection__01__monochrome-frame-rail-showing-capture-handoff-inference-render-crop-log.svg, realtime-web-object-detection__01__monochrome-frame-rail-showing-capture-handoff-inference-render-crop-log.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+95. File/Component: realtime-web-object-detection__02__logging-and-reporting-companion-diagram-for-browser-detections-flask-int
+   Related files: realtime-web-object-detection__02__logging-and-reporting-companion-diagram-for-browser-detections-flask-int.svg, realtime-web-object-detection__02__logging-and-reporting-companion-diagram-for-browser-detections-flask-int.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+96. File/Component: realtime-web-object-detection__03__before-and-after-comparison-of-defect-detection-metrics
+   Related files: realtime-web-object-detection__03__before-and-after-comparison-of-defect-detection-metrics.svg, realtime-web-object-detection__03__before-and-after-comparison-of-defect-detection-metrics.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+97. File/Component: reliable-browser-video-calling__01__diagram-01
+   Related files: reliable-browser-video-calling__01__diagram-01.svg, reliable-browser-video-calling__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+98. File/Component: reliable-browser-video-calling__02__diagram-02
+   Related files: reliable-browser-video-calling__02__diagram-02.svg, reliable-browser-video-calling__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+99. File/Component: retrieval-tool-use-assistant__01__diagram-01
+   Related files: retrieval-tool-use-assistant__01__diagram-01.svg, retrieval-tool-use-assistant__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+100. File/Component: retrieval-tool-use-assistant__02__diagram-02
+   Related files: retrieval-tool-use-assistant__02__diagram-02.svg, retrieval-tool-use-assistant__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+101. File/Component: rtsp-camera-browser-streaming__01__diagram-01
+   Related files: rtsp-camera-browser-streaming__01__diagram-01.svg, rtsp-camera-browser-streaming__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+102. File/Component: rtsp-camera-browser-streaming__02__diagram-02
+   Related files: rtsp-camera-browser-streaming__02__diagram-02.svg, rtsp-camera-browser-streaming__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+103. File/Component: salary-estimation-flask-app__01__request-ladder-for-the-flask-salary-estimator
+   Related files: salary-estimation-flask-app__01__request-ladder-for-the-flask-salary-estimator.svg, salary-estimation-flask-app__01__request-ladder-for-the-flask-salary-estimator.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+104. File/Component: salary-estimation-flask-app__02__browser-and-api-storyboard-for-the-salary-estimator
+   Related files: salary-estimation-flask-app__02__browser-and-api-storyboard-for-the-salary-estimator.svg, salary-estimation-flask-app__02__browser-and-api-storyboard-for-the-salary-estimator.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+105. File/Component: scalable-image-processing-api__01__diagram-01
+   Related files: scalable-image-processing-api__01__diagram-01.svg, scalable-image-processing-api__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+106. File/Component: scalable-image-processing-api__02__diagram-02
+   Related files: scalable-image-processing-api__02__diagram-02.svg, scalable-image-processing-api__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+107. File/Component: small-team-devops-delivery-pipeline__01__diagram-01
+   Related files: small-team-devops-delivery-pipeline__01__diagram-01.svg, small-team-devops-delivery-pipeline__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+108. File/Component: small-team-devops-delivery-pipeline__02__diagram-02
+   Related files: small-team-devops-delivery-pipeline__02__diagram-02.svg, small-team-devops-delivery-pipeline__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+109. File/Component: sponsorsync-influencer-marketplace__01__diagram-01
+   Related files: sponsorsync-influencer-marketplace__01__diagram-01.svg, sponsorsync-influencer-marketplace__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+110. File/Component: sponsorsync-influencer-marketplace__02__diagram-02
+   Related files: sponsorsync-influencer-marketplace__02__diagram-02.svg, sponsorsync-influencer-marketplace__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+111. File/Component: support-inbox-copilot__01__diagram-01
+   Related files: support-inbox-copilot__01__diagram-01.svg, support-inbox-copilot__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+112. File/Component: support-inbox-copilot__02__diagram-02
+   Related files: support-inbox-copilot__02__diagram-02.svg, support-inbox-copilot__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+113. File/Component: telecom-churn-prediction__01__fig-1-lifecycle-trigger-map-the-horizontal-track-shows-the-customer-jour
+   Related files: telecom-churn-prediction__01__fig-1-lifecycle-trigger-map-the-horizontal-track-shows-the-customer-jour.svg, telecom-churn-prediction__01__fig-1-lifecycle-trigger-map-the-horizontal-track-shows-the-customer-jour.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+114. File/Component: telecom-churn-prediction__02__fig-2-intervention-cost-value-matrix-each-tier-s-threshold-channel-cost
+   Related files: telecom-churn-prediction__02__fig-2-intervention-cost-value-matrix-each-tier-s-threshold-channel-cost.svg, telecom-churn-prediction__02__fig-2-intervention-cost-value-matrix-each-tier-s-threshold-channel-cost.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+115. File/Component: ttil-barcode-coldchain-tracking__01__diagram-01
+   Related files: ttil-barcode-coldchain-tracking__01__diagram-01.svg, ttil-barcode-coldchain-tracking__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+116. File/Component: ttil-barcode-coldchain-tracking__02__diagram-02
+   Related files: ttil-barcode-coldchain-tracking__02__diagram-02.svg, ttil-barcode-coldchain-tracking__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+117. File/Component: unified-analytics-lead-growth__01__diagram-01
+   Related files: unified-analytics-lead-growth__01__diagram-01.svg, unified-analytics-lead-growth__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+118. File/Component: unified-analytics-lead-growth__02__diagram-02
+   Related files: unified-analytics-lead-growth__02__diagram-02.svg, unified-analytics-lead-growth__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+119. File/Component: unified-course-management-platform__01__diagram-01
+   Related files: unified-course-management-platform__01__diagram-01.svg, unified-course-management-platform__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+120. File/Component: unified-course-management-platform__02__diagram-02
+   Related files: unified-course-management-platform__02__diagram-02.svg, unified-course-management-platform__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+121. File/Component: used-car-price-prediction__01__fig-1-price-influence-map-filled-black-nodes-are-the-strongest-positive
+   Related files: used-car-price-prediction__01__fig-1-price-influence-map-filled-black-nodes-are-the-strongest-positive.svg, used-car-price-prediction__01__fig-1-price-influence-map-filled-black-nodes-are-the-strongest-positive.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+122. File/Component: used-car-price-prediction__02__fig-2-residual-trouble-map-each-point-is-a-vehicle-vertical-position-sho
+   Related files: used-car-price-prediction__02__fig-2-residual-trouble-map-each-point-is-a-vehicle-vertical-position-sho.svg, used-car-price-prediction__02__fig-2-residual-trouble-map-each-point-is-a-vehicle-vertical-position-sho.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+123. File/Component: windows-offline-ai-app__01__diagram-01
+   Related files: windows-offline-ai-app__01__diagram-01.svg, windows-offline-ai-app__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+124. File/Component: windows-offline-ai-app__02__diagram-02
+   Related files: windows-offline-ai-app__02__diagram-02.svg, windows-offline-ai-app__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+125. File/Component: windows-offline-ai-app__03__diagram-03
+   Related files: windows-offline-ai-app__03__diagram-03.svg, windows-offline-ai-app__03__diagram-03.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+126. File/Component: windows-offline-ai-app__04__diagram-04
+   Related files: windows-offline-ai-app__04__diagram-04.svg, windows-offline-ai-app__04__diagram-04.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+127. File/Component: x-education-lead-prioritization__01__diagram-01
+   Related files: x-education-lead-prioritization__01__diagram-01.svg, x-education-lead-prioritization__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+128. File/Component: x-education-lead-prioritization__02__diagram-02
+   Related files: x-education-lead-prioritization__02__diagram-02.svg, x-education-lead-prioritization__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+129. File/Component: yard-management-platform__01__diagram-01
+   Related files: yard-management-platform__01__diagram-01.svg, yard-management-platform__01__diagram-01.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.
+
+130. File/Component: yard-management-platform__02__diagram-02
+   Related files: yard-management-platform__02__diagram-02.svg, yard-management-platform__02__diagram-02.png
+   Status: [Done]
+   Issues found: Invalid SVG attribute casing from HTML-parser export affected render-critical attributes; prior PNG preview was an incorrect square thumbnail export.
+   Fixes applied: Normalized SVG structural attributes in place and regenerated the PNG directly from the corrected SVG using macOS sips.
+   Verification: SVG XML parse passed; invalid lowercase structural attributes removed; PNG dimensions match SVG width/height; representative visual spot checks passed.
+   Notes: No related index.html file present inside images_saved.

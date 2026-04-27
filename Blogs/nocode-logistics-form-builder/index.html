@@ -666,7 +666,7 @@
           <p>The key consequence is maintainability. When operations teams ask for a new yes-or-no field or a conditional comment block, the platform should not branch the application. Only requests for genuinely new primitives should reach engineering: signature capture, barcode scan widgets, offline attachments, or a new rule function. Everything else belongs to authored structure.</p>
 
           <figure class="figure">
-            <svg viewBox="0 0 1120 620" role="img" aria-labelledby="loom-title loom-desc">
+            <svg height="620" width="1120" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 620" role="img" aria-labelledby="loom-title loom-desc">
               <title id="loom-title">Schema loom for logistics form builder</title>
               <desc id="loom-desc">Fields, rules, and templates feed a woven schema plane that renders a logistics form and branches downward into version history and audit events.</desc>
               <rect x="20" y="20" width="1080" height="580" fill="#fcfcfc" stroke="#000" stroke-width="2"/>
@@ -808,7 +808,7 @@ if (errors.length) {
           <p>This is also where separation between form definition and task state becomes important. The template may say that a sanitation checklist repeats every shift and escalates after thirty minutes overdue, but the individual runs of that checklist need their own lifecycle records. One artifact defines the work. Another records each instance of the work. Mixing the two makes both scheduling and audit reconstruction harder than they need to be.</p>
 
           <figure class="figure">
-            <svg viewBox="0 0 1120 560" role="img" aria-labelledby="workflow-title workflow-desc">
+            <svg height="560" width="1120" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 560" role="img" aria-labelledby="workflow-title workflow-desc">
               <title id="workflow-title">Task template workflow diagram</title>
               <desc id="workflow-desc">A task template diagram showing the relationship between form packages, due dates, dependencies, assignees, schedules, notifications, and resulting audit evidence.</desc>
               <rect x="20" y="20" width="1080" height="520" fill="#fcfcfc" stroke="#000" stroke-width="2"/>
@@ -1014,7 +1014,7 @@ if (errors.length) {
         <p>The most visible change was speed. Form changes that used to take 2 to 3 weeks now happen same-day. Operations staff do it themselves using template-based authoring. No developer ticket needed. Developer ticket volume for form changes dropped from roughly 15 per month to zero.</p>
         <p>All 40+ form types were migrated to the schema-driven system over 8 weeks. Form submission error rate dropped 28 percent because the built-in validation catches mistakes that paper forms and spreadsheets never could. The version control system caught 3 accidental field deletions in the first month alone. Each was rolled back in minutes instead of discovered weeks later during an audit. The platform now handles over 1,200 form submissions per day across all sites.</p>
         <figure class="figure">
-          <svg viewBox="0 0 900 420" role="img" aria-labelledby="results-ba-title results-ba-desc">
+          <svg height="420" width="900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img" aria-labelledby="results-ba-title results-ba-desc">
             <title id="results-ba-title">Before and after comparison of form change operations</title>
             <desc id="results-ba-desc">Side-by-side comparison showing key metrics before and after the schema-driven form builder was deployed.</desc>
             <rect x="0" y="0" width="900" height="420" fill="#fcfcfc" stroke="#000" stroke-width="2"/>

@@ -471,7 +471,7 @@ clean = cv2.morphologyEx(opened, cv2.MORPH_CLOSE, close_kernel)</code></pre>
         <div class="stage-body">
           <h2>Storyboard of the Same Label Through the Pipeline</h2>
           <figure>
-            <svg viewBox="0 0 1100 1480" role="img" aria-labelledby="storyboard-title storyboard-desc">
+            <svg height="1480" width="1100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 1480" role="img" aria-labelledby="storyboard-title storyboard-desc">
               <title id="storyboard-title">Monochrome storyboard of one vertical label through deterministic OCR stages</title>
               <desc id="storyboard-desc">A six-panel vertical storyboard showing raw label, thresholding, morphology, glyph boxing, sequence reorder, and final OCR hand-off with notes on what information was preserved and discarded at each step.</desc>
               <rect x="0" y="0" width="1100" height="1480" fill="#fafaf8"/>
@@ -657,7 +657,7 @@ groups = cluster_by_centroid_gap(merged, gap_scale=1.6)</code></pre>
         <div class="stage-body">
           <h2>Failure Strip and Heuristic Arbitration</h2>
           <figure>
-            <svg viewBox="0 0 1100 500" role="img" aria-labelledby="strip-title strip-desc">
+            <svg height="500" width="1100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 500" role="img" aria-labelledby="strip-title strip-desc">
               <title id="strip-title">Failure strip for deterministic vertical OCR</title>
               <desc id="strip-desc">A narrow four-panel strip showing touching digits, logo collision, reverse contrast, and staggered stack cases with the heuristic each one needs.</desc>
               <rect x="0" y="0" width="1100" height="500" fill="#fafaf8"/>
@@ -777,7 +777,7 @@ if text and template_guess and text != template_guess:
           <p>The false positive rate -- cases where the system read a code confidently but incorrectly -- was 1.4 percent. Those were caught by check-digit validation in the downstream inventory system, so they did not cause data errors. But they mattered for trust: dock workers needed to know the system was not silently entering wrong codes.</p>
           <p>The bottom-line impact was roughly 18 hours of manual data entry eliminated per day across the operation. That time went back to actual receiving work: unloading, inspecting, and staging inventory.</p>
           <figure>
-            <svg viewBox="0 0 780 380" role="img" aria-labelledby="ocr-results-title ocr-results-desc">
+            <svg height="380" width="780" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 380" role="img" aria-labelledby="ocr-results-title ocr-results-desc">
               <title id="ocr-results-title">Before and after metrics for the vertical OCR pipeline</title>
               <desc id="ocr-results-desc">Side-by-side comparison of accuracy, scan time, and manual entry hours.</desc>
               <rect x="0" y="0" width="780" height="380" fill="#fafaf8" stroke="#d2d2d0" stroke-width="1.5"/>

@@ -259,7 +259,7 @@
       <p>To understand the architectural pivot, we have to isolate the "device boundary." A cloud-dependent application treats the mobile device merely as a dumb glass portal: it grabs a frame via the camera sensor, heavily compresses it over HTTP, and waits for a JSON payload to return with bounding boxes. An edge-inferencing application absorbs the entire lifecycle. The device must capture the frame, convert it from YUV to RGB, allocate memory for an inference tensor, feed it to a localized model, parse the outputs, and draw the bounding box onto a canvas-all without dropping below 30 frames per second.</p>
 
       <div class="svg-wrapper">
-        <svg viewBox="0 0 800 350" preserveAspectRatio="xMidYMid meet">
+        <svg height="350" width="800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350" preserveAspectRatio="xMidYMid meet">
           <!-- Separator Line -->
           <line x1="400" y1="20" x2="400" y2="330" stroke="#111" stroke-width="2" stroke-dasharray="8 4" />
 
@@ -350,7 +350,7 @@ imageAnalyzer.setAnalyzer(cameraExecutor, { imageProxy <span class="c-type">-></
       <p>To survive prolonged shifts on the floor, we had to brutally compress the logic. The model was converted from 32-bit floats down to an 8-bit integer quantized format (INT8). Post-training quantization shrinks the model footprint by 4x. Yes, we sacrificed approximately 3% of our baseline accuracy-but in edge engineering, an 80% accurate model that runs for an entire 8-hour shift without catching fire is infinitely more valuable than a 99% accurate model that drains the battery and crashes the CPU inside of twenty minutes.</p>
 
       <div class="svg-wrapper">
-        <svg viewBox="0 0 800 280" preserveAspectRatio="xMidYMid meet">
+        <svg height="280" width="800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280" preserveAspectRatio="xMidYMid meet">
           <!-- Thread lanes -->
           <rect x="50" y="40" width="700" height="60" fill="#f5f5f5" />
           <text x="60" y="75" font-family="'JetBrains Mono'" font-size="12" fill="#1a1a1a" font-weight="700">UI THREAD (MAIN)</text>
@@ -481,7 +481,7 @@ imageAnalyzer.setAnalyzer(cameraExecutor, { imageProxy <span class="c-type">-></
       <p>Scan throughput per worker went from 15 boxes per minute to 40 boxes per minute. The system was deployed on 85 Android tablets across all 5 warehouse sites. The accuracy trade-off from quantization was small: 93.8% on-device versus 96.2% on the cloud baseline. That 2.4% drop was considered acceptable given the massive speed and reliability gains.</p>
 
       <div class="svg-wrapper">
-        <svg viewBox="0 0 800 350" preserveAspectRatio="xMidYMid meet">
+        <svg height="350" width="800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350" preserveAspectRatio="xMidYMid meet">
           <!-- Title -->
           <text x="400" y="30" font-family="'JetBrains Mono'" font-size="14" font-weight="700" text-anchor="middle">BEFORE vs AFTER: CLOUD TO EDGE MIGRATION</text>
 

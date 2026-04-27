@@ -495,67 +495,61 @@
           <p>Once the question is normalized, the assistant sends it into a wider search fan. SearXNG acts as the broker, collecting result candidates from multiple search sources so the system is not beholden to a single ranking policy. That fanout is important for breadth, but it also creates immediate overlap. Several result paths may point to the same document through different URLs. Others may lead to summary pages that cite the original. Some may be strong only because they are recent, not because they are authoritative. The loop needs to keep that ambiguity long enough to inspect it, then narrow aggressively before any model writes prose.</p>
           <p>The diagram below traces the intended path. One query branches through several search routes, lands in a shared candidate pool, then converges through filtering, extraction, and deduplication into a short answer block whose references remain attached. A Redis shelf sits beside the main flow because repeated work is part of the friction being removed. If the same question returns, or a close reformulation arrives, the system should be able to reuse prior search and extraction effort instead of repeating every network call.</p>
           <figure class="figure">
-            <svg viewBox="0 0 1200 700" role="img" aria-labelledby="fanout-title fanout-desc">
-              <title id="fanout-title">Search fanout, extraction, deduplication, and cited answer diagram</title>
-              <desc id="fanout-desc">A single research query branches into SearXNG result paths, moves through candidate filtering, page fetch, extraction, deduplication, and summary assembly, with a side Redis cache shelf connected to query and evidence reuse.</desc>
-              <defs>
-                <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
-                  <path d="M0,0 L12,6 L0,12 z" fill="#111111"></path>
-                </marker>
-              </defs>
-              <rect x="30" y="30" width="1140" height="640" fill="#ffffff"></rect>
-              <rect x="65" y="250" width="150" height="96" fill="#f5f5f5" stroke="#111111" stroke-width="2"></rect>
-              <text x="140" y="287" text-anchor="middle" font-family="IBM Plex Mono" font-size="24" fill="#111111">query</text>
-              <text x="140" y="317" text-anchor="middle" font-family="Source Serif 4" font-size="19" fill="#111111">"compare edge LLM</text>
-              <text x="140" y="341" text-anchor="middle" font-family="Source Serif 4" font-size="19" fill="#111111">latency benchmarks"</text>
-
-              <rect x="300" y="92" width="200" height="72" fill="#ffffff" stroke="#111111" stroke-width="2"></rect>
-              <rect x="300" y="202" width="200" height="72" fill="#ffffff" stroke="#111111" stroke-width="2"></rect>
-              <rect x="300" y="312" width="200" height="72" fill="#ffffff" stroke="#111111" stroke-width="2"></rect>
-              <rect x="300" y="422" width="200" height="72" fill="#ffffff" stroke="#111111" stroke-width="2"></rect>
-              <text x="400" y="132" text-anchor="middle" font-family="IBM Plex Mono" font-size="21" fill="#111111">SearXNG path A</text>
-              <text x="400" y="242" text-anchor="middle" font-family="IBM Plex Mono" font-size="21" fill="#111111">SearXNG path B</text>
-              <text x="400" y="352" text-anchor="middle" font-family="IBM Plex Mono" font-size="21" fill="#111111">SearXNG path C</text>
-              <text x="400" y="462" text-anchor="middle" font-family="IBM Plex Mono" font-size="21" fill="#111111">SearXNG path D</text>
-
-              <line x1="215" y1="298" x2="300" y2="128" stroke="#111111" stroke-width="2" marker-end="url(#arrow)"></line>
-              <line x1="215" y1="298" x2="300" y2="238" stroke="#111111" stroke-width="2" marker-end="url(#arrow)"></line>
-              <line x1="215" y1="298" x2="300" y2="348" stroke="#111111" stroke-width="2" marker-end="url(#arrow)"></line>
-              <line x1="215" y1="298" x2="300" y2="458" stroke="#111111" stroke-width="2" marker-end="url(#arrow)"></line>
-
-              <rect x="585" y="175" width="190" height="90" fill="#f5f5f5" stroke="#111111" stroke-width="2"></rect>
-              <rect x="585" y="292" width="190" height="90" fill="#ffffff" stroke="#111111" stroke-width="2"></rect>
-              <rect x="585" y="409" width="190" height="90" fill="#f5f5f5" stroke="#111111" stroke-width="2"></rect>
-              <text x="680" y="213" text-anchor="middle" font-family="IBM Plex Mono" font-size="20" fill="#111111">candidate filter</text>
-              <text x="680" y="241" text-anchor="middle" font-family="Source Serif 4" font-size="17" fill="#111111">title, host, rank, freshness</text>
-              <text x="680" y="330" text-anchor="middle" font-family="IBM Plex Mono" font-size="20" fill="#111111">page fetch</text>
-              <text x="680" y="358" text-anchor="middle" font-family="Source Serif 4" font-size="17" fill="#111111">extract readable text</text>
-              <text x="680" y="447" text-anchor="middle" font-family="IBM Plex Mono" font-size="20" fill="#111111">dedupe + evidence set</text>
-              <text x="680" y="475" text-anchor="middle" font-family="Source Serif 4" font-size="17" fill="#111111">merge mirrors, keep canonicals</text>
-
-              <line x1="500" y1="128" x2="585" y2="220" stroke="#111111" stroke-width="2" marker-end="url(#arrow)"></line>
-              <line x1="500" y1="238" x2="585" y2="220" stroke="#111111" stroke-width="2" marker-end="url(#arrow)"></line>
-              <line x1="500" y1="348" x2="585" y2="220" stroke="#111111" stroke-width="2" marker-end="url(#arrow)"></line>
-              <line x1="500" y1="458" x2="585" y2="220" stroke="#111111" stroke-width="2" marker-end="url(#arrow)"></line>
-              <line x1="680" y1="265" x2="680" y2="292" stroke="#111111" stroke-width="2" marker-end="url(#arrow)"></line>
-              <line x1="680" y1="382" x2="680" y2="409" stroke="#111111" stroke-width="2" marker-end="url(#arrow)"></line>
-
-              <rect x="865" y="247" width="250" height="175" fill="#ffffff" stroke="#111111" stroke-width="2"></rect>
-              <text x="990" y="286" text-anchor="middle" font-family="IBM Plex Mono" font-size="22" fill="#111111">cited answer block</text>
-              <line x1="895" y1="312" x2="1085" y2="312" stroke="#c2c2c2" stroke-width="2"></line>
-              <text x="895" y="342" font-family="Source Serif 4" font-size="18" fill="#111111">Short synthesis assembled from</text>
-              <text x="895" y="366" font-family="Source Serif 4" font-size="18" fill="#111111">extracted evidence, not from</text>
-              <text x="895" y="390" font-family="Source Serif 4" font-size="18" fill="#111111">search snippets alone. [1][2][3]</text>
-
-              <line x1="775" y1="454" x2="865" y2="334" stroke="#111111" stroke-width="2" marker-end="url(#arrow)"></line>
-
-              <rect x="830" y="82" width="285" height="118" fill="#f5f5f5" stroke="#111111" stroke-width="2"></rect>
-              <text x="972" y="116" text-anchor="middle" font-family="IBM Plex Mono" font-size="21" fill="#111111">Redis cache shelf</text>
-              <text x="860" y="144" font-family="Source Serif 4" font-size="17" fill="#111111">search:{query_fingerprint}</text>
-              <text x="860" y="168" font-family="Source Serif 4" font-size="17" fill="#111111">extract:{canonical_url_hash}</text>
-              <line x1="215" y1="268" x2="830" y2="140" stroke="#111111" stroke-width="1.8" stroke-dasharray="8 7" marker-end="url(#arrow)"></line>
-              <line x1="775" y1="336" x2="830" y2="168" stroke="#111111" stroke-width="1.8" stroke-dasharray="8 7" marker-end="url(#arrow)"></line>
-            </svg>
+            <?xml version="1.0" encoding="utf-8"?>
+<svg aria-labelledby="fanout-title fanout-desc" height="700" role="img" viewBox="0 0 1200 700" width="1200" xmlns="http://www.w3.org/2000/svg">
+<title id="fanout-title">Search fanout, extraction, deduplication, and cited answer diagram</title>
+<desc id="fanout-desc">A single research query branches into SearXNG result paths, moves through candidate filtering, page fetch, extraction, deduplication, and summary assembly, with a side Redis cache shelf connected to query and evidence reuse.</desc>
+<defs>
+<marker id="arrow" markerHeight="12" markerWidth="12" orient="auto" refX="10" refY="6">
+<path d="M0,0 L12,6 L0,12 z" fill="#111111"/>
+</marker>
+</defs>
+<rect fill="#ffffff" height="640" width="1140" x="30" y="30"/>
+<rect fill="#f5f5f5" height="96" stroke="#111111" stroke-width="2" width="150" x="65" y="250"/>
+<text fill="#111111" font-family="IBM Plex Mono" font-size="19.7" font-weight="700" text-anchor="middle" x="140.0" y="288.7">query</text>
+<text fill="#111111" font-family="Source Serif 4" font-size="15.6" text-anchor="middle" x="140.0" y="314.5"><tspan x="140.0" y="314.5">"compare edge</tspan><tspan x="140.0" y="333.6">LLM</tspan></text>
+<text fill="#111111" font-family="Source Serif 4" font-size="15.6" text-anchor="middle" x="140.0" y="359.2"><tspan x="140.0" y="359.2">latency</tspan><tspan x="140.0" y="378.2">benchmarks"</tspan></text>
+<rect fill="#ffffff" height="72" stroke="#111111" stroke-width="2" width="200" x="300" y="92"/>
+<rect fill="#ffffff" height="72" stroke="#111111" stroke-width="2" width="200" x="300" y="202"/>
+<rect fill="#ffffff" height="72" stroke="#111111" stroke-width="2" width="200" x="300" y="312"/>
+<rect fill="#ffffff" height="72" stroke="#111111" stroke-width="2" width="200" x="300" y="422"/>
+<text fill="#111111" font-family="IBM Plex Mono" font-size="21" text-anchor="middle" x="400" y="132">SearXNG path A</text>
+<text fill="#111111" font-family="IBM Plex Mono" font-size="21" text-anchor="middle" x="400" y="242">SearXNG path B</text>
+<text fill="#111111" font-family="IBM Plex Mono" font-size="21" text-anchor="middle" x="400" y="352">SearXNG path C</text>
+<text fill="#111111" font-family="IBM Plex Mono" font-size="21" text-anchor="middle" x="400" y="462">SearXNG path D</text>
+<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="215" x2="300" y1="298" y2="128"/>
+<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="215" x2="300" y1="298" y2="238"/>
+<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="215" x2="300" y1="298" y2="348"/>
+<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="215" x2="300" y1="298" y2="458"/>
+<rect fill="#f5f5f5" height="90" stroke="#111111" stroke-width="2" width="190" x="585" y="175"/>
+<rect fill="#ffffff" height="90" stroke="#111111" stroke-width="2" width="190" x="585" y="292"/>
+<rect fill="#f5f5f5" height="90" stroke="#111111" stroke-width="2" width="190" x="585" y="409"/>
+<text fill="#111111" font-family="IBM Plex Mono" font-size="16.4" font-weight="700" text-anchor="middle" x="680.0" y="210.6"><tspan x="680.0" y="210.6">candidate</tspan><tspan x="680.0" y="230.6">filter</tspan></text>
+<text fill="#111111" font-family="Source Serif 4" font-size="13.9" text-anchor="middle" x="680.0" y="254.6"><tspan x="680.0" y="254.6">title, host, rank,</tspan><tspan x="680.0" y="271.6">freshness</tspan></text>
+<text fill="#111111" font-family="IBM Plex Mono" font-size="16.4" font-weight="700" text-anchor="middle" x="680.0" y="327.6">page fetch</text>
+<text fill="#111111" font-family="Source Serif 4" font-size="13.9" text-anchor="middle" x="680.0" y="351.6"><tspan x="680.0" y="351.6">extract readable</tspan><tspan x="680.0" y="368.6">text</tspan></text>
+<text fill="#111111" font-family="IBM Plex Mono" font-size="16.4" font-weight="700" text-anchor="middle" x="680.0" y="444.6"><tspan x="680.0" y="444.6">dedupe +</tspan><tspan x="680.0" y="464.6">evidence set</tspan></text>
+<text fill="#111111" font-family="Source Serif 4" font-size="13.9" text-anchor="middle" x="680.0" y="488.6"><tspan x="680.0" y="488.6">merge mirrors, keep</tspan><tspan x="680.0" y="505.6">canonicals</tspan></text>
+<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="500" x2="585" y1="128" y2="220"/>
+<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="500" x2="585" y1="238" y2="220"/>
+<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="500" x2="585" y1="348" y2="220"/>
+<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="500" x2="585" y1="458" y2="220"/>
+<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="680" x2="680" y1="265" y2="292"/>
+<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="680" x2="680" y1="382" y2="409"/>
+<rect fill="#ffffff" height="175" stroke="#111111" stroke-width="2" width="250" x="865" y="247"/>
+<text fill="#111111" font-family="IBM Plex Mono" font-size="18" font-weight="700" text-anchor="middle" x="990.0" y="284.1">cited answer block</text>
+<line stroke="#c2c2c2" stroke-width="2" x1="895" x2="1085" y1="312" y2="312"/>
+<text fill="#111111" font-family="Source Serif 4" font-size="14.8" text-anchor="start" x="887.0" y="309.1"><tspan x="887.0" y="309.1">Short synthesis assembled</tspan><tspan x="887.0" y="327.1">from</tspan></text>
+<text fill="#111111" font-family="Source Serif 4" font-size="14.8" text-anchor="start" x="887.0" y="351.9"><tspan x="887.0" y="351.9">extracted evidence, not</tspan><tspan x="887.0" y="370.0">from</tspan></text>
+<text fill="#111111" font-family="Source Serif 4" font-size="14.8" text-anchor="start" x="887.0" y="394.8"><tspan x="887.0" y="394.8">search snippets alone.</tspan><tspan x="887.0" y="412.8">[1][2][3]</tspan></text>
+<line marker-end="url(#arrow)" stroke="#111111" stroke-width="2" x1="775" x2="865" y1="454" y2="334"/>
+<rect fill="#f5f5f5" height="118" stroke="#111111" stroke-width="2" width="285" x="830" y="82"/>
+<text fill="#111111" font-family="IBM Plex Mono" font-size="21" font-weight="700" text-anchor="middle" x="972.5" y="122.0">Redis cache shelf</text>
+<text fill="#111111" font-family="Source Serif 4" font-size="17" font-weight="700" text-anchor="start" x="852.0" y="149.2">search:{query_fingerprint}</text>
+<text fill="#111111" font-family="Source Serif 4" font-size="17" font-weight="700" text-anchor="start" x="852.0" y="176.2">extract:{canonical_url_hash}</text>
+<line marker-end="url(#arrow)" stroke="#111111" stroke-dasharray="8 7" stroke-width="1.8" x1="215" x2="830" y1="268" y2="140"/>
+<line marker-end="url(#arrow)" stroke="#111111" stroke-dasharray="8 7" stroke-width="1.8" x1="775" x2="830" y1="336" y2="168"/>
+</svg>
             <figcaption>The fan matters because the assistant is meant to behave like a careful research aide rather than a one-engine wrapper. Each branch can return overlapping or conflicting candidates, so the system delays summarization until title, host, canonical URL hints, and extracted text have been inspected. The side cache is not just a performance trick; it is part of the research ergonomics. Queries repeat. Investigations get reframed. Follow-up prompts often differ by only a few tokens. Reusing earlier search pools and page extracts lowers latency, but it also stabilizes the evidence set, which means a second pass is more likely to cite the same source lineage instead of drifting because a remote ranking changed.</figcaption>
           </figure>
           <p>At this point the assistant still does not claim to know the answer. It only knows the candidate landscape. That distinction is important. Search result pages are useful as routing data, not as evidence by themselves. The loop uses them to decide what to fetch next, what to cache, and what may already be a duplicate before expensive extraction begins.</p>
@@ -666,52 +660,46 @@
           <p>Citations only matter if they remain easy to inspect. Many assisted systems add a bracketed number after the fact, but the citation target is vague, the link opens a search result instead of a source, or the supporting excerpt is impossible to find on the page. This design pushes in the other direction. The answer block should make each source visible as an object with a title, host, link, and a short statement of what that source contributes. In other words, the citation layer is not a footnote treatment added to generated prose. It is a parallel presentation of the evidence set that lets the user decide whether the synthesis is fair.</p>
           <p>That means the source list should be as carefully assembled as the answer itself. The canonical source should be shown, alternates should be hidden unless useful, and repeated references should resolve to the same item instead of duplicating entries. A good citation panel also reveals what kind of source is being cited. Official documentation, company blog posts, community discussions, academic papers, and reporting all play different roles in research, and users should be able to see those differences quickly.</p>
           <figure class="figure">
-            <svg viewBox="0 0 1200 720" role="img" aria-labelledby="cite-title cite-desc">
-              <title id="cite-title">Cache and citation presentation companion diagram</title>
-              <desc id="cite-desc">A diagram showing query normalization to cache keys on the left and a cited answer with a source panel on the right, emphasizing stable fingerprints and inspectable references.</desc>
-              <defs>
-                <marker id="arrow-two" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
-                  <path d="M0,0 L12,6 L0,12 z" fill="#111111"></path>
-                </marker>
-              </defs>
-              <rect x="26" y="26" width="1148" height="668" fill="#ffffff"></rect>
-              <line x1="600" y1="70" x2="600" y2="650" stroke="#d6d6d6" stroke-width="2" stroke-dasharray="8 8"></line>
-
-              <text x="110" y="105" font-family="IBM Plex Mono" font-size="22" fill="#111111">cache discipline</text>
-              <rect x="70" y="140" width="210" height="82" fill="#f5f5f5" stroke="#111111" stroke-width="2"></rect>
-              <text x="175" y="174" text-anchor="middle" font-family="IBM Plex Mono" font-size="18" fill="#111111">normalized query</text>
-              <text x="175" y="198" text-anchor="middle" font-family="Source Serif 4" font-size="17" fill="#111111">lowercase, trim, aliases</text>
-
-              <rect x="70" y="278" width="210" height="82" fill="#ffffff" stroke="#111111" stroke-width="2"></rect>
-              <text x="175" y="312" text-anchor="middle" font-family="IBM Plex Mono" font-size="18" fill="#111111">query fingerprint</text>
-              <text x="175" y="336" text-anchor="middle" font-family="Source Serif 4" font-size="17" fill="#111111">semantic near-match key</text>
-
-              <rect x="70" y="416" width="210" height="82" fill="#f5f5f5" stroke="#111111" stroke-width="2"></rect>
-              <text x="175" y="450" text-anchor="middle" font-family="IBM Plex Mono" font-size="18" fill="#111111">Redis entries</text>
-              <text x="175" y="474" text-anchor="middle" font-family="Source Serif 4" font-size="17" fill="#111111">search, extract, answer</text>
-
-              <line x1="175" y1="222" x2="175" y2="278" stroke="#111111" stroke-width="2" marker-end="url(#arrow-two)"></line>
-              <line x1="175" y1="360" x2="175" y2="416" stroke="#111111" stroke-width="2" marker-end="url(#arrow-two)"></line>
-
-              <text x="665" y="105" font-family="IBM Plex Mono" font-size="22" fill="#111111">citation presentation</text>
-              <rect x="645" y="140" width="470" height="210" fill="#f5f5f5" stroke="#111111" stroke-width="2"></rect>
-              <text x="678" y="180" font-family="IBM Plex Mono" font-size="20" fill="#111111">answer block</text>
-              <line x1="678" y1="196" x2="1083" y2="196" stroke="#c2c2c2" stroke-width="2"></line>
-              <text x="678" y="230" font-family="Source Serif 4" font-size="18" fill="#111111">Claim A cites the official documentation. [1]</text>
-              <text x="678" y="258" font-family="Source Serif 4" font-size="18" fill="#111111">Claim B cites a secondary analysis for context. [2]</text>
-              <text x="678" y="286" font-family="Source Serif 4" font-size="18" fill="#111111">Claim C remains qualified because sources diverge. [1][3]</text>
-
-              <rect x="645" y="392" width="470" height="208" fill="#ffffff" stroke="#111111" stroke-width="2"></rect>
-              <text x="678" y="430" font-family="IBM Plex Mono" font-size="20" fill="#111111">source panel</text>
-              <line x1="678" y1="446" x2="1083" y2="446" stroke="#c2c2c2" stroke-width="2"></line>
-              <text x="678" y="478" font-family="Source Serif 4" font-size="18" fill="#111111">[1] Official docs, canonical URL, extracted on latest fetch</text>
-              <text x="678" y="506" font-family="Source Serif 4" font-size="18" fill="#111111">[2] Reporting article, distinct interpretation, link retained</text>
-              <text x="678" y="534" font-family="Source Serif 4" font-size="18" fill="#111111">[3] Community thread, useful but lower authority, flagged</text>
-
-              <line x1="280" y1="457" x2="645" y2="250" stroke="#111111" stroke-width="2" stroke-dasharray="9 8" marker-end="url(#arrow-two)"></line>
-              <text x="396" y="321" font-family="Source Serif 4" font-size="18" fill="#111111">cache hit reuses evidence objects</text>
-              <text x="414" y="347" font-family="Source Serif 4" font-size="18" fill="#111111">so the same citations remain stable</text>
-            </svg>
+            <?xml version="1.0" encoding="utf-8"?>
+<svg aria-labelledby="cite-title cite-desc" height="720" role="img" viewBox="0 0 1200 720" width="1200" xmlns="http://www.w3.org/2000/svg">
+<title id="cite-title">Cache and citation presentation companion diagram</title>
+<desc id="cite-desc">A diagram showing query normalization to cache keys on the left and a cited answer with a source panel on the right, emphasizing stable fingerprints and inspectable references.</desc>
+<defs>
+<marker id="arrow-two" markerHeight="12" markerWidth="12" orient="auto" refX="10" refY="6">
+<path d="M0,0 L12,6 L0,12 z" fill="#111111"/>
+</marker>
+</defs>
+<rect fill="#ffffff" height="668" width="1148" x="26" y="26"/>
+<line stroke="#d6d6d6" stroke-dasharray="8 8" stroke-width="2" x1="600" x2="600" y1="70" y2="650"/>
+<text fill="#111111" font-family="IBM Plex Mono" font-size="22" x="110" y="105">cache discipline</text>
+<rect fill="#f5f5f5" height="82" stroke="#111111" stroke-width="2" width="210" x="70" y="140"/>
+<text fill="#111111" font-family="IBM Plex Mono" font-size="14.8" text-anchor="middle" x="175.0" y="174.1">normalized query</text>
+<text fill="#111111" font-family="Source Serif 4" font-size="13.9" text-anchor="middle" x="175.0" y="198.0"><tspan x="175.0" y="198.0">lowercase, trim,</tspan><tspan x="175.0" y="215.0">aliases</tspan></text>
+<rect fill="#ffffff" height="82" stroke="#111111" stroke-width="2" width="210" x="70" y="278"/>
+<text fill="#111111" font-family="IBM Plex Mono" font-size="14.8" text-anchor="middle" x="175.0" y="312.1">query fingerprint</text>
+<text fill="#111111" font-family="Source Serif 4" font-size="13.9" text-anchor="middle" x="175.0" y="336.0"><tspan x="175.0" y="336.0">semantic near-match</tspan><tspan x="175.0" y="353.0">key</tspan></text>
+<rect fill="#f5f5f5" height="82" stroke="#111111" stroke-width="2" width="210" x="70" y="416"/>
+<text fill="#111111" font-family="IBM Plex Mono" font-size="14.8" text-anchor="middle" x="175.0" y="450.1">Redis entries</text>
+<text fill="#111111" font-family="Source Serif 4" font-size="13.9" text-anchor="middle" x="175.0" y="474.0"><tspan x="175.0" y="474.0">search, extract,</tspan><tspan x="175.0" y="491.0">answer</tspan></text>
+<line marker-end="url(#arrow-two)" stroke="#111111" stroke-width="2" x1="175" x2="175" y1="222" y2="278"/>
+<line marker-end="url(#arrow-two)" stroke="#111111" stroke-width="2" x1="175" x2="175" y1="360" y2="416"/>
+<text fill="#111111" font-family="IBM Plex Mono" font-size="22" x="665" y="105">citation presentation</text>
+<rect fill="#f5f5f5" height="210" stroke="#111111" stroke-width="2" width="470" x="645" y="140"/>
+<text fill="#111111" font-family="IBM Plex Mono" font-size="20" font-weight="700" text-anchor="start" x="667.0" y="179.0">answer block</text>
+<line stroke="#c2c2c2" stroke-width="2" x1="678" x2="1083" y1="196" y2="196"/>
+<text fill="#111111" font-family="Source Serif 4" font-size="18" font-weight="700" text-anchor="start" x="667.0" y="207.1"><tspan x="667.0" y="207.1">Claim A cites the official documentation.</tspan><tspan x="667.0" y="229.1">[1]</tspan></text>
+<text fill="#111111" font-family="Source Serif 4" font-size="18" font-weight="700" text-anchor="start" x="667.0" y="257.1"><tspan x="667.0" y="257.1">Claim B cites a secondary analysis for</tspan><tspan x="667.0" y="279.0">context. [2]</tspan></text>
+<text fill="#111111" font-family="Source Serif 4" font-size="18" font-weight="700" text-anchor="start" x="667.0" y="307.0"><tspan x="667.0" y="307.0">Claim C remains qualified because sources</tspan><tspan x="667.0" y="329.0">diverge. [1][3]</tspan></text>
+<rect fill="#ffffff" height="208" stroke="#111111" stroke-width="2" width="470" x="645" y="392"/>
+<text fill="#111111" font-family="IBM Plex Mono" font-size="20" font-weight="700" text-anchor="start" x="667.0" y="431.0">source panel</text>
+<line stroke="#c2c2c2" stroke-width="2" x1="678" x2="1083" y1="446" y2="446"/>
+<text fill="#111111" font-family="Source Serif 4" font-size="18" font-weight="700" text-anchor="start" x="667.0" y="459.1"><tspan x="667.0" y="459.1">[1] Official docs, canonical URL, extracted</tspan><tspan x="667.0" y="481.1">on latest fetch</tspan></text>
+<text fill="#111111" font-family="Source Serif 4" font-size="18" font-weight="700" text-anchor="start" x="667.0" y="509.1"><tspan x="667.0" y="509.1">[2] Reporting article, distinct</tspan><tspan x="667.0" y="531.0">interpretation, link retained</tspan></text>
+<text fill="#111111" font-family="Source Serif 4" font-size="18" font-weight="700" text-anchor="start" x="667.0" y="559.0"><tspan x="667.0" y="559.0">[3] Community thread, useful but lower</tspan><tspan x="667.0" y="581.0">authority, flagged</tspan></text>
+<line marker-end="url(#arrow-two)" stroke="#111111" stroke-dasharray="9 8" stroke-width="2" x1="280" x2="645" y1="457" y2="250"/>
+<text fill="#111111" font-family="Source Serif 4" font-size="18" x="396" y="321">cache hit reuses evidence objects</text>
+<text fill="#111111" font-family="Source Serif 4" font-size="18" x="414" y="347">so the same citations remain stable</text>
+</svg>
             <figcaption>This companion figure pairs two ideas that are usually treated separately. On the left, caching is shown as a discipline of stable fingerprints rather than a raw key-value shortcut: normalize the query, generate a reusable query fingerprint, then store search pools, extracted pages, and possibly answer objects with clear boundaries. On the right, citation presentation is shown as a first-class interface rather than a footer. The value of the cache is not just speed. It helps keep the evidence objects stable across repeat investigations, which means the answer is less likely to cite a different mix of sources simply because the user asked the same question twice in slightly different wording.</figcaption>
           </figure>
           <p>The model can be fast, the answer can be short, and the citations can still remain central. That is the design standard here. A private research assistant should make it easier to open the source, not easier to forget that the source exists.</p>
@@ -772,7 +760,7 @@
           <p>Duplicate content detection eliminated twenty-three percent of redundant sources per query. Before the system, analysts would sometimes cite what appeared to be independent confirmation from two sources that were actually the same article republished on different sites. The deduplication step removed that false agreement before it could enter a brief.</p>
           <p>The Redis cache reached a forty-one percent hit rate, meaning nearly half of follow-up queries were served from cached results. This mattered because research is inherently iterative. Analysts refine questions, broaden scope, or narrow focus, and each adjustment previously required starting the search process from scratch. Citation accuracy, verified by analyst spot-checks over the first month, reached 98.2 percent. All eight analysts adopted the tool within two weeks of deployment, and the system maintained zero external data egress as required.</p>
           <figure class="figure">
-            <svg viewBox="0 0 900 400" role="img" aria-labelledby="results-ba-title results-ba-desc">
+            <svg height="400" width="900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" role="img" aria-labelledby="results-ba-title results-ba-desc">
               <title id="results-ba-title">Before and after comparison of research workflow metrics</title>
               <desc id="results-ba-desc">Side-by-side comparison showing research brief time, search engines used, duplicate detection rate, and cache reuse before and after deployment of the private research assistant.</desc>
               <rect x="20" y="20" width="860" height="360" fill="#ffffff" stroke="#d6d6d6"/>

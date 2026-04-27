@@ -524,73 +524,64 @@
       <div class="comparison-figure">
         <p class="figure-label">Figure A / Comparison dial</p>
         <figure>
-          <svg viewBox="0 0 1180 620" role="img" aria-label="Comparison dial showing original feature model on the left, PCA model on the right, and gains and losses in the center">
-            <rect x="24" y="24" width="1132" height="572" fill="#ffffff" stroke="#111111" stroke-width="1.5"></rect>
-
-            <text font-family="Public Sans, sans-serif" font-size="24" font-weight="700" fill="#111111">
-              <tspan x="70" y="58">The choice is not model versus no model.</tspan>
-              <tspan x="70" dy="32">It is interpretable correlation versus compressed abstraction.</tspan>
-            </text>
-
-            <rect x="56" y="110" width="330" height="382" fill="#ffffff" stroke="#111111" stroke-width="1.5"></rect>
-            <text x="80" y="142" font-family="IBM Plex Mono, monospace" font-size="12" fill="#555555">ORIGINAL FEATURES</text>
-            <text x="80" y="176" font-family="Public Sans, sans-serif" font-size="18" font-weight="600" fill="#111111">15 named predictors</text>
-            <text x="80" y="206" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">area, bedrooms, bathrooms, parking, furnishing flags,</text>
-            <text x="80" y="227" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">and engineered ratios like areaperbedroom and bbratio</text>
-
-            <rect x="82" y="258" width="278" height="16" fill="#111111"></rect>
-            <rect x="82" y="292" width="240" height="16" fill="#333333"></rect>
-            <rect x="82" y="326" width="214" height="16" fill="#555555"></rect>
-            <rect x="82" y="360" width="180" height="16" fill="#888888"></rect>
-            <text x="370" y="271" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="11" fill="#111111">area</text>
-            <text x="370" y="305" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="11" fill="#111111">bathrooms</text>
-            <text x="370" y="339" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="11" fill="#111111">parking</text>
-            <text x="370" y="373" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="11" fill="#111111">furnishing flags</text>
-            <text x="82" y="418" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">Max pairwise correlation in the notebook: 0.8056</text>
-            <text x="82" y="441" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">Baseline regression: MSE 0.35, R2 0.65</text>
-            <text x="82" y="464" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">Interpretability: high</text>
-
-            <rect x="428" y="110" width="324" height="382" fill="#f0f0f0" stroke="#111111" stroke-width="1.5"></rect>
-            <text x="454" y="142" font-family="IBM Plex Mono, monospace" font-size="12" fill="#555555">GAIN / LOSS BAND</text>
-            <text x="454" y="184" font-family="Public Sans, sans-serif" font-size="17" font-weight="600" fill="#111111">What PCA gives</text>
-            <text x="454" y="211" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">• Orthogonal axes</text>
-            <text x="454" y="234" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">• Less redundant geometry</text>
-            <text x="454" y="257" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">• Smaller feature space when components are dropped</text>
-
-            <line x1="454" y1="286" x2="726" y2="286" stroke="#111111" stroke-width="1"></line>
-
-            <text x="454" y="322" font-family="Public Sans, sans-serif" font-size="17" font-weight="600" fill="#111111">What PCA takes</text>
-            <text x="454" y="349" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">• Direct coefficient meaning</text>
-            <text x="454" y="372" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">• Feature-level business language</text>
-            <text x="454" y="395" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">• Easy override by domain judgment</text>
-
-            <rect x="454" y="426" width="272" height="40" fill="#111111"></rect>
-            <text x="590" y="451" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="15" font-weight="600" fill="#f5f5f5">Marginal score gain, material explanation cost</text>
-
-            <rect x="794" y="110" width="330" height="382" fill="#ffffff" stroke="#111111" stroke-width="1.5"></rect>
-            <text x="818" y="142" font-family="IBM Plex Mono, monospace" font-size="12" fill="#555555">PCA SPACE</text>
-            <text x="818" y="176" font-family="Public Sans, sans-serif" font-size="18" font-weight="600" fill="#111111">6 retained components</text>
-            <text x="818" y="206" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">PC1 through PC6 keep 68.4% cumulative variance</text>
-
-            <circle cx="878" cy="292" r="46" fill="#111111"></circle>
-            <circle cx="967" cy="262" r="34" fill="#333333"></circle>
-            <circle cx="1018" cy="334" r="28" fill="#555555"></circle>
-            <circle cx="926" cy="363" r="24" fill="#888888"></circle>
-            <circle cx="854" cy="376" r="20" fill="#bbb"></circle>
-            <circle cx="1058" cy="286" r="18" fill="#ddd" stroke="#111111" stroke-width="1"></circle>
-            <text x="878" y="297" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="#f5f5f5">PC1</text>
-            <text x="967" y="267" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#f5f5f5">PC2</text>
-            <text x="1018" y="338" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#f5f5f5">PC3</text>
-            <text x="926" y="367" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#111111">PC4</text>
-            <text x="854" y="380" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#111111">PC5</text>
-            <text x="1058" y="290" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#111111">PC6</text>
-            <text x="818" y="418" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">Off-diagonal correlation after PCA: effectively 0</text>
-            <text x="818" y="441" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">Reduced regression: MSE 0.33, R2 0.66</text>
-            <text x="818" y="464" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">Interpretability: low to medium</text>
-
-            <line x1="386" y1="302" x2="428" y2="302" stroke="#111111" stroke-width="1.5"></line>
-            <line x1="752" y1="302" x2="794" y2="302" stroke="#111111" stroke-width="1.5"></line>
-          </svg>
+          <?xml version="1.0" encoding="utf-8"?>
+<svg aria-label="Comparison dial showing original feature model on the left, PCA model on the right, and gains and losses in the center" height="620" role="img" viewBox="0 0 1180 620" width="1180" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#ffffff" height="572" stroke="#111111" stroke-width="1.5" width="1132" x="24" y="24"/>
+<text fill="#111111" font-family="Public Sans, sans-serif" font-size="24" font-weight="700">
+<tspan x="70" y="58">The choice is not model versus no model.</tspan>
+<tspan dy="32" x="70">It is interpretable correlation versus compressed abstraction.</tspan>
+</text>
+<rect fill="#ffffff" height="382" stroke="#111111" stroke-width="1.5" width="330" x="56" y="110"/>
+<text fill="#555555" font-family="IBM Plex Mono, monospace" font-size="12" x="80" y="142">ORIGINAL FEATURES</text>
+<text fill="#111111" font-family="Public Sans, sans-serif" font-size="18" font-weight="600" x="80" y="176">15 named predictors</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" x="80" y="206">area, bedrooms, bathrooms, parking, furnishing flags,</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" x="80" y="227">and engineered ratios like areaperbedroom and bbratio</text>
+<rect fill="#111111" height="16" width="278" x="82" y="258"/>
+<rect fill="#333333" height="16" width="240" x="82" y="292"/>
+<rect fill="#555555" height="16" width="214" x="82" y="326"/>
+<rect fill="#888888" height="16" width="180" x="82" y="360"/>
+<text fill="#111111" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="end" x="370" y="271">area</text>
+<text fill="#111111" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="end" x="370" y="305">bathrooms</text>
+<text fill="#111111" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="end" x="370" y="339">parking</text>
+<text fill="#111111" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="end" x="370" y="373">furnishing flags</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" x="82" y="418">Max pairwise correlation in the notebook: 0.8056</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" x="82" y="441">Baseline regression: MSE 0.35, R2 0.65</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" x="82" y="464">Interpretability: high</text>
+<rect fill="#f0f0f0" height="382" stroke="#111111" stroke-width="1.5" width="324" x="428" y="110"/>
+<text fill="#555555" font-family="IBM Plex Mono, monospace" font-size="12" text-anchor="start" x="450.0" y="141.4">GAIN / LOSS BAND</text>
+<text fill="#111111" font-family="Public Sans, sans-serif" font-size="17" font-weight="600" text-anchor="start" x="450.0" y="168.2">What PCA gives</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" text-anchor="start" x="450.0" y="190.3">• Orthogonal axes</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" text-anchor="start" x="450.0" y="212.3">• Less redundant geometry</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" text-anchor="start" x="450.0" y="234.3"><tspan x="450.0" y="234.3">• Smaller feature space when</tspan><tspan x="450.0" y="251.4">components are dropped</tspan></text>
+<line stroke="#111111" stroke-width="1" x1="454" x2="726" y1="286" y2="286"/>
+<text fill="#111111" font-family="Public Sans, sans-serif" font-size="17" font-weight="600" text-anchor="start" x="450.0" y="278.2">What PCA takes</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" text-anchor="start" x="450.0" y="300.4">• Direct coefficient meaning</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" text-anchor="start" x="450.0" y="322.4">• Feature-level business language</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" text-anchor="start" x="450.0" y="344.4">• Easy override by domain judgment</text>
+<rect fill="#111111" height="40" width="272" x="454" y="426"/>
+<text fill="#f5f5f5" font-family="Public Sans, sans-serif" font-size="15" font-weight="600" text-anchor="middle" x="590.0" y="369.3"><tspan x="590.0" y="369.3">Marginal score gain, material</tspan><tspan x="590.0" y="387.6">explanation cost</tspan></text>
+<rect fill="#ffffff" height="382" stroke="#111111" stroke-width="1.5" width="330" x="794" y="110"/>
+<text fill="#555555" font-family="IBM Plex Mono, monospace" font-size="12" text-anchor="start" x="816.0" y="141.4">PCA SPACE</text>
+<text fill="#111111" font-family="Public Sans, sans-serif" font-size="18" font-weight="600" text-anchor="start" x="816.0" y="169.1">6 retained components</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" text-anchor="start" x="816.0" y="191.3"><tspan x="816.0" y="191.3">PC1 through PC6 keep 68.4% cumulative</tspan><tspan x="816.0" y="208.4">variance</tspan></text>
+<circle cx="878" cy="292" fill="#111111" r="46"/>
+<circle cx="967" cy="262" fill="#333333" r="34"/>
+<circle cx="1018" cy="334" fill="#555555" r="28"/>
+<circle cx="926" cy="363" fill="#888888" r="24"/>
+<circle cx="854" cy="376" fill="#bbb" r="20"/>
+<circle cx="1058" cy="286" fill="#ddd" r="18" stroke="#111111" stroke-width="1"/>
+<text fill="#f5f5f5" font-family="IBM Plex Mono, monospace" font-size="13" text-anchor="middle" x="959.0" y="267.4">PC1</text>
+<text fill="#f5f5f5" font-family="IBM Plex Mono, monospace" font-size="12" text-anchor="middle" x="959.0" y="228.5">PC2</text>
+<text fill="#f5f5f5" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle" x="959.0" y="286.5">PC3</text>
+<text fill="#111111" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle" x="959.0" y="305.5">PC4</text>
+<text fill="#111111" font-family="IBM Plex Mono, monospace" font-size="10" text-anchor="middle" x="959.0" y="323.6">PC5</text>
+<text fill="#111111" font-family="IBM Plex Mono, monospace" font-size="10" text-anchor="middle" x="959.0" y="246.6">PC6</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" text-anchor="start" x="816.0" y="345.4"><tspan x="816.0" y="345.4">Off-diagonal correlation after PCA:</tspan><tspan x="816.0" y="362.5">effectively 0</tspan></text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" text-anchor="start" x="816.0" y="384.5">Reduced regression: MSE 0.33, R2 0.66</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" text-anchor="start" x="816.0" y="406.5">Interpretability: low to medium</text>
+<line stroke="#111111" stroke-width="1.5" x1="386" x2="428" y1="302" y2="302"/>
+<line stroke="#111111" stroke-width="1.5" x1="752" x2="794" y1="302" y2="302"/>
+</svg>
           <figcaption>The left panel keeps the housing vocabulary intact and suffers correlated inputs. The right panel compresses the geometry and slightly improves fit, but only by asking the reader to think in unnamed component space rather than in actual property attributes.</figcaption>
         </figure>
       </div>
@@ -680,55 +671,50 @@ y_pred = model.predict(Xtest_reduced)  # smaller space, weaker direct meaning
       <div class="matrix-figure">
         <p class="figure-label">Figure B / Use-decision matrix</p>
         <figure>
-          <svg viewBox="0 0 1280 620" role="img" aria-label="Decision matrix comparing original features and PCA across interpretability, stability, and predictive convenience">
-            <rect x="24" y="24" width="1232" height="572" fill="#ffffff" stroke="#111111" stroke-width="1.5"></rect>
-            <text x="58" y="66" font-family="Public Sans, sans-serif" font-size="23" font-weight="700" fill="#111111">PCA looks strongest when the model is consumed by a pipeline, not by a conversation.</text>
-
-            <line x1="58" y1="112" x2="1222" y2="112" stroke="#111111" stroke-width="1.5"></line>
-            <line x1="268" y1="112" x2="268" y2="548" stroke="#111111" stroke-width="1.5"></line>
-            <line x1="610" y1="112" x2="610" y2="548" stroke="#111111" stroke-width="1.5"></line>
-            <line x1="852" y1="112" x2="852" y2="548" stroke="#111111" stroke-width="1.5"></line>
-            <line x1="58" y1="184" x2="1222" y2="184" stroke="#ddd" stroke-width="1"></line>
-            <line x1="58" y1="276" x2="1222" y2="276" stroke="#ddd" stroke-width="1"></line>
-            <line x1="58" y1="368" x2="1222" y2="368" stroke="#ddd" stroke-width="1"></line>
-            <line x1="58" y1="460" x2="1222" y2="460" stroke="#ddd" stroke-width="1"></line>
-            <line x1="58" y1="548" x2="1222" y2="548" stroke="#111111" stroke-width="1.5"></line>
-
-            <text x="78" y="146" font-family="IBM Plex Mono, monospace" font-size="12" fill="#555555">DIMENSION</text>
-            <text x="438" y="146" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#555555">ORIGINAL FEATURES</text>
-            <text x="731" y="146" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#555555">PCA WITH 6 COMPONENTS</text>
-            <text x="957" y="146" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#555555">WHO SHOULD PREFER IT</text>
-
-            <text x="78" y="233" font-family="Public Sans, sans-serif" font-size="16" font-weight="600" fill="#111111">Interpretability</text>
-            <text x="290" y="214" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">Direct coefficient stories remain possible.</text>
-            <text x="290" y="238" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">You can talk about area, bathrooms, and parking plainly.</text>
-            <rect x="642" y="203" width="178" height="44" fill="#111111"></rect>
-            <text x="731" y="230" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="14" font-weight="600" fill="#f5f5f5">Compressed, harder to narrate</text>
-            <text x="874" y="226" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">Analysts who value explainability</text>
-
-            <text x="78" y="325" font-family="Public Sans, sans-serif" font-size="16" font-weight="600" fill="#111111">Stability under collinearity</text>
-            <text x="290" y="306" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">Sensitive to overlapping variables like</text>
-            <text x="290" y="330" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">area and areaperbedroom.</text>
-            <rect x="642" y="295" width="178" height="44" fill="#ffffff" stroke="#111111" stroke-width="1.5"></rect>
-            <text x="731" y="322" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="14" font-weight="600" fill="#111111">Cleaner orthogonal space</text>
-            <text x="874" y="318" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">Modelers optimizing geometry</text>
-
-            <text x="78" y="417" font-family="Public Sans, sans-serif" font-size="16" font-weight="600" fill="#111111">Predictive convenience</text>
-            <text x="290" y="398" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">R2 0.65 is solid and easy to defend.</text>
-            <text x="290" y="422" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">No compression benefit.</text>
-            <rect x="642" y="387" width="178" height="44" fill="#ffffff" stroke="#111111" stroke-width="1.5"></rect>
-            <text x="731" y="414" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="14" font-weight="600" fill="#111111">Slight edge at R2 0.66</text>
-            <text x="874" y="410" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">Teams willing to trade clarity for a marginal gain</text>
-
-            <text x="78" y="509" font-family="Public Sans, sans-serif" font-size="16" font-weight="600" fill="#111111">Recommended default</text>
-            <rect x="290" y="480" width="250" height="52" fill="#111111"></rect>
-            <text x="415" y="501" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="14" font-weight="600" fill="#f5f5f5">Use when explanation matters</text>
-            <text x="415" y="522" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="13" fill="#f5f5f5">pricing memo, broker tool, feature review</text>
-            <rect x="642" y="480" width="178" height="52" fill="#ffffff" stroke="#111111" stroke-width="1.5"></rect>
-            <text x="731" y="501" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="14" font-weight="600" fill="#111111">Use selectively</text>
-            <text x="731" y="522" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="13" fill="#111111">batch scoring, compact pipelines</text>
-            <text x="874" y="509" font-family="Public Sans, sans-serif" font-size="14" fill="#333333">Choose based on the reader, not on PCA prestige.</text>
-          </svg>
+          <?xml version="1.0" encoding="utf-8"?>
+<svg aria-label="Decision matrix comparing original features and PCA across interpretability, stability, and predictive convenience" height="620" role="img" viewBox="0 0 1280 620" width="1280" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#ffffff" height="572" stroke="#111111" stroke-width="1.5" width="1232" x="24" y="24"/>
+<text fill="#111111" font-family="Public Sans, sans-serif" font-size="23" font-weight="700" x="58" y="66">PCA looks strongest when the model is consumed by a pipeline, not by a conversation.</text>
+<line stroke="#111111" stroke-width="1.5" x1="58" x2="1222" y1="112" y2="112"/>
+<line stroke="#111111" stroke-width="1.5" x1="268" x2="268" y1="112" y2="548"/>
+<line stroke="#111111" stroke-width="1.5" x1="610" x2="610" y1="112" y2="548"/>
+<line stroke="#111111" stroke-width="1.5" x1="852" x2="852" y1="112" y2="548"/>
+<line stroke="#ddd" stroke-width="1" x1="58" x2="1222" y1="184" y2="184"/>
+<line stroke="#ddd" stroke-width="1" x1="58" x2="1222" y1="276" y2="276"/>
+<line stroke="#ddd" stroke-width="1" x1="58" x2="1222" y1="368" y2="368"/>
+<line stroke="#ddd" stroke-width="1" x1="58" x2="1222" y1="460" y2="460"/>
+<line stroke="#111111" stroke-width="1.5" x1="58" x2="1222" y1="548" y2="548"/>
+<text fill="#555555" font-family="IBM Plex Mono, monospace" font-size="12" x="78" y="146">DIMENSION</text>
+<text fill="#555555" font-family="IBM Plex Mono, monospace" font-size="12" text-anchor="middle" x="438" y="146">ORIGINAL FEATURES</text>
+<text fill="#555555" font-family="IBM Plex Mono, monospace" font-size="12" text-anchor="middle" x="731" y="146">PCA WITH 6 COMPONENTS</text>
+<text fill="#555555" font-family="IBM Plex Mono, monospace" font-size="12" text-anchor="middle" x="957" y="146">WHO SHOULD PREFER IT</text>
+<text fill="#111111" font-family="Public Sans, sans-serif" font-size="16" font-weight="600" x="78" y="233">Interpretability</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" x="290" y="214">Direct coefficient stories remain possible.</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" x="290" y="238">You can talk about area, bathrooms, and parking plainly.</text>
+<rect fill="#111111" height="44" width="178" x="642" y="203"/>
+<text fill="#f5f5f5" font-family="Public Sans, sans-serif" font-size="14" font-weight="600" text-anchor="middle" x="731" y="230">Compressed, harder to narrate</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" x="874" y="226">Analysts who value explainability</text>
+<text fill="#111111" font-family="Public Sans, sans-serif" font-size="16" font-weight="600" x="78" y="325">Stability under collinearity</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" x="290" y="306">Sensitive to overlapping variables like</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" x="290" y="330">area and areaperbedroom.</text>
+<rect fill="#ffffff" height="44" stroke="#111111" stroke-width="1.5" width="178" x="642" y="295"/>
+<text fill="#111111" font-family="Public Sans, sans-serif" font-size="14" font-weight="600" text-anchor="middle" x="731" y="322">Cleaner orthogonal space</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" x="874" y="318">Modelers optimizing geometry</text>
+<text fill="#111111" font-family="Public Sans, sans-serif" font-size="16" font-weight="600" x="78" y="417">Predictive convenience</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" x="290" y="398">R2 0.65 is solid and easy to defend.</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" x="290" y="422">No compression benefit.</text>
+<rect fill="#ffffff" height="44" stroke="#111111" stroke-width="1.5" width="178" x="642" y="387"/>
+<text fill="#111111" font-family="Public Sans, sans-serif" font-size="14" font-weight="600" text-anchor="middle" x="731" y="414">Slight edge at R2 0.66</text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" x="874" y="410">Teams willing to trade clarity for a marginal gain</text>
+<text fill="#111111" font-family="Public Sans, sans-serif" font-size="16" font-weight="600" x="78" y="509">Recommended default</text>
+<rect fill="#111111" height="52" width="250" x="290" y="480"/>
+<text fill="#f5f5f5" font-family="Public Sans, sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="415.0" y="511.4">Use when explanation matters</text>
+<text fill="#f5f5f5" font-family="Public Sans, sans-serif" font-size="10.7" text-anchor="middle" x="415.0" y="530.2"><tspan x="415.0" y="530.2">pricing memo, broker tool, feature</tspan><tspan x="415.0" y="543.2">review</tspan></text>
+<rect fill="#ffffff" height="52" stroke="#111111" stroke-width="1.5" width="178" x="642" y="480"/>
+<text fill="#111111" font-family="Public Sans, sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="731.0" y="511.4">Use selectively</text>
+<text fill="#111111" font-family="Public Sans, sans-serif" font-size="10.7" text-anchor="middle" x="731.0" y="530.2"><tspan x="731.0" y="530.2">batch scoring, compact</tspan><tspan x="731.0" y="543.2">pipelines</tspan></text>
+<text fill="#333333" font-family="Public Sans, sans-serif" font-size="14" x="874" y="509">Choose based on the reader, not on PCA prestige.</text>
+</svg>
           <figcaption>This matrix makes the editorial point explicit. The original-feature model is easier to explain and only slightly worse on the notebook's score table; the reduced PCA model is cleaner statistically and only slightly better predictively.</figcaption>
         </figure>
       </div>

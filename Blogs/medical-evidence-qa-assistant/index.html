@@ -497,66 +497,60 @@
           <p>PDF extraction via PyMuPDF is another place where medical systems deserve extra skepticism. Clinical tables, footnotes, multi-column layouts, figure captions, and superscript references do not survive naive extraction cleanly. If the ingestion layer strips section titles, detaches recommendation strength qualifiers, or merges headers into paragraph text, the downstream embedding index will faithfully preserve the wrong unit. The architecture therefore depends on cleanup rules that preserve provenance fields and document structure well enough that a retrieved chunk still tells the answer layer what it is, where it came from, and how it should be interpreted.</p>
           <p>Chunking has to balance semantic completeness against retrieval precision. Chunks that are too short lose recommendation context: the sentence with the action survives, but the qualifiers on population, contraindication, or evidence level do not. Chunks that are too long tend to over-bundle related ideas and make reranking less crisp. In medical evidence systems, the right chunk is rarely just “N tokens.” It is more often a structurally coherent excerpt bounded by headings, list items, recommendation bullets, or abstract sections, with metadata that makes later citation defensible.</p>
           <figure>
-            <svg viewBox="0 0 1180 520" role="img" aria-labelledby="loom-title loom-desc">
-              <title id="loom-title">Citation loom diagram</title>
-              <desc id="loom-desc">A structured flow from source repositories through retrieval, ranking, evidence snippets, answer composition, and a refusal gate.</desc>
-              <rect x="10" y="10" width="1160" height="500" fill="#ffffff" stroke="#d7d7d7" stroke-width="2"/>
-              <text x="48" y="48" fill="#111111" font-size="20" font-family="IBM Plex Sans, sans-serif" font-weight="600">Citation Loom</text>
-              <text x="48" y="76" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">Evidence moves left to right, but refusal remains attached to the final composition step.</text>
-
-              <rect x="46" y="116" width="188" height="86" rx="6" fill="#f5f5f5" stroke="#111111" stroke-width="2"/>
-              <rect x="46" y="218" width="188" height="86" rx="6" fill="#ffffff" stroke="#111111" stroke-width="2"/>
-              <rect x="46" y="320" width="188" height="86" rx="6" fill="#f5f5f5" stroke="#111111" stroke-width="2"/>
-              <text x="70" y="148" fill="#111111" font-size="16" font-family="IBM Plex Sans, sans-serif" font-weight="600">Guideline Repositories</text>
-              <text x="70" y="172" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">Versioned practice documents</text>
-              <text x="70" y="250" fill="#111111" font-size="16" font-family="IBM Plex Sans, sans-serif" font-weight="600">Medical PDFs</text>
-              <text x="70" y="274" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">Structured extraction required</text>
-              <text x="70" y="352" fill="#111111" font-size="16" font-family="IBM Plex Sans, sans-serif" font-weight="600">PubMed-Style References</text>
-              <text x="70" y="376" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">Abstracts and linked evidence</text>
-
-              <rect x="316" y="164" width="178" height="190" rx="8" fill="#ffffff" stroke="#111111" stroke-width="2"/>
-              <text x="343" y="198" fill="#111111" font-size="17" font-family="IBM Plex Sans, sans-serif" font-weight="600">Retrieval Stack</text>
-              <text x="343" y="230" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">extract</text>
-              <text x="343" y="255" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">clean</text>
-              <text x="343" y="280" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">chunk</text>
-              <text x="343" y="305" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">embed</text>
-              <text x="343" y="330" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">search in Qdrant</text>
-
-              <rect x="572" y="152" width="162" height="214" rx="8" fill="#f5f5f5" stroke="#111111" stroke-width="2"/>
-              <text x="597" y="188" fill="#111111" font-size="17" font-family="IBM Plex Sans, sans-serif" font-weight="600">Ranking</text>
-              <text x="597" y="222" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">metadata filters</text>
-              <text x="597" y="247" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">semantic relevance</text>
-              <text x="597" y="272" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">reranker pass</text>
-              <text x="597" y="297" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">authority ordering</text>
-              <text x="597" y="322" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">conflict detection</text>
-
-              <rect x="804" y="134" width="160" height="250" rx="8" fill="#ffffff" stroke="#111111" stroke-width="2"/>
-              <text x="829" y="170" fill="#111111" font-size="17" font-family="IBM Plex Sans, sans-serif" font-weight="600">Evidence Snippets</text>
-              <rect x="826" y="198" width="116" height="34" fill="#ececec" stroke="#111111"/>
-              <rect x="826" y="246" width="116" height="34" fill="#f5f5f5" stroke="#111111"/>
-              <rect x="826" y="294" width="116" height="34" fill="#ececec" stroke="#111111"/>
-              <text x="846" y="220" fill="#111111" font-size="12" font-family="IBM Plex Sans, sans-serif">chunk + citation</text>
-              <text x="847" y="268" fill="#111111" font-size="12" font-family="IBM Plex Sans, sans-serif">chunk + qualifier</text>
-              <text x="844" y="316" fill="#111111" font-size="12" font-family="IBM Plex Sans, sans-serif">chunk + date</text>
-
-              <rect x="1008" y="132" width="128" height="112" rx="8" fill="#ffffff" stroke="#111111" stroke-width="2"/>
-              <text x="1032" y="166" fill="#111111" font-size="17" font-family="IBM Plex Sans, sans-serif" font-weight="600">Answer</text>
-              <text x="1020" y="192" fill="#5f5f5f" font-size="12" font-family="IBM Plex Sans, sans-serif">constrained composition</text>
-              <text x="1020" y="212" fill="#5f5f5f" font-size="12" font-family="IBM Plex Sans, sans-serif">claim to snippet mapping</text>
-
-              <rect x="1008" y="268" width="128" height="116" rx="8" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="2"/>
-              <text x="1033" y="304" fill="#f5f5f5" font-size="17" font-family="IBM Plex Sans, sans-serif" font-weight="600">Refusal Gate</text>
-              <text x="1030" y="330" fill="#f5f5f5" font-size="13" font-family="IBM Plex Sans, sans-serif">low support</text>
-              <text x="1030" y="352" fill="#f5f5f5" font-size="13" font-family="IBM Plex Sans, sans-serif">unsafe intent</text>
-
-              <path d="M234 160 C270 170, 280 182, 316 198" fill="none" stroke="#111111" stroke-width="2.5"/>
-              <path d="M234 262 C270 262, 280 258, 316 256" fill="none" stroke="#111111" stroke-width="2.5"/>
-              <path d="M234 364 C270 354, 280 338, 316 314" fill="none" stroke="#111111" stroke-width="2.5"/>
-              <path d="M494 258 L572 258" fill="none" stroke="#111111" stroke-width="2.5"/>
-              <path d="M734 258 L804 258" fill="none" stroke="#111111" stroke-width="2.5"/>
-              <path d="M964 222 L1008 188" fill="none" stroke="#111111" stroke-width="2.5"/>
-              <path d="M964 330 L1008 326" fill="none" stroke="#111111" stroke-width="2.5" stroke-dasharray="7 6"/>
-            </svg>
+            <?xml version="1.0" encoding="utf-8"?>
+<svg aria-labelledby="loom-title loom-desc" height="520" role="img" viewBox="0 0 1180 520" width="1180" xmlns="http://www.w3.org/2000/svg">
+<title id="loom-title">Citation loom diagram</title>
+<desc id="loom-desc">A structured flow from source repositories through retrieval, ranking, evidence snippets, answer composition, and a refusal gate.</desc>
+<rect fill="#ffffff" height="500" stroke="#d7d7d7" stroke-width="2" width="1160" x="10" y="10"/>
+<text fill="#111111" font-family="IBM Plex Sans, sans-serif" font-size="20" font-weight="600" x="48" y="48">Citation Loom</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="13" x="48" y="76">Evidence moves left to right, but refusal remains attached to the final composition step.</text>
+<rect fill="#f5f5f5" height="86" rx="6" stroke="#111111" stroke-width="2" width="188" x="46" y="116"/>
+<rect fill="#ffffff" height="86" rx="6" stroke="#111111" stroke-width="2" width="188" x="46" y="218"/>
+<rect fill="#f5f5f5" height="86" rx="6" stroke="#111111" stroke-width="2" width="188" x="46" y="320"/>
+<text fill="#111111" font-family="IBM Plex Sans, sans-serif" font-size="13.1" font-weight="600" text-anchor="start" x="68.0" y="148.4"><tspan x="68.0" y="148.4">Guideline</tspan><tspan x="68.0" y="164.4">Repositories</tspan></text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="10.7" text-anchor="start" x="68.0" y="183.2"><tspan x="68.0" y="183.2">Versioned practice</tspan><tspan x="68.0" y="196.3">documents</tspan></text>
+<text fill="#111111" font-family="IBM Plex Sans, sans-serif" font-size="15.1" font-weight="600" text-anchor="start" x="68.0" y="252.3">Medical PDFs</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="12.3" text-anchor="start" x="68.0" y="272.8"><tspan x="68.0" y="272.8">Structured extraction</tspan><tspan x="68.0" y="287.8">required</tspan></text>
+<text fill="#111111" font-family="IBM Plex Sans, sans-serif" font-size="13.1" font-weight="600" text-anchor="start" x="68.0" y="352.4"><tspan x="68.0" y="352.4">PubMed-Style</tspan><tspan x="68.0" y="368.4">References</tspan></text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="10.7" text-anchor="start" x="68.0" y="387.2"><tspan x="68.0" y="387.2">Abstracts and linked</tspan><tspan x="68.0" y="400.3">evidence</tspan></text>
+<rect fill="#ffffff" height="190" rx="8" stroke="#111111" stroke-width="2" width="178" x="316" y="164"/>
+<text fill="#111111" font-family="IBM Plex Sans, sans-serif" font-size="17" font-weight="600" text-anchor="start" x="338.0" y="200.2"><tspan x="338.0" y="200.2">Retrieval</tspan><tspan x="338.0" y="220.9">Stack</tspan></text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="start" x="338.0" y="242.1">extract</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="start" x="338.0" y="263.1">clean</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="start" x="338.0" y="284.1">chunk</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="start" x="338.0" y="305.1">embed</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="start" x="338.0" y="326.1">search in Qdrant</text>
+<rect fill="#f5f5f5" height="214" rx="8" stroke="#111111" stroke-width="2" width="162" x="572" y="152"/>
+<text fill="#111111" font-family="IBM Plex Sans, sans-serif" font-size="17" font-weight="600" text-anchor="start" x="588.0" y="188.2">Ranking</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="start" x="588.0" y="209.3">metadata filters</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="start" x="588.0" y="230.3">semantic relevance</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="start" x="588.0" y="251.3">reranker pass</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="start" x="588.0" y="272.4">authority ordering</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="start" x="588.0" y="293.4">conflict detection</text>
+<rect fill="#ffffff" height="250" rx="8" stroke="#111111" stroke-width="2" width="160" x="804" y="134"/>
+<text fill="#111111" font-family="IBM Plex Sans, sans-serif" font-size="17" font-weight="600" text-anchor="start" x="820.0" y="170.2"><tspan x="820.0" y="170.2">Evidence</tspan><tspan x="820.0" y="190.9">Snippets</tspan></text>
+<rect fill="#ececec" height="34" stroke="#111111" width="116" x="826" y="198"/>
+<rect fill="#f5f5f5" height="34" stroke="#111111" width="116" x="826" y="246"/>
+<rect fill="#ececec" height="34" stroke="#111111" width="116" x="826" y="294"/>
+<text fill="#111111" font-family="IBM Plex Sans, sans-serif" font-size="12" text-anchor="start" x="820.0" y="211.1">chunk + citation</text>
+<text fill="#111111" font-family="IBM Plex Sans, sans-serif" font-size="12" text-anchor="start" x="820.0" y="231.1">chunk + qualifier</text>
+<text fill="#111111" font-family="IBM Plex Sans, sans-serif" font-size="12" text-anchor="start" x="820.0" y="251.1">chunk + date</text>
+<rect fill="#ffffff" height="112" rx="8" stroke="#111111" stroke-width="2" width="128" x="1008" y="132"/>
+<text fill="#111111" font-family="IBM Plex Sans, sans-serif" font-size="15" font-weight="600" text-anchor="start" x="1024.0" y="166.2">Answer</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="10.6" text-anchor="start" x="1024.0" y="185.1"><tspan x="1024.0" y="185.1">constrained</tspan><tspan x="1024.0" y="198.0">composition</tspan></text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="10.6" text-anchor="start" x="1024.0" y="216.6"><tspan x="1024.0" y="216.6">claim to snippet</tspan><tspan x="1024.0" y="229.5">mapping</tspan></text>
+<rect fill="#0a0a0a" height="116" rx="8" stroke="#0a0a0a" stroke-width="2" width="128" x="1008" y="268"/>
+<text fill="#f5f5f5" font-family="IBM Plex Sans, sans-serif" font-size="17" font-weight="600" text-anchor="start" x="1024.0" y="304.1"><tspan x="1024.0" y="304.1">Refusal</tspan><tspan x="1024.0" y="324.9">Gate</tspan></text>
+<text fill="#f5f5f5" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="start" x="1024.0" y="346.1">low support</text>
+<text fill="#f5f5f5" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="start" x="1024.0" y="367.1">unsafe intent</text>
+<path d="M234 160 C270 170, 280 182, 316 198" fill="none" stroke="#111111" stroke-width="2.5"/>
+<path d="M234 262 C270 262, 280 258, 316 256" fill="none" stroke="#111111" stroke-width="2.5"/>
+<path d="M234 364 C270 354, 280 338, 316 314" fill="none" stroke="#111111" stroke-width="2.5"/>
+<path d="M494 258 L572 258" fill="none" stroke="#111111" stroke-width="2.5"/>
+<path d="M734 258 L804 258" fill="none" stroke="#111111" stroke-width="2.5"/>
+<path d="M964 222 L1008 188" fill="none" stroke="#111111" stroke-width="2.5"/>
+<path d="M964 330 L1008 326" fill="none" stroke="#111111" stroke-dasharray="7 6" stroke-width="2.5"/>
+</svg>
             <figcaption><span class="figure-title">Figure 1</span>The citation loom is the core safety flow: source repositories feed retrieval, ranking, and snippet selection, but the refusal gate remains connected to answer composition so unsupported output does not become fluent guesswork.</figcaption>
           </figure>
           <p>Embeddings and Qdrant indexing are necessary infrastructure, but they are not enough by themselves. Dense retrieval is good at recovering semantically similar material; it is not inherently good at deciding whether the material is authoritative or specific enough for the question. That is why the README’s mention of reranking matters. In a medical setting, reranking should include metadata-aware preference for guideline material, population fit, and evidence freshness where the corpus contains multiple versions.</p>
@@ -620,67 +614,57 @@
           <p class="lead">The README treats refusal behavior as a product feature. That is the right instinct and it deserves emphasis. In a medical evidence assistant, refusal is not what happens when the system is weak. Refusal is what demonstrates that the system understands its own role. A product that never refuses is usually not more capable. It is simply less honest about its operating boundary.</p>
           <p>There are at least four refusal classes that should exist independently. The first is evidence insufficiency: no relevant chunks, low-quality extraction, stale material, or unresolved conflicts. The second is task mismatch: the user asks for a diagnosis, treatment recommendation, dose adjustment, or interpretation of personal data rather than an evidence summary. The third is acuity: the user mentions red-flag symptoms or urgent deterioration. The fourth is procedural ambiguity: the request is phrased in a way that looks educational on the surface but requires patient-specific inference once unpacked. Safe systems should not collapse all four classes into a generic “I cannot help with that” message, because each class suggests a different next step.</p>
           <figure>
-            <svg viewBox="0 0 1180 700" role="img" aria-labelledby="tree-title tree-desc">
-              <title id="tree-title">Refusal tree diagram</title>
-              <desc id="tree-desc">A decision tree for safe refusal and escalation in a medical evidence question-answering assistant.</desc>
-              <rect x="10" y="10" width="1160" height="680" fill="#ffffff" stroke="#d7d7d7" stroke-width="2"/>
-              <text x="48" y="48" fill="#111111" font-size="20" font-family="IBM Plex Sans, sans-serif" font-weight="600">Refusal Tree</text>
-              <text x="48" y="76" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">Unsafe intent and weak evidence diverge into different messages, but both stop unsupported answers.</text>
-
-              <rect x="420" y="96" width="340" height="86" rx="8" fill="#f5f5f5" stroke="#111111" stroke-width="2"/>
-              <text x="517" y="126" fill="#111111" font-size="17" font-family="IBM Plex Sans, sans-serif" font-weight="600">Incoming Question</text>
-              <text x="428" y="148" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">Intent, urgency, and retrieval scope check</text>
-              <text x="462" y="168" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">before entering answer path</text>
-
-              <rect x="158" y="254" width="264" height="86" rx="8" fill="#ffffff" stroke="#111111" stroke-width="2"/>
-              <text x="168" y="280" fill="#111111" font-size="15" font-family="IBM Plex Sans, sans-serif" font-weight="600">Personal diagnosis or dosing?</text>
-              <text x="168" y="300" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">If yes, refuse and redirect</text>
-              <text x="168" y="320" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">to clinician</text>
-
-              <rect x="458" y="254" width="264" height="86" rx="8" fill="#ffffff" stroke="#111111" stroke-width="2"/>
-              <text x="478" y="280" fill="#111111" font-size="15" font-family="IBM Plex Sans, sans-serif" font-weight="600">Urgent red-flag symptoms?</text>
-              <text x="468" y="300" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">If yes, escalate immediately</text>
-              <text x="468" y="320" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">to emergency care</text>
-
-              <rect x="758" y="254" width="264" height="86" rx="8" fill="#ffffff" stroke="#111111" stroke-width="2"/>
-              <text x="778" y="280" fill="#111111" font-size="15" font-family="IBM Plex Sans, sans-serif" font-weight="600">Evidence retrieved cleanly?</text>
-              <text x="768" y="300" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">If no, refuse for low support</text>
-              <text x="768" y="320" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">and weak retrieval</text>
-
-              <rect x="56" y="452" width="268" height="110" rx="8" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="2"/>
-              <text x="98" y="486" fill="#f5f5f5" font-size="15" font-family="IBM Plex Sans, sans-serif" font-weight="600">Refuse: Personalized Care</text>
-              <text x="68" y="510" fill="#f5f5f5" font-size="13" font-family="IBM Plex Sans, sans-serif">Explain boundary and suggest</text>
-              <text x="68" y="530" fill="#f5f5f5" font-size="13" font-family="IBM Plex Sans, sans-serif">licensed clinician review</text>
-
-              <rect x="370" y="452" width="268" height="110" rx="8" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="2"/>
-              <text x="398" y="486" fill="#f5f5f5" font-size="15" font-family="IBM Plex Sans, sans-serif" font-weight="600">Escalate: Urgent Situation</text>
-              <text x="382" y="510" fill="#f5f5f5" font-size="13" font-family="IBM Plex Sans, sans-serif">Direct user to emergency or</text>
-              <text x="382" y="530" fill="#f5f5f5" font-size="13" font-family="IBM Plex Sans, sans-serif">immediate local medical care</text>
-
-              <rect x="684" y="452" width="268" height="110" rx="8" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="2"/>
-              <text x="720" y="486" fill="#f5f5f5" font-size="15" font-family="IBM Plex Sans, sans-serif" font-weight="600">Refuse: Weak Evidence</text>
-              <text x="696" y="510" fill="#f5f5f5" font-size="13" font-family="IBM Plex Sans, sans-serif">State that retrieved support is</text>
-              <text x="696" y="530" fill="#f5f5f5" font-size="13" font-family="IBM Plex Sans, sans-serif">insufficient for a reliable answer</text>
-
-              <rect x="998" y="452" width="172" height="110" rx="8" fill="#f5f5f5" stroke="#111111" stroke-width="2"/>
-              <text x="1020" y="486" fill="#111111" font-size="15" font-family="IBM Plex Sans, sans-serif" font-weight="600">Proceed</text>
-              <text x="1006" y="510" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">Evidence summary only</text>
-              <text x="1012" y="530" fill="#5f5f5f" font-size="13" font-family="IBM Plex Sans, sans-serif">with citations and limits</text>
-
-              <path d="M590 182 L590 254" fill="none" stroke="#111111" stroke-width="2.5"/>
-              <path d="M590 218 C490 218, 340 234, 290 254" fill="none" stroke="#111111" stroke-width="2.5"/>
-              <path d="M590 218 C690 218, 840 234, 890 254" fill="none" stroke="#111111" stroke-width="2.5"/>
-
-              <path d="M290 340 L190 452" fill="none" stroke="#111111" stroke-width="2.5"/>
-              <path d="M590 340 L504 452" fill="none" stroke="#111111" stroke-width="2.5"/>
-              <path d="M890 340 L818 452" fill="none" stroke="#111111" stroke-width="2.5"/>
-              <path d="M890 340 L1084 452" fill="none" stroke="#111111" stroke-width="2.5" stroke-dasharray="7 6"/>
-
-              <text x="228" y="428" fill="#5f5f5f" font-size="12" font-family="IBM Plex Sans, sans-serif">yes</text>
-              <text x="530" y="428" fill="#5f5f5f" font-size="12" font-family="IBM Plex Sans, sans-serif">yes</text>
-              <text x="842" y="428" fill="#5f5f5f" font-size="12" font-family="IBM Plex Sans, sans-serif">no</text>
-              <text x="970" y="428" fill="#5f5f5f" font-size="12" font-family="IBM Plex Sans, sans-serif">yes</text>
-            </svg>
+            <?xml version="1.0" encoding="utf-8"?>
+<svg aria-labelledby="tree-title tree-desc" height="700" role="img" viewBox="0 0 1180 700" width="1180" xmlns="http://www.w3.org/2000/svg">
+<title id="tree-title">Refusal tree diagram</title>
+<desc id="tree-desc">A decision tree for safe refusal and escalation in a medical evidence question-answering assistant.</desc>
+<rect fill="#ffffff" height="680" stroke="#d7d7d7" stroke-width="2" width="1160" x="10" y="10"/>
+<text fill="#111111" font-family="IBM Plex Sans, sans-serif" font-size="20" font-weight="600" x="48" y="48">Refusal Tree</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="13" x="48" y="76">Unsafe intent and weak evidence diverge into different messages, but both stop unsupported answers.</text>
+<rect fill="#f5f5f5" height="86" rx="8" stroke="#111111" stroke-width="2" width="340" x="420" y="96"/>
+<text fill="#111111" font-family="IBM Plex Sans, sans-serif" font-size="14.4" font-weight="600" text-anchor="start" x="442.0" y="129.7">Incoming Question</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="11" text-anchor="start" x="442.0" y="148.8">Intent, urgency, and retrieval scope check</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="11" text-anchor="start" x="442.0" y="167.8">before entering answer path</text>
+<rect fill="#ffffff" height="86" rx="8" stroke="#111111" stroke-width="2" width="264" x="158" y="254"/>
+<text fill="#111111" font-family="IBM Plex Sans, sans-serif" font-size="12.3" font-weight="600" text-anchor="start" x="180.0" y="285.7">Personal diagnosis or dosing?</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="10.7" text-anchor="start" x="180.0" y="304.5">If yes, refuse and redirect</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="10.7" text-anchor="start" x="180.0" y="323.2">to clinician</text>
+<rect fill="#ffffff" height="86" rx="8" stroke="#111111" stroke-width="2" width="264" x="458" y="254"/>
+<text fill="#111111" font-family="IBM Plex Sans, sans-serif" font-size="13.2" font-weight="600" text-anchor="start" x="480.0" y="286.5">Urgent red-flag symptoms?</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="11.4" text-anchor="start" x="480.0" y="306.0">If yes, escalate immediately</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="11.4" text-anchor="start" x="480.0" y="325.4">to emergency care</text>
+<rect fill="#ffffff" height="86" rx="8" stroke="#111111" stroke-width="2" width="264" x="758" y="254"/>
+<text fill="#111111" font-family="IBM Plex Sans, sans-serif" font-size="13.2" font-weight="600" text-anchor="start" x="780.0" y="286.5">Evidence retrieved cleanly?</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="11.4" text-anchor="start" x="780.0" y="306.0">If no, refuse for low support</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="11.4" text-anchor="start" x="780.0" y="325.4">and weak retrieval</text>
+<rect fill="#0a0a0a" height="110" rx="8" stroke="#0a0a0a" stroke-width="2" width="268" x="56" y="452"/>
+<text fill="#f5f5f5" font-family="IBM Plex Sans, sans-serif" font-size="15" font-weight="600" text-anchor="start" x="78.0" y="486.2">Refuse: Personalized Care</text>
+<text fill="#f5f5f5" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="start" x="78.0" y="507.4">Explain boundary and suggest</text>
+<text fill="#f5f5f5" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="start" x="78.0" y="528.4">licensed clinician review</text>
+<rect fill="#0a0a0a" height="110" rx="8" stroke="#0a0a0a" stroke-width="2" width="268" x="370" y="452"/>
+<text fill="#f5f5f5" font-family="IBM Plex Sans, sans-serif" font-size="15" font-weight="600" text-anchor="start" x="392.0" y="486.2">Escalate: Urgent Situation</text>
+<text fill="#f5f5f5" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="start" x="392.0" y="507.4">Direct user to emergency or</text>
+<text fill="#f5f5f5" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="start" x="392.0" y="528.4">immediate local medical care</text>
+<rect fill="#0a0a0a" height="110" rx="8" stroke="#0a0a0a" stroke-width="2" width="268" x="684" y="452"/>
+<text fill="#f5f5f5" font-family="IBM Plex Sans, sans-serif" font-size="15" font-weight="600" text-anchor="start" x="706.0" y="486.2">Refuse: Weak Evidence</text>
+<text fill="#f5f5f5" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="start" x="706.0" y="507.4">State that retrieved support is</text>
+<text fill="#f5f5f5" font-family="IBM Plex Sans, sans-serif" font-size="13" text-anchor="start" x="706.0" y="528.4"><tspan x="706.0" y="528.4">insufficient for a reliable</tspan><tspan x="706.0" y="544.2">answer</tspan></text>
+<rect fill="#f5f5f5" height="110" rx="8" stroke="#111111" stroke-width="2" width="172" x="998" y="452"/>
+<text fill="#111111" font-family="IBM Plex Sans, sans-serif" font-size="12.5" font-weight="600" text-anchor="start" x="1020.0" y="483.9">Proceed</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="10.8" text-anchor="start" x="1020.0" y="502.8">Evidence summary only</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="10.8" text-anchor="start" x="1020.0" y="521.6"><tspan x="1020.0" y="521.6">with citations and</tspan><tspan x="1020.0" y="534.7">limits</tspan></text>
+<path d="M590 182 L590 254" fill="none" stroke="#111111" stroke-width="2.5"/>
+<path d="M590 218 C490 218, 340 234, 290 254" fill="none" stroke="#111111" stroke-width="2.5"/>
+<path d="M590 218 C690 218, 840 234, 890 254" fill="none" stroke="#111111" stroke-width="2.5"/>
+<path d="M290 340 L190 452" fill="none" stroke="#111111" stroke-width="2.5"/>
+<path d="M590 340 L504 452" fill="none" stroke="#111111" stroke-width="2.5"/>
+<path d="M890 340 L818 452" fill="none" stroke="#111111" stroke-width="2.5"/>
+<path d="M890 340 L1084 452" fill="none" stroke="#111111" stroke-dasharray="7 6" stroke-width="2.5"/>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="12" x="228" y="428">yes</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="12" x="530" y="428">yes</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="12" x="842" y="428">no</text>
+<text fill="#5f5f5f" font-family="IBM Plex Sans, sans-serif" font-size="12" x="970" y="428">yes</text>
+</svg>
             <figcaption><span class="figure-title">Figure 2</span>The refusal tree separates personalized-care requests, urgent situations, and low-support retrieval failures. A safe assistant does not flatten these into one generic denial because each path implies a different user instruction.</figcaption>
           </figure>
           <p>Urgency deserves particular discipline. If a question mentions possible emergency symptoms, the assistant should not hide behind a long explanation about evidence limitations. It should shift immediately to concise escalation language. In practical terms, that means brief direction to local emergency services or urgent clinical care rather than a mini-essay. High-risk scenarios are one place where less text is safer text. The goal is not to educate the user on the full decision tree at that moment. The goal is to stop the interaction from being mistaken for timely medical guidance.</p>
@@ -747,7 +731,7 @@
           <p>Citation accuracy reached 96.4 percent -- nearly all answers linked back to verified medical sources. The remaining 3.6 percent were cases where the citation pointed to the correct document but the wrong section, which the team flagged for retrieval tuning.</p>
           <p>The most important number: zero hallucination incidents in 4 months of production use. This was validated by a weekly medical advisor audit of 50 random responses. Not a single response contained a medical claim that was not supported by a retrieved source. That track record was the result of architectural discipline -- the system was built so that unsupported claims could not reach users, not merely so that they were unlikely to.</p>
           <figure>
-            <svg viewBox="0 0 1080 420" role="img" aria-labelledby="med-results-title med-results-desc">
+            <svg height="420" width="1080" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 420" role="img" aria-labelledby="med-results-title med-results-desc">
               <title id="med-results-title">Before and after metrics for the medical evidence QA assistant</title>
               <desc id="med-results-desc">Side-by-side comparison of search relevance, engagement, citation accuracy, and safety metrics.</desc>
               <rect x="0" y="0" width="1080" height="420" fill="#ffffff" stroke="#d7d7d7" stroke-width="2"/>
