@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Technical Case Studies — 38 Shipped AI, Full-Stack &amp; Production Engineering Projects | Harshit Paunikar</title>
-<meta name="description" content="A curated library of 38 real-world case studies covering AI/ML, LLM/RAG, computer vision, real-time systems, full-stack platforms, analytics, logistics, and DevOps — by Harshit Paunikar.">
+<title>Technical Case Studies — 56 Shipped AI, Full-Stack &amp; Production Engineering Projects | Harshit Paunikar</title>
+<meta name="description" content="A curated library of 56 real-world case studies covering AI/ML, LLM/RAG, computer vision, real-time systems, full-stack platforms, analytics, logistics, and DevOps — by Harshit Paunikar.">
 <meta property="og:title" content="Technical Case Studies — Harshit Paunikar">
-<meta property="og:description" content="38 shipped case studies across AI/ML, LLMs, computer vision, real-time systems, full-stack platforms, and production engineering.">
+<meta property="og:description" content="56 shipped case studies across AI/ML, LLMs, computer vision, real-time systems, full-stack platforms, and production engineering.">
 <meta property="og:url" content="https://harshitpaunikar1.github.io/Blogs/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
@@ -277,7 +277,7 @@ img { max-width: 100%; height: auto; display: block; }
 <!-- ── HERO ── -->
 <section class="hero container" aria-label="Introduction">
   <p class="hero-eyebrow">Technical Case Study Library</p>
-  <h1>38 Shipped Projects Across AI, Full-Stack, Data, and Production Engineering</h1>
+  <h1>56 Shipped Projects Across AI, Full-Stack, Data, and Production Engineering</h1>
   <p class="hero-sub">A curated library of real systems I have built across AI/ML, LLMs, RAG, computer vision, real-time communication, backend platforms, analytics, logistics, DevOps, and production deployment.</p>
 </section>
 
@@ -364,7 +364,7 @@ img { max-width: 100%; height: auto; display: block; }
   </div>
 
   <div class="filter-bar" id="filterBar" role="tablist" aria-label="Filter by category">
-    <button class="filter-chip active" data-filter="all" role="tab" aria-selected="true">All (38)</button>
+    <button class="filter-chip active" data-filter="all" role="tab" aria-selected="true">All (56)</button>
     <button class="filter-chip" data-filter="ai-ml" role="tab" aria-selected="false">AI / ML</button>
     <button class="filter-chip" data-filter="llm-rag" role="tab" aria-selected="false">LLM / RAG</button>
     <button class="filter-chip" data-filter="cv" role="tab" aria-selected="false">Computer Vision</button>
@@ -376,7 +376,7 @@ img { max-width: 100%; height: auto; display: block; }
   </div>
 
   <div class="project-grid" id="projectGrid">
-    <!-- Cards injected by JS for maintainability; data below matches all 38 case studies -->
+    <!-- Cards injected by JS for maintainability; data below matches all 56 case studies -->
   </div>
 
   <div class="no-results" id="noResults">No case studies match your search. Try a different keyword or clear filters.</div>
@@ -652,7 +652,25 @@ var projects = [
   { slug: "rtsp-camera-browser-streaming", title: "RTSP Camera Browser Streaming", summary: "Streaming RTSP camera feeds to browsers with transcoding, adaptive bitrate, and low-latency delivery.", cats: ["realtime","devops"], skills: ["RTSP","Video Transcoding","Adaptive Bitrate","WebSocket","FFmpeg"], domain: "Video / Security", type: "Build Breakdown" },
   { slug: "edge-ai-runtime-evaluation", title: "Edge AI Runtime Evaluation", summary: "Systematic benchmarking of ONNX, TFLite, and native frameworks on edge hardware targets.", cats: ["devops","ai-ml"], skills: ["ONNX","TFLite","Benchmarking","Performance Profiling","Edge Hardware"], domain: "Edge AI", type: "Systems Analysis" },
   { slug: "prompt-reliability-workflow", title: "Prompt Reliability Workflow", summary: "Framework for testing, evaluating, and improving LLM prompt reliability across edge cases.", cats: ["llm-rag"], skills: ["Prompt Engineering","LLM Evaluation","Testing","Reliability","Metrics"], domain: "GenAI Ops", type: "Systems Analysis" },
-  { slug: "small-team-devops-delivery-pipeline", title: "Small-Team DevOps Delivery Pipeline", summary: "Practical CI/CD for small teams balancing deployment speed, reliability, and rollback discipline.", cats: ["devops"], skills: ["CI/CD","Docker","GitLab","Deployment","Rollback","Monitoring"], domain: "DevOps", type: "Systems Analysis" }
+  { slug: "small-team-devops-delivery-pipeline", title: "Small-Team DevOps Delivery Pipeline", summary: "Practical CI/CD for small teams balancing deployment speed, reliability, and rollback discipline.", cats: ["devops"], skills: ["CI/CD","Docker","GitLab","Deployment","Rollback","Monitoring"], domain: "DevOps", type: "Systems Analysis" },
+  { slug: "airline-passenger-forecasting", title: "What I Trust in an Airline Passenger Forecast", summary: "A forecast postmortem on monthly airline passenger demand: decomposition, stationarity, seasonality, backtesting, and why exogenous promotion signals changed the result.", cats: ["data","ai-ml"], skills: ["Forecasting","ARIMA","SARIMA","SARIMAX","Backtesting"], domain: "Aviation / Forecasting", type: "Data Case Study" },
+  { slug: "co2-emissions-prediction", title: "What This CO2 Model Can Say, and What It Cannot", summary: "A cautious policy-analysis brief on country-level CO2 emissions modeling: what the notebook measures, where inference must stop, and how regulation can use the output without pretending it is causal.", cats: ["data","ai-ml"], skills: ["Regression","Lasso","Policy Analytics","Emissions","Interpretation"], domain: "Climate / Policy", type: "Data Case Study" },
+  { slug: "digital-media-view-prediction", title: "Forecasting an Audience Before the Launch Window Closes", summary: "A case study on forecasting show views for a digital media company: launch timing, weekend lift, promo pressure, and which variables actually help editorial planning.", cats: ["data","ai-ml"], skills: ["Forecasting","Media Analytics","Feature Analysis","Planning","Python"], domain: "Media / Forecasting", type: "Data Case Study" },
+  { slug: "housing-pca-case-study", title: "Does PCA Actually Help a Housing Model?", summary: "A comparative analysis of PCA in housing-price prediction: cleaner geometry, weaker interpretability, and only a marginal change in model performance.", cats: ["ai-ml","data"], skills: ["PCA","Regression","Interpretability","Model Comparison","Python"], domain: "Real Estate / ML", type: "Data Case Study" },
+  { slug: "housing-price-prediction", title: "What a Housing Regression Can and Cannot Tell You About Price", summary: "A practical valuation guide: what the Delhi housing regression model reveals about feature elasticity, where its predictions drift from market reality, and when an appraiser's judgment outperforms the equation.", cats: ["data","ai-ml"], skills: ["Regression","Valuation","Residual Analysis","Elasticity","Python"], domain: "Real Estate / Analytics", type: "Data Case Study" },
+  { slug: "india-budget-2020-economic-analysis", title: "Reading the Economy Before Budget 2020: A Policy Briefing", summary: "A policy-style analytical briefing for decision-makers preparing for India's Union Budget 2020. Growth slowdown, inflation, sectoral stress, and fiscal room — ranked by urgency.", cats: ["data"], skills: ["Macroeconomics","Policy Briefing","Sector Analysis","Economic Analysis","Python"], domain: "Economic Analysis", type: "Data Case Study" },
+  { slug: "iris-pca-analysis", title: "The Geometry of Less — PCA from First Principles", summary: "Why principal component analysis rotates axes rather than drops columns and what survives the compression.", cats: ["ai-ml","data"], skills: ["PCA","Iris Dataset","Standardization","Explained Variance","Python"], domain: "ML Foundations", type: "Data Case Study" },
+  { slug: "linear-regression-cross-validation", title: "Cross-Validation Does Not Guarantee a Honest Model", summary: "A myth-busting explainer on cross-validation: what k-fold actually measures, the three ways practitioners break it quietly, and a checklist for when CV scores are actually informative.", cats: ["ai-ml","data"], skills: ["Cross-Validation","Data Leakage","Regression","Validation","Python"], domain: "Model Evaluation", type: "Data Case Study" },
+  { slug: "loan-default-risk-prediction", title: "Lending Into the Unknown: A Credit-Risk Decision System for NPA Reduction", summary: "How a classification model built on the Home Credit dataset becomes a scoreband-driven approval policy — and why the model's value only becomes legible once it's embedded in a lending decision chain.", cats: ["ai-ml","data"], skills: ["Credit Risk","Classification","Scorecards","Imbalance","Banking"], domain: "Banking / Credit Risk", type: "Data Case Study" },
+  { slug: "marriage-age-prediction-flask-app", title: "An Honest Retrofit: Cleaning Up a Rough ML Deployment", summary: "When evaluating a rudimentary Flask deployment for a marriage age prediction model, simply hitting run is not enough. The artifact demands editorial cleanup, explicit boundary-setting, and an unsparing assessment of what the system can and cannot claim to accomplish.", cats: ["fullstack","ai-ml"], skills: ["Flask","ML Deployment","Form Handling","Python","Cleanup"], domain: "Full-Stack / ML Deployment", type: "Build Breakdown" },
+  { slug: "ngo-resource-allocation-model", title: "Allocating Under Scarcity: An Ethics-Aware Resource Memo", summary: "How an international NGO translates socioeconomic indicators into ranked country allocations — the indicators, the weights, the constraints, and the tradeoffs that scoring cannot hide.", cats: ["data","ai-ml"], skills: ["Resource Allocation","Clustering","Scoring","Social Impact","Python"], domain: "Social Impact / Analytics", type: "Data Case Study" },
+  { slug: "online-retail-customer-clustering", title: "Who Actually Shops Here: Five Customer Archetypes from a UK Retail Dataset", summary: "How RFM features and K-means clustering turn 541,000 transactions into five recognizable customer types — and what each archetype tells the merchandising and CRM team.", cats: ["ai-ml","data"], skills: ["K-Means","RFM","Segmentation","E-commerce","Python"], domain: "E-commerce / Segmentation", type: "Data Case Study" },
+  { slug: "power-user-curve-analysis", title: "Reading the Power User Curve", summary: "DAU/MAU is a blunt instrument that collapses human behavior into a single ambiguous percentage. To understand whether a product actually commands attention, we must transition from stickiness shorthand to distributional thinking.", cats: ["data"], skills: ["Product Analytics","DAU/MAU","Retention","Segmentation","Visualization"], domain: "Product Analytics", type: "Data Case Study" },
+  { slug: "property-valuation-model", title: "Investment Committee Memo: Property Valuation Model", summary: "This memorandum presents the underlying logic, assumptions, and scenario sensitivities for the proposed property investment model, shifting the discussion from model accuracy alone toward cashflow discipline and downside risk.", cats: ["data","ai-ml"], skills: ["Valuation","Cashflow","Scenario Analysis","IRR","Python"], domain: "Real Estate / Investment", type: "Data Case Study" },
+  { slug: "salary-estimation-flask-app", title: "The Interesting Part Starts After model.fit()", summary: "An engineer's walkthrough of turning a tiny salary model into a usable Flask interface, and why that still does not count as production readiness.", cats: ["fullstack","ai-ml"], skills: ["Flask","API Design","Deployment","Model Serialization","Python"], domain: "Full-Stack / ML Deployment", type: "Build Breakdown" },
+  { slug: "telecom-churn-prediction", title: "The Churn Retention Playbook: From Signal to Save Offer", summary: "A telecom churn-retention playbook: how a classification model connects to a tiered intervention strategy, what a false positive costs, and which signals actually predict who is about to leave.", cats: ["ai-ml","data"], skills: ["Churn Prediction","Classification","Retention","Telecom","Python"], domain: "Telecom / Retention", type: "Data Case Study" },
+  { slug: "used-car-price-prediction", title: "What Actually Moves a Used Car's Price", summary: "A market-translation article: what regression reveals about used-car pricing pressure, which signals matter, and where the model becomes a poor guide to real negotiation.", cats: ["data","ai-ml"], skills: ["Regression","Price Modeling","Automotive","Residuals","Python"], domain: "Automotive / Analytics", type: "Data Case Study" },
+  { slug: "x-education-lead-prioritization", title: "Revenue Operations Brief: Lead Prioritization at X Education", summary: "Production-grade routing overriding CRM defaults, using prioritized lead scoring and cutoff calibration to improve close-rate-focused sales operations.", cats: ["ai-ml","data"], skills: ["Lead Scoring","Classification","RevOps","Cutoffs","Python"], domain: "Sales / RevOps", type: "Data Case Study" }
 ];
 
 /* ── RENDER CARDS ── */

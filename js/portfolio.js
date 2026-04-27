@@ -1,5 +1,5 @@
 /* ============================================================
-   PROJECT DATA — 38 projects (do not remove any)
+   PROJECT DATA — 56 projects (do not remove any)
    ============================================================ */
 var projects = [
   {
@@ -569,13 +569,267 @@ var projects = [
       "Designed the process with rollback and operational handover in mind so another teammate could run and recover the system later without guesswork"
     ],
     skills: ["Docker", "Docker Compose", "Jenkins", "Trivy", "Prometheus", "Grafana", "Deployment Automation", "Rollback Planning"]
+  },
+  {
+    repo: "airline-passenger-forecasting",
+    title: "What I Trust in an Airline Passenger Forecast",
+    domain: "Aviation / Forecasting",
+    desc: "A forecast postmortem on monthly airline passenger demand: decomposition, stationarity, seasonality, backtesting, and why exogenous promotion signals changed the result.",
+    approach: [
+      "Framed the problem around monthly airline passenger demand where seasonality, trend shifts, and planning lead times all affect forecast usefulness",
+      "Prepared the series through decomposition, stationarity checks, calendar review, and train-test setup rather than treating it as a generic numeric column",
+      "Compared baseline time-series methods across ARIMA-family variants so model choice could be justified through error behaviour, not naming prestige",
+      "Tested whether promotion timing added signal only after the seasonal structure was already captured cleanly in the core forecast",
+      "Evaluated outputs through backtesting and operational plausibility so the final recommendation could support scheduling and inventory conversations"
+    ],
+    skills: ["Time-Series Forecasting", "ARIMA", "SARIMA", "SARIMAX", "Seasonality Analysis", "Backtesting", "Stationarity Testing"]
+  },
+  {
+    repo: "co2-emissions-prediction",
+    title: "What This CO2 Model Can Say, and What It Cannot",
+    domain: "Climate / Policy Analytics",
+    desc: "A cautious policy-analysis brief on country-level CO2 emissions modeling: what the notebook measures, where inference must stop, and how regulation can use the output without pretending it is causal.",
+    approach: [
+      "Positioned the work as policy analysis first, separating predictive use from causal claims before discussing model quality",
+      "Built a country-level emissions view with merged socioeconomic variables and explicit distinction between total and per-capita emissions",
+      "Compared regression-style models including Lasso to understand fit quality and which features remained important under compression",
+      "Read model outputs through policy guardrails so stakeholders could see where inference should stop and where evidence stayed usable",
+      "Translated findings into regulation-oriented interpretation instead of overselling the notebook as a decision engine on its own"
+    ],
+    skills: ["Regression Modeling", "Lasso", "Policy Analytics", "Feature Selection", "Emissions Analysis", "Python", "Model Interpretation"]
+  },
+  {
+    repo: "digital-media-view-prediction",
+    title: "Forecasting an Audience Before the Launch Window Closes",
+    domain: "Media / Forecasting",
+    desc: "A case study on forecasting show views for a digital media company: launch timing, weekend lift, promo pressure, and which variables actually help editorial planning.",
+    approach: [
+      "Scoped the forecast around content-launch planning where timing and promotion pressure matter as much as raw historical views",
+      "Used the available daily observations to inspect launch timing, weekend effects, visitor traffic, and supporting campaign signals",
+      "Built forecasting logic that compared intuitive drivers against the variables that actually improved planning usefulness",
+      "Tested media-side assumptions such as promo lift and event effects so the notebook could distinguish durable signal from post-hoc storytelling",
+      "Turned the result into an editorial planning aid rather than a vanity prediction metric"
+    ],
+    skills: ["Forecasting", "Feature Analysis", "Media Analytics", "Time-Series Analysis", "Python", "EDA", "Planning Models"]
+  },
+  {
+    repo: "housing-pca-case-study",
+    title: "Does PCA Actually Help a Housing Model?",
+    domain: "Real Estate / ML",
+    desc: "A comparative analysis of PCA in housing-price prediction: cleaner geometry, weaker interpretability, and only a marginal change in model performance.",
+    approach: [
+      "Framed PCA as a modeling tradeoff problem rather than assuming dimensionality reduction is automatically beneficial",
+      "Prepared the housing dataset with correlated numeric predictors and a clean train-test split to compare pre- and post-PCA behaviour",
+      "Measured model performance with and without PCA so accuracy, geometry, and explanation cost could be examined together",
+      "Read the transformed components in terms of decorrelation benefits versus lost feature-level interpretability",
+      "Presented the outcome as a practical modeling judgment about whether compression is worth the communication cost"
+    ],
+    skills: ["PCA", "Regression Modeling", "Feature Engineering", "Dimensionality Reduction", "Model Comparison", "Python", "Interpretability"]
+  },
+  {
+    repo: "housing-price-prediction",
+    title: "What a Housing Regression Can and Cannot Tell You About Price",
+    domain: "Real Estate / Analytics",
+    desc: "A practical valuation guide: what the Delhi housing regression model reveals about feature elasticity, where its predictions drift from market reality, and when an appraiser's judgment outperforms the equation.",
+    approach: [
+      "Defined the project as valuation support rather than price truth, keeping market judgement and local context in scope from the start",
+      "Used structured housing attributes such as area, rooms, amenities, and furnishing signals to model observable price pressure",
+      "Fit a regression workflow to interpret which variables pushed expected price higher or lower across the sampled transactions",
+      "Reviewed residual behaviour and market edge cases to identify where the model drifted away from real valuation practice",
+      "Converted the result into guidance on when to trust the regression and when to override it with human appraisal judgement"
+    ],
+    skills: ["Regression", "Price Modeling", "Feature Elasticity", "Real Estate Analytics", "Model Interpretation", "Residual Analysis", "Python"]
+  },
+  {
+    repo: "india-budget-2020-economic-analysis",
+    title: "Reading the Economy Before Budget 2020: A Policy Briefing",
+    domain: "Economic Analysis",
+    desc: "A policy-style analytical briefing for decision-makers preparing for India's Union Budget 2020. Growth slowdown, inflation, sectoral stress, and fiscal room — ranked by urgency.",
+    approach: [
+      "Structured the work as a pre-budget policy briefing with ranked macro questions instead of an open-ended economic commentary",
+      "Assembled the analysis around growth slowdown, inflation, sectoral stress, and fiscal space to reflect decision-maker priorities",
+      "Synthesized the evidence into a readable narrative that separated immediate pressure points from secondary signals",
+      "Used sector and macro comparisons to show where stress was concentrated rather than assuming the economy was moving uniformly",
+      "Translated the notebook into a policy memo that could support pre-budget discussion and prioritization"
+    ],
+    skills: ["Economic Analysis", "Policy Briefing", "Macroeconomics", "Data Interpretation", "Sector Analysis", "Python", "Presentation Synthesis"]
+  },
+  {
+    repo: "iris-pca-analysis",
+    title: "The Geometry of Less — PCA from First Principles",
+    domain: "ML Foundations",
+    desc: "Why principal component analysis rotates axes rather than drops columns and what survives the compression.",
+    approach: [
+      "Treated PCA as a teaching problem first by explaining why dimensionality reduction changes geometry rather than simply deleting features",
+      "Used the Iris dataset to walk through correlation structure, standardization, component construction, and variance capture",
+      "Connected the scree plot and principal components back to the underlying feature relationships so the method stayed interpretable",
+      "Focused on what information survives compression and what explanatory detail is lost after rotation",
+      "Presented the notebook as a first-principles explanation of PCA rather than only a code demonstration"
+    ],
+    skills: ["PCA", "Dimensionality Reduction", "Iris Dataset", "Standardization", "Explained Variance", "Python", "ML Education"]
+  },
+  {
+    repo: "linear-regression-cross-validation",
+    title: "Cross-Validation Does Not Guarantee a Honest Model",
+    domain: "Model Evaluation",
+    desc: "A myth-busting explainer on cross-validation: what k-fold actually measures, the three ways practitioners break it quietly, and a checklist for when CV scores are actually informative.",
+    approach: [
+      "Positioned cross-validation as a validation-discipline problem instead of assuming k-fold scores are automatically trustworthy",
+      "Explained what CV actually estimates and where random-split evaluation fails to reflect production behaviour",
+      "Used common failure modes such as preprocessing leakage, temporal contamination, and score-based selection bias to stress-test the method",
+      "Converted the critique into a checklist for when CV evidence is honest enough to report and act on",
+      "Framed the project as practical model-evaluation literacy rather than benchmark chasing"
+    ],
+    skills: ["Cross-Validation", "Model Evaluation", "Data Leakage", "Regression", "Validation Strategy", "Python", "ML Reliability"]
+  },
+  {
+    repo: "loan-default-risk-prediction",
+    title: "Lending Into the Unknown: A Credit-Risk Decision System for NPA Reduction",
+    domain: "Banking / Credit Risk",
+    desc: "How a classification model built on the Home Credit dataset becomes a scoreband-driven approval policy — and why the model's value only becomes legible once it's embedded in a lending decision chain.",
+    approach: [
+      "Framed the problem around lending decisions for thin-file applicants where model output only matters if it maps to approval policy",
+      "Worked from credit-risk features and Home Credit-style borrower data to engineer signals relevant to default propensity",
+      "Built and validated a classification workflow with explicit attention to class imbalance, score separation, and operational metrics",
+      "Translated predicted risk into scorebands and intervention logic so the model could influence approvals rather than sit as analysis only",
+      "Kept evaluation tied to the lending decision chain, including the costs of bad approvals and missed good borrowers"
+    ],
+    skills: ["Credit Risk Modeling", "Classification", "Scorecards", "Class Imbalance", "Feature Engineering", "Banking Analytics", "Python"]
+  },
+  {
+    repo: "marriage-age-prediction-flask-app",
+    title: "An Honest Retrofit: Cleaning Up a Rough ML Deployment",
+    domain: "Full-Stack / ML Deployment",
+    desc: "When evaluating a rudimentary Flask deployment for a marriage age prediction model, simply hitting run is not enough. The artifact demands editorial cleanup, explicit boundary-setting, and an unsparing assessment of what the system can and cannot claim to accomplish.",
+    approach: [
+      "Started from an inherited Flask-based ML artifact and treated cleanup, boundary-setting, and artifact quality as the real engineering problem",
+      "Reviewed the notebook, dependency sprawl, serialized model path, and browser form flow to define what the app actually shipped",
+      "Stabilized the deployment story around input handling, model loading, route behaviour, and visible prediction boundaries",
+      "Evaluated the application through usability and ethics, especially around claims the prediction should never make",
+      "Reframed the project as a pragmatic retrofit of a rough ML deployment rather than a fresh greenfield build"
+    ],
+    skills: ["Flask", "ML Deployment", "Form Handling", "Model Serialization", "Python", "Application Cleanup", "Ethical Guardrails"]
+  },
+  {
+    repo: "ngo-resource-allocation-model",
+    title: "Allocating Under Scarcity: An Ethics-Aware Resource Memo",
+    domain: "Social Impact / Analytics",
+    desc: "How an international NGO translates socioeconomic indicators into ranked country allocations — the indicators, the weights, the constraints, and the tradeoffs that scoring cannot hide.",
+    approach: [
+      "Defined the task as resource allocation under structural scarcity where every scoring rule embeds tradeoffs that must be surfaced explicitly",
+      "Worked from socioeconomic indicators and country-level signals to build a comparative need-ranking framework",
+      "Used clustering and weighted scoring ideas to translate broad mission goals into an allocation-oriented analytic view",
+      "Examined where real-world constraints and ethics override any clean ranking the model produces",
+      "Presented the output as a decision memo that exposes value judgments instead of hiding them behind score precision"
+    ],
+    skills: ["Resource Allocation", "Clustering", "Social Impact Analytics", "Weighted Scoring", "Decision Modeling", "Python", "Ethics-Aware Analysis"]
+  },
+  {
+    repo: "online-retail-customer-clustering",
+    title: "Who Actually Shops Here: Five Customer Archetypes from a UK Retail Dataset",
+    domain: "E-commerce / Segmentation",
+    desc: "How RFM features and K-means clustering turn 541,000 transactions into five recognizable customer types — and what each archetype tells the merchandising and CRM team.",
+    approach: [
+      "Converted raw transaction lines into a customer-level feature table so segmentation could reflect behavior rather than receipts",
+      "Engineered RFM-style inputs and related measures to capture recency, purchasing intensity, and monetary contribution",
+      "Applied K-means clustering to identify stable customer archetypes that merchandising and CRM teams could recognize operationally",
+      "Read cluster geometry and centroid patterns to understand separation quality and business meaning",
+      "Turned the segmentation into action-oriented customer profiles rather than leaving it as unsituated unsupervised output"
+    ],
+    skills: ["Customer Segmentation", "K-Means", "RFM Analysis", "E-commerce Analytics", "Unsupervised Learning", "Python", "CRM Strategy"]
+  },
+  {
+    repo: "power-user-curve-analysis",
+    title: "Reading the Power User Curve",
+    domain: "Product Analytics",
+    desc: "DAU/MAU is a blunt instrument that collapses human behavior into a single ambiguous percentage. To understand whether a product actually commands attention, we must transition from stickiness shorthand to distributional thinking.",
+    approach: [
+      "Challenged DAU/MAU as a sufficient health metric and reframed product engagement analysis around user-activity distributions",
+      "Used power-user-curve logic to separate casual, emerging, and highly engaged users instead of averaging them into one ratio",
+      "Read the curve shape as evidence about retention quality, habit formation, and the presence of a devoted product core",
+      "Connected the distribution back to concrete retention strategy questions rather than treating the visualization as descriptive only",
+      "Positioned the analysis as product decision support for teams evaluating depth of engagement"
+    ],
+    skills: ["Product Analytics", "Retention Analysis", "DAU/MAU", "Behavioral Segmentation", "Data Visualization", "Growth Metrics", "Python"]
+  },
+  {
+    repo: "property-valuation-model",
+    title: "Investment Committee Memo: Property Valuation Model",
+    domain: "Real Estate / Investment",
+    desc: "This memorandum presents the underlying logic, assumptions, and scenario sensitivities for the proposed property investment model, shifting the discussion from model accuracy alone toward cashflow discipline and downside risk.",
+    approach: [
+      "Reframed property valuation as an investment-committee decision that should prioritize cashflow logic and downside protection over model accuracy alone",
+      "Used standard housing and locality features to estimate acquisition pricing while keeping the model subordinate to underwriting discipline",
+      "Extended the analysis into cashflow ladders, return metrics, and sensitivity pressure rather than stopping at predicted market value",
+      "Tested recommendation quality through scenario analysis so pricing output could be judged against investor risk tolerance",
+      "Positioned the project as valuation support inside a broader investment memo, not as an autonomous buy-sell engine"
+    ],
+    skills: ["Property Valuation", "Investment Analysis", "Cashflow Modeling", "Scenario Analysis", "IRR", "Real Estate Analytics", "Python"]
+  },
+  {
+    repo: "salary-estimation-flask-app",
+    title: "The Interesting Part Starts After model.fit()",
+    domain: "Full-Stack / ML Deployment",
+    desc: "An engineer's walkthrough of turning a tiny salary model into a usable Flask interface, and why that still does not count as production readiness.",
+    approach: [
+      "Used a simple salary estimator to show that deployment work begins after the model is trained, not when the notebook score is printed",
+      "Defined the software surface through serialized artifacts, browser inputs, route handling, and a stable response contract",
+      "Built a lightweight Flask interface and API layer so the model could be exercised as a tool rather than a notebook cell",
+      "Reviewed the deployment for readiness gaps in validation, scale, and operational robustness instead of overstating production maturity",
+      "Turned the project into a practical notebook-to-tool walkthrough for small ML applications"
+    ],
+    skills: ["Flask", "ML Deployment", "API Design", "Model Serialization", "Python", "Form UX", "Deployment Readiness"]
+  },
+  {
+    repo: "telecom-churn-prediction",
+    title: "The Churn Retention Playbook: From Signal to Save Offer",
+    domain: "Telecom / Retention",
+    desc: "A telecom churn-retention playbook: how a classification model connects to a tiered intervention strategy, what a false positive costs, and which signals actually predict who is about to leave.",
+    approach: [
+      "Framed churn prediction as a retention playbook problem where useful output must connect directly to save-offer strategy",
+      "Prepared customer and service signals to model who was likely to leave and which behavioral patterns mattered most",
+      "Compared classification evidence with business costs so false positives and missed saves were evaluated explicitly",
+      "Mapped scores into intervention tiers that matched likely customer value and retention effort",
+      "Presented the final model as an action system for telecom teams rather than a standalone prediction benchmark"
+    ],
+    skills: ["Churn Prediction", "Classification", "Retention Strategy", "Customer Analytics", "Model Evaluation", "Telecom Analytics", "Python"]
+  },
+  {
+    repo: "used-car-price-prediction",
+    title: "What Actually Moves a Used Car's Price",
+    domain: "Automotive / Analytics",
+    desc: "A market-translation article: what regression reveals about used-car pricing pressure, which signals matter, and where the model becomes a poor guide to real negotiation.",
+    approach: [
+      "Approached the problem as price-pressure analysis, distinguishing modelled valuation drivers from real negotiation outcomes in used-car markets",
+      "Used structured vehicle and usage attributes to estimate which factors materially moved expected resale value",
+      "Interpreted regression outputs in terms of influence direction, confidence, and residual trouble spots rather than just fit score",
+      "Examined where intuitive pricing signals turned noisy and where model predictions stopped being trustworthy in practice",
+      "Converted the analysis into a market-reading tool for pricing conversations rather than a final sale-price oracle"
+    ],
+    skills: ["Regression", "Price Modeling", "Automotive Analytics", "Feature Interpretation", "Residual Analysis", "Python", "Market Analysis"]
+  },
+  {
+    repo: "x-education-lead-prioritization",
+    title: "Revenue Operations Brief: Lead Prioritization at X Education",
+    domain: "Sales / RevOps",
+    desc: "Production-grade routing overriding CRM defaults, using prioritized lead scoring and cutoff calibration to improve close-rate-focused sales operations.",
+    approach: [
+      "Defined lead prioritization as a routing and staffing problem, not just a binary modeling exercise disconnected from sales operations",
+      "Used lead attributes and funnel behaviour to build a scoring view that could surface high-intent prospects earlier",
+      "Calibrated thresholds through precision, recall, and operational capacity so the system fit real sales-team throughput",
+      "Evaluated the model through downstream action quality, especially routing usefulness and expected close-rate improvement",
+      "Presented the project as a revenue-operations policy layer overriding weaker CRM defaults"
+    ],
+    skills: ["Lead Scoring", "Classification", "Revenue Operations", "Cutoff Calibration", "Sales Analytics", "Routing Logic", "Python"]
   }
 ];
 
 var referenceProjectOrder = [
   5, 3, 13, 1, 0, 10, 12, 16, 14, 15, 23, 22, 19, 21,
   20, 4, 2, 6, 11, 8, 9, 7, 26, 17, 18, 25, 24,
-  27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37
+  27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37,
+  38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48,
+  49, 50, 51, 52, 53, 54, 55
 ];
 
 /* ============================================================
