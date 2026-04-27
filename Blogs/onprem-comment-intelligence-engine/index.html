@@ -778,6 +778,131 @@ write_audit(thread.id, signal.type, route, viewer.id)</code></pre>
       </div>
     </div>
 
+    <!-- Project Context Section -->
+    <section class="section" id="project-context">
+      <p class="section-tag">Project Record / Context</p>
+      <h2>Project Context</h2>
+      <div class="split">
+        <div>
+          <p>The client was an enterprise software company with over 200 internal team members spread across product, engineering, support, and customer success. Together they generated more than 3,000 comments per day across project management tools, support platforms, and internal communication channels. That volume was the root of the problem: critical escalation signals were buried in noise. A blocked launch note looked the same as a routine status update. A quiet cry for help sat next to a casual question about meeting rooms.</p>
+          <p>A compliance requirement added a hard constraint: no internal comments could leave the corporate network. That ruled out every cloud-based analytics and summarization tool. The processing had to happen entirely on-premises, on infrastructure the company controlled. The team was 2 engineers, and the build ran 9 weeks from architecture design to production deployment.</p>
+        </div>
+        <aside>
+          <div class="rail-card">
+            <h3>Project Details</h3>
+            <ul>
+              <li><strong>Client:</strong> Enterprise software company</li>
+              <li><strong>Team members:</strong> 200+ internal staff</li>
+              <li><strong>Comment volume:</strong> 3,000+ comments/day</li>
+              <li><strong>Constraint:</strong> Zero data egress (compliance mandate)</li>
+              <li><strong>Team:</strong> 2 engineers</li>
+              <li><strong>Timeline:</strong> 9 weeks</li>
+            </ul>
+          </div>
+          <div class="rail-card">
+            <h3>What Was Broken</h3>
+            <ul>
+              <li>Critical signals buried in high-volume comment streams</li>
+              <li>Escalations found 2-3 days late (whenever someone happened to read them)</li>
+              <li>No automated way to surface urgent issues to the right person</li>
+              <li>Cloud tools prohibited by compliance rules</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Results and Impact Section -->
+    <section class="section" id="results-impact">
+      <p class="section-tag">Project Record / Results</p>
+      <h2>Results and Impact</h2>
+      <p>Critical signal detection reached 89 percent precision and 93 percent recall. In practice that means: out of every 100 comments the system flagged as critical, 89 were genuinely urgent. And out of every 100 actually critical comments, the system caught 93. The false positive rate of 11 percent was manageable. Reviewers spent roughly 2 minutes per day clearing false alerts.</p>
+      <p>The most dramatic change was speed. The average time to surface a critical comment to the right person dropped to 4 minutes. Before the system, those same comments were discovered "whenever someone happened to read them," which in practice meant 2 to 3 days. The system generates about 120 genuine critical escalation alerts per month. All processing runs on-premises with zero data leaving the corporate network. Latency is under 200 milliseconds per comment.</p>
+      <div class="figure-block">
+        <figure>
+          <svg viewBox="0 0 1100 400" role="img" aria-labelledby="results-ba-title results-ba-desc">
+            <title id="results-ba-title">Before and after comparison of comment intelligence operations</title>
+            <desc id="results-ba-desc">Side-by-side metrics showing operational improvements after deploying the on-prem comment intelligence engine.</desc>
+            <rect x="18" y="18" width="1064" height="364" fill="#fcfcfc" stroke="#222222" stroke-width="2"/>
+            <text x="550" y="52" text-anchor="middle" font-family="var(--sans)" font-size="14" font-weight="700" letter-spacing="2" fill="#111111">BEFORE AND AFTER DEPLOYMENT</text>
+            <line x1="550" y1="64" x2="550" y2="370" stroke="#2b2b2b" stroke-width="2"/>
+            <text x="284" y="82" text-anchor="middle" font-family="var(--mono)" font-size="11" letter-spacing="2" fill="#5b5b5b">BEFORE</text>
+            <text x="825" y="82" text-anchor="middle" font-family="var(--mono)" font-size="11" letter-spacing="2" fill="#5b5b5b">AFTER</text>
+            <rect x="40" y="96" width="480" height="48" fill="#f8f8f8" stroke="#c8c8c8"/>
+            <text x="60" y="118" font-family="var(--sans)" font-size="13" fill="#0c0c0c">Time to surface critical comment</text>
+            <text x="60" y="136" font-family="var(--sans)" font-size="17" font-weight="700" fill="#0c0c0c">2-3 DAYS (when someone reads it)</text>
+            <rect x="580" y="96" width="480" height="48" fill="#f8f8f8" stroke="#c8c8c8"/>
+            <text x="600" y="118" font-family="var(--sans)" font-size="13" fill="#0c0c0c">Time to surface critical comment</text>
+            <text x="600" y="136" font-family="var(--sans)" font-size="17" font-weight="700" fill="#0c0c0c">4 MINUTES</text>
+            <rect x="40" y="158" width="480" height="48" fill="#ffffff" stroke="#c8c8c8"/>
+            <text x="60" y="180" font-family="var(--sans)" font-size="13" fill="#0c0c0c">Critical signal detection</text>
+            <text x="60" y="198" font-family="var(--sans)" font-size="17" font-weight="700" fill="#0c0c0c">MANUAL (no automated detection)</text>
+            <rect x="580" y="158" width="480" height="48" fill="#ffffff" stroke="#c8c8c8"/>
+            <text x="600" y="180" font-family="var(--sans)" font-size="13" fill="#0c0c0c">Critical signal detection</text>
+            <text x="600" y="198" font-family="var(--sans)" font-size="17" font-weight="700" fill="#0c0c0c">89% PRECISION / 93% RECALL</text>
+            <rect x="40" y="220" width="480" height="48" fill="#f8f8f8" stroke="#c8c8c8"/>
+            <text x="60" y="242" font-family="var(--sans)" font-size="13" fill="#0c0c0c">Monthly critical issues caught proactively</text>
+            <text x="60" y="260" font-family="var(--sans)" font-size="17" font-weight="700" fill="#0c0c0c">UNKNOWN (found reactively)</text>
+            <rect x="580" y="220" width="480" height="48" fill="#f8f8f8" stroke="#c8c8c8"/>
+            <text x="600" y="242" font-family="var(--sans)" font-size="13" fill="#0c0c0c">Monthly critical issues caught proactively</text>
+            <text x="600" y="260" font-family="var(--sans)" font-size="17" font-weight="700" fill="#0c0c0c">~120 GENUINE ALERTS</text>
+            <rect x="40" y="282" width="480" height="48" fill="#ffffff" stroke="#c8c8c8"/>
+            <text x="60" y="304" font-family="var(--sans)" font-size="13" fill="#0c0c0c">Data egress</text>
+            <text x="60" y="322" font-family="var(--sans)" font-size="17" font-weight="700" fill="#0c0c0c">RISK (temptation to use cloud tools)</text>
+            <rect x="580" y="282" width="480" height="48" fill="#ffffff" stroke="#c8c8c8"/>
+            <text x="600" y="304" font-family="var(--sans)" font-size="13" fill="#0c0c0c">Data egress</text>
+            <text x="600" y="322" font-family="var(--sans)" font-size="17" font-weight="700" fill="#0c0c0c">ZERO (all processing on-prem)</text>
+            <rect x="40" y="344" width="480" height="28" fill="#f8f8f8" stroke="#c8c8c8"/>
+            <text x="60" y="364" font-family="var(--sans)" font-size="12" fill="#5b5b5b">Processing latency: N/A</text>
+            <rect x="580" y="344" width="480" height="28" fill="#f8f8f8" stroke="#c8c8c8"/>
+            <text x="600" y="364" font-family="var(--sans)" font-size="12" fill="#5b5b5b">Processing latency: under 200ms per comment, 3,000+ comments/day</text>
+          </svg>
+          <figcaption>Key metrics before and after deployment. The shift from days to minutes for critical signal surfacing was the most impactful change for the operations team.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Lessons Learned Section -->
+    <section class="section" id="lessons-learned">
+      <p class="section-tag">Project Record / Lessons</p>
+      <h2>Lessons Learned</h2>
+      <div class="split">
+        <div>
+          <p>The first approach was keyword matching. The system scanned every comment for words like "blocked," "urgent," "deadline," "critical," and "escalate." It was fast to build and easy to explain. The problem was the false positive rate: over 40 percent. People write "urgent" in casual contexts all the time. A comment saying "not urgent but when you get a chance" would trigger an alert. A message about a "deadline for the office party" would flag as critical. The signal-to-noise ratio was so bad that reviewers stopped trusting the alerts within the first week.</p>
+          <p>Switching to embedding-based semantic matching with a fine-tuned classifier brought the false positive rate down from 40+ percent to 11 percent. Instead of looking for specific words, the system learned to recognize the meaning and context around urgency. That required building a labeled dataset of 1,200 comments with the operations team, which took 2 weeks but was worth every hour.</p>
+          <p>The biggest surprise was which category of comment got escalated most often. It was not "urgent bugs" or "system down" messages. It was "quiet blockers" where someone mentioned being stuck without using any urgent language at all. Comments like "I cannot proceed until the API spec is finalized" or "still waiting on the design review from last week" contained no alarm words but described real work stoppages. The semantic model caught these because it learned the pattern of blocked work, not just the vocabulary of urgency.</p>
+          <p>For the next iteration, the team would add thread-level context rather than analyzing individual comments in isolation. A single comment saying "thanks, that fixed it" is meaningless alone but highly informative when the preceding 8 messages describe a critical outage. Thread-aware detection would reduce both false positives and missed signals.</p>
+        </div>
+        <aside>
+          <div class="rail-card">
+            <h3>What Did Not Work First</h3>
+            <ul>
+              <li>Keyword matching ("blocked," "urgent," "deadline")</li>
+              <li>False positive rate exceeded 40%</li>
+              <li>Reviewers stopped trusting alerts within a week</li>
+              <li>Replaced with embedding-based semantic matching</li>
+            </ul>
+          </div>
+          <div class="rail-card">
+            <h3>Biggest Surprise</h3>
+            <ul>
+              <li>Most escalated category: "quiet blockers"</li>
+              <li>People stuck without using urgent language</li>
+              <li>Semantic model detected work stoppages by pattern, not vocabulary</li>
+            </ul>
+          </div>
+          <div class="rail-card">
+            <h3>Next Time</h3>
+            <ul>
+              <li>Add thread-level context for detection</li>
+              <li>Analyze comment sequences, not just individual messages</li>
+              <li>Would reduce both false positives and missed signals</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
     <section class="closing-note" aria-label="Closing note">
       <p class="eyebrow">Closing Position</p>
       <p>This case study is strongest where it is most restrained. It does not promise universal reasoning over private text. It describes a controlled collaboration system that narrows the problem: ingest internal comment streams, retrieve the latest allowed evidence, summarize for speed, detect critical signals, route them through permission gates, and record the path. That scope is what makes the privacy posture credible. The value comes from removing operational ambiguity without pretending that privacy, accuracy, or judgment arrive for free.</p>

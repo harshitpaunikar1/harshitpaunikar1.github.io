@@ -715,6 +715,87 @@ trace.mark("turn.commit")</code></pre>
       </div>
     </section>
 
+    <section class="section" id="project-context">
+      <div class="section-head">
+        <div class="marker">
+          <span class="timestamp">case study</span>
+          <h2>// Project Context</h2>
+        </div>
+        <div class="lane">
+          <p>The client was a customer service company handling over 2,000 calls per day. Their existing IVR system had a forty-five percent abandonment rate. Callers would navigate three or four menu levels, wait on hold, and hang up before reaching a human agent. The rigid menu trees could not handle natural language. A caller saying "I want to check my order" had to first press 1 for orders, then press 2 for order status, then enter their order number on the keypad. Most callers gave up before reaching the right menu.</p>
+          <p>The goal was a conversational voice agent that could handle simple, repetitive queries with natural language: order status, store hours, return policy, and basic account questions. These four categories represented fifty-eight percent of all incoming calls and did not require the judgment or empathy of a human agent. They just required fast, accurate information lookup.</p>
+          <p>The build team was two engineers and one customer experience designer. The CX designer's role was to define the conversational patterns, the escalation triggers, and the tone guidelines. Without that role, the engineers would have built a technically fast system that sounded robotic and frustrated callers in a different way than the old IVR. The fourteen-week timeline was the longest of any project described here, driven by the complexity of the audio pipeline, the latency requirements, and the need for extensive testing with real call recordings before going live.</p>
+          <div class="callout">Client: customer service company, 2,000+ daily calls. Team: 2 engineers + 1 CX designer. Timeline: 14 weeks. The IVR abandonment rate of 45% was the primary business trigger for the project.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="results-impact">
+      <div class="section-head">
+        <div class="marker">
+          <span class="timestamp">measured</span>
+          <h2>// Results And Impact</h2>
+        </div>
+        <div class="lane">
+          <p>End-to-end latency landed at 866 milliseconds from the user finishing speech to the agent's first audible word. That number was the result of shaving time from every stage in the pipeline, not from any single optimization. The call containment rate reached fifty-eight percent, meaning more than half of all calls were resolved by the voice agent without needing a human. The old IVR resolved only twelve percent of calls without a handoff.</p>
+          <p>Abandonment rate dropped from forty-five percent to eighteen percent. Callers who reached the voice agent were far less likely to hang up because they could state their question in plain language and get an answer within seconds instead of navigating menu trees. Customer satisfaction on bot-handled calls averaged 4.1 out of 5, surveyed immediately after the call. Interruption recovery, when a caller cut in while the agent was speaking, succeeded ninety-one percent of the time within 150 milliseconds.</p>
+          <p>The system handles over 1,200 calls per day. Monthly cost savings from reduced call center staffing reached $34,000. Those savings came not from layoffs but from redeploying agents to handle the complex calls that actually required human judgment, while the voice agent absorbed the repetitive lookup queries.</p>
+        </div>
+      </div>
+      <figure class="figure-band">
+        <svg viewBox="0 0 1260 400" role="img" aria-labelledby="results-ba-title results-ba-desc">
+          <title id="results-ba-title">Before and after comparison of voice agent deployment metrics</title>
+          <desc id="results-ba-desc">Side-by-side comparison showing IVR containment rate, abandonment rate, resolution method, and monthly cost before and after deploying the real-time voice agent.</desc>
+          <rect x="0" y="0" width="1260" height="400" fill="#050505"/>
+          <text x="630" y="36" text-anchor="middle" font-family="IBM Plex Mono" font-size="15" fill="#8c8c8c" letter-spacing="2">BEFORE AND AFTER DEPLOYMENT</text>
+          <line x1="630" y1="52" x2="630" y2="380" stroke="#2f2f2f" stroke-width="2" stroke-dasharray="8 8"/>
+          <text x="315" y="72" text-anchor="middle" font-family="IBM Plex Mono" font-size="13" fill="#8c8c8c" letter-spacing="2">BEFORE (IVR)</text>
+          <text x="945" y="72" text-anchor="middle" font-family="IBM Plex Mono" font-size="13" fill="#8c8c8c" letter-spacing="2">AFTER (VOICE AGENT)</text>
+          <rect x="40" y="90" width="550" height="62" fill="#101010" stroke="#4a4a4a"/>
+          <text x="60" y="114" font-family="IBM Plex Mono" font-size="12" fill="#8c8c8c" letter-spacing="1.5">CONTAINMENT RATE</text>
+          <text x="60" y="140" font-family="IBM Plex Mono" font-size="19" fill="#f2f2f2">12% resolved without human handoff</text>
+          <rect x="670" y="90" width="550" height="62" fill="#101010" stroke="#f2f2f2" stroke-width="2"/>
+          <text x="690" y="114" font-family="IBM Plex Mono" font-size="12" fill="#8c8c8c" letter-spacing="1.5">CONTAINMENT RATE</text>
+          <text x="690" y="140" font-family="IBM Plex Mono" font-size="19" fill="#f2f2f2">58% resolved without human handoff</text>
+          <rect x="40" y="168" width="550" height="62" fill="#101010" stroke="#4a4a4a"/>
+          <text x="60" y="192" font-family="IBM Plex Mono" font-size="12" fill="#8c8c8c" letter-spacing="1.5">ABANDONMENT RATE</text>
+          <text x="60" y="218" font-family="IBM Plex Mono" font-size="19" fill="#f2f2f2">45% (long hold times, rigid menus)</text>
+          <rect x="670" y="168" width="550" height="62" fill="#101010" stroke="#f2f2f2" stroke-width="2"/>
+          <text x="690" y="192" font-family="IBM Plex Mono" font-size="12" fill="#8c8c8c" letter-spacing="1.5">ABANDONMENT RATE</text>
+          <text x="690" y="218" font-family="IBM Plex Mono" font-size="19" fill="#f2f2f2">18% (natural language, fast answers)</text>
+          <rect x="40" y="246" width="550" height="62" fill="#101010" stroke="#4a4a4a"/>
+          <text x="60" y="270" font-family="IBM Plex Mono" font-size="12" fill="#8c8c8c" letter-spacing="1.5">INTERRUPTION HANDLING</text>
+          <text x="60" y="296" font-family="IBM Plex Mono" font-size="19" fill="#f2f2f2">None (IVR ignores user input mid-menu)</text>
+          <rect x="670" y="246" width="550" height="62" fill="#101010" stroke="#f2f2f2" stroke-width="2"/>
+          <text x="690" y="270" font-family="IBM Plex Mono" font-size="12" fill="#8c8c8c" letter-spacing="1.5">INTERRUPTION HANDLING</text>
+          <text x="690" y="296" font-family="IBM Plex Mono" font-size="19" fill="#f2f2f2">91% success rate within 150ms</text>
+          <rect x="40" y="324" width="550" height="62" fill="#101010" stroke="#4a4a4a"/>
+          <text x="60" y="348" font-family="IBM Plex Mono" font-size="12" fill="#8c8c8c" letter-spacing="1.5">MONTHLY STAFFING COST</text>
+          <text x="60" y="374" font-family="IBM Plex Mono" font-size="19" fill="#f2f2f2">All simple queries handled by humans</text>
+          <rect x="670" y="324" width="550" height="62" fill="#101010" stroke="#f2f2f2" stroke-width="2"/>
+          <text x="690" y="348" font-family="IBM Plex Mono" font-size="12" fill="#8c8c8c" letter-spacing="1.5">MONTHLY STAFFING COST</text>
+          <text x="690" y="374" font-family="IBM Plex Mono" font-size="19" fill="#f2f2f2">$34K/month saved, agents on complex calls</text>
+        </svg>
+        <figcaption>Customer satisfaction: 4.1/5 on bot-handled calls. The system handles 1,200+ calls daily. The savings came from redeploying human agents to complex cases, not from reducing headcount.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section" id="lessons-learned">
+      <div class="section-head">
+        <div class="marker">
+          <span class="timestamp">retrospective</span>
+          <h2>// Lessons Learned</h2>
+        </div>
+        <div class="lane">
+          <p>The first version had 1,400 milliseconds of end-to-end latency. At that speed, users started repeating themselves because they assumed the system had not heard them. Each repetition created a cascade of misunderstandings: the agent would start responding to the first utterance just as the user repeated it, triggering an interruption, which triggered recovery, which added more latency, which prompted another repetition. A 1,400-millisecond system was not just slow. It was unstable under real conversational pressure.</p>
+          <p>Getting from 1,400 to 866 milliseconds required shaving time from every stage rather than finding one big win. Audio capture saved 50 milliseconds by tightening frame accumulation. Speech-to-text saved 120 milliseconds by using partial transcripts to unblock reasoning earlier. Text-to-speech saved 180 milliseconds by starting synthesis on the first clause instead of waiting for the complete response. The remaining savings came from transport optimization and buffer tuning. No single change was dramatic. The cumulative effect was the difference between a usable system and one that created more frustration than it resolved.</p>
+          <p>The biggest surprise was that barge-in handling, the ability to stop talking when the user interrupts, mattered more than response quality. Users forgave slow answers. They forgave imperfect answers. They did not forgive a system that kept talking over them. When the agent continued speaking after a user started a correction, callers became visibly frustrated and either hung up or demanded a human agent. Investing heavily in the interruption state machine, making it a first-class pipeline path rather than an afterthought, was the single decision that most improved caller satisfaction.</p>
+          <p>If building this again, the team would add emotion detection to route frustrated callers to humans earlier. The current system only escalates based on explicit requests or query complexity. A caller who says "check my order" in an angry tone gets the same treatment as a calm caller. Detecting frustration from voice characteristics and routing those callers to a human within the first thirty seconds would prevent the worst experiences from ever reaching the point where the caller demands to speak to a person.</p>
+          <div class="callout">The latency lesson was simple in retrospect: every millisecond matters, but no single millisecond matters more than the others. The interruption lesson was less obvious: users will tolerate a slow system far longer than a system that does not let them speak.</div>
+        </div>
+      </div>
+    </section>
+
     <section class="section closing" id="trace">
       <div class="section-head">
         <div class="marker">

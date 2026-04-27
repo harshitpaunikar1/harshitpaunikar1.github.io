@@ -307,6 +307,73 @@
     <p>Memory operates in the background: an asynchronous process summarizes old conversation turns and stores them in an entity tracker. When the user says, "Yes, update it," the router recognizes the need for Clarification or Tool Execution, and specifically queries the short-term entity tracker to figure out what "it" resolving to. The long-term logs never enter the primary tool-calling prompt directly.</p>
 
     <p>By enforcing this compass geometry-dispatching exclusively to the appropriate node, shedding irrelevant schemas, and relegating memory to an asynchronous lookup-the assistant evolves from a sprawling experiment into a deterministic software component. A predictable subsystem that executes specific actions reliably requires removing the freedom for it to do everything else.</p>
+
+    <!-- Project Context -->
+    <h2>VERDICT [05] : Project Context</h2>
+
+    <p>This system was built for an internal knowledge management platform at a tech company with over 150 employees. Their existing chatbot routed every query through all available tools at once — search, database lookup, API calls, and direct generation all fired simultaneously. The result was slow, expensive, and confusing. Average response time was 8 seconds, and users frequently got answers that mixed irrelevant tool outputs into a single incoherent response. Employees stopped using the chatbot and went back to asking colleagues on Slack, which defeated the purpose of the system entirely.</p>
+
+    <p>This was a solo engineering effort over 6 weeks. The first two weeks were spent logging every query the existing system received, categorizing them by intent, and measuring which tools were actually needed versus which were being invoked unnecessarily. That audit revealed that 64% of tool invocations were wasted — the system was calling tools that had no relevance to the query.</p>
+
+    <div class="callout">
+      <p><span class="path-label">PROJECT DETAILS</span> Client: internal knowledge management platform (150+ employees). Problem: all tools fired on every query, burning tokens and returning confused responses. Team: 1 engineer, 6-week build. The existing system averaged 3.2 tool invocations per query when most queries needed only 1.</p>
+    </div>
+
+    <!-- Results & Impact -->
+    <h2>VERDICT [06] : Results & Impact</h2>
+
+    <p>Average response latency dropped from 8 seconds to 2.1 seconds. Token consumption fell 64% per query because the router invoked only the tool branch that matched the user's intent. Routing accuracy — the correct tool selected on the first attempt — reached 91%. User satisfaction scores improved from 3.2 out of 5 to 4.4 out of 5. The system handled over 400 internal queries per day, and unnecessary tool invocations dropped from an average of 3.2 per query to 1.1. Monthly API cost went from $840 to $310.</p>
+
+    <div class="figure-container">
+      <div class="svg-canvas">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" width="100%" style="display:block;">
+          <rect width="900" height="380" fill="#ffffff"/>
+          <text x="450" y="30" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="700" text-anchor="middle" fill="#0a0a0a" letter-spacing="0.05em">BEFORE / AFTER ROUTING OVERHAUL</text>
+          <!-- Before -->
+          <rect x="30" y="50" width="400" height="300" rx="4" fill="#f5f5f5" stroke="#e8e8e8" stroke-width="2"/>
+          <text x="230" y="78" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#555555" letter-spacing="0.05em">BEFORE (ALL TOOLS FIRE)</text>
+          <rect x="70" y="98" width="300" height="28" rx="4" fill="#e8e8e8"/>
+          <text x="82" y="117" font-family="'JetBrains Mono', monospace" font-size="12" fill="#555555">Response time: 8 seconds</text>
+          <rect x="70" y="138" width="320" height="28" rx="4" fill="#e8e8e8"/>
+          <text x="82" y="157" font-family="'JetBrains Mono', monospace" font-size="12" fill="#555555">Tool calls/query: 3.2 avg</text>
+          <rect x="70" y="178" width="260" height="28" rx="4" fill="#e8e8e8"/>
+          <text x="82" y="197" font-family="'JetBrains Mono', monospace" font-size="12" fill="#555555">User satisfaction: 3.2/5</text>
+          <rect x="70" y="218" width="280" height="28" rx="4" fill="#e8e8e8"/>
+          <text x="82" y="237" font-family="'JetBrains Mono', monospace" font-size="12" fill="#555555">Monthly API cost: $840</text>
+          <rect x="70" y="258" width="340" height="28" rx="4" fill="#e8e8e8"/>
+          <text x="82" y="277" font-family="'JetBrains Mono', monospace" font-size="12" fill="#555555">64% of tool calls wasted</text>
+          <!-- Arrow -->
+          <polygon points="435,200 455,185 455,215" fill="#111111"/>
+          <!-- After -->
+          <rect x="470" y="50" width="400" height="300" rx="4" fill="#ffffff" stroke="#111111" stroke-width="2"/>
+          <text x="670" y="78" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#0a0a0a" letter-spacing="0.05em">AFTER (INTENT ROUTER)</text>
+          <rect x="510" y="98" width="320" height="28" rx="4" fill="#111111"/>
+          <text x="522" y="117" font-family="'JetBrains Mono', monospace" font-size="12" fill="#ffffff">Response time: 2.1 seconds</text>
+          <rect x="510" y="138" width="260" height="28" rx="4" fill="#111111"/>
+          <text x="522" y="157" font-family="'JetBrains Mono', monospace" font-size="12" fill="#ffffff">Tool calls/query: 1.1 avg</text>
+          <rect x="510" y="178" width="280" height="28" rx="4" fill="#111111"/>
+          <text x="522" y="197" font-family="'JetBrains Mono', monospace" font-size="12" fill="#ffffff">User satisfaction: 4.4/5</text>
+          <rect x="510" y="218" width="260" height="28" rx="4" fill="#111111"/>
+          <text x="522" y="237" font-family="'JetBrains Mono', monospace" font-size="12" fill="#ffffff">Monthly API cost: $310</text>
+          <rect x="510" y="258" width="300" height="28" rx="4" fill="#111111"/>
+          <text x="522" y="277" font-family="'JetBrains Mono', monospace" font-size="12" fill="#ffffff">Routing accuracy: 91%</text>
+        </svg>
+      </div>
+      <figcaption>Fig 2. - Before and after the routing overhaul. Selective tool dispatch cut response time by 74%, reduced API costs by 63%, and improved user satisfaction from 3.2 to 4.4 out of 5.</figcaption>
+    </div>
+
+    <!-- Lessons Learned -->
+    <h2>VERDICT [07] : Lessons Learned</h2>
+
+    <p>The first approach was a simple keyword-based router: if the query contained "policy," route to the knowledge base; if it contained "create" or "update," route to the tool execution branch. It was fast to build and too rigid to use. Users rephrased questions constantly — "what's the vacation rule" and "how many days off do I get" are the same intent but share zero keywords. The keyword router missed rephrased questions about 40% of the time. We replaced it with an intent classifier that reads the first few tokens of the model's reasoning to decide the route before full generation begins.</p>
+
+    <p>The biggest surprise was the "clarification" branch. We originally planned only three routes: retrieval, tool use, and direct answer. During testing, we noticed that roughly 12% of queries were genuinely ambiguous — the user said something like "update it" without enough context to know what "it" referred to. Instead of guessing (which led to wrong-tool invocations), we added a fourth branch that simply asks the user to clarify. That single addition reduced wrong-tool invocations by 35%. Asking a question turned out to be more useful than making a bad guess.</p>
+
+    <p>If we built this again, we would add a feedback mechanism where users can flag "wrong tool used" after receiving a response. Right now, the router's accuracy is static — it does not learn from mistakes. A lightweight feedback loop where flagged responses adjust the intent classifier's weights would improve routing accuracy over time, especially for edge cases the initial training data did not cover.</p>
+
+    <div class="callout">
+      <p><span class="path-label">KEY LESSONS</span> Keyword routing is too brittle for real users. Intent classification with a clarification branch handles ambiguity better than guessing. The cheapest way to improve accuracy is to ask the user when you are not sure, rather than invoking the wrong tool and hoping for the best.</p>
+    </div>
   </main>
 </div>
 

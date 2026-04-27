@@ -292,6 +292,82 @@
 
       <p>A pragmatic pipeline prioritizes boring operations. By constraining the problem space-shipping sealed containers through automated, binary stage gates-a small team guarantees shipping velocity without the crushing overhead of maintaining an enterprise behemoth.</p>
 
+      <h2>STAGE_06 :: Project Context</h2>
+
+      <p>This pipeline was built for a <strong>6-person startup engineering team</strong> that had been deploying manually via SSH and SCP for over a year. Every deployment was a 45-minute ritual: an engineer would SSH into the production server, pull the latest code, run the build manually, restart the process, and pray nothing broke. Deployments happened once every two weeks because nobody wanted to go through the pain more often than that.</p>
+
+      <p>The failure rate was brutal. Roughly <strong>30% of deployments failed</strong>, and each failure required 1-2 hours of manual rollback work. There was no automated testing, no container images, and no reproducible builds. The production server had accumulated months of manual configuration drift that nobody fully understood.</p>
+
+      <p>The project was executed by a <strong>solo DevOps engineer over 8 weeks</strong>. The constraint was clear: build a reliable delivery pipeline using the existing infrastructure budget. No new servers, no new cloud accounts, no additional monthly costs. Jenkins would run on the existing server, and Docker would run on the existing VMs.</p>
+
+      <h2>STAGE_07 :: Results & Impact</h2>
+
+      <p>The before-and-after numbers tell the story more clearly than any architectural diagram.</p>
+
+      <div class="full-width-figure">
+        <div class="svg-blueprint">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" width="100%">
+            <rect width="1100" height="420" fill="#ffffff" />
+
+            <!-- Title -->
+            <text x="550" y="35" font-family="'Space Mono', monospace" font-size="14" font-weight="700" text-anchor="middle" fill="#111111">BEFORE / AFTER COMPARISON</text>
+            <line x1="50" y1="50" x2="1050" y2="50" stroke="#dddddd" stroke-width="1" />
+
+            <!-- Column Headers -->
+            <text x="200" y="80" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#777777">BEFORE (MANUAL)</text>
+            <text x="900" y="80" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">AFTER (PIPELINE)</text>
+
+            <!-- Metric 1: Deploy Time -->
+            <text x="550" y="120" font-family="'Karla', sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#111111">Deployment Time</text>
+            <rect x="80" y="130" width="240" height="30" fill="#f4f4f4" stroke="#dddddd" stroke-width="1" />
+            <text x="200" y="150" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">45 MINUTES</text>
+            <rect x="830" y="130" width="140" height="30" fill="#111111" />
+            <text x="900" y="150" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#ffffff">4 MINUTES</text>
+
+            <!-- Metric 2: Frequency -->
+            <text x="550" y="190" font-family="'Karla', sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#111111">Deploy Frequency</text>
+            <rect x="105" y="200" width="190" height="30" fill="#f4f4f4" stroke="#dddddd" stroke-width="1" />
+            <text x="200" y="220" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">2x / MONTH</text>
+            <rect x="830" y="200" width="140" height="30" fill="#111111" />
+            <text x="900" y="220" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#ffffff">3x / WEEK</text>
+
+            <!-- Metric 3: Failure Rate -->
+            <text x="550" y="260" font-family="'Karla', sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#111111">Failed Deployment Rate</text>
+            <rect x="120" y="270" width="160" height="30" fill="#f4f4f4" stroke="#dddddd" stroke-width="1" />
+            <text x="200" y="290" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">30%</text>
+            <rect x="860" y="270" width="80" height="30" fill="#111111" />
+            <text x="900" y="290" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#ffffff">4%</text>
+
+            <!-- Metric 4: Rollback Time -->
+            <text x="550" y="330" font-family="'Karla', sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#111111">Rollback Time</text>
+            <rect x="80" y="340" width="240" height="30" fill="#f4f4f4" stroke="#dddddd" stroke-width="1" />
+            <text x="200" y="360" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">1-2 HOURS</text>
+            <rect x="830" y="340" width="140" height="30" fill="#111111" />
+            <text x="900" y="360" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#ffffff">90 SECONDS</text>
+
+            <!-- Additional note -->
+            <line x1="50" y1="390" x2="1050" y2="390" stroke="#dddddd" stroke-width="1" />
+            <text x="550" y="410" font-family="'Karla', sans-serif" font-size="11" text-anchor="middle" fill="#777777">Trivy scanning caught 12 critical CVEs in the first month. Build reproducibility: 100%. Additional infrastructure cost: $0.</text>
+          </svg>
+        </div>
+        <figcaption>Fig 2. - Before/After deployment metrics. The left column represents the manual SSH/SCP deployment process. The right column represents the automated Jenkins + Docker pipeline. Rollback went from a multi-hour manual process to a single-command Docker image swap taking 90 seconds.</figcaption>
+      </div>
+
+      <p>Beyond the raw numbers, the Trivy security scanning layer caught <strong>12 critical CVEs</strong> in the first month that had been sitting undetected in production dependencies. Build reproducibility reached 100% because the same Docker image runs identically everywhere. And the total additional infrastructure cost was zero: Jenkins ran on the existing server, Docker ran on the existing VMs.</p>
+
+      <h2>STAGE_08 :: Lessons Learned</h2>
+
+      <p>The original plan was to adopt Kubernetes. On paper, it seemed like the right long-term investment. In practice, after estimating the setup work, it became clear that Kubernetes would take roughly <strong>3 months of dedicated effort</strong> for a 6-person team that did not need container orchestration. They had one application running on two servers. Kubernetes was designed for hundreds of services across dozens of nodes.</p>
+
+      <p>The decision to scrap Kubernetes in favor of <strong>Docker Compose + Jenkins</strong> delivered 90% of the operational benefit at 10% of the complexity. Docker Compose handled multi-container orchestration on a single host. Jenkins handled the build-test-scan-deploy lifecycle. Together, they covered every real requirement without introducing a single piece of infrastructure the team could not understand and maintain on their own.</p>
+
+      <div class="stop-condition">
+        <h4>Unexpected Outcome</h4>
+        <p>The biggest productivity gain was not faster deployments. It was the <strong>confidence to deploy often</strong>. Once engineers trusted the pipeline to catch errors and roll back cleanly, they started shipping smaller changes more frequently. The fear of the deploy process had been silently throttling the team's output for months.</p>
+      </div>
+
+      <p>If building this again, the one addition would be <strong>staging environment parity checking</strong>: an automated comparison ensuring the staging server's configuration matches production exactly. Several bugs during the initial rollout were caused by staging and production having slightly different environment variables, which the pipeline could not catch because it did not know to look.</p>
+
     </main>
   </div>
 

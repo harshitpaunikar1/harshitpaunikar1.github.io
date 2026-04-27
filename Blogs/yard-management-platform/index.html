@@ -252,6 +252,130 @@
     <p>The platform must act as the integration layer. When a truck arrives at the gate, the gateway API queries the TMS to verify the appointment block. When a trailer hits the dock, a webhook is fired into the WMS, altering the labor forecast to ensure forklift drivers are dispatched to Door 3. When the WMS seals the trailer, the yard platform is notified to generate the outbound move task, instructing the shunter to pull it to the outbound lot.</p>
 
     <p>This is the actual product: the complete synchronization of physical assets with data payloads. By managing the space perfectly, the platform transforms the yard from a sprawling liability into a high-throughput, tightly governed node in the supply chain.</p>
+
+    <h2>[BOARD_05 :: PROJECT CONTEXT]</h2>
+
+    <p>The client was a large distribution center handling over 600 trailer moves every day across a 50-dock yard. Before the platform existed, the entire yard ran on paper logs and radio communication. Supervisors had no real-time visibility into where trailers were parked, which docks were available, or which drivers were assigned to which moves.</p>
+
+    <p>The cost of this blindness was measurable. Demurrage charges — the fees carriers impose when their trailers sit idle beyond the allotted free time — averaged $28,000 per month. Trailers regularly got "lost" in the yard, meaning nobody could confirm their exact location without physically driving around to look. This happened two to three times per week.</p>
+
+    <div class="status-panel">
+      <div class="header">Engagement Parameters</div>
+      <code>CLIENT: Large distribution center, 50 docks, 600+ moves/day</code>
+      <p>Team: 3 engineers + 1 operations manager embedded full-time.</p>
+      <code>TIMELINE: 16 weeks (discovery through go-live)</code>
+      <p>Core pain: No real-time visibility, $28K/month demurrage, paper-based dispatch, 2-3 "lost trailer" incidents per week.</p>
+    </div>
+
+    <p>The operations manager worked alongside the engineering team for the full 16-week build. He brought the domain knowledge we lacked — the difference between a live load and a drop trailer, why reefers need priority docking, how driver shift changes create handoff gaps. Without that expertise embedded in the team, we would have built a technically clean system that ignored the physical realities of yard operations.</p>
+
+    <h2>[BOARD_06 :: RESULTS & IMPACT]</h2>
+
+    <p>The platform went live across all 50 docks and the full staging yard. Every trailer, dock door, and tractor was tracked through its complete lifecycle in real time. The operational improvements were immediate and sustained.</p>
+
+    <p>Average trailer dwell time — the total time a trailer spends on the property from gate-in to gate-out — dropped from 4.2 hours to 2.1 hours, a 50% reduction. Demurrage charges fell from $28,000 per month to $8,000 per month, saving roughly $240,000 per year. Dock utilization climbed from 62% to 87% because the system eliminated scheduling gaps and double-bookings.</p>
+
+    <div class="atlas-figure">
+      <div class="svg-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" width="100%">
+          <rect width="1000" height="480" fill="#1a1a1a" />
+
+          <text x="500" y="30" font-family="'Chivo Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#ffffff">OPERATIONAL COMPARISON: BEFORE / AFTER</text>
+
+          <!-- BEFORE Column -->
+          <rect x="40" y="50" width="430" height="400" fill="none" stroke="#444444" stroke-width="2" />
+          <text x="255" y="75" font-family="'Chivo Mono', monospace" font-size="11" font-weight="700" text-anchor="middle" fill="#ffffff">BEFORE: PAPER & RADIO</text>
+
+          <!-- Metric bars BEFORE -->
+          <text x="60" y="110" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">DWELL TIME</text>
+          <rect x="60" y="118" width="390" height="20" fill="#222222" stroke="#444444" stroke-width="1" />
+          <rect x="60" y="118" width="390" height="20" fill="#444444" />
+          <text x="255" y="132" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">4.2 HOURS AVG</text>
+
+          <text x="60" y="162" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">DEMURRAGE</text>
+          <rect x="60" y="170" width="390" height="20" fill="#444444" />
+          <text x="255" y="184" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">$28,000 / MONTH</text>
+
+          <text x="60" y="214" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">DOCK UTILIZATION</text>
+          <rect x="60" y="222" width="242" height="20" fill="#444444" />
+          <text x="181" y="236" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">62%</text>
+
+          <text x="60" y="266" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">LOST TRAILERS</text>
+          <rect x="60" y="274" width="150" height="20" fill="#444444" />
+          <text x="135" y="288" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">2-3 / WEEK</text>
+
+          <text x="60" y="318" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">DISPATCH METHOD</text>
+          <rect x="60" y="326" width="250" height="20" fill="#444444" />
+          <text x="185" y="340" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">RADIO + SHOUTING</text>
+
+          <text x="60" y="374" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">TRACKING</text>
+          <rect x="60" y="382" width="200" height="20" fill="#444444" />
+          <text x="160" y="396" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">PAPER LOGS</text>
+
+          <!-- Arrow -->
+          <line x1="480" y1="250" x2="520" y2="250" stroke="#ffffff" stroke-width="3" marker-end="url(#arr-w)" />
+
+          <!-- AFTER Column -->
+          <rect x="530" y="50" width="430" height="400" fill="none" stroke="#ffffff" stroke-width="2" />
+          <text x="745" y="75" font-family="'Chivo Mono', monospace" font-size="11" font-weight="700" text-anchor="middle" fill="#ffffff">AFTER: PLATFORM-GOVERNED</text>
+
+          <!-- Metric bars AFTER -->
+          <text x="550" y="110" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">DWELL TIME</text>
+          <rect x="550" y="118" width="195" height="20" fill="#ffffff" />
+          <text x="647" y="132" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#111111">2.1 HOURS (-50%)</text>
+
+          <text x="550" y="162" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">DEMURRAGE</text>
+          <rect x="550" y="170" width="112" height="20" fill="#ffffff" />
+          <text x="606" y="184" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#111111">$8K/MO (-71%)</text>
+
+          <text x="550" y="214" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">DOCK UTILIZATION</text>
+          <rect x="550" y="222" width="340" height="20" fill="#ffffff" />
+          <text x="720" y="236" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#111111">87% (+25pts)</text>
+
+          <text x="550" y="266" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">LOST TRAILERS</text>
+          <rect x="550" y="274" width="20" height="20" fill="#ffffff" />
+          <text x="600" y="288" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" fill="#ffffff">0 / WEEK</text>
+
+          <text x="550" y="318" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">DISPATCH METHOD</text>
+          <rect x="550" y="326" width="300" height="20" fill="#ffffff" />
+          <text x="700" y="340" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#111111">ALGORITHMIC (34% LESS DEADHEAD)</text>
+
+          <text x="550" y="374" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">TRACKING</text>
+          <rect x="550" y="382" width="350" height="20" fill="#ffffff" />
+          <text x="725" y="396" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#111111">GPS 3m RESOLUTION + FULL AUDIT</text>
+
+          <!-- Bottom summary -->
+          <rect x="40" y="430" width="920" height="30" fill="#ffffff" />
+          <text x="500" y="450" font-family="'Chivo Mono', monospace" font-size="10" font-weight="700" text-anchor="middle" fill="#111111">600+ MOVES/DAY | $240K ANNUAL SAVINGS | 99.9% TRAILER VISIBILITY | 50 DOCKS GOVERNED</text>
+
+          <defs>
+            <marker id="arr-w" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <polygon points="0 0, 6 3, 0 6" fill="#ffffff" />
+            </marker>
+          </defs>
+        </svg>
+      </div>
+      <figcaption>Fig 2. - Before/After operational comparison. Paper-and-radio yard operations replaced with platform-governed state tracking. Dwell time halved, demurrage dropped 71%, dock utilization jumped 25 percentage points, and lost-trailer incidents went to zero.</figcaption>
+    </div>
+
+    <p>Deadhead moves — where a tractor drives across the yard without pulling anything — dropped 34% thanks to the algorithmic dispatch system chaining moves together. GPS tracking at 3-meter resolution meant the supervisor always knew where every asset was. The "lost trailer" incidents that happened two to three times a week were completely eliminated through real-time state tracking and a full audit trail for every movement.</p>
+
+    <h2>[BOARD_07 :: LESSONS LEARNED]</h2>
+
+    <p>The first version of the platform was a simple check-in/check-out system. A trailer arrived, we marked it as "arrived." A trailer left, we marked it as "departed." That was the entire model. It took about two days on the yard floor to realize this approach was useless — it told the supervisor that a trailer was somewhere on the property, but not where it was or what stage of the process it was in.</p>
+
+    <p>The state machine approach changed everything. By defining a strict lifecycle — registered, staged, docked, loaded, departed — with enforced transitions between each state, the platform could tell the supervisor exactly where every trailer was in the process at any moment. A trailer could not jump from "arrived" to "departed" without passing through staging and docking. Every transition was timestamped, creating perfect dwell-time data.</p>
+
+    <div class="status-panel">
+      <div class="header">The Surprise: Who Loved It Most</div>
+      <code>EXPECTED: Supervisors would be the primary fans (dashboard visibility)</code>
+      <p>Reality: Drivers loved it more. The mobile dispatch feature replaced chaotic radio instructions with clear, step-by-step move assignments on their tablets. They knew exactly which trailer to pull, from which slot, to which dock — no more guessing, no more driving to the wrong end of the yard.</p>
+      <code>DRIVER FEEDBACK: "I used to drive around looking for trailers. Now I just follow the screen."</code>
+    </div>
+
+    <p>The biggest surprise was who valued the system most. We assumed supervisors would be the biggest champions — they got the bird's-eye dashboard, the analytics, the demurrage alerts. But the drivers were the ones who loved it. The mobile dispatch feature replaced the chaos of radio communication with clear, direct instructions on their ruggedized tablets. No more deciphering garbled radio calls. No more driving to the wrong staging slot because they misheard a location.</p>
+
+    <p>If we built this again, we would add predictive dock scheduling from day one. The current system assigns docks reactively — when a trailer arrives, it finds the best available dock. A predictive system would pre-assign docks based on appointment data and historical unloading times, so the yard is already optimized before the truck even arrives at the gate. That level of planning would push dock utilization even higher and further reduce wait times at the gate.</p>
   </div>
 
 <script type="application/json" id="blog-config">{"slug":"yard-management-platform"}</script>

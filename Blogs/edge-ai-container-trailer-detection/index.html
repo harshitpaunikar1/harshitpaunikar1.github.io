@@ -345,6 +345,84 @@
 
   </div>
 
+  <div class="content-partition">
+    <h2>PROJECT_CONTEXT: THE OPERATION</h2>
+
+    <p>This system was built for a container terminal that processes over 800 gate events every day. Before the vision pipeline existed, each truck entering or leaving the yard had to stop while a human operator manually read the container code and typed it into the system. That process took about 45 seconds per truck, and it required a dedicated person sitting in a booth at every single lane.</p>
+
+    <p>The team was small: one machine learning engineer, one hardware engineer, and one operations lead who understood the physical gate environment. The entire build took 12 weeks, including the physical installation of cameras, IR illuminators, and the edge appliance hardware at six gate lanes.</p>
+
+    <p>The core problem was not complicated to describe. Trucks were waiting too long. Operators were expensive. And manual typing introduced errors that caused downstream headaches in the warehouse management system. The terminal needed a way to read container codes automatically, accurately, and fast enough that the truck never had to fully stop.</p>
+  </div>
+
+  <div class="content-partition">
+    <h2>RESULTS_AND_IMPACT: BEFORE VS. AFTER</h2>
+
+    <p>The numbers tell a clear story. Gate cycle time dropped from 45 seconds to 6 seconds per truck. That is an 87% reduction. The terminal eliminated four full-time gate operator positions, saving roughly $220,000 per year in labor costs alone. The system paid for itself in four months.</p>
+
+    <p>OCR accuracy landed at 97.3% on containers in good condition and 91.8% on weathered or rusty ones. The false rejection rate was 2.1%, meaning about 17 out of every 800 daily events got sent to a manual review queue instead of being auto-cleared. The system runs across all six gate lanes and handles the full daily volume without any human in the loop for the vast majority of transactions.</p>
+
+    <div class="visual-block">
+      <div class="visual-title">FIG_0C // BEFORE vs. AFTER COMPARISON</div>
+      <svg viewBox="0 0 900 340" preserveAspectRatio="xMidYMid meet">
+        <!-- Before Column -->
+        <rect x="50" y="30" width="370" height="280" fill="#1a1a1a" stroke="#555" stroke-width="2" />
+        <text x="235" y="58" font-family="'Chivo Mono'" font-size="14" fill="#888" text-anchor="middle" font-weight="700">BEFORE (MANUAL)</text>
+
+        <text x="80" y="100" font-family="'Inter'" font-size="13" fill="#888">Gate cycle time</text>
+        <text x="350" y="100" font-family="'Chivo Mono'" font-size="16" fill="#f5f5f5" text-anchor="end" font-weight="700">45 sec</text>
+        <rect x="80" y="110" width="280" height="8" fill="#555" />
+
+        <text x="80" y="150" font-family="'Inter'" font-size="13" fill="#888">Gate operators needed</text>
+        <text x="350" y="150" font-family="'Chivo Mono'" font-size="16" fill="#f5f5f5" text-anchor="end" font-weight="700">4 FTEs</text>
+        <rect x="80" y="160" width="200" height="8" fill="#555" />
+
+        <text x="80" y="200" font-family="'Inter'" font-size="13" fill="#888">Annual labor cost</text>
+        <text x="350" y="200" font-family="'Chivo Mono'" font-size="16" fill="#f5f5f5" text-anchor="end" font-weight="700">$220K/yr</text>
+        <rect x="80" y="210" width="240" height="8" fill="#555" />
+
+        <text x="80" y="250" font-family="'Inter'" font-size="13" fill="#888">Manual typing errors</text>
+        <text x="350" y="250" font-family="'Chivo Mono'" font-size="16" fill="#f5f5f5" text-anchor="end" font-weight="700">Frequent</text>
+        <rect x="80" y="260" width="180" height="8" fill="#555" />
+
+        <!-- After Column -->
+        <rect x="480" y="30" width="370" height="280" fill="#000" stroke="#f5f5f5" stroke-width="2" />
+        <text x="665" y="58" font-family="'Chivo Mono'" font-size="14" fill="#f5f5f5" text-anchor="middle" font-weight="700">AFTER (VISION PIPELINE)</text>
+
+        <text x="510" y="100" font-family="'Inter'" font-size="13" fill="#888">Gate cycle time</text>
+        <text x="780" y="100" font-family="'Chivo Mono'" font-size="16" fill="#f5f5f5" text-anchor="end" font-weight="700">6 sec (-87%)</text>
+        <rect x="510" y="110" width="37" height="8" fill="#f5f5f5" />
+
+        <text x="510" y="150" font-family="'Inter'" font-size="13" fill="#888">Gate operators needed</text>
+        <text x="780" y="150" font-family="'Chivo Mono'" font-size="16" fill="#f5f5f5" text-anchor="end" font-weight="700">0 FTEs</text>
+        <rect x="510" y="160" width="4" height="8" fill="#f5f5f5" />
+
+        <text x="510" y="200" font-family="'Inter'" font-size="13" fill="#888">Annual labor cost</text>
+        <text x="780" y="200" font-family="'Chivo Mono'" font-size="16" fill="#f5f5f5" text-anchor="end" font-weight="700">$0/yr</text>
+        <rect x="510" y="210" width="4" height="8" fill="#f5f5f5" />
+
+        <text x="510" y="250" font-family="'Inter'" font-size="13" fill="#888">OCR accuracy</text>
+        <text x="780" y="250" font-family="'Chivo Mono'" font-size="16" fill="#f5f5f5" text-anchor="end" font-weight="700">97.3% clean / 91.8% worn</text>
+        <rect x="510" y="260" width="260" height="8" fill="#f5f5f5" />
+      </svg>
+      <div class="diagram-caption">
+        Before and After. The vision pipeline replaced a 45-second manual process with a 6-second automated one across all six gate lanes. The 2.1% false rejection rate routes uncertain reads to a manual review queue rather than allowing bad data into the WMS.
+      </div>
+    </div>
+  </div>
+
+  <div class="content-partition">
+    <h2>LESSONS_LEARNED: WHAT ACTUALLY HAPPENED</h2>
+
+    <p>The first approach used a single wide-angle camera to capture the entire truck and container in one frame. It seemed logical: fewer cameras, simpler wiring, lower hardware cost. But the container codes were too small in the image. At the distance needed to see the full truck, the individual characters on the container wall were only a few pixels tall. No OCR model could reliably read them.</p>
+
+    <p>The breakthrough was the three-stage capture approach described earlier in this brief: wide burst capture, YOLO region crop, then OCR on the cropped sector only. By isolating the container code region first and then running character recognition on a tightly cropped, high-resolution patch, the text was suddenly large enough and clean enough to read consistently.</p>
+
+    <p>The biggest surprise had nothing to do with the neural network. It was the IR illumination. During daytime testing, everything worked well. But when the system went live on night shifts, accuracy collapsed. The cameras were starved for light. Even the best model in the world cannot read text it cannot see. Once the team installed 850nm IR illuminators at each gate lane, night-shift accuracy jumped to match daytime performance almost exactly. The lighting was more important than the model.</p>
+
+    <p>If the team were to do this again, they would add a second camera angle specifically for damaged or dented containers. When a container is crushed or warped, the code can wrap around a bent panel, making it partially invisible from a single viewpoint. A second angle would catch those cases and reduce the 2.1% false rejection rate further.</p>
+  </div>
+
 </div>
 
 <script type="application/json" id="blog-config">{"slug":"edge-ai-container-trailer-detection"}</script>

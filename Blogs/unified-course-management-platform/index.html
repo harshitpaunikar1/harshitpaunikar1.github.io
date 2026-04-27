@@ -301,6 +301,110 @@
     </div>
 
     <p>By enforcing a strict, unified data model beneath the course management layer, the platform restores agency to the educators. They stop debugging complex API handshakes between third-party vendors and return to the work of analyzing intervention signals. A unified architecture is not merely about aesthetic convenience; it is about establishing a singular, dependable truth that allows the institution to teach reliably at scale.</p>
+
+    <h2>[MILESTONE :: PROJECT_CONTEXT]</h2>
+
+    <p>The client was a private university running 120 courses each semester with 3,500 enrolled students. Faculty relied on five separate tools to manage a single course: Zoom for live lectures, Google Forms for assessments, Excel spreadsheets for grade tracking, email blasts for announcements, and Google Drive for distributing materials. Nothing talked to anything else.</p>
+
+    <p>Students complained loudly. They checked five platforms daily just to keep up. Deadlines slipped through the cracks because a quiz lived on one tool and its instructions lived on another. IT support staff spent roughly 20 hours every week troubleshooting broken integrations between these tools — sync failures, permission mismatches, expired OAuth tokens.</p>
+
+    <div class="constraint-box">
+      <span>Engagement Parameters</span>
+      <code>CLIENT: Private university, 3,500 active students, 120+ courses/semester</code><br>
+      <code>TEAM: 3 engineers + 1 academic coordinator</code><br>
+      <code>TIMELINE: 18 weeks (discovery through phased rollout)</code><br>
+      <code>CORE PAIN: 5 disconnected tools, 20 hrs/week IT overhead, poor student experience</code>
+    </div>
+
+    <p>The academic coordinator embedded with us full-time. She bridged the gap between what faculty actually needed and what we were building. Without her, we would have over-engineered the assessment engine and completely missed the notification problem that students cared about most.</p>
+
+    <h2>[MILESTONE :: RESULTS_AND_IMPACT]</h2>
+
+    <p>The platform went live across all 120 courses over a single semester. The numbers told a clear story: consolidation eliminated waste at every layer.</p>
+
+    <p>Faculty course setup time dropped from three full days of copying content across five tools down to four hours in a single interface. Grade publishing became instant — no more two-day manual export-import cycles. Assessment completion rates climbed 22% simply because students could find their quizzes without hunting across platforms.</p>
+
+    <div class="roomy-figure">
+      <div class="svg-campus-map">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" width="100%">
+          <rect width="1000" height="420" fill="#ffffff" />
+
+          <text x="500" y="30" font-family="'Source Code Pro', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">BEFORE / AFTER COMPARISON</text>
+
+          <!-- BEFORE side -->
+          <rect x="40" y="50" width="430" height="340" fill="#f8f8f8" stroke="#111111" stroke-width="2" />
+          <text x="255" y="75" font-family="'Source Code Pro', monospace" font-size="11" font-weight="700" text-anchor="middle" fill="#111111">BEFORE: FRAGMENTED</text>
+
+          <!-- 5 platforms -->
+          <rect x="70" y="95" width="160" height="35" fill="#ffffff" stroke="#111111" stroke-width="1" />
+          <text x="150" y="117" font-family="'Source Code Pro', monospace" font-size="9" text-anchor="middle" fill="#111111">ZOOM (VIDEO)</text>
+
+          <rect x="70" y="140" width="160" height="35" fill="#ffffff" stroke="#111111" stroke-width="1" />
+          <text x="150" y="162" font-family="'Source Code Pro', monospace" font-size="9" text-anchor="middle" fill="#111111">GOOGLE FORMS (QUIZZES)</text>
+
+          <rect x="70" y="185" width="160" height="35" fill="#ffffff" stroke="#111111" stroke-width="1" />
+          <text x="150" y="207" font-family="'Source Code Pro', monospace" font-size="9" text-anchor="middle" fill="#111111">EXCEL (GRADES)</text>
+
+          <rect x="70" y="230" width="160" height="35" fill="#ffffff" stroke="#111111" stroke-width="1" />
+          <text x="150" y="252" font-family="'Source Code Pro', monospace" font-size="9" text-anchor="middle" fill="#111111">EMAIL (ANNOUNCEMENTS)</text>
+
+          <rect x="70" y="275" width="160" height="35" fill="#ffffff" stroke="#111111" stroke-width="1" />
+          <text x="150" y="297" font-family="'Source Code Pro', monospace" font-size="9" text-anchor="middle" fill="#111111">GOOGLE DRIVE (FILES)</text>
+
+          <!-- Metrics BEFORE -->
+          <text x="310" y="115" font-family="'Source Code Pro', monospace" font-size="9" fill="#666666">Setup: 3 days</text>
+          <text x="310" y="140" font-family="'Source Code Pro', monospace" font-size="9" fill="#666666">IT tickets: 40/wk</text>
+          <text x="310" y="165" font-family="'Source Code Pro', monospace" font-size="9" fill="#666666">Satisfaction: 3.1/5</text>
+          <text x="310" y="190" font-family="'Source Code Pro', monospace" font-size="9" fill="#666666">Grade publish: 2 days</text>
+          <text x="310" y="215" font-family="'Source Code Pro', monospace" font-size="9" fill="#666666">Platforms: 5</text>
+
+          <!-- Arrow -->
+          <line x1="480" y1="220" x2="520" y2="220" stroke="#111111" stroke-width="3" marker-end="url(#arrow-black)" />
+
+          <!-- AFTER side -->
+          <rect x="530" y="50" width="430" height="340" fill="#ffffff" stroke="#111111" stroke-width="2" />
+          <text x="745" y="75" font-family="'Source Code Pro', monospace" font-size="11" font-weight="700" text-anchor="middle" fill="#111111">AFTER: UNIFIED PLATFORM</text>
+
+          <!-- Single platform -->
+          <rect x="570" y="130" width="200" height="120" fill="#111111" />
+          <text x="670" y="180" font-family="'Source Code Pro', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#ffffff">UNIFIED COURSE</text>
+          <text x="670" y="200" font-family="'Source Code Pro', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#ffffff">PLATFORM</text>
+          <text x="670" y="225" font-family="'Source Code Pro', monospace" font-size="9" text-anchor="middle" fill="#aaaaaa">Video + Assess + Grades</text>
+          <text x="670" y="240" font-family="'Source Code Pro', monospace" font-size="9" text-anchor="middle" fill="#aaaaaa">+ Notify + Materials</text>
+
+          <!-- Metrics AFTER -->
+          <text x="800" y="145" font-family="'Source Code Pro', monospace" font-size="9" fill="#111111">Setup: 4 hours</text>
+          <text x="800" y="170" font-family="'Source Code Pro', monospace" font-size="9" fill="#111111">IT tickets: 6/wk</text>
+          <text x="800" y="195" font-family="'Source Code Pro', monospace" font-size="9" fill="#111111">Satisfaction: 4.4/5</text>
+          <text x="800" y="220" font-family="'Source Code Pro', monospace" font-size="9" fill="#111111">Grade publish: instant</text>
+          <text x="800" y="245" font-family="'Source Code Pro', monospace" font-size="9" fill="#111111">Platform: 1</text>
+
+          <!-- Bottom summary bar -->
+          <rect x="40" y="370" width="920" height="30" fill="#111111" />
+          <text x="500" y="390" font-family="'Source Code Pro', monospace" font-size="10" font-weight="700" text-anchor="middle" fill="#ffffff">120 COURSES MIGRATED | 3,500 STUDENTS | 99.8% UPTIME | 85% FEWER IT TICKETS</text>
+        </svg>
+      </div>
+      <figcaption>Fig 2. - Before/After. Five disconnected tools collapsed into one platform. IT support tickets for integration issues dropped from 40 per week to 6. Student satisfaction jumped from 3.1 to 4.4 out of 5.</figcaption>
+    </div>
+
+    <p>IT support tickets specifically related to tool integration dropped 85% — from 40 per week down to 6. The remaining tickets were mostly password resets and browser compatibility issues, not systemic integration failures. Student satisfaction scores climbed from 3.1 out of 5 to 4.4 out of 5. The system handles 3,500 active students with 99.8% uptime across the semester.</p>
+
+    <h2>[MILESTONE :: LESSONS_LEARNED]</h2>
+
+    <p>The original plan was to build every component from scratch — our own video streaming engine, our own quiz builder, our own grade calculation system. Two weeks into the project, we realized this would take over a year and produce inferior versions of tools that already existed.</p>
+
+    <p>We pivoted. Instead of reinventing each tool, we integrated best-of-breed services (a video streaming API, a proven assessment engine) behind a single unified interface. The student and the instructor never saw the seams. This decision cut our development timeline by roughly 60%. We shipped in 18 weeks instead of the 45 we had originally estimated for the build-everything approach.</p>
+
+    <div class="constraint-box">
+      <span>The Surprise Nobody Predicted</span>
+      <code>EXPECTED TOP REQUEST: Better video player or smarter assessments</code><br>
+      <code>ACTUAL TOP REQUEST: A unified notification feed</code><br>
+      <code>REASON: Students wanted ONE place to see all deadlines and announcements</code>
+    </div>
+
+    <p>The biggest surprise had nothing to do with video quality or assessment logic. The most requested feature, by a wide margin, was a unified notification system. Students did not care which tool generated the deadline — they just wanted a single feed showing everything due this week, every announcement from every course, in one place. We built it in sprint 6 and it became the most-used screen in the entire platform.</p>
+
+    <p>If we built this again, we would add offline access from day one. A meaningful number of students had unreliable internet connections at home. They could not download lecture materials or complete timed assessments without a stable connection. Progressive offline caching would have made the platform accessible to every student regardless of connectivity.</p>
   </div>
 
 <script type="application/json" id="blog-config">{"slug":"unified-course-management-platform"}</script>

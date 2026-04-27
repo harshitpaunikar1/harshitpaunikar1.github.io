@@ -699,6 +699,112 @@
           </ul>
           <p class="footer-note">If those conditions hold, the assistant can occupy a useful and defensible role: a controlled gateway into approved medical literature, with explicit boundaries and visible limits. If those conditions slip, the same interface will still sound polished, but it will stop behaving like a safety-aware evidence system.</p>
         </section>
+        <section>
+          <div class="section-head">
+            <div>
+              <p class="protocol-tag">Field Report</p>
+            </div>
+            <h2>Project Context</h2>
+          </div>
+          <p class="lead">This system was built for a health-tech startup that provides evidence-based health information to patients and caregivers. Their existing FAQ section had 200 articles covering common conditions, treatments, and wellness topics. The problem was straightforward: search was keyword-based, and it returned irrelevant results roughly 40 percent of the time.</p>
+          <p>Users were asking complex, multi-part questions that static FAQs could not handle. "What does the research say about exercise for managing Type 2 diabetes in older adults?" does not map cleanly to a single FAQ article titled "Diabetes and Exercise." The keyword search would return that article, but also articles about Type 1 diabetes, unrelated exercise guides, and general wellness pages. Users scrolled, gave up, and left.</p>
+          <p>The team was small: one ML engineer and one medical advisor. The medical advisor was not writing code -- they were reviewing retrieval quality, validating citation accuracy, and defining the refusal boundaries. Their role was essential because the safety questions in this project were not engineering questions. They were medical judgment calls about what the system should and should not attempt to answer.</p>
+          <p>Total build time was 12 weeks, including a 3-week safety review where the medical advisor audited 200 sample responses across different question types. The safety review added time but it was not optional. In a medical context, launching without that review would have been reckless.</p>
+          <div class="callout">
+            <strong>Build Parameters</strong>
+            <p>Team: 1 ML engineer + 1 medical advisor. Timeline: 12 weeks including safety review. Corpus: 200 existing FAQ articles plus curated medical guidelines and PubMed references. Deployment: FastAPI service handling 3,000+ queries per month. Hard constraint: zero tolerance for unsupported medical claims.</p>
+          </div>
+        </section>
+
+        <section>
+          <div class="section-head">
+            <div>
+              <p class="protocol-tag">Field Report</p>
+            </div>
+            <h2>Results &amp; Impact</h2>
+          </div>
+          <p class="lead">Search relevance improved from 60 percent to 92 percent, measured by whether users clicked on the first result returned. That jump came almost entirely from replacing keyword search with semantic retrieval and reranking -- the same 200 articles became dramatically more useful simply because the system understood what users were actually asking.</p>
+          <p>User engagement time increased 3 times over, from 45 seconds to 2.2 minutes per session. Users were reading answers instead of bouncing. The refusal rate on out-of-scope queries was 18 percent -- meaning the system correctly declined to provide diagnosis-level answers about one in five times it was asked. That number was treated as a success metric, not a failure metric. A medical system that never refuses is not being careful.</p>
+          <p>Citation accuracy reached 96.4 percent -- nearly all answers linked back to verified medical sources. The remaining 3.6 percent were cases where the citation pointed to the correct document but the wrong section, which the team flagged for retrieval tuning.</p>
+          <p>The most important number: zero hallucination incidents in 4 months of production use. This was validated by a weekly medical advisor audit of 50 random responses. Not a single response contained a medical claim that was not supported by a retrieved source. That track record was the result of architectural discipline -- the system was built so that unsupported claims could not reach users, not merely so that they were unlikely to.</p>
+          <figure>
+            <svg viewBox="0 0 1080 420" role="img" aria-labelledby="med-results-title med-results-desc">
+              <title id="med-results-title">Before and after metrics for the medical evidence QA assistant</title>
+              <desc id="med-results-desc">Side-by-side comparison of search relevance, engagement, citation accuracy, and safety metrics.</desc>
+              <rect x="0" y="0" width="1080" height="420" fill="#ffffff" stroke="#d7d7d7" stroke-width="2"/>
+              <text x="30" y="36" font-family="IBM Plex Sans, sans-serif" font-size="13" letter-spacing="0.12em" fill="#5f5f5f">BEFORE / AFTER DEPLOYMENT</text>
+              <line x1="30" y1="52" x2="1050" y2="52" stroke="#d7d7d7" stroke-width="1"/>
+
+              <rect x="30" y="72" width="490" height="52" fill="#f5f5f5" stroke="#111111" stroke-width="1.2"/>
+              <text x="45" y="103" font-family="IBM Plex Sans, sans-serif" font-size="15" font-weight="600" fill="#111111">Search relevance (first-result click-through)</text>
+              <text x="500" y="103" text-anchor="end" font-family="SFMono-Regular, Consolas, monospace" font-size="15" fill="#111111">60%</text>
+
+              <rect x="560" y="72" width="490" height="52" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="1.2"/>
+              <text x="575" y="103" font-family="IBM Plex Sans, sans-serif" font-size="15" font-weight="600" fill="#f5f5f5">Search relevance (first-result click-through)</text>
+              <text x="1030" y="103" text-anchor="end" font-family="SFMono-Regular, Consolas, monospace" font-size="15" fill="#f5f5f5">92%</text>
+
+              <rect x="30" y="139" width="490" height="52" fill="#f5f5f5" stroke="#111111" stroke-width="1.2"/>
+              <text x="45" y="170" font-family="IBM Plex Sans, sans-serif" font-size="15" font-weight="600" fill="#111111">User engagement per session</text>
+              <text x="500" y="170" text-anchor="end" font-family="SFMono-Regular, Consolas, monospace" font-size="15" fill="#111111">45 seconds</text>
+
+              <rect x="560" y="139" width="490" height="52" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="1.2"/>
+              <text x="575" y="170" font-family="IBM Plex Sans, sans-serif" font-size="15" font-weight="600" fill="#f5f5f5">User engagement per session</text>
+              <text x="1030" y="170" text-anchor="end" font-family="SFMono-Regular, Consolas, monospace" font-size="15" fill="#f5f5f5">2.2 minutes</text>
+
+              <rect x="30" y="206" width="490" height="52" fill="#f5f5f5" stroke="#111111" stroke-width="1.2"/>
+              <text x="45" y="237" font-family="IBM Plex Sans, sans-serif" font-size="15" font-weight="600" fill="#111111">Citation accuracy</text>
+              <text x="500" y="237" text-anchor="end" font-family="SFMono-Regular, Consolas, monospace" font-size="15" fill="#111111">N/A (no citations)</text>
+
+              <rect x="560" y="206" width="490" height="52" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="1.2"/>
+              <text x="575" y="237" font-family="IBM Plex Sans, sans-serif" font-size="15" font-weight="600" fill="#f5f5f5">Citation accuracy</text>
+              <text x="1030" y="237" text-anchor="end" font-family="SFMono-Regular, Consolas, monospace" font-size="15" fill="#f5f5f5">96.4%</text>
+
+              <rect x="30" y="273" width="490" height="52" fill="#f5f5f5" stroke="#111111" stroke-width="1.2"/>
+              <text x="45" y="304" font-family="IBM Plex Sans, sans-serif" font-size="15" font-weight="600" fill="#111111">Hallucination incidents (4-month window)</text>
+              <text x="500" y="304" text-anchor="end" font-family="SFMono-Regular, Consolas, monospace" font-size="15" fill="#111111">Not tracked</text>
+
+              <rect x="560" y="273" width="490" height="52" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="1.2"/>
+              <text x="575" y="304" font-family="IBM Plex Sans, sans-serif" font-size="15" font-weight="600" fill="#f5f5f5">Hallucination incidents (4-month window)</text>
+              <text x="1030" y="304" text-anchor="end" font-family="SFMono-Regular, Consolas, monospace" font-size="15" fill="#f5f5f5">Zero</text>
+
+              <rect x="30" y="340" width="490" height="52" fill="#f5f5f5" stroke="#111111" stroke-width="1.2"/>
+              <text x="45" y="371" font-family="IBM Plex Sans, sans-serif" font-size="15" font-weight="600" fill="#111111">Monthly query volume</text>
+              <text x="500" y="371" text-anchor="end" font-family="SFMono-Regular, Consolas, monospace" font-size="15" fill="#111111">~1,200 searches</text>
+
+              <rect x="560" y="340" width="490" height="52" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="1.2"/>
+              <text x="575" y="371" font-family="IBM Plex Sans, sans-serif" font-size="15" font-weight="600" fill="#f5f5f5">Monthly query volume</text>
+              <text x="1030" y="371" text-anchor="end" font-family="SFMono-Regular, Consolas, monospace" font-size="15" fill="#f5f5f5">3,000+ queries</text>
+
+              <text x="275" y="410" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="11" letter-spacing="0.12em" fill="#888888">BEFORE (KEYWORD SEARCH)</text>
+              <text x="805" y="410" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="11" letter-spacing="0.12em" fill="#888888">AFTER (SEMANTIC RETRIEVAL + RERANKING)</text>
+            </svg>
+            <figcaption><span class="figure-title">Impact Summary</span>The 18% refusal rate on out-of-scope queries was a design success, not a limitation. Users reported that the system's willingness to say "I do not know" made them trust it more for the questions it did answer.</figcaption>
+          </figure>
+        </section>
+
+        <section>
+          <div class="section-head">
+            <div>
+              <p class="protocol-tag">Field Report</p>
+            </div>
+            <h2>Lessons Learned</h2>
+          </div>
+          <p class="lead">The first version used a general-purpose embedding model for retrieval. It worked, in the sense that it returned results. But the results were often tangentially related rather than precisely matched. A question about blood pressure medication guidelines would retrieve articles about cardiovascular health, heart disease risk factors, and general medication safety -- all topically adjacent, none directly answering the question.</p>
+          <p>Switching to a biomedical embedding model (PubMedBERT) improved retrieval precision by 34 percent. The improvement was not subtle. The system went from "here are some articles in the same general area" to "here is the specific guideline section that addresses your question." That single model swap was the highest-impact change in the entire project.</p>
+          <p>The biggest surprise was the refusal system. We built it as a safety requirement -- the system had to decline questions it could not answer safely. What we did not expect was that users would treat refusal as a trust signal. In feedback surveys, users said they trusted the system more because it admitted when it did not know something. One user wrote: "Every other health site gives me an answer whether it knows or not. This one tells me when it is not sure. That is why I believe it when it does answer."</p>
+          <p>That feedback changed how we thought about refusal design. It was not just a safety mechanism. It was a product feature that built credibility.</p>
+          <div class="callout">
+            <strong>What We Would Do Differently</strong>
+            <p>Add follow-up question suggestions. Many users asked vague or overly broad questions on their first try. Instead of refusing or returning weak results, the system could suggest better-phrased versions: "Did you mean X?" or "You might get a better answer if you ask about Y specifically." This would reduce the refusal rate on questions that are genuinely in scope but poorly phrased, while keeping the refusal boundary firm for questions that are truly out of bounds.</p>
+          </div>
+          <ul class="closing-list">
+            <li>General-purpose embeddings are not good enough for medical retrieval. Domain-specific models (PubMedBERT) made a 34% difference in precision.</li>
+            <li>Refusal is a product feature, not just a safety requirement. Users trust a system that admits uncertainty more than one that always provides an answer.</li>
+            <li>Medical advisor involvement was not optional. Engineering decisions in this domain require clinical judgment that engineers do not have.</li>
+            <li>Weekly audits of 50 random responses caught problems that automated metrics missed, including citation formatting issues and tone problems.</li>
+          </ul>
+        </section>
+
       </main>
     </div>
   </div>

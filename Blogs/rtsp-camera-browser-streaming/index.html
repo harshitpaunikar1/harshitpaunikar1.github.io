@@ -287,6 +287,77 @@
     
     <p>Ultimately, a successful RTSP-to-WebRTC bridge is defined by its parsimony. It strips the wrapper, avoids touching the pixels, negotiates the tunnel, and secures the delivery. Anything more is a waste of cycles.</p>
 
+    <!-- Project Context -->
+    <h2>[ L5 Context ] Project Origin</h2>
+
+    <p>This system was built for a logistics warehouse with 24 IP cameras monitoring loading docks, staging areas, and gate lanes. The existing setup required a dedicated VMS (video management software) client installed on each workstation. Supervisors could not check camera feeds from their phones or laptops — they had to walk to a specific desk, launch the VMS application, and wait for it to connect. During busy periods, this meant cameras effectively went unmonitored whenever supervisors were on the warehouse floor.</p>
+
+    <p>The team was two engineers over a 7-week build. One engineer focused on the GStreamer pipeline, RTSP ingest, and WebRTC delivery. The other handled the signaling server, browser client, and the sidecar archiving system. The first week was spent on-site cataloging all 24 camera models, their RTSP endpoint formats, and the network topology of the warehouse — three cameras used a different RTSP authentication scheme that nearly derailed the project in week two.</p>
+
+    <div class="notation-band">
+      <p><strong>Project details:</strong> Client: logistics warehouse (24 IP cameras across loading docks, staging areas, gate lanes). Problem: VMS desktop client required — no mobile or browser access. Team: 2 engineers, 7-week build. The VMS license cost the warehouse $6,000 per year and still required per-workstation installation.</p>
+    </div>
+
+    <!-- Results & Impact -->
+    <h2>[ L6 Impact ] Results After Deployment</h2>
+
+    <p>Camera feeds became accessible from any browser with zero software installation. Stream startup time dropped from 8 seconds on the old VMS client to 1.2 seconds in the browser. End-to-end latency from RTSP capture to browser display was 340 milliseconds. The system supported 50+ simultaneous browser viewers per camera feed. For the first time, supervisors could check cameras from their phones while on the warehouse floor — a capability that did not exist before.</p>
+
+    <p>The sidecar recording system archives 14 days of footage with H.265 compression. The entire system runs on a single edge server with no cloud dependency. Monthly cost dropped to $0 in licensing, replacing a $6,000 per year VMS subscription. The warehouse renewed for a second year and added 8 more cameras to the system.</p>
+
+    <div class="figure-span">
+      <div class="svg-frame">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" width="100%">
+          <rect width="900" height="340" fill="#000000"/>
+          <text x="450" y="28" font-family="'Roboto Mono', monospace" font-size="13" font-weight="700" fill="#666666" text-anchor="middle" letter-spacing="0.15em">BEFORE / AFTER DEPLOYMENT</text>
+          <!-- Before -->
+          <rect x="30" y="45" width="400" height="265" rx="4" fill="#1a1a1a" stroke="#333333" stroke-width="2"/>
+          <text x="230" y="72" font-family="'Roboto Mono', monospace" font-size="11" font-weight="500" text-anchor="middle" fill="#aaaaaa" letter-spacing="0.1em">BEFORE (VMS CLIENT)</text>
+          <rect x="60" y="90" width="290" height="26" rx="3" fill="#333333"/>
+          <text x="72" y="108" font-family="'Roboto Mono', monospace" font-size="11" fill="#aaaaaa">Startup time: 8 seconds</text>
+          <rect x="60" y="128" width="340" height="26" rx="3" fill="#333333"/>
+          <text x="72" y="146" font-family="'Roboto Mono', monospace" font-size="11" fill="#aaaaaa">Access: desktop only, per install</text>
+          <rect x="60" y="166" width="280" height="26" rx="3" fill="#333333"/>
+          <text x="72" y="184" font-family="'Roboto Mono', monospace" font-size="11" fill="#aaaaaa">Mobile access: none</text>
+          <rect x="60" y="204" width="310" height="26" rx="3" fill="#333333"/>
+          <text x="72" y="222" font-family="'Roboto Mono', monospace" font-size="11" fill="#aaaaaa">License cost: $6,000/year</text>
+          <rect x="60" y="242" width="290" height="26" rx="3" fill="#333333"/>
+          <text x="72" y="260" font-family="'Roboto Mono', monospace" font-size="11" fill="#aaaaaa">Rewind capability: limited</text>
+          <!-- Arrow -->
+          <polygon points="435,180 455,165 455,195" fill="#ffffff"/>
+          <!-- After -->
+          <rect x="470" y="45" width="400" height="265" rx="4" fill="#1a1a1a" stroke="#ffffff" stroke-width="2"/>
+          <text x="670" y="72" font-family="'Roboto Mono', monospace" font-size="11" font-weight="500" text-anchor="middle" fill="#ffffff" letter-spacing="0.1em">AFTER (BROWSER WEBRTC)</text>
+          <rect x="500" y="90" width="310" height="26" rx="3" fill="#ffffff"/>
+          <text x="512" y="108" font-family="'Roboto Mono', monospace" font-size="11" fill="#0a0a0a">Startup time: 1.2 seconds</text>
+          <rect x="500" y="128" width="340" height="26" rx="3" fill="#ffffff"/>
+          <text x="512" y="146" font-family="'Roboto Mono', monospace" font-size="11" fill="#0a0a0a">Access: any browser, zero install</text>
+          <rect x="500" y="166" width="320" height="26" rx="3" fill="#ffffff"/>
+          <text x="512" y="184" font-family="'Roboto Mono', monospace" font-size="11" fill="#0a0a0a">Latency: 340ms end-to-end</text>
+          <rect x="500" y="204" width="260" height="26" rx="3" fill="#ffffff"/>
+          <text x="512" y="222" font-family="'Roboto Mono', monospace" font-size="11" fill="#0a0a0a">License cost: $0/year</text>
+          <rect x="500" y="242" width="330" height="26" rx="3" fill="#ffffff"/>
+          <text x="512" y="260" font-family="'Roboto Mono', monospace" font-size="11" fill="#0a0a0a">50+ viewers, 14-day archive</text>
+        </svg>
+      </div>
+      <figcaption>Fig 2. - Before and after the protocol bridge deployment. Stream startup dropped from 8 seconds to 1.2, mobile access became possible for the first time, and the $6,000/year VMS license was eliminated entirely.</figcaption>
+    </div>
+
+    <!-- Lessons Learned -->
+    <h2>[ L7 Lessons ] What Went Wrong First</h2>
+
+    <p>The first attempt used HLS transcoding to deliver camera feeds to the browser. HLS is well-supported and straightforward to set up, but the latency floor was 3-5 seconds. For a live monitoring dashboard, 3 seconds of delay means a supervisor sees a truck pull into a dock well after it has already arrived. Switching to WebRTC delivery with GStreamer brought the latency down to 340 milliseconds, which was fast enough that operators treated the browser feed as "live" without hesitation.</p>
+
+    <p>The biggest surprise was what users actually wanted. We expected the primary demand to be "more cameras" or "higher resolution." Instead, the feature request that came up in the first week was "let me rewind 5 minutes." Supervisors needed to review what had just happened when investigating a loading incident or a gate dispute. The sidecar archiving system was added specifically for this use case, and it turned out to be the feature that convinced management to expand the system to additional cameras.</p>
+
+    <p>If we built this again, we would add motion-triggered alerts — sending a browser notification when movement is detected in restricted areas during off-hours. The camera feeds are there and the archive is recording, but right now nobody is watching at 2 AM. A simple motion detection layer on the GStreamer pipeline could push alerts to a supervisor's phone and turn passive monitoring into active security.</p>
+
+    <div class="notation-band">
+      <p><strong>Failed first approach:</strong> HLS transcoding — too much latency (3-5 seconds) for live monitoring. WebRTC delivery with GStreamer cut it to 340ms.</p>
+      <p><strong>Biggest surprise:</strong> Users wanted "rewind 5 minutes" more than more cameras or higher resolution. Added sidecar archiving to meet this demand.</p>
+      <p><strong>Next time:</strong> Add motion-triggered browser notifications for restricted areas during off-hours.</p>
+    </div>
+
   </div>
 
 <script type="application/json" id="blog-config">{"slug":"rtsp-camera-browser-streaming"}</script>

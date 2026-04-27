@@ -1242,6 +1242,79 @@ else queue_decision("watch_state", role =&gt; "channel_manager");</code></pre>
         </article>
       </section>
 
+      <section class="band" id="project-context">
+        <div>
+          <span class="prompt-index">Case Study</span>
+          <h2>Who needed this room and what was broken?</h2>
+        </div>
+        <div>
+          <p>The client was a performance marketing agency managing over two million dollars per month in ad spend across twelve client accounts. Their campaign managers were making spend decisions based on reports that were four to six hours stale. By the time they saw a channel underperforming, they had already committed budget against assumptions that no longer held.</p>
+          <p>The agency operated on a simple loop: check reports in the morning, make one round of adjustments, check reports again at end of day. In between, campaigns ran on autopilot. When a creative started underperforming at 11 AM, nobody knew until the 4 PM review. When a channel's cost per acquisition drifted above the guardrail at noon, the budget kept flowing until someone noticed hours later.</p>
+          <p>The build team was two engineers and one media strategist. The strategist was essential because the engineers could build fast data pipelines but did not know which signals campaign managers actually use to make decisions. The ten-week timeline included three weeks of stakeholder workshops to map decision moments, four weeks of pipeline and dashboard development, and three weeks of role-based view design and threshold tuning with live campaign data.</p>
+          <ul class="summary-list">
+            <li>Client: performance marketing agency, $2M+/month in ad spend, 12 client accounts.</li>
+            <li>Core problem: campaign decisions based on data that was 4-6 hours old.</li>
+            <li>Team: 2 engineers + 1 media strategist, 10-week build.</li>
+            <li>Key constraint: the system had to support decisions, not automate them. Campaign managers needed to stay in control.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="figure-frame" id="results-impact">
+        <figure>
+          <svg viewBox="0 0 1360 460" role="img" aria-labelledby="results-ba-title results-ba-desc">
+            <title id="results-ba-title">Before and after comparison of marketing decision metrics</title>
+            <desc id="results-ba-desc">Side-by-side comparison showing decision latency, estimated waste reduction, daily adjustments, and budget overrun prevention before and after the control room deployment.</desc>
+            <rect x="24" y="24" width="1312" height="412" rx="28" fill="#0d0d0d" stroke="#3e3e3e"/>
+            <text x="680" y="64" text-anchor="middle" font-family="IBM Plex Mono" font-size="16" fill="#9a9a9a" letter-spacing="2">BEFORE AND AFTER DEPLOYMENT</text>
+            <line x1="680" y1="80" x2="680" y2="400" stroke="#2c2c2c" stroke-width="2" stroke-dasharray="8 8"/>
+            <text x="352" y="100" text-anchor="middle" font-family="IBM Plex Mono" font-size="14" fill="#9a9a9a" letter-spacing="2">BEFORE</text>
+            <text x="1008" y="100" text-anchor="middle" font-family="IBM Plex Mono" font-size="14" fill="#9a9a9a" letter-spacing="2">AFTER</text>
+            <rect x="64" y="120" width="576" height="60" rx="14" fill="#111111" stroke="#4d4d4d"/>
+            <text x="88" y="144" font-family="IBM Plex Mono" font-size="12" fill="#9a9a9a" letter-spacing="1.5">DECISION LATENCY</text>
+            <text x="88" y="168" font-family="Space Grotesk" font-size="20" fill="#f5f5f5">4-6 hours (morning and end-of-day reviews)</text>
+            <rect x="720" y="120" width="576" height="60" rx="14" fill="#171717" stroke="#f5f5f5" stroke-width="2"/>
+            <text x="744" y="144" font-family="IBM Plex Mono" font-size="12" fill="#9a9a9a" letter-spacing="1.5">DECISION LATENCY</text>
+            <text x="744" y="168" font-family="Space Grotesk" font-size="20" fill="#f5f5f5">Under 15 minutes</text>
+            <rect x="64" y="196" width="576" height="60" rx="14" fill="#111111" stroke="#4d4d4d"/>
+            <text x="88" y="220" font-family="IBM Plex Mono" font-size="12" fill="#9a9a9a" letter-spacing="1.5">MONTHLY AD WASTE</text>
+            <text x="88" y="244" font-family="Space Grotesk" font-size="20" fill="#f5f5f5">Unquantified (no real-time tracking)</text>
+            <rect x="720" y="196" width="576" height="60" rx="14" fill="#171717" stroke="#f5f5f5" stroke-width="2"/>
+            <text x="744" y="220" font-family="IBM Plex Mono" font-size="12" fill="#9a9a9a" letter-spacing="1.5">MONTHLY AD WASTE</text>
+            <text x="744" y="244" font-family="Space Grotesk" font-size="20" fill="#f5f5f5">Reduced by ~$120K (6% of total spend)</text>
+            <rect x="64" y="272" width="576" height="60" rx="14" fill="#111111" stroke="#4d4d4d"/>
+            <text x="88" y="296" font-family="IBM Plex Mono" font-size="12" fill="#9a9a9a" letter-spacing="1.5">DAILY ADJUSTMENTS</text>
+            <text x="88" y="320" font-family="Space Grotesk" font-size="20" fill="#f5f5f5">1 end-of-day change per campaign</text>
+            <rect x="720" y="272" width="576" height="60" rx="14" fill="#171717" stroke="#f5f5f5" stroke-width="2"/>
+            <text x="744" y="296" font-family="IBM Plex Mono" font-size="12" fill="#9a9a9a" letter-spacing="1.5">DAILY ADJUSTMENTS</text>
+            <text x="744" y="320" font-family="Space Grotesk" font-size="20" fill="#f5f5f5">3-4 mid-day adjustments per campaign</text>
+            <rect x="64" y="348" width="576" height="60" rx="14" fill="#111111" stroke="#4d4d4d"/>
+            <text x="88" y="372" font-family="IBM Plex Mono" font-size="12" fill="#9a9a9a" letter-spacing="1.5">BUDGET OVERRUN PREVENTION</text>
+            <text x="88" y="396" font-family="Space Grotesk" font-size="20" fill="#f5f5f5">Discovered after the fact</text>
+            <rect x="720" y="348" width="576" height="60" rx="14" fill="#171717" stroke="#f5f5f5" stroke-width="2"/>
+            <text x="744" y="372" font-family="IBM Plex Mono" font-size="12" fill="#9a9a9a" letter-spacing="1.5">BUDGET OVERRUN PREVENTION</text>
+            <text x="744" y="396" font-family="Space Grotesk" font-size="20" fill="#f5f5f5">8 overruns prevented in first quarter</text>
+          </svg>
+          <figcaption class="figure-caption">
+            <span>Case Study — Results and Impact</span>
+            The system ingests data from Google Ads, Meta, LinkedIn, and email platforms. The agency retained two at-risk client accounts specifically because they could demonstrate faster optimization. The business impact was not just reduced waste but improved client confidence in the agency's ability to manage their budgets in near-real time.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="band" id="lessons-learned">
+        <div>
+          <span class="prompt-index">Case Study — Lessons</span>
+          <h2>What did not work the first time?</h2>
+        </div>
+        <div>
+          <p>The first version tried to auto-optimize. The system would programmatically adjust bids and budgets based on performance signals, removing the campaign manager from the loop entirely. Campaign managers rejected it. They did not trust an algorithm with client money, and they had good reasons. Automated bid changes could trigger platform-level quality score recalculations, budget shifts could violate client-specific spending rules that were not encoded anywhere in the system, and aggressive throttling could lose competitive position in auctions that would take days to recover.</p>
+          <p>The pivot to a decision-support model changed everything. Instead of making changes, the system surfaces signals and recommends actions. The campaign manager reviews the recommendation, understands the context, and executes the change themselves. That shift in design philosophy, from automation to augmentation, was the difference between a tool that got rejected and a tool that got adopted.</p>
+          <p>The biggest surprise was that the role-based views mattered more than the data freshness. The team initially assumed that getting data from six hours stale to fifteen minutes fresh would be the primary value. It was important, but what actually changed daily behavior was giving each role the right cut of that fresh data. The CMO wanted campaign-level health across the portfolio. Account managers wanted channel-level signals for their specific clients. Media buyers wanted keyword-level and audience-level alerts. One dashboard could not serve all three. Building separate views over the same data layer was what made the system useful for everyone rather than useful for no one in particular.</p>
+          <p>Next time, the team would add automated reporting that generates client-ready summaries from the same data. Campaign managers currently spend additional time translating the dashboard signals into client-facing language. That translation step is the last remaining manual bottleneck in the workflow.</p>
+        </div>
+      </section>
+
       <section class="closing-panel">
         <div>
           <h3>Control-Room Close</h3>

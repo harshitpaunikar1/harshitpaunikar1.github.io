@@ -986,6 +986,108 @@
           </div>
         </section>
 
+        <section class="panel" id="project-context">
+          <div class="panel-inner">
+            <div class="panel-head">
+              <h2>Case Study / Project Context</h2>
+              <div class="panel-tag">Who needed this and what was broken</div>
+            </div>
+            <p class="deck">An FMCG company with 35 field sales reps covering 800+ retail outlets needed to replace next-day reporting with live territory visibility.</p>
+            <div class="two-col">
+              <div>
+                <p>Territory managers were getting end-of-day reports by 8 PM, too late to act on problems discovered during the day. When a rep found missing promotional material at four stores in the morning, the manager would not hear about it until the evening review. By then, the afternoon foot traffic had come and gone, and the display compliance issue had already cost a full day of campaign impact.</p>
+                <p>The data collection process itself was the bottleneck. Reps submitted field observations via WhatsApp messages that someone had to manually compile into a spreadsheet. Each message arrived in a different format, some with photos, some with text only, some with outlet codes and some without. A single person at headquarters spent two to three hours each evening turning these messages into something resembling a report. By the time the territory manager saw the numbers, the information was eight to twelve hours old.</p>
+                <p>The build team was two engineers and one territory manager who served as the domain expert throughout the project. The territory manager's involvement was not optional. The engineers could build fast pipelines and clean dashboards, but they did not know which signals a territory manager actually uses to decide whether to reroute a van, call a distributor, or reassign a merchandiser. The nine-week timeline covered field workflow mapping, mobile submission design, stream processing development, Tableau dashboard build, and three rounds of UAT with field staff.</p>
+              </div>
+              <aside class="callout">
+                <strong>Build details</strong>
+                <ul>
+                  <li>Client: FMCG company, 35 reps, 800+ retail outlets.</li>
+                  <li>Team: 2 engineers + 1 territory manager (domain expert).</li>
+                  <li>Timeline: 9 weeks from workflow mapping to field deployment.</li>
+                  <li>Core problem: end-of-day reporting hiding actionable field signals.</li>
+                </ul>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="results-impact">
+          <div class="panel-inner">
+            <div class="panel-head">
+              <h2>Case Study / Results and Impact</h2>
+              <div class="panel-tag">Before and after deployment</div>
+            </div>
+            <p>Field data visibility went from next-day to six-minute lag. Territory managers could now respond to field issues within twenty minutes instead of the next morning. Mobile submission adoption reached ninety-four percent of reps within three weeks of launch, far exceeding the initial target of seventy percent.</p>
+
+            <figure class="flow-figure">
+              <svg viewBox="0 0 1100 420" role="img" aria-labelledby="results-ba-title results-ba-desc">
+                <title id="results-ba-title">Before and after comparison of field operations metrics</title>
+                <desc id="results-ba-desc">Side-by-side comparison showing field data lag, manager response time, submission adoption, and outlet coverage before and after dashboard deployment.</desc>
+                <rect x="14" y="14" width="1072" height="392" rx="26" fill="#fbfbfb" stroke="#cfcfcf"/>
+                <text x="550" y="48" text-anchor="middle" font-family="IBM Plex Mono" font-size="13" fill="#5e5e5e" letter-spacing="2">BEFORE AND AFTER DEPLOYMENT</text>
+                <line x1="550" y1="62" x2="550" y2="380" stroke="#cfcfcf" stroke-width="2" stroke-dasharray="6 6"/>
+                <text x="282" y="82" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#5e5e5e" letter-spacing="2">BEFORE</text>
+                <text x="818" y="82" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#5e5e5e" letter-spacing="2">AFTER</text>
+                <rect x="44" y="98" width="476" height="58" rx="16" fill="#f0f0f0" stroke="#b7b7b7"/>
+                <text x="64" y="120" font-family="IBM Plex Mono" font-size="11" fill="#5e5e5e" letter-spacing="1.5">FIELD DATA VISIBILITY</text>
+                <text x="64" y="144" font-family="IBM Plex Sans" font-size="18" fill="#0a0a0a">Next-day (reports by 8 PM)</text>
+                <rect x="580" y="98" width="476" height="58" rx="16" fill="#f0f0f0" stroke="#0a0a0a" stroke-width="2"/>
+                <text x="600" y="120" font-family="IBM Plex Mono" font-size="11" fill="#5e5e5e" letter-spacing="1.5">FIELD DATA VISIBILITY</text>
+                <text x="600" y="144" font-family="IBM Plex Sans" font-size="18" fill="#0a0a0a">6-minute lag</text>
+                <rect x="44" y="170" width="476" height="58" rx="16" fill="#f0f0f0" stroke="#b7b7b7"/>
+                <text x="64" y="192" font-family="IBM Plex Mono" font-size="11" fill="#5e5e5e" letter-spacing="1.5">MANAGER RESPONSE TIME</text>
+                <text x="64" y="216" font-family="IBM Plex Sans" font-size="18" fill="#0a0a0a">Next morning</text>
+                <rect x="580" y="170" width="476" height="58" rx="16" fill="#f0f0f0" stroke="#0a0a0a" stroke-width="2"/>
+                <text x="600" y="192" font-family="IBM Plex Mono" font-size="11" fill="#5e5e5e" letter-spacing="1.5">MANAGER RESPONSE TIME</text>
+                <text x="600" y="216" font-family="IBM Plex Sans" font-size="18" fill="#0a0a0a">20 minutes</text>
+                <rect x="44" y="242" width="476" height="58" rx="16" fill="#f0f0f0" stroke="#b7b7b7"/>
+                <text x="64" y="264" font-family="IBM Plex Mono" font-size="11" fill="#5e5e5e" letter-spacing="1.5">OUTLET COVERAGE</text>
+                <text x="64" y="288" font-family="IBM Plex Sans" font-size="18" fill="#0a0a0a">72% of daily target outlets</text>
+                <rect x="580" y="242" width="476" height="58" rx="16" fill="#f0f0f0" stroke="#0a0a0a" stroke-width="2"/>
+                <text x="600" y="264" font-family="IBM Plex Mono" font-size="11" fill="#5e5e5e" letter-spacing="1.5">OUTLET COVERAGE</text>
+                <text x="600" y="288" font-family="IBM Plex Sans" font-size="18" fill="#0a0a0a">89% of daily target outlets</text>
+                <rect x="44" y="314" width="476" height="58" rx="16" fill="#f0f0f0" stroke="#b7b7b7"/>
+                <text x="64" y="336" font-family="IBM Plex Mono" font-size="11" fill="#5e5e5e" letter-spacing="1.5">ROUTE DECISIONS</text>
+                <text x="64" y="360" font-family="IBM Plex Sans" font-size="18" fill="#0a0a0a">Following morning based on stale data</text>
+                <rect x="580" y="314" width="476" height="58" rx="16" fill="#f0f0f0" stroke="#0a0a0a" stroke-width="2"/>
+                <text x="600" y="336" font-family="IBM Plex Mono" font-size="11" fill="#5e5e5e" letter-spacing="1.5">ROUTE DECISIONS</text>
+                <text x="600" y="360" font-family="IBM Plex Sans" font-size="18" fill="#0a0a0a">By 11 AM same day</text>
+              </svg>
+              <figcaption>Duplicate submission detection blocked 3.8% of false entries. Revenue uplift attributed to faster interventions reached 8% in the first quarter, primarily from improved display compliance and faster lead follow-up in high-priority outlets.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="panel" id="lessons-learned">
+          <div class="panel-inner">
+            <div class="panel-head">
+              <h2>Case Study / Lessons Learned</h2>
+              <div class="panel-tag">What did not work the first time</div>
+            </div>
+            <p>The first version was a web form that reps had to fill out after each visit. It had twelve fields, required a stable internet connection, and took about four minutes to complete per submission. Adoption was forty percent. Reps in areas with slow mobile networks found the form unusable. Even reps with good connectivity resisted it because four minutes per visit across fifteen to twenty visits per day added over an hour of data entry to their route.</p>
+            <p>The fix was a lightweight mobile-first submission with just three fields plus a photo. The submission worked on 2G connections because the payload was small enough to transmit reliably on slow networks. The photo served as both verification and context. Territory managers could look at the photo and understand the situation without needing a detailed written description. That single design change pushed adoption from forty percent to ninety-four percent.</p>
+            <p>The biggest surprise was that the most valuable feature was not the dashboard itself. It was the automated "outlet not visited by 2 PM" alert that prompted territory managers to call reps directly. Before the system, a rep who skipped a high-priority outlet would not be noticed until the end-of-day review. With the alert, the territory manager could call by early afternoon, understand the reason for the skip, and either redirect the rep or assign coverage to someone else. That one alert drove more behavior change than all the dashboard views combined.</p>
+            <div class="detail-grid">
+              <div class="stat-card">
+                <div class="metric-label">Failed first approach</div>
+                <strong>12-field web form</strong>
+                <p>Too many fields, too slow on weak networks. 40% adoption was not enough to trust the data.</p>
+              </div>
+              <div class="stat-card">
+                <div class="metric-label">What worked</div>
+                <strong>3 fields + photo</strong>
+                <p>Lightweight payload that works on 2G. 94% adoption within three weeks.</p>
+              </div>
+              <div class="stat-card">
+                <div class="metric-label">Next time</div>
+                <strong>GPS-verified check-ins</strong>
+                <p>Would add location verification to prevent false submissions and confirm actual outlet visits.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section class="panel" id="close">
           <div class="panel-inner">
             <div class="panel-head">

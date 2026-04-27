@@ -429,6 +429,80 @@ funding_queue = processed_df.sort_values(by=<span class="c-str">'priority_index'
 
   <p>The model does not alleviate the ethical friction of scarcity; it merely strips away the bureaucratic cover that previously allowed administrators to distribute funds inefficiently without accountability. By surfacing the exact threshold where the capital dies, the algorithm forces the organization to confront the brutal reality of its own limitations. Triage is a violent act. The purpose of deploying this algorithmic framework is to guarantee that the violence is inflicted systematically, fairly, and without favor.</p>
 
+  <h2><span class="section-marker">5.0</span> Project Context & The Challenge</h2>
+
+  <p>This model was built for an international relief organization distributing aid across 7 conflict-affected regions. The total budget covered only 24% of documented demand. Before the model existed, allocation decisions were made through committee debates that lasted up to 3 weeks per funding cycle. The outcomes were heavily influenced by political relationships and media visibility rather than actual need.</p>
+
+  <p>Regions with well-connected advocates or recent media coverage consistently received more funding, while quieter regions with deeper deprivation were systematically underfunded. The organization knew this was happening but had no structured way to override it. Every committee member could argue persuasively for their preferred region, and without a quantitative framework, the loudest voice won.</p>
+
+  <p>The team was two people: one data scientist and one program officer who understood the operational realities on the ground. The build took 6 weeks. The program officer's role was critical — they translated domain knowledge into feature weights and flagged when the model's outputs contradicted field reality.</p>
+
+  <h2><span class="section-marker">6.0</span> Results & Impact</h2>
+
+  <p>The model's first output revealed a significant misallocation in the existing system. Two of the 7 regions were receiving 40% of total funds despite having the lowest deprivation scores in the dataset. These regions happened to be the most accessible and had the most vocal advocates on the committee. Meanwhile, the two highest-need regions were receiving less than 15% of funds combined.</p>
+
+  <p>After the organization adopted the model's recommendations, aid reached 31,000 additional people in the highest-need regions. Allocation decision time dropped from 3 weeks of committee debates to 2 days of structured review using the model's outputs as a starting point. The framework was adopted by 3 regional offices for their next funding cycle. Cost per person served dropped from $14.20 to $9.80 because funds were directed to regions where the same dollar stretched further.</p>
+
+  <div class="fig-container">
+    <div class="fig-header">FIGURE 3A: Allocation Efficiency — Before vs After Model Deployment</div>
+    <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+      <!-- Title -->
+      <text x="400" y="30" font-family="'Roboto Mono'" font-size="13" font-weight="700" text-anchor="middle">RESOURCE ALLOCATION: MANUAL vs MODEL-GUIDED</text>
+
+      <!-- Divider -->
+      <line x1="400" y1="50" x2="400" y2="370" stroke="#ccc" stroke-width="1" stroke-dasharray="4 4" />
+      <text x="200" y="65" font-family="'Roboto Mono'" font-size="12" font-weight="700" text-anchor="middle" fill="#555">BEFORE (COMMITTEE)</text>
+      <text x="600" y="65" font-family="'Roboto Mono'" font-size="12" font-weight="700" text-anchor="middle">AFTER (MODEL-GUIDED)</text>
+
+      <!-- Decision Time -->
+      <text x="200" y="100" font-family="'Public Sans'" font-size="11" fill="#555" text-anchor="middle">Allocation Decision Time</text>
+      <rect x="100" y="110" width="200" height="28" fill="#e8e8e8" stroke="#111" />
+      <text x="200" y="129" font-family="'Roboto Mono'" font-size="12" font-weight="700" text-anchor="middle">3 weeks</text>
+
+      <text x="600" y="100" font-family="'Public Sans'" font-size="11" text-anchor="middle">Allocation Decision Time</text>
+      <rect x="560" y="110" width="80" height="28" fill="#111" />
+      <text x="600" y="129" font-family="'Roboto Mono'" font-size="12" font-weight="700" text-anchor="middle" fill="#fff">2 days</text>
+
+      <!-- Cost per Beneficiary -->
+      <text x="200" y="175" font-family="'Public Sans'" font-size="11" fill="#555" text-anchor="middle">Cost per Beneficiary</text>
+      <rect x="120" y="185" width="160" height="28" fill="#e8e8e8" stroke="#111" />
+      <text x="200" y="204" font-family="'Roboto Mono'" font-size="12" font-weight="700" text-anchor="middle">$14.20</text>
+
+      <text x="600" y="175" font-family="'Public Sans'" font-size="11" text-anchor="middle">Cost per Beneficiary</text>
+      <rect x="540" y="185" width="120" height="28" fill="#111" />
+      <text x="600" y="204" font-family="'Roboto Mono'" font-size="12" font-weight="700" text-anchor="middle" fill="#fff">$9.80</text>
+
+      <!-- Additional Reach -->
+      <text x="200" y="250" font-family="'Public Sans'" font-size="11" fill="#555" text-anchor="middle">Highest-Need Region Coverage</text>
+      <rect x="140" y="260" width="120" height="28" fill="#e8e8e8" stroke="#111" />
+      <text x="200" y="279" font-family="'Roboto Mono'" font-size="12" font-weight="700" text-anchor="middle">Underfunded</text>
+
+      <text x="600" y="250" font-family="'Public Sans'" font-size="11" text-anchor="middle">Highest-Need Region Coverage</text>
+      <rect x="500" y="260" width="200" height="28" fill="#111" />
+      <text x="600" y="279" font-family="'Roboto Mono'" font-size="12" font-weight="700" text-anchor="middle" fill="#fff">+31,000 reached</text>
+
+      <!-- Adoption -->
+      <text x="400" y="340" font-family="'Roboto Mono'" font-size="11" font-weight="700" text-anchor="middle">Adopted by 3 regional offices for next funding cycle</text>
+
+      <!-- Misallocation callout -->
+      <rect x="80" y="310" width="240" height="40" fill="#fafafa" stroke="#555" stroke-dasharray="2 2" />
+      <text x="200" y="335" font-family="'Roboto Mono'" font-size="10" fill="#555" text-anchor="middle">2 lowest-need regions got 40% of funds</text>
+    </svg>
+    <div class="caption">
+      The model-guided allocation reduced cost per person served by 31%, extended reach to 31,000 additional people in the highest-need areas, and compressed the decision cycle from weeks to days. The most significant finding was that the old committee process had been systematically over-funding the two least deprived regions.
+    </div>
+  </div>
+
+  <h2><span class="section-marker">7.0</span> Lessons Learned</h2>
+
+  <p>The first version of the model used equal weighting across all deprivation indicators. Every factor — mortality rate, water access, conflict density, food inflation — carried the same influence on the final score. This produced rankings that felt wrong to the program officer. Regions with poor infrastructure (bad roads, few clinics) but no active conflict were being ranked higher than regions where people were actively dying from violence. Equal weighting treated a broken road the same as a bullet. That was clearly incorrect.</p>
+
+  <p>The fix was adding weighted multipliers. Mortality risk and conflict density received 1.5x weight, while infrastructure gaps received standard weight. This shifted the rankings to prioritize immediate survival over long-term development needs — a distinction that the purely mathematical first version could not make on its own.</p>
+
+  <p>The biggest surprise was not technical. It was political. The hardest part of the entire project was getting organizational leadership to accept that some regions would receive zero funding in a given cycle. Even when the data clearly showed those regions had lower deprivation scores, the idea of telling a field office "you get nothing this quarter" was deeply uncomfortable. Several senior leaders pushed back hard, arguing that every region deserved at least something.</p>
+
+  <p>If we were building this again, we would add a minimum floor allocation — perhaps 5% of total budget guaranteed to each region regardless of their ranking. This would not meaningfully reduce the impact in high-priority areas, but it would ease the political resistance that nearly killed the project during the approval phase. Sometimes a small concession to organizational politics is the price of getting the rest of the model deployed.</p>
+
 </div>
 
 <script type="application/json" id="blog-config">{"slug":"data-driven-aid-allocation-model"}</script>

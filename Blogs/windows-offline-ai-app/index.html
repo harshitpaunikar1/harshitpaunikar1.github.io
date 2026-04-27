@@ -249,6 +249,138 @@
     <p>Shipping updates to laptops on the move requires an evasion of friction. We avoid convoluted Docker architectures that struggle on obscure Windows builds. The application is packaged as a static, self-contained binary using standard Windows installers (MSI), carrying the required ONNX runtime DLLs locally. The entire application directory lives securely outside of the OS update paths so Microsoft Patch Tuesdays do not silently brick the ML dependencies.</p>
 
     <p>Building for boring hardware enforces necessary discipline. When you cannot rely on a GPU to cover up inefficient code, you write efficient code. When you cannot rely on LTE, you build bulletproof local persistence. The resulting application is devoid of architectural vanity; it simply launches instantly, infers reliably, and never loses the user's data.</p>
+
+    <h2>[PANEL_04: PROJECT CONTEXT]</h2>
+
+    <p>The client was a utility company with 60 field technicians responsible for inspecting power line equipment across three service regions. Their existing workflow depended on a cloud-based defect detection system that required a strong internet connection. The problem: roughly 40% of their inspection sites — rural areas, underground substations, remote corridor sections — had no reliable connectivity.</p>
+
+    <p>When technicians hit a dead zone, they fell back to manual processes. They photographed every defect with their tablet cameras, drove back to the office, and classified everything by hand at their desks. This created a backlog that grew every week and introduced errors from delayed classification — a cracked insulator photographed in the morning looked different on a screen eight hours later without the physical context.</p>
+
+    <div class="utility-callout">
+      <strong>Engagement Parameters</strong>
+      <code>> CLIENT: Regional utility company, 60 field technicians, 3 service regions</code><br>
+      <code>> TEAM: 2 engineers, 10-week build</code><br>
+      <code>> HARDWARE: 2-core Windows tablets, 4GB RAM, no GPU</code><br>
+      <code>> CORE PAIN: Cloud AI unusable at 40% of inspection sites (no connectivity)</code>
+    </div>
+
+    <p>The team was small by design — two engineers for ten weeks. One focused on model optimization and the ONNX conversion pipeline. The other built the Windows application shell, the SQLite persistence layer, and the sync mechanism. We shared responsibility for testing on the actual field tablets, which meant driving out to dead zones to verify the offline experience was seamless.</p>
+
+    <h2>[PANEL_05: RESULTS & IMPACT]</h2>
+
+    <p>The deployment covered all 60 tablets across all three service regions. The numbers reflected a complete shift from office-based re-classification to on-site real-time detection.</p>
+
+    <p>Model size dropped from 148MB in its original PyTorch form to 37MB after ONNX conversion and INT8 quantization — a 75% reduction. Inference speed went from 4.2 seconds per frame to 320 milliseconds — 13 times faster. The application ran comfortably on the 2-core tablets with 4GB of RAM and no GPU. Post-quantization accuracy held at 94.1%, compared to the 95.8% FP32 baseline — a 1.7% drop that the client's quality team deemed acceptable for field use.</p>
+
+    <!-- Before/After Comparison Diagram -->
+    <div class="hardware-diagram-grid">
+      <div class="svg-panel">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300" width="100%">
+          <rect width="200" height="300" fill="#ffffff" />
+          <text x="100" y="20" font-family="'Space Mono', monospace" font-size="10" font-weight="700" text-anchor="middle" fill="#000000">BEFORE</text>
+
+          <!-- Cloud dependency -->
+          <rect x="40" y="40" width="120" height="40" fill="#eeeeee" stroke="#111111" stroke-width="1" />
+          <text x="100" y="64" font-family="'Space Mono', monospace" font-size="9" text-anchor="middle" fill="#111111">PHOTOGRAPH</text>
+
+          <line x1="100" y1="80" x2="100" y2="100" stroke="#111111" stroke-width="1" marker-end="url(#arr-b)" />
+
+          <rect x="40" y="100" width="120" height="40" fill="#eeeeee" stroke="#111111" stroke-width="1" />
+          <text x="100" y="124" font-family="'Space Mono', monospace" font-size="9" text-anchor="middle" fill="#111111">DRIVE TO OFFICE</text>
+
+          <line x1="100" y1="140" x2="100" y2="160" stroke="#111111" stroke-width="1" marker-end="url(#arr-b)" />
+
+          <rect x="40" y="160" width="120" height="40" fill="#eeeeee" stroke="#111111" stroke-width="1" />
+          <text x="100" y="184" font-family="'Space Mono', monospace" font-size="9" text-anchor="middle" fill="#111111">MANUAL CLASSIFY</text>
+
+          <!-- Metrics -->
+          <text x="100" y="230" font-family="'Space Mono', monospace" font-size="9" text-anchor="middle" fill="#555555">Model: 148MB (FP32)</text>
+          <text x="100" y="245" font-family="'Space Mono', monospace" font-size="9" text-anchor="middle" fill="#555555">Inference: 4.2s</text>
+          <text x="100" y="260" font-family="'Space Mono', monospace" font-size="9" text-anchor="middle" fill="#555555">Offline: NOT POSSIBLE</text>
+          <text x="100" y="275" font-family="'Space Mono', monospace" font-size="9" text-anchor="middle" fill="#555555">Backlog: GROWING</text>
+
+          <defs>
+            <marker id="arr-b" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <polygon points="0 0, 6 3, 0 6" fill="#111111" />
+            </marker>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="svg-panel">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 300" width="100%">
+          <rect width="450" height="300" fill="#ffffff" />
+          <text x="225" y="20" font-family="'Space Mono', monospace" font-size="10" font-weight="700" text-anchor="middle" fill="#000000">AFTER: ON-DEVICE INFERENCE</text>
+
+          <!-- Device boundary -->
+          <rect x="20" y="35" width="300" height="135" fill="none" stroke="#111111" stroke-width="2" stroke-dasharray="4 4" />
+          <text x="170" y="50" font-family="'Public Sans', sans-serif" font-size="8" font-style="italic" text-anchor="middle" fill="#555555">On-Tablet (No Internet Required)</text>
+
+          <rect x="40" y="60" width="80" height="35" fill="#eeeeee" stroke="#111111" stroke-width="1" />
+          <text x="80" y="82" font-family="'Space Mono', monospace" font-size="9" text-anchor="middle" fill="#111111">CAPTURE</text>
+
+          <line x1="120" y1="77" x2="150" y2="77" stroke="#111111" stroke-width="2" marker-end="url(#arr-a)" />
+
+          <rect x="150" y="60" width="80" height="35" fill="#111111" />
+          <text x="190" y="82" font-family="'Space Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">INFER</text>
+
+          <line x1="190" y1="95" x2="190" y2="120" stroke="#111111" stroke-width="2" marker-end="url(#arr-a)" />
+
+          <rect x="140" y="120" width="100" height="35" fill="#eeeeee" stroke="#111111" stroke-width="1" />
+          <text x="190" y="142" font-family="'Space Mono', monospace" font-size="9" text-anchor="middle" fill="#111111">CLASSIFIED</text>
+
+          <!-- Metrics AFTER -->
+          <rect x="340" y="40" width="100" height="130" fill="#111111" />
+          <text x="390" y="60" font-family="'Space Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">RESULTS</text>
+          <text x="390" y="82" font-family="'Space Mono', monospace" font-size="8" text-anchor="middle" fill="#aaaaaa">37MB model</text>
+          <text x="390" y="97" font-family="'Space Mono', monospace" font-size="8" text-anchor="middle" fill="#aaaaaa">320ms infer</text>
+          <text x="390" y="112" font-family="'Space Mono', monospace" font-size="8" text-anchor="middle" fill="#aaaaaa">94.1% accuracy</text>
+          <text x="390" y="127" font-family="'Space Mono', monospace" font-size="8" text-anchor="middle" fill="#aaaaaa">No GPU needed</text>
+          <text x="390" y="142" font-family="'Space Mono', monospace" font-size="8" text-anchor="middle" fill="#aaaaaa">60 tablets</text>
+          <text x="390" y="157" font-family="'Space Mono', monospace" font-size="8" text-anchor="middle" fill="#aaaaaa">0 backlog</text>
+
+          <!-- Improvement bars -->
+          <text x="30" y="200" font-family="'Space Mono', monospace" font-size="9" fill="#111111">SIZE REDUCTION</text>
+          <rect x="30" y="207" width="380" height="14" fill="#eeeeee" stroke="#111111" stroke-width="1" />
+          <rect x="30" y="207" width="285" height="14" fill="#111111" />
+          <text x="170" y="217" font-family="'Space Mono', monospace" font-size="8" font-weight="700" text-anchor="middle" fill="#ffffff">75% SMALLER</text>
+
+          <text x="30" y="242" font-family="'Space Mono', monospace" font-size="9" fill="#111111">SPEED IMPROVEMENT</text>
+          <rect x="30" y="249" width="380" height="14" fill="#eeeeee" stroke="#111111" stroke-width="1" />
+          <rect x="30" y="249" width="351" height="14" fill="#111111" />
+          <text x="205" y="259" font-family="'Space Mono', monospace" font-size="8" font-weight="700" text-anchor="middle" fill="#ffffff">13x FASTER (4.2s -> 320ms)</text>
+
+          <text x="30" y="284" font-family="'Space Mono', monospace" font-size="9" fill="#111111">MONTHLY TIME SAVED: 180 HOURS ACROSS TEAM</text>
+
+          <defs>
+            <marker id="arr-a" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <polygon points="0 0, 6 3, 0 6" fill="#111111" />
+            </marker>
+          </defs>
+        </svg>
+      </div>
+    </div>
+    <figcaption>Fig 2. - Before: technicians photographed defects and drove back to the office to classify them manually. After: on-device ONNX inference classifies defects in 320ms at the inspection site, with zero internet dependency. Data syncs automatically when connectivity returns.</figcaption>
+
+    <p>The offline inspection backlog was completely eliminated. Technicians now classify defects on-site in real time, and the data syncs automatically when their tablets reconnect. The monthly time savings across the 60-person field team came to roughly 180 hours — time previously spent on manual re-classification back at the office.</p>
+
+    <h2>[PANEL_06: LESSONS LEARNED]</h2>
+
+    <p>The first attempt was straightforward and wrong. We tried to run the full PyTorch model directly on the tablets. It consumed nearly all available RAM, took 4.2 seconds per inference, and drained the battery in about three hours. A technician inspecting 40 poles in a day would lose their device before lunch.</p>
+
+    <p>ONNX conversion alone improved things significantly — inference dropped to 1.1 seconds. But that was still too slow for the rapid-fire capture workflow technicians needed. INT8 quantization was the final push that brought inference down to 320 milliseconds, making the tool feel instant.</p>
+
+    <div class="utility-callout">
+      <strong>The Real Complexity Was Not The Model</strong>
+      <code>> MODEL OPTIMIZATION: Hard, but well-documented path (PyTorch -> ONNX -> INT8)</code><br>
+      <code>> SQLITE SYNC QUEUE: Harder than expected — conflict resolution was the real fight</code><br>
+      <code>> SCENARIO: Same inspection modified on tablet AND in office while offline</code><br>
+      <code>> SOLUTION: Last-write-wins with full audit trail and manual conflict review queue</code>
+    </div>
+
+    <p>The biggest surprise was that the SQLite offline queue turned out to be more complex than the model optimization itself. The model conversion followed a well-documented path: export to ONNX, calibrate, quantize. But the sync layer had to handle a tricky real-world scenario: what happens when a technician modifies an inspection record on their tablet while someone at the office also modifies the same record in the central system? We built a last-write-wins strategy with a full audit trail and a manual conflict review queue for disputed records.</p>
+
+    <p>If we built this again, we would add a model update distribution system from day one. Right now, when we retrain the detection model with new defect types, updating 60 tablets requires a manual process. We would build an automatic push mechanism that downloads new model versions over WiFi when the tablets are charging overnight at the depot.</p>
   </div>
 <script type="application/json" id="blog-config">{"slug":"windows-offline-ai-app"}</script>
 </body>

@@ -294,6 +294,88 @@
 
     <p>By enforcing this workflow, we strip the language model of its most dangerous feature: autonomy. A support inbox copilot succeeds precisely because the engineering team builds walls around it, treating the AI as an incredibly fast typing assistant tethered securely to the database and gated faithfully by the human operator.</p>
 
+    <h2>[BOUNDARY 04] Project Context</h2>
+
+    <p>This system was built for an <strong>e-commerce company receiving 800+ support tickets per day</strong>. Their previous chatbot was an unbounded GPT wrapper connected directly to the customer inbox. It had no retrieval grounding, no confidence thresholds, and no human oversight layer. It simply generated responses based on whatever the customer wrote.</p>
+
+    <p>The consequences were predictable. The bot hallucinated order statuses, invented return policies that did not exist, and in one incident, <strong>promised a customer a full refund on a non-returnable item</strong>. That single mistake cost the company $2,400 and was shared widely on social media. The bot was shut down, and the support team went back to handling every ticket manually, creating a 4-hour response queue.</p>
+
+    <p>The project team was <strong>1 ML engineer and 1 support operations lead</strong>, working over a 10-week build. The support ops lead was essential because they understood the actual ticket patterns, knew which categories were safe to automate, and could validate the confidence thresholds against real historical data.</p>
+
+    <h2>[BOUNDARY 05] Results & Impact</h2>
+
+    <p>The bound copilot replaced the old chatbot with dramatically different outcomes. The core improvement was not speed but accuracy.</p>
+
+    <div class="figure-wrapper">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" width="100%">
+        <rect width="800" height="460" fill="#ffffff" />
+
+        <!-- Title -->
+        <text x="400" y="30" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700" text-anchor="middle" fill="#111111">BEFORE / AFTER COMPARISON</text>
+        <line x1="40" y1="45" x2="760" y2="45" stroke="#e0e0e0" stroke-width="1" />
+
+        <!-- Column Headers -->
+        <text x="200" y="72" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle" fill="#999999">BEFORE (UNBOUNDED BOT)</text>
+        <text x="600" y="72" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle" fill="#111111">AFTER (BOUND COPILOT)</text>
+
+        <!-- Divider -->
+        <line x1="400" y1="55" x2="400" y2="420" stroke="#e0e0e0" stroke-width="1" />
+
+        <!-- Metric 1: Auto-Resolution -->
+        <text x="200" y="108" font-family="'Open Sans', sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">Auto-Resolution Rate</text>
+        <rect x="130" y="115" width="140" height="28" fill="#f9f9f9" stroke="#e0e0e0" stroke-width="1" />
+        <text x="200" y="134" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#333333">8%</text>
+        <text x="600" y="108" font-family="'Open Sans', sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">Auto-Resolution Rate</text>
+        <rect x="530" y="115" width="140" height="28" fill="#111111" />
+        <text x="600" y="134" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#ffffff">52%</text>
+
+        <!-- Metric 2: Response Time -->
+        <text x="200" y="175" font-family="'Open Sans', sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">Avg Response Time</text>
+        <rect x="115" y="182" width="170" height="28" fill="#f9f9f9" stroke="#e0e0e0" stroke-width="1" />
+        <text x="200" y="201" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#333333">4 HOURS</text>
+        <text x="600" y="175" font-family="'Open Sans', sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">Avg Response Time</text>
+        <rect x="530" y="182" width="140" height="28" fill="#111111" />
+        <text x="600" y="201" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#ffffff">18 SECONDS</text>
+
+        <!-- Metric 3: Hallucination Incidents -->
+        <text x="200" y="242" font-family="'Open Sans', sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">Hallucination Incidents</text>
+        <rect x="115" y="249" width="170" height="28" fill="#f9f9f9" stroke="#e0e0e0" stroke-width="1" />
+        <text x="200" y="268" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#333333">3-4 / MONTH</text>
+        <text x="600" y="242" font-family="'Open Sans', sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">Hallucination Incidents</text>
+        <rect x="545" y="249" width="110" height="28" fill="#111111" />
+        <text x="600" y="268" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#ffffff">ZERO</text>
+
+        <!-- Metric 4: CSAT -->
+        <text x="200" y="309" font-family="'Open Sans', sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">Customer Satisfaction</text>
+        <rect x="130" y="316" width="140" height="28" fill="#f9f9f9" stroke="#e0e0e0" stroke-width="1" />
+        <text x="200" y="335" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#333333">N/A (DISABLED)</text>
+        <text x="600" y="309" font-family="'Open Sans', sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">Customer Satisfaction</text>
+        <rect x="545" y="316" width="110" height="28" fill="#111111" />
+        <text x="600" y="335" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#ffffff">4.2 / 5</text>
+
+        <!-- Footer Stats -->
+        <line x1="40" y1="370" x2="760" y2="370" stroke="#e0e0e0" stroke-width="1" />
+        <text x="400" y="393" font-family="'JetBrains Mono', monospace" font-size="10" text-anchor="middle" fill="#555555">False escalation rate: 9% | Monthly cost savings: $18K | Processes 800+ tickets/day</text>
+        <text x="400" y="413" font-family="'JetBrains Mono', monospace" font-size="10" text-anchor="middle" fill="#555555">Threshold: >0.92 auto-resolve | 0.65-0.91 draft for review | &lt;0.64 escalate</text>
+      </svg>
+      <figcaption>Fig 2. - Before/After support metrics. The old unbounded bot had been disabled due to hallucination incidents, leaving a 4-hour manual queue. The bound copilot auto-resolves 52% of tickets at 18 seconds with zero hallucinations in 6 months of operation.</figcaption>
+    </div>
+
+    <p>The false escalation rate (tickets sent to humans that did not actually need human attention) settled at <strong>9%</strong>. This was an acceptable trade-off: a 9% over-escalation rate meant the system was cautious, and cautious was exactly the design intent. Monthly cost savings reached <strong>$18K</strong> in reduced support staffing needs.</p>
+
+    <h2>[BOUNDARY 06] Lessons Learned</h2>
+
+    <p>The first version of the threshold system used <strong>0.80 as the auto-resolve cutoff</strong>. This seemed reasonable during testing against historical data. In production, it was too aggressive. Three incorrect auto-resolutions occurred in the first week. One of them told a customer their refund had been processed when it had not.</p>
+
+    <div class="rule-block">
+      <div class="rule-header">Threshold Adjustment</div>
+      <p>Raising the auto-resolve threshold from 0.80 to <strong>0.92</strong> reduced the auto-resolution rate from 65% to 52%, but eliminated incorrect auto-resolutions entirely. The 13% of tickets that moved from auto-resolve into the draft-for-review tier still got fast responses, just with a human checking the answer first. The trade-off was clearly worth it.</p>
+    </div>
+
+    <p>The biggest surprise was which feature the human agents valued most. It was not the auto-resolution layer (which they never saw). It was the <strong>"draft for review" middle tier</strong>. Agents said that having a pre-written response to edit was dramatically faster than writing from scratch. Even when they rewrote 80% of the draft, having the order data already pulled and the response structure already laid out saved them several minutes per ticket.</p>
+
+    <p>If building this again, the clear improvement would be <strong>per-category confidence thresholds</strong>. Billing questions carry higher risk and should require a higher confidence score to auto-resolve. Simple FAQ questions (store hours, shipping zones) could safely auto-resolve at a lower threshold. A single global threshold works, but category-specific thresholds would improve both safety and resolution rates.</p>
+
   </div>
 
 <script type="application/json" id="blog-config">{"slug":"support-inbox-copilot"}</script>

@@ -297,6 +297,92 @@
 
     <p>The resulting architecture serves as more than a reporting engine. With historical conversion paths modeled into clean Fact tables, the data science layer can run lead-scoring backtests-quantifying exactly which campaign dimensions led to retention versus churn-and feed those explicit scores back into the warehouse. When analytics are fundamentally unified in the warehouse layer, growth ceases to be an argument over spreadsheet mechanics and becomes an argument about the business itself.</p>
 
+    <h2>[CONSTRAINT_04] Project Context</h2>
+
+    <p>This system was built for a <strong>SaaS company where marketing and finance reported different lead numbers every month</strong>. Marketing used Hubspot and reported 1,200 leads. Finance used Salesforce and reported 870. The 330-lead gap caused budgeting conflicts, eroded trust between teams, and led to weekly arguments in leadership meetings about whose numbers were correct.</p>
+
+    <p>The truth was that neither team was wrong within their own system. They were measuring different things and calling them the same name. But without a shared infrastructure to reconcile the definitions, the disagreement had festered for <strong>18 months</strong> with no resolution.</p>
+
+    <p>The project team was <strong>1 data engineer and 1 business analyst</strong>, working over an 8-week build. The business analyst was essential because the technical problem (building a data pipeline) was straightforward. The hard problem was getting marketing and finance to agree on a single definition of "lead" and committing it to code.</p>
+
+    <h2>[CONSTRAINT_05] Results & Impact</h2>
+
+    <p>The warehouse eliminated the discrepancy by creating one governed definition that both teams consumed from the same source.</p>
+
+    <div class="architecture-diagram">
+      <div class="svg-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" width="100%">
+          <rect width="900" height="440" fill="#f8f8f8" />
+
+          <!-- Title -->
+          <text x="450" y="30" font-family="'IBM Plex Mono', monospace" font-size="13" font-weight="700" text-anchor="middle" fill="#111111">BEFORE / AFTER COMPARISON</text>
+          <line x1="50" y1="45" x2="850" y2="45" stroke="#dddddd" stroke-width="1" />
+
+          <!-- Column Headers -->
+          <text x="225" y="72" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle" fill="#555555">BEFORE (SILOED TOOLS)</text>
+          <text x="675" y="72" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle" fill="#111111">AFTER (UNIFIED WAREHOUSE)</text>
+
+          <!-- Divider -->
+          <line x1="450" y1="55" x2="450" y2="400" stroke="#dddddd" stroke-width="1" />
+
+          <!-- Metric 1: Lead Discrepancy -->
+          <text x="225" y="108" font-family="'Roboto Slab', serif" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">Lead Definition Agreement</text>
+          <rect x="110" y="115" width="230" height="28" fill="#ffffff" stroke="#dddddd" stroke-width="1" />
+          <text x="225" y="134" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="600" text-anchor="middle" fill="#222222">2 CONFLICTING COUNTS</text>
+          <text x="675" y="108" font-family="'Roboto Slab', serif" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">Lead Definition Agreement</text>
+          <rect x="590" y="115" width="170" height="28" fill="#111111" />
+          <text x="675" y="134" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="600" text-anchor="middle" fill="#ffffff">1 SOURCE OF TRUTH</text>
+
+          <!-- Metric 2: Reporting Conflicts -->
+          <text x="225" y="175" font-family="'Roboto Slab', serif" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">Monthly Reporting Conflicts</text>
+          <rect x="130" y="182" width="190" height="28" fill="#ffffff" stroke="#dddddd" stroke-width="1" />
+          <text x="225" y="201" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="600" text-anchor="middle" fill="#222222">WEEKLY ARGUMENTS</text>
+          <text x="675" y="175" font-family="'Roboto Slab', serif" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">Monthly Reporting Conflicts</text>
+          <rect x="625" y="182" width="100" height="28" fill="#111111" />
+          <text x="675" y="201" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="600" text-anchor="middle" fill="#ffffff">ZERO</text>
+
+          <!-- Metric 3: Dashboard Load -->
+          <text x="225" y="242" font-family="'Roboto Slab', serif" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">Dashboard Load Time</text>
+          <rect x="135" y="249" width="180" height="28" fill="#ffffff" stroke="#dddddd" stroke-width="1" />
+          <text x="225" y="268" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="600" text-anchor="middle" fill="#222222">45 SEC (MANUAL)</text>
+          <text x="675" y="242" font-family="'Roboto Slab', serif" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">Dashboard Load Time</text>
+          <rect x="610" y="249" width="130" height="28" fill="#111111" />
+          <text x="675" y="268" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="600" text-anchor="middle" fill="#ffffff">3 SECONDS</text>
+
+          <!-- Metric 4: Forecast Accuracy -->
+          <text x="225" y="309" font-family="'Roboto Slab', serif" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">Forecast Accuracy</text>
+          <rect x="155" y="316" width="140" height="28" fill="#ffffff" stroke="#dddddd" stroke-width="1" />
+          <text x="225" y="335" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="600" text-anchor="middle" fill="#222222">65%</text>
+          <text x="675" y="309" font-family="'Roboto Slab', serif" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">Forecast Accuracy</text>
+          <rect x="620" y="316" width="110" height="28" fill="#111111" />
+          <text x="675" y="335" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="600" text-anchor="middle" fill="#ffffff">88%</text>
+
+          <!-- Footer -->
+          <line x1="50" y1="370" x2="850" y2="370" stroke="#dddddd" stroke-width="1" />
+          <text x="450" y="393" font-family="'IBM Plex Mono', monospace" font-size="10" text-anchor="middle" fill="#555555">18% of leads were being double-counted across channels | 1,500+ lead events/month from 4 sources</text>
+          <text x="450" y="413" font-family="'IBM Plex Mono', monospace" font-size="10" text-anchor="middle" fill="#555555">dbt transformation layer: 12-minute nightly full refresh</text>
+        </svg>
+      </div>
+      <figcaption>Fig 2. - Before/After analytics metrics. The left column represents the siloed tool approach where marketing and finance maintained separate, conflicting lead counts. The right column represents the unified warehouse where a single SQL definition governs the meaning of "lead" for the entire organization.</figcaption>
+    </div>
+
+    <p>The unification process revealed that <strong>18% of leads had been double-counted</strong> across channels. A single person downloading a whitepaper and attending a webinar was counted as two separate leads in Hubspot. Once deduplicated in the warehouse, the actual lead volume was lower than either team had reported, but the data was finally trustworthy.</p>
+
+    <p>Forecast accuracy improved from 65% to <strong>88%</strong> because the input data was finally clean. The system processes 1,500+ lead events per month from 4 source systems. The dbt transformation layer runs nightly, completing a full refresh in 12 minutes.</p>
+
+    <h2>[CONSTRAINT_06] Lessons Learned</h2>
+
+    <p>The first approach was to build <strong>direct API connectors between Hubspot and Salesforce</strong>. This seemed like the fastest path: pull data from one system and push it into the other. In practice, it was a maintenance disaster. Hubspot rate-limited the API calls during business hours. Salesforce changed field schemas without warning. Every connector broke independently, and debugging required understanding both systems simultaneously.</p>
+
+    <div class="definition-block">
+      <code>LESSON :: DECOUPLE INGESTION FROM TRANSFORMATION</code>
+      <p>Building a proper ELT warehouse (extract the raw data first, then transform it in dbt) separated the two concerns completely. If the Hubspot API changed a field name, only the extraction layer needed updating. The transformation models downstream continued to work because they read from the stable warehouse staging tables, not from the live APIs.</p>
+    </div>
+
+    <p>The biggest surprise was how simple the root cause turned out to be. After 18 months of inter-departmental arguments about lead numbers, the discrepancy came down to this: <strong>marketing counted "form submissions" while finance counted "qualified opportunities."</strong> These were fundamentally different things being called the same word. Writing a single SQL definition of "lead" that both teams reviewed and approved solved a political problem that no amount of meetings had been able to resolve.</p>
+
+    <p>If building this again, the clear addition would be <strong>data quality monitoring</strong>. An automated alert that fires when the daily lead count deviates more than 10% from the historical baseline would catch upstream data issues (a broken API connector, a changed form) before they silently corrupt the warehouse. The current system assumes the data arriving is correct, which is a fragile assumption when dealing with 4 different source systems.</p>
+
   </div>
 
 <script type="application/json" id="blog-config">{"slug":"unified-analytics-lead-growth"}</script>

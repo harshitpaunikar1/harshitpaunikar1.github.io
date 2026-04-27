@@ -742,6 +742,96 @@ if text and template_guess and text != template_guess:
         </div>
       </section>
 
+      <section class="stage">
+        <div class="stage-tag">Context</div>
+        <div class="stage-body">
+          <h2>Who Needed This and What Was Broken</h2>
+          <p>This pipeline was built for a logistics company where barcode labels on vertical surfaces -- sides of crates, stacked pallets, narrow carton edges -- failed standard OCR 35 percent of the time. Workers had to manually type in codes for every failed scan, adding about 8 seconds per label. That does not sound like much until you multiply it across a receiving dock processing thousands of items per shift. The manual entry bottleneck was slowing the entire receiving operation.</p>
+          <p>The team was two people: one computer vision engineer and one operations analyst. The CV engineer built the pipeline. The operations analyst provided the labeled test data, defined the accuracy requirements, and ran the dock-side validation tests. The build took 9 weeks from first label audit to production deployment across 2 receiving docks.</p>
+          <div class="margin-note">
+            <span class="note-title">Build Parameters</span>
+            <p>Client: logistics company with 2 receiving docks. Team: 1 CV engineer + 1 operations analyst. Timeline: 9 weeks. Problem: standard OCR failed on 35% of vertical labels, requiring manual data entry at 8 seconds per scan. Hard constraint: the system had to run fast enough to keep pace with dock workflow -- no batch processing, results needed in under 2 seconds per label.</p>
+          </div>
+          <p>The labels themselves were the challenge. They were printed on different materials (thermal, inkjet, laser), applied at different angles, and photographed under warehouse lighting that varied by time of day and dock position. Some labels were fresh and crisp. Others had been through rain, tape, and forklift scrapes. Standard OCR tools assumed clean, horizontal text on a flat surface. These labels were none of those things.</p>
+        </div>
+      </section>
+
+      <section class="stage">
+        <div class="stage-tag">Impact</div>
+        <div class="stage-body">
+          <h2>What Changed After Deployment</h2>
+          <p>OCR accuracy on vertical labels improved from 65 percent to 94.2 percent. The manual fallback rate dropped from 35 percent to 5.8 percent. Average scan time went from 8 seconds (manual entry) to 1.2 seconds (automated pipeline). The processing pipeline handled more than 6,000 labels per day across the 2 receiving docks.</p>
+          <p>The false positive rate -- cases where the system read a code confidently but incorrectly -- was 1.4 percent. Those were caught by check-digit validation in the downstream inventory system, so they did not cause data errors. But they mattered for trust: dock workers needed to know the system was not silently entering wrong codes.</p>
+          <p>The bottom-line impact was roughly 18 hours of manual data entry eliminated per day across the operation. That time went back to actual receiving work: unloading, inspecting, and staging inventory.</p>
+          <figure>
+            <svg viewBox="0 0 780 380" role="img" aria-labelledby="ocr-results-title ocr-results-desc">
+              <title id="ocr-results-title">Before and after metrics for the vertical OCR pipeline</title>
+              <desc id="ocr-results-desc">Side-by-side comparison of accuracy, scan time, and manual entry hours.</desc>
+              <rect x="0" y="0" width="780" height="380" fill="#fafaf8" stroke="#d2d2d0" stroke-width="1.5"/>
+              <text x="24" y="32" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="0.16em" fill="#8a8a8a">BEFORE / AFTER DEPLOYMENT</text>
+              <line x1="24" y1="46" x2="756" y2="46" stroke="#d2d2d0" stroke-width="1"/>
+
+              <rect x="24" y="64" width="350" height="48" fill="#ececea" stroke="#111" stroke-width="1.2"/>
+              <text x="38" y="93" font-family="STIX Two Text, serif" font-size="15" font-weight="600" fill="#111">Vertical label accuracy</text>
+              <text x="356" y="93" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#111">65%</text>
+
+              <rect x="406" y="64" width="350" height="48" fill="#111" stroke="#111" stroke-width="1.2"/>
+              <text x="420" y="93" font-family="STIX Two Text, serif" font-size="15" font-weight="600" fill="#fafaf8">Vertical label accuracy</text>
+              <text x="738" y="93" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#fafaf8">94.2%</text>
+
+              <rect x="24" y="126" width="350" height="48" fill="#ececea" stroke="#111" stroke-width="1.2"/>
+              <text x="38" y="155" font-family="STIX Two Text, serif" font-size="15" font-weight="600" fill="#111">Manual fallback rate</text>
+              <text x="356" y="155" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#111">35%</text>
+
+              <rect x="406" y="126" width="350" height="48" fill="#111" stroke="#111" stroke-width="1.2"/>
+              <text x="420" y="155" font-family="STIX Two Text, serif" font-size="15" font-weight="600" fill="#fafaf8">Manual fallback rate</text>
+              <text x="738" y="155" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#fafaf8">5.8%</text>
+
+              <rect x="24" y="188" width="350" height="48" fill="#ececea" stroke="#111" stroke-width="1.2"/>
+              <text x="38" y="217" font-family="STIX Two Text, serif" font-size="15" font-weight="600" fill="#111">Average scan time</text>
+              <text x="356" y="217" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#111">8 sec (manual)</text>
+
+              <rect x="406" y="188" width="350" height="48" fill="#111" stroke="#111" stroke-width="1.2"/>
+              <text x="420" y="217" font-family="STIX Two Text, serif" font-size="15" font-weight="600" fill="#fafaf8">Average scan time</text>
+              <text x="738" y="217" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#fafaf8">1.2 sec (auto)</text>
+
+              <rect x="24" y="250" width="350" height="48" fill="#ececea" stroke="#111" stroke-width="1.2"/>
+              <text x="38" y="279" font-family="STIX Two Text, serif" font-size="15" font-weight="600" fill="#111">Daily manual entry hours</text>
+              <text x="356" y="279" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#111">~18 hours</text>
+
+              <rect x="406" y="250" width="350" height="48" fill="#111" stroke="#111" stroke-width="1.2"/>
+              <text x="420" y="279" font-family="STIX Two Text, serif" font-size="15" font-weight="600" fill="#fafaf8">Daily manual entry hours</text>
+              <text x="738" y="279" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#fafaf8">~1 hour</text>
+
+              <rect x="24" y="312" width="350" height="48" fill="#ececea" stroke="#111" stroke-width="1.2"/>
+              <text x="38" y="341" font-family="STIX Two Text, serif" font-size="15" font-weight="600" fill="#111">Daily labels processed</text>
+              <text x="356" y="341" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#111">~6,000</text>
+
+              <rect x="406" y="312" width="350" height="48" fill="#111" stroke="#111" stroke-width="1.2"/>
+              <text x="420" y="341" font-family="STIX Two Text, serif" font-size="15" font-weight="600" fill="#fafaf8">Daily labels processed</text>
+              <text x="738" y="341" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#fafaf8">6,000+ (same volume)</text>
+
+              <text x="199" y="375" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="0.14em" fill="#8a8a8a">BEFORE (STANDARD OCR)</text>
+              <text x="581" y="375" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="0.14em" fill="#8a8a8a">AFTER (DETERMINISTIC PIPELINE)</text>
+            </svg>
+            <figcaption><span class="caption-title">Impact Summary.</span>The false positive rate was 1.4% -- wrong codes read confidently -- but all were caught by check-digit validation downstream. The real win was eliminating 17 hours of daily manual data entry.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="stage">
+        <div class="stage-tag">Lessons</div>
+        <div class="stage-body">
+          <h2>What Failed, What Surprised Us, and What Comes Next</h2>
+          <p>The first approach was the obvious one: rotate the input image to make the text horizontal, then run standard Tesseract. Accuracy actually got worse. Rotation introduced interpolation artifacts -- the pixel-level smoothing that happens when you rotate a raster image degraded the already-thin strokes in thermal-printed labels. Characters that were readable (if vertical) in the original became blurry and ambiguous after rotation. That is when we abandoned the "fix the orientation" strategy and built the deterministic pipeline instead: find the characters where they are, match them as they are, and rebuild reading order from geometry.</p>
+          <p>The biggest surprise was not about orientation at all. It was about ink. Thermal-printed labels with faded ink were harder to handle than any orientation problem. A crisp vertical label with strong contrast was relatively easy -- the contour detection and matching pipeline handled it well. A faded thermal label where the strokes were barely darker than the background was a different problem entirely. We ended up adding adaptive thresholding with parameters tuned specifically for thermal print: wider local neighborhoods, lower contrast thresholds, and more aggressive morphological closing to reconnect the thin, broken strokes that thermal dropout creates.</p>
+          <p>If we were building this again, the single biggest investment would be a small labeled dataset of the specific fonts used on the client's labels, fine-tuned against the EMNIST reference set. The generic EMNIST characters are handwritten, and the label fonts are machine-printed. That mismatch was responsible for most of the remaining 5.8 percent failure rate. A few hundred labeled examples from the actual label printers would likely close most of that gap.</p>
+          <div class="quote-band">
+            The lesson from this project is that the hard part of OCR on real-world labels is not recognition. It is everything that happens before recognition: lighting, ink quality, surface angle, print degradation, and layout assumptions that do not hold. Fix those problems deterministically, and the recognizer barely has to work.
+          </div>
+        </div>
+      </section>
+
       <section class="appendix">
         <p class="micro">Closing Note</p>
         <p class="closing">This pipeline is attractive because it attacks the true bottleneck in awkward vertical OCR: not recognition in the abstract, but layout recovery under ugly print conditions. By turning the label into black and white evidence, isolating candidate glyphs, matching them with lightweight references, reconstructing reading order, and reserving Tesseract for the final pass, the system stays interpretable from end to end. The result is not glamorous, but it is exact, debuggable, and surprisingly strong on the narrow class of labels that keep ordinary OCR stumbling over the same vertical mistake.</p>

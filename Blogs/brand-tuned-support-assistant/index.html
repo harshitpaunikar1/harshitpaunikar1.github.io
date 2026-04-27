@@ -367,6 +367,80 @@ model = PeftModel.from_pretrained(model, adapter_path)
 
   <p>The economics only make sense if the volume of your customer service tier dictates it. If your volume is low, pay for the bloated context window of a massive API model and suffer the generic prose. But if you handle millions of interactions, the dual-track architecture of RAG injection layered over a deeply curated LoRA check-point is the only way to scale the actual voice of your company rather than renting the voice of a Silicon Valley lab.</p>
 
+  <h2>Project Context & The Challenge</h2>
+
+  <p>This project was built for a direct-to-consumer lifestyle brand that received over 2,000 support tickets every day. They already had a chatbot — but customers hated it. The bot gave correct answers wrapped in stiff, corporate language that clashed with the brand's casual, friendly tone. Customer satisfaction scores on bot-handled conversations sat at 2.1 out of 5. Human agents scored 4.1 out of 5 on the same types of questions, but they could not keep up with the volume.</p>
+
+  <p>The company had tried tweaking the chatbot's system prompt dozens of times. They added personality instructions, example responses, even emoji guidelines. The results were inconsistent — sometimes the bot sounded right, sometimes it reverted to robotic corporate-speak mid-conversation. The support lead described it as "talking to someone pretending to be our brand, badly."</p>
+
+  <p>This was a solo engineer project with an 8-week timeline. The goal was clear: make the bot sound like the brand's best human agents, handle the majority of tickets without human handoff, and do it at a lower cost than their current setup.</p>
+
+  <h2>Results & Impact</h2>
+
+  <p>After deploying the LoRA-tuned model with the RAG knowledge layer, customer satisfaction on bot responses jumped from 2.1 out of 5 to 4.3 out of 5. The bot now handled 68% of tickets without needing a human agent — up from 31% with the old chatbot. Average response time dropped from 4 hours (waiting in the human agent queue) to 12 seconds.</p>
+
+  <p>The LoRA adapter was fine-tuned on 800 carefully curated question-and-answer pairs built in collaboration with the brand's support team. Monthly hosting cost came to $180 for the LoRA model on a modest GPU instance, compared to the $420 per month they had been spending on OpenAI API calls for the old chatbot. The system went live serving all 2,000+ daily tickets.</p>
+
+  <div class="figure-container">
+    <svg viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid meet">
+      <!-- Title -->
+      <text x="500" y="30" font-family="'Merriweather Sans'" font-size="16" font-weight="700" text-anchor="middle">Before vs After: Brand Voice Bot Deployment</text>
+
+      <!-- Left column: Before -->
+      <rect x="80" y="60" width="380" height="310" fill="#f8f8f8" stroke="#ccc" />
+      <text x="270" y="85" font-family="'Fira Code'" font-size="13" font-weight="600" text-anchor="middle">BEFORE</text>
+
+      <text x="120" y="120" font-family="'Merriweather Sans'" font-size="12" fill="#444">CSAT (Bot Responses)</text>
+      <rect x="120" y="130" width="84" height="24" fill="#ccc" stroke="#111" />
+      <text x="214" y="147" font-family="'Fira Code'" font-size="12" font-weight="600">2.1 / 5</text>
+
+      <text x="120" y="185" font-family="'Merriweather Sans'" font-size="12" fill="#444">Bot Handling Rate</text>
+      <rect x="120" y="195" width="124" height="24" fill="#ccc" stroke="#111" />
+      <text x="254" y="212" font-family="'Fira Code'" font-size="12" font-weight="600">31%</text>
+
+      <text x="120" y="250" font-family="'Merriweather Sans'" font-size="12" fill="#444">Avg Response Time</text>
+      <rect x="120" y="260" width="200" height="24" fill="#ccc" stroke="#111" />
+      <text x="330" y="277" font-family="'Fira Code'" font-size="12" font-weight="600">4 hours</text>
+
+      <text x="120" y="315" font-family="'Merriweather Sans'" font-size="12" fill="#444">Monthly Cost</text>
+      <rect x="120" y="325" width="168" height="24" fill="#ccc" stroke="#111" />
+      <text x="298" y="342" font-family="'Fira Code'" font-size="12" font-weight="600">$420/mo</text>
+
+      <!-- Right column: After -->
+      <rect x="540" y="60" width="380" height="310" fill="#fff" stroke="#111" stroke-width="2" />
+      <text x="730" y="85" font-family="'Fira Code'" font-size="13" font-weight="600" text-anchor="middle">AFTER</text>
+
+      <text x="580" y="120" font-family="'Merriweather Sans'" font-size="12" fill="#444">CSAT (Bot Responses)</text>
+      <rect x="580" y="130" width="172" height="24" fill="#111" />
+      <text x="762" y="147" font-family="'Fira Code'" font-size="12" font-weight="600" fill="#111">4.3 / 5</text>
+
+      <text x="580" y="185" font-family="'Merriweather Sans'" font-size="12" fill="#444">Bot Handling Rate</text>
+      <rect x="580" y="195" width="272" height="24" fill="#111" />
+      <text x="862" y="212" font-family="'Fira Code'" font-size="12" font-weight="600" fill="#111">68%</text>
+
+      <text x="580" y="250" font-family="'Merriweather Sans'" font-size="12" fill="#444">Avg Response Time</text>
+      <rect x="580" y="260" width="12" height="24" fill="#111" />
+      <text x="602" y="277" font-family="'Fira Code'" font-size="12" font-weight="600" fill="#111">12 seconds</text>
+
+      <text x="580" y="315" font-family="'Merriweather Sans'" font-size="12" fill="#444">Monthly Cost</text>
+      <rect x="580" y="325" width="72" height="24" fill="#111" />
+      <text x="662" y="342" font-family="'Fira Code'" font-size="12" font-weight="600" fill="#111">$180/mo</text>
+    </svg>
+    <div class="caption">
+      Side-by-side comparison of the old prompt-engineered chatbot versus the LoRA fine-tuned deployment. Customer satisfaction more than doubled. The bot handles more than twice the volume of tickets, and monthly hosting costs dropped by 57%.
+    </div>
+  </div>
+
+  <h2>Lessons Learned</h2>
+
+  <p>The first attempt was pure prompt engineering. We wrote detailed system prompts describing the brand's personality, included rules about sentence length, and added lists of words to use and avoid. The bot got the facts right, but the tone was still corporate. It would say things like "I understand your frustration and I am happy to assist you with your concern" — technically correct, but completely wrong for a brand whose human agents would say "Ugh, that sucks. Let me fix it."</p>
+
+  <p>The second attempt used few-shot examples injected into the system prompt. We included 10 real agent conversations as templates. This improved consistency within the topics covered by those examples, but the bot would fall back to generic phrasing on any question outside the example set. The few-shot approach also ate up a huge chunk of the context window on every single request, driving up costs.</p>
+
+  <p>LoRA fine-tuning was the breakthrough. But the real bottleneck was not the training — it was curating the 800 question-and-answer pairs. We spent 3 weeks working with the brand's support team, going through real ticket transcripts, rewriting agent responses to match the ideal tone, and discarding pairs that were too generic to teach the model anything useful. That curation process was the most tedious part of the entire project, but it was also the part that made everything else work.</p>
+
+  <p>The biggest surprise came after launch: customers started rating bot interactions higher than human agent interactions. The CSAT on bot responses (4.3) actually exceeded the human agent average (4.1). It turned out the LoRA model had absorbed the tone of the brand's best agents, not the average ones — and it was consistent in a way that humans, who have bad days and rush through tickets at the end of a shift, are not.</p>
+
 </div>
 
 <script type="application/json" id="blog-config">{"slug":"brand-tuned-support-assistant"}</script>

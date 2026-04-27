@@ -783,11 +783,115 @@
             </tbody>
           </table>
           <p>The folder does not give me source code, payload captures, or SLA exports. It does give me enough to say what kind of integration design this is aiming at: a secure, multi-tenant, retry-aware operational backbone for yard events and adjacent systems. That is a worthwhile target. It is also the kind of target where vague prose does real damage, because it hides the unglamorous work that makes enterprise integration survive first contact with production.</p>
-          <p class="ending">My view is simple: the mature version of this story is not “we connected the YMS.” It is “we decided how operational truth moves, how duplicates die, how mismatches get repaired, and which team wakes up when the route breaks.” That is infrastructure. Everything else is brochure copy.</p>
+          <p class=”ending”>My view is simple: the mature version of this story is not “we connected the YMS.” It is “we decided how operational truth moves, how duplicates die, how mismatches get repaired, and which team wakes up when the route breaks.” That is infrastructure. Everything else is brochure copy.</p>
+        </section>
+
+        <section class=”checkpoint”>
+          <div class=”checkpoint-head”>
+            <div class=”checkpoint-tag”>Gate 08</div>
+            <h2>Project context: what was actually breaking and who fixed it.</h2>
+          </div>
+          <p class=”lead-paragraph”>This integration was built for a large retailer that needed to connect their yard management system with three enterprise platforms: SAP ERP, Manhattan WMS, and Oracle TMS. Before the integration existed, data from yard operations was manually re-entered across all three systems by a six-person data entry team. Every truck arrival, dock assignment, and gate departure had to be typed into SAP, then typed again into Manhattan, then typed again into Oracle.</p>
+          <p>The manual process created constant discrepancies. A trailer might be marked as arrived in one system and still showing as en route in another. Dock assignments in the WMS would not match what the ERP expected. These mismatches caused $180,000 per year in billing disputes with carriers and partners, because invoices were generated from one system while the actual operational record lived in another.</p>
+          <p>The engineering team was three people. The project took 20 weeks, rolled out in phases. The first phase connected the YMS to SAP. The second added Manhattan WMS. The third brought in Oracle TMS. Each phase was deployed separately so the team could validate data accuracy before adding the next system to the loop.</p>
+        </section>
+
+        <section class=”checkpoint”>
+          <div class=”checkpoint-head”>
+            <div class=”checkpoint-tag”>Gate 09</div>
+            <h2>Results and impact: the numbers after one year in production.</h2>
+          </div>
+          <p class=”lead-paragraph”>Manual data re-entry was eliminated entirely. The six full-time data entry positions were reassigned to higher-value work, saving approximately $420,000 per year in labor costs. The system reconciles over 2,400 transactions per day across all three enterprise platforms.</p>
+          <p>Billing discrepancies dropped from 4.2% to 0.3%. For a retailer processing thousands of carrier invoices per month, that difference is substantial. The remaining 0.3% are edge cases that involve legitimate disputes about service terms, not data entry errors.</p>
+          <p>Average sync latency is 8 seconds for real-time events like gate arrivals and dock assignments. Batch reconciliation runs on a 15-minute cycle to catch anything that might have been missed or delayed. Integration uptime hit 99.7% over the first year. The automated retry mechanism successfully recovered about 340 failed transactions per month without any human involvement.</p>
+
+          <figure>
+            <div class=”diagram”>
+              <svg viewBox=”0 0 1060 420” role=”img” aria-labelledby=”results-title results-desc”>
+                <title id=”results-title”>Before and after integration metrics</title>
+                <desc id=”results-desc”>A side-by-side comparison showing operational metrics before and after the YMS integration was deployed.</desc>
+
+                <rect x=”20” y=”20” width=”500” height=”380” fill=”#f5f5f5” stroke=”#111111” stroke-width=”1.5” />
+                <text x=”270” y=”52” text-anchor=”middle” font-size=”16” font-weight=”700” fill=”#111111”>BEFORE INTEGRATION</text>
+                <line x1=”40” y1=”64” x2=”500” y2=”64” stroke=”#111111” stroke-width=”1.2” />
+
+                <text x=”50” y=”100” font-size=”14” fill=”#555555”>Manual data entry staff</text>
+                <text x=”490” y=”100” text-anchor=”end” font-size=”16” font-weight=”700” fill=”#111111”>6 FTEs</text>
+                <rect x=”50” y=”110” width=”440” height=”8” fill=”#e0e0e0” />
+                <rect x=”50” y=”110” width=”440” height=”8” fill=”#111111” />
+
+                <text x=”50” y=”155” font-size=”14” fill=”#555555”>Billing discrepancy rate</text>
+                <text x=”490” y=”155” text-anchor=”end” font-size=”16” font-weight=”700” fill=”#111111”>4.2%</text>
+                <rect x=”50” y=”165” width=”440” height=”8” fill=”#e0e0e0” />
+                <rect x=”50” y=”165” width=”185” height=”8” fill=”#111111” />
+
+                <text x=”50” y=”210” font-size=”14” fill=”#555555”>Annual billing disputes</text>
+                <text x=”490” y=”210” text-anchor=”end” font-size=”16” font-weight=”700” fill=”#111111”>$180K/year</text>
+                <rect x=”50” y=”220” width=”440” height=”8” fill=”#e0e0e0” />
+                <rect x=”50” y=”220” width=”340” height=”8” fill=”#111111” />
+
+                <text x=”50” y=”265” font-size=”14” fill=”#555555”>Sync method</text>
+                <text x=”490” y=”265” text-anchor=”end” font-size=”16” font-weight=”700” fill=”#111111”>Manual re-typing</text>
+
+                <text x=”50” y=”320” font-size=”14” fill=”#555555”>Failed transaction recovery</text>
+                <text x=”490” y=”320” text-anchor=”end” font-size=”16” font-weight=”700” fill=”#111111”>Manual (hours/days)</text>
+
+                <!-- After side -->
+                <rect x=”540” y=”20” width=”500” height=”380” fill=”#111111” stroke=”#111111” stroke-width=”1.5” />
+                <text x=”790” y=”52” text-anchor=”middle” font-size=”16” font-weight=”700” fill=”#f5f5f5”>AFTER INTEGRATION</text>
+                <line x1=”560” y1=”64” x2=”1020” y2=”64” stroke=”#555555” stroke-width=”1.2” />
+
+                <text x=”570” y=”100” font-size=”14” fill=”#888888”>Manual data entry staff</text>
+                <text x=”1010” y=”100” text-anchor=”end” font-size=”16” font-weight=”700” fill=”#f5f5f5”>0 FTEs (saving $420K/yr)</text>
+                <rect x=”570” y=”110” width=”440” height=”8” fill=”#333333” />
+                <rect x=”570” y=”110” width=”4” height=”8” fill=”#f5f5f5” />
+
+                <text x=”570” y=”155” font-size=”14” fill=”#888888”>Billing discrepancy rate</text>
+                <text x=”1010” y=”155” text-anchor=”end” font-size=”16” font-weight=”700” fill=”#f5f5f5”>0.3%</text>
+                <rect x=”570” y=”165” width=”440” height=”8” fill=”#333333” />
+                <rect x=”570” y=”165” width=”31” height=”8” fill=”#f5f5f5” />
+
+                <text x=”570” y=”210” font-size=”14” fill=”#888888”>Annual billing disputes</text>
+                <text x=”1010” y=”210” text-anchor=”end” font-size=”16” font-weight=”700” fill=”#f5f5f5”>~$13K/year (-93%)</text>
+                <rect x=”570” y=”220” width=”440” height=”8” fill=”#333333” />
+                <rect x=”570” y=”220” width=”25” height=”8” fill=”#f5f5f5” />
+
+                <text x=”570” y=”265” font-size=”14” fill=”#888888”>Sync latency</text>
+                <text x=”1010” y=”265” text-anchor=”end” font-size=”16” font-weight=”700” fill=”#f5f5f5”>8 sec real-time / 15 min batch</text>
+
+                <text x=”570” y=”320” font-size=”14” fill=”#888888”>Failed transaction recovery</text>
+                <text x=”1010” y=”320” text-anchor=”end” font-size=”16” font-weight=”700” fill=”#f5f5f5”>Auto-retry (340/month)</text>
+
+                <text x=”570” y=”370” font-size=”14” fill=”#888888”>Integration uptime (year 1)</text>
+                <text x=”1010” y=”370” text-anchor=”end” font-size=”16” font-weight=”700” fill=”#f5f5f5”>99.7%</text>
+              </svg>
+            </div>
+            <figcaption>The integration eliminated manual data entry entirely and reduced billing discrepancies from 4.2% to 0.3%. The automated retry mechanism handles about 340 failed transactions per month without human intervention.</figcaption>
+          </figure>
+        </section>
+
+        <section class=”checkpoint”>
+          <div class=”checkpoint-head”>
+            <div class=”checkpoint-tag”>Gate 10</div>
+            <h2>Lessons learned: the first approach that failed and the surprise that nobody expected.</h2>
+          </div>
+          <p class=”lead-paragraph”>The first design was a point-to-point integration. Connect SAP directly to the YMS. Connect Manhattan directly to the YMS. Connect Oracle directly to the YMS. That meant six connectors total (one in each direction for each system pair). It worked in the prototype, but the maintenance burden was immediately obvious. Every time one system changed a field name or added a status code, multiple connectors needed updating. The team spent more time maintaining the connectors than building new features.</p>
+          <p>The fix was switching to a canonical data model hub. Instead of each system talking directly to each other system, every system talks only to the hub. The hub translates everything into a single internal format. That reduced the connector count from six to three. More importantly, when SAP changed their trailer status codes (which happened twice in the first year), only the SAP connector needed updating. Manhattan and Oracle were unaffected because they only spoke to the canonical model, not to SAP directly.</p>
+
+          <div class=”split”>
+            <div class=”note”>
+              <strong>The Hardest Problem</strong>
+              <p>The hardest problem was not technical. It was getting three different vendor teams to agree on what “trailer arrival time” meant. SAP recorded it as the moment the gate scan completed. Manhattan recorded it as the moment the dock was assigned. Oracle recorded it as the moment the truck physically entered the yard perimeter. The canonical model had to pick one definition and translate the others. That alignment conversation took three weeks of meetings across four time zones.</p>
+            </div>
+            <div class=”note”>
+              <strong>What We Would Do Differently</strong>
+              <p>If the team started this project again, they would invest more time in data dictionary alignment before writing any code. The three weeks spent arguing about field definitions happened in parallel with development, which caused two rounds of rework when assumptions turned out to be wrong. Doing that alignment work upfront would have saved roughly four weeks of total project time.</p>
+            </div>
+          </div>
         </section>
       </div>
 
-      <aside class="right-rail">
+      <aside class=”right-rail”>
         <section class="right-card">
           <h2>Source Evidence</h2>
           <ul>

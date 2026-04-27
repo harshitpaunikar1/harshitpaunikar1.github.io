@@ -406,6 +406,100 @@ torch.onnx.export(
 
   <p>When engineering an edge pipeline, the choice of the convolutional model handles the classification. But the choice of the runtime engine dictates whether your product will physically survive outside the data center. An unoptimized architecture deployed to cheap silicon will fail violently; an optimized engine guarantees resilience.</p>
 
+  <h2>PROJECT_CONTEXT</h2>
+
+  <p>This benchmark was conducted for a computer vision product team that had built detection models for factory floor inspection. Their models ran on Jetson Orin NX edge devices mounted next to conveyor belts. The problem was simple: their PyTorch models ran at 10.8 frames per second. The conveyor belt moved 30 items per minute. They were missing items because the camera could not keep up.</p>
+
+  <p>The team was two people: one ML engineer and one deployment engineer. The sprint lasted four weeks. The goal was not to retrain the model or buy more expensive hardware. The goal was to make the existing model run fast enough on the existing hardware by changing how the model was executed.</p>
+
+  <p>The product team had already deployed 12 edge devices across 3 factory lines. Replacing the hardware would have cost $36,000 in GPU upgrades alone, plus downtime and reconfiguration. The business case for runtime optimization was straightforward: spend four weeks of engineering time to avoid spending $36,000 in hardware.</p>
+
+  <h2>DEPLOYMENT_RESULTS</h2>
+
+  <p>The results exceeded expectations. Frames per second jumped from 10.8 (native PyTorch) to 161 (TensorRT with INT8 quantization). That is a 15x improvement on the same hardware. VRAM usage dropped from 480MB to 48MB, which freed enough memory to run a second model on the same device for a different inspection task. Inference latency dropped from 92.6 milliseconds to 6.2 milliseconds per frame.</p>
+
+  <p>The accuracy loss from INT8 quantization was 1.7%. For this use case, that tradeoff was acceptable. The models were detecting defects on manufactured parts, and the slight accuracy reduction was more than compensated by the ability to actually inspect every item on the belt instead of skipping every third one.</p>
+
+  <p>The optimized runtime was deployed across all 12 edge devices on 3 factory lines. Total hardware savings: $36,000. Total engineering investment: 4 weeks of a 2-person team.</p>
+
+  <div class="figure-block">
+    <div class="figure-title">FIG 03 // BEFORE vs. AFTER DEPLOYMENT METRICS</div>
+    <svg viewBox="0 0 850 380" preserveAspectRatio="xMidYMid meet">
+      <!-- Before Panel -->
+      <rect x="30" y="20" width="380" height="340" fill="none" stroke="#111" stroke-width="4" />
+      <rect x="30" y="20" width="380" height="36" fill="#f0f0f0" stroke="#111" stroke-width="2" />
+      <text x="220" y="44" font-family="'Source Code Pro'" font-size="14" font-weight="700" text-anchor="middle">BEFORE: NATIVE PYTORCH</text>
+
+      <text x="60" y="90" font-family="'Gothic A1'" font-size="13" fill="#555">Throughput</text>
+      <text x="360" y="90" font-family="'Source Code Pro'" font-size="16" font-weight="700" text-anchor="end">10.8 FPS</text>
+      <rect x="60" y="100" width="300" height="10" fill="#ddd" stroke="#111" stroke-width="1" />
+      <rect x="60" y="100" width="20" height="10" fill="#111" />
+
+      <text x="60" y="145" font-family="'Gothic A1'" font-size="13" fill="#555">Latency per frame</text>
+      <text x="360" y="145" font-family="'Source Code Pro'" font-size="16" font-weight="700" text-anchor="end">92.6 ms</text>
+      <rect x="60" y="155" width="300" height="10" fill="#ddd" stroke="#111" stroke-width="1" />
+      <rect x="60" y="155" width="280" height="10" fill="#111" />
+
+      <text x="60" y="200" font-family="'Gothic A1'" font-size="13" fill="#555">VRAM usage</text>
+      <text x="360" y="200" font-family="'Source Code Pro'" font-size="16" font-weight="700" text-anchor="end">480 MB</text>
+      <rect x="60" y="210" width="300" height="10" fill="#ddd" stroke="#111" stroke-width="1" />
+      <rect x="60" y="210" width="240" height="10" fill="#111" />
+
+      <text x="60" y="255" font-family="'Gothic A1'" font-size="13" fill="#555">Items missed on belt</text>
+      <text x="360" y="255" font-family="'Source Code Pro'" font-size="16" font-weight="700" text-anchor="end">~1 in 3</text>
+      <rect x="60" y="265" width="300" height="10" fill="#ddd" stroke="#111" stroke-width="1" />
+      <rect x="60" y="265" width="100" height="10" fill="#111" />
+
+      <text x="60" y="310" font-family="'Gothic A1'" font-size="13" fill="#555">Hardware upgrade cost</text>
+      <text x="360" y="310" font-family="'Source Code Pro'" font-size="16" font-weight="700" text-anchor="end">$36,000 needed</text>
+      <rect x="60" y="320" width="300" height="10" fill="#ddd" stroke="#111" stroke-width="1" />
+      <rect x="60" y="320" width="260" height="10" fill="#111" />
+
+      <!-- After Panel -->
+      <rect x="440" y="20" width="380" height="340" fill="#111" stroke="#111" stroke-width="4" />
+      <rect x="440" y="20" width="380" height="36" fill="#111" stroke="#fff" stroke-width="2" />
+      <text x="630" y="44" font-family="'Source Code Pro'" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">AFTER: TENSORRT INT8</text>
+
+      <text x="470" y="90" font-family="'Gothic A1'" font-size="13" fill="#ccc">Throughput</text>
+      <text x="770" y="90" font-family="'Source Code Pro'" font-size="16" font-weight="700" fill="#fff" text-anchor="end">161.0 FPS</text>
+      <rect x="470" y="100" width="300" height="10" fill="#333" stroke="#555" stroke-width="1" />
+      <rect x="470" y="100" width="300" height="10" fill="#fff" />
+
+      <text x="470" y="145" font-family="'Gothic A1'" font-size="13" fill="#ccc">Latency per frame</text>
+      <text x="770" y="145" font-family="'Source Code Pro'" font-size="16" font-weight="700" fill="#fff" text-anchor="end">6.2 ms</text>
+      <rect x="470" y="155" width="300" height="10" fill="#333" stroke="#555" stroke-width="1" />
+      <rect x="470" y="155" width="20" height="10" fill="#fff" />
+
+      <text x="470" y="200" font-family="'Gothic A1'" font-size="13" fill="#ccc">VRAM usage</text>
+      <text x="770" y="200" font-family="'Source Code Pro'" font-size="16" font-weight="700" fill="#fff" text-anchor="end">48 MB (-90%)</text>
+      <rect x="470" y="210" width="300" height="10" fill="#333" stroke="#555" stroke-width="1" />
+      <rect x="470" y="210" width="30" height="10" fill="#fff" />
+
+      <text x="470" y="255" font-family="'Gothic A1'" font-size="13" fill="#ccc">Items missed on belt</text>
+      <text x="770" y="255" font-family="'Source Code Pro'" font-size="16" font-weight="700" fill="#fff" text-anchor="end">0</text>
+      <rect x="470" y="265" width="300" height="10" fill="#333" stroke="#555" stroke-width="1" />
+      <rect x="470" y="265" width="2" height="10" fill="#fff" />
+
+      <text x="470" y="310" font-family="'Gothic A1'" font-size="13" fill="#ccc">Hardware upgrade cost</text>
+      <text x="770" y="310" font-family="'Source Code Pro'" font-size="16" font-weight="700" fill="#fff" text-anchor="end">$0 (avoided)</text>
+      <rect x="470" y="320" width="300" height="10" fill="#333" stroke="#555" stroke-width="1" />
+      <rect x="470" y="320" width="2" height="10" fill="#fff" />
+    </svg>
+    <div class="caption">
+      Same hardware, same model weights, same factory floor. The only variable that changed was the execution runtime. A 15x throughput improvement eliminated missed inspections and avoided $36K in hardware purchases across 12 devices.
+    </div>
+  </div>
+
+  <h2>ENGINEERING_LESSONS</h2>
+
+  <p>The first thing the team tried was ONNX Runtime on its own. Exporting the PyTorch model to ONNX and running it through the ONNX Runtime engine gave a 2.3x improvement. That brought the frame rate from 10.8 to about 25 FPS. Better, but still not fast enough for 30 items per minute on the belt. The conveyor could not slow down to match the camera.</p>
+
+  <p>TensorRT provided the remaining jump. Its layer fusion (combining multiple neural network operations into single GPU kernel calls) and automatic kernel tuning (selecting the fastest GPU instruction pattern for the specific chip) pushed the frame rate past 160 FPS. The combination of ONNX export plus TensorRT compilation plus INT8 quantization was the full solution. No single step alone was sufficient.</p>
+
+  <p>The biggest surprise was the compilation step. Converting an ONNX model to a TensorRT engine takes about 25 minutes per model. That sounds painful, but it only needs to happen once per model version per hardware target. Once the engine file is generated, it loads in seconds. The team initially worried the compilation time would slow down their iteration cycle, but since it was a one-time cost per deployment, it turned out to be irrelevant in production.</p>
+
+  <p>If the team were starting this project again, they would build an automated benchmark pipeline from day one. During the sprint, they manually tracked FPS and latency numbers in a spreadsheet. Twice, a code change caused a regression that went unnoticed for two days. An automated pipeline that ran the benchmark suite on every model export would have caught those regressions immediately and saved roughly a week of debugging time across the four-week sprint.</p>
+
 </div>
 
 <script type="application/json" id="blog-config">{"slug":"edge-ai-runtime-evaluation"}</script>

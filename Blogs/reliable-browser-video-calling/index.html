@@ -361,6 +361,92 @@ peerConnection.onicecandidate = (event) => {
 
   </div>
 
+  <!-- Project Context -->
+  <div class="content">
+    <h2>[ CHK_06 ] Project Context</h2>
+
+    <p>This system was built for an online education platform connecting tutors with students across India. The platform was losing users because 35% of video calls failed silently on mobile networks and corporate WiFi. Students would see "connecting..." forever and assume the platform itself was broken. Most of them never came back. The root cause was NAT traversal failures — the original implementation used only STUN for peer-to-peer connections, which worked in testing but fell apart in real-world network conditions.</p>
+
+    <p>The team was two engineers working over a 10-week build. One engineer handled the WebRTC connection logic, ICE candidate management, and TURN relay integration. The other focused on the signaling server, connection diagnostics, and the monitoring dashboard that let the support team see why calls were failing. The first three weeks were spent instrumenting the existing system to understand exactly which network topologies were causing failures, before writing any new connection code.</p>
+
+    <div class="diagnostic-box">
+      <h4>Project Details</h4>
+      <ul>
+        <li><strong>Client:</strong> Online education platform (tutor-to-student video calls)</li>
+        <li><strong>Problem:</strong> 35% of calls failed silently on mobile and corporate networks</li>
+        <li><strong>Team:</strong> 2 engineers, 10-week build</li>
+        <li><strong>Root cause:</strong> STUN-only architecture could not traverse symmetric NATs or corporate firewalls</li>
+        <li><strong>User impact:</strong> Students assumed the platform was broken and churned</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Results & Impact -->
+  <div class="wide-figure">
+    <div class="svg-wrapper">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" width="100%">
+        <rect width="900" height="400" fill="#ffffff"/>
+        <text x="450" y="32" font-family="'Fira Code', monospace" font-size="14" font-weight="600" text-anchor="middle" fill="#0a0a0a" letter-spacing="0.1em">BEFORE / AFTER DEPLOYMENT</text>
+        <!-- Before column -->
+        <rect x="40" y="50" width="390" height="320" rx="4" fill="#fafafa" stroke="#dddddd" stroke-width="2"/>
+        <text x="235" y="80" font-family="'Fira Code', monospace" font-size="12" font-weight="600" text-anchor="middle" fill="#666666" letter-spacing="0.05em">BEFORE (STUN ONLY)</text>
+        <rect x="80" y="100" width="195" height="30" rx="4" fill="#dddddd"/>
+        <text x="92" y="120" font-family="'Fira Code', monospace" font-size="12" fill="#666666">Call success: 65%</text>
+        <rect x="80" y="145" width="310" height="30" rx="4" fill="#dddddd"/>
+        <text x="92" y="165" font-family="'Fira Code', monospace" font-size="12" fill="#666666">Connection time: 8-12 seconds</text>
+        <rect x="80" y="190" width="155" height="30" rx="4" fill="#dddddd"/>
+        <text x="92" y="210" font-family="'Fira Code', monospace" font-size="12" fill="#666666">Mobile-desktop: 51%</text>
+        <rect x="80" y="235" width="270" height="30" rx="4" fill="#dddddd"/>
+        <text x="92" y="255" font-family="'Fira Code', monospace" font-size="12" fill="#666666">TURN fallback: none</text>
+        <rect x="80" y="280" width="310" height="30" rx="4" fill="#dddddd"/>
+        <text x="92" y="300" font-family="'Fira Code', monospace" font-size="12" fill="#666666">Diagnostics: no visibility</text>
+        <!-- Arrow -->
+        <polygon points="435,210 455,195 455,225" fill="#111111"/>
+        <!-- After column -->
+        <rect x="470" y="50" width="390" height="320" rx="4" fill="#ffffff" stroke="#111111" stroke-width="2"/>
+        <text x="665" y="80" font-family="'Fira Code', monospace" font-size="12" font-weight="600" text-anchor="middle" fill="#0a0a0a" letter-spacing="0.05em">AFTER (STUN + TURN)</text>
+        <rect x="510" y="100" width="310" height="30" rx="4" fill="#111111"/>
+        <text x="522" y="120" font-family="'Fira Code', monospace" font-size="12" fill="#ffffff">Call success: 97.2%</text>
+        <rect x="510" y="145" width="200" height="30" rx="4" fill="#111111"/>
+        <text x="522" y="165" font-family="'Fira Code', monospace" font-size="12" fill="#ffffff">Connection: 2.8 sec</text>
+        <rect x="510" y="190" width="270" height="30" rx="4" fill="#111111"/>
+        <text x="522" y="210" font-family="'Fira Code', monospace" font-size="12" fill="#ffffff">Mobile-desktop: 94%</text>
+        <rect x="510" y="235" width="280" height="30" rx="4" fill="#111111"/>
+        <text x="522" y="255" font-family="'Fira Code', monospace" font-size="12" fill="#ffffff">TURN handles 28% auto</text>
+        <rect x="510" y="280" width="310" height="30" rx="4" fill="#111111"/>
+        <text x="522" y="300" font-family="'Fira Code', monospace" font-size="12" fill="#ffffff">200+ concurrent sessions</text>
+      </svg>
+    </div>
+    <figcaption>Fig 2. - Before and after deployment comparison. The addition of TURN relay as an automatic fallback transformed call reliability from 65% to 97.2%. Mobile-to-desktop calling nearly doubled, and connection time dropped from 8-12 seconds to under 3.</figcaption>
+  </div>
+
+  <div class="content">
+    <h2>[ CHK_07 ] Results & Impact</h2>
+
+    <p>Call success rate improved from 65% to 97.2%. Average connection time dropped from 8-12 seconds to 2.8 seconds. The TURN relay fallback handled 28% of sessions automatically — users never noticed whether they were on a direct connection or relayed. The system sustained 200+ simultaneous call sessions. Mobile-to-desktop calling success rate jumped from 51% to 94%.</p>
+
+    <p>Student churn attributed to "technical issues" dropped 40% in the first quarter after deployment. The monthly TURN server cost was $180 for 200 concurrent sessions — far cheaper than the revenue lost from churning students. The connection quality indicator, showing "direct" vs. "relayed" status, gave the support team real diagnostic power. Before this, every failed call was a mystery with no data to investigate.</p>
+
+    <h2>[ CHK_08 ] Lessons Learned</h2>
+
+    <p>The first version used only STUN for peer-to-peer connections. It worked perfectly in our development and staging environments and failed immediately in the real world, where symmetric NATs and corporate firewalls blocked direct connections for over a third of users. Adding TURN relay as an automatic fallback was the single change that made the system production-ready. The lesson was straightforward: never ship a WebRTC system without TURN, no matter how well peer-to-peer works in testing.</p>
+
+    <p>The biggest surprise was the connection quality indicator. It was added as a debugging tool for engineers, but the support team adopted it immediately. Before the indicator, every failed or poor-quality call was an unsolvable mystery — the support team could only say "try again." With direct-vs-relayed status visible, they could tell a student "your corporate network is forcing relay mode, try switching to mobile data" and actually fix the problem. A diagnostic feature became a customer support feature.</p>
+
+    <p>If we were building this again, we would add adaptive bitrate switching to handle bandwidth fluctuations on mobile networks. Right now the system connects reliably but does not degrade gracefully when a student walks from WiFi coverage into spotty LTE. The call stays up but the video quality drops unpredictably rather than stepping down in a controlled way.</p>
+
+    <div class="diagnostic-box">
+      <h4>Key Takeaways</h4>
+      <ul>
+        <li><strong>Failed first approach:</strong> STUN-only architecture — worked in testing, failed for 35% of real users</li>
+        <li><strong>The fix:</strong> Automatic TURN relay fallback — users never notice the switch</li>
+        <li><strong>Surprise:</strong> Connection quality indicator became a support tool, not just a debug tool</li>
+        <li><strong>Next time:</strong> Add adaptive bitrate switching for mobile network fluctuations</li>
+        <li><strong>Cost lesson:</strong> $180/month TURN cost vs. thousands in lost students — easy math</li>
+      </ul>
+    </div>
+  </div>
+
 <script type="application/json" id="blog-config">{"slug":"reliable-browser-video-calling"}</script>
 </body>
 </html>

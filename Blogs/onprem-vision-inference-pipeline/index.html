@@ -595,6 +595,99 @@ if semantic_errors:
       </article>
     </section>
 
+    <!-- Project Context Section -->
+    <section>
+      <article class="clause" id="project-context">
+        <p class="section-kicker">Project Context</p>
+        <h2>Where This System Was Built and Why</h2>
+        <p>The client was a financial services firm processing over 500 document images per day: invoices, ID cards, contracts, and supporting paperwork. A manual review team of 4 people opened each image, read the relevant fields, and typed them into the company system. They could not keep up. The backlog was growing 15 percent month-over-month. During peak periods, documents waited 3 to 4 days before anyone looked at them.</p>
+        <p>Strict data privacy rules required all processing to stay on-premises. The documents contained personal identification numbers, financial details, and contractual terms that could not leave the corporate network under any circumstances. That ruled out every cloud-based OCR and extraction service.</p>
+        <p>The team was 1 ML engineer and 1 backend engineer. The build ran 12 weeks from architecture design through production deployment, including model selection, prompt engineering, schema design, and the manual review console for exception handling.</p>
+        <ul class="spec-list">
+          <li><strong>Client</strong><span>Financial services firm with strict on-premises data requirements</span></li>
+          <li><strong>Volume</strong><span>500+ document images per day (invoices, ID cards, contracts)</span></li>
+          <li><strong>Bottleneck</strong><span>4-person manual review team, backlog growing 15% month-over-month</span></li>
+          <li><strong>Constraint</strong><span>All processing must stay on-premises, zero cloud dependency</span></li>
+          <li><strong>Team</strong><span>1 ML engineer + 1 backend engineer</span></li>
+          <li><strong>Timeline</strong><span>12 weeks, architecture through production</span></li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- Results and Impact Section -->
+    <section>
+      <article class="clause" id="results-impact">
+        <p class="section-kicker">Results</p>
+        <h2>Results and Impact</h2>
+        <p>Document processing throughput increased from 500 per day (manual) to 2,000 per day (automated with human review for low-confidence cases). The manual review team went from 4 people to 1 person handling only exceptions. That is not a layoff story. The other 3 were reassigned to higher-value work that had been neglected while they were stuck typing fields from images.</p>
+        <p>Extraction accuracy reached 94.6 percent on structured documents like invoices where fields are in predictable locations. On semi-structured documents like contracts, accuracy was 87.2 percent, which still eliminated most manual effort. Average processing time per document dropped from 4 minutes (manual) to 3.2 seconds. The schema validation layer caught 8.4 percent of extraction errors before they reached downstream systems, preventing bad data from entering the pipeline silently. All models run on-premises with zero cloud dependency.</p>
+        <figure>
+          <div class="diagram-frame">
+            <svg viewBox="0 0 980 400" role="img" aria-labelledby="results-ba-title results-ba-desc">
+              <title id="results-ba-title">Before and after comparison of document processing</title>
+              <desc id="results-ba-desc">Side-by-side metrics showing the impact of automated on-prem vision extraction versus manual review.</desc>
+              <rect x="18" y="18" width="944" height="364" fill="#fbfbfb" stroke="#b9b9b9" stroke-width="2"/>
+              <text x="490" y="48" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#0f172a">BEFORE AND AFTER DEPLOYMENT</text>
+              <line x1="490" y1="58" x2="490" y2="368" stroke="#111111" stroke-width="2"/>
+              <text x="254" y="76" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" letter-spacing="2" fill="#64748b">BEFORE (MANUAL)</text>
+              <text x="735" y="76" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" letter-spacing="2" fill="#64748b">AFTER (AUTOMATED)</text>
+              <rect x="36" y="90" width="430" height="44" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+              <text x="52" y="110" font-family="Inter, sans-serif" font-size="13" fill="#475569">Throughput</text>
+              <text x="52" y="128" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#0f172a">500 documents / day</text>
+              <rect x="514" y="90" width="430" height="44" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+              <text x="530" y="110" font-family="Inter, sans-serif" font-size="13" fill="#475569">Throughput</text>
+              <text x="530" y="128" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#0f172a">2,000 documents / day</text>
+              <rect x="36" y="148" width="430" height="44" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+              <text x="52" y="168" font-family="Inter, sans-serif" font-size="13" fill="#475569">Review team</text>
+              <text x="52" y="186" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#0f172a">4 people (all documents)</text>
+              <rect x="514" y="148" width="430" height="44" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+              <text x="530" y="168" font-family="Inter, sans-serif" font-size="13" fill="#475569">Review team</text>
+              <text x="530" y="186" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#0f172a">1 person (exceptions only)</text>
+              <rect x="36" y="206" width="430" height="44" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+              <text x="52" y="226" font-family="Inter, sans-serif" font-size="13" fill="#475569">Time per document</text>
+              <text x="52" y="244" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#0f172a">4 minutes (manual)</text>
+              <rect x="514" y="206" width="430" height="44" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+              <text x="530" y="226" font-family="Inter, sans-serif" font-size="13" fill="#475569">Time per document</text>
+              <text x="530" y="244" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#0f172a">3.2 seconds (automated)</text>
+              <rect x="36" y="264" width="430" height="44" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+              <text x="52" y="284" font-family="Inter, sans-serif" font-size="13" fill="#475569">Extraction accuracy (invoices)</text>
+              <text x="52" y="302" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#0f172a">Human-level but inconsistent</text>
+              <rect x="514" y="264" width="430" height="44" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+              <text x="530" y="284" font-family="Inter, sans-serif" font-size="13" fill="#475569">Extraction accuracy (invoices)</text>
+              <text x="530" y="302" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#0f172a">94.6% (consistent)</text>
+              <rect x="36" y="322" width="430" height="44" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+              <text x="52" y="342" font-family="Inter, sans-serif" font-size="13" fill="#475569">Error prevention</text>
+              <text x="52" y="360" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#0f172a">Caught downstream (if at all)</text>
+              <rect x="514" y="322" width="430" height="44" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+              <text x="530" y="342" font-family="Inter, sans-serif" font-size="13" fill="#475569">Error prevention</text>
+              <text x="530" y="360" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#0f172a">8.4% caught by schema validation</text>
+            </svg>
+          </div>
+          <figcaption>Key metrics before and after deployment. The 4x throughput increase and reduction from 4 reviewers to 1 were the most visible improvements. But the schema validation layer, which caught 8.4% of extraction errors silently, may have been the most valuable long-term change.</figcaption>
+        </figure>
+      </article>
+    </section>
+
+    <!-- Lessons Learned Section -->
+    <section>
+      <article class="clause" id="lessons-learned">
+        <p class="section-kicker">Lessons</p>
+        <h2>Lessons Learned</h2>
+        <p>The first attempt used a single large model, Gemma 3 at 12 billion parameters, for all document types. The accuracy was good, but it was too slow: 18 seconds per document. At 500+ documents per day, that meant the inference queue alone would take over 2.5 hours to clear, and it could not keep up with incoming volume during peak hours.</p>
+        <p>Switching to a smaller model, Gemma 3 at 4 billion parameters, with document-type-specific prompt templates was faster and, surprisingly, more accurate. The smaller model produced better results because the prompts were more focused. Instead of one generic instruction trying to handle invoices, ID cards, and contracts simultaneously, each document type had its own template with specific field definitions, formatting expectations, and negative examples. The smaller model with a precise prompt consistently beat the larger model with a general prompt.</p>
+        <p>The biggest surprise was the schema validation layer. It was added as a simple correctness check, almost an afterthought. But it turned out to catch more errors than any model improvement. When the team considered upgrading to a more powerful GPU to improve extraction accuracy, they found that the schema validator was already catching 8.4 percent of extraction errors for free. No model change, no hardware cost, no additional latency. Just a set of rules that verified whether dates were valid, totals added up, and required fields were present. That was a zero-dollar improvement that outperformed what would have been a $50,000 GPU upgrade in terms of error reduction.</p>
+        <p>For the next iteration, the team would add active learning: when a human reviewer corrects an extraction error, that correction feeds back into prompt improvement for the specific document type. Right now, prompt updates happen manually during weekly reviews. Automating that feedback loop would make the system self-improving over time.</p>
+        <aside class="schema-inset">
+          <h3>Key Takeaways</h3>
+          <ul>
+            <li><strong>Failed first:</strong> Single large model (12B) was accurate but too slow at 18 seconds per document. Switched to smaller model (4B) with focused prompts.</li>
+            <li><strong>Surprise:</strong> Schema validation caught more errors than model improvements. A free correctness check beat an expensive GPU upgrade.</li>
+            <li><strong>Next time:</strong> Active learning where human corrections automatically improve prompts for each document type.</li>
+          </ul>
+        </aside>
+      </article>
+    </section>
+
     <section class="closing-panel" aria-label="Operational close">
       <p class="meta-label">Operational Close</p>
       <p>The article leaves one implementation truth in plain view: JSON is not the product, accepted records are. Everything before the schema gate is an attempt. Everything after it is controlled business data. That distinction is what makes on-prem multimodal extraction operationally useful rather than merely impressive in a demo.</p>

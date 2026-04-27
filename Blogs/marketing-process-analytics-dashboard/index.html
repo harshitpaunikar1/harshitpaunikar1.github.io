@@ -841,6 +841,120 @@ FROM customer_rollup;
       </section>
     </main>
 
+    <section class="band">
+      <div class="band-head">
+        <div class="band-label">Project Context</div>
+        <h2>Who needed this dashboard, what was broken, and how the build was scoped.</h2>
+      </div>
+      <div class="band-body">
+        <div class="body-grid">
+          <div>
+            <p>The client was a 25-person marketing team at a SaaS company running more than 30 campaigns per month across paid search, email, social, and events. Each channel had its own reporting tool. The CMO spent 2 hours every Monday morning assembling a unified view of what happened the previous week -- copying numbers from 4 platforms, pasting them into a slide deck, and trying to figure out which campaigns needed attention before the team standup.</p>
+            <p>That 2-hour ritual was the symptom. The real problem was that nobody had a shared view of campaign performance that updated faster than once a week. Bottlenecks were discovered in Monday review meetings, which meant the team was always reacting to problems that were already 3 to 7 days old. A paid search campaign could burn budget for a full week before anyone noticed the conversion rate had dropped.</p>
+            <p>The build team was small: one data engineer and one designer. The data engineer handled pipeline architecture, event modeling, and query logic. The designer handled layout, information hierarchy, and user testing. Total build time was 8 weeks, including 2 weeks of iteration after the first version was rejected by the team for having too many panels.</p>
+            <div class="metric-strip">
+              <div class="metric-box"><span>Team size</span><strong>25 marketers</strong></div>
+              <div class="metric-box"><span>Campaigns/month</span><strong>30+</strong></div>
+              <div class="metric-box"><span>Build team</span><strong>1 engineer + 1 designer</strong></div>
+              <div class="metric-box"><span>Build timeline</span><strong>8 weeks</strong></div>
+            </div>
+          </div>
+          <aside class="rail-card">
+            <h3>What was broken before</h3>
+            <ul class="plain-list">
+              <li>CMO spent 2 hours every Monday assembling a unified view manually.</li>
+              <li>Each channel had its own reporting tool with no cross-channel visibility.</li>
+              <li>Bottlenecks discovered in weekly meetings -- 3 to 7 days after they started.</li>
+              <li>11 separate reports across the team, none of them consistent.</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="band-head">
+        <div class="band-label">Results &amp; Impact</div>
+        <h2>What changed after the dashboard replaced 11 separate reports.</h2>
+      </div>
+      <div class="band-body">
+        <div class="body-grid single">
+          <div>
+            <p>Monday reporting assembly time dropped from 2 hours to 5 minutes. That single number was the CMO's primary success metric and the reason the project got approved in the first place. Instead of pulling data from 4 platforms, she loaded one dashboard and had the full cross-channel picture.</p>
+            <p>But the more important change was speed of detection. Bottleneck identification went from "discovered in weekly review" to "alerted within 15 minutes." The automation alerts panel -- which was originally an afterthought in the design -- became the most-checked feature on the dashboard. Campaign pause and adjust decisions happened 3 times faster because the team saw problems when they started, not days later.</p>
+            <p>The 4-panel layout replaced 11 separate reports that different team members had been maintaining. That consolidation also eliminated 2 redundant analytics tool subscriptions, saving $14,000 per year. The dashboard was used daily by 8 team members -- the CMO, 3 channel leads, 2 campaign managers, and 2 analysts.</p>
+
+            <figure class="figure">
+              <svg viewBox="0 0 1100 380" role="img" aria-labelledby="dash-results-title dash-results-desc">
+                <title id="dash-results-title">Before and after metrics for the marketing dashboard</title>
+                <desc id="dash-results-desc">A side-by-side comparison showing reporting time, detection speed, and cost savings.</desc>
+                <rect x="0" y="0" width="1100" height="380" fill="#0a0a0a" stroke="#f5f5f5" stroke-width="1.5"/>
+                <text x="30" y="36" font-family="Space Grotesk, system-ui, sans-serif" font-size="14" letter-spacing="0.16em" fill="#888888">BEFORE / AFTER DEPLOYMENT</text>
+                <line x1="30" y1="52" x2="1070" y2="52" stroke="#333333" stroke-width="1"/>
+
+                <rect x="30" y="72" width="500" height="50" fill="#1a1a1a" stroke="#555555" stroke-width="1"/>
+                <text x="45" y="102" font-family="Space Grotesk, system-ui, sans-serif" font-size="15" font-weight="700" fill="#f5f5f5">Monday reporting time</text>
+                <text x="510" y="102" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#f5f5f5">2 hours</text>
+
+                <rect x="570" y="72" width="500" height="50" fill="#f5f5f5" stroke="#f5f5f5" stroke-width="1"/>
+                <text x="585" y="102" font-family="Space Grotesk, system-ui, sans-serif" font-size="15" font-weight="700" fill="#111111">Monday reporting time</text>
+                <text x="1050" y="102" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#111111">5 minutes</text>
+
+                <rect x="30" y="137" width="500" height="50" fill="#1a1a1a" stroke="#555555" stroke-width="1"/>
+                <text x="45" y="167" font-family="Space Grotesk, system-ui, sans-serif" font-size="15" font-weight="700" fill="#f5f5f5">Bottleneck detection speed</text>
+                <text x="510" y="167" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#f5f5f5">Weekly review</text>
+
+                <rect x="570" y="137" width="500" height="50" fill="#f5f5f5" stroke="#f5f5f5" stroke-width="1"/>
+                <text x="585" y="167" font-family="Space Grotesk, system-ui, sans-serif" font-size="15" font-weight="700" fill="#111111">Bottleneck detection speed</text>
+                <text x="1050" y="167" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#111111">Within 15 minutes</text>
+
+                <rect x="30" y="202" width="500" height="50" fill="#1a1a1a" stroke="#555555" stroke-width="1"/>
+                <text x="45" y="232" font-family="Space Grotesk, system-ui, sans-serif" font-size="15" font-weight="700" fill="#f5f5f5">Separate reports maintained</text>
+                <text x="510" y="232" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#f5f5f5">11 reports</text>
+
+                <rect x="570" y="202" width="500" height="50" fill="#f5f5f5" stroke="#f5f5f5" stroke-width="1"/>
+                <text x="585" y="232" font-family="Space Grotesk, system-ui, sans-serif" font-size="15" font-weight="700" fill="#111111">Separate reports maintained</text>
+                <text x="1050" y="232" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#111111">1 dashboard (4 panels)</text>
+
+                <rect x="30" y="267" width="500" height="50" fill="#1a1a1a" stroke="#555555" stroke-width="1"/>
+                <text x="45" y="297" font-family="Space Grotesk, system-ui, sans-serif" font-size="15" font-weight="700" fill="#f5f5f5">Redundant tool subscriptions</text>
+                <text x="510" y="297" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#f5f5f5">$14K/year</text>
+
+                <rect x="570" y="267" width="500" height="50" fill="#f5f5f5" stroke="#f5f5f5" stroke-width="1"/>
+                <text x="585" y="297" font-family="Space Grotesk, system-ui, sans-serif" font-size="15" font-weight="700" fill="#111111">Redundant tool subscriptions</text>
+                <text x="1050" y="297" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#111111">$0 (eliminated)</text>
+
+                <text x="280" y="350" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="0.14em" fill="#555555">BEFORE</text>
+                <text x="820" y="350" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="0.14em" fill="#555555">AFTER</text>
+              </svg>
+              <figcaption><em>The biggest impact was not the time saved on Monday mornings.</em> It was the shift from weekly problem discovery to same-day detection, which changed how fast the team could pause or adjust campaigns that were underperforming.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="band-head">
+        <div class="band-label">Lessons Learned</div>
+        <h2>What failed first, what surprised us, and what we would add next time.</h2>
+      </div>
+      <div class="band-body">
+        <div class="body-grid">
+          <div>
+            <p>The first version of the dashboard had 9 panels showing every available metric. The team ignored it. Not because the data was wrong, but because there was too much of it. Nobody could tell what mattered at a glance, so nobody looked at it regularly. Usage dropped to near zero within 10 days of launch.</p>
+            <p>The fix came from a single conversation. I sat with the CMO and asked her one question: "What decisions do you actually make each week based on campaign data?" Her list had 4 items. Not 9, not 15 -- four. Is the system healthy? Where are campaigns slowing down? Which audiences deserve more attention? What needs a human fix right now? Those four questions became the four panels.</p>
+            <p>The biggest surprise was the automation alerts panel. It was added late in the build as a "nice to have" feature. Within two weeks of launch, it became the most-checked panel on the entire dashboard. Team members told us they preferred being told when something needed attention over hunting for problems in charts. The alerts panel turned the dashboard from a monitoring tool into a notification system.</p>
+            <p>If I were building this again, I would add cohort comparison as a default view -- this week versus last week, side by side. The team kept asking for it during the first month. Without it, they had to mentally remember what last week's numbers looked like, which introduced exactly the kind of vague comparison that the dashboard was supposed to eliminate.</p>
+          </div>
+          <aside class="callout">
+            <h3>Key takeaway</h3>
+            <p>A dashboard with 9 panels that nobody uses is worse than a dashboard with 4 panels that gets checked daily. The number of panels should match the number of decisions, not the number of available metrics. Every panel that does not drive a specific action is visual noise that teaches users to stop paying attention.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
     <p class="footer">This file is fully self-contained aside from one Google Fonts link. The layout, typography, diagrams, and code examples are all embedded here so the page can stand on its own without external CSS, scripts, or image assets.</p>
   </div>
 <script type="application/json" id="blog-config">{"slug":"marketing-process-analytics-dashboard"}</script>

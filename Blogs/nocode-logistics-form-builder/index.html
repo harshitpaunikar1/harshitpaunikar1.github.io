@@ -939,6 +939,135 @@ if (errors.length) {
       <div>Visual language: monochrome builder panels, rectilinear cards, crisp dividers, governed assembly.</div>
     </footer>
   </div>
+
+  <!-- Project Context Section -->
+  <div class="page" style="margin-top: 24px;">
+    <div class="content" style="padding: 24px;">
+      <section class="section" id="project-context">
+        <div class="section-head">
+          <div class="section-tag">Context</div>
+          <h2>Project Context</h2>
+        </div>
+        <div class="split">
+          <div>
+            <p>The client was a mid-size logistics company running warehouses, dispatch yards, and cold-chain facilities across multiple locations. Their operations teams used over 40 different form types for receiving, dispatch, inspection, and compliance. Every one of those forms was hard-coded into the application. When a supervisor needed to add a field, change a validation rule, or update an approval path, it became a developer ticket.</p>
+            <p>Those tickets took 2 to 3 weeks to complete on average. Not because the changes were difficult, but because they sat in the same backlog as feature work and bug fixes. Meanwhile, operations staff worked around the delay by keeping parallel spreadsheets, paper checklists, and messaging threads. Data quality suffered. Reporting became unreliable. Compliance audits turned into scrambles.</p>
+            <p>The team was small: 2 engineers and 1 operations manager. The build ran 14 weeks from first discovery session to production rollout across the first batch of facilities. The operations manager was embedded in the project full-time, which made a real difference. She knew every form variant, every approval exception, and every site-specific quirk that had accumulated over years of ad hoc changes.</p>
+          </div>
+          <div>
+            <table class="plain-table" aria-label="Project context details">
+              <thead>
+                <tr>
+                  <th>Detail</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Client</td>
+                  <td>Mid-size logistics company, multi-site operations</td>
+                </tr>
+                <tr>
+                  <td>Industry</td>
+                  <td>Warehousing, dispatch, cold-chain logistics</td>
+                </tr>
+                <tr>
+                  <td>Core problem</td>
+                  <td>Every form change required a developer ticket (2-3 week cycle)</td>
+                </tr>
+                <tr>
+                  <td>Form types</td>
+                  <td>40+ across receiving, dispatch, inspection, compliance</td>
+                </tr>
+                <tr>
+                  <td>Team</td>
+                  <td>2 engineers + 1 operations manager</td>
+                </tr>
+                <tr>
+                  <td>Timeline</td>
+                  <td>14 weeks, discovery through production</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="results-impact">
+        <div class="section-head">
+          <div class="section-tag">Results</div>
+          <h2>Results and Impact</h2>
+        </div>
+        <p>The most visible change was speed. Form changes that used to take 2 to 3 weeks now happen same-day. Operations staff do it themselves using template-based authoring. No developer ticket needed. Developer ticket volume for form changes dropped from roughly 15 per month to zero.</p>
+        <p>All 40+ form types were migrated to the schema-driven system over 8 weeks. Form submission error rate dropped 28 percent because the built-in validation catches mistakes that paper forms and spreadsheets never could. The version control system caught 3 accidental field deletions in the first month alone. Each was rolled back in minutes instead of discovered weeks later during an audit. The platform now handles over 1,200 form submissions per day across all sites.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 900 420" role="img" aria-labelledby="results-ba-title results-ba-desc">
+            <title id="results-ba-title">Before and after comparison of form change operations</title>
+            <desc id="results-ba-desc">Side-by-side comparison showing key metrics before and after the schema-driven form builder was deployed.</desc>
+            <rect x="0" y="0" width="900" height="420" fill="#fcfcfc" stroke="#000" stroke-width="2"/>
+            <text x="450" y="38" text-anchor="middle" font-family="Courier New, monospace" font-size="20" fill="#000">BEFORE AND AFTER DEPLOYMENT</text>
+            <line x1="450" y1="50" x2="450" y2="400" stroke="#000" stroke-width="2"/>
+            <text x="225" y="72" text-anchor="middle" font-family="Courier New, monospace" font-size="16" fill="#7c7c7c">BEFORE</text>
+            <text x="675" y="72" text-anchor="middle" font-family="Courier New, monospace" font-size="16" fill="#7c7c7c">AFTER</text>
+            <rect x="40" y="92" width="380" height="52" fill="#f0f0f0" stroke="#000"/>
+            <text x="60" y="114" font-family="Courier New, monospace" font-size="13" fill="#000">Form change cycle</text>
+            <text x="60" y="134" font-family="Courier New, monospace" font-size="18" fill="#000">2-3 WEEKS</text>
+            <rect x="480" y="92" width="380" height="52" fill="#f0f0f0" stroke="#000"/>
+            <text x="500" y="114" font-family="Courier New, monospace" font-size="13" fill="#000">Form change cycle</text>
+            <text x="500" y="134" font-family="Courier New, monospace" font-size="18" fill="#000">SAME DAY</text>
+            <rect x="40" y="160" width="380" height="52" fill="#fff" stroke="#000"/>
+            <text x="60" y="182" font-family="Courier New, monospace" font-size="13" fill="#000">Developer tickets for form changes</text>
+            <text x="60" y="202" font-family="Courier New, monospace" font-size="18" fill="#000">~15 / MONTH</text>
+            <rect x="480" y="160" width="380" height="52" fill="#fff" stroke="#000"/>
+            <text x="500" y="182" font-family="Courier New, monospace" font-size="13" fill="#000">Developer tickets for form changes</text>
+            <text x="500" y="202" font-family="Courier New, monospace" font-size="18" fill="#000">0 / MONTH</text>
+            <rect x="40" y="228" width="380" height="52" fill="#f0f0f0" stroke="#000"/>
+            <text x="60" y="250" font-family="Courier New, monospace" font-size="13" fill="#000">Form submission error rate</text>
+            <text x="60" y="270" font-family="Courier New, monospace" font-size="18" fill="#000">BASELINE</text>
+            <rect x="480" y="228" width="380" height="52" fill="#f0f0f0" stroke="#000"/>
+            <text x="500" y="250" font-family="Courier New, monospace" font-size="13" fill="#000">Form submission error rate</text>
+            <text x="500" y="270" font-family="Courier New, monospace" font-size="18" fill="#000">DOWN 28%</text>
+            <rect x="40" y="296" width="380" height="52" fill="#fff" stroke="#000"/>
+            <text x="60" y="318" font-family="Courier New, monospace" font-size="13" fill="#000">Accidental field deletion recovery</text>
+            <text x="60" y="338" font-family="Courier New, monospace" font-size="18" fill="#000">MANUAL REBUILD</text>
+            <rect x="480" y="296" width="380" height="52" fill="#fff" stroke="#000"/>
+            <text x="500" y="318" font-family="Courier New, monospace" font-size="13" fill="#000">Accidental field deletion recovery</text>
+            <text x="500" y="338" font-family="Courier New, monospace" font-size="18" fill="#000">ROLLBACK IN MINUTES</text>
+            <rect x="40" y="364" width="380" height="36" fill="#f0f0f0" stroke="#000"/>
+            <text x="60" y="388" font-family="Courier New, monospace" font-size="13" fill="#000">Daily form submissions</text>
+            <rect x="480" y="364" width="380" height="36" fill="#f0f0f0" stroke="#000"/>
+            <text x="500" y="388" font-family="Courier New, monospace" font-size="13" fill="#000">1,200+ submissions / day on schema system</text>
+          </svg>
+          <figcaption><span class="caption-label">Figure C</span>Key metrics before and after migrating to the schema-driven form builder. The biggest shift was not technical but organizational: operations teams stopped waiting for developers to make routine changes.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section" id="lessons-learned">
+        <div class="section-head">
+          <div class="section-tag">Lessons</div>
+          <h2>Lessons Learned</h2>
+        </div>
+        <p>The first approach was a drag-and-drop visual editor. It looked great in demos. Operations staff could drag fields onto a canvas, wire up conditions, and preview the form in real time. The problem showed up in the first round of user testing: the interface was flexible but confusing. Supervisors who needed to add one field to an existing form were overwhelmed by a blank canvas with dozens of widget options. The learning curve was roughly 2 hours before someone could make a useful form, and most of that time was spent undoing mistakes.</p>
+        <p>The team switched to template-based authoring. Instead of starting from scratch, users pick a base template that already has the right structure for their form type, then modify fields as needed. The learning curve dropped from 2 hours to about 20 minutes. The tradeoff was less flexibility, but that turned out to be a feature, not a limitation. Most form changes are small: add a field, make something required, change the options in a dropdown. Templates made those changes safe and fast.</p>
+        <p>The biggest surprise was the audit trail. It was originally built as a compliance requirement: regulators wanted to know who changed what and when. But it quickly became the most-used feature in the system. Managers used it daily to track who modified forms and why. When a form started producing unexpected data, the audit trail made it easy to find the change that caused it. It turned out that visibility into change history was more valuable to day-to-day operations than the form builder itself.</p>
+        <div class="callout-strip">
+          <div class="callout">
+            <strong>Failed First</strong>
+            <p>Drag-and-drop visual editor was flexible but had a 2-hour learning curve. Switched to template-based authoring at 20 minutes.</p>
+          </div>
+          <div class="callout">
+            <strong>Surprise</strong>
+            <p>The audit trail, built for compliance, became the most-used feature. Managers relied on it daily to track form changes.</p>
+          </div>
+          <div class="callout">
+            <strong>Next Time</strong>
+            <p>Would add form analytics from day one: which fields cause the most submission errors, where users hesitate, and which validations get overridden.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
 <script type="application/json" id="blog-config">{"slug":"nocode-logistics-form-builder"}</script>
 </body>
 </html>

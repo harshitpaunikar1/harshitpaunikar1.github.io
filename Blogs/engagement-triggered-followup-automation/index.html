@@ -365,6 +365,96 @@
 
       <p>Every node in a lifecycle sequence must map to a terminal exit condition. Just because the database swept a record out of a <code>Wait State</code> does not mean it is globally authorized to transmit to the Outbound Queue. A master <code>TERMINAL_EVAL</code> hook must execute microseconds before dispatch, interrogating the active CRM state for suppressions (e.g., <code>has_active_subscription == true</code>). If the terminal flag is raised, the entire state machine collapses gracefully, canceling the sequence and writing an abort log. The user experiences nothing. In lifecycle automation, avoiding a bad execution is intrinsically more valuable than forcing a good one.</p>
 
+      <h2>STATE_05: PROJECT_CONTEXT // THE OPERATION</h2>
+
+      <p>This system was built for a SaaS marketing team sending over 150,000 emails per month. Their existing followup system was synchronous. When a campaign went out and recipients started opening and clicking, the resulting webhook traffic spiked hard. The SMTP queue could not keep up. Followup emails that were supposed to arrive within minutes were showing up 6 to 8 hours late. By then, the recipient had moved on.</p>
+
+      <p>The team was two backend engineers. The build took eight weeks from the first architecture sketch to production deployment. The marketing team had already tried the obvious fix: scaling horizontally by adding more servers to the existing synchronous system. They added four more servers. It helped briefly, but the SMTP rate limits and database locks were the real bottleneck, not raw compute. More servers just meant more threads fighting for the same constrained resources.</p>
+
+      <p>The core business problem was timing. Marketing emails lose most of their value within the first few minutes after a recipient engages. A followup that arrives 6 hours after someone downloaded a whitepaper feels irrelevant. One that arrives 90 seconds later feels like a natural continuation of the conversation.</p>
+
+      <h2>STATE_06: RESULTS_AND_IMPACT // BEFORE VS. AFTER</h2>
+
+      <p>Followup email delivery went from 6-8 hour delays to under 90 seconds after engagement. Webhook processing throughput increased from 200 events per second to 12,000 events per second with Redis queues. Email sequence completion rate improved from 34% to 78%, because timely followups got better engagement and kept people moving through the sequence.</p>
+
+      <p>Campaign revenue attribution increased 23% because sequences were now completing properly and the tracking could actually connect the dots between the first touch and the final conversion. The system ran for six months in production with zero race condition incidents.</p>
+
+      <div class="vector-block">
+        <div class="schema-title">FIG 3 // BEFORE vs. AFTER DEPLOYMENT METRICS</div>
+        <svg viewBox="0 0 800 380" preserveAspectRatio="xMidYMid meet">
+          <!-- Before Side -->
+          <rect x="20" y="20" width="365" height="340" fill="#111" stroke="#333" stroke-width="2" />
+          <text x="202" y="50" font-family="'IBM Plex Mono'" font-size="12" fill="#888" text-anchor="middle" font-weight="700">BEFORE: SYNCHRONOUS SYSTEM</text>
+
+          <text x="45" y="95" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Followup delivery time</text>
+          <text x="355" y="95" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">6-8 hours</text>
+          <rect x="45" y="105" width="310" height="6" fill="#333" />
+          <rect x="45" y="105" width="290" height="6" fill="#888" />
+
+          <text x="45" y="145" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Webhook throughput</text>
+          <text x="355" y="145" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">200/sec</text>
+          <rect x="45" y="155" width="310" height="6" fill="#333" />
+          <rect x="45" y="155" width="5" height="6" fill="#888" />
+
+          <text x="45" y="195" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Sequence completion rate</text>
+          <text x="355" y="195" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">34%</text>
+          <rect x="45" y="205" width="310" height="6" fill="#333" />
+          <rect x="45" y="205" width="106" height="6" fill="#888" />
+
+          <text x="45" y="245" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Race condition incidents</text>
+          <text x="355" y="245" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">Recurring</text>
+          <rect x="45" y="255" width="310" height="6" fill="#333" />
+          <rect x="45" y="255" width="200" height="6" fill="#888" />
+
+          <text x="45" y="295" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Duplicate emails sent</text>
+          <text x="355" y="295" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">~3.8% of volume</text>
+          <rect x="45" y="305" width="310" height="6" fill="#333" />
+          <rect x="45" y="305" width="120" height="6" fill="#888" />
+
+          <!-- After Side -->
+          <rect x="415" y="20" width="365" height="340" fill="#000" stroke="#f5f5f5" stroke-width="2" />
+          <text x="597" y="50" font-family="'IBM Plex Mono'" font-size="12" fill="#f5f5f5" text-anchor="middle" font-weight="700">AFTER: ASYNC EVENT-DRIVEN</text>
+
+          <text x="440" y="95" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Followup delivery time</text>
+          <text x="750" y="95" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">&lt;90 seconds</text>
+          <rect x="440" y="105" width="310" height="6" fill="#333" />
+          <rect x="440" y="105" width="6" height="6" fill="#f5f5f5" />
+
+          <text x="440" y="145" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Webhook throughput</text>
+          <text x="750" y="145" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">12,000/sec</text>
+          <rect x="440" y="155" width="310" height="6" fill="#333" />
+          <rect x="440" y="155" width="310" height="6" fill="#f5f5f5" />
+
+          <text x="440" y="195" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Sequence completion rate</text>
+          <text x="750" y="195" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">78%</text>
+          <rect x="440" y="205" width="310" height="6" fill="#333" />
+          <rect x="440" y="205" width="242" height="6" fill="#f5f5f5" />
+
+          <text x="440" y="245" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Race condition incidents</text>
+          <text x="750" y="245" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">Zero (6 months)</text>
+          <rect x="440" y="255" width="310" height="6" fill="#333" />
+          <rect x="440" y="255" width="2" height="6" fill="#f5f5f5" />
+
+          <text x="440" y="295" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Duplicate emails sent</text>
+          <text x="750" y="295" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">0%</text>
+          <rect x="440" y="305" width="310" height="6" fill="#333" />
+          <rect x="440" y="305" width="2" height="6" fill="#f5f5f5" />
+        </svg>
+        <div class="caption">
+          The async architecture eliminated every major failure mode of the old system. Delivery delays dropped by 99%, throughput increased 60x, and the deduplication logic caught the 3.8% duplicate webhook events that had been silently double-sending emails.
+        </div>
+      </div>
+
+      <h2>STATE_07: LESSONS_LEARNED // WHAT FAILED FIRST</h2>
+
+      <p>The first instinct was to scale the existing synchronous system. The marketing team added four more application servers, bringing the total to six. Throughput improved briefly, but the underlying bottleneck was not CPU or memory. It was the SMTP rate limits imposed by the email service provider and the database locks that occurred when multiple threads tried to update the same recipient records simultaneously. More servers just meant more threads hitting the same walls faster.</p>
+
+      <p>The async event-driven approach with Redis was not only faster, it was 10x cheaper to operate. Instead of six application servers all trying to send emails in real time, the system used a single Redis queue that absorbed the webhook spikes and fed events to workers at a controlled pace that matched the SMTP rate limits exactly. The bottleneck disappeared because the architecture stopped fighting the constraints and started working with them.</p>
+
+      <p>The most unexpected finding was the deduplication logic. The team built it as a safety measure, not expecting it to matter much. In practice, it caught 3.8% of webhook events that were duplicates. Email service providers sometimes send the same open or click webhook more than once due to network retries or internal processing quirks. Without deduplication, those duplicates were causing the old system to send the same followup email twice to thousands of recipients every month. Nobody had noticed because the duplicates were buried in the overall volume.</p>
+
+      <p>If the team were starting over, they would add a dead-letter queue with automated retry from day one. During the build, failed events were logged but required manual intervention to replay. It took three weeks after launch to build the automated retry mechanism for the dead-letter queue. Those three weeks included several incidents where failed events had to be manually identified and replayed, which was slow and error-prone.</p>
+
     </div>
   </div>
 

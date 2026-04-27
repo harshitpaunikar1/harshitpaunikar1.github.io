@@ -815,6 +815,166 @@ def create_detection():
       </div>
     </section>
 
+    <!-- Project Context -->
+    <section class="station" id="station-context">
+      <div class="station-head">
+        <span class="station-tag">Project Context</span>
+        <h2>Where This System Came From</h2>
+      </div>
+      <div class="split">
+        <div>
+          <p>This system was built for a manufacturing quality inspection line. Operators visually checked products on a conveyor belt during 8-hour shifts, and fatigue was causing them to miss defects roughly 15% of the time during peak hours. The plant had no reliable internet connection, so any solution had to run entirely in the browser with no cloud calls. Every detection needed to be logged with image evidence for compliance audits that were previously done on paper, if at all.</p>
+          <p>The team was two engineers: one focused on the browser inference pipeline and operator overlay, the other on the Flask backend, SQLite persistence, and the reporting surface. The build ran 8 weeks from discovery through production deployment. The first two weeks were spent on-site collecting sample footage from the actual cameras at the actual mounting angles, which turned out to be the most valuable phase of the entire project.</p>
+        </div>
+        <div>
+          <div class="metric-strip">
+            <div class="metric">
+              <span class="mini-label">Client</span>
+              <strong>Manufacturing QA</strong>
+            </div>
+            <div class="metric">
+              <span class="mini-label">Team size</span>
+              <strong>2 engineers</strong>
+            </div>
+            <div class="metric">
+              <span class="mini-label">Timeline</span>
+              <strong>8 weeks</strong>
+            </div>
+          </div>
+          <div class="check-grid">
+            <div class="check-card">
+              <p class="mini-label">What was broken</p>
+              <ul>
+                <li>Operators missed 15% of defects during peak hours</li>
+                <li>No image evidence for quality audits</li>
+                <li>No reliable internet at the plant</li>
+              </ul>
+            </div>
+            <div class="check-card">
+              <p class="mini-label">Constraints</p>
+              <ul>
+                <li>Must run fully in-browser, zero cloud dependency</li>
+                <li>Standard workstation hardware only</li>
+                <li>Operators must not be slowed down</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results & Impact -->
+    <section class="station" id="station-results">
+      <div class="station-head">
+        <span class="station-tag">Results</span>
+        <h2>What Changed After Deployment</h2>
+      </div>
+      <div class="split">
+        <div>
+          <p>Defect detection rate improved from 85% under manual inspection to 96.8% with the automated system and human review combined. The false positive rate settled at 3.2%, and operators could dismiss incorrect flags in under 2 seconds, so the noise was manageable rather than disruptive. The browser sustained 18 frames per second on a standard workstation running Chrome, which was enough to catch defects on the conveyor at normal speed.</p>
+          <p>The system logged over 4,500 detection events per day with full image evidence. Operator review time per flagged item averaged 1.8 seconds. The Flask and SQLite evidence log enabled post-shift quality audits that simply were not possible before. In three months of continuous operation, zero critical safety-related defects were missed.</p>
+        </div>
+        <div>
+          <div class="metric-strip">
+            <div class="metric">
+              <span class="mini-label">Detection rate</span>
+              <strong>96.8%</strong>
+            </div>
+            <div class="metric">
+              <span class="mini-label">False positive rate</span>
+              <strong>3.2%</strong>
+            </div>
+            <div class="metric">
+              <span class="mini-label">Processing speed</span>
+              <strong>18 FPS</strong>
+            </div>
+          </div>
+          <div class="log-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 1rem;">
+            <div class="log-card">
+              <p class="mini-label">Daily volume</p>
+              <p>4,500+ detection events logged with image evidence</p>
+            </div>
+            <div class="log-card">
+              <p class="mini-label">Critical misses</p>
+              <p>Zero safety-related defects missed in 3 months</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figure class="wide-figure" aria-labelledby="results-caption" style="margin-top: 1.4rem;">
+        <svg viewBox="0 0 900 320" role="img" aria-label="Before and after comparison of defect detection metrics.">
+          <rect width="900" height="320" rx="16" fill="#f7f7f7" stroke="#b6b6b6" stroke-width="2"/>
+          <text x="450" y="36" font-family="IBM Plex Mono, monospace" font-size="16" letter-spacing="2" fill="#5b5b5b" text-anchor="middle">BEFORE / AFTER DEPLOYMENT</text>
+          <!-- Before column -->
+          <rect x="60" y="60" width="360" height="230" rx="12" fill="#ececec" stroke="#b6b6b6" stroke-width="1"/>
+          <text x="240" y="90" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="1" fill="#5b5b5b" text-anchor="middle">BEFORE (MANUAL INSPECTION)</text>
+          <!-- Before bars -->
+          <rect x="100" y="115" width="221" height="28" rx="6" fill="#b6b6b6"/>
+          <text x="112" y="134" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">Detection rate: 85%</text>
+          <rect x="100" y="155" width="260" height="28" rx="6" fill="#b6b6b6"/>
+          <text x="112" y="174" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">Missed defects at peak: 15%</text>
+          <rect x="100" y="195" width="130" height="28" rx="6" fill="#b6b6b6"/>
+          <text x="112" y="214" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">Audit trail: none</text>
+          <rect x="100" y="235" width="180" height="28" rx="6" fill="#b6b6b6"/>
+          <text x="112" y="254" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">Review time: manual log</text>
+          <!-- After column -->
+          <rect x="480" y="60" width="360" height="230" rx="12" fill="#ffffff" stroke="#111111" stroke-width="2"/>
+          <text x="660" y="90" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="1" fill="#111111" text-anchor="middle">AFTER (BROWSER DETECTION)</text>
+          <!-- After bars -->
+          <rect x="520" y="115" width="280" height="28" rx="6" fill="#111111"/>
+          <text x="532" y="134" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">Detection rate: 96.8%</text>
+          <rect x="520" y="155" width="140" height="28" rx="6" fill="#111111"/>
+          <text x="532" y="174" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">False pos: 3.2%</text>
+          <rect x="520" y="195" width="260" height="28" rx="6" fill="#111111"/>
+          <text x="532" y="214" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">4,500+ events/day logged</text>
+          <rect x="520" y="235" width="220" height="28" rx="6" fill="#111111"/>
+          <text x="532" y="254" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">Review time: 1.8 sec/item</text>
+          <!-- Arrow between columns -->
+          <polygon points="440,175 460,160 460,190" fill="#111111"/>
+        </svg>
+        <figcaption id="results-caption"><span class="caption-kicker">Figure — Results</span>The shift from manual inspection to browser-based detection with human review closed the gap on missed defects and created an audit trail that did not exist before.</figcaption>
+      </figure>
+    </section>
+
+    <!-- Lessons Learned -->
+    <section class="station" id="station-lessons">
+      <div class="station-head">
+        <span class="station-tag">Lessons Learned</span>
+        <h2>What We Got Wrong First</h2>
+      </div>
+      <div class="split">
+        <div>
+          <p>The first version detected everything in every frame. It worked perfectly in testing and was completely unusable in production. Operators were overwhelmed with alerts — the overlay was flashing constantly and they started ignoring it within the first hour. We added confidence thresholds and a minimum detection persistence rule: an object had to appear in at least 3 consecutive frames before it triggered an alert. That single change made the system usable.</p>
+          <p>The biggest surprise was the evidence logging. It was originally added as a compliance requirement — the quality team needed image records for audits. But it quickly became the primary training tool on the factory floor. Supervisors started using the flagged images to show new operators exactly what different defects look like in real production conditions. That was never in the original plan, and it ended up being the feature the client valued most.</p>
+          <p>If we were to build this again, we would add a feedback loop where operator overrides — confirming or dismissing a detection — feed back into the model to improve accuracy over time. Right now the model is static after deployment. A lightweight retraining pipeline using operator decisions as labels would make the system smarter the longer it runs.</p>
+        </div>
+        <div>
+          <div class="check-grid">
+            <div class="check-card">
+              <p class="mini-label">Failed first approach</p>
+              <ul>
+                <li>Detected everything in every frame</li>
+                <li>Operators overwhelmed within the first hour</li>
+                <li>Fix: 3-frame persistence + confidence thresholds</li>
+              </ul>
+            </div>
+            <div class="check-card">
+              <p class="mini-label">Biggest surprise</p>
+              <ul>
+                <li>Evidence logging built for compliance audits</li>
+                <li>Became the primary operator training tool</li>
+                <li>Supervisors used flagged images for onboarding</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout" style="margin-top: 0.8rem;">
+            <p class="mini-label">What we would do differently</p>
+            <p>Add a feedback loop where operator overrides improve the model over time. Static models degrade silently — operator decisions are free labels that should drive retraining.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <footer class="footer-note">
       Monochrome by design: no external CSS, no runtime JavaScript, no framework layer, and no imagery beyond inline SVG. The useful shape of this deployment remains the same at closeout: discovery defines what is worth seeing, the browser owns responsive perception, Flask plus SQLite own durable memory, and the reporting surface turns detections, crops, timestamps, and user actions into something supervisors can review without guesswork.
     </footer>

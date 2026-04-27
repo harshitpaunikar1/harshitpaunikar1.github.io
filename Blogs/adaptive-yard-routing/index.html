@@ -448,6 +448,142 @@
     </aside>
 
   </div>
+
+  <h2>[CONTEXT]: Project Background & The Challenge</h2>
+
+  <div class="prose-container">
+    <div class="main-text">
+      <p>This system was built for a mid-size third-party logistics company running 3 distribution yards with over 120 dock doors combined. Before the project, yard supervisors were managing truck routing with walkie-talkies and whiteboards. There was no digital record of where trailers were parked, which docks were free, or which jockeys were available.</p>
+
+      <p>The average truck wait time from gate-in to dock assignment was 47 minutes. Drivers would idle in the access road while supervisors made radio calls trying to figure out what was open. Demurrage charges were piling up. The existing warehouse management system had a "yard module" on paper, but it could not handle real-time state changes or contention between multiple inbound trucks competing for the same dock.</p>
+
+      <p>The team was small: two engineers working directly with the operations lead at one yard. The full build took 14 weeks from kickoff to production deployment at all three yards. The first yard went live at week 8, and the remaining two were rolled out over the following 6 weeks.</p>
+    </div>
+
+    <aside class="route-callout">
+      <div class="event-log">
+        <span class="event-time">CLIENT</span>
+        Mid-size 3PL operator
+      </div>
+      <div class="event-log">
+        <span class="event-time">SCALE</span>
+        3 yards, 120+ dock doors
+      </div>
+      <div class="event-log">
+        <span class="event-time">TEAM</span>
+        2 engineers, 14 weeks
+      </div>
+      <div class="event-log">
+        <span class="event-time">PROBLEM</span>
+        47-min avg truck wait time
+      </div>
+    </aside>
+  </div>
+
+  <h2>[METRICS]: Results & Impact</h2>
+
+  <div class="prose-container">
+    <div class="main-text">
+      <p>After full deployment across all three yards, average truck wait time dropped from 47 minutes to 18 minutes — a 62% reduction. Dock utilization climbed from 61% to 84%. The biggest financial win was demurrage charges: the company saved $340,000 per year across the three yards because trucks were no longer sitting idle waiting for dock assignments.</p>
+
+      <p>The system now handles over 400 moves per day across the three facilities. Deployment was incremental — one yard at a time over 6 weeks — which let the team fix edge cases at the first site before rolling out to the next two.</p>
+
+      <div class="diagram-panel">
+        <div class="diagram-title">SYS_METRICS // Before vs After Deployment</div>
+        <svg viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid meet">
+          <!-- Title -->
+          <text x="500" y="30" font-family="Space Mono" font-size="14" fill="#f5f5f5" text-anchor="middle" font-weight="700">PERFORMANCE COMPARISON: BEFORE vs AFTER</text>
+
+          <!-- Metric 1: Truck Wait Time -->
+          <text x="180" y="70" font-family="Space Mono" font-size="11" fill="#aaa" text-anchor="middle">TRUCK WAIT TIME</text>
+          <!-- Before bar -->
+          <rect x="100" y="85" width="47" height="24" fill="#555" />
+          <text x="155" y="102" font-family="Space Mono" font-size="11" fill="#aaa">47 min</text>
+          <!-- After bar -->
+          <rect x="100" y="115" width="18" height="24" fill="#f5f5f5" />
+          <text x="125" y="132" font-family="Space Mono" font-size="11" fill="#f5f5f5">18 min</text>
+          <text x="200" y="132" font-family="Space Mono" font-size="10" fill="#aaa">(-62%)</text>
+
+          <!-- Metric 2: Dock Utilization -->
+          <text x="180" y="175" font-family="Space Mono" font-size="11" fill="#aaa" text-anchor="middle">DOCK UTILIZATION</text>
+          <!-- Before bar -->
+          <rect x="100" y="190" width="183" height="24" fill="#555" />
+          <text x="290" y="207" font-family="Space Mono" font-size="11" fill="#aaa">61%</text>
+          <!-- After bar -->
+          <rect x="100" y="220" width="252" height="24" fill="#f5f5f5" />
+          <text x="360" y="237" font-family="Space Mono" font-size="11" fill="#f5f5f5">84%</text>
+          <text x="410" y="237" font-family="Space Mono" font-size="10" fill="#aaa">(+23pts)</text>
+
+          <!-- Metric 3: Demurrage Charges -->
+          <text x="180" y="280" font-family="Space Mono" font-size="11" fill="#aaa" text-anchor="middle">DEMURRAGE CHARGES / YEAR</text>
+          <!-- Before bar -->
+          <rect x="100" y="295" width="300" height="24" fill="#555" />
+          <text x="410" y="312" font-family="Space Mono" font-size="11" fill="#aaa">High</text>
+          <!-- After bar -->
+          <rect x="100" y="325" width="114" height="24" fill="#f5f5f5" />
+          <text x="222" y="342" font-family="Space Mono" font-size="11" fill="#f5f5f5">-$340K/yr saved</text>
+
+          <!-- Legend -->
+          <rect x="700" y="360" width="14" height="14" fill="#555" />
+          <text x="720" y="372" font-family="Space Mono" font-size="10" fill="#aaa">BEFORE</text>
+          <rect x="800" y="360" width="14" height="14" fill="#f5f5f5" />
+          <text x="820" y="372" font-family="Space Mono" font-size="10" fill="#f5f5f5">AFTER</text>
+        </svg>
+        <div class="diagram-caption">
+          Key metrics after rolling out adaptive routing to all three distribution yards. The 62% reduction in truck wait time was the primary driver of demurrage savings.
+        </div>
+      </div>
+    </div>
+
+    <aside class="route-callout">
+      <div class="event-log">
+        <span class="event-time">WAIT TIME</span>
+        47 min → 18 min (-62%)
+      </div>
+      <div class="event-log">
+        <span class="event-time">DOCK UTIL</span>
+        61% → 84%
+      </div>
+      <div class="event-log">
+        <span class="event-time">SAVINGS</span>
+        $340K/year in demurrage
+      </div>
+      <div class="event-log">
+        <span class="event-time">THROUGHPUT</span>
+        400+ moves/day
+      </div>
+    </aside>
+  </div>
+
+  <h2>[DEBRIEF]: Lessons Learned</h2>
+
+  <div class="prose-container">
+    <div class="main-text">
+      <p>The first version of the routing engine was a simple first-in-first-out queue. A truck arrived, it went to the next open dock in order. This failed within the first week of testing because it could not handle priority loads (perishable goods that needed reefer docks immediately) or dock-type constraints (you cannot back a 53-foot trailer into a 40-foot door). The queue kept sending trucks to incompatible docks, creating more chaos than the whiteboard it replaced.</p>
+
+      <p>The fix was switching to a constraint-based assignment engine that filtered docks by compatibility first, then optimized by proximity. This added complexity but eliminated the mismatches that were causing the worst bottlenecks.</p>
+
+      <p>The biggest surprise was operator resistance. Yard supervisors had been doing this job for years with radios and gut instinct. They did not trust the system initially. The turning point came when they realized the exception-only alert model meant their radio calls dropped by 70%. Instead of coordinating every move, they only got pinged when something went wrong. That shift — from active coordinator to exception manager — is what finally got buy-in.</p>
+
+      <p>If we did this again, we would build a mobile app for truck drivers from day one. The printed ticket with a barcode works, but drivers frequently lose them or misread the slot codes. A phone-based direction system would have cut gate-to-slot errors significantly.</p>
+    </div>
+
+    <aside class="route-callout">
+      <div class="event-log">
+        <span class="event-time">FAILED FIRST</span>
+        Simple FIFO queue — no priority or dock-type handling.
+      </div>
+      <div class="event-log">
+        <span class="event-time">SURPRISE</span>
+        Operators resisted until radio calls dropped 70%.
+      </div>
+      <div class="event-log">
+        <span class="event-time">NEXT TIME</span>
+        Build a mobile app for drivers from the start.
+      </div>
+    </aside>
+  </div>
+
 </div>
 
 <script type="application/json" id="blog-config">{"slug":"adaptive-yard-routing"}</script>

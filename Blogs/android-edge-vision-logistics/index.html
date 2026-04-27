@@ -397,7 +397,153 @@ imageAnalyzer.setAnalyzer(cameraExecutor, { imageProxy <span class="c-type">-></
       <p>We launched the edge-architected application to the floor. By cutting out the HTTP roundtrip, scanning latency stabilized at a deterministic 45ms. By quantizing the model to INT8, we stopped melting the CPUs, allowing the handheld batteries to clear a full eight hours. And by strictly isolating the <code>ImageAnalysis</code> loops from the Android UI thread, the application felt native and fluid, even as it quietly dumped two-thirds of the frames the camera sensor captured.</p>
 
       <p>Logistics computer vision is almost entirely about systems engineering. The cleanest neural network architecture means nothing if you carelessly lock the main rendering thread or bleed out the battery. Moving to the edge is powerful, but only if you respect the brutal physics of the device you are trapped inside.</p>
-      
+
+    </div>
+  </div>
+
+  <h2>> CONTEXT_00: Project Background & The Challenge</h2>
+
+  <div class="content-grid">
+    <aside class="param-column">
+      <div class="param-box">
+        <strong>Client</strong>
+        <span>Logistics Operator</span>
+      </div>
+      <div class="param-box">
+        <strong>Sites</strong>
+        <span>5 Warehouses</span>
+      </div>
+      <div class="param-box">
+        <strong>Team</strong>
+        <span>3 Engineers</span>
+      </div>
+      <div class="param-box">
+        <strong>Timeline</strong>
+        <span>10-Week Sprint</span>
+      </div>
+      <div class="param-box">
+        <strong>Core Problem</strong>
+        <span>2.5s Cloud Latency</span>
+      </div>
+    </aside>
+
+    <div class="main-column">
+      <p>This project was built for a logistics company operating 5 warehouses. Workers on the floor used Android tablets to scan and sort packages — pointing the camera at a label, waiting for the system to identify the package, then routing it to the correct bin or pallet.</p>
+
+      <p>The existing system sent every camera frame to a cloud server for processing. In the office, during demos, it worked fine — about 150 milliseconds per scan. But on the warehouse floor, surrounded by concrete walls and metal racking, WiFi was unreliable. Latency jumped to 2.5 seconds per scan. For a worker trying to sort 40 boxes a minute, a 2.5-second freeze on the screen made the app useless. They would give up and go back to manual label reading.</p>
+
+      <p>The team was 3 engineers working on a 10-week sprint. The goal was straightforward: get inference off the cloud and onto the device itself, so scanning worked even with zero network connectivity. The challenge was making a neural network run fast enough on cheap, three-year-old Android tablets without overheating them or killing the battery halfway through a shift.</p>
+    </div>
+  </div>
+
+  <h2>> RESULTS_00: Impact & Deployment Numbers</h2>
+
+  <div class="content-grid">
+    <aside class="param-column">
+      <div class="param-box">
+        <strong>Latency</strong>
+        <span>2,500ms → 45ms</span>
+      </div>
+      <div class="param-box">
+        <strong>Battery Life</strong>
+        <span>5hrs → 8hrs</span>
+      </div>
+      <div class="param-box">
+        <strong>Throughput</strong>
+        <span>15 → 40 boxes/min</span>
+      </div>
+      <div class="param-box">
+        <strong>Devices</strong>
+        <span>85 Tablets, 5 Sites</span>
+      </div>
+      <div class="param-box">
+        <strong>Accuracy Trade-off</strong>
+        <span>96.2% → 93.8%</span>
+      </div>
+    </aside>
+
+    <div class="main-column">
+      <p>After deploying the edge-based system, inference latency dropped from 2,500 milliseconds on the cloud to 45 milliseconds on-device. That is a 55x speed improvement. Battery life improved dramatically — devices lasted full 8-hour shifts instead of dying at the 5-hour mark from constant cloud polling and WiFi radio usage.</p>
+
+      <p>Scan throughput per worker went from 15 boxes per minute to 40 boxes per minute. The system was deployed on 85 Android tablets across all 5 warehouse sites. The accuracy trade-off from quantization was small: 93.8% on-device versus 96.2% on the cloud baseline. That 2.4% drop was considered acceptable given the massive speed and reliability gains.</p>
+
+      <div class="svg-wrapper">
+        <svg viewBox="0 0 800 350" preserveAspectRatio="xMidYMid meet">
+          <!-- Title -->
+          <text x="400" y="30" font-family="'JetBrains Mono'" font-size="14" font-weight="700" text-anchor="middle">BEFORE vs AFTER: CLOUD TO EDGE MIGRATION</text>
+
+          <!-- Divider -->
+          <line x1="400" y1="50" x2="400" y2="330" stroke="#ccc" stroke-width="1" stroke-dasharray="4 4" />
+          <text x="200" y="60" font-family="'JetBrains Mono'" font-size="12" font-weight="700" text-anchor="middle" fill="#555">BEFORE (CLOUD)</text>
+          <text x="600" y="60" font-family="'JetBrains Mono'" font-size="12" font-weight="700" text-anchor="middle">AFTER (EDGE)</text>
+
+          <!-- Latency -->
+          <text x="200" y="95" font-family="'IBM Plex Sans'" font-size="11" fill="#555" text-anchor="middle">Inference Latency</text>
+          <rect x="80" y="105" width="240" height="28" fill="#e8e8e8" stroke="#111" />
+          <text x="200" y="124" font-family="'JetBrains Mono'" font-size="13" font-weight="700" text-anchor="middle">2,500 ms</text>
+
+          <text x="600" y="95" font-family="'IBM Plex Sans'" font-size="11" text-anchor="middle">Inference Latency</text>
+          <rect x="580" y="105" width="5" height="28" fill="#111" />
+          <text x="600" y="124" font-family="'JetBrains Mono'" font-size="13" font-weight="700" text-anchor="middle" fill="#111">45 ms</text>
+
+          <!-- Battery -->
+          <text x="200" y="170" font-family="'IBM Plex Sans'" font-size="11" fill="#555" text-anchor="middle">Battery Life</text>
+          <rect x="120" y="180" width="160" height="28" fill="#e8e8e8" stroke="#111" />
+          <text x="200" y="199" font-family="'JetBrains Mono'" font-size="13" font-weight="700" text-anchor="middle">5 hours</text>
+
+          <text x="600" y="170" font-family="'IBM Plex Sans'" font-size="11" text-anchor="middle">Battery Life</text>
+          <rect x="500" y="180" width="200" height="28" fill="#111" />
+          <text x="600" y="199" font-family="'JetBrains Mono'" font-size="13" font-weight="700" text-anchor="middle" fill="#fff">8 hours</text>
+
+          <!-- Throughput -->
+          <text x="200" y="245" font-family="'IBM Plex Sans'" font-size="11" fill="#555" text-anchor="middle">Scan Throughput</text>
+          <rect x="140" y="255" width="120" height="28" fill="#e8e8e8" stroke="#111" />
+          <text x="200" y="274" font-family="'JetBrains Mono'" font-size="13" font-weight="700" text-anchor="middle">15 box/min</text>
+
+          <text x="600" y="245" font-family="'IBM Plex Sans'" font-size="11" text-anchor="middle">Scan Throughput</text>
+          <rect x="480" y="255" width="240" height="28" fill="#111" />
+          <text x="600" y="274" font-family="'JetBrains Mono'" font-size="13" font-weight="700" text-anchor="middle" fill="#fff">40 box/min</text>
+
+          <!-- Accuracy -->
+          <text x="400" y="325" font-family="'JetBrains Mono'" font-size="11" text-anchor="middle" fill="#555">Accuracy: 96.2% (cloud) vs 93.8% (edge) — 2.4% trade-off accepted for 55x speed gain</text>
+        </svg>
+        <div class="caption">
+          Before-and-after comparison of cloud vs edge deployment. The latency improvement alone (55x faster) justified the 2.4% accuracy trade-off from INT8 quantization. Battery life reaching a full shift was the operational requirement that made adoption possible.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>> LESSONS_00: What We Learned The Hard Way</h2>
+
+  <div class="content-grid">
+    <aside class="param-column">
+      <div class="param-box">
+        <strong>First Attempt</strong>
+        <span>Cloud Caching (Failed)</span>
+      </div>
+      <div class="param-box">
+        <strong>Second Attempt</strong>
+        <span>TFLite / NNAPI (Buggy)</span>
+      </div>
+      <div class="param-box">
+        <strong>Final Solution</strong>
+        <span>Custom Inference</span>
+      </div>
+      <div class="param-box">
+        <strong>Surprise Issue</strong>
+        <span>Thermal Throttling</span>
+      </div>
+    </aside>
+
+    <div class="main-column">
+      <p>Before going full edge, we first tried to optimize the cloud pipeline. We added aggressive caching — if a label had been scanned before, return the cached result without hitting the model. This helped for repeat scans but did nothing for new packages, which were the majority. Latency on fresh scans was still 2+ seconds. The caching approach was a band-aid that did not address the core problem: unreliable network on the warehouse floor.</p>
+
+      <p>We then moved to TensorFlow Lite for on-device inference. The model converted cleanly, but we hit a wall with NNAPI driver bugs on the specific Zebra tablets we were using. The neural network API layer would silently produce garbage outputs on certain input sizes. We spent two weeks debugging before switching to a custom inference pipeline that bypassed NNAPI entirely and ran directly on the CPU with our own memory management.</p>
+
+      <p>The biggest surprise was thermal throttling. After about 2 hours of continuous scanning, the tablets got hot. The Android OS would automatically slow down the CPU to prevent hardware damage, and our 45-millisecond inference time would silently degrade to 180 milliseconds. The fix was simple but non-obvious: we added a 50-millisecond cooldown pause between consecutive scans. Workers did not notice the delay, but it kept the CPU temperature below the throttling threshold for the entire shift.</p>
+
+      <p>If we were starting over, we would choose hardware with dedicated NPU (neural processing unit) support from day one. Running inference on the CPU works, but it pushes the thermal and battery limits of consumer-grade tablets. A device with a dedicated chip for neural network math would eliminate the throttling problem entirely and leave more CPU headroom for the rest of the application.</p>
     </div>
   </div>
 

@@ -787,6 +787,131 @@ def map_scoreband(pd):
         </ul>
       </aside>
     </div>
+
+    <!-- Project Context Section -->
+    <section class="section" id="project-context">
+      <aside class="margin-note">
+        Project<br>
+        Context
+      </aside>
+      <div class="section-body">
+        <h2>Project Context</h2>
+        <p>The client was a mid-size NBFC (non-banking finance company) in India with a loan portfolio of INR 2,400 crore. Over 18 months, their NPA ratio had crept from 3.2 percent to 5.1 percent. The existing system for flagging risky accounts was entirely rule-based: simple thresholds on days past due, income brackets, and loan-to-value ratios. Those rules caught borrowers who were already in trouble, but they missed the early warning signals that show up weeks before a payment is actually missed.</p>
+        <p>The credit committee needed something better. Not a black box that replaces human judgment, but a data-driven scoring system that could rank borrowers by risk early enough to act. The team was lean: 1 data scientist and 1 credit risk officer who understood the portfolio inside out. Development ran 10 weeks, from data extraction through model validation and scoreband construction.</p>
+        <table class="committee-table">
+          <caption>Project details at a glance.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Detail</th>
+              <th scope="col">Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Client</strong></td>
+              <td>Mid-size NBFC, India</td>
+            </tr>
+            <tr>
+              <td><strong>Portfolio Size</strong></td>
+              <td>INR 2,400 crore</td>
+            </tr>
+            <tr>
+              <td><strong>Starting NPA Ratio</strong></td>
+              <td>5.1% (up from 3.2% over 18 months)</td>
+            </tr>
+            <tr>
+              <td><strong>Previous System</strong></td>
+              <td>Rule-based scoring with simple thresholds</td>
+            </tr>
+            <tr>
+              <td><strong>Team</strong></td>
+              <td>1 data scientist + 1 credit risk officer</td>
+            </tr>
+            <tr>
+              <td><strong>Timeline</strong></td>
+              <td>10 weeks, data extraction through deployment</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Results and Impact Section -->
+    <section class="section" id="results-impact">
+      <aside class="margin-note">
+        Results<br>
+        Impact
+      </aside>
+      <div class="section-body">
+        <h2>Results and Impact</h2>
+        <p>The new model reached an AUC of 0.847, compared to 0.72 for the existing rule-based system. That improvement translated into earlier and more accurate identification of at-risk accounts. Early warning alerts now flag accounts 45 days before default, compared to the old system's 15 days. That extra month of lead time is the difference between a phone call that saves an account and a collections case that costs money.</p>
+        <p>Within 2 quarters of deployment, the NPA ratio stabilized from 5.1 percent to 4.0 percent. Portfolio at risk (PAR-30) visibility improved by 60 percent, meaning the credit team could see problems forming much earlier. The scoreband system also enabled differential pricing: high-risk borrowers paid 200 basis points more, which improved overall portfolio yield by 0.4 percent. The model was adopted by 3 branch offices, covering 18,000 active loan accounts.</p>
+        <figure aria-labelledby="results-ba-caption">
+          <p class="diagram-title">Before and After Deployment</p>
+          <svg viewBox="0 0 860 380" width="100%" role="img" aria-label="Before and after comparison of NPA prediction system performance">
+            <rect x="0" y="0" width="860" height="380" fill="#ffffff" stroke="#111111" stroke-width="2"/>
+            <line x1="430" y1="10" x2="430" y2="370" stroke="#111111" stroke-width="2"/>
+            <text x="215" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" letter-spacing="2" fill="#5e5e5e">BEFORE</text>
+            <text x="645" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" letter-spacing="2" fill="#5e5e5e">AFTER</text>
+            <rect x="30" y="56" width="370" height="50" fill="#f4f4f4" stroke="#d2d2d2"/>
+            <text x="50" y="78" font-family="Georgia, serif" font-size="14" fill="#111111">Model AUC</text>
+            <text x="50" y="96" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="#111111">0.72 (rule-based)</text>
+            <rect x="460" y="56" width="370" height="50" fill="#f4f4f4" stroke="#d2d2d2"/>
+            <text x="480" y="78" font-family="Georgia, serif" font-size="14" fill="#111111">Model AUC</text>
+            <text x="480" y="96" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="#111111">0.847 (ML scorecard)</text>
+            <rect x="30" y="120" width="370" height="50" fill="#ffffff" stroke="#d2d2d2"/>
+            <text x="50" y="142" font-family="Georgia, serif" font-size="14" fill="#111111">Early warning lead time</text>
+            <text x="50" y="160" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="#111111">15 days before default</text>
+            <rect x="460" y="120" width="370" height="50" fill="#ffffff" stroke="#d2d2d2"/>
+            <text x="480" y="142" font-family="Georgia, serif" font-size="14" fill="#111111">Early warning lead time</text>
+            <text x="480" y="160" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="#111111">45 days before default</text>
+            <rect x="30" y="184" width="370" height="50" fill="#f4f4f4" stroke="#d2d2d2"/>
+            <text x="50" y="206" font-family="Georgia, serif" font-size="14" fill="#111111">NPA ratio</text>
+            <text x="50" y="224" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="#111111">5.1%</text>
+            <rect x="460" y="184" width="370" height="50" fill="#f4f4f4" stroke="#d2d2d2"/>
+            <text x="480" y="206" font-family="Georgia, serif" font-size="14" fill="#111111">NPA ratio (after 2 quarters)</text>
+            <text x="480" y="224" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="#111111">4.0%</text>
+            <rect x="30" y="248" width="370" height="50" fill="#ffffff" stroke="#d2d2d2"/>
+            <text x="50" y="270" font-family="Georgia, serif" font-size="14" fill="#111111">PAR-30 visibility</text>
+            <text x="50" y="288" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="#111111">Baseline</text>
+            <rect x="460" y="248" width="370" height="50" fill="#ffffff" stroke="#d2d2d2"/>
+            <text x="480" y="270" font-family="Georgia, serif" font-size="14" fill="#111111">PAR-30 visibility</text>
+            <text x="480" y="288" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="#111111">Improved 60%</text>
+            <rect x="30" y="312" width="370" height="50" fill="#f4f4f4" stroke="#d2d2d2"/>
+            <text x="50" y="334" font-family="Georgia, serif" font-size="14" fill="#111111">Deployment</text>
+            <text x="50" y="352" font-family="Georgia, serif" font-size="16" fill="#111111">N/A</text>
+            <rect x="460" y="312" width="370" height="50" fill="#f4f4f4" stroke="#d2d2d2"/>
+            <text x="480" y="334" font-family="Georgia, serif" font-size="14" fill="#111111">Deployment</text>
+            <text x="480" y="352" font-family="Georgia, serif" font-size="16" fill="#111111">3 branches, 18,000 active accounts</text>
+          </svg>
+          <figcaption id="results-ba-caption">Key metrics before and after the ML scorecard replaced the rule-based system. The extra 30 days of early warning lead time was the single most valued improvement by the credit committee.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Lessons Learned Section -->
+    <section class="section" id="lessons-learned">
+      <aside class="margin-note">
+        Lessons<br>
+        Learned
+      </aside>
+      <div class="section-body">
+        <h2>Lessons Learned</h2>
+        <p>The first model used only financial features: income, debt ratio, repayment history, and bureau scores. It reached an AUC of 0.79, which was already better than the rule-based system, but left a meaningful gap. What pushed it to 0.847 was adding behavioral features: payment timing patterns (how many days between due date and actual payment over the last 6 months), inquiry frequency, and cash-flow volatility from bank statements.</p>
+        <p>The biggest surprise was which single feature turned out to be the most predictive. It was not income. It was not debt-to-income ratio. It was "number of days between due date and actual payment" averaged over the last 6 months. Borrowers who consistently paid 3 to 5 days late were far more likely to eventually default than those who paid on the exact due date, even when their income and debt levels looked identical. That pattern was invisible to the old rule-based system, which only looked at whether a payment was 30+ or 60+ days overdue.</p>
+        <p>For the next iteration, the team would integrate bureau data directly through API rather than batch files, which would cut data freshness lag from weekly to near-real-time. They would also add vintage analysis as a standard monitoring tool, tracking how each origination month cohort behaves over time, rather than relying only on point-in-time snapshots of portfolio health.</p>
+        <div class="comparison-grid">
+          <article class="comparison-card">
+            <h3>What Did Not Work First</h3>
+            <p>Financial-only features (income, debt ratio, repayment history) produced an AUC of 0.79. Useful, but not strong enough to justify replacing the existing system with confidence.</p>
+          </article>
+          <article class="comparison-card">
+            <h3>What Would Change Next Time</h3>
+            <p>Direct bureau API integration for real-time data, plus vintage analysis as a standing monitoring practice instead of ad hoc checks during quarterly reviews.</p>
+          </article>
+        </div>
+      </div>
+    </section>
   </div>
 <script type="application/json" id="blog-config">{"slug":"npa-risk-prediction"}</script>
 </body>

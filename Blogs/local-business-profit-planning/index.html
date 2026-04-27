@@ -946,6 +946,139 @@ ORDER BY total_contribution DESC; -- Rank the products that actually fund the sh
       </section>
     </main>
 
+    <section class="sheet" data-tab="Field Report">
+      <div class="sheet-head">
+        <div class="sheet-no">Field / Project Context</div>
+        <h2>Who used this, where it was tested, and what problem it solved.</h2>
+      </div>
+      <div class="sheet-grid">
+        <div>
+          <p>This workbook was developed as a planning tool for neighborhood retail operators in India. It was tested with 15 small shop owners in Bangalore -- grocery stores, electronics shops, and clothing retailers. The common thread was a phrase I heard in nearly every first conversation: "business is busy, but I am not sure where the money goes."</p>
+          <p>Most of these operators tracked revenue in some form. A few used notebooks, a few used basic POS systems, and a couple used phone apps. But none of them had visibility into per-product margins or inventory holding costs. They knew their total sales. They did not know which products were making money and which were quietly losing it.</p>
+          <p>This was a solo project. I built the worksheets, tested them in the field, and revised them based on what shop owners actually used versus what they ignored. Total build time was 6 weeks, including 3 weeks of field testing where I sat with operators and watched them try to fill things in.</p>
+          <div class="two-col">
+            <div class="note-box">
+              <h3>Operator Profile</h3>
+              <ul class="plain-list">
+                <li>15 small shops in Bangalore neighborhoods.</li>
+                <li>Categories: grocery, electronics, clothing.</li>
+                <li>Monthly revenue range: INR 4L to INR 12L.</li>
+                <li>Common pain: busy days that did not feel profitable.</li>
+              </ul>
+            </div>
+            <div class="note-box">
+              <h3>Build Constraints</h3>
+              <ul class="plain-list">
+                <li>Solo project, 6-week timeline.</li>
+                <li>No app -- worksheets only (paper and digital).</li>
+                <li>Had to work for owners with minimal spreadsheet skills.</li>
+                <li>Field-tested with real inventory and real pricing decisions.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <aside>
+          <div class="note-box">
+            <h3>Why This Mattered</h3>
+            <p>When I asked operators to estimate their profit margin, the most common answer was "I think 10 to 15 percent." When we actually calculated it, the numbers ranged from 4 percent to 22 percent. The gap between perception and reality was the entire point of this project.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="sheet" data-tab="Field Report">
+      <div class="sheet-head">
+        <div class="sheet-no">Field / Results &amp; Impact</div>
+        <h2>What happened when 15 shop owners used these worksheets for three months.</h2>
+      </div>
+      <div class="sheet-grid tight">
+        <div>
+          <p>The pilot group of 15 retailers used the worksheets for 3 months. The most immediate change was visibility: operators went from "I think my margin is 10 to 15 percent" to exact per-product tracking. That shift alone changed how they made decisions.</p>
+          <p>11 of the 15 shops identified at least one product category they were selling at a loss without knowing it. In most cases, the loss came from a combination of aggressive discounting and underestimating landed costs (freight, spoilage, and payment fees that were not being tracked against specific items).</p>
+          <p>After removing loss-making items and adjusting prices on weak-margin products, the average monthly profit improvement was INR 18,000 (roughly $215) per shop. Inventory holding costs dropped by 22 percent on average because operators started reordering based on actual movement data instead of habit.</p>
+          <p>Three shops used the scenario planning worksheet before Diwali season to plan their seasonal buys. All three reported their best margins ever for that period. One grocery operator said it was the first Diwali where he did not end up with excess stock he had to mark down in January.</p>
+
+          <figure class="diagram">
+            <svg viewBox="0 0 940 400" role="img" aria-labelledby="impact-title impact-desc">
+              <title id="impact-title">Before and after metrics for the pilot group of 15 retailers</title>
+              <desc id="impact-desc">A side-by-side comparison showing margin visibility, profit improvement, and inventory cost changes.</desc>
+              <rect x="30" y="20" width="880" height="360" fill="#ffffff" stroke="#111111" stroke-width="1.5"/>
+              <text x="60" y="58" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="20" font-weight="700" fill="#111111">Pilot results across 15 shops (3-month period)</text>
+
+              <rect x="60" y="85" width="380" height="55" fill="#f5f5f5" stroke="#111111" stroke-width="1.2"/>
+              <text x="75" y="118" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="15" font-weight="600" fill="#111111">Margin visibility</text>
+              <text x="420" y="118" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#111111">"I think 10-15%"</text>
+
+              <rect x="480" y="85" width="380" height="55" fill="#111111" stroke="#111111" stroke-width="1.2"/>
+              <text x="495" y="118" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="15" font-weight="600" fill="#f5f5f5">Margin visibility</text>
+              <text x="840" y="118" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#f5f5f5">Exact per-product</text>
+
+              <rect x="60" y="155" width="380" height="55" fill="#f5f5f5" stroke="#111111" stroke-width="1.2"/>
+              <text x="75" y="188" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="15" font-weight="600" fill="#111111">Hidden loss-making products</text>
+              <text x="420" y="188" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#111111">Unknown</text>
+
+              <rect x="480" y="155" width="380" height="55" fill="#111111" stroke="#111111" stroke-width="1.2"/>
+              <text x="495" y="188" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="15" font-weight="600" fill="#f5f5f5">Hidden loss-making products</text>
+              <text x="840" y="188" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#f5f5f5">Found in 11/15 shops</text>
+
+              <rect x="60" y="225" width="380" height="55" fill="#f5f5f5" stroke="#111111" stroke-width="1.2"/>
+              <text x="75" y="258" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="15" font-weight="600" fill="#111111">Avg monthly profit improvement</text>
+              <text x="420" y="258" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#111111">Baseline</text>
+
+              <rect x="480" y="225" width="380" height="55" fill="#111111" stroke="#111111" stroke-width="1.2"/>
+              <text x="495" y="258" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="15" font-weight="600" fill="#f5f5f5">Avg monthly profit improvement</text>
+              <text x="840" y="258" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#f5f5f5">+INR 18,000/shop</text>
+
+              <rect x="60" y="295" width="380" height="55" fill="#f5f5f5" stroke="#111111" stroke-width="1.2"/>
+              <text x="75" y="328" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="15" font-weight="600" fill="#111111">Inventory holding costs</text>
+              <text x="420" y="328" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#111111">Baseline</text>
+
+              <rect x="480" y="295" width="380" height="55" fill="#111111" stroke="#111111" stroke-width="1.2"/>
+              <text x="495" y="328" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="15" font-weight="600" fill="#f5f5f5">Inventory holding costs</text>
+              <text x="840" y="328" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="15" fill="#f5f5f5">-22% average</text>
+
+              <text x="250" y="375" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="0.14em" fill="#888888">BEFORE WORKSHEETS</text>
+              <text x="670" y="375" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="0.14em" fill="#888888">AFTER 3 MONTHS</text>
+            </svg>
+            <figcaption><em>The biggest single change was not a number -- it was the shift from guessing margins to knowing them.</em> Once operators could see which products earned their place, pricing and reorder decisions stopped being emotional.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="sheet" data-tab="Field Report">
+      <div class="sheet-head">
+        <div class="sheet-no">Field / Lessons Learned</div>
+        <h2>What failed first, what surprised us, and what we would build differently.</h2>
+      </div>
+      <div class="sheet-grid">
+        <div>
+          <p>The first version of this tool was a spreadsheet. A single, comprehensive spreadsheet with formulas, pivot tables, and conditional formatting. It was thorough, technically correct, and almost nobody used it. Shop owners opened it once, felt overwhelmed, and went back to their notebooks.</p>
+          <p>The fix was radical simplification. I broke the spreadsheet into 5 single-purpose worksheets, each designed to answer exactly one question. "Am I making money on this product?" is one worksheet. "When should I reorder?" is another. "Will this promotion actually help?" is a third. Each one fits on a single screen and requires no formula knowledge to fill in.</p>
+          <p>The biggest surprise was which worksheet got used the most. I expected the margin ledger to be the star. It was important, but the promotion planning worksheet was the one operators kept coming back to. They loved knowing exactly how many extra units they needed to sell to break even on a discount. Several said it was the first time they had ever calculated whether an offer actually made money or just made the shop busier.</p>
+          <p>If I were building this again, I would make a simple mobile app. Most of these operators run their businesses from their phones. They check WhatsApp messages from suppliers, they look up competitor prices on apps, and they track cash in phone notes. A worksheet that lives on a laptop is already fighting the wrong battle. The tool needs to be where the operator already is.</p>
+        </div>
+        <aside>
+          <div class="note-box">
+            <h3>What failed</h3>
+            <ul class="decision-list">
+              <li>Single comprehensive spreadsheet -- too complex, operators abandoned it after one look.</li>
+              <li>Assuming basic spreadsheet literacy -- most operators had never used formulas.</li>
+              <li>Laptop-first design -- most operators do everything on their phones.</li>
+            </ul>
+          </div>
+          <div class="note-box" style="margin-top: 1rem;">
+            <h3>What surprised us</h3>
+            <ul class="decision-list">
+              <li>Promotion planning worksheet was the most popular -- not the margin ledger.</li>
+              <li>Break-even calculations for discounts changed how operators thought about offers.</li>
+              <li>3 shops used scenario planning for Diwali and reported their best margins ever.</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
     <p class="footer-note">This article is intentionally self-contained. All styling and diagrams live in this file, and the visual system stays inside a black-and-white workbook palette so the argument rests on structure, numbers, and typography rather than decoration.</p>
   </div>
 <script type="application/json" id="blog-config">{"slug":"local-business-profit-planning"}</script>
