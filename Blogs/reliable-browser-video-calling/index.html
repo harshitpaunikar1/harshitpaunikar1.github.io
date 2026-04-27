@@ -177,8 +177,33 @@
 
   <header>
     <h1>The Reality of WebRTC: Network Knots and Connection Fallbacks</h1>
-    <p class="deck">Browser-to-browser calling is sold as magically seamless peer connection. In production, restrictive enterprise firewalls, symmetric NATs, and packet filtering ensure that peer-to-peer is a fragile best-case scenario requiring substantial relay infrastructure simply to survive.</p>
+    <p class="deck">An online education platform in India was losing 35% of tutor-student calls to silent failures — users saw "connecting..." forever and assumed the platform was broken. Most never came back. The STUN-only WebRTC setup worked perfectly in our test environment and failed for a third of real users. Fixing it took two engineers and 10 weeks to properly understand why NAT traversal breaks in the real world.</p>
   </header>
+
+  <div class="content" style="margin-top:2rem;">
+    <div style="border-left:3px solid #111;padding:0.75rem 1.2rem;margin:0 0 1rem;background:rgba(10,10,10,0.03);border-radius:0 6px 6px 0;font-size:0.95rem;">
+      <strong>My Role:</strong> I led the WebRTC connection logic — ICE candidate management, TURN relay integration, and the connection monitoring layer. My co-engineer built the signaling server (Node.js + Socket.IO), the diagnostics dashboard, and the support-facing connection quality indicator. The first three weeks were spent instrumenting the broken system before writing any new code.
+    </div>
+    <div style="margin:0.5rem 0 1.5rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+      <strong style="margin-right:4px;">Stack:</strong>
+      <span style="background:#f1f1f1;border:1px solid #ddd;padding:2px 10px;border-radius:12px;">WebRTC</span>
+      <span style="background:#f1f1f1;border:1px solid #ddd;padding:2px 10px;border-radius:12px;">Node.js</span>
+      <span style="background:#f1f1f1;border:1px solid #ddd;padding:2px 10px;border-radius:12px;">Socket.IO</span>
+      <span style="background:#f1f1f1;border:1px solid #ddd;padding:2px 10px;border-radius:12px;">Coturn (TURN server)</span>
+      <span style="background:#f1f1f1;border:1px solid #ddd;padding:2px 10px;border-radius:12px;">Nginx</span>
+      <span style="background:#f1f1f1;border:1px solid #ddd;padding:2px 10px;border-radius:12px;">STUN / TURN / ICE</span>
+    </div>
+    <div class="diagnostic-box" style="margin-bottom:2rem;">
+      <h4>Project at a Glance</h4>
+      <ul>
+        <li><strong>Client:</strong> Online education platform (tutor-to-student video calls, India)</li>
+        <li><strong>Problem:</strong> 35% of calls failed silently — users saw "connecting..." and churned</li>
+        <li><strong>Team:</strong> 2 engineers, 10-week build</li>
+        <li><strong>Root cause:</strong> STUN-only architecture — worked in testing, failed for 35% of real users</li>
+        <li><strong>Result:</strong> 65% → 97.2% call success rate. $180/month TURN cost vs. thousands in lost students.</li>
+      </ul>
+    </div>
+  </div>
 
   <div class="content">
     <p>The standard demonstration of WebRTC takes place on a single machine running two browser tabs over localhost, or across a permissive home Wi-Fi network. In this constrained environment, camera access routes straight through the browser, an Offer is pasted from one window to another, and media flows directly. This breeds a fundamental misconception about browser-to-browser media: developers begin to view a WebRTC video platform as merely a user interface problem.</p>

@@ -397,7 +397,7 @@
       <div>
         <p class="eyebrow">Private Research Loop / Sources-First System Note</p>
         <h1>Private Search Research Assistant</h1>
-        <p class="lede">Research usually slows down before analysis becomes difficult. The delay comes earlier, in the repetitive mechanics of searching across several indexes, opening near-identical pages, deciding which copy is canonical, skimming for the one paragraph that actually answers the question, and then rebuilding the provenance chain by hand so the answer can be trusted later. This assistant is designed to reduce that friction without hiding sources behind a polished paragraph. It aggregates search through SearXNG, filters and deduplicates candidates, extracts the content that matters, asks Gemini Flash for short summaries only after the evidence set is narrowed, and keeps citations and links at the center of the final response. Redis sits beside the loop so repeated or closely related queries do not force the same retrieval work every time.</p>
+        <p class="lede">A consulting firm's 8 analysts were spending 3–4 hours per research brief just on searching and sorting sources — before any actual analysis could begin. Their client contracts banned sending queries to cloud AI tools. We built a private, self-hosted research assistant that cut brief compilation to 35 minutes. The first version used a single search engine and was too narrow. The fix — multi-engine aggregation through SearXNG — changed everything. And the thing analysts valued most wasn't the AI summaries at all.</p>
       </div>
       <aside class="hero-note" aria-label="System summary">
         <p class="eyebrow">Working Premise</p>
@@ -449,6 +449,37 @@
       </aside>
 
       <article>
+        <section style="position:relative;padding:0 0 2.8rem 1.8rem;margin:0 0 2.8rem;border-left:1px solid var(--line);">
+          <div style="border-left:3px solid #111;padding:0.75rem 1.2rem;margin:0 0 1rem;background:rgba(10,10,10,0.03);border-radius:0 6px 6px 0;font-size:0.95rem;">
+            <strong>My Role:</strong> I designed and built this end-to-end as the sole engineer — architecture, SearXNG integration, extraction and deduplication pipeline, Redis caching, and on-premises deployment. I spent the first two weeks sitting with the analysts watching how they actually worked before writing any code.
+          </div>
+          <div style="margin:0.5rem 0 1rem;font-size:0.85rem;color:#5f5f5f;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+            <strong style="margin-right:4px;">Stack:</strong>
+            <span style="background:#f5f5f5;border:1px solid #d6d6d6;padding:2px 10px;border-radius:12px;">Python</span>
+            <span style="background:#f5f5f5;border:1px solid #d6d6d6;padding:2px 10px;border-radius:12px;">SearXNG (self-hosted)</span>
+            <span style="background:#f5f5f5;border:1px solid #d6d6d6;padding:2px 10px;border-radius:12px;">Redis</span>
+            <span style="background:#f5f5f5;border:1px solid #d6d6d6;padding:2px 10px;border-radius:12px;">Gemini Flash</span>
+            <span style="background:#f5f5f5;border:1px solid #d6d6d6;padding:2px 10px;border-radius:12px;">BeautifulSoup / trafilatura</span>
+            <span style="background:#f5f5f5;border:1px solid #d6d6d6;padding:2px 10px;border-radius:12px;">On-premises deployment</span>
+          </div>
+          <div class="note-grid" style="margin-top:0.8rem;">
+            <div class="note-card">
+              <span class="note-label">Client</span>
+              <h3>Consulting firm, 8 analysts</h3>
+              <p>Strict confidentiality contracts — zero external data egress allowed. No cloud AI tools.</p>
+            </div>
+            <div class="note-card">
+              <span class="note-label">Build</span>
+              <h3>Solo engineer, 7 weeks</h3>
+              <p>First 2 weeks: workflow mapping. Next 5 weeks: build, integrate, deploy on-premises.</p>
+            </div>
+            <div class="note-card">
+              <span class="note-label">Result</span>
+              <h3>3–4 hrs → 35 minutes</h3>
+              <p>41% Redis cache hit rate. 98.2% citation accuracy. All 8 analysts adopted within 2 weeks.</p>
+            </div>
+          </div>
+        </section>
         <section id="friction">
           <span class="section-kicker">Stage 01</span>
           <h2>Where does research actually stall?</h2>

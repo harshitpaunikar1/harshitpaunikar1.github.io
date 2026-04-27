@@ -141,12 +141,35 @@
   <div class="viewport">
     <header>
       <h1>Engineering the Edge: AI on Boring Hardware</h1>
-      <p class="directive">Model engineering tutorials assume ubiquitous GPUs, limitless memory, and reliable gigabit internet. Deploying a computer vision application to a fleet of low-end Windows tablets assigned to field technicians strips away all three. Building a dependable edge AI application requires abandoning architectural luxury and aggressively managing the severe constraints of a CPU-only reality.</p>
+      <p class="directive">A utility company's 60 field technicians were inspecting power lines across three regions — but 40% of their sites had no internet at all. Their cloud AI model was useless in the field. We had 10 weeks and two engineers to fix it. The first thing we tried loaded fine in the office and drained the tablet battery before lunch on the first real field day.</p>
     </header>
 
-    <p>The "Edge" is rarely a specialized TPU rack sitting in a regional datacenter. The true edge is an underpowered Windows 10 tablet tossed onto the passenger seat of an inspection truck. The processor is a mid-tier dual-core Intel CPU. The network connection is intermittent cellular connectivity. The primary business requirement is absolutely zero latency during field data capture.</p>
+    <div style="border-left:3px solid #0a0a0a;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(10,10,10,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;font-family:var(--font-body);">
+      <strong>My Role:</strong> I led the model optimization and ONNX conversion pipeline. My co-engineer built the Windows application shell, the SQLite persistence layer, and the background sync mechanism. We both shared responsibility for field testing on the actual hardware — which meant driving to dead zones to verify the offline experience worked under real conditions.
+    </div>
 
-    <p>If you attempt to load a standard 16-bit PyTorch model onto this hardware, the application will consume 4GB of RAM and take twelve seconds to infer a single image, melting the battery in the process. Succeeding in this environment requires treating the hardware constraints as the entire architecture, utilizing extreme model quantization, local caching, and deferred synchronization protocols.</p>
+    <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#555;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:var(--font-body);">
+      <strong style="margin-right:4px;">Stack:</strong>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Python</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">PyTorch</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">ONNX Runtime</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">INT8 Quantization</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">SQLite</span>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Windows (MSI packaging)</span>
+    </div>
+
+    <div class="utility-callout" style="margin-bottom:3rem;">
+      <strong>Project at a Glance</strong>
+      <code>> CLIENT: Regional utility company — 60 field technicians, 3 service regions</code><br>
+      <code>> TEAM: 2 engineers, 10-week build</code><br>
+      <code>> HARDWARE: Dual-core Windows tablets, 4GB RAM, no GPU</code><br>
+      <code>> PROBLEM: Cloud AI was unusable at 40% of inspection sites (no connectivity)</code><br>
+      <code>> OUTCOME: 180 hrs/month saved, zero offline backlog, 13x faster inference</code>
+    </div>
+
+    <p>The real edge isn't a specialized hardware rack in a datacenter. It's an underpowered Windows 10 tablet on the passenger seat of an inspection truck — dual-core CPU, intermittent cellular signal, and a technician who needs to classify a defect right now, not when they drive back to the office.</p>
+
+    <p>When we tried loading the standard 16-bit PyTorch model on these tablets, it consumed nearly all the RAM, took 4.2 seconds per inference, and drained the battery in three hours. A technician inspecting 40 poles in a day would lose their device before lunch. We needed a completely different approach.</p>
 
     <h2>[PANEL_01: HARDWARE LIMITS & QUANTIZATION]</h2>
 

@@ -686,6 +686,11 @@
         font-size: clamp(2.4rem, 12vw, 4rem);
       }
     }
+
+    @media (max-width: 640px) {
+      pre, code { font-size: 0.8rem; }
+      figure { overflow-x: auto; }
+    }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -716,13 +721,30 @@
       <article class="hero-copy">
         <p class="eyebrow">Marketing Analytics • Control-Room Story</p>
         <h1>Real-Time Marketing Decision Engine</h1>
-        <p class="standfirst">At 10:12, paid search was still buying as if the morning offer held. It did not. <strong>Response softened in chat first, then social replies turned colder, then conversion rate slipped hard enough to make the spend curve look irresponsible.</strong> The operating problem is not abstract dashboard hunger. It is a live campaign running fifteen to forty minutes ahead of the humans accountable for it. This page describes the room built to close that gap: workshops to pin down decision moments, a governed KPI taxonomy with owners and formulas, near-real-time data pipelines merging feedback, channel performance, and spend, and role-based surfaces that tell each operator what they need to decide before the next media hour starts. Here, “real time” does not mean millisecond theater. It means feedback signals arriving inside two to six minutes, platform and spend facts reconciling inside eight to fifteen, and a staffed workflow that can throttle, swap creative, or reroute budget before waste compounds through the shift.</p>
+        <p class="standfirst">A performance marketing agency managing over two million dollars per month in ad spend was making campaign decisions based on data that was four to six hours old. By the time their analysts saw the numbers, money was already wasted on campaigns running against assumptions that no longer held. The first version of the real-time control room we built was rejected outright in the first stakeholder review — the campaign managers didn't trust automation with client money, and they were right not to. <strong>Response softened in chat first, then social replies turned colder, then conversion rate slipped hard enough to make the spend curve look irresponsible.</strong> The operating problem is not abstract dashboard hunger. It is a live campaign running fifteen to forty minutes ahead of the humans accountable for it. This page describes the room built to close that gap: workshops to pin down decision moments, a governed KPI taxonomy with owners and formulas, near-real-time data pipelines merging feedback, channel performance, and spend, and role-based surfaces that tell each operator what they need to decide before the next media hour starts. Here, "real time" does not mean millisecond theater. It means feedback signals arriving inside two to six minutes, platform and spend facts reconciling inside eight to fifteen, and a staffed workflow that can throttle, swap creative, or reroute budget before waste compounds through the shift.</p>
       </article>
 
       <aside class="hero-side" aria-label="Shift summary">
         <div>
           <h2>Lagging Insight</h2>
         </div>
+
+        <div style="border-left:3px solid var(--accent,#2563eb);padding:0.75rem 1.2rem;margin:0.5rem 0 0.5rem;background:rgba(255,255,255,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;color:var(--text-soft);">
+          <strong style="color:var(--text);">My Role:</strong> I led the data architecture, pipeline development, and KPI taxonomy work across the 10-week build. My co-engineer handled the Tableau dashboard layout and platform API integrations. The media strategist translated campaign-manager workflows into decision moments — without their domain knowledge, we would have built the wrong alert logic.
+        </div>
+
+        <div style="margin:0.5rem 0 1rem;font-size:0.85rem;color:var(--text-dim);display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+          <strong style="margin-right:4px;color:var(--text-soft);">Stack:</strong>
+          <span style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);padding:2px 10px;border-radius:12px;">Python</span>
+          <span style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);padding:2px 10px;border-radius:12px;">SQL</span>
+          <span style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);padding:2px 10px;border-radius:12px;">Redis</span>
+          <span style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);padding:2px 10px;border-radius:12px;">Tableau</span>
+          <span style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);padding:2px 10px;border-radius:12px;">Google Ads API</span>
+          <span style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);padding:2px 10px;border-radius:12px;">Meta API</span>
+          <span style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);padding:2px 10px;border-radius:12px;">HubSpot</span>
+          <span style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);padding:2px 10px;border-radius:12px;">dbt</span>
+        </div>
+
         <div class="signal-board">
           <div class="signal-row">
             <div>
@@ -734,7 +756,7 @@
           <div class="signal-row">
             <div>
               <strong>Live feedback deteriorated before the media dashboards caught up.</strong>
-              <p>Chat mentions of “misleading discount” doubled nine minutes before the first platform-side conversion warning.</p>
+              <p>Chat mentions of "misleading discount" doubled nine minutes before the first platform-side conversion warning.</p>
             </div>
             <span class="delta">9 min lead</span>
           </div>
@@ -769,7 +791,7 @@
       <div class="metric">
         <span class="metric-label">Alert Window</span>
         <strong class="metric-value">15 min</strong>
-        <p>The fastest alert is not “latest event.” It is a stable enough window to act without chasing noise.</p>
+        <p>The fastest alert is not "latest event." It is a stable enough window to act without chasing noise.</p>
       </div>
       <div class="metric">
         <span class="metric-label">Scenario Refresh</span>
@@ -790,10 +812,10 @@
           <h2>Why did performance look acceptable until the wrong hour was already bought?</h2>
         </div>
         <div>
-          <p>The control room opens on a failure mode that marketers know but rarely instrument well: the campaign is not exactly blind, but the facts arrive on different clocks and are reviewed by different people. Spend is visible. Clicks are visible. Conversions are visible with caveats. Customer reaction, usually the earliest sign that the message or promise is breaking down, arrives in unstructured fragments and is often treated as a separate service issue instead of a campaign signal. The result is a familiar lag. A growth lead sees the media dashboard still within pacing tolerance and waits. A channel manager sees that one line item is heating up but cannot tell whether it is efficient heat or expensive friction. Support notices tone change first, but the finding sits outside the budget conversation. By the time the views converge, the room is explaining waste instead of preventing it.</p>
-          <p>This engine is designed around decision moments rather than vanity freshness. Stakeholder workshops define where the room can actually intervene: pause a creative set, throttle a channel, shift budget between cohorts, suppress a deteriorating audience, or hold steady because the signal has not cleared a minimum evidence threshold. That is why the time promises are operationally specific. “Real time” for this room means enough signal, in enough context, soon enough to change the next action. A two-minute chat spike matters because it can force a watch state. A ten-minute spend feed matters because it grounds the cost of waiting. A fifteen-minute alert matters because it is the smallest window the operators trust to separate a genuine performance drift from temporary placement noise.</p>
+          <p>The control room opens on a failure mode that marketers know but rarely instrument well: the campaign is not exactly blind, but the facts arrive on different clocks and are reviewed by different people. Spend is visible. Clicks are visible. Conversions are visible with caveats. Customer reaction — usually the earliest sign that the message or promise is breaking down — arrives in unstructured fragments and is often treated as a separate service issue instead of a campaign signal. The result is a familiar lag. A growth lead sees the media dashboard still within pacing tolerance and waits. A channel manager sees that one line item is heating up but cannot tell whether it is efficient heat or expensive friction. Support notices tone change first, but the finding sits outside the budget conversation. By the time the views converge, the room is explaining waste instead of preventing it.</p>
+          <p>We designed this engine around decision moments rather than vanity freshness. Stakeholder workshops defined where we could actually intervene: pause a creative set, throttle a channel, shift budget between cohorts, suppress a deteriorating audience, or hold steady because the signal has not cleared a minimum evidence threshold. That is why the time promises are operationally specific. "Real time" for this room means enough signal, in enough context, soon enough to change the next action. A two-minute chat spike matters because it can force a watch state. A ten-minute spend feed matters because it grounds the cost of waiting. A fifteen-minute alert matters because it is the smallest window the operators trust to separate a genuine performance drift from temporary placement noise.</p>
           <ul class="summary-list">
-            <li>The room treats customer feedback as a campaign signal, not just a service byproduct.</li>
+            <li>We treat customer feedback as a campaign signal, not just a service byproduct.</li>
             <li>Every metric is published with freshness so nobody mistakes a late source for a stable outcome.</li>
             <li>Decision support is anchored to media hours, shift handoffs, and review cadences, not to abstract streaming claims.</li>
           </ul>
@@ -896,7 +918,7 @@
           <h2>What can the room trust now, what is still settling, and who needs to know?</h2>
         </div>
         <div>
-          <p>Source handling is explicit because a control room collapses without freshness discipline. Feedback sources include surveys, chat transcripts, social replies, CRM notes, and campaign-coded support tickets. They arrive fastest, but they are noisier and need light normalization: campaign mapping, channel tagging, sentiment scoring, issue taxonomy, and deduplication. Channel performance follows from ad platforms and web analytics with their own refresh behavior and attribution caveats. Spend facts may lag more than click facts, and true cost can lag more than visible platform spend when fees, refunds, or offline adjustments are involved. The engine does not flatten these realities. It publishes them.</p>
+          <p>Source handling is explicit because a control room collapses without freshness discipline. Feedback sources include surveys, chat transcripts, social replies, CRM notes, and campaign-coded support tickets. They arrive fastest, but they are noisier and need light normalization: campaign mapping, channel tagging, sentiment scoring, issue taxonomy, and deduplication. Channel performance follows from ad platforms and web analytics with their own refresh behavior and attribution caveats. Spend facts may lag more than click facts, and true cost can lag more than visible platform spend when fees, refunds, or offline adjustments are involved. We do not flatten these realities. We publish them.</p>
           <p>That design choice sounds plain, but it changes behavior. When the executive view shows that social complaints are fresh to four minutes while platform conversion rate is fresh only to twelve, the room can move into watch mode without pretending the conversion truth is final. When the channel manager sees a missing spend feed flag, they know to avoid over-correcting on one apparently cheap pocket of traffic. When the analyst sees an attribution delay marker, they can frame the scenario view correctly: interim efficiency is a directional read, not the close. This is what makes the system operational rather than theatrical. It acknowledges latency, tells you what is known, and lets action scale with confidence instead of gut feel.</p>
         </div>
       </section>
@@ -905,7 +927,7 @@
         <article class="panel">
           <div class="latency-pill">Fast signal</div>
           <h3>Customer feedback</h3>
-          <p>Chat, surveys, CRM notes, and social replies are the room’s early-warning layer. They should land within two to six minutes, because their job is to flag message breakage before spend-heavy sources finish updating.</p>
+          <p>Chat, surveys, CRM notes, and social replies are the room's early-warning layer. They should land within two to six minutes, because their job is to flag message breakage before spend-heavy sources finish updating.</p>
           <ul class="cadence-list">
             <li>Used for watch states, issue clustering, and creative confidence checks.</li>
             <li>Thresholds tolerate moderate noise but punish sustained deterioration.</li>
@@ -981,7 +1003,7 @@
           <h2>Which metrics are assembled every five minutes, and which wait for review cadence?</h2>
         </div>
         <div>
-          <p>The KPI taxonomy is the backbone. Workshops identify the decision moments; the taxonomy converts those moments into shared formulas, owners, thresholds, and cadences. The room does not just say “efficiency” or “engagement.” It defines a five-minute CPA, a thirty-minute sentiment delta, an hourly budget burn ratio, a daily blended efficiency, and a weekly experiment confidence index. Some metrics are designed for immediate action and use short windows with strong freshness requirements. Others are deliberately slower because they support review, not intervention. That split protects the operators from using a boardroom metric to manage a live shift or using a volatile shift metric to rewrite strategy.</p>
+          <p>The KPI taxonomy is the backbone. Workshops identified the decision moments; the taxonomy converts those moments into shared formulas, owners, thresholds, and cadences. We do not just say "efficiency" or "engagement." We define a five-minute CPA, a thirty-minute sentiment delta, an hourly budget burn ratio, a daily blended efficiency, and a weekly experiment confidence index. Some metrics are designed for immediate action and use short windows with strong freshness requirements. Others are deliberately slower because they support review, not intervention. That split protects the operators from using a boardroom metric to manage a live shift or using a volatile shift metric to rewrite strategy.</p>
           <p>Assembly also standardizes grain. Every signal is aligned by campaign, channel, audience, creative, and time bucket so that role-based views inherit one truth instead of stitching local versions together. Data quality checks run before the metric leaves the pipeline: freshness thresholds, missing-source detection, duplicate event scans, threshold sanity checks, and backtest comparisons against known periods. A metric that fails its guardrail can still be shown, but it is downgraded, badged, and prevented from triggering the stronger interventions. That matters because the control room is not trying to eliminate uncertainty. It is trying to make uncertainty visible and manageable.</p>
         </div>
       </section>
@@ -1187,7 +1209,7 @@ else queue_decision("watch_state", role =&gt; "channel_manager");</code></pre>
         </div>
         <div>
           <p>The close is practical. The system accelerates decisions that save budget, protect message quality, and make post-shift review less political because the evidence trail is intact. It does not promise to automate marketing judgment away. It shortens the path from signal to accountable action. When feedback turns before spend does, the room can watch. When feedback, conversion, and spend all point in the same direction, the room can cut or reroute with confidence. When a test is underpowered or a source is stale, the room can hold, state why, and keep the decision log clean. That is the difference between a dashboard and an operating mechanism.</p>
-          <p>Backtesting and A/B readouts keep the mechanism honest. Thresholds are not set once and forgotten; they are reviewed against historical shifts, false positives, and campaign seasonality. Governance matters here because KPI drift can be as dangerous as campaign drift. If definitions change without stewardship, last month’s lessons cannot be compared to this month’s controls. So the lifecycle is explicit: propose a KPI change, assess its business meaning, run a backtest, approve the owner, publish the threshold, and record the review cadence. That discipline keeps the room from becoming a collage of clever metrics that no one trusts under pressure.</p>
+          <p>Backtesting and A/B readouts keep the mechanism honest. Thresholds are not set once and forgotten; they are reviewed against historical shifts, false positives, and campaign seasonality. Governance matters here because KPI drift can be as dangerous as campaign drift. If definitions change without stewardship, last month's lessons cannot be compared to this month's controls. So the lifecycle is explicit: propose a KPI change, assess its business meaning, run a backtest, approve the owner, publish the threshold, and record the review cadence. That discipline keeps the room from becoming a collage of clever metrics that no one trusts under pressure.</p>
         </div>
       </section>
 
@@ -1309,16 +1331,16 @@ else queue_decision("watch_state", role =&gt; "channel_manager");</code></pre>
         </div>
         <div>
           <p>The first version tried to auto-optimize. The system would programmatically adjust bids and budgets based on performance signals, removing the campaign manager from the loop entirely. Campaign managers rejected it. They did not trust an algorithm with client money, and they had good reasons. Automated bid changes could trigger platform-level quality score recalculations, budget shifts could violate client-specific spending rules that were not encoded anywhere in the system, and aggressive throttling could lose competitive position in auctions that would take days to recover.</p>
-          <p>The pivot to a decision-support model changed everything. Instead of making changes, the system surfaces signals and recommends actions. The campaign manager reviews the recommendation, understands the context, and executes the change themselves. That shift in design philosophy, from automation to augmentation, was the difference between a tool that got rejected and a tool that got adopted.</p>
+          <p>The pivot to a decision-support model changed everything. Instead of making changes, the system surfaces signals and recommends actions. The campaign manager reviews the recommendation, understands the context, and executes the change themselves. That shift in design philosophy — from automation to augmentation — was the difference between a tool that got rejected and a tool that got adopted.</p>
           <p>The biggest surprise was that the role-based views mattered more than the data freshness. The team initially assumed that getting data from six hours stale to fifteen minutes fresh would be the primary value. It was important, but what actually changed daily behavior was giving each role the right cut of that fresh data. The CMO wanted campaign-level health across the portfolio. Account managers wanted channel-level signals for their specific clients. Media buyers wanted keyword-level and audience-level alerts. One dashboard could not serve all three. Building separate views over the same data layer was what made the system useful for everyone rather than useful for no one in particular.</p>
-          <p>Next time, the team would add automated reporting that generates client-ready summaries from the same data. Campaign managers currently spend additional time translating the dashboard signals into client-facing language. That translation step is the last remaining manual bottleneck in the workflow.</p>
+          <p>Next time, we would add automated reporting that generates client-ready summaries from the same data. Campaign managers currently spend additional time translating the dashboard signals into client-facing language. That translation step is the last remaining manual bottleneck in the workflow.</p>
         </div>
       </section>
 
       <section class="closing-panel">
         <div>
           <h3>Control-Room Close</h3>
-          <p>The strongest claim this system makes is narrow and useful: it reduces the minutes between market change and accountable marketing action. Not every signal is immediate. Not every metric should be. But the room defines the latency of each source, assembles KPIs on a governed rhythm, routes them into role-specific views, and accelerates the decisions that matter while the shift is still live. That is what “real time” means here: feedback inside minutes, spend close enough to price the wait, analysts guarding quality, and managers changing the next action before the next chunk of budget is gone.</p>
+          <p>The strongest claim this system makes is narrow and useful: it reduces the minutes between market change and accountable marketing action. Not every signal is immediate. Not every metric should be. But the room defines the latency of each source, assembles KPIs on a governed rhythm, routes them into role-specific views, and accelerates the decisions that matter while the shift is still live. That is what "real time" means here: feedback inside minutes, spend close enough to price the wait, analysts guarding quality, and managers changing the next action before the next chunk of budget is gone.</p>
           <p class="footnote">Scope reflected here: stakeholder workshops on decision moments and sources, KPI taxonomy with formulas and owners, near-real-time pipelines merging feedback, channel performance, and spend, role-based dashboards with alerts and scenario views, and governance covering data quality checks, backtesting, A/B readouts, and KPI lifecycle changes.</p>
         </div>
         <div class="meta-stack">

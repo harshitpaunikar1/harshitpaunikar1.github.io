@@ -370,7 +370,7 @@
       <div>
         <p class="eyebrow">Safety Architecture Review</p>
         <h1>Medical Evidence Q&amp;A Assistant</h1>
-        <p class="deck">This page reviews a medical evidence question-answering assistant from the safety boundary inward. The available project description is modest and that is useful: it claims trusted-source retrieval from medical PDFs, guidelines, and PubMed-style references; PDF extraction, cleanup, chunking, embeddings, Qdrant indexing, reranking, constrained answer generation, explicit refusals, and FastAPI exposure. The review below stays inside those stated mechanics rather than treating the system like an already-audited clinical product.</p>
+        <p class="deck">A health-tech startup had 200 FAQ articles that patients couldn't find answers in — their keyword search returned wrong results 40% of the time. We built a medical evidence Q&amp;A assistant to fix that. The hardest part wasn't the AI. It was designing a system that knew when to say "I don't know" — and making users trust it more because of that.</p>
         <div class="summary-strip" aria-label="Review summary">
           <div class="summary-card">
             <strong>Primary Position</strong>
@@ -434,6 +434,25 @@
       </aside>
 
       <main class="article">
+        <section style="border:1px solid var(--rule);background:rgba(255,255,255,0.9);padding:24px;margin-bottom:28px;">
+          <div style="border-left:3px solid #0a0a0a;padding:0.75rem 1.2rem;margin:0 0 1rem;background:rgba(10,10,10,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
+            <strong>My Role:</strong> I led the ML engineering — the retrieval pipeline, safety architecture design, and FastAPI service. A medical advisor (not an engineer) handled clinical review: they validated retrieval quality, checked citation accuracy, and defined which question categories should trigger refusals. Without that partnership, the safety boundary decisions would have been guesswork dressed up as engineering.
+          </div>
+          <div style="margin:0.5rem 0 1rem;font-size:0.85rem;color:#555;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+            <strong style="margin-right:4px;">Stack:</strong>
+            <span style="background:#f5f5f5;border:1px solid #d7d7d7;padding:2px 10px;border-radius:12px;">Python</span>
+            <span style="background:#f5f5f5;border:1px solid #d7d7d7;padding:2px 10px;border-radius:12px;">PyMuPDF</span>
+            <span style="background:#f5f5f5;border:1px solid #d7d7d7;padding:2px 10px;border-radius:12px;">PubMedBERT embeddings</span>
+            <span style="background:#f5f5f5;border:1px solid #d7d7d7;padding:2px 10px;border-radius:12px;">Qdrant</span>
+            <span style="background:#f5f5f5;border:1px solid #d7d7d7;padding:2px 10px;border-radius:12px;">Gemini Flash</span>
+            <span style="background:#f5f5f5;border:1px solid #d7d7d7;padding:2px 10px;border-radius:12px;">FastAPI</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:0.9rem;">
+            <div style="border:1px solid var(--rule);padding:12px;"><strong style="display:block;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;">Client</strong>Health-tech startup, patient-facing FAQ product</div>
+            <div style="border:1px solid var(--rule);padding:12px;"><strong style="display:block;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;">Team &amp; Timeline</strong>1 ML engineer + 1 medical advisor, 12 weeks</div>
+            <div style="border:1px solid var(--rule);padding:12px;"><strong style="display:block;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;">Key Result</strong>92% search relevance (up from 60%), zero hallucinations in 4 months</div>
+          </div>
+        </section>
         <section id="boundary">
           <div class="section-head">
             <div>

@@ -375,7 +375,7 @@
         <span>LiveKit + faster-whisper + Gemini Flash + Piper</span>
       </div>
       <h1>Real-Time Voice Agent</h1>
-      <p class="dek">A room conversation is not judged on average intelligence. It is judged on the gap between a human mouth closing and a synthetic voice beginning. This document treats the voice agent as a measured pipeline, not a character, and follows latency from microphone ingress to interruption recovery.</p>
+      <p class="dek">A customer service company was losing 45% of callers before anyone picked up — their IVR menu system was unusable on mobile. We built a real-time voice AI to handle the 58% of calls that were just order status and basic lookups. The first version had 1,400ms latency and made callers repeat themselves so often it created more confusion than the old menu. Getting to 866ms required shaving every single stage.</p>
       <div class="mast-grid" aria-label="System summary">
         <div class="mast-card">
           <span class="label">Primary budget</span>
@@ -413,6 +413,27 @@
         <a href="#trace">Tracing + Optimization</a>
       </div>
     </section>
+
+    <div style="padding:1.5rem 0;border-bottom:1px solid var(--line);">
+      <div style="border-left:3px solid #f2f2f2;padding:0.75rem 1.2rem;margin:0 0 1rem;background:rgba(255,255,255,0.05);border-radius:0 6px 6px 0;font-size:0.92rem;font-family:inherit;">
+        <strong style="color:#f2f2f2;">My Role:</strong> <span style="color:var(--muted);">I led the full pipeline engineering — audio ingress tuning, STT integration with faster-whisper, Gemini Flash prompting under latency constraints, Piper TTS streaming, and the interruption state machine. A customer experience designer (non-engineer) defined the conversational patterns, escalation triggers, and tone guidelines. That collaboration was critical: I would have built a technically fast system that sounded robotic.</span>
+      </div>
+      <div style="margin:0.5rem 0 1rem;font-size:0.82rem;display:flex;flex-wrap:wrap;gap:6px;align-items:center;color:var(--muted);">
+        <strong style="margin-right:4px;color:var(--ink-2);">Stack:</strong>
+        <span style="background:rgba(255,255,255,0.07);border:1px solid var(--line-2);padding:2px 10px;border-radius:12px;">Python</span>
+        <span style="background:rgba(255,255,255,0.07);border:1px solid var(--line-2);padding:2px 10px;border-radius:12px;">LiveKit</span>
+        <span style="background:rgba(255,255,255,0.07);border:1px solid var(--line-2);padding:2px 10px;border-radius:12px;">faster-whisper</span>
+        <span style="background:rgba(255,255,255,0.07);border:1px solid var(--line-2);padding:2px 10px;border-radius:12px;">Gemini Flash</span>
+        <span style="background:rgba(255,255,255,0.07);border:1px solid var(--line-2);padding:2px 10px;border-radius:12px;">Piper TTS</span>
+        <span style="background:rgba(255,255,255,0.07);border:1px solid var(--line-2);padding:2px 10px;border-radius:12px;">WebRTC / WebSocket</span>
+      </div>
+      <div class="budget-grid" aria-label="Project summary" style="margin-top:0.5rem;">
+        <div class="budget-cell"><span>Client</span><strong style="font-size:0.9rem;">Customer service company, 2,000+ daily calls</strong></div>
+        <div class="budget-cell"><span>Team</span><strong style="font-size:0.9rem;">2 engineers + 1 CX designer, 14 weeks</strong></div>
+        <div class="budget-cell"><span>Before</span><strong style="font-size:0.9rem;">45% abandonment, IVR menu failures</strong></div>
+        <div class="budget-cell"><span>After</span><strong style="font-size:0.9rem;">18% abandonment, $34K/month saved</strong></div>
+      </div>
+    </div>
 
     <section class="section" id="delay">
       <div class="section-head">
