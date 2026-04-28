@@ -177,12 +177,12 @@
 
   <header>
     <h1>The Reality of WebRTC: Network Knots and Connection Fallbacks</h1>
-    <p class="deck">An online education platform in India was losing 35% of tutor-student calls to silent failures — users saw "connecting..." forever and assumed the platform was broken. Most never came back. The STUN-only WebRTC setup worked perfectly in our test environment and failed for a third of real users. Fixing it took two engineers and 10 weeks to properly understand why NAT traversal breaks in the real world.</p>
+    <p class="deck">An online education platform in India was losing 35% of tutor-student calls to silent failures - users saw "connecting..." forever and assumed the platform was broken. Most never came back. The STUN-only WebRTC setup worked perfectly in our test environment and failed for a third of real users. Fixing it took two engineers and 10 weeks to properly understand why NAT traversal breaks in the real world.</p>
   </header>
 
   <div class="content" style="margin-top:2rem;">
     <div style="border-left:3px solid #111;padding:0.75rem 1.2rem;margin:0 0 1rem;background:rgba(10,10,10,0.03);border-radius:0 6px 6px 0;font-size:0.95rem;">
-      <strong>My Role:</strong> I led the WebRTC connection logic — ICE candidate management, TURN relay integration, and the connection monitoring layer. My co-engineer built the signaling server (Node.js + Socket.IO), the diagnostics dashboard, and the support-facing connection quality indicator. The first three weeks were spent instrumenting the broken system before writing any new code.
+      <strong>My Role:</strong> I led the WebRTC connection logic - ICE candidate management, TURN relay integration, and the connection monitoring layer. My co-engineer built the signaling server (Node.js + Socket.IO), the diagnostics dashboard, and the support-facing connection quality indicator. The first three weeks were spent instrumenting the broken system before writing any new code.
     </div>
     <div style="margin:0.5rem 0 1.5rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
       <strong style="margin-right:4px;">Stack:</strong>
@@ -197,9 +197,9 @@
       <h4>Project at a Glance</h4>
       <ul>
         <li><strong>Client:</strong> Online education platform (tutor-to-student video calls, India)</li>
-        <li><strong>Problem:</strong> 35% of calls failed silently — users saw "connecting..." and churned</li>
+        <li><strong>Problem:</strong> 35% of calls failed silently - users saw "connecting..." and churned</li>
         <li><strong>Team:</strong> 2 engineers, 10-week build</li>
-        <li><strong>Root cause:</strong> STUN-only architecture — worked in testing, failed for 35% of real users</li>
+        <li><strong>Root cause:</strong> STUN-only architecture - worked in testing, failed for 35% of real users</li>
         <li><strong>Result:</strong> 65% → 97.2% call success rate. $180/month TURN cost vs. thousands in lost students.</li>
       </ul>
     </div>
@@ -390,7 +390,7 @@ peerConnection.onicecandidate = (event) => {
   <div class="content">
     <h2>[ CHK_06 ] Project Context</h2>
 
-    <p>This system was built for an online education platform connecting tutors with students across India. The platform was losing users because 35% of video calls failed silently on mobile networks and corporate WiFi. Students would see "connecting..." forever and assume the platform itself was broken. Most of them never came back. The root cause was NAT traversal failures — the original implementation used only STUN for peer-to-peer connections, which worked in testing but fell apart in real-world network conditions.</p>
+    <p>This system was built for an online education platform connecting tutors with students across India. The platform was losing users because 35% of video calls failed silently on mobile networks and corporate WiFi. Students would see "connecting..." forever and assume the platform itself was broken. Most of them never came back. The root cause was NAT traversal failures - the original implementation used only STUN for peer-to-peer connections, which worked in testing but fell apart in real-world network conditions.</p>
 
     <p>The team was two engineers working over a 10-week build. One engineer handled the WebRTC connection logic, ICE candidate management, and TURN relay integration. The other focused on the signaling server, connection diagnostics, and the monitoring dashboard that let the support team see why calls were failing. The first three weeks were spent instrumenting the existing system to understand exactly which network topologies were causing failures, before writing any new connection code.</p>
 
@@ -448,26 +448,26 @@ peerConnection.onicecandidate = (event) => {
   <div class="content">
     <h2>[ CHK_07 ] Results & Impact</h2>
 
-    <p>Call success rate improved from 65% to 97.2%. Average connection time dropped from 8-12 seconds to 2.8 seconds. The TURN relay fallback handled 28% of sessions automatically — users never noticed whether they were on a direct connection or relayed. The system sustained 200+ simultaneous call sessions. Mobile-to-desktop calling success rate jumped from 51% to 94%.</p>
+    <p>Call success rate improved from 65% to 97.2%. Average connection time dropped from 8-12 seconds to 2.8 seconds. The TURN relay fallback handled 28% of sessions automatically - users never noticed whether they were on a direct connection or relayed. The system sustained 200+ simultaneous call sessions. Mobile-to-desktop calling success rate jumped from 51% to 94%.</p>
 
-    <p>Student churn attributed to "technical issues" dropped 40% in the first quarter after deployment. The monthly TURN server cost was $180 for 200 concurrent sessions — far cheaper than the revenue lost from churning students. The connection quality indicator, showing "direct" vs. "relayed" status, gave the support team real diagnostic power. Before this, every failed call was a mystery with no data to investigate.</p>
+    <p>Student churn attributed to "technical issues" dropped 40% in the first quarter after deployment. The monthly TURN server cost was $180 for 200 concurrent sessions - far cheaper than the revenue lost from churning students. The connection quality indicator, showing "direct" vs. "relayed" status, gave the support team real diagnostic power. Before this, every failed call was a mystery with no data to investigate.</p>
 
     <h2>[ CHK_08 ] Lessons Learned</h2>
 
     <p>The first version used only STUN for peer-to-peer connections. It worked perfectly in our development and staging environments and failed immediately in the real world, where symmetric NATs and corporate firewalls blocked direct connections for over a third of users. Adding TURN relay as an automatic fallback was the single change that made the system production-ready. The lesson was straightforward: never ship a WebRTC system without TURN, no matter how well peer-to-peer works in testing.</p>
 
-    <p>The biggest surprise was the connection quality indicator. It was added as a debugging tool for engineers, but the support team adopted it immediately. Before the indicator, every failed or poor-quality call was an unsolvable mystery — the support team could only say "try again." With direct-vs-relayed status visible, they could tell a student "your corporate network is forcing relay mode, try switching to mobile data" and actually fix the problem. A diagnostic feature became a customer support feature.</p>
+    <p>The biggest surprise was the connection quality indicator. It was added as a debugging tool for engineers, but the support team adopted it immediately. Before the indicator, every failed or poor-quality call was an unsolvable mystery - the support team could only say "try again." With direct-vs-relayed status visible, they could tell a student "your corporate network is forcing relay mode, try switching to mobile data" and actually fix the problem. A diagnostic feature became a customer support feature.</p>
 
     <p>If we were building this again, we would add adaptive bitrate switching to handle bandwidth fluctuations on mobile networks. Right now the system connects reliably but does not degrade gracefully when a student walks from WiFi coverage into spotty LTE. The call stays up but the video quality drops unpredictably rather than stepping down in a controlled way.</p>
 
     <div class="diagnostic-box">
       <h4>Key Takeaways</h4>
       <ul>
-        <li><strong>Failed first approach:</strong> STUN-only architecture — worked in testing, failed for 35% of real users</li>
-        <li><strong>The fix:</strong> Automatic TURN relay fallback — users never notice the switch</li>
+        <li><strong>Failed first approach:</strong> STUN-only architecture - worked in testing, failed for 35% of real users</li>
+        <li><strong>The fix:</strong> Automatic TURN relay fallback - users never notice the switch</li>
         <li><strong>Surprise:</strong> Connection quality indicator became a support tool, not just a debug tool</li>
         <li><strong>Next time:</strong> Add adaptive bitrate switching for mobile network fluctuations</li>
-        <li><strong>Cost lesson:</strong> $180/month TURN cost vs. thousands in lost students — easy math</li>
+        <li><strong>Cost lesson:</strong> $180/month TURN cost vs. thousands in lost students - easy math</li>
       </ul>
     </div>
   </div>

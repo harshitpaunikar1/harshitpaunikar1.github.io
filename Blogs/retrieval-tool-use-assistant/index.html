@@ -201,7 +201,7 @@
   </header>
 
   <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-    <strong>My Role:</strong> I designed the routing control layer — the intent classifier, branch isolation strategy, and the selective activation rules that prevent over-routing. The over-routing failure mode I was trying to fix was discovered after watching the original assistant invoke the vector store on simple greeting messages, tripling latency on zero-value queries.
+    <strong>My Role:</strong> I designed the routing control layer - the intent classifier, branch isolation strategy, and the selective activation rules that prevent over-routing. The over-routing failure mode I was trying to fix was discovered after watching the original assistant invoke the vector store on simple greeting messages, tripling latency on zero-value queries.
   </div>
   <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
     <strong style="margin-right:4px;">Stack:</strong>
@@ -328,9 +328,9 @@
     <!-- Project Context -->
     <h2>VERDICT [05] : Project Context</h2>
 
-    <p>This system was built for an internal knowledge management platform at a tech company with over 150 employees. Their existing chatbot routed every query through all available tools at once — search, database lookup, API calls, and direct generation all fired simultaneously. The result was slow, expensive, and confusing. Average response time was 8 seconds, and users frequently got answers that mixed irrelevant tool outputs into a single incoherent response. Employees stopped using the chatbot and went back to asking colleagues on Slack, which defeated the purpose of the system entirely.</p>
+    <p>This system was built for an internal knowledge management platform at a tech company with over 150 employees. Their existing chatbot routed every query through all available tools at once - search, database lookup, API calls, and direct generation all fired simultaneously. The result was slow, expensive, and confusing. Average response time was 8 seconds, and users frequently got answers that mixed irrelevant tool outputs into a single incoherent response. Employees stopped using the chatbot and went back to asking colleagues on Slack, which defeated the purpose of the system entirely.</p>
 
-    <p>This was a solo engineering effort over 6 weeks. The first two weeks were spent logging every query the existing system received, categorizing them by intent, and measuring which tools were actually needed versus which were being invoked unnecessarily. That audit revealed that 64% of tool invocations were wasted — the system was calling tools that had no relevance to the query.</p>
+    <p>This was a solo engineering effort over 6 weeks. The first two weeks were spent logging every query the existing system received, categorizing them by intent, and measuring which tools were actually needed versus which were being invoked unnecessarily. That audit revealed that 64% of tool invocations were wasted - the system was calling tools that had no relevance to the query.</p>
 
     <div class="callout">
       <p><span class="path-label">PROJECT DETAILS</span> Client: internal knowledge management platform (150+ employees). Problem: all tools fired on every query, burning tokens and returning confused responses. Team: 1 engineer, 6-week build. The existing system averaged 3.2 tool invocations per query when most queries needed only 1.</p>
@@ -339,7 +339,7 @@
     <!-- Results & Impact -->
     <h2>VERDICT [06] : Results & Impact</h2>
 
-    <p>Average response latency dropped from 8 seconds to 2.1 seconds. Token consumption fell 64% per query because the router invoked only the tool branch that matched the user's intent. Routing accuracy — the correct tool selected on the first attempt — reached 91%. User satisfaction scores improved from 3.2 out of 5 to 4.4 out of 5. The system handled over 400 internal queries per day, and unnecessary tool invocations dropped from an average of 3.2 per query to 1.1. Monthly API cost went from $840 to $310.</p>
+    <p>Average response latency dropped from 8 seconds to 2.1 seconds. Token consumption fell 64% per query because the router invoked only the tool branch that matched the user's intent. Routing accuracy - the correct tool selected on the first attempt - reached 91%. User satisfaction scores improved from 3.2 out of 5 to 4.4 out of 5. The system handled over 400 internal queries per day, and unnecessary tool invocations dropped from an average of 3.2 per query to 1.1. Monthly API cost went from $840 to $310.</p>
 
     <div class="figure-container">
       <div class="svg-canvas">
@@ -382,11 +382,11 @@
     <!-- Lessons Learned -->
     <h2>VERDICT [07] : Lessons Learned</h2>
 
-    <p>The first approach was a simple keyword-based router: if the query contained "policy," route to the knowledge base; if it contained "create" or "update," route to the tool execution branch. It was fast to build and too rigid to use. Users rephrased questions constantly — "what's the vacation rule" and "how many days off do I get" are the same intent but share zero keywords. The keyword router missed rephrased questions about 40% of the time. We replaced it with an intent classifier that reads the first few tokens of the model's reasoning to decide the route before full generation begins.</p>
+    <p>The first approach was a simple keyword-based router: if the query contained "policy," route to the knowledge base; if it contained "create" or "update," route to the tool execution branch. It was fast to build and too rigid to use. Users rephrased questions constantly - "what's the vacation rule" and "how many days off do I get" are the same intent but share zero keywords. The keyword router missed rephrased questions about 40% of the time. We replaced it with an intent classifier that reads the first few tokens of the model's reasoning to decide the route before full generation begins.</p>
 
-    <p>The biggest surprise was the "clarification" branch. We originally planned only three routes: retrieval, tool use, and direct answer. During testing, we noticed that roughly 12% of queries were genuinely ambiguous — the user said something like "update it" without enough context to know what "it" referred to. Instead of guessing (which led to wrong-tool invocations), we added a fourth branch that simply asks the user to clarify. That single addition reduced wrong-tool invocations by 35%. Asking a question turned out to be more useful than making a bad guess.</p>
+    <p>The biggest surprise was the "clarification" branch. We originally planned only three routes: retrieval, tool use, and direct answer. During testing, we noticed that roughly 12% of queries were genuinely ambiguous - the user said something like "update it" without enough context to know what "it" referred to. Instead of guessing (which led to wrong-tool invocations), we added a fourth branch that simply asks the user to clarify. That single addition reduced wrong-tool invocations by 35%. Asking a question turned out to be more useful than making a bad guess.</p>
 
-    <p>If we built this again, we would add a feedback mechanism where users can flag "wrong tool used" after receiving a response. Right now, the router's accuracy is static — it does not learn from mistakes. A lightweight feedback loop where flagged responses adjust the intent classifier's weights would improve routing accuracy over time, especially for edge cases the initial training data did not cover.</p>
+    <p>If we built this again, we would add a feedback mechanism where users can flag "wrong tool used" after receiving a response. Right now, the router's accuracy is static - it does not learn from mistakes. A lightweight feedback loop where flagged responses adjust the intent classifier's weights would improve routing accuracy over time, especially for edge cases the initial training data did not cover.</p>
 
     <div class="callout">
       <p><span class="path-label">KEY LESSONS</span> Keyword routing is too brittle for real users. Intent classification with a clarification branch handles ambiguity better than guessing. The cheapest way to improve accuracy is to ask the user when you are not sure, rather than invoking the wrong tool and hoping for the best.</p>

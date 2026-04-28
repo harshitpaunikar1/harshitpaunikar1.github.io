@@ -433,7 +433,7 @@ funding_queue = processed_df.sort_values(by=<span class="c-str">'priority_index'
 
   <p>Regions with well-connected advocates or recent media coverage consistently received more funding, while quieter regions with deeper deprivation were systematically underfunded. The organization knew this was happening but had no structured way to override it. Every committee member could argue persuasively for their preferred region, and without a quantitative framework, the loudest voice won.</p>
 
-  <p>The team was two people: one data scientist and one program officer who understood the operational realities on the ground. The build took 6 weeks. The program officer's role was critical — they translated domain knowledge into feature weights and flagged when the model's outputs contradicted field reality.</p>
+  <p>The team was two people: one data scientist and one program officer who understood the operational realities on the ground. The build took 6 weeks. The program officer's role was critical - they translated domain knowledge into feature weights and flagged when the model's outputs contradicted field reality.</p>
 
   <h2><span class="section-marker">6.0</span> Results & Impact</h2>
 
@@ -442,7 +442,7 @@ funding_queue = processed_df.sort_values(by=<span class="c-str">'priority_index'
   <p>After the organization adopted the model's recommendations, aid reached 31,000 additional people in the highest-need regions. Allocation decision time dropped from 3 weeks of committee debates to 2 days of structured review using the model's outputs as a starting point. The framework was adopted by 3 regional offices for their next funding cycle. Cost per person served dropped from $14.20 to $9.80 because funds were directed to regions where the same dollar stretched further.</p>
 
   <div class="fig-container">
-    <div class="fig-header">FIGURE 3A: Allocation Efficiency — Before vs After Model Deployment</div>
+    <div class="fig-header">FIGURE 3A: Allocation Efficiency - Before vs After Model Deployment</div>
     <svg height="430" width="860" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 430" preserveAspectRatio="xMidYMid meet">
       <!-- Title -->
       <text x="430" y="32" font-family="'Roboto Mono'" font-size="13" font-weight="700" text-anchor="middle">RESOURCE ALLOCATION: MANUAL vs MODEL-GUIDED</text>
@@ -494,13 +494,13 @@ funding_queue = processed_df.sort_values(by=<span class="c-str">'priority_index'
 
   <h2><span class="section-marker">7.0</span> Lessons Learned</h2>
 
-  <p>The first version of the model used equal weighting across all deprivation indicators. Every factor — mortality rate, water access, conflict density, food inflation — carried the same influence on the final score. This produced rankings that felt wrong to the program officer. Regions with poor infrastructure (bad roads, few clinics) but no active conflict were being ranked higher than regions where people were actively dying from violence. Equal weighting treated a broken road the same as a bullet. That was clearly incorrect.</p>
+  <p>The first version of the model used equal weighting across all deprivation indicators. Every factor - mortality rate, water access, conflict density, food inflation - carried the same influence on the final score. This produced rankings that felt wrong to the program officer. Regions with poor infrastructure (bad roads, few clinics) but no active conflict were being ranked higher than regions where people were actively dying from violence. Equal weighting treated a broken road the same as a bullet. That was clearly incorrect.</p>
 
-  <p>The fix was adding weighted multipliers. Mortality risk and conflict density received 1.5x weight, while infrastructure gaps received standard weight. This shifted the rankings to prioritize immediate survival over long-term development needs — a distinction that the purely mathematical first version could not make on its own.</p>
+  <p>The fix was adding weighted multipliers. Mortality risk and conflict density received 1.5x weight, while infrastructure gaps received standard weight. This shifted the rankings to prioritize immediate survival over long-term development needs - a distinction that the purely mathematical first version could not make on its own.</p>
 
   <p>The biggest surprise was not technical. It was political. The hardest part of the entire project was getting organizational leadership to accept that some regions would receive zero funding in a given cycle. Even when the data clearly showed those regions had lower deprivation scores, the idea of telling a field office "you get nothing this quarter" was deeply uncomfortable. Several senior leaders pushed back hard, arguing that every region deserved at least something.</p>
 
-  <p>If we were building this again, we would add a minimum floor allocation — perhaps 5% of total budget guaranteed to each region regardless of their ranking. This would not meaningfully reduce the impact in high-priority areas, but it would ease the political resistance that nearly killed the project during the approval phase. Sometimes a small concession to organizational politics is the price of getting the rest of the model deployed.</p>
+  <p>If we were building this again, we would add a minimum floor allocation - perhaps 5% of total budget guaranteed to each region regardless of their ranking. This would not meaningfully reduce the impact in high-priority areas, but it would ease the political resistance that nearly killed the project during the approval phase. Sometimes a small concession to organizational politics is the price of getting the rest of the model deployed.</p>
 
 </div>
 

@@ -141,11 +141,11 @@
   <div class="viewport">
     <header>
       <h1>Engineering the Edge: AI on Boring Hardware</h1>
-      <p class="directive">A utility company's 60 field technicians were inspecting power lines across three regions — but 40% of their sites had no internet at all. Their cloud AI model was useless in the field. We had 10 weeks and two engineers to fix it. The first thing we tried loaded fine in the office and drained the tablet battery before lunch on the first real field day.</p>
+      <p class="directive">A utility company's 60 field technicians were inspecting power lines across three regions - but 40% of their sites had no internet at all. Their cloud AI model was useless in the field. We had 10 weeks and two engineers to fix it. The first thing we tried loaded fine in the office and drained the tablet battery before lunch on the first real field day.</p>
     </header>
 
     <div style="border-left:3px solid #0a0a0a;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(10,10,10,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;font-family:var(--font-body);">
-      <strong>My Role:</strong> I led the model optimization and ONNX conversion pipeline. My co-engineer built the Windows application shell, the SQLite persistence layer, and the background sync mechanism. We both shared responsibility for field testing on the actual hardware — which meant driving to dead zones to verify the offline experience worked under real conditions.
+      <strong>My Role:</strong> I led the model optimization and ONNX conversion pipeline. My co-engineer built the Windows application shell, the SQLite persistence layer, and the background sync mechanism. We both shared responsibility for field testing on the actual hardware - which meant driving to dead zones to verify the offline experience worked under real conditions.
     </div>
 
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#555;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:var(--font-body);">
@@ -160,14 +160,14 @@
 
     <div class="utility-callout" style="margin-bottom:3rem;">
       <strong>Project at a Glance</strong>
-      <code>> CLIENT: Regional utility company — 60 field technicians, 3 service regions</code><br>
+      <code>> CLIENT: Regional utility company - 60 field technicians, 3 service regions</code><br>
       <code>> TEAM: 2 engineers, 10-week build</code><br>
       <code>> HARDWARE: Dual-core Windows tablets, 4GB RAM, no GPU</code><br>
       <code>> PROBLEM: Cloud AI was unusable at 40% of inspection sites (no connectivity)</code><br>
       <code>> OUTCOME: 180 hrs/month saved, zero offline backlog, 13x faster inference</code>
     </div>
 
-    <p>The real edge isn't a specialized hardware rack in a datacenter. It's an underpowered Windows 10 tablet on the passenger seat of an inspection truck — dual-core CPU, intermittent cellular signal, and a technician who needs to classify a defect right now, not when they drive back to the office.</p>
+    <p>The real edge isn't a specialized hardware rack in a datacenter. It's an underpowered Windows 10 tablet on the passenger seat of an inspection truck - dual-core CPU, intermittent cellular signal, and a technician who needs to classify a defect right now, not when they drive back to the office.</p>
 
     <p>When we tried loading the standard 16-bit PyTorch model on these tablets, it consumed nearly all the RAM, took 4.2 seconds per inference, and drained the battery in three hours. A technician inspecting 40 poles in a day would lose their device before lunch. We needed a completely different approach.</p>
 
@@ -275,9 +275,9 @@
 
     <h2>[PANEL_04: PROJECT CONTEXT]</h2>
 
-    <p>The client was a utility company with 60 field technicians responsible for inspecting power line equipment across three service regions. Their existing workflow depended on a cloud-based defect detection system that required a strong internet connection. The problem: roughly 40% of their inspection sites — rural areas, underground substations, remote corridor sections — had no reliable connectivity.</p>
+    <p>The client was a utility company with 60 field technicians responsible for inspecting power line equipment across three service regions. Their existing workflow depended on a cloud-based defect detection system that required a strong internet connection. The problem: roughly 40% of their inspection sites - rural areas, underground substations, remote corridor sections - had no reliable connectivity.</p>
 
-    <p>When technicians hit a dead zone, they fell back to manual processes. They photographed every defect with their tablet cameras, drove back to the office, and classified everything by hand at their desks. This created a backlog that grew every week and introduced errors from delayed classification — a cracked insulator photographed in the morning looked different on a screen eight hours later without the physical context.</p>
+    <p>When technicians hit a dead zone, they fell back to manual processes. They photographed every defect with their tablet cameras, drove back to the office, and classified everything by hand at their desks. This created a backlog that grew every week and introduced errors from delayed classification - a cracked insulator photographed in the morning looked different on a screen eight hours later without the physical context.</p>
 
     <div class="utility-callout">
       <strong>Engagement Parameters</strong>
@@ -287,13 +287,13 @@
       <code>> CORE PAIN: Cloud AI unusable at 40% of inspection sites (no connectivity)</code>
     </div>
 
-    <p>The team was small by design — two engineers for ten weeks. One focused on model optimization and the ONNX conversion pipeline. The other built the Windows application shell, the SQLite persistence layer, and the sync mechanism. We shared responsibility for testing on the actual field tablets, which meant driving out to dead zones to verify the offline experience was seamless.</p>
+    <p>The team was small by design - two engineers for ten weeks. One focused on model optimization and the ONNX conversion pipeline. The other built the Windows application shell, the SQLite persistence layer, and the sync mechanism. We shared responsibility for testing on the actual field tablets, which meant driving out to dead zones to verify the offline experience was seamless.</p>
 
     <h2>[PANEL_05: RESULTS & IMPACT]</h2>
 
     <p>The deployment covered all 60 tablets across all three service regions. The numbers reflected a complete shift from office-based re-classification to on-site real-time detection.</p>
 
-    <p>Model size dropped from 148MB in its original PyTorch form to 37MB after ONNX conversion and INT8 quantization — a 75% reduction. Inference speed went from 4.2 seconds per frame to 320 milliseconds — 13 times faster. The application ran comfortably on the 2-core tablets with 4GB of RAM and no GPU. Post-quantization accuracy held at 94.1%, compared to the 95.8% FP32 baseline — a 1.7% drop that the client's quality team deemed acceptable for field use.</p>
+    <p>Model size dropped from 148MB in its original PyTorch form to 37MB after ONNX conversion and INT8 quantization - a 75% reduction. Inference speed went from 4.2 seconds per frame to 320 milliseconds - 13 times faster. The application ran comfortably on the 2-core tablets with 4GB of RAM and no GPU. Post-quantization accuracy held at 94.1%, compared to the 95.8% FP32 baseline - a 1.7% drop that the client's quality team deemed acceptable for field use.</p>
 
     <!-- Before/After Comparison Diagram -->
     <div class="hardware-diagram-grid">
@@ -385,18 +385,18 @@
     </div>
     <figcaption>Fig 2. - Before: technicians photographed defects and drove back to the office to classify them manually. After: on-device ONNX inference classifies defects in 320ms at the inspection site, with zero internet dependency. Data syncs automatically when connectivity returns.</figcaption>
 
-    <p>The offline inspection backlog was completely eliminated. Technicians now classify defects on-site in real time, and the data syncs automatically when their tablets reconnect. The monthly time savings across the 60-person field team came to roughly 180 hours — time previously spent on manual re-classification back at the office.</p>
+    <p>The offline inspection backlog was completely eliminated. Technicians now classify defects on-site in real time, and the data syncs automatically when their tablets reconnect. The monthly time savings across the 60-person field team came to roughly 180 hours - time previously spent on manual re-classification back at the office.</p>
 
     <h2>[PANEL_06: LESSONS LEARNED]</h2>
 
     <p>The first attempt was straightforward and wrong. We tried to run the full PyTorch model directly on the tablets. It consumed nearly all available RAM, took 4.2 seconds per inference, and drained the battery in about three hours. A technician inspecting 40 poles in a day would lose their device before lunch.</p>
 
-    <p>ONNX conversion alone improved things significantly — inference dropped to 1.1 seconds. But that was still too slow for the rapid-fire capture workflow technicians needed. INT8 quantization was the final push that brought inference down to 320 milliseconds, making the tool feel instant.</p>
+    <p>ONNX conversion alone improved things significantly - inference dropped to 1.1 seconds. But that was still too slow for the rapid-fire capture workflow technicians needed. INT8 quantization was the final push that brought inference down to 320 milliseconds, making the tool feel instant.</p>
 
     <div class="utility-callout">
       <strong>The Real Complexity Was Not The Model</strong>
       <code>> MODEL OPTIMIZATION: Hard, but well-documented path (PyTorch -> ONNX -> INT8)</code><br>
-      <code>> SQLITE SYNC QUEUE: Harder than expected — conflict resolution was the real fight</code><br>
+      <code>> SQLITE SYNC QUEUE: Harder than expected - conflict resolution was the real fight</code><br>
       <code>> SCENARIO: Same inspection modified on tablet AND in office while offline</code><br>
       <code>> SOLUTION: Last-write-wins with full audit trail and manual conflict review queue</code>
     </div>

@@ -154,7 +154,7 @@
     </header>
 
     <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:#f5f5f5;border-radius:0 6px 6px 0;font-size:0.95rem;">
-      <strong>My Role:</strong> I designed the entity state machines — the trailer lifecycle from gate-in to gate-out — and the algorithmic dock assignment logic that replaced the manual whiteboard system. Two other engineers built the GPS tracking integration and the driver-facing mobile dispatch UI. An embedded operations manager was the most valuable team member: his domain knowledge about live loads, reefer priority, and driver shift handoffs prevented three major design mistakes before we wrote a line of code.
+      <strong>My Role:</strong> I designed the entity state machines - the trailer lifecycle from gate-in to gate-out - and the algorithmic dock assignment logic that replaced the manual whiteboard system. Two other engineers built the GPS tracking integration and the driver-facing mobile dispatch UI. An embedded operations manager was the most valuable team member: his domain knowledge about live loads, reefer priority, and driver shift handoffs prevented three major design mistakes before we wrote a line of code.
     </div>
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
       <strong style="margin-right:4px;">Stack:</strong>
@@ -269,7 +269,7 @@
 
     <p>The client was a large distribution center handling over 600 trailer moves every day across a 50-dock yard. Before the platform existed, the entire yard ran on paper logs and radio communication. Supervisors had no real-time visibility into where trailers were parked, which docks were available, or which drivers were assigned to which moves.</p>
 
-    <p>The cost of this blindness was measurable. Demurrage charges — the fees carriers impose when their trailers sit idle beyond the allotted free time — averaged $28,000 per month. Trailers regularly got "lost" in the yard, meaning nobody could confirm their exact location without physically driving around to look. This happened two to three times per week.</p>
+    <p>The cost of this blindness was measurable. Demurrage charges - the fees carriers impose when their trailers sit idle beyond the allotted free time - averaged $28,000 per month. Trailers regularly got "lost" in the yard, meaning nobody could confirm their exact location without physically driving around to look. This happened two to three times per week.</p>
 
     <div class="status-panel">
       <div class="header">Engagement Parameters</div>
@@ -279,13 +279,13 @@
       <p>Core pain: No real-time visibility, $28K/month demurrage, paper-based dispatch, 2-3 "lost trailer" incidents per week.</p>
     </div>
 
-    <p>The operations manager worked alongside the engineering team for the full 16-week build. He brought the domain knowledge we lacked — the difference between a live load and a drop trailer, why reefers need priority docking, how driver shift changes create handoff gaps. Without that expertise embedded in the team, we would have built a technically clean system that ignored the physical realities of yard operations.</p>
+    <p>The operations manager worked alongside the engineering team for the full 16-week build. He brought the domain knowledge we lacked - the difference between a live load and a drop trailer, why reefers need priority docking, how driver shift changes create handoff gaps. Without that expertise embedded in the team, we would have built a technically clean system that ignored the physical realities of yard operations.</p>
 
     <h2>[BOARD_06 :: RESULTS & IMPACT]</h2>
 
     <p>The platform went live across all 50 docks and the full staging yard. Every trailer, dock door, and tractor was tracked through its complete lifecycle in real time. The operational improvements were immediate and sustained.</p>
 
-    <p>Average trailer dwell time — the total time a trailer spends on the property from gate-in to gate-out — dropped from 4.2 hours to 2.1 hours, a 50% reduction. Demurrage charges fell from $28,000 per month to $8,000 per month, saving roughly $240,000 per year. Dock utilization climbed from 62% to 87% because the system eliminated scheduling gaps and double-bookings.</p>
+    <p>Average trailer dwell time - the total time a trailer spends on the property from gate-in to gate-out - dropped from 4.2 hours to 2.1 hours, a 50% reduction. Demurrage charges fell from $28,000 per month to $8,000 per month, saving roughly $240,000 per year. Dock utilization climbed from 62% to 87% because the system eliminated scheduling gaps and double-bookings.</p>
 
     <div class="atlas-figure">
       <div class="svg-container">
@@ -370,24 +370,24 @@
       <figcaption>Fig 2. - Before/After operational comparison. Paper-and-radio yard operations replaced with platform-governed state tracking. Dwell time halved, demurrage dropped 71%, dock utilization jumped 25 percentage points, and lost-trailer incidents went to zero.</figcaption>
     </div>
 
-    <p>Deadhead moves — where a tractor drives across the yard without pulling anything — dropped 34% thanks to the algorithmic dispatch system chaining moves together. GPS tracking at 3-meter resolution meant the supervisor always knew where every asset was. The "lost trailer" incidents that happened two to three times a week were completely eliminated through real-time state tracking and a full audit trail for every movement.</p>
+    <p>Deadhead moves - where a tractor drives across the yard without pulling anything - dropped 34% thanks to the algorithmic dispatch system chaining moves together. GPS tracking at 3-meter resolution meant the supervisor always knew where every asset was. The "lost trailer" incidents that happened two to three times a week were completely eliminated through real-time state tracking and a full audit trail for every movement.</p>
 
     <h2>[BOARD_07 :: LESSONS LEARNED]</h2>
 
-    <p>The first version of the platform was a simple check-in/check-out system. A trailer arrived, we marked it as "arrived." A trailer left, we marked it as "departed." That was the entire model. It took about two days on the yard floor to realize this approach was useless — it told the supervisor that a trailer was somewhere on the property, but not where it was or what stage of the process it was in.</p>
+    <p>The first version of the platform was a simple check-in/check-out system. A trailer arrived, we marked it as "arrived." A trailer left, we marked it as "departed." That was the entire model. It took about two days on the yard floor to realize this approach was useless - it told the supervisor that a trailer was somewhere on the property, but not where it was or what stage of the process it was in.</p>
 
-    <p>The state machine approach changed everything. By defining a strict lifecycle — registered, staged, docked, loaded, departed — with enforced transitions between each state, the platform could tell the supervisor exactly where every trailer was in the process at any moment. A trailer could not jump from "arrived" to "departed" without passing through staging and docking. Every transition was timestamped, creating perfect dwell-time data.</p>
+    <p>The state machine approach changed everything. By defining a strict lifecycle - registered, staged, docked, loaded, departed - with enforced transitions between each state, the platform could tell the supervisor exactly where every trailer was in the process at any moment. A trailer could not jump from "arrived" to "departed" without passing through staging and docking. Every transition was timestamped, creating perfect dwell-time data.</p>
 
     <div class="status-panel">
       <div class="header">The Surprise: Who Loved It Most</div>
       <code>EXPECTED: Supervisors would be the primary fans (dashboard visibility)</code>
-      <p>Reality: Drivers loved it more. The mobile dispatch feature replaced chaotic radio instructions with clear, step-by-step move assignments on their tablets. They knew exactly which trailer to pull, from which slot, to which dock — no more guessing, no more driving to the wrong end of the yard.</p>
+      <p>Reality: Drivers loved it more. The mobile dispatch feature replaced chaotic radio instructions with clear, step-by-step move assignments on their tablets. They knew exactly which trailer to pull, from which slot, to which dock - no more guessing, no more driving to the wrong end of the yard.</p>
       <code>DRIVER FEEDBACK: "I used to drive around looking for trailers. Now I just follow the screen."</code>
     </div>
 
-    <p>The biggest surprise was who valued the system most. We assumed supervisors would be the biggest champions — they got the bird's-eye dashboard, the analytics, the demurrage alerts. But the drivers were the ones who loved it. The mobile dispatch feature replaced the chaos of radio communication with clear, direct instructions on their ruggedized tablets. No more deciphering garbled radio calls. No more driving to the wrong staging slot because they misheard a location.</p>
+    <p>The biggest surprise was who valued the system most. We assumed supervisors would be the biggest champions - they got the bird's-eye dashboard, the analytics, the demurrage alerts. But the drivers were the ones who loved it. The mobile dispatch feature replaced the chaos of radio communication with clear, direct instructions on their ruggedized tablets. No more deciphering garbled radio calls. No more driving to the wrong staging slot because they misheard a location.</p>
 
-    <p>If we built this again, we would add predictive dock scheduling from day one. The current system assigns docks reactively — when a trailer arrives, it finds the best available dock. A predictive system would pre-assign docks based on appointment data and historical unloading times, so the yard is already optimized before the truck even arrives at the gate. That level of planning would push dock utilization even higher and further reduce wait times at the gate.</p>
+    <p>If we built this again, we would add predictive dock scheduling from day one. The current system assigns docks reactively - when a trailer arrives, it finds the best available dock. A predictive system would pre-assign docks based on appointment data and historical unloading times, so the yard is already optimized before the truck even arrives at the gate. That level of planning would push dock utilization even higher and further reduce wait times at the gate.</p>
   </div>
 
 <script type="application/json" id="blog-config">{"slug":"yard-management-platform"}</script>

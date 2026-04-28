@@ -211,7 +211,7 @@
   </header>
 
 <div style="border-left:3px solid #111;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-  <strong>My Role:</strong> I owned the on-device inference pipeline — the TensorFlow Lite model conversion, INT8 quantization, CameraX ImageAnalysis integration, and the custom inference executor that bypassed buggy NNAPI drivers on Zebra hardware. The other two engineers handled the backend API and warehouse workflow integration. The key challenge I had to solve was thermal throttling silently degrading inference from 45ms to 180ms during sustained operation.
+  <strong>My Role:</strong> I owned the on-device inference pipeline - the TensorFlow Lite model conversion, INT8 quantization, CameraX ImageAnalysis integration, and the custom inference executor that bypassed buggy NNAPI drivers on Zebra hardware. The other two engineers handled the backend API and warehouse workflow integration. The key challenge I had to solve was thermal throttling silently degrading inference from 45ms to 180ms during sustained operation.
 </div>
 <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
   <strong style="margin-right:4px;">Stack:</strong>
@@ -441,9 +441,9 @@ imageAnalyzer.setAnalyzer(cameraExecutor, { imageProxy <span class="c-type">-></
     </aside>
 
     <div class="main-column">
-      <p>This project was built for a logistics company operating 5 warehouses. Workers on the floor used Android tablets to scan and sort packages — pointing the camera at a label, waiting for the system to identify the package, then routing it to the correct bin or pallet.</p>
+      <p>This project was built for a logistics company operating 5 warehouses. Workers on the floor used Android tablets to scan and sort packages - pointing the camera at a label, waiting for the system to identify the package, then routing it to the correct bin or pallet.</p>
 
-      <p>The existing system sent every camera frame to a cloud server for processing. In the office, during demos, it worked fine — about 150 milliseconds per scan. But on the warehouse floor, surrounded by concrete walls and metal racking, WiFi was unreliable. Latency jumped to 2.5 seconds per scan. For a worker trying to sort 40 boxes a minute, a 2.5-second freeze on the screen made the app useless. They would give up and go back to manual label reading.</p>
+      <p>The existing system sent every camera frame to a cloud server for processing. In the office, during demos, it worked fine - about 150 milliseconds per scan. But on the warehouse floor, surrounded by concrete walls and metal racking, WiFi was unreliable. Latency jumped to 2.5 seconds per scan. For a worker trying to sort 40 boxes a minute, a 2.5-second freeze on the screen made the app useless. They would give up and go back to manual label reading.</p>
 
       <p>The team was 3 engineers working on a 10-week sprint. The goal was straightforward: get inference off the cloud and onto the device itself, so scanning worked even with zero network connectivity. The challenge was making a neural network run fast enough on cheap, three-year-old Android tablets without overheating them or killing the battery halfway through a shift.</p>
     </div>
@@ -476,7 +476,7 @@ imageAnalyzer.setAnalyzer(cameraExecutor, { imageProxy <span class="c-type">-></
     </aside>
 
     <div class="main-column">
-      <p>After deploying the edge-based system, inference latency dropped from 2,500 milliseconds on the cloud to 45 milliseconds on-device. That is a 55x speed improvement. Battery life improved dramatically — devices lasted full 8-hour shifts instead of dying at the 5-hour mark from constant cloud polling and WiFi radio usage.</p>
+      <p>After deploying the edge-based system, inference latency dropped from 2,500 milliseconds on the cloud to 45 milliseconds on-device. That is a 55x speed improvement. Battery life improved dramatically - devices lasted full 8-hour shifts instead of dying at the 5-hour mark from constant cloud polling and WiFi radio usage.</p>
 
       <p>Scan throughput per worker went from 15 boxes per minute to 40 boxes per minute. The system was deployed on 85 Android tablets across all 5 warehouse sites. The accuracy trade-off from quantization was small: 93.8% on-device versus 96.2% on the cloud baseline. That 2.4% drop was considered acceptable given the massive speed and reliability gains.</p>
 
@@ -518,7 +518,7 @@ imageAnalyzer.setAnalyzer(cameraExecutor, { imageProxy <span class="c-type">-></
           <text x="600" y="274" font-family="'JetBrains Mono'" font-size="13" font-weight="700" text-anchor="middle" fill="#fff">40 box/min</text>
 
           <!-- Accuracy -->
-          <text x="400" y="325" font-family="'JetBrains Mono'" font-size="11" text-anchor="middle" fill="#555">Accuracy: 96.2% (cloud) vs 93.8% (edge) — 2.4% trade-off accepted for 55x speed gain</text>
+          <text x="400" y="325" font-family="'JetBrains Mono'" font-size="11" text-anchor="middle" fill="#555">Accuracy: 96.2% (cloud) vs 93.8% (edge) - 2.4% trade-off accepted for 55x speed gain</text>
         </svg>
         <div class="caption">
           Before-and-after comparison of cloud vs edge deployment. The latency improvement alone (55x faster) justified the 2.4% accuracy trade-off from INT8 quantization. Battery life reaching a full shift was the operational requirement that made adoption possible.
@@ -550,7 +550,7 @@ imageAnalyzer.setAnalyzer(cameraExecutor, { imageProxy <span class="c-type">-></
     </aside>
 
     <div class="main-column">
-      <p>Before going full edge, we first tried to optimize the cloud pipeline. We added aggressive caching — if a label had been scanned before, return the cached result without hitting the model. This helped for repeat scans but did nothing for new packages, which were the majority. Latency on fresh scans was still 2+ seconds. The caching approach was a band-aid that did not address the core problem: unreliable network on the warehouse floor.</p>
+      <p>Before going full edge, we first tried to optimize the cloud pipeline. We added aggressive caching - if a label had been scanned before, return the cached result without hitting the model. This helped for repeat scans but did nothing for new packages, which were the majority. Latency on fresh scans was still 2+ seconds. The caching approach was a band-aid that did not address the core problem: unreliable network on the warehouse floor.</p>
 
       <p>We then moved to TensorFlow Lite for on-device inference. The model converted cleanly, but we hit a wall with NNAPI driver bugs on the specific Zebra tablets we were using. The neural network API layer would silently produce garbage outputs on certain input sizes. We spent two weeks debugging before switching to a custom inference pipeline that bypassed NNAPI entirely and ran directly on the CPU with our own memory management.</p>
 

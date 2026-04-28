@@ -485,7 +485,7 @@
     </header>
 
     <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-      <strong>My Role:</strong> I designed the evaluation framework and built the Python scoring harness end-to-end — the version ledger, test case runner, JSON Schema conformance checks, and the regression gate. A product owner defined the acceptable output schema and the edge-case scenarios based on real user conversations; without that, the tests would have missed the most important failure modes.
+      <strong>My Role:</strong> I designed the evaluation framework and built the Python scoring harness end-to-end - the version ledger, test case runner, JSON Schema conformance checks, and the regression gate. A product owner defined the acceptable output schema and the edge-case scenarios based on real user conversations; without that, the tests would have missed the most important failure modes.
     </div>
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
       <strong style="margin-right:4px;">Stack:</strong>
@@ -898,7 +898,7 @@
           <p>The result is a disciplined workflow for prompt assets that looks much closer to quality control than to open-ended experimentation. Business task patterns are defined, prompt variants are introduced in controlled increments, repeated examples run through Gemini Flash, results are scored for stability, completeness, and usefulness, and approval decisions are recorded with enough rigor to survive reuse. What emerges is not a collection of clever prompts. It is an operating system for evaluating them.</p>
         </section>
         <section id="project-context">
-          <p class="eyebrow">Case Study — Context</p>
+          <p class="eyebrow">Case Study - Context</p>
           <h2>Who Needed This And Why</h2>
           <div class="lead-block">
             <p>An AI product team shipping four LLM-powered features across their platform. Their prompts were breaking unpredictably. A prompt that worked on Tuesday would fail on Friday with the same inputs. Customer complaints about inconsistent AI responses were growing twenty percent month over month, and the team had no way to trace which prompt change caused which regression.</p>
@@ -925,7 +925,7 @@
         </section>
 
         <section id="results-impact">
-          <p class="eyebrow">Case Study — Results</p>
+          <p class="eyebrow">Case Study - Results</p>
           <h2>What Changed After Deployment</h2>
           <p>Prompt conformance rate improved from seventy-two percent to 98.4 percent across all four features. That number represents the share of evaluation runs where the output met all three rubric dimensions: format stability, completeness, and usefulness. Before the workflow, nearly three out of ten runs produced output that required manual correction or created downstream errors.</p>
           <p>Customer complaints about AI inconsistency dropped eighty-one percent. The regression detection system catches breaking changes within thirty minutes of deployment, compared to the days it previously took when relying on user reports. The evaluation set contains 240 frozen test cases spread across all four features, with each case tagged by task pattern, difficulty tier, and known failure history.</p>
@@ -971,7 +971,7 @@
         </section>
 
         <section id="lessons-learned">
-          <p class="eyebrow">Case Study — Lessons</p>
+          <p class="eyebrow">Case Study - Lessons</p>
           <h2>What Did Not Work The First Time</h2>
           <p>The first approach was manual spot-checking by engineers before each release. An engineer would run the updated prompt against a handful of examples, review the outputs by eye, and approve the change if nothing looked obviously broken. This was too slow and too inconsistent. Different engineers checked different examples, applied different quality standards, and had different thresholds for what counted as a failure. A prompt that one engineer approved, another might have flagged.</p>
           <p>The second attempt was automated regex-based output checking. The team wrote pattern matchers that verified output format: correct headings, expected field names, required sections present. This was too brittle. When the output format changed even slightly, such as a model producing "Status: Active" instead of "status: active," the checks broke and had to be rewritten. The regex approach also could not evaluate content quality at all. A perfectly formatted but completely wrong answer would pass every check.</p>

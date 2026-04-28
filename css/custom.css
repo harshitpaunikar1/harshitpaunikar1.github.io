@@ -1,5 +1,5 @@
 /* ============================================================
-   HARSHIT PAUNIKAR — PORTFOLIO DESIGN SYSTEM
+   HARSHIT PAUNIKAR - PORTFOLIO DESIGN SYSTEM
    Apple / Linear / Vercel-inspired minimalism
    ============================================================ */
 
@@ -1633,7 +1633,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* ============================================================
-   RESPONSIVE — TABLET (max 1024px)
+   RESPONSIVE - TABLET (max 1024px)
    ============================================================ */
 @media (max-width: 1024px) {
   :root {
@@ -1697,7 +1697,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* ============================================================
-   RESPONSIVE — MOBILE (max 768px)
+   RESPONSIVE - MOBILE (max 768px)
    ============================================================ */
 @media (max-width: 768px) {
   :root {
@@ -1797,7 +1797,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* ============================================================
-   RESPONSIVE — SMALL MOBILE (max 480px)
+   RESPONSIVE - SMALL MOBILE (max 480px)
    ============================================================ */
 @media (max-width: 480px) {
   .container { padding: 0 16px; }

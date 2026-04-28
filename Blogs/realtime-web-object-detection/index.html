@@ -388,7 +388,7 @@
     </header>
 
     <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-      <strong>My Role:</strong> I designed and built the browser inference loop, the frame gating strategy, and the Flask/SQLite detection logging pipeline. I also configured the camera acquisition and the bounding-box overlay rendering. The operations team defined the object classes, camera placement constraints, and evidence retention requirements — without that input, I would have logged every frame and made the review backlog unworkable.
+      <strong>My Role:</strong> I designed and built the browser inference loop, the frame gating strategy, and the Flask/SQLite detection logging pipeline. I also configured the camera acquisition and the bounding-box overlay rendering. The operations team defined the object classes, camera placement constraints, and evidence retention requirements - without that input, I would have logged every frame and made the review backlog unworkable.
     </div>
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
       <strong style="margin-right:4px;">Stack:</strong>
@@ -953,7 +953,7 @@ def create_detection():
           <!-- Arrow between columns -->
           <polygon points="476,190 496,175 496,205" fill="#111111"/>
         </svg>
-        <figcaption id="results-caption"><span class="caption-kicker">Figure — Results</span>The shift from manual inspection to browser-based detection with human review closed the gap on missed defects and created an audit trail that did not exist before.</figcaption>
+        <figcaption id="results-caption"><span class="caption-kicker">Figure - Results</span>The shift from manual inspection to browser-based detection with human review closed the gap on missed defects and created an audit trail that did not exist before.</figcaption>
       </figure>
     </section>
 
@@ -965,9 +965,9 @@ def create_detection():
       </div>
       <div class="split">
         <div>
-          <p>The first version detected everything in every frame. It worked perfectly in testing and was completely unusable in production. Operators were overwhelmed with alerts — the overlay was flashing constantly and they started ignoring it within the first hour. We added confidence thresholds and a minimum detection persistence rule: an object had to appear in at least 3 consecutive frames before it triggered an alert. That single change made the system usable.</p>
-          <p>The biggest surprise was the evidence logging. It was originally added as a compliance requirement — the quality team needed image records for audits. But it quickly became the primary training tool on the factory floor. Supervisors started using the flagged images to show new operators exactly what different defects look like in real production conditions. That was never in the original plan, and it ended up being the feature the client valued most.</p>
-          <p>If we were to build this again, we would add a feedback loop where operator overrides — confirming or dismissing a detection — feed back into the model to improve accuracy over time. Right now the model is static after deployment. A lightweight retraining pipeline using operator decisions as labels would make the system smarter the longer it runs.</p>
+          <p>The first version detected everything in every frame. It worked perfectly in testing and was completely unusable in production. Operators were overwhelmed with alerts - the overlay was flashing constantly and they started ignoring it within the first hour. We added confidence thresholds and a minimum detection persistence rule: an object had to appear in at least 3 consecutive frames before it triggered an alert. That single change made the system usable.</p>
+          <p>The biggest surprise was the evidence logging. It was originally added as a compliance requirement - the quality team needed image records for audits. But it quickly became the primary training tool on the factory floor. Supervisors started using the flagged images to show new operators exactly what different defects look like in real production conditions. That was never in the original plan, and it ended up being the feature the client valued most.</p>
+          <p>If we were to build this again, we would add a feedback loop where operator overrides - confirming or dismissing a detection - feed back into the model to improve accuracy over time. Right now the model is static after deployment. A lightweight retraining pipeline using operator decisions as labels would make the system smarter the longer it runs.</p>
         </div>
         <div>
           <div class="check-grid">
@@ -990,7 +990,7 @@ def create_detection():
           </div>
           <div class="callout" style="margin-top: 0.8rem;">
             <p class="mini-label">What we would do differently</p>
-            <p>Add a feedback loop where operator overrides improve the model over time. Static models degrade silently — operator decisions are free labels that should drive retraining.</p>
+            <p>Add a feedback loop where operator overrides improve the model over time. Static models degrade silently - operator decisions are free labels that should drive retraining.</p>
           </div>
         </div>
       </div>

@@ -406,9 +406,9 @@ net_flow = (trip_logs[trip_logs['end_zone'] == 'Zone_1'].shape[0]) - \
     <div class="evidence-column">
       <p>This analysis was done for a carsharing operator running 1,200 vehicles across a major metro area. The company had noticed a persistent and mysterious problem: Tuesday and Thursday utilization had dropped 34% over the past 3 months. Management assumed a competitor was undercutting them on pricing. They were about to launch a costly promotional campaign to win back customers.</p>
 
-      <p>Before spending money on a theory, they brought in a data analyst — a solo 3-week investigation to figure out what was actually going on. The operating hypothesis from leadership was "competitor pricing." The alternative hypotheses included app downtime, vehicle maintenance issues, and seasonal demand shifts. As the investigation would reveal, none of these were correct.</p>
+      <p>Before spending money on a theory, they brought in a data analyst - a solo 3-week investigation to figure out what was actually going on. The operating hypothesis from leadership was "competitor pricing." The alternative hypotheses included app downtime, vehicle maintenance issues, and seasonal demand shifts. As the investigation would reveal, none of these were correct.</p>
 
-      <p>The challenge was not a lack of data. The company had GPS telemetry, trip logs, and pricing records. The challenge was that everyone was looking at city-wide averages, which made the problem invisible. The utilization drop only became visible when the data was sliced by geography and time of day — a combination nobody had thought to check.</p>
+      <p>The challenge was not a lack of data. The company had GPS telemetry, trip logs, and pricing records. The challenge was that everyone was looking at city-wide averages, which made the problem invisible. The utilization drop only became visible when the data was sliced by geography and time of day - a combination nobody had thought to check.</p>
     </div>
 
     <aside class="marginalia">
@@ -491,11 +491,11 @@ net_flow = (trip_logs[trip_logs['end_zone'] == 'Zone_1'].shape[0]) - \
 
   <div class="investigation-grid">
     <div class="evidence-column">
-      <p>The first full week was spent testing the "competitor pricing" hypothesis that management believed. We pulled competitor pricing data, cross-referenced it with our booking drop-off dates, and ran correlation analysis. The result was zero meaningful correlation. Competitor prices had not changed. This was a dead end, but it was necessary — leadership needed to see the data before they would let go of their assumption.</p>
+      <p>The first full week was spent testing the "competitor pricing" hypothesis that management believed. We pulled competitor pricing data, cross-referenced it with our booking drop-off dates, and ran correlation analysis. The result was zero meaningful correlation. Competitor prices had not changed. This was a dead end, but it was necessary - leadership needed to see the data before they would let go of their assumption.</p>
 
-      <p>The second hypothesis was "battery and maintenance" — maybe vehicles were showing as unavailable because they were in the shop or had dead batteries. Vehicle health data showed 88% of the fleet had healthy charge levels at dawn. Maintenance holds accounted for less than 3% of the fleet at any given time. Another dead end.</p>
+      <p>The second hypothesis was "battery and maintenance" - maybe vehicles were showing as unavailable because they were in the shop or had dead batteries. Vehicle health data showed 88% of the fleet had healthy charge levels at dawn. Maintenance holds accounted for less than 3% of the fleet at any given time. Another dead end.</p>
 
-      <p>The breakthrough came from a simple visualization that nobody had run before: plotting net vehicle flow by zone and hour. Instead of asking "how many trips happened," we asked "how many cars entered this zone minus how many left." The chart immediately showed a massive one-directional flow from suburbs to downtown between 7 AM and 9 AM, with near-zero counter-flow. The problem was invisible in aggregate daily statistics — it only appeared when the data was segmented by geography and time of day.</p>
+      <p>The breakthrough came from a simple visualization that nobody had run before: plotting net vehicle flow by zone and hour. Instead of asking "how many trips happened," we asked "how many cars entered this zone minus how many left." The chart immediately showed a massive one-directional flow from suburbs to downtown between 7 AM and 9 AM, with near-zero counter-flow. The problem was invisible in aggregate daily statistics - it only appeared when the data was segmented by geography and time of day.</p>
 
       <p>The key takeaway: if this investigation were starting over, we would set up automated flow monitoring dashboards from day one. The commuter drain pattern should have been caught months earlier by a simple alert that said "Zone 4 inventory dropped below 20% of starting count by 9 AM." Without that kind of monitoring, the problem festered for 3 months while management chased the wrong explanation.</p>
     </div>

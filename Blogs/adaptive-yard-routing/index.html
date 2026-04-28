@@ -249,7 +249,7 @@
   </header>
 
 <div style="border-left:3px solid #111;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;color:#111;">
-  <strong>My Role:</strong> I designed and built the core routing engine — the constraint-based dock assignment logic, the real-time jockey dispatch system, and the exception-handling state machine. My co-engineer handled the gate scanner integration and driver-facing ticket UI. The hardest part was discovering mid-project that a simple FIFO queue caused more chaos than the whiteboard it replaced, which forced a complete rethink of the assignment algorithm.
+  <strong>My Role:</strong> I designed and built the core routing engine - the constraint-based dock assignment logic, the real-time jockey dispatch system, and the exception-handling state machine. My co-engineer handled the gate scanner integration and driver-facing ticket UI. The hardest part was discovering mid-project that a simple FIFO queue caused more chaos than the whiteboard it replaced, which forced a complete rethink of the assignment algorithm.
 </div>
 <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#555;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
   <strong style="margin-right:4px;">Stack:</strong>
@@ -494,9 +494,9 @@
 
   <div class="prose-container">
     <div class="main-text">
-      <p>After full deployment across all three yards, average truck wait time dropped from 47 minutes to 18 minutes — a 62% reduction. Dock utilization climbed from 61% to 84%. The biggest financial win was demurrage charges: the company saved $340,000 per year across the three yards because trucks were no longer sitting idle waiting for dock assignments.</p>
+      <p>After full deployment across all three yards, average truck wait time dropped from 47 minutes to 18 minutes - a 62% reduction. Dock utilization climbed from 61% to 84%. The biggest financial win was demurrage charges: the company saved $340,000 per year across the three yards because trucks were no longer sitting idle waiting for dock assignments.</p>
 
-      <p>The system now handles over 400 moves per day across the three facilities. Deployment was incremental — one yard at a time over 6 weeks — which let the team fix edge cases at the first site before rolling out to the next two.</p>
+      <p>The system now handles over 400 moves per day across the three facilities. Deployment was incremental - one yard at a time over 6 weeks - which let the team fix edge cases at the first site before rolling out to the next two.</p>
 
       <div class="diagram-panel">
         <div class="diagram-title">SYS_METRICS // Before vs After Deployment</div>
@@ -573,7 +573,7 @@
 
       <p>The fix was switching to a constraint-based assignment engine that filtered docks by compatibility first, then optimized by proximity. This added complexity but eliminated the mismatches that were causing the worst bottlenecks.</p>
 
-      <p>The biggest surprise was operator resistance. Yard supervisors had been doing this job for years with radios and gut instinct. They did not trust the system initially. The turning point came when they realized the exception-only alert model meant their radio calls dropped by 70%. Instead of coordinating every move, they only got pinged when something went wrong. That shift — from active coordinator to exception manager — is what finally got buy-in.</p>
+      <p>The biggest surprise was operator resistance. Yard supervisors had been doing this job for years with radios and gut instinct. They did not trust the system initially. The turning point came when they realized the exception-only alert model meant their radio calls dropped by 70%. Instead of coordinating every move, they only got pinged when something went wrong. That shift - from active coordinator to exception manager - is what finally got buy-in.</p>
 
       <p>If we did this again, we would build a mobile app for truck drivers from day one. The printed ticket with a barcode works, but drivers frequently lose them or misread the slot codes. A phone-based direction system would have cut gate-to-slot errors significantly.</p>
     </div>
@@ -581,7 +581,7 @@
     <aside class="route-callout">
       <div class="event-log">
         <span class="event-time">FAILED FIRST</span>
-        Simple FIFO queue — no priority or dock-type handling.
+        Simple FIFO queue - no priority or dock-type handling.
       </div>
       <div class="event-log">
         <span class="event-time">SURPRISE</span>

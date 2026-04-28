@@ -1,5 +1,5 @@
 /* ============================================================
-   PROJECT DATA — 56 projects (do not remove any)
+   PROJECT DATA - 56 projects (do not remove any)
    ============================================================ */
 var projects = [
   {
@@ -644,7 +644,7 @@ var projects = [
     repo: "india-budget-2020-economic-analysis",
     title: "Reading the Economy Before Budget 2020: A Policy Briefing",
     domain: "Economic Analysis",
-    desc: "A policy-style analytical briefing for decision-makers preparing for India's Union Budget 2020. Growth slowdown, inflation, sectoral stress, and fiscal room — ranked by urgency.",
+    desc: "A policy-style analytical briefing for decision-makers preparing for India's Union Budget 2020. Growth slowdown, inflation, sectoral stress, and fiscal room - ranked by urgency.",
     approach: [
       "Structured the work as a pre-budget policy briefing with ranked macro questions instead of an open-ended economic commentary",
       "Assembled the analysis around growth slowdown, inflation, sectoral stress, and fiscal space to reflect decision-maker priorities",
@@ -656,7 +656,7 @@ var projects = [
   },
   {
     repo: "iris-pca-analysis",
-    title: "The Geometry of Less — PCA from First Principles",
+    title: "The Geometry of Less - PCA from First Principles",
     domain: "ML Foundations",
     desc: "Why principal component analysis rotates axes rather than drops columns and what survives the compression.",
     approach: [
@@ -686,7 +686,7 @@ var projects = [
     repo: "loan-default-risk-prediction",
     title: "Lending Into the Unknown: A Credit-Risk Decision System for NPA Reduction",
     domain: "Banking / Credit Risk",
-    desc: "How a classification model built on the Home Credit dataset becomes a scoreband-driven approval policy — and why the model's value only becomes legible once it's embedded in a lending decision chain.",
+    desc: "How a classification model built on the Home Credit dataset becomes a scoreband-driven approval policy - and why the model's value only becomes legible once it's embedded in a lending decision chain.",
     approach: [
       "Framed the problem around lending decisions for thin-file applicants where model output only matters if it maps to approval policy",
       "Worked from credit-risk features and Home Credit-style borrower data to engineer signals relevant to default propensity",
@@ -714,7 +714,7 @@ var projects = [
     repo: "ngo-resource-allocation-model",
     title: "Allocating Under Scarcity: An Ethics-Aware Resource Memo",
     domain: "Social Impact / Analytics",
-    desc: "How an international NGO translates socioeconomic indicators into ranked country allocations — the indicators, the weights, the constraints, and the tradeoffs that scoring cannot hide.",
+    desc: "How an international NGO translates socioeconomic indicators into ranked country allocations - the indicators, the weights, the constraints, and the tradeoffs that scoring cannot hide.",
     approach: [
       "Defined the task as resource allocation under structural scarcity where every scoring rule embeds tradeoffs that must be surfaced explicitly",
       "Worked from socioeconomic indicators and country-level signals to build a comparative need-ranking framework",
@@ -728,7 +728,7 @@ var projects = [
     repo: "online-retail-customer-clustering",
     title: "Who Actually Shops Here: Five Customer Archetypes from a UK Retail Dataset",
     domain: "E-commerce / Segmentation",
-    desc: "How RFM features and K-means clustering turn 541,000 transactions into five recognizable customer types — and what each archetype tells the merchandising and CRM team.",
+    desc: "How RFM features and K-means clustering turn 541,000 transactions into five recognizable customer types - and what each archetype tells the merchandising and CRM team.",
     approach: [
       "Converted raw transaction lines into a customer-level feature table so segmentation could reflect behavior rather than receipts",
       "Engineered RFM-style inputs and related measures to capture recency, purchasing intensity, and monetary contribution",
@@ -1008,7 +1008,7 @@ function renderBlogPreview() {
 }
 
 /* ============================================================
-   SKILL CHIPS — convert paragraph text to chips
+   SKILL CHIPS - convert paragraph text to chips
    ============================================================ */
 function renderSkillChips() {
   document.querySelectorAll('.skill-text').forEach(function(p) {

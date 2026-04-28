@@ -397,7 +397,7 @@
       <div>
         <p class="eyebrow">Private Research Loop / Sources-First System Note</p>
         <h1>Private Search Research Assistant</h1>
-        <p class="lede">A consulting firm's 8 analysts were spending 3–4 hours per research brief just on searching and sorting sources — before any actual analysis could begin. Their client contracts banned sending queries to cloud AI tools. We built a private, self-hosted research assistant that cut brief compilation to 35 minutes. The first version used a single search engine and was too narrow. The fix — multi-engine aggregation through SearXNG — changed everything. And the thing analysts valued most wasn't the AI summaries at all.</p>
+        <p class="lede">A consulting firm's 8 analysts were spending 3–4 hours per research brief just on searching and sorting sources - before any actual analysis could begin. Their client contracts banned sending queries to cloud AI tools. We built a private, self-hosted research assistant that cut brief compilation to 35 minutes. The first version used a single search engine and was too narrow. The fix - multi-engine aggregation through SearXNG - changed everything. And the thing analysts valued most wasn't the AI summaries at all.</p>
       </div>
       <aside class="hero-note" aria-label="System summary">
         <p class="eyebrow">Working Premise</p>
@@ -451,7 +451,7 @@
       <article>
         <section style="position:relative;padding:0 0 2.8rem 1.8rem;margin:0 0 2.8rem;border-left:1px solid var(--line);">
           <div style="border-left:3px solid #111;padding:0.75rem 1.2rem;margin:0 0 1rem;background:rgba(10,10,10,0.03);border-radius:0 6px 6px 0;font-size:0.95rem;">
-            <strong>My Role:</strong> I designed and built this end-to-end as the sole engineer — architecture, SearXNG integration, extraction and deduplication pipeline, Redis caching, and on-premises deployment. I spent the first two weeks sitting with the analysts watching how they actually worked before writing any code.
+            <strong>My Role:</strong> I designed and built this end-to-end as the sole engineer - architecture, SearXNG integration, extraction and deduplication pipeline, Redis caching, and on-premises deployment. I spent the first two weeks sitting with the analysts watching how they actually worked before writing any code.
           </div>
           <div style="margin:0.5rem 0 1rem;font-size:0.85rem;color:#5f5f5f;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
             <strong style="margin-right:4px;">Stack:</strong>
@@ -466,7 +466,7 @@
             <div class="note-card">
               <span class="note-label">Client</span>
               <h3>Consulting firm, 8 analysts</h3>
-              <p>Strict confidentiality contracts — zero external data egress allowed. No cloud AI tools.</p>
+              <p>Strict confidentiality contracts - zero external data egress allowed. No cloud AI tools.</p>
             </div>
             <div class="note-card">
               <span class="note-label">Build</span>
@@ -760,7 +760,7 @@
           <p class="footer-note">This explainer describes a sources-first research loop with SearXNG aggregation, extraction, deduplication, short Gemini Flash summaries, visible citations, and Redis reuse. The governing idea is constant across every stage: reduce research friction without hiding where the answer came from.</p>
         </section>
         <section id="project-context">
-          <span class="section-kicker">Case Study — Context</span>
+          <span class="section-kicker">Case Study - Context</span>
           <h2>Who needed this and why?</h2>
           <p>The client was a mid-sized consulting firm with an eight-person research team. Their analysts spent three to four hours per research brief manually searching, reading, and compiling sources across ten or more search engines. Every brief followed the same pattern: open tabs across multiple search providers, skim results for relevance, discard duplicates by hand, copy excerpts into a shared document, and rebuild citation chains so the final brief could be trusted by partners reviewing it.</p>
           <p>The firm had strict client confidentiality requirements. Their contracts prohibited sending proprietary research queries through cloud-based AI tools. Any research assistant had to run entirely on premises, with zero external data egress. That constraint eliminated most off-the-shelf solutions and made the self-hosted SearXNG approach not just a preference but a requirement.</p>
@@ -785,7 +785,7 @@
         </section>
 
         <section id="results-impact">
-          <span class="section-kicker">Case Study — Results</span>
+          <span class="section-kicker">Case Study - Results</span>
           <h2>What changed after deployment?</h2>
           <p>Research brief compilation time dropped from three to four hours to thirty-five minutes. The system queries six search engines simultaneously through SearXNG, compared to the two or three that analysts typically used when searching manually. That broader coverage surfaced relevant sources that analysts had been missing entirely, not because the sources were obscure, but because no one had time to check every engine for every brief.</p>
           <p>Duplicate content detection eliminated twenty-three percent of redundant sources per query. Before the system, analysts would sometimes cite what appeared to be independent confirmation from two sources that were actually the same article republished on different sites. The deduplication step removed that false agreement before it could enter a brief.</p>
@@ -829,7 +829,7 @@
         </section>
 
         <section id="lessons-learned">
-          <span class="section-kicker">Case Study — Lessons</span>
+          <span class="section-kicker">Case Study - Lessons</span>
           <h2>What did not work the first time?</h2>
           <p>The first version used a single search provider, the Bing API, because it was the fastest integration path. The results were too narrow. Analysts working on competitive intelligence briefs need breadth before depth. A single engine's ranking policy meant the system kept surfacing the same types of sources, official documentation and major news outlets, while missing community discussions, niche industry publications, and regional sources that often contained the most valuable details. Switching to SearXNG's multi-engine fanout solved this by pulling results from several engines simultaneously and letting the deduplication layer handle the overlap.</p>
           <p>The biggest surprise was what the analysts valued most. The initial assumption was that the AI-generated summaries would be the primary draw. They were not. Analysts valued the citation links far more than the summaries. They wanted to verify sources themselves and were trained to be skeptical of any synthesized text. What they actually needed was help finding the right sources faster, not help reading them. The summaries became a quick screening tool, a way to decide which links to open first, rather than a replacement for reading the original material.</p>

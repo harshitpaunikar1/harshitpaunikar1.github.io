@@ -194,7 +194,7 @@
     </header>
 
     <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-      <strong>My Role:</strong> I led the platform architecture — the DAG-based course state machine, unified gradebook module, and the at-risk learner analytics pipeline. The pivotal decision was abandoning the build-everything approach at week 6 and integrating best-of-breed services behind a unified interface instead; that call cut our timeline by 60% and was driven by what the instructors told us they actually needed.
+      <strong>My Role:</strong> I led the platform architecture - the DAG-based course state machine, unified gradebook module, and the at-risk learner analytics pipeline. The pivotal decision was abandoning the build-everything approach at week 6 and integrating best-of-breed services behind a unified interface instead; that call cut our timeline by 60% and was driven by what the instructors told us they actually needed.
     </div>
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
       <strong style="margin-right:4px;">Stack:</strong>
@@ -319,7 +319,7 @@
 
     <p>The client was a private university running 120 courses each semester with 3,500 enrolled students. Faculty relied on five separate tools to manage a single course: Zoom for live lectures, Google Forms for assessments, Excel spreadsheets for grade tracking, email blasts for announcements, and Google Drive for distributing materials. Nothing talked to anything else.</p>
 
-    <p>Students complained loudly. They checked five platforms daily just to keep up. Deadlines slipped through the cracks because a quiz lived on one tool and its instructions lived on another. IT support staff spent roughly 20 hours every week troubleshooting broken integrations between these tools — sync failures, permission mismatches, expired OAuth tokens.</p>
+    <p>Students complained loudly. They checked five platforms daily just to keep up. Deadlines slipped through the cracks because a quiz lived on one tool and its instructions lived on another. IT support staff spent roughly 20 hours every week troubleshooting broken integrations between these tools - sync failures, permission mismatches, expired OAuth tokens.</p>
 
     <div class="constraint-box">
       <span>Engagement Parameters</span>
@@ -335,7 +335,7 @@
 
     <p>The platform went live across all 120 courses over a single semester. The numbers told a clear story: consolidation eliminated waste at every layer.</p>
 
-    <p>Faculty course setup time dropped from three full days of copying content across five tools down to four hours in a single interface. Grade publishing became instant — no more two-day manual export-import cycles. Assessment completion rates climbed 22% simply because students could find their quizzes without hunting across platforms.</p>
+    <p>Faculty course setup time dropped from three full days of copying content across five tools down to four hours in a single interface. Grade publishing became instant - no more two-day manual export-import cycles. Assessment completion rates climbed 22% simply because students could find their quizzes without hunting across platforms.</p>
 
     <div class="roomy-figure">
       <div class="svg-campus-map">
@@ -400,11 +400,11 @@
       <figcaption>Fig 2. - Before/After. Five disconnected tools collapsed into one platform. IT support tickets for integration issues dropped from 40 per week to 6. Student satisfaction jumped from 3.1 to 4.4 out of 5.</figcaption>
     </div>
 
-    <p>IT support tickets specifically related to tool integration dropped 85% — from 40 per week down to 6. The remaining tickets were mostly password resets and browser compatibility issues, not systemic integration failures. Student satisfaction scores climbed from 3.1 out of 5 to 4.4 out of 5. The system handles 3,500 active students with 99.8% uptime across the semester.</p>
+    <p>IT support tickets specifically related to tool integration dropped 85% - from 40 per week down to 6. The remaining tickets were mostly password resets and browser compatibility issues, not systemic integration failures. Student satisfaction scores climbed from 3.1 out of 5 to 4.4 out of 5. The system handles 3,500 active students with 99.8% uptime across the semester.</p>
 
     <h2>[MILESTONE :: LESSONS_LEARNED]</h2>
 
-    <p>The original plan was to build every component from scratch — our own video streaming engine, our own quiz builder, our own grade calculation system. Two weeks into the project, we realized this would take over a year and produce inferior versions of tools that already existed.</p>
+    <p>The original plan was to build every component from scratch - our own video streaming engine, our own quiz builder, our own grade calculation system. Two weeks into the project, we realized this would take over a year and produce inferior versions of tools that already existed.</p>
 
     <p>We pivoted. Instead of reinventing each tool, we integrated best-of-breed services (a video streaming API, a proven assessment engine) behind a single unified interface. The student and the instructor never saw the seams. This decision cut our development timeline by roughly 60%. We shipped in 18 weeks instead of the 45 we had originally estimated for the build-everything approach.</p>
 
@@ -415,7 +415,7 @@
       <code>REASON: Students wanted ONE place to see all deadlines and announcements</code>
     </div>
 
-    <p>The biggest surprise had nothing to do with video quality or assessment logic. The most requested feature, by a wide margin, was a unified notification system. Students did not care which tool generated the deadline — they just wanted a single feed showing everything due this week, every announcement from every course, in one place. We built it in sprint 6 and it became the most-used screen in the entire platform.</p>
+    <p>The biggest surprise had nothing to do with video quality or assessment logic. The most requested feature, by a wide margin, was a unified notification system. Students did not care which tool generated the deadline - they just wanted a single feed showing everything due this week, every announcement from every course, in one place. We built it in sprint 6 and it became the most-used screen in the entire platform.</p>
 
     <p>If we built this again, we would add offline access from day one. A meaningful number of students had unreliable internet connections at home. They could not download lecture materials or complete timed assessments without a stable connection. Progressive offline caching would have made the platform accessible to every student regardless of connectivity.</p>
   </div>
