@@ -1,5 +1,5 @@
 /* ============================================================
-   PROJECT DATA - 56 projects (do not remove any)
+   PROJECT DATA - 76 projects (do not remove any)
    ============================================================ */
 var projects = [
   {
@@ -821,7 +821,287 @@ var projects = [
       "Presented the project as a revenue-operations policy layer overriding weaker CRM defaults"
     ],
     skills: ["Lead Scoring", "Classification", "Revenue Operations", "Cutoff Calibration", "Sales Analytics", "Routing Logic", "Python"]
-  }
+  },
+{
+      repo: "transformerjs-local-retail-copilot",
+      title: "Transformer.js Local Retail Copilot",
+      domain: "Retail / Browser AI",
+      desc: "Browser-side shopping assistant using Transformers.js, local intent classification, and in-browser retrieval for product support without sending raw chat to a server.",
+      approach: [
+        "Mapped browsing, support, and checkout journeys to isolate which steps can run entirely in the browser and where server actions still require trust boundaries.",
+"Designed the local inference path around Transformers.js with quantized models, intent classification, FAQ retrieval, and recommendation ranking.",
+"Separated static knowledge from transactional actions so checkout, ticket creation, and CRM writes remain explicit post-answer events.",
+"Added PII redaction, prompt-injection filtering, signed model delivery, and CSP guidance before analytics or support telemetry is emitted.",
+"Positioned the system as a white-label widget with Shopify, WooCommerce, Algolia, Stripe, Supabase, and Zendesk integration points."
+      ],
+      skills: ["Transformers.js", "Browser Inference", "Local RAG", "Shopify Integration", "Algolia", "PII Redaction", "Prompt Injection Filtering", "Frontend Architecture"]
+    },
+{
+      repo: "secure-ai-compliance-control-plane",
+      title: "Secure AI Compliance Control Plane",
+      domain: "AI Security / Governance",
+      desc: "Compliance control plane for AI systems spanning project registration, threat modeling, secure coding, evaluations, deployment gates, and audit evidence.",
+      approach: [
+        "Structured the platform around secure software delivery rather than one-off compliance questionnaires, starting with project registration and data classification.",
+"Mapped each workflow stage to NIST SSDF, OWASP Secure Coding, OWASP ASVS, and NIST AI RMF so controls can be defended during review.",
+"Defined threat-model, model-test, and deployment-gate artifacts as first-class records with immutable evidence trails.",
+"Connected code scanning, model evaluation, secret handling, and runtime monitoring into a single approval path instead of separate tools with weak traceability.",
+"Positioned the product as B2B SaaS plus audit-readiness packaging for enterprises operating multi-model AI stacks."
+      ],
+      skills: ["NIST SSDF", "NIST AI RMF", "OWASP ASVS", "Threat Modeling", "Security Controls", "Kubernetes Governance", "SIEM Integration", "Audit Evidence Design"]
+    },
+{
+      repo: "gemma-4-macbook-pro-private-knowledge-agent",
+      title: "Gemma 4 MacBook Pro Private Knowledge Agent",
+      domain: "Local AI / Knowledge Work",
+      desc: "MacBook Pro private knowledge assistant running Gemma 4 locally for document Q&A, code review, summarization, and research with citations.",
+      approach: [
+        "Framed the product around local-first trust: import, index, query, review, and export all have to work without cloud dependence.",
+"Built the architecture around Gemma 4 local runtime options plus a local embedding index and encrypted document store.",
+"Defined answer generation with citation retrieval, approval checkpoints, and report export so the system behaves like a serious work tool.",
+"Added macOS-specific controls such as Keychain-backed secrets, file access permissioning, and no-telemetry defaults.",
+"Positioned the product as a paid desktop app plus enterprise offline licensing for legal and finance use cases."
+      ],
+      skills: ["Gemma 4", "Ollama", "LM Studio", "Local Embeddings", "Document Retrieval", "macOS Keychain", "Desktop Product Design", "Citation Grounding"]
+    },
+{
+      repo: "stt-viseme-avatar-sales-trainer",
+      title: "STT + Viseme Avatar Sales Trainer",
+      domain: "Voice AI / Training",
+      desc: "Voice-interactive sales trainer combining speech-to-text, coaching logic, TTS, and viseme-driven avatar animation for practice sessions and scorecards.",
+      approach: [
+        "Defined the trainer as a real-time conversation loop rather than a batch transcript analyzer so timing, interruption, and avatar feedback all matter.",
+"Mapped the media chain across STT, response evaluation, TTS, viseme streaming, and scorecard generation.",
+"Separated coaching logic from rendering logic so avatar surfaces can vary between Unity, WebGL, and browser-first deployments.",
+"Added consent, retention controls, accent bias testing, and coach access boundaries because voice systems create immediate trust risk.",
+"Positioned the product as per-seat training SaaS with LMS and CRM tie-ins rather than a pure media demo."
+      ],
+      skills: ["Speech-to-Text", "Viseme Streaming", "Avatar Animation", "Azure Speech", "Whisper", "TTS Orchestration", "Coaching Analytics", "Real-Time UX"]
+    },
+{
+      repo: "agi-case-study-simulator",
+      title: "AGI Case Study Simulator",
+      domain: "AI Education / Governance",
+      desc: "Interactive simulator for AGI governance, risk, and economic case studies with scenario branching, decision paths, and source-backed uncertainty framing.",
+      approach: [
+        "Defined the product as a decision simulator instead of a content library so users learn through tradeoffs and consequence framing.",
+"Structured scenarios around governance choices, economic outcomes, safety concerns, and coordination failures with explicit uncertainty labeling.",
+"Added report generation, certification hooks, LMS compatibility, and analytics to make the platform usable in formal learning contexts.",
+"Applied strong editorial rules: no misleading claims that AGI exists today and no ungrounded certainty in future outcomes.",
+"Positioned the offering as courseware, executive workshop material, and university licensing rather than consumer hype content."
+      ],
+      skills: ["Educational Product Design", "Scenario Modeling", "AI Governance", "Interactive Content Systems", "Assessment Design", "LMS Integration", "Analytics", "Source-Backed Writing"]
+    },
+{
+      repo: "agi-vs-ai-interactive-learning-platform",
+      title: "AGI vs AI Interactive Learning Platform",
+      domain: "AI Education",
+      desc: "Interactive learning product explaining AI, ML, LLMs, agents, and AGI with role-based pathways, quizzes, and personalized roadmaps.",
+      approach: [
+        "Organized the learning path around role-based entry points so the same concepts can be explained differently to founders, students, and business leaders.",
+"Built comparisons between AI, ML, LLMs, agents, and AGI using examples, diagrams, quizzes, and applied case studies.",
+"Added recommendation logic that turns quiz responses into project suggestions and roadmap downloads.",
+"Kept the content explicitly anti-hype by labeling AGI as a separate concept rather than a marketing synonym for strong product capability.",
+"Structured the monetization around course sales, cohorts, and corporate training bundles."
+      ],
+      skills: ["Curriculum Design", "Interactive Learning", "Product Strategy", "Assessment Logic", "Content Design", "Analytics", "Roadmap Generation", "Educational UX"]
+    },
+{
+      repo: "vision-model-quality-inspection-suite",
+      title: "Vision Model Quality Inspection Suite",
+      domain: "Computer Vision / Operations",
+      desc: "Computer vision quality inspection suite for defect detection, counting, safety monitoring, visual QA, alerts, dashboards, and business reporting.",
+      approach: [
+        "Scoped the platform around a layered pipeline: capture, inference, event rules, alerting, analytics, and business reporting.",
+"Kept model choice flexible across YOLO-style local detection and API-backed multimodal analysis depending sensitivity and latency requirements.",
+"Defined severity and event policies so detections become operational actions instead of noisy visual logs.",
+"Added privacy controls such as face or plate blurring, edge inference modes, secure RTSP handling, and role-based dashboards.",
+"Positioned the commercial model around per-camera licensing plus higher-margin analytics and defect-reduction services."
+      ],
+      skills: ["Computer Vision Platforms", "Object Detection", "Segmentation", "Visual QA", "RTSP Pipelines", "Alerting Systems", "Grafana", "Operational Dashboards"]
+    },
+{
+      repo: "fastvlm-edge-visual-assistant",
+      title: "FastVLM Edge Visual Assistant",
+      domain: "Edge Vision / Field Service",
+      desc: "On-device visual assistant using FastVLM-style efficient vision encoding for field technicians who need low-latency diagnosis and manual retrieval on edge devices.",
+      approach: [
+        "Designed the assistant around one decisive loop: capture, interpret, retrieve, recommend, confirm, and document.",
+"Used the FastVLM positioning to emphasize low-latency visual understanding and fast time-to-first-token for field operators.",
+"Connected image understanding to local manuals, parts data, and service-ticket updates so the answer can change the job state.",
+"Added offline mode, signed builds, and photo retention policies because field operations frequently cross privacy and reliability constraints.",
+"Positioned the product around per-technician SaaS plus maintenance upsell rather than generic AI assistant pricing."
+      ],
+      skills: ["On-Device Vision", "Manual Retrieval", "Field Service UX", "Vector Search", "Inventory Integration", "Edge Deployment", "Photo Workflow Design", "Service Operations"]
+    },
+{
+      repo: "panasonic-toughpad-field-ai-inspector",
+      title: "Panasonic Toughpad Field AI Inspector",
+      domain: "Field Operations / Rugged Edge",
+      desc: "Offline-capable field inspection system for Panasonic Toughpad and Toughbook devices combining camera, audio, GPS, checklists, AI review, and secure sync.",
+      approach: [
+        "Designed for the physical device first, including offline data capture, battery reality, camera workflow, and rugged field ergonomics.",
+"Built the inspection flow around structured evidence capture plus optional local SLM support for checklist guidance and anomaly flagging.",
+"Connected GPS, barcode, RFID, and asset metadata to create high-trust field reports for supervisors and downstream systems.",
+"Added MDM readiness, device attestation, encrypted offline storage, and tamper-resistant logging for enterprise deployment.",
+"Framed the commercial model as enterprise licensing plus rugged-device bundling and per-asset inspection fees."
+      ],
+      skills: ["Offline-First Systems", "Rugged Device UX", "GPS Integration", "Barcode and RFID", "Field Inspections", "MDM Readiness", "Secure Sync", "Supervisor Dashboards"]
+    },
+{
+      repo: "axis-artpec-smart-surveillance-analytics",
+      title: "Axis ARTPEC Smart Surveillance Analytics",
+      domain: "Video Analytics / Edge Security",
+      desc: "Edge surveillance analytics platform for Axis ARTPEC cameras combining edge metadata, VMS integration, AI verification, alert workflows, and strong device-security posture.",
+      approach: [
+        "Started from the camera edge rather than from the dashboard so event generation, metadata transport, and verification paths stay realistic.",
+"Used ARTPEC event metadata as the first signal and kept heavier AI verification as a selective second pass.",
+"Integrated video workflows with VMS, MQTT, ONVIF, webhooks, access-control systems, and SIEM tooling.",
+"Made secure boot, signed OS assumptions, certificate lifecycle, and least-privilege VMS accounts explicit parts of the design.",
+"Positioned the platform as per-camera analytics plus managed security operations and incident automation services."
+      ],
+      skills: ["Video Analytics", "VMS Integration", "MQTT", "ONVIF", "Incident Workflows", "Device Security", "Certificate Lifecycle", "SIEM Integration"]
+    },
+{
+      repo: "hikvision-aiot-camera-intelligence-platform",
+      title: "Hikvision AIoT Camera Intelligence Platform",
+      domain: "Video Analytics / AIoT",
+      desc: "AIoT analytics platform for Hikvision environments using ISAPI event pulls, enrichment services, POS and access correlations, and security hardening controls.",
+      approach: [
+        "Used ISAPI-driven event and metadata retrieval as the backbone rather than assuming raw stream processing everywhere.",
+"Added enrichment layers that correlate events with POS, access-control, and site context to improve incident meaning.",
+"Defined dashboards and ticketing flows so security and operations teams can act on correlated events instead of camera noise.",
+"Made firmware patching, vault-backed credentials, VLAN isolation, MFA, and masking part of the operating model.",
+"Positioned the business model around per-site deployment, monthly monitoring, and analytics licensing."
+      ],
+      skills: ["ISAPI", "NVR Integration", "Event Enrichment", "Security Hardening", "Dashboard Design", "POS Correlation", "Access Control Integration", "Operational Alerting"]
+    },
+{
+      repo: "openclaw-personal-operations-agent",
+      title: "OpenClaw Personal Operations Agent",
+      domain: "Personal AI / Automation",
+      desc: "Personal operations agent using OpenClaw-style local execution to manage email, calendar, reminders, and tool actions with approvals and audit trails.",
+      approach: [
+        "Defined the product around action execution, not general chat, with permissions and approvals as the core product surface.",
+"Mapped familiar channels to a tool-runtime layer that can handle email, calendar, notes, reminders, GitHub, and browser tasks.",
+"Separated safe low-risk actions from financial, external communication, and other steps that require explicit confirmation.",
+"Added sandboxing, secret isolation, skill boundaries, and audit logging because assistant-side action risk is the entire trust problem.",
+"Positioned the product as personal subscription, executive package, and self-hosted enterprise plan."
+      ],
+      skills: ["Agentic Systems", "Approval Gates", "Calendar Automation", "Email Workflows", "Permission Models", "Audit Trails", "Tool Execution", "Personal Productivity Systems"]
+    },
+{
+      repo: "secure-ai-soc-reference-platform",
+      title: "Secure AI SoC Reference Platform",
+      domain: "Edge Security / Embedded AI",
+      desc: "Security reference architecture for AI-enabled SoC devices covering boot chain, TEE, model protection, OTA updates, fleet control, and attestation.",
+      approach: [
+        "Defined the system from hardware requirements outward, starting with trust anchors, secure boot chain, and key storage.",
+"Connected trusted runtime decisions to the AI application layer so model weights, debug ports, and update logic are protected coherently.",
+"Added OTA, rollback protection, SBOM generation, attestation, and fuzz testing as lifecycle requirements rather than post-launch add-ons.",
+"Mapped the platform to realistic embedded integrations such as Yocto Linux, TPM or secure element, MQTT, and edge fleet control plane.",
+"Positioned the offer as reference design licensing plus certification and managed fleet services."
+      ],
+      skills: ["Secure Boot", "Trusted Execution Environments", "SBOM", "OTA Security", "Device Attestation", "Yocto Linux", "Embedded Systems", "Fleet Governance"]
+    },
+{
+      repo: "paperclip-ai-company-orchestrator",
+      title: "Paperclip AI Company Orchestrator",
+      domain: "Multi-Agent Operations",
+      desc: "Business operations platform orchestrating teams of AI agents with budgets, approvals, workspaces, cost tracking, and revenue reporting.",
+      approach: [
+        "Framed the system around organizational mechanics like goals, departments, tickets, budgets, and review instead of free-form agent swarms.",
+"Separated company workspace boundaries, secret scopes, and approval rules so multiple agent teams can operate safely in parallel.",
+"Connected external tools such as Gmail, GitHub, Slack, Notion, and Stripe to goal-oriented work queues rather than standalone prompts.",
+"Added append-only logs, budget limits, approval gates, and cost reporting because orchestration without governance is not a product.",
+"Positioned the business model around AI agency automation, per-agent seats, and managed operations services."
+      ],
+      skills: ["Agent Orchestration", "Multi-Agent Systems", "Budget Governance", "Workflow Design", "Tool Integrations", "Workspace Isolation", "Cost Tracking", "Operations Dashboards"]
+    },
+{
+      repo: "asr-meeting-intelligence-platform",
+      title: "ASR Meeting Intelligence Platform",
+      domain: "Speech AI / Productivity",
+      desc: "Meeting intelligence platform combining ASR, diarization, summary extraction, action-item sync, searchable archives, and privacy controls.",
+      approach: [
+        "Designed the pipeline from audio ingestion through transcript searchability instead of stopping at raw speech recognition.",
+"Added diarization, summary extraction, and task or CRM sync so the system produces follow-through artifacts instead of passive text dumps.",
+"Used a privacy and quality lens for high-risk environments with PII redaction and optional human verification paths.",
+"Connected the product to meeting sources, CRMs, and task systems so the transcript becomes part of the workflow.",
+"Structured monetization around usage pricing plus SaaS subscriptions and domain-specific compliance packages."
+      ],
+      skills: ["Whisper", "Speaker Diarization", "Speech-to-Text", "Summarization", "Action Extraction", "CRM Integration", "PII Redaction", "Searchable Archives"]
+    },
+{
+      repo: "slm-edge-support-agent-why-slm-not-llm",
+      title: "SLM Edge Support Agent - Why SLM, Not LLM",
+      domain: "Edge AI / Support",
+      desc: "Small-language-model support agent for private or edge environments with confidence thresholds, local inference, and LLM fallback only when needed.",
+      approach: [
+        "Positioned the product as an argument for design discipline: pick the smaller model when the domain supports it and the economics demand it.",
+"Defined the support path around local docs, quantized deployment, confidence thresholds, and explicit fallback logic.",
+"Kept fallback approval and prompt-injection controls central because escalation to a larger model changes the privacy and cost profile.",
+"Connected the architecture to ONNX Runtime, llama.cpp, Ollama, small-model families, and local retrieval infrastructure.",
+"Structured the business case around private per-device licensing and edge AI appliances."
+      ],
+      skills: ["Small Language Models", "Edge Inference", "Confidence Thresholding", "llama.cpp", "ONNX Runtime", "Local RAG", "Fallback Routing", "Cost-Performance Tradeoffs"]
+    },
+{
+      repo: "openrouter-model-gateway-for-ai-apps",
+      title: "OpenRouter Model Gateway for AI Apps",
+      domain: "AI Infrastructure",
+      desc: "Model routing gateway for AI applications using OpenRouter-compatible APIs, policy-based model selection, fallback, and cost/latency observability.",
+      approach: [
+        "Defined the gateway around policy and observability, not just provider multiplexing.",
+"Separated request policy, provider routing, fallback behavior, and logging so teams can change strategy without rewriting apps.",
+"Added key vaulting, allowlists, budget limits, prompt logging controls, and PII redaction as platform requirements.",
+"Connected the design to OpenAI SDK compatibility, LangChain or LlamaIndex consumers, and internal billing systems.",
+"Positioned the product for SaaS infrastructure sales, enterprise internal gateways, and optimization consulting."
+      ],
+      skills: ["Model Routing", "OpenRouter", "Policy Engines", "Budget Controls", "Observability", "Fallback Design", "API Gateways", "AI Infrastructure"]
+    },
+{
+      repo: "sadtalker-ai-video-presenter",
+      title: "SadTalker AI Video Presenter",
+      domain: "Video AI / Media Automation",
+      desc: "Talking-head video presenter using SadTalker plus TTS, subtitles, branding, translation, consent controls, and export automation.",
+      approach: [
+        "Defined the pipeline as content production rather than raw animation, connecting scripting, TTS, animation, subtitle, branding, and export.",
+"Added consent, identity verification, watermarking, and blocked-use policies because synthetic face and voice products need explicit boundaries.",
+"Connected the output to LMS, YouTube, marketing automation, and translation surfaces so the product fits real publishing workflows.",
+"Structured the business model around per-video pricing, subscriptions, and enterprise training packages.",
+"Positioned brand templates and subtitle automation as core product value instead of afterthoughts."
+      ],
+      skills: ["SadTalker", "TTS Pipelines", "Subtitle Generation", "Video Post-Processing", "Branding Automation", "Consent Controls", "Synthetic Media Safety", "FFmpeg"]
+    },
+{
+      repo: "n8n-ai-workflow-automation-hub",
+      title: "n8n AI Workflow Automation Hub",
+      domain: "Automation / AI Ops",
+      desc: "Self-hosted n8n automation hub connecting AI nodes to business systems for lead qualification, support, invoicing, and back-office workflows with hardening controls.",
+      approach: [
+        "Started from workflow operations rather than from chat, using n8n as the backbone for triggers, app connectors, retries, and notifications.",
+"Positioned AI tasks as bounded workflow nodes for classification, extraction, summarization, and routing.",
+"Added SSL, SSO, 2FA, credential encryption, webhook authentication, and execution-data redaction as deployment requirements.",
+"Connected the hub to internal apps, databases, AI APIs, and reporting systems so workflows remain business-native.",
+"Structured the commercial model around managed workflows, implementation services, and internal productivity deployments."
+      ],
+      skills: ["n8n", "Workflow Automation", "Webhook Security", "Credential Management", "AI Node Design", "Business Systems Integration", "Execution Observability", "Self-Hosted Platforms"]
+    },
+{
+      repo: "chrome-extension-web-scraping-intelligence-agent",
+      title: "Chrome Extension Web Scraping Intelligence Agent",
+      domain: "Browser Automation / Data Intelligence",
+      desc: "Chrome extension for user-initiated scraping, AI cleaning and classification, and export to Sheets, CRM, or databases with privacy and policy compliance controls.",
+      approach: [
+        "Defined the extension around explicit user consent and site context rather than background scraping or broad browsing permissions.",
+"Used Manifest V3 service worker and content script boundaries to separate extraction, enrichment, and export cleanly.",
+"Connected extracted content to optional AI cleaning or classification before export into Sheets, CRMs, or databases.",
+"Applied policy and trust constraints: no credential theft, no session hijacking, no silent scraping, and HTTPS-only backend communication.",
+"Positioned the business model around freemium usage, paid exports, team workspaces, and data-intelligence subscriptions."
+      ],
+      skills: ["Chrome Extension MV3", "Content Scripts", "Service Workers", "Structured Data Extraction", "Data Cleaning", "AI Classification", "Sheets and CRM Export", "Browser Security"]
+    }
 ];
 
 var referenceProjectOrder = [
@@ -829,7 +1109,8 @@ var referenceProjectOrder = [
   20, 4, 2, 6, 11, 8, 9, 7, 26, 17, 18, 25, 24,
   27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37,
   38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48,
-  49, 50, 51, 52, 53, 54, 55
+  49, 50, 51, 52, 53, 54, 55,
+  56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75
 ];
 
 /* ============================================================

@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure AI Compliance Control Plane</title>
+  <meta name="description" content="Governance platform for secure AI delivery, mapping engineering work to NIST SSDF, OWASP practices, and NIST AI RMF controls.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --ink: #111111;
+      --muted: #5e5e5e;
+      --soft: #f4f4f4;
+      --panel: #fafafa;
+      --line: #d2d2d2;
+      --line-strong: #8d8d8d;
+      --shade: #e8e8e8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-color: var(--line-strong);
+      text-underline-offset: 0.18em;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 64px;
+    }
+
+    .masthead {
+      border-top: 3px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      padding: 20px 0 24px;
+      margin-bottom: 28px;
+    }
+
+    .kicker {
+      margin: 0 0 12px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    h1 {
+      max-width: 12ch;
+      margin: 0;
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .deck {
+      margin: 18px 0 0;
+      max-width: 70ch;
+      font-size: 1.08rem;
+      color: var(--muted);
+    }
+
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .summary-strip article {
+      border: 1px solid var(--ink);
+      padding: 12px 14px;
+      background: var(--panel);
+    }
+
+    .summary-strip h2,
+    .summary-strip p {
+      margin: 0;
+    }
+
+    .summary-strip h2 {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .summary-strip p {
+      font-size: 0.95rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 250px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .article {
+      min-width: 0;
+    }
+
+    .rail {
+      position: sticky;
+      top: 18px;
+      border: 1px solid var(--ink);
+      padding: 16px;
+      background: var(--panel);
+    }
+
+    .rail h2 {
+      margin: 0 0 10px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .rail p,
+    .rail li {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .rail ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .section {
+      display: grid;
+      grid-template-columns: 132px minmax(0, 1fr);
+      gap: 18px;
+      padding: 20px 0 22px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .margin-note {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.76rem;
+      line-height: 1.45;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .section-body h2 {
+      margin: 0 0 12px;
+      font-size: 1.36rem;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 8px;
+    }
+
+    .section-body p {
+      margin: 0 0 1rem;
+      font-size: 1rem;
+    }
+
+    .section-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .fine-print {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .callout {
+      border-left: 3px solid var(--ink);
+      padding: 12px 14px;
+      background: var(--soft);
+      margin: 16px 0;
+    }
+
+    .callout p {
+      margin: 0;
+    }
+
+    .committee-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      table-layout: fixed;
+    }
+
+    .committee-table caption {
+      caption-side: bottom;
+      text-align: left;
+      font-size: 0.84rem;
+      color: var(--muted);
+      padding-top: 8px;
+    }
+
+    .committee-table th,
+    .committee-table td {
+      border: 1px solid var(--line);
+      padding: 10px 10px 9px;
+      vertical-align: top;
+      font-size: 0.93rem;
+    }
+
+    .committee-table th {
+      background: var(--soft);
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: left;
+    }
+
+    .committee-table td strong {
+      display: block;
+      margin-bottom: 4px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .comparison-grid,
+    .policy-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .comparison-grid > *,
+    .policy-grid > * {
+      flex: 1 1 280px;
+    }
+
+    .comparison-card,
+    .policy-card {
+      border: 1px solid var(--ink);
+      padding: 14px;
+      background: var(--panel);
+    }
+
+    .comparison-card h3,
+    .policy-card h3,
+    figure h3 {
+      margin: 0 0 8px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .comparison-card p,
+    .policy-card p {
+      margin: 0 0 10px;
+      font-size: 0.94rem;
+    }
+
+    .comparison-card p:last-child,
+    .policy-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .metric-list {
+      margin: 12px 0 0;
+      padding-left: 18px;
+    }
+
+    .metric-list li {
+      margin-bottom: 8px;
+    }
+
+    figure {
+      margin: 18px 0;
+      border: 1px solid var(--ink);
+      padding: 12px;
+      background: #fcfcfc;
+    }
+
+    figcaption {
+      margin-top: 10px;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .diagram-title {
+      margin: 0 0 10px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .diagram-stage {
+      padding: 8px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+    }
+
+    .mermaid-diagram {
+      min-width: 640px;
+      font-size: 13px;
+    }
+
+    .mermaid-diagram svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .mermaid-diagram .label,
+    .mermaid-diagram .nodeLabel,
+    .mermaid-diagram .edgeLabel {
+      line-height: 1.15;
+    }
+
+    .mermaid-diagram foreignObject {
+      overflow: visible;
+    }
+
+    .mermaid-diagram .label div,
+    .mermaid-diagram .nodeLabel p,
+    .mermaid-diagram .edgeLabel p {
+      margin: 0;
+      padding: 2px 4px;
+      line-height: 1.15;
+    }
+
+    .footer-note {
+      border-top: 1px solid var(--ink);
+      padding-top: 16px;
+      margin-top: 28px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 980px) {
+      .summary-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .rail {
+        position: static;
+        order: -1;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .summary-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .margin-note {
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 8px;
+      }
+
+      .page {
+        width: min(100% - 20px, 1180px);
+      }
+
+      h1 {
+        max-width: none;
+      }
+
+      .diagram-stage {
+        padding: 4px;
+      }
+
+      .mermaid-diagram {
+        min-width: 520px;
+        font-size: 12px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="style.css">
+  <script src="../blog-common.js" defer></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script>
+    window.addEventListener("load", async function () {
+      if (!window.mermaid) return;
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: "loose",
+        theme: "base",
+        themeVariables: {
+          primaryColor: "#ffffff",
+          primaryTextColor: "#111111",
+          primaryBorderColor: "#111111",
+          lineColor: "#111111",
+          secondaryColor: "#f4f4f4",
+          tertiaryColor: "#fafafa",
+          background: "#ffffff",
+          mainBkg: "#ffffff",
+          secondBkg: "#f4f4f4",
+          tertiaryBkg: "#fafafa",
+          textColor: "#111111",
+          nodeBorder: "#111111",
+          clusterBkg: "#fafafa",
+          clusterBorder: "#8d8d8d",
+          edgeLabelBackground: "#ffffff",
+          fontFamily: "Helvetica Neue, Arial, sans-serif",
+          fontSize: "13px"
+        },
+        flowchart: {
+          useMaxWidth: true,
+          htmlLabels: true,
+          curve: "linear",
+          nodeSpacing: 58,
+          rankSpacing: 72,
+          padding: 18
+        },
+        sequence: {
+          useMaxWidth: true,
+          actorMargin: 72,
+          messageMargin: 48,
+          diagramMarginX: 24,
+          diagramMarginY: 18,
+          boxMargin: 18,
+          boxTextMargin: 8,
+          noteMargin: 12
+        },
+        journey: {
+          useMaxWidth: true,
+          diagramMarginX: 28,
+          diagramMarginY: 24,
+          leftMargin: 90,
+          rightMargin: 28,
+          taskMargin: 60
+        },
+        state: {
+          useMaxWidth: true,
+          edgeLengthFactor: 1.1
+        },
+        mindmap: {
+          useMaxWidth: true
+        }
+      });
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (error) {
+          console.warn("Mermaid font readiness check failed", error);
+        }
+      }
+      await new Promise(function (resolve) {
+        requestAnimationFrame(function () {
+          requestAnimationFrame(resolve);
+        });
+      });
+      mermaid.run({ querySelector: ".mermaid-diagram" });
+    });
+  </script>
+    
+</head>
+<body>
+  <div class="page">
+    <header class="masthead">
+      <p class="kicker">AI Security / Governance · DevOps / Infrastructure · Architecture Review</p>
+      <h1>Secure AI Compliance Control Plane</h1>
+      <p class="deck">A control plane for teams building AI products that need evidence, not vague policy decks. The platform registers projects, classifies data, maps controls, runs code and model checks, enforces deployment approval, and preserves audit-ready evidence across the lifecycle. It is aimed at organizations using models, prompts, APIs, vector stores, and observability pipelines that all need traceable governance.</p>
+      <div class="summary-strip" aria-label="Executive summary strip">
+        <article><h2>Primary Use</h2><p>A company wants to launch an AI document summarizer for legal contracts. Before launch, the control plane checks whether documents contain confidential data, whether prompts are logged safely, whether model providers are approved, and whether human review is required.</p></article><article><h2>System Built</h2><p>A control plane that treats AI governance as an engineering workflow with approvals, test evidence, and runtime monitoring.</p></article><article><h2>Critical Control</h2><p>NIST SSDF mapping</p></article><article><h2>Business Outcome</h2><p>The platform delivered both technical security and operational speed. Instead of blocking teams late, governance became part of system design from the beginning and made approvals clearer.</p></article>
+      </div>
+    </header>
+
+    <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
+      <strong>Implementation Lens:</strong> Structured the platform around secure software delivery rather than one-off compliance questionnaires, starting with project registration and data classification. Mapped each workflow stage to NIST SSDF, OWASP Secure Coding, OWASP ASVS, and NIST AI RMF so controls can be defended during review.
+    </div>
+    <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+      <strong style="margin-right:4px;">Stack:</strong>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">NIST SSDF</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">NIST AI RMF</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">OWASP ASVS</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Threat Modeling</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Security Controls</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Kubernetes Governance</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">SIEM Integration</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Audit Evidence Design</span>
+    </div>
+
+    <div class="layout">
+      <main class="article">
+        <section class="section" id="problem">
+          <aside class="margin-note">
+            Section I<br>
+            Operating Problem
+          </aside>
+          <div class="section-body">
+            <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
+            <p>Secure AI Compliance Control Plane was created for organizations that wanted to build AI products but were worried about security, privacy, governance, and audit risk. The client engineering team was already experimenting with LLMs, RAG systems, document automation, and internal copilots, but there was no consistent answer to basic control questions such as which data was entering the model, who could access prompts and outputs, whether logs stored sensitive content, and who approved production deployment.</p><p>The project was positioned not as a security checklist but as a full AI governance layer. Teams could register AI projects, classify data, map risks, define controls, run security checks, and generate audit-ready evidence.</p><p>The hard part was language alignment. Developers wanted APIs and CI/CD checks, security wanted threat models and logs, legal wanted privacy controls, and business teams wanted speed. The solution was a shared control plane where every AI project moved through the same lifecycle: intake, risk classification, design review, security testing, deployment approval, and monitoring.</p>
+            <div class="callout">
+              <p><strong>Value delivered.</strong> The platform delivered both technical security and operational speed. Instead of blocking teams late, governance became part of system design from the beginning and made approvals clearer.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="flow">
+          <aside class="margin-note">
+            Section II<br>
+            Flow Design
+          </aside>
+          <div class="section-body">
+            <h2>Section II · The system must be readable as a flow before it can be trusted in production</h2>
+            <p>Governance platform for secure AI delivery, mapping engineering work to NIST SSDF, OWASP practices, and NIST AI RMF controls.</p>
+            <p>Real-life use case solved: A company wants to launch an AI document summarizer for legal contracts. Before launch, the control plane checks whether documents contain confidential data, whether prompts are logged safely, whether model providers are approved, and whether human review is required.</p>
+            <figure aria-labelledby="architecture-caption">
+              <p class="diagram-title">Diagram A · Architecture Overview</p>
+              <svg viewBox="0 0 1160 330" role="img" aria-label="Secure AI Compliance Control Plane architecture diagram">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#111111"></path>
+    </marker>
+  </defs>
+  <rect width="1160" height="330" rx="28" fill="#ffffff" />
+  <text x="60" y="52" font-size="16" font-family="IBM Plex Mono" fill="#111111" letter-spacing="2">ARCHITECTURE OVERVIEW</text>
+  <text x="60" y="88" font-size="34" font-family="Space Grotesk" fill="#111111" font-weight="800">SECURE AI COMPLIANCE CONTROL PLANE</text>
+  <rect x="60" y="110" width="220" height="108" rx="18" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><text x="170" y="145" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Project registration</text><path d="M 280 164 L 335 164" stroke="#111111" stroke-width="4" marker-end="url(#arrow)"/><rect x="335" y="110" width="220" height="108" rx="18" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><text x="445" y="145" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Threat model</text><path d="M 555 164 L 610 164" stroke="#111111" stroke-width="4" marker-end="url(#arrow)"/><rect x="610" y="110" width="220" height="108" rx="18" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><text x="720" y="145" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Code and model</text><text x="720" y="167" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">scanning</text><path d="M 830 164 L 885 164" stroke="#111111" stroke-width="4" marker-end="url(#arrow)"/><rect x="885" y="110" width="220" height="108" rx="18" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><text x="995" y="145" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Live monitoring and</text><text x="995" y="167" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">reporting</text>
+</svg>
+              <figcaption id="architecture-caption">The architecture is shaped by execution boundary, integration dependency, and where human or system control must intervene.</figcaption>
+            </figure>
+            <p>The operational sequence below is the narrow path that has to stay legible under real deployment pressure.</p>
+            <figure aria-labelledby="workflow-caption">
+              <p class="diagram-title">Diagram B · End-to-End Flow</p>
+              <svg viewBox="0 0 1020 620" role="img" aria-label="Secure AI Compliance Control Plane flow diagram">
+  <rect width="1020" height="620" rx="28" fill="#ffffff" />
+  <text x="70" y="42" font-size="16" font-family="IBM Plex Mono" fill="#111111" letter-spacing="2">END-TO-END FLOW</text>
+  <rect x="70" y="70" width="880" height="58" rx="16" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="99" r="18" fill="#111111" /><text x="110" y="105" text-anchor="middle" font-size="15" font-family="IBM Plex Mono" fill="#ffffff">1</text><text x="150" y="94" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Project registration</text><path d="M 110 128 L 110 156" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="156" width="880" height="58" rx="16" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="185" r="18" fill="#111111" /><text x="110" y="191" text-anchor="middle" font-size="15" font-family="IBM Plex Mono" fill="#ffffff">2</text><text x="150" y="180" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Data classification</text><path d="M 110 214 L 110 242" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="242" width="880" height="58" rx="16" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="271" r="18" fill="#111111" /><text x="110" y="277" text-anchor="middle" font-size="15" font-family="IBM Plex Mono" fill="#ffffff">3</text><text x="150" y="266" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Threat model</text><path d="M 110 300 L 110 328" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="328" width="880" height="58" rx="16" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="357" r="18" fill="#111111" /><text x="110" y="363" text-anchor="middle" font-size="15" font-family="IBM Plex Mono" fill="#ffffff">4</text><text x="150" y="352" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Control mapping</text><path d="M 110 386 L 110 414" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="414" width="880" height="58" rx="16" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="443" r="18" fill="#111111" /><text x="110" y="449" text-anchor="middle" font-size="15" font-family="IBM Plex Mono" fill="#ffffff">5</text><text x="150" y="438" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Code and model scanning</text><path d="M 110 472 L 110 500" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="500" width="880" height="58" rx="16" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="529" r="18" fill="#111111" /><text x="110" y="535" text-anchor="middle" font-size="15" font-family="IBM Plex Mono" fill="#ffffff">6</text><text x="150" y="524" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Deployment approval</text><path d="M 110 558 L 110 586" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="586" width="880" height="58" rx="16" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="615" r="18" fill="#111111" /><text x="110" y="621" text-anchor="middle" font-size="15" font-family="IBM Plex Mono" fill="#ffffff">7</text><text x="150" y="610" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Live monitoring and reporting</text>
+</svg>
+              <figcaption id="workflow-caption">Each transition marks where latency, control, or approval assumptions become visible to the user or operator.</figcaption>
+            </figure>
+            <ul class="metric-list">
+              <li>Project registration</li><li>Data classification</li><li>Threat model</li><li>Control mapping</li><li>Code and model scanning</li><li>Deployment approval</li><li>Live monitoring and reporting</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section" id="surfaces">
+          <aside class="margin-note">
+            Section III<br>
+            Platform Surfaces
+          </aside>
+          <div class="section-body">
+            <h2>Section III · Integrations, monetization, and security define whether the system is commercially real</h2>
+            <p>The platform only becomes credible when surrounding surfaces are designed alongside the core model or workflow. Integrations decide where the output lands. Revenue model determines what deployment shape is sustainable. Security controls decide whether teams will approve the system for real use.</p>
+            <div class="comparison-grid">
+              <article class="comparison-card">
+                <h3>Key Features</h3>
+                <ul class="metric-list">
+                  <li>AI project registration</li><li>Risk scoring</li><li>Data classification</li><li>Prompt and output logging policy</li><li>Model access control</li><li>Approval workflow</li><li>CI/CD security gates</li><li>Compliance evidence dashboard</li>
+                </ul>
+              </article>
+              <article class="comparison-card">
+                <h3>Business Context</h3>
+                <p>A company wants to launch an AI document summarizer for legal contracts. Before launch, the control plane checks whether documents contain confidential data, whether prompts are logged safely, whether model providers are approved, and whether human review is required.</p>
+                <p>The platform delivered both technical security and operational speed. Instead of blocking teams late, governance became part of system design from the beginning and made approvals clearer.</p>
+              </article>
+            </div>
+            <table class="committee-table">
+              <caption>Commercial and control surfaces summarized as operating requirements rather than optional add-ons.</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Surface</th>
+                  <th scope="col">Role In The System</th>
+                  <th scope="col">Why It Matters</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Integrations</strong>GitHub, GitLab, Jira, Slack, Vault</td><td>Connects the product to systems where value is realized, not just demonstrated.</td><td>Real deployment depends on whether these endpoints can be reached and governed cleanly.</td></tr><tr><td><strong>Revenue Model</strong>B2B compliance SaaS, Audit-readiness package, Security consulting</td><td>Shows how the system becomes a product rather than a one-off implementation exercise.</td><td>The business shape determines pricing discipline, support model, and deployment boundaries.</td></tr><tr><td><strong>Security Boundary</strong>NIST SSDF mapping, OWASP secure coding guidance, Verification controls</td><td>Defines which controls are mandatory before operators will trust the workflow.</td><td>The control model is part of the user experience, not a separate compliance appendix.</td></tr>
+              </tbody>
+            </table>
+            <figure aria-labelledby="operating-caption">
+              <p class="diagram-title">Diagram C · Operating Map</p>
+              <svg viewBox="0 0 1140 430" role="img" aria-label="Secure AI Compliance Control Plane operating map"><rect width="1140" height="430" rx="28" fill="#ffffff" /><text x="60" y="48" font-size="16" font-family="IBM Plex Mono" fill="#111111" letter-spacing="2">OPERATING MAP</text><rect x="60" y="84" width="310" height="288" rx="18" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><text x="84" y="122" font-size="18" font-family="IBM Plex Mono" fill="#111111" font-weight="700">USE CASE</text><text x="84" y="160" font-size="19" font-family="IBM Plex Sans" fill="#111111">Engineering and security</text><text x="84" y="184" font-size="19" font-family="IBM Plex Sans" fill="#111111">teams that need provable</text><text x="84" y="208" font-size="19" font-family="IBM Plex Sans" fill="#111111">controls across prompts,</text><text x="84" y="232" font-size="19" font-family="IBM Plex Sans" fill="#111111">data handling, model</text><text x="84" y="256" font-size="19" font-family="IBM Plex Sans" fill="#111111">evaluation, deployment, and</text><text x="84" y="280" font-size="19" font-family="IBM Plex Sans" fill="#111111">logging.</text><rect x="410" y="84" width="310" height="288" rx="18" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><text x="434" y="122" font-size="18" font-family="IBM Plex Mono" fill="#111111" font-weight="700">CONTROL</text><text x="434" y="160" font-size="19" font-family="IBM Plex Sans" fill="#111111">NIST SSDF mapping</text><text x="434" y="202" font-size="19" font-family="IBM Plex Sans" fill="#111111">OWASP secure coding guidance</text><text x="434" y="244" font-size="19" font-family="IBM Plex Sans" fill="#111111">Verification controls</text><rect x="760" y="84" width="310" height="288" rx="18" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><text x="784" y="122" font-size="18" font-family="IBM Plex Mono" fill="#111111" font-weight="700">COMMERCIAL</text><text x="784" y="160" font-size="19" font-family="IBM Plex Sans" fill="#111111">B2B compliance SaaS</text><text x="784" y="202" font-size="19" font-family="IBM Plex Sans" fill="#111111">Audit-readiness package</text><text x="784" y="244" font-size="19" font-family="IBM Plex Sans" fill="#111111">Security consulting</text></svg>
+              <figcaption id="operating-caption">Use case, commercial model, and control model need to reinforce one another or the product stalls during implementation review.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section" id="delivery">
+          <aside class="margin-note">
+            Section IV<br>
+            Delivery Path
+          </aside>
+          <div class="section-body">
+            <h2>Section IV · Delivery discipline decides whether the first version proves the right thing</h2>
+            <div class="comparison-grid">
+              <article class="comparison-card">
+                <h3>Difficulty Faced</h3>
+                <p>The main challenge was balancing innovation with governance. Too much control would slow delivery. Too little control would create risk. The design solved this with risk-based controls: lightweight review for low-risk internal tools and stricter review for sensitive or customer-facing systems.</p>
+                <p>Connecting secure software controls and AI-specific evaluation signals into one approval path without creating pure compliance theatre.</p>
+              </article>
+              <article class="comparison-card">
+                <h3>Client Coordination Method</h3>
+                <p>Structured workshops were run with engineering, legal, compliance, and product owners separately first, then merged into one governance workflow. That avoided large meetings where stakeholders talked past each other and helped converge on one lifecycle model.</p>
+                <p>Best fit: Platform security roles, MLOps roles, Governance roles</p>
+                <ul class="metric-list">
+                  <li>Connected code scanning, model evaluation, secret handling, and runtime monitoring into a single approval path instead of separate tools with weak traceability.</li><li>Positioned the product as B2B SaaS plus audit-readiness packaging for enterprises operating multi-model AI stacks.</li>
+                </ul>
+              </article>
+            </div>
+            <figure aria-labelledby="mermaid-caption">
+              <p class="diagram-title">Diagram D · Compliance Workflow Diagram</p>
+              <div class="diagram-stage">
+                <div class="mermaid mermaid-diagram">flowchart LR
+    A[AI Idea&lt;br/&gt;Submitted] --&gt; B[Use Case Intake]
+    B --&gt; C[Data&lt;br/&gt;Classification]
+    C --&gt; D{Risk Level}
+    D --&gt;|Low| E[Lightweight&lt;br/&gt;Review]
+    D --&gt;|Medium| F[Security +&lt;br/&gt;Privacy Review]
+    D --&gt;|High| G[Legal +&lt;br/&gt;Compliance +&lt;br/&gt;Human Approval]
+    E --&gt; H[CI/CD Security&lt;br/&gt;Checks]
+    F --&gt; H
+    G --&gt; H
+    H --&gt; I[Deployment&lt;br/&gt;Approval]
+    I --&gt; J[Production&lt;br/&gt;Monitoring]
+    J --&gt; K[Audit Evidence&lt;br/&gt;Dashboard]</div>
+              </div>
+              <figcaption id="mermaid-caption">This project-specific flow is rendered directly with Mermaid so the visual stays relevant to the operating narrative instead of appearing as source text.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section" id="decision">
+          <aside class="margin-note">
+            Section V<br>
+            Decision Boundary
+          </aside>
+          <div class="section-body">
+            <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
+            <p>This is the difference between AI governance slides and a real control system engineers can operate every day.</p>
+            <p>The product only becomes credible when deployment approval is tied to evidence already generated by engineering work, not manual spreadsheet attestations.</p>
+            <div class="policy-grid">
+              <article class="policy-card">
+                <h3>Biggest Surprise</h3>
+                <p>Teams accept governance faster when the control plane shortens audit preparation time rather than only adding gates.</p>
+              </article>
+              <article class="policy-card">
+                <h3>Next Step</h3>
+                <p>The next expansion should add policy-as-code packs for common regulated environments and reusable control baselines per AI architecture pattern.</p>
+              </article>
+            </div>
+            <p class="fine-print">Related directions for the same portfolio theme: prompt-reliability-workflow, onprem-comment-intelligence-engine, openrouter-model-gateway-for-ai-apps.</p>
+          </div>
+        </section>
+      </main>
+
+      <aside class="rail">
+        <h2>Review Rail</h2>
+        <p>AI Security / Governance</p>
+        <p style="margin:8px 0 12px;">DevOps / Infrastructure</p>
+        <ul>
+          <li>Commercial angle: B2B compliance SaaS</li>
+          <li>Critical control: NIST SSDF mapping</li>
+          <li>Best fit: Platform security roles, MLOps roles, Governance roles</li>
+        </ul>
+        <h2 style="margin-top:18px;">Related Threads</h2>
+        <ul>
+          <li>Prompt Reliability Workflow</li><li>Onprem Comment Intelligence Engine</li><li>Openrouter Model Gateway For Ai Apps</li>
+        </ul>
+      </aside>
+    </div>
+
+    <p class="footer-note">This document follows the same editorial pattern as the NPA case study template: monochrome sections, margin-note navigation, summary strip, sticky review rail, and inline SVG figures.</p>
+  </div>
+  <script type="application/json" id="blog-config">{"slug": "secure-ai-compliance-control-plane"}</script>
+</body>
+</html>

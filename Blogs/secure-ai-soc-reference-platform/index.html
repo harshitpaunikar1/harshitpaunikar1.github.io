@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure AI SoC Reference Platform</title>
+  <meta name="description" content="Secure reference platform for edge AI devices spanning secure boot, trusted runtime, encrypted model delivery, OTA, and fleet governance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --ink: #111111;
+      --muted: #5e5e5e;
+      --soft: #f4f4f4;
+      --panel: #fafafa;
+      --line: #d2d2d2;
+      --line-strong: #8d8d8d;
+      --shade: #e8e8e8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-color: var(--line-strong);
+      text-underline-offset: 0.18em;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 64px;
+    }
+
+    .masthead {
+      border-top: 3px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      padding: 20px 0 24px;
+      margin-bottom: 28px;
+    }
+
+    .kicker {
+      margin: 0 0 12px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    h1 {
+      max-width: 12ch;
+      margin: 0;
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .deck {
+      margin: 18px 0 0;
+      max-width: 70ch;
+      font-size: 1.08rem;
+      color: var(--muted);
+    }
+
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .summary-strip article {
+      border: 1px solid var(--ink);
+      padding: 12px 14px;
+      background: var(--panel);
+    }
+
+    .summary-strip h2,
+    .summary-strip p {
+      margin: 0;
+    }
+
+    .summary-strip h2 {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .summary-strip p {
+      font-size: 0.95rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 250px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .article {
+      min-width: 0;
+    }
+
+    .rail {
+      position: sticky;
+      top: 18px;
+      border: 1px solid var(--ink);
+      padding: 16px;
+      background: var(--panel);
+    }
+
+    .rail h2 {
+      margin: 0 0 10px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .rail p,
+    .rail li {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .rail ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .section {
+      display: grid;
+      grid-template-columns: 132px minmax(0, 1fr);
+      gap: 18px;
+      padding: 20px 0 22px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .margin-note {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.76rem;
+      line-height: 1.45;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .section-body h2 {
+      margin: 0 0 12px;
+      font-size: 1.36rem;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 8px;
+    }
+
+    .section-body p {
+      margin: 0 0 1rem;
+      font-size: 1rem;
+    }
+
+    .section-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .fine-print {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .callout {
+      border-left: 3px solid var(--ink);
+      padding: 12px 14px;
+      background: var(--soft);
+      margin: 16px 0;
+    }
+
+    .callout p {
+      margin: 0;
+    }
+
+    .committee-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      table-layout: fixed;
+    }
+
+    .committee-table caption {
+      caption-side: bottom;
+      text-align: left;
+      font-size: 0.84rem;
+      color: var(--muted);
+      padding-top: 8px;
+    }
+
+    .committee-table th,
+    .committee-table td {
+      border: 1px solid var(--line);
+      padding: 10px 10px 9px;
+      vertical-align: top;
+      font-size: 0.93rem;
+    }
+
+    .committee-table th {
+      background: var(--soft);
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: left;
+    }
+
+    .committee-table td strong {
+      display: block;
+      margin-bottom: 4px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .comparison-grid,
+    .policy-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .comparison-grid > *,
+    .policy-grid > * {
+      flex: 1 1 280px;
+    }
+
+    .comparison-card,
+    .policy-card {
+      border: 1px solid var(--ink);
+      padding: 14px;
+      background: var(--panel);
+    }
+
+    .comparison-card h3,
+    .policy-card h3,
+    figure h3 {
+      margin: 0 0 8px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .comparison-card p,
+    .policy-card p {
+      margin: 0 0 10px;
+      font-size: 0.94rem;
+    }
+
+    .comparison-card p:last-child,
+    .policy-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .metric-list {
+      margin: 12px 0 0;
+      padding-left: 18px;
+    }
+
+    .metric-list li {
+      margin-bottom: 8px;
+    }
+
+    figure {
+      margin: 18px 0;
+      border: 1px solid var(--ink);
+      padding: 12px;
+      background: #fcfcfc;
+    }
+
+    figcaption {
+      margin-top: 10px;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .diagram-title {
+      margin: 0 0 10px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .diagram-stage {
+      padding: 8px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+    }
+
+    .mermaid-diagram {
+      min-width: 640px;
+      font-size: 13px;
+    }
+
+    .mermaid-diagram svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .mermaid-diagram .label,
+    .mermaid-diagram .nodeLabel,
+    .mermaid-diagram .edgeLabel {
+      line-height: 1.15;
+    }
+
+    .mermaid-diagram foreignObject {
+      overflow: visible;
+    }
+
+    .mermaid-diagram .label div,
+    .mermaid-diagram .nodeLabel p,
+    .mermaid-diagram .edgeLabel p {
+      margin: 0;
+      padding: 2px 4px;
+      line-height: 1.15;
+    }
+
+    .footer-note {
+      border-top: 1px solid var(--ink);
+      padding-top: 16px;
+      margin-top: 28px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 980px) {
+      .summary-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .rail {
+        position: static;
+        order: -1;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .summary-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .margin-note {
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 8px;
+      }
+
+      .page {
+        width: min(100% - 20px, 1180px);
+      }
+
+      h1 {
+        max-width: none;
+      }
+
+      .diagram-stage {
+        padding: 4px;
+      }
+
+      .mermaid-diagram {
+        min-width: 520px;
+        font-size: 12px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="style.css">
+  <script src="../blog-common.js" defer></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script>
+    window.addEventListener("load", async function () {
+      if (!window.mermaid) return;
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: "loose",
+        theme: "base",
+        themeVariables: {
+          primaryColor: "#ffffff",
+          primaryTextColor: "#111111",
+          primaryBorderColor: "#111111",
+          lineColor: "#111111",
+          secondaryColor: "#f4f4f4",
+          tertiaryColor: "#fafafa",
+          background: "#ffffff",
+          mainBkg: "#ffffff",
+          secondBkg: "#f4f4f4",
+          tertiaryBkg: "#fafafa",
+          textColor: "#111111",
+          nodeBorder: "#111111",
+          clusterBkg: "#fafafa",
+          clusterBorder: "#8d8d8d",
+          edgeLabelBackground: "#ffffff",
+          fontFamily: "Helvetica Neue, Arial, sans-serif",
+          fontSize: "13px"
+        },
+        flowchart: {
+          useMaxWidth: true,
+          htmlLabels: true,
+          curve: "linear",
+          nodeSpacing: 58,
+          rankSpacing: 72,
+          padding: 18
+        },
+        sequence: {
+          useMaxWidth: true,
+          actorMargin: 72,
+          messageMargin: 48,
+          diagramMarginX: 24,
+          diagramMarginY: 18,
+          boxMargin: 18,
+          boxTextMargin: 8,
+          noteMargin: 12
+        },
+        journey: {
+          useMaxWidth: true,
+          diagramMarginX: 28,
+          diagramMarginY: 24,
+          leftMargin: 90,
+          rightMargin: 28,
+          taskMargin: 60
+        },
+        state: {
+          useMaxWidth: true,
+          edgeLengthFactor: 1.1
+        },
+        mindmap: {
+          useMaxWidth: true
+        }
+      });
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (error) {
+          console.warn("Mermaid font readiness check failed", error);
+        }
+      }
+      await new Promise(function (resolve) {
+        requestAnimationFrame(function () {
+          requestAnimationFrame(resolve);
+        });
+      });
+      mermaid.run({ querySelector: ".mermaid-diagram" });
+    });
+  </script>
+    
+</head>
+<body>
+  <div class="page">
+    <header class="masthead">
+      <p class="kicker">Edge Security / Embedded AI · DevOps / Infrastructure · Architecture Review</p>
+      <h1>Secure AI SoC Reference Platform</h1>
+      <p class="deck">A reference security platform for AI-enabled SoC devices such as cameras, kiosks, tablets, sensors, and industrial endpoints. The design begins at Boot ROM and follows the trust chain through secure bootloader, signed OS, trusted runtime, model loading, OTA updates, and fleet monitoring. The target buyer is an OEM or hardware startup that wants a practical blueprint before committing to large-scale manufacturing.</p>
+      <div class="summary-strip" aria-label="Executive summary strip">
+        <article><h2>Primary Use</h2><p>A company building an AI camera wants to prevent attackers from replacing the model, extracting keys, or installing malicious firmware. The reference platform provides the secure foundation.</p></article><article><h2>System Built</h2><p>A secure SoC reference architecture covering trust chain, AI runtime, updates, and fleet operations.</p></article><article><h2>Critical Control</h2><p>Secure boot</p></article><article><h2>Business Outcome</h2><p>The project delivered a production-ready security reference for AI edge devices.</p></article>
+      </div>
+    </header>
+
+    <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
+      <strong>Implementation Lens:</strong> Defined the system from hardware requirements outward, starting with trust anchors, secure boot chain, and key storage. Connected trusted runtime decisions to the AI application layer so model weights, debug ports, and update logic are protected coherently.
+    </div>
+    <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+      <strong style="margin-right:4px;">Stack:</strong>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Secure Boot</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Trusted Execution Environments</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">SBOM</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">OTA Security</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Device Attestation</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Yocto Linux</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Embedded Systems</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Fleet Governance</span>
+    </div>
+
+    <div class="layout">
+      <main class="article">
+        <section class="section" id="problem">
+          <aside class="margin-note">
+            Section I<br>
+            Operating Problem
+          </aside>
+          <div class="section-body">
+            <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
+            <p>Secure AI SoC Reference Platform was designed for edge AI hardware products such as smart cameras, kiosks, industrial sensors, robots, and rugged devices. The goal was to create a secure blueprint for building AI into hardware from the chip level up to the application layer.</p><p>Many AI hardware projects focus only on model performance, but real deployment makes security equally important. If the device can be accessed physically, attacked through firmware, or updated insecurely, the AI system becomes a risk.</p><p>The project covered secure boot, signed firmware, encrypted model storage, device identity, attestation, OTA updates, and runtime protection across the hardware and software boundary.</p>
+            <div class="callout">
+              <p><strong>Value delivered.</strong> The project delivered a production-ready security reference for AI edge devices.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="flow">
+          <aside class="margin-note">
+            Section II<br>
+            Flow Design
+          </aside>
+          <div class="section-body">
+            <h2>Section II · The system must be readable as a flow before it can be trusted in production</h2>
+            <p>Secure reference platform for edge AI devices spanning secure boot, trusted runtime, encrypted model delivery, OTA, and fleet governance.</p>
+            <p>Real-life use case solved: A company building an AI camera wants to prevent attackers from replacing the model, extracting keys, or installing malicious firmware. The reference platform provides the secure foundation.</p>
+            <figure aria-labelledby="architecture-caption">
+              <p class="diagram-title">Diagram A · Architecture Overview</p>
+              <svg viewBox="0 0 1160 330" role="img" aria-label="Secure AI SoC Reference Platform architecture diagram">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#111111"></path>
+    </marker>
+  </defs>
+  <rect width="1160" height="330" rx="28" fill="#ffffff" />
+  <text x="60" y="52" font-size="16" font-family="Space Mono" fill="#111111" letter-spacing="2">ARCHITECTURE OVERVIEW</text>
+  <text x="60" y="88" font-size="34" font-family="Public Sans" fill="#111111" font-weight="800">SECURE AI SOC REFERENCE PLATFORM</text>
+  <rect x="60" y="110" width="220" height="108" rx="18" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><text x="170" y="145" text-anchor="middle" font-size="19" font-family="Public Sans" fill="#111111" font-weight="600">Hardware</text><text x="170" y="167" text-anchor="middle" font-size="19" font-family="Public Sans" fill="#111111" font-weight="600">requirements are</text><text x="170" y="189" text-anchor="middle" font-size="19" font-family="Public Sans" fill="#111111" font-weight="600">defined</text><path d="M 280 164 L 335 164" stroke="#111111" stroke-width="4" marker-end="url(#arrow)"/><rect x="335" y="110" width="220" height="108" rx="18" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><text x="445" y="145" text-anchor="middle" font-size="19" font-family="Public Sans" fill="#111111" font-weight="600">Secure boot chain is</text><text x="445" y="167" text-anchor="middle" font-size="19" font-family="Public Sans" fill="#111111" font-weight="600">established</text><path d="M 555 164 L 610 164" stroke="#111111" stroke-width="4" marker-end="url(#arrow)"/><rect x="610" y="110" width="220" height="108" rx="18" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><text x="720" y="145" text-anchor="middle" font-size="19" font-family="Public Sans" fill="#111111" font-weight="600">Signed OTA updates</text><text x="720" y="167" text-anchor="middle" font-size="19" font-family="Public Sans" fill="#111111" font-weight="600">are applied</text><path d="M 830 164 L 885 164" stroke="#111111" stroke-width="4" marker-end="url(#arrow)"/><rect x="885" y="110" width="220" height="108" rx="18" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><text x="995" y="145" text-anchor="middle" font-size="19" font-family="Public Sans" fill="#111111" font-weight="600">Fleet monitoring</text><text x="995" y="167" text-anchor="middle" font-size="19" font-family="Public Sans" fill="#111111" font-weight="600">tracks device health</text>
+</svg>
+              <figcaption id="architecture-caption">The architecture is shaped by execution boundary, integration dependency, and where human or system control must intervene.</figcaption>
+            </figure>
+            <p>The operational sequence below is the narrow path that has to stay legible under real deployment pressure.</p>
+            <figure aria-labelledby="workflow-caption">
+              <p class="diagram-title">Diagram B · End-to-End Flow</p>
+              <svg viewBox="0 0 1020 620" role="img" aria-label="Secure AI SoC Reference Platform flow diagram">
+  <rect width="1020" height="620" rx="28" fill="#ffffff" />
+  <text x="70" y="42" font-size="16" font-family="Space Mono" fill="#111111" letter-spacing="2">END-TO-END FLOW</text>
+  <rect x="70" y="70" width="880" height="58" rx="16" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="99" r="18" fill="#111111" /><text x="110" y="105" text-anchor="middle" font-size="15" font-family="Space Mono" fill="#ffffff">1</text><text x="150" y="94" font-size="20" font-family="Public Sans" fill="#111111" font-weight="600">Hardware requirements are defined</text><path d="M 110 128 L 110 156" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="156" width="880" height="58" rx="16" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="185" r="18" fill="#111111" /><text x="110" y="191" text-anchor="middle" font-size="15" font-family="Space Mono" fill="#ffffff">2</text><text x="150" y="180" font-size="20" font-family="Public Sans" fill="#111111" font-weight="600">Threat model is created</text><path d="M 110 214 L 110 242" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="242" width="880" height="58" rx="16" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="271" r="18" fill="#111111" /><text x="110" y="277" text-anchor="middle" font-size="15" font-family="Space Mono" fill="#ffffff">3</text><text x="150" y="266" font-size="20" font-family="Public Sans" fill="#111111" font-weight="600">Secure boot chain is established</text><path d="M 110 300 L 110 328" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="328" width="880" height="58" rx="16" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="357" r="18" fill="#111111" /><text x="110" y="363" text-anchor="middle" font-size="15" font-family="Space Mono" fill="#ffffff">4</text><text x="150" y="352" font-size="20" font-family="Public Sans" fill="#111111" font-weight="600">Trusted runtime loads AI app</text><path d="M 110 386 L 110 414" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="414" width="880" height="58" rx="16" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="443" r="18" fill="#111111" /><text x="110" y="449" text-anchor="middle" font-size="15" font-family="Space Mono" fill="#ffffff">5</text><text x="150" y="438" font-size="20" font-family="Public Sans" fill="#111111" font-weight="600">Signed OTA updates are applied</text><path d="M 110 472 L 110 500" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="500" width="880" height="58" rx="16" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="529" r="18" fill="#111111" /><text x="110" y="535" text-anchor="middle" font-size="15" font-family="Space Mono" fill="#ffffff">6</text><text x="150" y="524" font-size="20" font-family="Public Sans" fill="#111111" font-weight="600">Fleet monitoring tracks device health</text>
+</svg>
+              <figcaption id="workflow-caption">Each transition marks where latency, control, or approval assumptions become visible to the user or operator.</figcaption>
+            </figure>
+            <ul class="metric-list">
+              <li>Hardware requirements are defined</li><li>Threat model is created</li><li>Secure boot chain is established</li><li>Trusted runtime loads AI app</li><li>Signed OTA updates are applied</li><li>Fleet monitoring tracks device health</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section" id="surfaces">
+          <aside class="margin-note">
+            Section III<br>
+            Platform Surfaces
+          </aside>
+          <div class="section-body">
+            <h2>Section III · Integrations, monetization, and security define whether the system is commercially real</h2>
+            <p>The platform only becomes credible when surrounding surfaces are designed alongside the core model or workflow. Integrations decide where the output lands. Revenue model determines what deployment shape is sustainable. Security controls decide whether teams will approve the system for real use.</p>
+            <div class="comparison-grid">
+              <article class="comparison-card">
+                <h3>Key Features</h3>
+                <ul class="metric-list">
+                  <li>Secure boot chain</li><li>Signed firmware</li><li>Encrypted AI model weights</li><li>Trusted execution environment</li><li>OTA update security</li><li>Device identity</li><li>Fleet monitoring</li>
+                </ul>
+              </article>
+              <article class="comparison-card">
+                <h3>Business Context</h3>
+                <p>A company building an AI camera wants to prevent attackers from replacing the model, extracting keys, or installing malicious firmware. The reference platform provides the secure foundation.</p>
+                <p>The project delivered a production-ready security reference for AI edge devices.</p>
+              </article>
+            </div>
+            <table class="committee-table">
+              <caption>Commercial and control surfaces summarized as operating requirements rather than optional add-ons.</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Surface</th>
+                  <th scope="col">Role In The System</th>
+                  <th scope="col">Why It Matters</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Integrations</strong>ARM and NPU runtimes, Linux Yocto, TPM or secure element, Mender, RAUC</td><td>Connects the product to systems where value is realized, not just demonstrated.</td><td>Real deployment depends on whether these endpoints can be reached and governed cleanly.</td></tr><tr><td><strong>Revenue Model</strong>OEM reference design license, Security certification service, Managed OTA and fleet platform</td><td>Shows how the system becomes a product rather than a one-off implementation exercise.</td><td>The business shape determines pricing discipline, support model, and deployment boundaries.</td></tr><tr><td><strong>Security Boundary</strong>Secure boot, Signed firmware, Encrypted model weights</td><td>Defines which controls are mandatory before operators will trust the workflow.</td><td>The control model is part of the user experience, not a separate compliance appendix.</td></tr>
+              </tbody>
+            </table>
+            <figure aria-labelledby="operating-caption">
+              <p class="diagram-title">Diagram C · Operating Map</p>
+              <svg viewBox="0 0 1140 430" role="img" aria-label="Secure AI SoC Reference Platform operating map"><rect width="1140" height="430" rx="28" fill="#ffffff" /><text x="60" y="48" font-size="16" font-family="Space Mono" fill="#111111" letter-spacing="2">OPERATING MAP</text><rect x="60" y="84" width="310" height="288" rx="18" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><text x="84" y="122" font-size="18" font-family="Space Mono" fill="#111111" font-weight="700">USE CASE</text><text x="84" y="160" font-size="19" font-family="Public Sans" fill="#111111">OEMs and hardware teams</text><text x="84" y="184" font-size="19" font-family="Public Sans" fill="#111111">building AI edge devices</text><text x="84" y="208" font-size="19" font-family="Public Sans" fill="#111111">that need device trust,</text><text x="84" y="232" font-size="19" font-family="Public Sans" fill="#111111">model protection, and</text><text x="84" y="256" font-size="19" font-family="Public Sans" fill="#111111">lifecycle controls from the</text><text x="84" y="280" font-size="19" font-family="Public Sans" fill="#111111">start.</text><rect x="410" y="84" width="310" height="288" rx="18" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><text x="434" y="122" font-size="18" font-family="Space Mono" fill="#111111" font-weight="700">CONTROL</text><text x="434" y="160" font-size="19" font-family="Public Sans" fill="#111111">Secure boot</text><text x="434" y="202" font-size="19" font-family="Public Sans" fill="#111111">Signed firmware</text><text x="434" y="244" font-size="19" font-family="Public Sans" fill="#111111">Encrypted model weights</text><rect x="760" y="84" width="310" height="288" rx="18" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><text x="784" y="122" font-size="18" font-family="Space Mono" fill="#111111" font-weight="700">COMMERCIAL</text><text x="784" y="160" font-size="19" font-family="Public Sans" fill="#111111">OEM reference design license</text><text x="784" y="202" font-size="19" font-family="Public Sans" fill="#111111">Security certification</text><text x="784" y="226" font-size="19" font-family="Public Sans" fill="#111111">service</text><text x="784" y="268" font-size="19" font-family="Public Sans" fill="#111111">Managed OTA and fleet</text><text x="784" y="292" font-size="19" font-family="Public Sans" fill="#111111">platform</text></svg>
+              <figcaption id="operating-caption">Use case, commercial model, and control model need to reinforce one another or the product stalls during implementation review.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section" id="delivery">
+          <aside class="margin-note">
+            Section IV<br>
+            Delivery Path
+          </aside>
+          <div class="section-body">
+            <h2>Section IV · Delivery discipline decides whether the first version proves the right thing</h2>
+            <div class="comparison-grid">
+              <article class="comparison-card">
+                <h3>Difficulty Faced</h3>
+                <p>The hardest challenge was connecting hardware security with software delivery. Hardware teams think in boot chains and chips while software teams think in APIs and deployment, so the solution used one shared lifecycle diagram from boot ROM to cloud monitoring.</p>
+                <p>Linking embedded security primitives to the realities of model delivery, OTA reliability, and AI application lifecycle.</p>
+              </article>
+              <article class="comparison-card">
+                <h3>Client Coordination Method</h3>
+                <p>Coordination involved hardware engineers, embedded developers, cloud engineers, and security reviewers. Architecture review boards were used where each layer owner had to explain both threat model and protection method.</p>
+                <p>Best fit: Embedded security roles, Edge platform roles, Device engineering roles</p>
+                <ul class="metric-list">
+                  <li>Mapped the platform to realistic embedded integrations such as Yocto Linux, TPM or secure element, MQTT, and edge fleet control plane.</li><li>Positioned the offer as reference design licensing plus certification and managed fleet services.</li>
+                </ul>
+              </article>
+            </div>
+            <figure aria-labelledby="mermaid-caption">
+              <p class="diagram-title">Diagram D · Secure Boot and Runtime Diagram</p>
+              <div class="diagram-stage">
+                <div class="mermaid mermaid-diagram">flowchart TD
+    A[Boot ROM] --&gt; B[Verify&lt;br/&gt;Bootloader&lt;br/&gt;Signature]
+    B --&gt; C[Load Secure&lt;br/&gt;Bootloader]
+    C --&gt; D[Verify OS Image]
+    D --&gt; E[Start Trusted OS&lt;br/&gt;Runtime]
+    E --&gt; F[Load Encrypted&lt;br/&gt;AI Model]
+    F --&gt; G[Run Edge AI&lt;br/&gt;Application]
+    G --&gt; H[Device&lt;br/&gt;Attestation]
+    H --&gt; I[Cloud Fleet&lt;br/&gt;Monitoring]
+    I --&gt; J[Signed OTA&lt;br/&gt;Update]
+    J --&gt; B</div>
+              </div>
+              <figcaption id="mermaid-caption">This project-specific flow is rendered directly with Mermaid so the visual stays relevant to the operating narrative instead of appearing as source text.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section" id="decision">
+          <aside class="margin-note">
+            Section V<br>
+            Decision Boundary
+          </aside>
+          <div class="section-body">
+            <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
+            <p>This is the security discipline that lets edge AI products survive contact with manufacturing, operations, and auditors.</p>
+            <p>The reference point has to start at boot trust. Anything later is already downstream of a compromise boundary.</p>
+            <div class="policy-grid">
+              <article class="policy-card">
+                <h3>Biggest Surprise</h3>
+                <p>Model weight protection is often discussed separately from firmware security even though the runtime boundary connects both.</p>
+              </article>
+              <article class="policy-card">
+                <h3>Next Step</h3>
+                <p>The next step should add per-device manufacturing enrollment and attestation verification flows for real OEM rollout.</p>
+              </article>
+            </div>
+            <p class="fine-print">Related directions for the same portfolio theme: axis-artpec-smart-surveillance-analytics, secure-ai-compliance-control-plane, windows-offline-ai-app.</p>
+          </div>
+        </section>
+      </main>
+
+      <aside class="rail">
+        <h2>Review Rail</h2>
+        <p>Edge Security / Embedded AI</p>
+        <p style="margin:8px 0 12px;">DevOps / Infrastructure</p>
+        <ul>
+          <li>Commercial angle: OEM reference design license</li>
+          <li>Critical control: Secure boot</li>
+          <li>Best fit: Embedded security roles, Edge platform roles, Device engineering roles</li>
+        </ul>
+        <h2 style="margin-top:18px;">Related Threads</h2>
+        <ul>
+          <li>Axis Artpec Smart Surveillance Analytics</li><li>Secure Ai Compliance Control Plane</li><li>Windows Offline Ai App</li>
+        </ul>
+      </aside>
+    </div>
+
+    <p class="footer-note">This document follows the same editorial pattern as the NPA case study template: monochrome sections, margin-note navigation, summary strip, sticky review rail, and inline SVG figures.</p>
+  </div>
+  <script type="application/json" id="blog-config">{"slug": "secure-ai-soc-reference-platform"}</script>
+</body>
+</html>

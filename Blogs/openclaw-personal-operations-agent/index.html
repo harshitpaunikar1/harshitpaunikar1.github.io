@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw Personal Operations Agent</title>
+  <meta name="description" content="Action-oriented personal operations agent that works through chat channels while enforcing permissions and human approval.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --ink: #111111;
+      --muted: #5e5e5e;
+      --soft: #f4f4f4;
+      --panel: #fafafa;
+      --line: #d2d2d2;
+      --line-strong: #8d8d8d;
+      --shade: #e8e8e8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-color: var(--line-strong);
+      text-underline-offset: 0.18em;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 64px;
+    }
+
+    .masthead {
+      border-top: 3px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      padding: 20px 0 24px;
+      margin-bottom: 28px;
+    }
+
+    .kicker {
+      margin: 0 0 12px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    h1 {
+      max-width: 12ch;
+      margin: 0;
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .deck {
+      margin: 18px 0 0;
+      max-width: 70ch;
+      font-size: 1.08rem;
+      color: var(--muted);
+    }
+
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .summary-strip article {
+      border: 1px solid var(--ink);
+      padding: 12px 14px;
+      background: var(--panel);
+    }
+
+    .summary-strip h2,
+    .summary-strip p {
+      margin: 0;
+    }
+
+    .summary-strip h2 {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .summary-strip p {
+      font-size: 0.95rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 250px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .article {
+      min-width: 0;
+    }
+
+    .rail {
+      position: sticky;
+      top: 18px;
+      border: 1px solid var(--ink);
+      padding: 16px;
+      background: var(--panel);
+    }
+
+    .rail h2 {
+      margin: 0 0 10px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .rail p,
+    .rail li {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .rail ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .section {
+      display: grid;
+      grid-template-columns: 132px minmax(0, 1fr);
+      gap: 18px;
+      padding: 20px 0 22px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .margin-note {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.76rem;
+      line-height: 1.45;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .section-body h2 {
+      margin: 0 0 12px;
+      font-size: 1.36rem;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 8px;
+    }
+
+    .section-body p {
+      margin: 0 0 1rem;
+      font-size: 1rem;
+    }
+
+    .section-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .fine-print {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .callout {
+      border-left: 3px solid var(--ink);
+      padding: 12px 14px;
+      background: var(--soft);
+      margin: 16px 0;
+    }
+
+    .callout p {
+      margin: 0;
+    }
+
+    .committee-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      table-layout: fixed;
+    }
+
+    .committee-table caption {
+      caption-side: bottom;
+      text-align: left;
+      font-size: 0.84rem;
+      color: var(--muted);
+      padding-top: 8px;
+    }
+
+    .committee-table th,
+    .committee-table td {
+      border: 1px solid var(--line);
+      padding: 10px 10px 9px;
+      vertical-align: top;
+      font-size: 0.93rem;
+    }
+
+    .committee-table th {
+      background: var(--soft);
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: left;
+    }
+
+    .committee-table td strong {
+      display: block;
+      margin-bottom: 4px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .comparison-grid,
+    .policy-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .comparison-grid > *,
+    .policy-grid > * {
+      flex: 1 1 280px;
+    }
+
+    .comparison-card,
+    .policy-card {
+      border: 1px solid var(--ink);
+      padding: 14px;
+      background: var(--panel);
+    }
+
+    .comparison-card h3,
+    .policy-card h3,
+    figure h3 {
+      margin: 0 0 8px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .comparison-card p,
+    .policy-card p {
+      margin: 0 0 10px;
+      font-size: 0.94rem;
+    }
+
+    .comparison-card p:last-child,
+    .policy-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .metric-list {
+      margin: 12px 0 0;
+      padding-left: 18px;
+    }
+
+    .metric-list li {
+      margin-bottom: 8px;
+    }
+
+    figure {
+      margin: 18px 0;
+      border: 1px solid var(--ink);
+      padding: 12px;
+      background: #fcfcfc;
+    }
+
+    figcaption {
+      margin-top: 10px;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .diagram-title {
+      margin: 0 0 10px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .diagram-stage {
+      padding: 8px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+    }
+
+    .mermaid-diagram {
+      min-width: 640px;
+      font-size: 13px;
+    }
+
+    .mermaid-diagram svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .mermaid-diagram .label,
+    .mermaid-diagram .nodeLabel,
+    .mermaid-diagram .edgeLabel {
+      line-height: 1.15;
+    }
+
+    .mermaid-diagram foreignObject {
+      overflow: visible;
+    }
+
+    .mermaid-diagram .label div,
+    .mermaid-diagram .nodeLabel p,
+    .mermaid-diagram .edgeLabel p {
+      margin: 0;
+      padding: 2px 4px;
+      line-height: 1.15;
+    }
+
+    .footer-note {
+      border-top: 1px solid var(--ink);
+      padding-top: 16px;
+      margin-top: 28px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 980px) {
+      .summary-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .rail {
+        position: static;
+        order: -1;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .summary-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .margin-note {
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 8px;
+      }
+
+      .page {
+        width: min(100% - 20px, 1180px);
+      }
+
+      h1 {
+        max-width: none;
+      }
+
+      .diagram-stage {
+        padding: 4px;
+      }
+
+      .mermaid-diagram {
+        min-width: 520px;
+        font-size: 12px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="style.css">
+  <script src="../blog-common.js" defer></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script>
+    window.addEventListener("load", async function () {
+      if (!window.mermaid) return;
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: "loose",
+        theme: "base",
+        themeVariables: {
+          primaryColor: "#ffffff",
+          primaryTextColor: "#111111",
+          primaryBorderColor: "#111111",
+          lineColor: "#111111",
+          secondaryColor: "#f4f4f4",
+          tertiaryColor: "#fafafa",
+          background: "#ffffff",
+          mainBkg: "#ffffff",
+          secondBkg: "#f4f4f4",
+          tertiaryBkg: "#fafafa",
+          textColor: "#111111",
+          nodeBorder: "#111111",
+          clusterBkg: "#fafafa",
+          clusterBorder: "#8d8d8d",
+          edgeLabelBackground: "#ffffff",
+          fontFamily: "Helvetica Neue, Arial, sans-serif",
+          fontSize: "13px"
+        },
+        flowchart: {
+          useMaxWidth: true,
+          htmlLabels: true,
+          curve: "linear",
+          nodeSpacing: 58,
+          rankSpacing: 72,
+          padding: 18
+        },
+        sequence: {
+          useMaxWidth: true,
+          actorMargin: 72,
+          messageMargin: 48,
+          diagramMarginX: 24,
+          diagramMarginY: 18,
+          boxMargin: 18,
+          boxTextMargin: 8,
+          noteMargin: 12
+        },
+        journey: {
+          useMaxWidth: true,
+          diagramMarginX: 28,
+          diagramMarginY: 24,
+          leftMargin: 90,
+          rightMargin: 28,
+          taskMargin: 60
+        },
+        state: {
+          useMaxWidth: true,
+          edgeLengthFactor: 1.1
+        },
+        mindmap: {
+          useMaxWidth: true
+        }
+      });
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (error) {
+          console.warn("Mermaid font readiness check failed", error);
+        }
+      }
+      await new Promise(function (resolve) {
+        requestAnimationFrame(function () {
+          requestAnimationFrame(resolve);
+        });
+      });
+      mermaid.run({ querySelector: ".mermaid-diagram" });
+    });
+  </script>
+    
+</head>
+<body>
+  <div class="page">
+    <header class="masthead">
+      <p class="kicker">Personal AI / Automation · LLM / RAG / Agentic Systems · Product Case Study</p>
+      <h1>OpenClaw Personal Operations Agent</h1>
+      <p class="deck">A personal operations assistant that does more than answer questions. The user sends a command through Telegram, WhatsApp, Slack, or another familiar channel, the agent interprets the goal, checks tool permissions, performs the action, and requests approval before sensitive steps. It is aimed at founders, executives, and consultants who need a disciplined assistant that can execute workflows without turning into a dangerous black box.</p>
+      <div class="summary-strip" aria-label="Executive summary strip">
+        <article><h2>Primary Use</h2><p>A consultant receives a client email asking for a proposal revision. The agent summarizes the email, finds the previous proposal, drafts a response, schedules a review reminder, and waits for approval before sending.</p></article><article><h2>System Built</h2><p>A chat-native operations agent that takes tool actions under strict permission and approval policy.</p></article><article><h2>Critical Control</h2><p>Strict tool permissioning</p></article><article><h2>Business Outcome</h2><p>The value delivered was time savings and better task follow-through across tools.</p></article>
+      </div>
+    </header>
+
+    <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
+      <strong>Implementation Lens:</strong> Defined the product around action execution, not general chat, with permissions and approvals as the core product surface. Mapped familiar channels to a tool-runtime layer that can handle email, calendar, notes, reminders, GitHub, and browser tasks.
+    </div>
+    <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+      <strong style="margin-right:4px;">Stack:</strong>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Agentic Systems</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Approval Gates</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Calendar Automation</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Email Workflows</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Permission Models</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Audit Trails</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Tool Execution</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Personal Productivity Systems</span>
+    </div>
+
+    <div class="layout">
+      <main class="article">
+        <section class="section" id="problem">
+          <aside class="margin-note">
+            Section I<br>
+            Operating Problem
+          </aside>
+          <div class="section-body">
+            <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
+            <p>OpenClaw Personal Operations Agent was designed around one problem: busy professionals do not need another chatbot, they need an assistant that can coordinate tasks across tools.</p><p>The system worked like an operations layer on top of email, calendar, tasks, notes, and communication channels. A user could say, schedule a follow-up with the client, summarize the last email thread, and prepare talking points. The agent gathered context, prepared the action, and asked for approval before doing anything sensitive.</p><p>The hardest issue was trust. Users are comfortable reading AI suggestions but become cautious when AI sends emails, changes calendars, or interacts with clients.</p>
+            <div class="callout">
+              <p><strong>Value delivered.</strong> The value delivered was time savings and better task follow-through across tools.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="flow">
+          <aside class="margin-note">
+            Section II<br>
+            Flow Design
+          </aside>
+          <div class="section-body">
+            <h2>Section II · The system must be readable as a flow before it can be trusted in production</h2>
+            <p>Action-oriented personal operations agent that works through chat channels while enforcing permissions and human approval.</p>
+            <p>Real-life use case solved: A consultant receives a client email asking for a proposal revision. The agent summarizes the email, finds the previous proposal, drafts a response, schedules a review reminder, and waits for approval before sending.</p>
+            <figure aria-labelledby="architecture-caption">
+              <p class="diagram-title">Diagram A · Architecture Overview</p>
+              <svg viewBox="0 0 1160 330" role="img" aria-label="OpenClaw Personal Operations Agent architecture diagram">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#111111"></path>
+    </marker>
+  </defs>
+  <rect width="1160" height="330" rx="28" fill="#ffffff" />
+  <text x="60" y="52" font-size="16" font-family="JetBrains Mono" fill="#111111" letter-spacing="2">ARCHITECTURE OVERVIEW</text>
+  <text x="60" y="88" font-size="34" font-family="Sora" fill="#111111" font-weight="800">OPENCLAW PERSONAL OPERATIONS AGENT</text>
+  <rect x="60" y="110" width="220" height="108" rx="18" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><text x="170" y="145" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">User sends chat</text><text x="170" y="167" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">command</text><path d="M 280 164 L 335 164" stroke="#111111" stroke-width="4" marker-end="url(#arrow)"/><rect x="335" y="110" width="220" height="108" rx="18" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><text x="445" y="145" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Permission check</text><text x="445" y="167" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">runs</text><path d="M 555 164 L 610 164" stroke="#111111" stroke-width="4" marker-end="url(#arrow)"/><rect x="610" y="110" width="220" height="108" rx="18" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><text x="720" y="145" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Sensitive step</text><text x="720" y="167" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">requests approval</text><path d="M 830 164 L 885 164" stroke="#111111" stroke-width="4" marker-end="url(#arrow)"/><rect x="885" y="110" width="220" height="108" rx="18" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><text x="995" y="145" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Action and audit log</text><text x="995" y="167" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">are recorded</text>
+</svg>
+              <figcaption id="architecture-caption">The architecture is shaped by execution boundary, integration dependency, and where human or system control must intervene.</figcaption>
+            </figure>
+            <p>The operational sequence below is the narrow path that has to stay legible under real deployment pressure.</p>
+            <figure aria-labelledby="workflow-caption">
+              <p class="diagram-title">Diagram B · End-to-End Flow</p>
+              <svg viewBox="0 0 1020 620" role="img" aria-label="OpenClaw Personal Operations Agent flow diagram">
+  <rect width="1020" height="620" rx="28" fill="#ffffff" />
+  <text x="70" y="42" font-size="16" font-family="JetBrains Mono" fill="#111111" letter-spacing="2">END-TO-END FLOW</text>
+  <rect x="70" y="70" width="880" height="58" rx="16" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="99" r="18" fill="#111111" /><text x="110" y="105" text-anchor="middle" font-size="15" font-family="JetBrains Mono" fill="#ffffff">1</text><text x="150" y="94" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">User sends chat command</text><path d="M 110 128 L 110 156" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="156" width="880" height="58" rx="16" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="185" r="18" fill="#111111" /><text x="110" y="191" text-anchor="middle" font-size="15" font-family="JetBrains Mono" fill="#ffffff">2</text><text x="150" y="180" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Agent interprets goal</text><path d="M 110 214 L 110 242" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="242" width="880" height="58" rx="16" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="271" r="18" fill="#111111" /><text x="110" y="277" text-anchor="middle" font-size="15" font-family="JetBrains Mono" fill="#ffffff">3</text><text x="150" y="266" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Permission check runs</text><path d="M 110 300 L 110 328" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="328" width="880" height="58" rx="16" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="357" r="18" fill="#111111" /><text x="110" y="363" text-anchor="middle" font-size="15" font-family="JetBrains Mono" fill="#ffffff">4</text><text x="150" y="352" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Tool action is prepared</text><path d="M 110 386 L 110 414" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="414" width="880" height="58" rx="16" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="443" r="18" fill="#111111" /><text x="110" y="449" text-anchor="middle" font-size="15" font-family="JetBrains Mono" fill="#ffffff">5</text><text x="150" y="438" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Sensitive step requests approval</text><path d="M 110 472 L 110 500" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="500" width="880" height="58" rx="16" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="529" r="18" fill="#111111" /><text x="110" y="535" text-anchor="middle" font-size="15" font-family="JetBrains Mono" fill="#ffffff">6</text><text x="150" y="524" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Action and audit log are recorded</text>
+</svg>
+              <figcaption id="workflow-caption">Each transition marks where latency, control, or approval assumptions become visible to the user or operator.</figcaption>
+            </figure>
+            <ul class="metric-list">
+              <li>User sends chat command</li><li>Agent interprets goal</li><li>Permission check runs</li><li>Tool action is prepared</li><li>Sensitive step requests approval</li><li>Action and audit log are recorded</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section" id="surfaces">
+          <aside class="margin-note">
+            Section III<br>
+            Platform Surfaces
+          </aside>
+          <div class="section-body">
+            <h2>Section III · Integrations, monetization, and security define whether the system is commercially real</h2>
+            <p>The platform only becomes credible when surrounding surfaces are designed alongside the core model or workflow. Integrations decide where the output lands. Revenue model determines what deployment shape is sustainable. Security controls decide whether teams will approve the system for real use.</p>
+            <div class="comparison-grid">
+              <article class="comparison-card">
+                <h3>Key Features</h3>
+                <ul class="metric-list">
+                  <li>Personal task execution</li><li>Email and calendar coordination</li><li>Approval-based automation</li><li>Context retrieval</li><li>Agent memory per workflow</li><li>Audit log</li><li>Multi-channel access</li>
+                </ul>
+              </article>
+              <article class="comparison-card">
+                <h3>Business Context</h3>
+                <p>A consultant receives a client email asking for a proposal revision. The agent summarizes the email, finds the previous proposal, drafts a response, schedules a review reminder, and waits for approval before sending.</p>
+                <p>The value delivered was time savings and better task follow-through across tools.</p>
+              </article>
+            </div>
+            <table class="committee-table">
+              <caption>Commercial and control surfaces summarized as operating requirements rather than optional add-ons.</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Surface</th>
+                  <th scope="col">Role In The System</th>
+                  <th scope="col">Why It Matters</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Integrations</strong>Gmail, Google Calendar, Slack, Telegram, WhatsApp</td><td>Connects the product to systems where value is realized, not just demonstrated.</td><td>Real deployment depends on whether these endpoints can be reached and governed cleanly.</td></tr><tr><td><strong>Revenue Model</strong>Personal productivity subscription, Executive assistant package, Enterprise self-hosted plan</td><td>Shows how the system becomes a product rather than a one-off implementation exercise.</td><td>The business shape determines pricing discipline, support model, and deployment boundaries.</td></tr><tr><td><strong>Security Boundary</strong>Strict tool permissioning, Human approval for sensitive actions, Sandboxed skills</td><td>Defines which controls are mandatory before operators will trust the workflow.</td><td>The control model is part of the user experience, not a separate compliance appendix.</td></tr>
+              </tbody>
+            </table>
+            <figure aria-labelledby="operating-caption">
+              <p class="diagram-title">Diagram C · Operating Map</p>
+              <svg viewBox="0 0 1140 430" role="img" aria-label="OpenClaw Personal Operations Agent operating map"><rect width="1140" height="430" rx="28" fill="#ffffff" /><text x="60" y="48" font-size="16" font-family="JetBrains Mono" fill="#111111" letter-spacing="2">OPERATING MAP</text><rect x="60" y="84" width="310" height="288" rx="18" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><text x="84" y="122" font-size="18" font-family="JetBrains Mono" fill="#111111" font-weight="700">USE CASE</text><text x="84" y="160" font-size="19" font-family="IBM Plex Sans" fill="#111111">Email, calendar, reminders,</text><text x="84" y="184" font-size="19" font-family="IBM Plex Sans" fill="#111111">notes, and personal workflow</text><text x="84" y="208" font-size="19" font-family="IBM Plex Sans" fill="#111111">automation handled through</text><text x="84" y="232" font-size="19" font-family="IBM Plex Sans" fill="#111111">chat with clear approval</text><text x="84" y="256" font-size="19" font-family="IBM Plex Sans" fill="#111111">boundaries.</text><rect x="410" y="84" width="310" height="288" rx="18" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><text x="434" y="122" font-size="18" font-family="JetBrains Mono" fill="#111111" font-weight="700">CONTROL</text><text x="434" y="160" font-size="19" font-family="IBM Plex Sans" fill="#111111">Strict tool permissioning</text><text x="434" y="202" font-size="19" font-family="IBM Plex Sans" fill="#111111">Human approval for sensitive</text><text x="434" y="226" font-size="19" font-family="IBM Plex Sans" fill="#111111">actions</text><text x="434" y="268" font-size="19" font-family="IBM Plex Sans" fill="#111111">Sandboxed skills</text><rect x="760" y="84" width="310" height="288" rx="18" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><text x="784" y="122" font-size="18" font-family="JetBrains Mono" fill="#111111" font-weight="700">COMMERCIAL</text><text x="784" y="160" font-size="19" font-family="IBM Plex Sans" fill="#111111">Personal productivity</text><text x="784" y="184" font-size="19" font-family="IBM Plex Sans" fill="#111111">subscription</text><text x="784" y="226" font-size="19" font-family="IBM Plex Sans" fill="#111111">Executive assistant package</text><text x="784" y="268" font-size="19" font-family="IBM Plex Sans" fill="#111111">Enterprise self-hosted plan</text></svg>
+              <figcaption id="operating-caption">Use case, commercial model, and control model need to reinforce one another or the product stalls during implementation review.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section" id="delivery">
+          <aside class="margin-note">
+            Section IV<br>
+            Delivery Path
+          </aside>
+          <div class="section-body">
+            <h2>Section IV · Delivery discipline decides whether the first version proves the right thing</h2>
+            <div class="comparison-grid">
+              <article class="comparison-card">
+                <h3>Difficulty Faced</h3>
+                <p>Trust was handled through permission tiers. Low-risk tasks could be automated, medium-risk tasks required preview, and high-risk actions required explicit approval.</p>
+                <p>Making execution convenient enough to be valuable while keeping the action model tight enough to be safe.</p>
+              </article>
+              <article class="comparison-card">
+                <h3>Client Coordination Method</h3>
+                <p>The agent playbooks were built from workflow interviews. Users described repetitive administrative work in detail, and those real workflows were then converted into agent playbooks and approval states.</p>
+                <p>Best fit: Agent platform roles, Product roles, Automation roles</p>
+                <ul class="metric-list">
+                  <li>Added sandboxing, secret isolation, skill boundaries, and audit logging because assistant-side action risk is the entire trust problem.</li><li>Positioned the product as personal subscription, executive package, and self-hosted enterprise plan.</li>
+                </ul>
+              </article>
+            </div>
+            <figure aria-labelledby="mermaid-caption">
+              <p class="diagram-title">Diagram D · Agent Permission State Diagram</p>
+              <div class="diagram-stage">
+                <div class="mermaid mermaid-diagram">stateDiagram-v2
+    [*] --&gt; TaskReceived
+    TaskReceived --&gt; ContextGathering
+    ContextGathering --&gt; RiskClassification
+    RiskClassification --&gt; AutoExecute: Low Risk
+    RiskClassification --&gt; PreviewRequired: Medium Risk
+    RiskClassification --&gt; ApprovalRequired: High Risk
+    PreviewRequired --&gt; UserEdits
+    ApprovalRequired --&gt; UserApproval
+    UserApproval --&gt; ExecuteAction
+    UserEdits --&gt; ExecuteAction
+    AutoExecute --&gt; AuditLog
+    ExecuteAction --&gt; AuditLog
+    AuditLog --&gt; [*]</div>
+              </div>
+              <figcaption id="mermaid-caption">This project-specific flow is rendered directly with Mermaid so the visual stays relevant to the operating narrative instead of appearing as source text.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section" id="decision">
+          <aside class="margin-note">
+            Section V<br>
+            Decision Boundary
+          </aside>
+          <div class="section-body">
+            <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
+            <p>Agent products live or die on action boundaries. This project makes those boundaries the center of the design.</p>
+            <p>Approvals should be framed as a product feature, not an inconvenience. That is how you keep action trust high.</p>
+            <div class="policy-grid">
+              <article class="policy-card">
+                <h3>Biggest Surprise</h3>
+                <p>Users often value clean audit logs as much as the time savings because it lets them delegate and still verify.</p>
+              </article>
+              <article class="policy-card">
+                <h3>Next Step</h3>
+                <p>The next version should add richer role presets and a policy editor so different users can choose more conservative or more autonomous operating modes.</p>
+              </article>
+            </div>
+            <p class="fine-print">Related directions for the same portfolio theme: paperclip-ai-company-orchestrator, n8n-ai-workflow-automation-hub, retrieval-tool-use-assistant.</p>
+          </div>
+        </section>
+      </main>
+
+      <aside class="rail">
+        <h2>Review Rail</h2>
+        <p>Personal AI / Automation</p>
+        <p style="margin:8px 0 12px;">LLM / RAG / Agentic Systems</p>
+        <ul>
+          <li>Commercial angle: Personal productivity subscription</li>
+          <li>Critical control: Strict tool permissioning</li>
+          <li>Best fit: Agent platform roles, Product roles, Automation roles</li>
+        </ul>
+        <h2 style="margin-top:18px;">Related Threads</h2>
+        <ul>
+          <li>Paperclip Ai Company Orchestrator</li><li>N8N Ai Workflow Automation Hub</li><li>Retrieval Tool Use Assistant</li>
+        </ul>
+      </aside>
+    </div>
+
+    <p class="footer-note">This document follows the same editorial pattern as the NPA case study template: monochrome sections, margin-note navigation, summary strip, sticky review rail, and inline SVG figures.</p>
+  </div>
+  <script type="application/json" id="blog-config">{"slug": "openclaw-personal-operations-agent"}</script>
+</body>
+</html>

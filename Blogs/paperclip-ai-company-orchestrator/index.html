@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paperclip AI Company Orchestrator</title>
+  <meta name="description" content="Company-style orchestration layer for AI agents with departments, tickets, budgets, tool calls, reviews, and governance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --ink: #111111;
+      --muted: #5e5e5e;
+      --soft: #f4f4f4;
+      --panel: #fafafa;
+      --line: #d2d2d2;
+      --line-strong: #8d8d8d;
+      --shade: #e8e8e8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-color: var(--line-strong);
+      text-underline-offset: 0.18em;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 64px;
+    }
+
+    .masthead {
+      border-top: 3px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      padding: 20px 0 24px;
+      margin-bottom: 28px;
+    }
+
+    .kicker {
+      margin: 0 0 12px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    h1 {
+      max-width: 12ch;
+      margin: 0;
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .deck {
+      margin: 18px 0 0;
+      max-width: 70ch;
+      font-size: 1.08rem;
+      color: var(--muted);
+    }
+
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .summary-strip article {
+      border: 1px solid var(--ink);
+      padding: 12px 14px;
+      background: var(--panel);
+    }
+
+    .summary-strip h2,
+    .summary-strip p {
+      margin: 0;
+    }
+
+    .summary-strip h2 {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .summary-strip p {
+      font-size: 0.95rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 250px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .article {
+      min-width: 0;
+    }
+
+    .rail {
+      position: sticky;
+      top: 18px;
+      border: 1px solid var(--ink);
+      padding: 16px;
+      background: var(--panel);
+    }
+
+    .rail h2 {
+      margin: 0 0 10px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .rail p,
+    .rail li {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .rail ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .section {
+      display: grid;
+      grid-template-columns: 132px minmax(0, 1fr);
+      gap: 18px;
+      padding: 20px 0 22px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .margin-note {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.76rem;
+      line-height: 1.45;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .section-body h2 {
+      margin: 0 0 12px;
+      font-size: 1.36rem;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 8px;
+    }
+
+    .section-body p {
+      margin: 0 0 1rem;
+      font-size: 1rem;
+    }
+
+    .section-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .fine-print {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .callout {
+      border-left: 3px solid var(--ink);
+      padding: 12px 14px;
+      background: var(--soft);
+      margin: 16px 0;
+    }
+
+    .callout p {
+      margin: 0;
+    }
+
+    .committee-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      table-layout: fixed;
+    }
+
+    .committee-table caption {
+      caption-side: bottom;
+      text-align: left;
+      font-size: 0.84rem;
+      color: var(--muted);
+      padding-top: 8px;
+    }
+
+    .committee-table th,
+    .committee-table td {
+      border: 1px solid var(--line);
+      padding: 10px 10px 9px;
+      vertical-align: top;
+      font-size: 0.93rem;
+    }
+
+    .committee-table th {
+      background: var(--soft);
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: left;
+    }
+
+    .committee-table td strong {
+      display: block;
+      margin-bottom: 4px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .comparison-grid,
+    .policy-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .comparison-grid > *,
+    .policy-grid > * {
+      flex: 1 1 280px;
+    }
+
+    .comparison-card,
+    .policy-card {
+      border: 1px solid var(--ink);
+      padding: 14px;
+      background: var(--panel);
+    }
+
+    .comparison-card h3,
+    .policy-card h3,
+    figure h3 {
+      margin: 0 0 8px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .comparison-card p,
+    .policy-card p {
+      margin: 0 0 10px;
+      font-size: 0.94rem;
+    }
+
+    .comparison-card p:last-child,
+    .policy-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .metric-list {
+      margin: 12px 0 0;
+      padding-left: 18px;
+    }
+
+    .metric-list li {
+      margin-bottom: 8px;
+    }
+
+    figure {
+      margin: 18px 0;
+      border: 1px solid var(--ink);
+      padding: 12px;
+      background: #fcfcfc;
+    }
+
+    figcaption {
+      margin-top: 10px;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .diagram-title {
+      margin: 0 0 10px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .diagram-stage {
+      padding: 8px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+    }
+
+    .mermaid-diagram {
+      min-width: 640px;
+      font-size: 13px;
+    }
+
+    .mermaid-diagram svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .mermaid-diagram .label,
+    .mermaid-diagram .nodeLabel,
+    .mermaid-diagram .edgeLabel {
+      line-height: 1.15;
+    }
+
+    .mermaid-diagram foreignObject {
+      overflow: visible;
+    }
+
+    .mermaid-diagram .label div,
+    .mermaid-diagram .nodeLabel p,
+    .mermaid-diagram .edgeLabel p {
+      margin: 0;
+      padding: 2px 4px;
+      line-height: 1.15;
+    }
+
+    .footer-note {
+      border-top: 1px solid var(--ink);
+      padding-top: 16px;
+      margin-top: 28px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 980px) {
+      .summary-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .rail {
+        position: static;
+        order: -1;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .summary-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .margin-note {
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 8px;
+      }
+
+      .page {
+        width: min(100% - 20px, 1180px);
+      }
+
+      h1 {
+        max-width: none;
+      }
+
+      .diagram-stage {
+        padding: 4px;
+      }
+
+      .mermaid-diagram {
+        min-width: 520px;
+        font-size: 12px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="style.css">
+  <script src="../blog-common.js" defer></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script>
+    window.addEventListener("load", async function () {
+      if (!window.mermaid) return;
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: "loose",
+        theme: "base",
+        themeVariables: {
+          primaryColor: "#ffffff",
+          primaryTextColor: "#111111",
+          primaryBorderColor: "#111111",
+          lineColor: "#111111",
+          secondaryColor: "#f4f4f4",
+          tertiaryColor: "#fafafa",
+          background: "#ffffff",
+          mainBkg: "#ffffff",
+          secondBkg: "#f4f4f4",
+          tertiaryBkg: "#fafafa",
+          textColor: "#111111",
+          nodeBorder: "#111111",
+          clusterBkg: "#fafafa",
+          clusterBorder: "#8d8d8d",
+          edgeLabelBackground: "#ffffff",
+          fontFamily: "Helvetica Neue, Arial, sans-serif",
+          fontSize: "13px"
+        },
+        flowchart: {
+          useMaxWidth: true,
+          htmlLabels: true,
+          curve: "linear",
+          nodeSpacing: 58,
+          rankSpacing: 72,
+          padding: 18
+        },
+        sequence: {
+          useMaxWidth: true,
+          actorMargin: 72,
+          messageMargin: 48,
+          diagramMarginX: 24,
+          diagramMarginY: 18,
+          boxMargin: 18,
+          boxTextMargin: 8,
+          noteMargin: 12
+        },
+        journey: {
+          useMaxWidth: true,
+          diagramMarginX: 28,
+          diagramMarginY: 24,
+          leftMargin: 90,
+          rightMargin: 28,
+          taskMargin: 60
+        },
+        state: {
+          useMaxWidth: true,
+          edgeLengthFactor: 1.1
+        },
+        mindmap: {
+          useMaxWidth: true
+        }
+      });
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (error) {
+          console.warn("Mermaid font readiness check failed", error);
+        }
+      }
+      await new Promise(function (resolve) {
+        requestAnimationFrame(function () {
+          requestAnimationFrame(resolve);
+        });
+      });
+      mermaid.run({ querySelector: ".mermaid-diagram" });
+    });
+  </script>
+    
+</head>
+<body>
+  <div class="page">
+    <header class="masthead">
+      <p class="kicker">Multi-Agent Operations · LLM / RAG / Agentic Systems · Product Case Study</p>
+      <h1>Paperclip AI Company Orchestrator</h1>
+      <p class="deck">An operations platform built around the idea that AI agents should be managed like a company, not like disconnected chat sessions. A founder defines a goal, departments and agents take on tickets, tools execute work, managers review outputs, and dashboards track cost and revenue. The system is aimed at agencies, research desks, support desks, and lead-generation operations that want coordinated agent work with governance instead of chaos.</p>
+      <div class="summary-strip" aria-label="Executive summary strip">
+        <article><h2>Primary Use</h2><p>A small agency wants to find leads, research companies, draft outreach emails, and track responses. The orchestrator assigns that work across research, sales, and manager agents.</p></article><article><h2>System Built</h2><p>An organization-style operating system for agent teams with goals, tickets, tools, governance, and reporting.</p></article><article><h2>Critical Control</h2><p>Agent budget limits</p></article><article><h2>Business Outcome</h2><p>The system delivered repeatable business execution with human control still in the loop.</p></article>
+      </div>
+    </header>
+
+    <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
+      <strong>Implementation Lens:</strong> Framed the system around organizational mechanics like goals, departments, tickets, budgets, and review instead of free-form agent swarms. Separated company workspace boundaries, secret scopes, and approval rules so multiple agent teams can operate safely in parallel.
+    </div>
+    <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+      <strong style="margin-right:4px;">Stack:</strong>
+      <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Agent Orchestration</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Multi-Agent Systems</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Budget Governance</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Workflow Design</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Tool Integrations</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Workspace Isolation</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Cost Tracking</span><span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Operations Dashboards</span>
+    </div>
+
+    <div class="layout">
+      <main class="article">
+        <section class="section" id="problem">
+          <aside class="margin-note">
+            Section I<br>
+            Operating Problem
+          </aside>
+          <div class="section-body">
+            <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
+            <p>Paperclip AI Company Orchestrator was created to explore how a business could run coordinated AI agents like departments inside a company. Instead of one assistant doing everything, the system used different agents for research, sales, support, operations, and management.</p><p>The project was positioned as an AI operations company-in-a-box. A user defined a business goal, such as generating qualified B2B leads for cybersecurity consulting. The orchestrator broke the goal into tasks, assigned them to agents, monitored cost, collected outputs, and escalated important decisions to humans.</p><p>The hardest challenge was preventing agent chaos. Multiple agents can duplicate work, make inconsistent decisions, or spend too much budget if the orchestration layer is loose.</p>
+            <div class="callout">
+              <p><strong>Value delivered.</strong> The system delivered repeatable business execution with human control still in the loop.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="flow">
+          <aside class="margin-note">
+            Section II<br>
+            Flow Design
+          </aside>
+          <div class="section-body">
+            <h2>Section II · The system must be readable as a flow before it can be trusted in production</h2>
+            <p>Company-style orchestration layer for AI agents with departments, tickets, budgets, tool calls, reviews, and governance.</p>
+            <p>Real-life use case solved: A small agency wants to find leads, research companies, draft outreach emails, and track responses. The orchestrator assigns that work across research, sales, and manager agents.</p>
+            <figure aria-labelledby="architecture-caption">
+              <p class="diagram-title">Diagram A · Architecture Overview</p>
+              <svg viewBox="0 0 1160 330" role="img" aria-label="Paperclip AI Company Orchestrator architecture diagram">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#111111"></path>
+    </marker>
+  </defs>
+  <rect width="1160" height="330" rx="28" fill="#ffffff" />
+  <text x="60" y="52" font-size="16" font-family="JetBrains Mono" fill="#111111" letter-spacing="2">ARCHITECTURE OVERVIEW</text>
+  <text x="60" y="88" font-size="34" font-family="Sora" fill="#111111" font-weight="800">PAPERCLIP AI COMPANY ORCHESTRATOR</text>
+  <rect x="60" y="110" width="220" height="108" rx="18" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><text x="170" y="145" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Founder defines</text><text x="170" y="167" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">business goal</text><path d="M 280 164 L 335 164" stroke="#111111" stroke-width="4" marker-end="url(#arrow)"/><rect x="335" y="110" width="220" height="108" rx="18" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><text x="445" y="145" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Agents create and</text><text x="445" y="167" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">pick tickets</text><path d="M 555 164 L 610 164" stroke="#111111" stroke-width="4" marker-end="url(#arrow)"/><rect x="610" y="110" width="220" height="108" rx="18" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><text x="720" y="145" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Manager reviews</text><text x="720" y="167" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">outputs</text><path d="M 830 164 L 885 164" stroke="#111111" stroke-width="4" marker-end="url(#arrow)"/><rect x="885" y="110" width="220" height="108" rx="18" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><text x="995" y="145" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Revenue report is</text><text x="995" y="167" text-anchor="middle" font-size="19" font-family="IBM Plex Sans" fill="#111111" font-weight="600">generated</text>
+</svg>
+              <figcaption id="architecture-caption">The architecture is shaped by execution boundary, integration dependency, and where human or system control must intervene.</figcaption>
+            </figure>
+            <p>The operational sequence below is the narrow path that has to stay legible under real deployment pressure.</p>
+            <figure aria-labelledby="workflow-caption">
+              <p class="diagram-title">Diagram B · End-to-End Flow</p>
+              <svg viewBox="0 0 1020 620" role="img" aria-label="Paperclip AI Company Orchestrator flow diagram">
+  <rect width="1020" height="620" rx="28" fill="#ffffff" />
+  <text x="70" y="42" font-size="16" font-family="JetBrains Mono" fill="#111111" letter-spacing="2">END-TO-END FLOW</text>
+  <rect x="70" y="70" width="880" height="58" rx="16" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="99" r="18" fill="#111111" /><text x="110" y="105" text-anchor="middle" font-size="15" font-family="JetBrains Mono" fill="#ffffff">1</text><text x="150" y="94" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Founder defines business goal</text><path d="M 110 128 L 110 156" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="156" width="880" height="58" rx="16" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="185" r="18" fill="#111111" /><text x="110" y="191" text-anchor="middle" font-size="15" font-family="JetBrains Mono" fill="#ffffff">2</text><text x="150" y="180" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Departments and agents are created</text><path d="M 110 214 L 110 242" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="242" width="880" height="58" rx="16" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="271" r="18" fill="#111111" /><text x="110" y="277" text-anchor="middle" font-size="15" font-family="JetBrains Mono" fill="#ffffff">3</text><text x="150" y="266" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Agents create and pick tickets</text><path d="M 110 300 L 110 328" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="328" width="880" height="58" rx="16" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="357" r="18" fill="#111111" /><text x="110" y="363" text-anchor="middle" font-size="15" font-family="JetBrains Mono" fill="#ffffff">4</text><text x="150" y="352" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Tools execute work</text><path d="M 110 386 L 110 414" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="414" width="880" height="58" rx="16" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="443" r="18" fill="#111111" /><text x="110" y="449" text-anchor="middle" font-size="15" font-family="JetBrains Mono" fill="#ffffff">5</text><text x="150" y="438" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Manager reviews outputs</text><path d="M 110 472 L 110 500" stroke="#111111" stroke-width="3" stroke-dasharray="5 5"/><rect x="70" y="500" width="880" height="58" rx="16" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><circle cx="110" cy="529" r="18" fill="#111111" /><text x="110" y="535" text-anchor="middle" font-size="15" font-family="JetBrains Mono" fill="#ffffff">6</text><text x="150" y="524" font-size="20" font-family="IBM Plex Sans" fill="#111111" font-weight="600">Revenue report is generated</text>
+</svg>
+              <figcaption id="workflow-caption">Each transition marks where latency, control, or approval assumptions become visible to the user or operator.</figcaption>
+            </figure>
+            <ul class="metric-list">
+              <li>Founder defines business goal</li><li>Departments and agents are created</li><li>Agents create and pick tickets</li><li>Tools execute work</li><li>Manager reviews outputs</li><li>Revenue report is generated</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section" id="surfaces">
+          <aside class="margin-note">
+            Section III<br>
+            Platform Surfaces
+          </aside>
+          <div class="section-body">
+            <h2>Section III · Integrations, monetization, and security define whether the system is commercially real</h2>
+            <p>The platform only becomes credible when surrounding surfaces are designed alongside the core model or workflow. Integrations decide where the output lands. Revenue model determines what deployment shape is sustainable. Security controls decide whether teams will approve the system for real use.</p>
+            <div class="comparison-grid">
+              <article class="comparison-card">
+                <h3>Key Features</h3>
+                <ul class="metric-list">
+                  <li>Multi-agent company structure</li><li>Department-based task assignment</li><li>Budget control</li><li>Human approval checkpoints</li><li>CRM integration</li><li>Revenue pipeline dashboard</li><li>Agent performance analytics</li>
+                </ul>
+              </article>
+              <article class="comparison-card">
+                <h3>Business Context</h3>
+                <p>A small agency wants to find leads, research companies, draft outreach emails, and track responses. The orchestrator assigns that work across research, sales, and manager agents.</p>
+                <p>The system delivered repeatable business execution with human control still in the loop.</p>
+              </article>
+            </div>
+            <table class="committee-table">
+              <caption>Commercial and control surfaces summarized as operating requirements rather than optional add-ons.</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Surface</th>
+                  <th scope="col">Role In The System</th>
+                  <th scope="col">Why It Matters</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Integrations</strong>OpenRouter, OpenAI, Claude, Gmail, Slack</td><td>Connects the product to systems where value is realized, not just demonstrated.</td><td>Real deployment depends on whether these endpoints can be reached and governed cleanly.</td></tr><tr><td><strong>Revenue Model</strong>AI agency automation, Per-agent seat license, Managed AI operations service</td><td>Shows how the system becomes a product rather than a one-off implementation exercise.</td><td>The business shape determines pricing discipline, support model, and deployment boundaries.</td></tr><tr><td><strong>Security Boundary</strong>Agent budget limits, Approval gates, Isolated workspaces</td><td>Defines which controls are mandatory before operators will trust the workflow.</td><td>The control model is part of the user experience, not a separate compliance appendix.</td></tr>
+              </tbody>
+            </table>
+            <figure aria-labelledby="operating-caption">
+              <p class="diagram-title">Diagram C · Operating Map</p>
+              <svg viewBox="0 0 1140 430" role="img" aria-label="Paperclip AI Company Orchestrator operating map"><rect width="1140" height="430" rx="28" fill="#ffffff" /><text x="60" y="48" font-size="16" font-family="JetBrains Mono" fill="#111111" letter-spacing="2">OPERATING MAP</text><rect x="60" y="84" width="310" height="288" rx="18" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><text x="84" y="122" font-size="18" font-family="JetBrains Mono" fill="#111111" font-weight="700">USE CASE</text><text x="84" y="160" font-size="19" font-family="IBM Plex Sans" fill="#111111">Running coordinated AI work</text><text x="84" y="184" font-size="19" font-family="IBM Plex Sans" fill="#111111">across teams of agents that</text><text x="84" y="208" font-size="19" font-family="IBM Plex Sans" fill="#111111">need budgets, approvals,</text><text x="84" y="232" font-size="19" font-family="IBM Plex Sans" fill="#111111">tickets, workspaces, and</text><text x="84" y="256" font-size="19" font-family="IBM Plex Sans" fill="#111111">management visibility.</text><rect x="410" y="84" width="310" height="288" rx="18" fill="#efefef" stroke="#cfcfcf" stroke-width="2"/><text x="434" y="122" font-size="18" font-family="JetBrains Mono" fill="#111111" font-weight="700">CONTROL</text><text x="434" y="160" font-size="19" font-family="IBM Plex Sans" fill="#111111">Agent budget limits</text><text x="434" y="202" font-size="19" font-family="IBM Plex Sans" fill="#111111">Approval gates</text><text x="434" y="244" font-size="19" font-family="IBM Plex Sans" fill="#111111">Isolated workspaces</text><rect x="760" y="84" width="310" height="288" rx="18" fill="#fafafa" stroke="#cfcfcf" stroke-width="2"/><text x="784" y="122" font-size="18" font-family="JetBrains Mono" fill="#111111" font-weight="700">COMMERCIAL</text><text x="784" y="160" font-size="19" font-family="IBM Plex Sans" fill="#111111">AI agency automation</text><text x="784" y="202" font-size="19" font-family="IBM Plex Sans" fill="#111111">Per-agent seat license</text><text x="784" y="244" font-size="19" font-family="IBM Plex Sans" fill="#111111">Managed AI operations</text><text x="784" y="268" font-size="19" font-family="IBM Plex Sans" fill="#111111">service</text></svg>
+              <figcaption id="operating-caption">Use case, commercial model, and control model need to reinforce one another or the product stalls during implementation review.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section" id="delivery">
+          <aside class="margin-note">
+            Section IV<br>
+            Delivery Path
+          </aside>
+          <div class="section-body">
+            <h2>Section IV · Delivery discipline decides whether the first version proves the right thing</h2>
+            <div class="comparison-grid">
+              <article class="comparison-card">
+                <h3>Difficulty Faced</h3>
+                <p>The system controlled agent chaos through task ownership, budget limits, review checkpoints, and manager-agent approval.</p>
+                <p>Turning multi-agent coordination into something observable, budgeted, and reviewable instead of brittle prompt choreography.</p>
+              </article>
+              <article class="comparison-card">
+                <h3>Client Coordination Method</h3>
+                <p>Business process mapping came first. The team documented how the client currently handled leads, research, emails, and reporting, then converted that operating process into agent departments and checkpoints.</p>
+                <p>Best fit: Agent platform roles, Operations roles, Product roles</p>
+                <ul class="metric-list">
+                  <li>Added append-only logs, budget limits, approval gates, and cost reporting because orchestration without governance is not a product.</li><li>Positioned the business model around AI agency automation, per-agent seats, and managed operations services.</li>
+                </ul>
+              </article>
+            </div>
+            <figure aria-labelledby="mermaid-caption">
+              <p class="diagram-title">Diagram D · AI Company Structure Diagram</p>
+              <div class="diagram-stage">
+                <div class="mermaid mermaid-diagram">flowchart TD
+    A[Business Goal] --&gt; B[Manager Agent]
+    B --&gt; C[Research Agent]
+    B --&gt; D[Sales Agent]
+    B --&gt; E[Support Agent]
+    B --&gt; F[Finance Agent]
+    C --&gt; G[Lead List]
+    D --&gt; H[Outreach Drafts]
+    E --&gt; I[Client Response&lt;br/&gt;Handling]
+    F --&gt; J[Cost and ROI&lt;br/&gt;Tracking]
+    G --&gt; K[Human Review]
+    H --&gt; K
+    I --&gt; K
+    J --&gt; K
+    K --&gt; L[Approved&lt;br/&gt;Business Actions]</div>
+              </div>
+              <figcaption id="mermaid-caption">This project-specific flow is rendered directly with Mermaid so the visual stays relevant to the operating narrative instead of appearing as source text.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section" id="decision">
+          <aside class="margin-note">
+            Section V<br>
+            Decision Boundary
+          </aside>
+          <div class="section-body">
+            <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
+            <p>It demonstrates that agent systems need management structures and financial controls when they move beyond toy examples.</p>
+            <p>Tickets and reviews create the discipline that free-form multi-agent systems usually lack.</p>
+            <div class="policy-grid">
+              <article class="policy-card">
+                <h3>Biggest Surprise</h3>
+                <p>Budget visibility changes behavior quickly. When cost is visible per agent or department, orchestration design gets sharper.</p>
+              </article>
+              <article class="policy-card">
+                <h3>Next Step</h3>
+                <p>The next version should add deeper simulation and replay tools so managers can compare orchestration policies before changing production setups.</p>
+              </article>
+            </div>
+            <p class="fine-print">Related directions for the same portfolio theme: openclaw-personal-operations-agent, n8n-ai-workflow-automation-hub, openrouter-model-gateway-for-ai-apps.</p>
+          </div>
+        </section>
+      </main>
+
+      <aside class="rail">
+        <h2>Review Rail</h2>
+        <p>Multi-Agent Operations</p>
+        <p style="margin:8px 0 12px;">LLM / RAG / Agentic Systems</p>
+        <ul>
+          <li>Commercial angle: AI agency automation</li>
+          <li>Critical control: Agent budget limits</li>
+          <li>Best fit: Agent platform roles, Operations roles, Product roles</li>
+        </ul>
+        <h2 style="margin-top:18px;">Related Threads</h2>
+        <ul>
+          <li>Openclaw Personal Operations Agent</li><li>N8N Ai Workflow Automation Hub</li><li>Openrouter Model Gateway For Ai Apps</li>
+        </ul>
+      </aside>
+    </div>
+
+    <p class="footer-note">This document follows the same editorial pattern as the NPA case study template: monochrome sections, margin-note navigation, summary strip, sticky review rail, and inline SVG figures.</p>
+  </div>
+  <script type="application/json" id="blog-config">{"slug": "paperclip-ai-company-orchestrator"}</script>
+</body>
+</html>
