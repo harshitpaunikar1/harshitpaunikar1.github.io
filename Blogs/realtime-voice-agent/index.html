@@ -8,20 +8,20 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&amp;display=swap">
   <style>
     :root {
-      --bg: #000000;
-      --panel: #080808;
-      --panel-2: #101010;
-      --line: #2f2f2f;
-      --line-2: #4a4a4a;
-      --text: #f2f2f2;
-      --muted: #b8b8b8;
-      --soft: #8c8c8c;
-      --ink-1: #ffffff;
-      --ink-2: #dfdfdf;
-      --ink-3: #bdbdbd;
-      --ink-4: #8f8f8f;
-      --ink-5: #5a5a5a;
-      --ink-6: #252525;
+      --bg: #ffffff;
+      --panel: #f8f8f8;
+      --panel-2: #f1f1f1;
+      --line: #d8d8d8;
+      --line-2: #b7b7b7;
+      --text: #111111;
+      --muted: #2f2f2f;
+      --soft: #666666;
+      --ink-1: #000000;
+      --ink-2: #111111;
+      --ink-3: #2a2a2a;
+      --ink-4: #555555;
+      --ink-5: #a8a8a8;
+      --ink-6: #efefef;
       --max: 1440px;
       --lane: 43rem;
       --gutter: clamp(1rem, 2vw, 2rem);
@@ -38,15 +38,15 @@
     body {
       margin: 0;
       background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 18%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.025), transparent 18%),
         repeating-linear-gradient(
           180deg,
-          rgba(255, 255, 255, 0.028) 0,
-          rgba(255, 255, 255, 0.028) 1px,
+          rgba(0, 0, 0, 0.03) 0,
+          rgba(0, 0, 0, 0.03) 1px,
           transparent 1px,
           transparent 28px
         ),
-        #000;
+        #fff;
       color: var(--text);
       font-family: "IBM Plex Mono", monospace;
       line-height: 1.65;
@@ -191,7 +191,7 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-bottom: 0.75rem;
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(0, 0, 0, 0.025);
     }
 
     .section-head h2 {
@@ -228,7 +228,7 @@
       margin: 1.25rem 0;
       padding: 1rem 1.1rem;
       border-left: 2px solid var(--ink-3);
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.015));
       color: var(--ink-2);
     }
 
@@ -236,7 +236,7 @@
       margin: 2rem 0 0;
       padding: 1.25rem;
       background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 35%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.025), transparent 35%),
         var(--panel);
       border: 1px solid var(--line);
     }
@@ -286,7 +286,7 @@
       padding: 1rem;
       overflow-x: auto;
       border: 1px solid var(--line);
-      background: #050505;
+      background: #f3f3f3;
       color: var(--ink-2);
       font-size: 0.88rem;
       line-height: 1.55;
@@ -415,17 +415,17 @@
     </section>
 
     <div style="padding:1.5rem 0;border-bottom:1px solid var(--line);">
-      <div style="border-left:3px solid #f2f2f2;padding:0.75rem 1.2rem;margin:0 0 1rem;background:rgba(255,255,255,0.05);border-radius:0 6px 6px 0;font-size:0.92rem;font-family:inherit;">
-        <strong style="color:#f2f2f2;">My Role:</strong> <span style="color:var(--muted);">I led the full pipeline engineering — audio ingress tuning, STT integration with faster-whisper, Gemini Flash prompting under latency constraints, Piper TTS streaming, and the interruption state machine. A customer experience designer (non-engineer) defined the conversational patterns, escalation triggers, and tone guidelines. That collaboration was critical: I would have built a technically fast system that sounded robotic.</span>
+      <div style="border-left:3px solid #111111;padding:0.75rem 1.2rem;margin:0 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.92rem;font-family:inherit;">
+        <strong style="color:#111111;">My Role:</strong> <span style="color:var(--muted);">I led the full pipeline engineering — audio ingress tuning, STT integration with faster-whisper, Gemini Flash prompting under latency constraints, Piper TTS streaming, and the interruption state machine. A customer experience designer (non-engineer) defined the conversational patterns, escalation triggers, and tone guidelines. That collaboration was critical: I would have built a technically fast system that sounded robotic.</span>
       </div>
       <div style="margin:0.5rem 0 1rem;font-size:0.82rem;display:flex;flex-wrap:wrap;gap:6px;align-items:center;color:var(--muted);">
         <strong style="margin-right:4px;color:var(--ink-2);">Stack:</strong>
-        <span style="background:rgba(255,255,255,0.07);border:1px solid var(--line-2);padding:2px 10px;border-radius:12px;">Python</span>
-        <span style="background:rgba(255,255,255,0.07);border:1px solid var(--line-2);padding:2px 10px;border-radius:12px;">LiveKit</span>
-        <span style="background:rgba(255,255,255,0.07);border:1px solid var(--line-2);padding:2px 10px;border-radius:12px;">faster-whisper</span>
-        <span style="background:rgba(255,255,255,0.07);border:1px solid var(--line-2);padding:2px 10px;border-radius:12px;">Gemini Flash</span>
-        <span style="background:rgba(255,255,255,0.07);border:1px solid var(--line-2);padding:2px 10px;border-radius:12px;">Piper TTS</span>
-        <span style="background:rgba(255,255,255,0.07);border:1px solid var(--line-2);padding:2px 10px;border-radius:12px;">WebRTC / WebSocket</span>
+        <span style="background:rgba(0,0,0,0.04);border:1px solid var(--line-2);padding:2px 10px;border-radius:12px;">Python</span>
+        <span style="background:rgba(0,0,0,0.04);border:1px solid var(--line-2);padding:2px 10px;border-radius:12px;">LiveKit</span>
+        <span style="background:rgba(0,0,0,0.04);border:1px solid var(--line-2);padding:2px 10px;border-radius:12px;">faster-whisper</span>
+        <span style="background:rgba(0,0,0,0.04);border:1px solid var(--line-2);padding:2px 10px;border-radius:12px;">Gemini Flash</span>
+        <span style="background:rgba(0,0,0,0.04);border:1px solid var(--line-2);padding:2px 10px;border-radius:12px;">Piper TTS</span>
+        <span style="background:rgba(0,0,0,0.04);border:1px solid var(--line-2);padding:2px 10px;border-radius:12px;">WebRTC / WebSocket</span>
       </div>
       <div class="budget-grid" aria-label="Project summary" style="margin-top:0.5rem;">
         <div class="budget-cell"><span>Client</span><strong style="font-size:0.9rem;">Customer service company, 2,000+ daily calls</strong></div>
@@ -465,8 +465,8 @@
         <svg height="250" width="1260" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 250" role="img" aria-labelledby="latency-ribbon-title latency-ribbon-desc">
           <title id="latency-ribbon-title">Latency ribbon for the voice pipeline</title>
           <desc id="latency-ribbon-desc">A measured ribbon showing capture, transport, endpointing, transcription, reasoning, synthesis, packetization, and playback buffer as consecutive latency segments totaling 866 milliseconds.</desc>
-          <rect x="0" y="0" width="1260" height="250" fill="#050505"/>
-          <g stroke="#2f2f2f" stroke-width="1">
+          <rect x="0" y="0" width="1260" height="250" fill="#ffffff"/>
+          <g stroke="#d0d0d0" stroke-width="1">
             <line x1="70" y1="35" x2="70" y2="205"/>
             <line x1="210" y1="35" x2="210" y2="205"/>
             <line x1="350" y1="35" x2="350" y2="205"/>
@@ -477,7 +477,7 @@
             <line x1="1050" y1="35" x2="1050" y2="205"/>
             <line x1="1190" y1="35" x2="1190" y2="205"/>
           </g>
-          <g fill="#8f8f8f" font-size="13" font-family="IBM Plex Mono, monospace">
+          <g fill="#666666" font-size="13" font-family="IBM Plex Mono, monospace">
             <text x="62" y="28">0</text>
             <text x="193" y="28">100</text>
             <text x="333" y="28">200</text>
@@ -488,25 +488,25 @@
             <text x="1033" y="28">700</text>
             <text x="1173" y="28">800 ms</text>
           </g>
-          <rect x="70" y="75" width="45" height="52" fill="#5a5a5a" stroke="#ffffff"/>
-          <rect x="115" y="75" width="61" height="52" fill="#707070" stroke="#ffffff"/>
-          <rect x="176" y="75" width="95" height="52" fill="#8f8f8f" stroke="#ffffff"/>
-          <rect x="271" y="75" width="249" height="52" fill="#bdbdbd" stroke="#000000"/>
-          <rect x="520" y="75" width="345" height="52" fill="#dfdfdf" stroke="#000000"/>
-          <rect x="865" y="75" width="224" height="52" fill="#9d9d9d" stroke="#ffffff"/>
-          <rect x="1089" y="75" width="54" height="52" fill="#6e6e6e" stroke="#ffffff"/>
-          <rect x="1143" y="75" width="117" height="52" fill="#3d3d3d" stroke="#ffffff"/>
+          <rect x="70" y="75" width="45" height="52" fill="#dbdbdb" stroke="#111111"/>
+          <rect x="115" y="75" width="61" height="52" fill="#cfcfcf" stroke="#111111"/>
+          <rect x="176" y="75" width="95" height="52" fill="#bdbdbd" stroke="#111111"/>
+          <rect x="271" y="75" width="249" height="52" fill="#8a8a8a" stroke="#111111"/>
+          <rect x="520" y="75" width="345" height="52" fill="#595959" stroke="#111111"/>
+          <rect x="865" y="75" width="224" height="52" fill="#a5a5a5" stroke="#111111"/>
+          <rect x="1089" y="75" width="54" height="52" fill="#d8d8d8" stroke="#111111"/>
+          <rect x="1143" y="75" width="117" height="52" fill="#ececec" stroke="#111111"/>
           <g font-size="14" font-family="IBM Plex Mono, monospace">
-            <text x="78" y="106" fill="#ffffff">32 ms</text>
-            <text x="121" y="106" fill="#ffffff">44 ms</text>
-            <text x="189" y="106" fill="#000000">68 ms</text>
-            <text x="344" y="106" fill="#000000">178 ms</text>
-            <text x="650" y="106" fill="#000000">247 ms</text>
-            <text x="946" y="106" fill="#000000">161 ms</text>
-            <text x="1097" y="106" fill="#ffffff">38 ms</text>
-            <text x="1172" y="106" fill="#ffffff">98 ms</text>
+            <text x="78" y="106" fill="#111111">32 ms</text>
+            <text x="121" y="106" fill="#111111">44 ms</text>
+            <text x="189" y="106" fill="#111111">68 ms</text>
+            <text x="344" y="106" fill="#ffffff">178 ms</text>
+            <text x="650" y="106" fill="#ffffff">247 ms</text>
+            <text x="946" y="106" fill="#111111">161 ms</text>
+            <text x="1097" y="106" fill="#111111">38 ms</text>
+            <text x="1172" y="106" fill="#111111">98 ms</text>
           </g>
-          <g fill="#d8d8d8" font-size="14" font-family="IBM Plex Mono, monospace">
+          <g fill="#111111" font-size="14" font-family="IBM Plex Mono, monospace">
             <text x="70" y="160">capture</text>
             <text x="149" y="160">transport</text>
             <text x="255" y="160">endpoint / commit</text>
@@ -516,7 +516,7 @@
             <text x="1082" y="160">queue</text>
             <text x="1167" y="160">playback</text>
           </g>
-          <g fill="#8f8f8f" font-size="13" font-family="IBM Plex Mono, monospace">
+          <g fill="#666666" font-size="13" font-family="IBM Plex Mono, monospace">
             <text x="74" y="194">32</text>
             <text x="153" y="194">76</text>
             <text x="247" y="194">144</text>
@@ -653,62 +653,69 @@ trace.mark("turn.commit")</code></pre>
         </div>
       </div>
       <figure class="figure-band">
-        <svg height="520" width="1260" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 520" role="img" aria-labelledby="state-title state-desc">
+        <svg height="620" width="1260" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 620" role="img" aria-labelledby="state-title state-desc">
           <title id="state-title">Turn-taking state machine</title>
           <desc id="state-desc">A state machine showing transitions among listen, transcribe, think, speak, interrupt, and recover with triggers for speech detection, transcript stability, reply readiness, barge-in, and resumed silence.</desc>
-          <rect x="0" y="0" width="1260" height="520" fill="#050505"/>
-          <g stroke="#2f2f2f" stroke-width="1">
-            <line x1="110" y1="150" x2="1150" y2="150"/>
-            <line x1="110" y1="320" x2="1150" y2="320"/>
+          <rect x="0" y="0" width="1260" height="620" fill="#ffffff"/>
+          <g stroke="#d0d0d0" stroke-width="1">
+            <line x1="90" y1="160" x2="1170" y2="160"/>
+            <line x1="90" y1="360" x2="1170" y2="360"/>
           </g>
           <g font-family="IBM Plex Mono, monospace">
-            <rect x="110" y="95" width="180" height="110" rx="14" fill="#101010" stroke="#ffffff" stroke-width="2"/>
-            <rect x="340" y="95" width="180" height="110" rx="14" fill="#3d3d3d" stroke="#ffffff" stroke-width="2"/>
-            <rect x="570" y="95" width="180" height="110" rx="14" fill="#8f8f8f" stroke="#ffffff" stroke-width="2"/>
-            <rect x="800" y="95" width="180" height="110" rx="14" fill="#dfdfdf" stroke="#000000" stroke-width="2"/>
-            <rect x="615" y="295" width="180" height="110" rx="14" fill="#5a5a5a" stroke="#ffffff" stroke-width="2"/>
-            <rect x="845" y="295" width="180" height="110" rx="14" fill="#252525" stroke="#ffffff" stroke-width="2"/>
+            <rect x="110" y="100" width="200" height="120" rx="16" fill="#f1f1f1" stroke="#111111" stroke-width="2"/>
+            <rect x="350" y="100" width="200" height="120" rx="16" fill="#dddddd" stroke="#111111" stroke-width="2"/>
+            <rect x="590" y="100" width="200" height="120" rx="16" fill="#c9c9c9" stroke="#111111" stroke-width="2"/>
+            <rect x="830" y="100" width="200" height="120" rx="16" fill="#b2b2b2" stroke="#111111" stroke-width="2"/>
+            <rect x="640" y="310" width="200" height="120" rx="16" fill="#d6d6d6" stroke="#111111" stroke-width="2"/>
+            <rect x="890" y="310" width="190" height="120" rx="16" fill="#eeeeee" stroke="#111111" stroke-width="2"/>
 
-            <text x="165" y="143" fill="#ffffff" font-size="24">LISTEN</text>
-            <text x="370" y="143" fill="#ffffff" font-size="24">TRANSCRIBE</text>
-            <text x="631" y="143" fill="#000000" font-size="24">THINK</text>
-            <text x="857" y="143" fill="#000000" font-size="24">SPEAK</text>
-            <text x="645" y="343" fill="#ffffff" font-size="24">INTERRUPT</text>
-            <text x="895" y="343" fill="#ffffff" font-size="24">RECOVER</text>
+            <text x="210" y="152" fill="#111111" font-size="22" text-anchor="middle" letter-spacing="1">LISTEN</text>
+            <text x="450" y="152" fill="#111111" font-size="22" text-anchor="middle" letter-spacing="1">TRANSCRIBE</text>
+            <text x="690" y="152" fill="#111111" font-size="22" text-anchor="middle" letter-spacing="1">THINK</text>
+            <text x="930" y="152" fill="#111111" font-size="22" text-anchor="middle" letter-spacing="1">SPEAK</text>
+            <text x="740" y="362" fill="#111111" font-size="22" text-anchor="middle" letter-spacing="1">INTERRUPT</text>
+            <text x="985" y="362" fill="#111111" font-size="22" text-anchor="middle" letter-spacing="1">RECOVER</text>
 
-            <text x="146" y="169" fill="#bdbdbd" font-size="14">room active</text>
-            <text x="368" y="169" fill="#d9d9d9" font-size="14">commit text</text>
-            <text x="594" y="169" fill="#050505" font-size="14">plan clause</text>
-            <text x="834" y="169" fill="#050505" font-size="14">emit audio</text>
-            <text x="637" y="369" fill="#d9d9d9" font-size="14">cancel + flush</text>
-            <text x="881" y="369" fill="#d9d9d9" font-size="14">resume capture</text>
+            <text x="210" y="182" fill="#555555" font-size="14" text-anchor="middle">room active</text>
+            <text x="450" y="182" fill="#555555" font-size="14" text-anchor="middle">commit text</text>
+            <text x="690" y="182" fill="#111111" font-size="14" text-anchor="middle">plan clause</text>
+            <text x="930" y="182" fill="#111111" font-size="14" text-anchor="middle">emit audio</text>
+            <text x="740" y="392" fill="#555555" font-size="14" text-anchor="middle">cancel + flush</text>
+            <text x="985" y="392" fill="#555555" font-size="14" text-anchor="middle">resume capture</text>
 
-            <path d="M290 150 L340 150" fill="none" stroke="#ffffff" stroke-width="2"/>
-            <polygon points="340,150 327,143 327,157" fill="#ffffff"/>
-            <path d="M520 150 L570 150" fill="none" stroke="#ffffff" stroke-width="2"/>
-            <polygon points="570,150 557,143 557,157" fill="#ffffff"/>
-            <path d="M750 150 L800 150" fill="none" stroke="#ffffff" stroke-width="2"/>
-            <polygon points="800,150 787,143 787,157" fill="#ffffff"/>
+            <path d="M310 160 L350 160" fill="none" stroke="#111111" stroke-width="2"/>
+            <polygon points="350,160 337,153 337,167" fill="#111111"/>
+            <path d="M550 160 L590 160" fill="none" stroke="#111111" stroke-width="2"/>
+            <polygon points="590,160 577,153 577,167" fill="#111111"/>
+            <path d="M790 160 L830 160" fill="none" stroke="#111111" stroke-width="2"/>
+            <polygon points="830,160 817,153 817,167" fill="#111111"/>
 
-            <text x="300" y="132" fill="#b8b8b8" font-size="14">speech_end</text>
-            <text x="532" y="132" fill="#b8b8b8" font-size="14">text_stable</text>
-            <text x="758" y="132" fill="#b8b8b8" font-size="14">reply_ready</text>
+            <rect x="272" y="108" width="116" height="22" fill="#ffffff"/>
+            <rect x="510" y="108" width="120" height="22" fill="#ffffff"/>
+            <rect x="752" y="108" width="116" height="22" fill="#ffffff"/>
+            <text x="330" y="123" fill="#666666" font-size="14" text-anchor="middle">speech_end</text>
+            <text x="570" y="123" fill="#666666" font-size="14" text-anchor="middle">text_stable</text>
+            <text x="810" y="123" fill="#666666" font-size="14" text-anchor="middle">reply_ready</text>
 
-            <path d="M890 205 C890 255 820 255 795 295" fill="none" stroke="#ffffff" stroke-width="2"/>
-            <polygon points="795,295 791,280 805,286" fill="#ffffff"/>
-            <text x="854" y="262" fill="#b8b8b8" font-size="14">barge_in</text>
+            <path d="M945 220 C948 265 905 282 850 318" fill="none" stroke="#111111" stroke-width="2"/>
+            <polygon points="845,321 853,308 859,320" fill="#111111"/>
+            <rect x="866" y="286" width="84" height="22" fill="#ffffff"/>
+            <text x="908" y="301" fill="#666666" font-size="14" text-anchor="middle">barge_in</text>
 
-            <path d="M795 350 L845 350" fill="none" stroke="#ffffff" stroke-width="2"/>
-            <polygon points="845,350 832,343 832,357" fill="#ffffff"/>
-            <text x="762" y="332" fill="#b8b8b8" font-size="14">audio_stopped</text>
+            <path d="M840 370 L890 370" fill="none" stroke="#111111" stroke-width="2"/>
+            <polygon points="890,370 877,363 877,377" fill="#111111"/>
+            <rect x="824" y="338" width="132" height="22" fill="#ffffff"/>
+            <text x="890" y="353" fill="#666666" font-size="14" text-anchor="middle">audio_stopped</text>
 
-            <path d="M935 295 C945 245 860 238 760 188 L750 180" fill="none" stroke="#ffffff" stroke-width="2"/>
-            <polygon points="750,180 762,178 756,190" fill="#ffffff"/>
-            <text x="882" y="214" fill="#b8b8b8" font-size="14">resume_think</text>
+            <path d="M995 310 C1000 250 925 218 790 188" fill="none" stroke="#111111" stroke-width="2"/>
+            <polygon points="790,188 804,184 801,198" fill="#111111"/>
+            <rect x="900" y="248" width="118" height="22" fill="#ffffff"/>
+            <text x="959" y="263" fill="#666666" font-size="14" text-anchor="middle">resume_think</text>
 
-            <path d="M935 405 C905 450 775 465 585 440 C345 408 205 332 200 205" fill="none" stroke="#8f8f8f" stroke-width="2"/>
-            <polygon points="200,205 210,216 196,219" fill="#8f8f8f"/>
-            <text x="468" y="466" fill="#8f8f8f" font-size="14">silence + new_turn -> LISTEN</text>
+            <path d="M985 430 C960 500 830 525 630 522 C390 510 230 410 210 220" fill="none" stroke="#777777" stroke-width="2"/>
+            <polygon points="210,220 220,231 206,234" fill="#777777"/>
+            <rect x="510" y="536" width="210" height="22" fill="#ffffff"/>
+            <text x="615" y="551" fill="#666666" font-size="14" text-anchor="middle">silence + new_turn -&gt; LISTEN</text>
           </g>
         </svg>
         <figcaption>Figure 2. Turn-taking state machine. The barge-in path is a first-class route: while speaking, user voice can force transition to interrupt, bounded audio stop, recovery, and either resumed thinking or a fresh listen state depending on what the new utterance invalidates.</figcaption>
@@ -767,35 +774,35 @@ trace.mark("turn.commit")</code></pre>
         <svg height="400" width="1260" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 400" role="img" aria-labelledby="results-ba-title results-ba-desc">
           <title id="results-ba-title">Before and after comparison of voice agent deployment metrics</title>
           <desc id="results-ba-desc">Side-by-side comparison showing IVR containment rate, abandonment rate, resolution method, and monthly cost before and after deploying the real-time voice agent.</desc>
-          <rect x="0" y="0" width="1260" height="400" fill="#050505"/>
-          <text x="630" y="36" text-anchor="middle" font-family="IBM Plex Mono" font-size="15" fill="#8c8c8c" letter-spacing="2">BEFORE AND AFTER DEPLOYMENT</text>
-          <line x1="630" y1="52" x2="630" y2="380" stroke="#2f2f2f" stroke-width="2" stroke-dasharray="8 8"/>
-          <text x="315" y="72" text-anchor="middle" font-family="IBM Plex Mono" font-size="13" fill="#8c8c8c" letter-spacing="2">BEFORE (IVR)</text>
-          <text x="945" y="72" text-anchor="middle" font-family="IBM Plex Mono" font-size="13" fill="#8c8c8c" letter-spacing="2">AFTER (VOICE AGENT)</text>
-          <rect x="40" y="90" width="550" height="62" fill="#101010" stroke="#4a4a4a"/>
-          <text x="60" y="114" font-family="IBM Plex Mono" font-size="12" fill="#8c8c8c" letter-spacing="1.5">CONTAINMENT RATE</text>
-          <text x="60" y="140" font-family="IBM Plex Mono" font-size="19" fill="#f2f2f2">12% resolved without human handoff</text>
-          <rect x="670" y="90" width="550" height="62" fill="#101010" stroke="#f2f2f2" stroke-width="2"/>
-          <text x="690" y="114" font-family="IBM Plex Mono" font-size="12" fill="#8c8c8c" letter-spacing="1.5">CONTAINMENT RATE</text>
-          <text x="690" y="140" font-family="IBM Plex Mono" font-size="19" fill="#f2f2f2">58% resolved without human handoff</text>
-          <rect x="40" y="168" width="550" height="62" fill="#101010" stroke="#4a4a4a"/>
-          <text x="60" y="192" font-family="IBM Plex Mono" font-size="12" fill="#8c8c8c" letter-spacing="1.5">ABANDONMENT RATE</text>
-          <text x="60" y="218" font-family="IBM Plex Mono" font-size="19" fill="#f2f2f2">45% (long hold times, rigid menus)</text>
-          <rect x="670" y="168" width="550" height="62" fill="#101010" stroke="#f2f2f2" stroke-width="2"/>
-          <text x="690" y="192" font-family="IBM Plex Mono" font-size="12" fill="#8c8c8c" letter-spacing="1.5">ABANDONMENT RATE</text>
-          <text x="690" y="218" font-family="IBM Plex Mono" font-size="19" fill="#f2f2f2">18% (natural language, fast answers)</text>
-          <rect x="40" y="246" width="550" height="62" fill="#101010" stroke="#4a4a4a"/>
-          <text x="60" y="270" font-family="IBM Plex Mono" font-size="12" fill="#8c8c8c" letter-spacing="1.5">INTERRUPTION HANDLING</text>
-          <text x="60" y="296" font-family="IBM Plex Mono" font-size="19" fill="#f2f2f2">None (IVR ignores user input mid-menu)</text>
-          <rect x="670" y="246" width="550" height="62" fill="#101010" stroke="#f2f2f2" stroke-width="2"/>
-          <text x="690" y="270" font-family="IBM Plex Mono" font-size="12" fill="#8c8c8c" letter-spacing="1.5">INTERRUPTION HANDLING</text>
-          <text x="690" y="296" font-family="IBM Plex Mono" font-size="19" fill="#f2f2f2">91% success rate within 150ms</text>
-          <rect x="40" y="324" width="550" height="62" fill="#101010" stroke="#4a4a4a"/>
-          <text x="60" y="348" font-family="IBM Plex Mono" font-size="12" fill="#8c8c8c" letter-spacing="1.5">MONTHLY STAFFING COST</text>
-          <text x="60" y="374" font-family="IBM Plex Mono" font-size="19" fill="#f2f2f2">All simple queries handled by humans</text>
-          <rect x="670" y="324" width="550" height="62" fill="#101010" stroke="#f2f2f2" stroke-width="2"/>
-          <text x="690" y="348" font-family="IBM Plex Mono" font-size="12" fill="#8c8c8c" letter-spacing="1.5">MONTHLY STAFFING COST</text>
-          <text x="690" y="374" font-family="IBM Plex Mono" font-size="19" fill="#f2f2f2">$34K/month saved, agents on complex calls</text>
+          <rect x="0" y="0" width="1260" height="400" fill="#ffffff"/>
+          <text x="630" y="36" text-anchor="middle" font-family="IBM Plex Mono" font-size="15" fill="#666666" letter-spacing="2">BEFORE AND AFTER DEPLOYMENT</text>
+          <line x1="630" y1="52" x2="630" y2="380" stroke="#d0d0d0" stroke-width="2" stroke-dasharray="8 8"/>
+          <text x="315" y="72" text-anchor="middle" font-family="IBM Plex Mono" font-size="13" fill="#666666" letter-spacing="2">BEFORE (IVR)</text>
+          <text x="945" y="72" text-anchor="middle" font-family="IBM Plex Mono" font-size="13" fill="#666666" letter-spacing="2">AFTER (VOICE AGENT)</text>
+          <rect x="40" y="90" width="550" height="62" fill="#f3f3f3" stroke="#c7c7c7"/>
+          <text x="60" y="114" font-family="IBM Plex Mono" font-size="12" fill="#666666" letter-spacing="1.5">CONTAINMENT RATE</text>
+          <text x="60" y="140" font-family="IBM Plex Mono" font-size="19" fill="#111111">12% resolved without human handoff</text>
+          <rect x="670" y="90" width="550" height="62" fill="#f3f3f3" stroke="#111111" stroke-width="2"/>
+          <text x="690" y="114" font-family="IBM Plex Mono" font-size="12" fill="#666666" letter-spacing="1.5">CONTAINMENT RATE</text>
+          <text x="690" y="140" font-family="IBM Plex Mono" font-size="19" fill="#111111">58% resolved without human handoff</text>
+          <rect x="40" y="168" width="550" height="62" fill="#f3f3f3" stroke="#c7c7c7"/>
+          <text x="60" y="192" font-family="IBM Plex Mono" font-size="12" fill="#666666" letter-spacing="1.5">ABANDONMENT RATE</text>
+          <text x="60" y="218" font-family="IBM Plex Mono" font-size="19" fill="#111111">45% (long hold times, rigid menus)</text>
+          <rect x="670" y="168" width="550" height="62" fill="#f3f3f3" stroke="#111111" stroke-width="2"/>
+          <text x="690" y="192" font-family="IBM Plex Mono" font-size="12" fill="#666666" letter-spacing="1.5">ABANDONMENT RATE</text>
+          <text x="690" y="218" font-family="IBM Plex Mono" font-size="19" fill="#111111">18% (natural language, fast answers)</text>
+          <rect x="40" y="246" width="550" height="62" fill="#f3f3f3" stroke="#c7c7c7"/>
+          <text x="60" y="270" font-family="IBM Plex Mono" font-size="12" fill="#666666" letter-spacing="1.5">INTERRUPTION HANDLING</text>
+          <text x="60" y="296" font-family="IBM Plex Mono" font-size="19" fill="#111111">None (IVR ignores user input mid-menu)</text>
+          <rect x="670" y="246" width="550" height="62" fill="#f3f3f3" stroke="#111111" stroke-width="2"/>
+          <text x="690" y="270" font-family="IBM Plex Mono" font-size="12" fill="#666666" letter-spacing="1.5">INTERRUPTION HANDLING</text>
+          <text x="690" y="296" font-family="IBM Plex Mono" font-size="19" fill="#111111">91% success rate within 150ms</text>
+          <rect x="40" y="324" width="550" height="62" fill="#f3f3f3" stroke="#c7c7c7"/>
+          <text x="60" y="348" font-family="IBM Plex Mono" font-size="12" fill="#666666" letter-spacing="1.5">MONTHLY STAFFING COST</text>
+          <text x="60" y="374" font-family="IBM Plex Mono" font-size="19" fill="#111111">All simple queries handled by humans</text>
+          <rect x="670" y="324" width="550" height="62" fill="#f3f3f3" stroke="#111111" stroke-width="2"/>
+          <text x="690" y="348" font-family="IBM Plex Mono" font-size="12" fill="#666666" letter-spacing="1.5">MONTHLY STAFFING COST</text>
+          <text x="690" y="374" font-family="IBM Plex Mono" font-size="19" fill="#111111">$34K/month saved, agents on complex calls</text>
         </svg>
         <figcaption>Customer satisfaction: 4.1/5 on bot-handled calls. The system handles 1,200+ calls daily. The savings came from redeploying human agents to complex cases, not from reducing headcount.</figcaption>
       </figure>

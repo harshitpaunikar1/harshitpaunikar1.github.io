@@ -14,16 +14,16 @@
       Heavily monospaced headers, strict columns, system state h2s.
     */
     :root {
-      --bg: #111111;
-      --text: #eaeaea;
-      --text-muted: #888888;
-      --border-outer: #f5f5f5;
-      --border-inner: #333333;
-      --primary: #ffffff;
+      --bg: #ffffff;
+      --text: #111111;
+      --text-muted: #666666;
+      --border-outer: #111111;
+      --border-inner: #d0d0d0;
+      --primary: #111111;
       --f-prose: 'IBM Plex Sans', sans-serif;
       --f-mono: 'IBM Plex Mono', monospace;
-      --code-bg: #000000;
-      --code-text: #f5f5f5;
+      --code-bg: #f7f7f7;
+      --code-text: #111111;
     }
 
     * {
@@ -60,7 +60,7 @@
     .doc-meta {
       font-family: var(--f-mono);
       font-size: 0.85rem;
-      color: var(--bg);
+      color: #ffffff;
       background-color: var(--primary);
       display: inline-block;
       padding: 0.35rem 0.75rem;
@@ -128,8 +128,8 @@
       font-weight: 700;
       margin-top: 5rem;
       margin-bottom: 2rem;
-      color: var(--primary);
-      background-color: var(--border-inner);
+      color: #ffffff;
+      background-color: #111111;
       padding: 0.5rem 1rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -156,7 +156,7 @@
       margin: 4rem 0;
       border: 1px solid var(--border-inner);
       padding: 2rem;
-      background-color: #000;
+      background-color: #ffffff;
     }
     
     .schema-title {
@@ -232,18 +232,18 @@
 
       <p>A triggered sequence begins precisely when an engagement mechanism (e.g., a PDF download gate) emits an event. The primary ingestion API exists strictly to catch the payload, authenticate it, drop it into a Redis queue, and immediately return a <code>200 OK</code>. It does not validate the user's history or execute state transitions. If the ingestion API does anything other than cache the event, it becomes a severe bottleneck.</p>
 
-<pre><code><span style="color:#888;">// INGESTION PAYLOAD SCHEMA (Validated via schema registry)</span>
+<pre><code><span style="color:#777;">// INGESTION PAYLOAD SCHEMA (Validated via schema registry)</span>
 {
-  <span style="color:#fff;">"event_id"</span>: <span style="color:#bbb;">"evt_0989fxa_8412"</span>,
-  <span style="color:#fff;">"timestamp"</span>: <span style="color:#bbb;">"2026-04-26T14:04:12Z"</span>,
-  <span style="color:#fff;">"actor_id"</span>: <span style="color:#bbb;">"usr_944b_49x"</span>,
-  <span style="color:#fff;">"event_type"</span>: <span style="color:#bbb;">"asset_download"</span>,
-  <span style="color:#fff;">"context"</span>: {
-    <span style="color:#fff;">"asset_id"</span>: <span style="color:#bbb;">"wp_infrastructure_2026"</span>,
-    <span style="color:#fff;">"source_ip"</span>: <span style="color:#bbb;">"192.168.1.1"</span>
+  <span style="color:#111;">"event_id"</span>: <span style="color:#666;">"evt_0989fxa_8412"</span>,
+  <span style="color:#111;">"timestamp"</span>: <span style="color:#666;">"2026-04-26T14:04:12Z"</span>,
+  <span style="color:#111;">"actor_id"</span>: <span style="color:#666;">"usr_944b_49x"</span>,
+  <span style="color:#111;">"event_type"</span>: <span style="color:#666;">"asset_download"</span>,
+  <span style="color:#111;">"context"</span>: {
+    <span style="color:#111;">"asset_id"</span>: <span style="color:#666;">"wp_infrastructure_2026"</span>,
+    <span style="color:#111;">"source_ip"</span>: <span style="color:#666;">"192.168.1.1"</span>
   }
 }
-<span style="color:#888;">// The ingestion service drops this to Redis and terminates its thread.</span>
+<span style="color:#777;">// The ingestion service drops this to Redis and terminates its thread.</span>
 </code></pre>
 
       <h2>STATE_02: WAIT_MUTATION // DELAYED EXECUTION</h2>
@@ -256,51 +256,51 @@
         <div class="schema-title">FIG 1 // ASYNCHRONOUS SWIMLANES</div>
         <svg height="350" width="800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350" preserveAspectRatio="xMidYMid meet">
           <!-- Swimlane Definitions -->
-          <line x1="150" y1="20" x2="150" y2="330" stroke="#333" stroke-width="2" />
-          <line x1="380" y1="20" x2="380" y2="330" stroke="#333" stroke-width="2" />
-          <line x1="610" y1="20" x2="610" y2="330" stroke="#333" stroke-width="2" />
+          <line x1="150" y1="20" x2="150" y2="330" stroke="#cfcfcf" stroke-width="2" />
+          <line x1="380" y1="20" x2="380" y2="330" stroke="#cfcfcf" stroke-width="2" />
+          <line x1="610" y1="20" x2="610" y2="330" stroke="#cfcfcf" stroke-width="2" />
 
           <!-- Lane Titles -->
-          <text x="75" y="40" font-family="'IBM Plex Mono'" font-size="12" fill="#888" text-anchor="middle">CLIENT UI</text>
-          <text x="265" y="40" font-family="'IBM Plex Mono'" font-size="12" fill="#888" text-anchor="middle">INGESTION API</text>
-          <text x="495" y="40" font-family="'IBM Plex Mono'" font-size="12" fill="#888" text-anchor="middle">WORKER (LOGIC)</text>
-          <text x="705" y="40" font-family="'IBM Plex Mono'" font-size="12" fill="#888" text-anchor="middle">OUTBOUND QUEUE</text>
+          <text x="75" y="40" font-family="'IBM Plex Mono'" font-size="12" fill="#666" text-anchor="middle">CLIENT UI</text>
+          <text x="265" y="40" font-family="'IBM Plex Mono'" font-size="12" fill="#666" text-anchor="middle">INGESTION API</text>
+          <text x="495" y="40" font-family="'IBM Plex Mono'" font-size="12" fill="#666" text-anchor="middle">WORKER (LOGIC)</text>
+          <text x="705" y="40" font-family="'IBM Plex Mono'" font-size="12" fill="#666" text-anchor="middle">OUTBOUND QUEUE</text>
 
           <!-- Interaction 1 -->
-          <rect x="30" y="70" width="100" height="30" fill="#fff" />
+          <rect x="30" y="70" width="100" height="30" fill="#f5f5f5" stroke="#111" />
           <text x="80" y="89" font-family="'IBM Plex Sans'" font-size="10" font-weight="700" fill="#000" text-anchor="middle">PDF Download</text>
 
-          <path d="M 130 85 L 210 85" stroke="#fff" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+          <path d="M 130 85 L 210 85" stroke="#111" stroke-width="2" fill="none" marker-end="url(#arrow)" />
 
-          <rect x="220" y="70" width="100" height="30" fill="#222" stroke="#f5f5f5" />
-          <text x="270" y="89" font-family="'IBM Plex Sans'" font-size="10" fill="#fff" text-anchor="middle">Validate/Ack 200</text>
+          <rect x="220" y="70" width="100" height="30" fill="#f0f0f0" stroke="#111" />
+          <text x="270" y="89" font-family="'IBM Plex Sans'" font-size="10" fill="#111" text-anchor="middle">Validate/Ack 200</text>
 
           <!-- Interaction 2: Queue to Worker -->
-          <path d="M 320 85 L 360 85 L 360 135 L 430 135" stroke="#555" stroke-dasharray="4 4" fill="none" marker-end="url(#arrow-dim)" />
+          <path d="M 320 85 L 360 85 L 360 135 L 430 135" stroke="#999" stroke-dasharray="4 4" fill="none" marker-end="url(#arrow-dim)" />
           
-          <rect x="440" y="120" width="110" height="30" fill="#111" stroke="#888" />
-          <text x="495" y="139" font-family="'IBM Plex Mono'" font-size="9" fill="#888" text-anchor="middle">Mutate WaitState (24H)</text>
+          <rect x="440" y="120" width="110" height="30" fill="#f5f5f5" stroke="#999" />
+          <text x="495" y="139" font-family="'IBM Plex Mono'" font-size="9" fill="#555" text-anchor="middle">Mutate WaitState (24H)</text>
 
           <!-- Interaction 3: The Delay -->
-          <path d="M 495 150 L 495 240" stroke="#f5f5f5" stroke-width="4" stroke-dasharray="6 6" fill="none" />
-          <text x="510" y="200" font-family="'IBM Plex Mono'" font-size="10" font-weight="700" fill="#f5f5f5">CRON: T+24Hrs</text>
+          <path d="M 495 150 L 495 240" stroke="#111" stroke-width="3" stroke-dasharray="6 6" fill="none" />
+          <text x="510" y="200" font-family="'IBM Plex Mono'" font-size="10" font-weight="700" fill="#111">CRON: T+24Hrs</text>
 
           <!-- Interaction 4: Wake and Dispatch to Outbound -->
-          <rect x="440" y="240" width="110" height="30" fill="#222" stroke="#f5f5f5" />
-          <text x="495" y="259" font-family="'IBM Plex Mono'" font-size="9" fill="#fff" text-anchor="middle">Evaluate Terminal</text>
+          <rect x="440" y="240" width="110" height="30" fill="#f0f0f0" stroke="#111" />
+          <text x="495" y="259" font-family="'IBM Plex Mono'" font-size="9" fill="#111" text-anchor="middle">Evaluate Terminal</text>
 
-          <path d="M 550 255 L 650 255" stroke="#fff" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+          <path d="M 550 255 L 650 255" stroke="#111" stroke-width="2" fill="none" marker-end="url(#arrow)" />
 
           <!-- Interaction 5: Outbound Send -->
-          <rect x="660" y="240" width="110" height="30" fill="#fff" stroke="#111" />
+          <rect x="660" y="240" width="110" height="30" fill="#f5f5f5" stroke="#111" />
           <text x="715" y="259" font-family="'IBM Plex Sans'" font-size="10" font-weight="700" fill="#000" text-anchor="middle">SMTP Send(Template)</text>
 
           <defs>
             <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M 0 0 L 10 5 L 0 10 z" fill="#fff" />
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#111" />
             </marker>
             <marker id="arrow-dim" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M 0 0 L 10 5 L 0 10 z" fill="#555" />
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#999" />
             </marker>
           </defs>
         </svg>
@@ -319,38 +319,38 @@
         <div class="schema-title">FIG 2 // RACE-CONDITION LOCKOUT FLOW</div>
         <svg height="400" width="800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
           <!-- Flowchart Start -->
-          <rect x="300" y="20" width="140" height="40" fill="#222" stroke="#fff" rx="20" />
-          <text x="370" y="44" font-family="'IBM Plex Mono'" font-size="10" fill="#fff" text-anchor="middle">WAKE: CRON_TICK</text>
+          <rect x="300" y="20" width="140" height="40" fill="#f0f0f0" stroke="#111" rx="20" />
+          <text x="370" y="44" font-family="'IBM Plex Mono'" font-size="10" fill="#111" text-anchor="middle">WAKE: CRON_TICK</text>
 
-          <path d="M 370 60 L 370 90" stroke="#fff" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+          <path d="M 370 60 L 370 90" stroke="#111" stroke-width="2" fill="none" marker-end="url(#arrow)" />
 
           <!-- Diamond: Eval State -->
-          <polygon points="370,90 450,130 370,170 290,130" fill="#000" stroke="#f5f5f5" stroke-width="2" />
-          <text x="370" y="133" font-family="'IBM Plex Mono'" font-size="10" fill="#fff" text-anchor="middle">Check DB HashKey</text>
+          <polygon points="370,90 450,130 370,170 290,130" fill="#f5f5f5" stroke="#111" stroke-width="2" />
+          <text x="370" y="133" font-family="'IBM Plex Mono'" font-size="10" fill="#111" text-anchor="middle">Check DB HashKey</text>
           
-          <text x="460" y="120" font-family="'IBM Plex Mono'" font-size="10" fill="#aaa">Exists == TRUE</text>
-          <text x="375" y="195" font-family="'IBM Plex Mono'" font-size="10" fill="#fff">Exists == FALSE</text>
+          <text x="460" y="120" font-family="'IBM Plex Mono'" font-size="10" fill="#777">Exists == TRUE</text>
+          <text x="375" y="195" font-family="'IBM Plex Mono'" font-size="10" fill="#111">Exists == FALSE</text>
 
           <!-- Branch 1: Path Kill (Duplicate) -->
-          <path d="M 450 130 L 550 130 L 550 180" stroke="#555" stroke-width="2" fill="none" marker-end="url(#arrow-dim)" stroke-dasharray="4 4" />
+          <path d="M 450 130 L 550 130 L 550 180" stroke="#999" stroke-width="2" fill="none" marker-end="url(#arrow-dim)" stroke-dasharray="4 4" />
           
-          <rect x="490" y="180" width="120" height="40" fill="#111" stroke="#555" />
-          <text x="550" y="204" font-family="'IBM Plex Mono'" font-size="10" fill="#888" text-anchor="middle">DROP PAYLOAD (DUP)</text>
+          <rect x="490" y="180" width="120" height="40" fill="#f5f5f5" stroke="#999" />
+          <text x="550" y="204" font-family="'IBM Plex Mono'" font-size="10" fill="#666" text-anchor="middle">DROP PAYLOAD (DUP)</text>
           
           <!-- End Kill -->
-          <path d="M 550 220 L 550 320" stroke="#555" stroke-width="2" fill="none" marker-end="url(#arrow-dim)" />
-          <rect x="500" y="320" width="100" height="30" fill="#111" stroke="#333" />
-          <text x="550" y="340" font-family="'IBM Plex Mono'" font-size="10" fill="#555" text-anchor="middle">TERMINATE</text>
+          <path d="M 550 220 L 550 320" stroke="#999" stroke-width="2" fill="none" marker-end="url(#arrow-dim)" />
+          <rect x="500" y="320" width="100" height="30" fill="#f0f0f0" stroke="#bbb" />
+          <text x="550" y="340" font-family="'IBM Plex Mono'" font-size="10" fill="#777" text-anchor="middle">TERMINATE</text>
 
           <!-- Branch 2: Path Exec (Clean) -->
-          <path d="M 370 170 L 370 220" stroke="#fff" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+          <path d="M 370 170 L 370 220" stroke="#111" stroke-width="2" fill="none" marker-end="url(#arrow)" />
 
-          <rect x="300" y="220" width="140" height="40" fill="#222" stroke="#fff" />
-          <text x="370" y="244" font-family="'IBM Plex Mono'" font-size="10" fill="#fff" text-anchor="middle">Acquire Lock Matrix</text>
+          <rect x="300" y="220" width="140" height="40" fill="#f0f0f0" stroke="#111" />
+          <text x="370" y="244" font-family="'IBM Plex Mono'" font-size="10" fill="#111" text-anchor="middle">Acquire Lock Matrix</text>
 
-          <path d="M 370 260 L 370 300" stroke="#fff" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+          <path d="M 370 260 L 370 300" stroke="#111" stroke-width="2" fill="none" marker-end="url(#arrow)" />
 
-          <rect x="290" y="300" width="160" height="40" fill="#fff" stroke="#fff" />
+          <rect x="290" y="300" width="160" height="40" fill="#f5f5f5" stroke="#111" />
           <text x="370" y="324" font-family="'IBM Plex Sans'" font-size="10" font-weight="700" fill="#000" text-anchor="middle">DISPATCH_MQ_OUTBOUND</text>
 
         </svg>
@@ -383,62 +383,62 @@
         <div class="schema-title">FIG 3 // BEFORE vs. AFTER DEPLOYMENT METRICS</div>
         <svg height="380" width="800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" preserveAspectRatio="xMidYMid meet">
           <!-- Before Side -->
-          <rect x="20" y="20" width="365" height="340" fill="#111" stroke="#333" stroke-width="2" />
-          <text x="202" y="50" font-family="'IBM Plex Mono'" font-size="12" fill="#888" text-anchor="middle" font-weight="700">BEFORE: SYNCHRONOUS SYSTEM</text>
+          <rect x="20" y="20" width="365" height="340" fill="#f5f5f5" stroke="#bbbbbb" stroke-width="2" />
+          <text x="202" y="50" font-family="'IBM Plex Mono'" font-size="12" fill="#666" text-anchor="middle" font-weight="700">BEFORE: SYNCHRONOUS SYSTEM</text>
 
-          <text x="45" y="95" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Followup delivery time</text>
-          <text x="355" y="95" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">6-8 hours</text>
-          <rect x="45" y="105" width="310" height="6" fill="#333" />
+          <text x="45" y="95" font-family="'IBM Plex Sans'" font-size="12" fill="#666">Followup delivery time</text>
+          <text x="355" y="95" font-family="'IBM Plex Mono'" font-size="14" fill="#111" text-anchor="end" font-weight="600">6-8 hours</text>
+          <rect x="45" y="105" width="310" height="6" fill="#d0d0d0" />
           <rect x="45" y="105" width="290" height="6" fill="#888" />
 
-          <text x="45" y="145" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Webhook throughput</text>
-          <text x="355" y="145" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">200/sec</text>
-          <rect x="45" y="155" width="310" height="6" fill="#333" />
+          <text x="45" y="145" font-family="'IBM Plex Sans'" font-size="12" fill="#666">Webhook throughput</text>
+          <text x="355" y="145" font-family="'IBM Plex Mono'" font-size="14" fill="#111" text-anchor="end" font-weight="600">200/sec</text>
+          <rect x="45" y="155" width="310" height="6" fill="#d0d0d0" />
           <rect x="45" y="155" width="5" height="6" fill="#888" />
 
-          <text x="45" y="195" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Sequence completion rate</text>
-          <text x="355" y="195" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">34%</text>
-          <rect x="45" y="205" width="310" height="6" fill="#333" />
+          <text x="45" y="195" font-family="'IBM Plex Sans'" font-size="12" fill="#666">Sequence completion rate</text>
+          <text x="355" y="195" font-family="'IBM Plex Mono'" font-size="14" fill="#111" text-anchor="end" font-weight="600">34%</text>
+          <rect x="45" y="205" width="310" height="6" fill="#d0d0d0" />
           <rect x="45" y="205" width="106" height="6" fill="#888" />
 
-          <text x="45" y="245" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Race condition incidents</text>
-          <text x="355" y="245" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">Recurring</text>
-          <rect x="45" y="255" width="310" height="6" fill="#333" />
+          <text x="45" y="245" font-family="'IBM Plex Sans'" font-size="12" fill="#666">Race condition incidents</text>
+          <text x="355" y="245" font-family="'IBM Plex Mono'" font-size="14" fill="#111" text-anchor="end" font-weight="600">Recurring</text>
+          <rect x="45" y="255" width="310" height="6" fill="#d0d0d0" />
           <rect x="45" y="255" width="200" height="6" fill="#888" />
 
-          <text x="45" y="295" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Duplicate emails sent</text>
-          <text x="355" y="295" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">~3.8% of volume</text>
-          <rect x="45" y="305" width="310" height="6" fill="#333" />
+          <text x="45" y="295" font-family="'IBM Plex Sans'" font-size="12" fill="#666">Duplicate emails sent</text>
+          <text x="355" y="295" font-family="'IBM Plex Mono'" font-size="14" fill="#111" text-anchor="end" font-weight="600">~3.8% of volume</text>
+          <rect x="45" y="305" width="310" height="6" fill="#d0d0d0" />
           <rect x="45" y="305" width="120" height="6" fill="#888" />
 
           <!-- After Side -->
-          <rect x="415" y="20" width="365" height="340" fill="#000" stroke="#f5f5f5" stroke-width="2" />
-          <text x="597" y="50" font-family="'IBM Plex Mono'" font-size="12" fill="#f5f5f5" text-anchor="middle" font-weight="700">AFTER: ASYNC EVENT-DRIVEN</text>
+          <rect x="415" y="20" width="365" height="340" fill="#ffffff" stroke="#111111" stroke-width="2" />
+          <text x="597" y="50" font-family="'IBM Plex Mono'" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">AFTER: ASYNC EVENT-DRIVEN</text>
 
-          <text x="440" y="95" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Followup delivery time</text>
-          <text x="750" y="95" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">&lt;90 seconds</text>
-          <rect x="440" y="105" width="310" height="6" fill="#333" />
-          <rect x="440" y="105" width="6" height="6" fill="#f5f5f5" />
+          <text x="440" y="95" font-family="'IBM Plex Sans'" font-size="12" fill="#666">Followup delivery time</text>
+          <text x="750" y="95" font-family="'IBM Plex Mono'" font-size="14" fill="#111" text-anchor="end" font-weight="600">&lt;90 seconds</text>
+          <rect x="440" y="105" width="310" height="6" fill="#d0d0d0" />
+          <rect x="440" y="105" width="6" height="6" fill="#111111" />
 
-          <text x="440" y="145" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Webhook throughput</text>
-          <text x="750" y="145" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">12,000/sec</text>
-          <rect x="440" y="155" width="310" height="6" fill="#333" />
-          <rect x="440" y="155" width="310" height="6" fill="#f5f5f5" />
+          <text x="440" y="145" font-family="'IBM Plex Sans'" font-size="12" fill="#666">Webhook throughput</text>
+          <text x="750" y="145" font-family="'IBM Plex Mono'" font-size="14" fill="#111" text-anchor="end" font-weight="600">12,000/sec</text>
+          <rect x="440" y="155" width="310" height="6" fill="#d0d0d0" />
+          <rect x="440" y="155" width="310" height="6" fill="#111111" />
 
-          <text x="440" y="195" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Sequence completion rate</text>
-          <text x="750" y="195" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">78%</text>
-          <rect x="440" y="205" width="310" height="6" fill="#333" />
-          <rect x="440" y="205" width="242" height="6" fill="#f5f5f5" />
+          <text x="440" y="195" font-family="'IBM Plex Sans'" font-size="12" fill="#666">Sequence completion rate</text>
+          <text x="750" y="195" font-family="'IBM Plex Mono'" font-size="14" fill="#111" text-anchor="end" font-weight="600">78%</text>
+          <rect x="440" y="205" width="310" height="6" fill="#d0d0d0" />
+          <rect x="440" y="205" width="242" height="6" fill="#111111" />
 
-          <text x="440" y="245" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Race condition incidents</text>
-          <text x="750" y="245" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">Zero (6 months)</text>
-          <rect x="440" y="255" width="310" height="6" fill="#333" />
-          <rect x="440" y="255" width="2" height="6" fill="#f5f5f5" />
+          <text x="440" y="245" font-family="'IBM Plex Sans'" font-size="12" fill="#666">Race condition incidents</text>
+          <text x="750" y="245" font-family="'IBM Plex Mono'" font-size="14" fill="#111" text-anchor="end" font-weight="600">Zero (6 months)</text>
+          <rect x="440" y="255" width="310" height="6" fill="#d0d0d0" />
+          <rect x="440" y="255" width="2" height="6" fill="#111111" />
 
-          <text x="440" y="295" font-family="'IBM Plex Sans'" font-size="12" fill="#888">Duplicate emails sent</text>
-          <text x="750" y="295" font-family="'IBM Plex Mono'" font-size="14" fill="#fff" text-anchor="end" font-weight="600">0%</text>
-          <rect x="440" y="305" width="310" height="6" fill="#333" />
-          <rect x="440" y="305" width="2" height="6" fill="#f5f5f5" />
+          <text x="440" y="295" font-family="'IBM Plex Sans'" font-size="12" fill="#666">Duplicate emails sent</text>
+          <text x="750" y="295" font-family="'IBM Plex Mono'" font-size="14" fill="#111" text-anchor="end" font-weight="600">0%</text>
+          <rect x="440" y="305" width="310" height="6" fill="#d0d0d0" />
+          <rect x="440" y="305" width="2" height="6" fill="#111111" />
         </svg>
         <div class="caption">
           The async architecture eliminated every major failure mode of the old system. Delivery delays dropped by 99%, throughput increased 60x, and the deduplication logic caught the 3.8% duplicate webhook events that had been silently double-sending emails.

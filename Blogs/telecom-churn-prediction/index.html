@@ -30,19 +30,23 @@
 
     /* ── PLAYBOOK HEADER ── */
     .pb-header {
-      padding: 3rem 3.5rem 2.5rem;
+      padding: 3.5rem 3.5rem 2.9rem;
       border-bottom: 3px solid var(--ink);
+    }
+    .pb-header-inner {
+      max-width: 1180px;
+      margin: 0 auto;
     }
     .pb-tag {
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.68rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--ink-muted);
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.4rem;
     }
     .pb-tag::before {
       content: '';
@@ -53,27 +57,38 @@
     }
     .pb-header h1 {
       font-family: var(--display);
-      font-size: clamp(2rem, 4.5vw, 3.4rem);
-      font-weight: 800;
-      line-height: 1.08;
+      font-size: clamp(2.85rem, 6vw, 5.3rem);
+      font-weight: 700;
+      line-height: 0.94;
+      letter-spacing: -0.05em;
       color: var(--ink);
-      max-width: 700px;
+      max-width: 860px;
+      text-wrap: balance;
     }
-    .pb-header h1 span { display: block; font-weight: 400; font-size: 0.7em; color: var(--ink-light); }
+    .pb-header h1 span {
+      display: block;
+      margin-top: 0.34em;
+      font-weight: 400;
+      font-size: 0.44em;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--ink-light);
+    }
     .pb-deck {
       font-family: var(--body);
-      font-weight: 300;
-      font-size: 1.05rem;
+      font-weight: 400;
+      font-size: 1.08rem;
       color: var(--ink-light);
-      max-width: 640px;
-      line-height: 1.7;
-      margin-top: 1.1rem;
+      max-width: 760px;
+      line-height: 1.78;
+      margin-top: 1.5rem;
+      text-wrap: pretty;
     }
     /* stat strip */
     .stat-strip {
       display: flex;
       gap: 0;
-      margin-top: 2rem;
+      margin-top: 2.3rem;
       border-top: 1px solid var(--divider);
       padding-top: 1.2rem;
       flex-wrap: wrap;
@@ -106,8 +121,23 @@
       margin: 0 auto;
       padding: 0 3.5rem 5rem;
     }
+    .wide-figure {
+      width: min(1180px, calc(100vw - 2rem));
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+    .wide-figure figcaption {
+      max-width: 1020px;
+      margin-left: auto;
+      margin-right: auto;
+    }
     @media (max-width: 700px) {
       .pb-header, .article { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .wide-figure {
+        width: 100%;
+        margin-left: 0;
+        transform: none;
+      }
     }
 
     /* PLAYBOOK TAB h2 */
@@ -210,6 +240,14 @@
       line-height: 1.72;
       margin: 1.5rem 0;
     }
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-size: inherit;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
     code { font-family: var(--mono); background: var(--bg-tint); padding: 0.1em 0.35em; font-size: 0.87rem; }
 
     /* closing */
@@ -230,28 +268,30 @@
 
 <!-- ════════════ PLAYBOOK HEADER ════════════ -->
 <div class="pb-header">
-  <p class="pb-tag">Retention Playbook &nbsp;·&nbsp; Telecom &nbsp;·&nbsp; Churn Prediction &amp; Intervention</p>
-  <h1>The Churn Retention Playbook
-    <span>From Signal to Save Offer</span>
-  </h1>
-  <p class="pb-deck">A churn model without a save strategy is an early warning system that nobody acts on. The useful question is not "can we predict who will leave?" — most operators can — it is "which customers should we try to save, with what offer, and at what cost?"</p>
+  <div class="pb-header-inner">
+    <p class="pb-tag">Retention Playbook &nbsp;·&nbsp; Telecom &nbsp;·&nbsp; Churn Prediction &amp; Intervention</p>
+    <h1>The Churn Retention Playbook
+      <span>From Signal to Save Offer</span>
+    </h1>
+    <p class="pb-deck">A churn model without a save strategy is an early warning system that nobody acts on. The useful question is not "can we predict who will leave?" — most operators can — it is "which customers should we try to save, with what offer, and at what cost?"</p>
 
-  <div class="stat-strip">
-    <div class="stat-item">
-      <div class="stat-num">15–25%</div>
-      <div class="stat-label">Annual churn rate, telecom</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">5–10×</div>
-      <div class="stat-label">Acquisition cost vs. retention</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">83%</div>
-      <div class="stat-label">Baseline accuracy achieved</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">3 tiers</div>
-      <div class="stat-label">Save-offer structure</div>
+    <div class="stat-strip">
+      <div class="stat-item">
+        <div class="stat-num">15–25%</div>
+        <div class="stat-label">Annual churn rate, telecom</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5–10×</div>
+        <div class="stat-label">Acquisition cost vs. retention</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">83%</div>
+        <div class="stat-label">Baseline accuracy achieved</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3 tiers</div>
+        <div class="stat-label">Save-offer structure</div>
+      </div>
     </div>
   </div>
 </div>
@@ -283,9 +323,9 @@
   <p>MNP (Mobile Number Portability) inquiry and SIM activation of a competing network are the most direct signals of imminent churn but are often not available in the dataset at the time prediction is needed. What proxy signals exist: a sudden drop in same-network calls (suggesting the customer's social graph is moving to a competitor), an increase in off-net calls (the customer is already maintaining cross-network relationships), and reduced engagement with carrier-specific services like streaming bundles or loyalty programs. These features require engineering from raw call detail records rather than being directly observable as columns.</p>
 
   <!-- DIAGRAM 1: Lifecycle Trigger Map -->
-  <figure>
+  <figure class="wide-figure">
     <div class="diagram-scroll">
-      <svg height="340" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 340" width="860" style="max-width:100%;display:block;">
+      <svg height="458" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 340" width="1160" style="max-width:100%;display:block;">
         <rect width="860" height="340" fill="#fff"/>
         <text x="30" y="22" font-family="Fira Code,monospace" font-size="9" fill="#888" letter-spacing="1.5">LIFECYCLE TRIGGER MAP — CUSTOMER JOURNEY WITH CHURN SIGNAL INTERRUPTS</text>
 
@@ -451,9 +491,9 @@ print(f"CV AUC: {auc_scores.mean():.3f} ± {auc_scores.std():.3f}")
   <p>This is called the <strong>treatment effect paradox</strong> in retention modeling. It is most pronounced for Tier 1 interventions (agent calls with significant discount offers) and least pronounced for Tier 3 loyalty rewards. The implication is that the precision-recall trade-off should be set more conservatively for expensive interventions and more liberally for cheap ones — which is exactly the three-tier structure above. High-cost interventions need high-confidence targeting; low-cost interventions can afford a broader net.</p>
 
   <!-- DIAGRAM 2: Action Matrix -->
-  <figure>
+  <figure class="wide-figure">
     <div class="diagram-scroll">
-      <svg height="260" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 260" width="760" style="max-width:100%;display:block;">
+      <svg height="342" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 260" width="1000" style="max-width:100%;display:block;">
         <rect width="760" height="260" fill="#fff"/>
         <text x="30" y="22" font-family="Fira Code,monospace" font-size="9" fill="#888" letter-spacing="1.5">FIG. 2 — INTERVENTION COST-VALUE MATRIX</text>
 

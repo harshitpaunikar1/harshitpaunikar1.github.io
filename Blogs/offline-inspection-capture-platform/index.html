@@ -238,6 +238,11 @@
       margin-top: 1.35rem;
     }
 
+    .support-grid.capture-layout {
+      grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.7fr);
+      align-items: start;
+    }
+
     .field-note,
     .code-card {
       padding: 1.2rem 1.25rem;
@@ -289,6 +294,10 @@
       margin: 1.35rem 0 0;
       padding: 1.2rem;
       overflow: hidden;
+    }
+
+    .diagram.diagram-large {
+      padding: 1.55rem;
     }
 
     .diagram figcaption {
@@ -446,42 +455,42 @@
           <p>Mandatory fields are enforced at entry time because offline work punishes deferred validation. A blank pressure reading does not linger until sync and then fail three hours later in the office. If a numeric field expects kilopascals, the keypad is numeric. If a checklist requires one of four condition states, the control is a short local selector and not a free-text guess. If the operator marks a leak as present, the app reveals the required follow-up fields immediately: leak location, severity, containment action, and photo proof. That behavior matters because the job has to stay coherent when the operator is moving fast and may be interrupted by radio calls or vehicle movement around the enclosure.</p>
           <p>The camera path is equally strict. When Saira captures the gauge face, the app writes the full-size image to local storage, creates a lighter preview for the running form, and stores the file hash before returning to the checklist. This is not decorative bookkeeping. The full-size file may upload later on poor bandwidth, and the hash lets the sync worker prove whether the server already has that exact evidence or only a preview. The preview keeps the form responsive on low-memory devices because the interface does not need to decode the full asset repeatedly during review. The operator sees that the slot is filled and moves on.</p>
           <p>By the time the last door-edge photo is taken, the inspection is functionally complete even though nothing has left the handset. That is the core discipline of the platform. Completion is defined first by local integrity: every required answer present, every expected image attached, every timestamp written, every validation rule satisfied, every action tied to the inspection ID already assigned on device.</p>
-          <div class="support-grid">
+          <div class="support-grid capture-layout">
             <aside class="field-note">
               <h3>On-Device Path Diagram</h3>
-              <figure class="diagram">
-                <svg height="580" width="1060" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 580" role="img" aria-labelledby="journey-title journey-desc">
+              <figure class="diagram diagram-large">
+                <svg height="760" width="1320" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 760" role="img" aria-labelledby="journey-title journey-desc">
                   <title id="journey-title">Operator journey through the on-device inspection path</title>
                   <desc id="journey-desc">A diagram of the handset path from checklist open through validation, photo capture, local write, resume, and queued sync state.</desc>
-                  <rect x="320" y="28" width="400" height="504" rx="38" fill="#fdfdfd" stroke="#0b0b0b" stroke-width="3"/>
-                  <rect x="470" y="48" width="100" height="10" rx="4" fill="#b5b5b5"/>
-                  <rect x="346" y="92" width="348" height="54" rx="16" fill="#f0f0f0" stroke="#707070"/>
-                  <rect x="346" y="166" width="348" height="54" rx="16" fill="#ffffff" stroke="#707070"/>
-                  <rect x="346" y="240" width="348" height="70" rx="16" fill="#f0f0f0" stroke="#707070"/>
-                  <rect x="346" y="330" width="348" height="58" rx="16" fill="#ffffff" stroke="#707070"/>
-                  <rect x="346" y="408" width="348" height="74" rx="16" fill="#f0f0f0" stroke="#707070"/>
-                  <path d="M520 146 L520 166 M520 220 L520 240 M520 310 L520 330 M520 388 L520 408" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
-                  <circle cx="520" cy="146" r="7" fill="#101010"/>
-                  <circle cx="520" cy="220" r="7" fill="#101010"/>
-                  <circle cx="520" cy="310" r="7" fill="#101010"/>
-                  <circle cx="520" cy="388" r="7" fill="#101010"/>
-                  <text x="520" y="125" text-anchor="middle" font-size="24" font-family="IBM Plex Sans" fill="#111111">Open assigned checklist</text>
-                  <text x="520" y="198" text-anchor="middle" font-size="24" font-family="IBM Plex Sans" fill="#111111">Validate required inputs</text>
-                  <text x="520" y="270" text-anchor="middle" font-size="24" font-family="IBM Plex Sans" fill="#111111">Capture photo in slot</text>
-                  <text x="520" y="297" text-anchor="middle" font-size="18" font-family="IBM Plex Sans" fill="#5f5f5f">full image + preview + hash</text>
-                  <text x="520" y="364" text-anchor="middle" font-size="24" font-family="IBM Plex Sans" fill="#111111">Write answer locally</text>
-                  <text x="520" y="438" text-anchor="middle" font-size="24" font-family="IBM Plex Sans" fill="#111111">Resume if interrupted, then mark</text>
-                  <text x="520" y="466" text-anchor="middle" font-size="22" font-family="IBM Plex Sans" fill="#111111">Queued for sync</text>
-                  <path d="M186 130 C270 130 290 130 320 130" fill="none" stroke="#3b3b3b" stroke-width="2.5" stroke-dasharray="8 10"/>
-                  <path d="M172 278 C270 278 290 278 320 278" fill="none" stroke="#3b3b3b" stroke-width="2.5" stroke-dasharray="8 10"/>
-                  <path d="M720 438 C780 438 800 438 830 438" fill="none" stroke="#3b3b3b" stroke-width="2.5" stroke-dasharray="8 10"/>
-                  <text x="44" y="122" font-size="20" font-family="IBM Plex Sans" fill="#111111">Checklist payload</text>
-                  <text x="44" y="148" font-size="16" font-family="IBM Plex Sans" fill="#5f5f5f">already on device</text>
-                  <text x="36" y="270" font-size="20" font-family="IBM Plex Sans" fill="#111111">Camera guardrails</text>
-                  <text x="36" y="296" font-size="16" font-family="IBM Plex Sans" fill="#5f5f5f">no gallery detour</text>
-                  <text x="838" y="430" font-size="20" font-family="IBM Plex Sans" fill="#111111">Queue badge</text>
-                  <text x="838" y="456" font-size="16" font-family="IBM Plex Sans" fill="#5f5f5f">awaiting network</text>
-                  <text x="838" y="476" font-size="16" font-family="IBM Plex Sans" fill="#5f5f5f">and battery window</text>
+                  <rect x="384" y="36" width="500" height="620" rx="44" fill="#fdfdfd" stroke="#0b0b0b" stroke-width="3.5"/>
+                  <rect x="569" y="60" width="130" height="12" rx="5" fill="#b5b5b5"/>
+                  <rect x="416" y="116" width="436" height="66" rx="18" fill="#f0f0f0" stroke="#707070" stroke-width="1.5"/>
+                  <rect x="416" y="206" width="436" height="66" rx="18" fill="#ffffff" stroke="#707070" stroke-width="1.5"/>
+                  <rect x="416" y="296" width="436" height="86" rx="18" fill="#f0f0f0" stroke="#707070" stroke-width="1.5"/>
+                  <rect x="416" y="406" width="436" height="72" rx="18" fill="#ffffff" stroke="#707070" stroke-width="1.5"/>
+                  <rect x="416" y="502" width="436" height="92" rx="18" fill="#f0f0f0" stroke="#707070" stroke-width="1.5"/>
+                  <path d="M634 182 L634 206 M634 272 L634 296 M634 382 L634 406 M634 478 L634 502" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+                  <circle cx="634" cy="182" r="8" fill="#101010"/>
+                  <circle cx="634" cy="272" r="8" fill="#101010"/>
+                  <circle cx="634" cy="382" r="8" fill="#101010"/>
+                  <circle cx="634" cy="478" r="8" fill="#101010"/>
+                  <text x="634" y="156" text-anchor="middle" font-size="30" font-family="IBM Plex Sans" fill="#111111">Open assigned checklist</text>
+                  <text x="634" y="246" text-anchor="middle" font-size="30" font-family="IBM Plex Sans" fill="#111111">Validate required inputs</text>
+                  <text x="634" y="332" text-anchor="middle" font-size="30" font-family="IBM Plex Sans" fill="#111111">Capture photo in slot</text>
+                  <text x="634" y="366" text-anchor="middle" font-size="22" font-family="IBM Plex Sans" fill="#5f5f5f">full image + preview + hash</text>
+                  <text x="634" y="452" text-anchor="middle" font-size="30" font-family="IBM Plex Sans" fill="#111111">Write answer locally</text>
+                  <text x="634" y="546" text-anchor="middle" font-size="30" font-family="IBM Plex Sans" fill="#111111">Resume if interrupted, then mark</text>
+                  <text x="634" y="582" text-anchor="middle" font-size="28" font-family="IBM Plex Sans" fill="#111111">Queued for sync</text>
+                  <path d="M224 162 C318 162 350 162 384 162" fill="none" stroke="#3b3b3b" stroke-width="3" stroke-dasharray="10 12"/>
+                  <path d="M204 342 C318 342 350 342 384 342" fill="none" stroke="#3b3b3b" stroke-width="3" stroke-dasharray="10 12"/>
+                  <path d="M884 546 C954 546 978 546 1018 546" fill="none" stroke="#3b3b3b" stroke-width="3" stroke-dasharray="10 12"/>
+                  <text x="64" y="150" font-size="24" font-family="IBM Plex Sans" fill="#111111">Checklist payload</text>
+                  <text x="64" y="182" font-size="19" font-family="IBM Plex Sans" fill="#5f5f5f">already on device</text>
+                  <text x="48" y="330" font-size="24" font-family="IBM Plex Sans" fill="#111111">Camera guardrails</text>
+                  <text x="48" y="362" font-size="19" font-family="IBM Plex Sans" fill="#5f5f5f">no gallery detour</text>
+                  <text x="1032" y="534" font-size="24" font-family="IBM Plex Sans" fill="#111111">Queue badge</text>
+                  <text x="1032" y="566" font-size="19" font-family="IBM Plex Sans" fill="#5f5f5f">awaiting network</text>
+                  <text x="1032" y="592" font-size="19" font-family="IBM Plex Sans" fill="#5f5f5f">and battery window</text>
                 </svg>
                 <figcaption>The operator path stays inside the device boundary: assignment payload already present, required data validated before exit, photo capture bound to checklist slots, and interrupted sessions restored to the exact local state rather than restarted from memory.</figcaption>
               </figure>
@@ -562,60 +571,60 @@
           </div>
 
           <figure class="diagram">
-            <svg height="620" width="1140" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 620" role="img" aria-labelledby="braid-title braid-desc">
+            <svg height="660" width="1280" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 660" role="img" aria-labelledby="braid-title braid-desc">
               <title id="braid-title">Sync braid diagram for one offline inspection</title>
               <desc id="braid-desc">Parallel strands show local capture, queued records, connectivity return, merge, and acknowledgment across the lifecycle of one inspection.</desc>
-              <rect x="24" y="24" width="1092" height="572" rx="28" fill="#fcfcfc" stroke="#adadad"/>
-              <rect x="80" y="88" width="170" height="442" rx="24" fill="#f3f3f3" stroke="#d1d1d1"/>
-              <rect x="270" y="88" width="170" height="442" rx="24" fill="#fafafa" stroke="#d1d1d1"/>
-              <rect x="460" y="88" width="170" height="442" rx="24" fill="#f3f3f3" stroke="#d1d1d1"/>
-              <rect x="650" y="88" width="170" height="442" rx="24" fill="#fafafa" stroke="#d1d1d1"/>
-              <rect x="840" y="88" width="216" height="442" rx="24" fill="#f3f3f3" stroke="#d1d1d1"/>
-              <text x="165" y="64" text-anchor="middle" font-size="18" font-family="IBM Plex Sans" fill="#111111">Local capture</text>
-              <text x="355" y="64" text-anchor="middle" font-size="18" font-family="IBM Plex Sans" fill="#111111">Queued records</text>
-              <text x="545" y="58" text-anchor="middle" font-size="18" font-family="IBM Plex Sans" fill="#111111">
-                <tspan x="545" y="58">Connectivity</tspan>
-                <tspan x="545" y="78">returns</tspan>
+              <rect x="32" y="24" width="1216" height="612" rx="28" fill="#fcfcfc" stroke="#adadad"/>
+              <rect x="170" y="96" width="184" height="454" rx="24" fill="#f3f3f3" stroke="#d1d1d1"/>
+              <rect x="380" y="96" width="184" height="454" rx="24" fill="#fafafa" stroke="#d1d1d1"/>
+              <rect x="590" y="96" width="184" height="454" rx="24" fill="#f3f3f3" stroke="#d1d1d1"/>
+              <rect x="800" y="96" width="184" height="454" rx="24" fill="#fafafa" stroke="#d1d1d1"/>
+              <rect x="1010" y="96" width="184" height="454" rx="24" fill="#f3f3f3" stroke="#d1d1d1"/>
+              <text x="262" y="68" text-anchor="middle" font-size="18" font-family="IBM Plex Sans" fill="#111111">Local capture</text>
+              <text x="472" y="68" text-anchor="middle" font-size="18" font-family="IBM Plex Sans" fill="#111111">Queued records</text>
+              <text x="682" y="62" text-anchor="middle" font-size="18" font-family="IBM Plex Sans" fill="#111111">
+                <tspan x="682" y="62">Connectivity</tspan>
+                <tspan x="682" y="82">returns</tspan>
               </text>
-              <text x="735" y="58" text-anchor="middle" font-size="18" font-family="IBM Plex Sans" fill="#111111">
-                <tspan x="735" y="58">Merge and</tspan>
-                <tspan x="735" y="78">commit</tspan>
+              <text x="892" y="62" text-anchor="middle" font-size="18" font-family="IBM Plex Sans" fill="#111111">
+                <tspan x="892" y="62">Merge and</tspan>
+                <tspan x="892" y="82">commit</tspan>
               </text>
-              <text x="948" y="64" text-anchor="middle" font-size="18" font-family="IBM Plex Sans" fill="#111111">Acknowledgment</text>
+              <text x="1102" y="68" text-anchor="middle" font-size="18" font-family="IBM Plex Sans" fill="#111111">Acknowledgment</text>
 
-              <text x="94" y="152" text-anchor="end" font-size="19" font-family="IBM Plex Sans" fill="#111111">Form answers</text>
-              <text x="94" y="238" text-anchor="end" font-size="19" font-family="IBM Plex Sans" fill="#111111">Photo bundle</text>
-              <text x="94" y="324" text-anchor="end" font-size="19" font-family="IBM Plex Sans" fill="#111111">Sync worker</text>
-              <text x="94" y="410" text-anchor="end" font-size="19" font-family="IBM Plex Sans" fill="#111111">Server ledger</text>
-              <text x="94" y="496" text-anchor="end" font-size="19" font-family="IBM Plex Sans" fill="#111111">Ack channel</text>
+              <text x="154" y="166" text-anchor="end" font-size="19" font-family="IBM Plex Sans" fill="#111111">Form answers</text>
+              <text x="154" y="254" text-anchor="end" font-size="19" font-family="IBM Plex Sans" fill="#111111">Photo bundle</text>
+              <text x="154" y="342" text-anchor="end" font-size="19" font-family="IBM Plex Sans" fill="#111111">Sync worker</text>
+              <text x="154" y="430" text-anchor="end" font-size="19" font-family="IBM Plex Sans" fill="#111111">Server ledger</text>
+              <text x="154" y="518" text-anchor="end" font-size="19" font-family="IBM Plex Sans" fill="#111111">Ack channel</text>
 
-              <path d="M110 142 C225 142 275 142 320 142 C390 142 438 190 508 190 C570 190 620 140 690 140 C770 140 806 168 886 168 C952 168 998 150 1040 150" fill="none" stroke="#050505" stroke-width="6" stroke-linecap="round"/>
-              <path d="M110 228 C224 228 270 228 332 244 C392 260 450 300 516 300 C580 300 632 246 700 246 C770 246 826 226 902 226 C972 226 1010 208 1040 208" fill="none" stroke="#404040" stroke-width="5" stroke-linecap="round" stroke-dasharray="12 10"/>
-              <path d="M110 314 C210 314 268 314 334 334 C402 356 454 406 522 406 C592 406 630 332 708 332 C776 332 836 348 906 348 C974 348 1008 332 1040 332" fill="none" stroke="#7a7a7a" stroke-width="5" stroke-linecap="round"/>
-              <path d="M110 400 C218 400 266 400 332 390 C392 382 448 352 516 352 C584 352 640 420 712 420 C786 420 824 426 904 426 C978 426 1006 430 1040 430" fill="none" stroke="#191919" stroke-width="3.5" stroke-linecap="round"/>
-              <path d="M110 486 C232 486 280 486 346 470 C410 454 454 246 518 246 C582 246 642 486 714 486 C794 486 826 486 904 486 C980 486 1012 486 1040 486" fill="none" stroke="#555555" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="4 12"/>
+              <path d="M202 156 C320 156 364 156 420 158 C500 162 562 214 632 214 C714 214 774 154 846 154 C932 154 984 178 1068 178 C1112 178 1132 168 1176 166" fill="none" stroke="#050505" stroke-width="6" stroke-linecap="round"/>
+              <path d="M202 244 C318 244 364 244 430 262 C500 280 560 324 634 324 C706 324 768 264 840 264 C922 264 986 242 1070 242 C1114 242 1136 230 1178 226" fill="none" stroke="#404040" stroke-width="5" stroke-linecap="round" stroke-dasharray="12 10"/>
+              <path d="M202 332 C306 332 362 332 432 350 C508 370 568 436 636 436 C708 436 770 352 848 352 C924 352 986 370 1072 370 C1114 370 1138 360 1178 356" fill="none" stroke="#7a7a7a" stroke-width="5" stroke-linecap="round"/>
+              <path d="M202 420 C308 420 364 420 434 410 C500 400 560 364 634 364 C708 364 772 440 850 440 C930 440 988 444 1072 446 C1116 446 1140 450 1178 452" fill="none" stroke="#191919" stroke-width="3.5" stroke-linecap="round"/>
+              <path d="M202 508 C320 508 372 508 440 494 C506 480 558 260 632 260 C702 260 768 508 850 508 C932 508 992 508 1072 508 C1118 508 1142 508 1178 508" fill="none" stroke="#555555" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="4 12"/>
 
-              <circle cx="150" cy="142" r="10" fill="#050505"/>
-              <circle cx="358" cy="142" r="10" fill="#050505"/>
-              <circle cx="544" cy="182" r="10" fill="#050505"/>
-              <circle cx="730" cy="144" r="10" fill="#050505"/>
-              <circle cx="1008" cy="152" r="10" fill="#050505"/>
+              <circle cx="246" cy="156" r="10" fill="#050505"/>
+              <circle cx="472" cy="158" r="10" fill="#050505"/>
+              <circle cx="684" cy="214" r="10" fill="#050505"/>
+              <circle cx="894" cy="158" r="10" fill="#050505"/>
+              <circle cx="1144" cy="168" r="10" fill="#050505"/>
 
-              <circle cx="150" cy="228" r="9" fill="#404040"/>
-              <circle cx="368" cy="248" r="9" fill="#404040"/>
-              <circle cx="544" cy="300" r="9" fill="#404040"/>
-              <circle cx="736" cy="238" r="9" fill="#404040"/>
-              <circle cx="1010" cy="212" r="9" fill="#404040"/>
+              <circle cx="246" cy="244" r="9" fill="#404040"/>
+              <circle cx="482" cy="266" r="9" fill="#404040"/>
+              <circle cx="684" cy="324" r="9" fill="#404040"/>
+              <circle cx="902" cy="256" r="9" fill="#404040"/>
+              <circle cx="1146" cy="228" r="9" fill="#404040"/>
 
-              <circle cx="150" cy="314" r="8" fill="#7a7a7a"/>
-              <circle cx="372" cy="344" r="8" fill="#7a7a7a"/>
-              <circle cx="548" cy="406" r="8" fill="#7a7a7a"/>
-              <circle cx="736" cy="338" r="8" fill="#7a7a7a"/>
-              <circle cx="1010" cy="332" r="8" fill="#7a7a7a"/>
+              <circle cx="246" cy="332" r="8" fill="#7a7a7a"/>
+              <circle cx="486" cy="352" r="8" fill="#7a7a7a"/>
+              <circle cx="688" cy="436" r="8" fill="#7a7a7a"/>
+              <circle cx="902" cy="358" r="8" fill="#7a7a7a"/>
+              <circle cx="1146" cy="356" r="8" fill="#7a7a7a"/>
 
-              <text x="104" y="548" font-size="17" font-family="IBM Plex Sans" fill="#5b5b5b">Solid strand: validated form state</text>
-              <text x="430" y="548" font-size="17" font-family="IBM Plex Sans" fill="#5b5b5b">Dashed strand: media transfer</text>
-              <text x="708" y="548" font-size="17" font-family="IBM Plex Sans" fill="#5b5b5b">Dotted strand: acknowledgment and retry state</text>
+              <text x="194" y="586" font-size="16" font-family="IBM Plex Sans" fill="#5b5b5b">Solid strand: validated form state</text>
+              <text x="534" y="586" font-size="16" font-family="IBM Plex Sans" fill="#5b5b5b">Dashed strand: media transfer</text>
+              <text x="814" y="586" font-size="16" font-family="IBM Plex Sans" fill="#5b5b5b">Dotted strand: acknowledgment and retry state</text>
             </svg>
             <figcaption>The braid shows why synchronization is not one line. Form answers, photo evidence, worker state, server commit, and acknowledgment move in parallel. They meet only when the server can confirm that the inspection and its evidence bundle were both accepted against the expected basis version.</figcaption>
           </figure>

@@ -20,6 +20,7 @@
       --divider:   #e8e8e8;
       --bg:        #ffffff;
       --bg-tint:   #f0f0f0;
+      --page-max:  1180px;
       --serif:     'Playfair Display', Georgia, serif;
       --sans:      'Source Sans 3', system-ui, sans-serif;
       --mono:      'JetBrains Mono', monospace;
@@ -32,7 +33,11 @@
     .doc-header {
       background: var(--ink);
       color: #f5f5f5;
-      padding: 2.8rem 3.5rem 2.4rem;
+      padding: 2.8rem 2rem 2.4rem;
+    }
+    .doc-header-inner {
+      max-width: var(--page-max);
+      margin: 0 auto;
     }
     .doc-stamp {
       font-family: var(--mono);
@@ -76,12 +81,12 @@
 
     /* ── TWO-COLUMN BODY ── */
     .body-wrap {
-      max-width: 1060px;
+      max-width: var(--page-max);
       margin: 0 auto;
-      padding: 3rem 3rem 5rem;
+      padding: 3rem 2rem 5rem;
       display: grid;
-      grid-template-columns: 1fr 220px;
-      gap: 4rem;
+      grid-template-columns: minmax(0, 1fr) 240px;
+      gap: 3rem;
       align-items: start;
     }
     @media (max-width: 800px) {
@@ -90,6 +95,7 @@
     }
 
     /* ── MAIN PROSE ── */
+    .prose { min-width: 0; }
     .prose h2 {
       font-family: var(--mono);
       font-size: 0.72rem;
@@ -122,6 +128,16 @@
     .prose li strong { color: var(--ink); }
 
     figure { margin: 2.5rem 0 1rem; }
+    figure.wide-diagram {
+      width: min(1080px, calc(100vw - 4rem));
+      margin-left: 0;
+      transform: none;
+    }
+    figure.wide-diagram figcaption {
+      max-width: 1000px;
+      margin-left: 0;
+      margin-right: 0;
+    }
     figcaption {
       font-family: var(--sans);
       font-size: 0.77rem;
@@ -133,7 +149,24 @@
     .diagram-scroll { overflow-x: auto; }
 
     /* ── RIGHT MARGIN COLUMN ── */
-    .margin-col { padding-top: 3.5rem; }
+    .margin-col {
+      padding-top: 3.5rem;
+      position: sticky;
+      top: calc(var(--bc-header-h, 64px) + 2rem);
+      align-self: start;
+    }
+    @media (max-width: 800px) {
+      .margin-col {
+        padding-top: 0;
+        position: static;
+      }
+      figure.wide-diagram {
+        width: 100%;
+      }
+      figure.wide-diagram figcaption {
+        max-width: none;
+      }
+    }
 
     .margin-note {
       border-left: 3px solid var(--ink);
@@ -190,6 +223,14 @@
       line-height: 1.7;
     }
     code { font-family: var(--mono); background: var(--bg-tint); padding: 0.1em 0.35em; font-size: 0.88rem; color: var(--ink); }
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-size: inherit;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
 
     /* ── CLOSING ── */
     .closing-block {
@@ -209,6 +250,7 @@
 
 <!-- ══════════ DOCUMENT HEADER ══════════ -->
 <div class="doc-header">
+  <div class="doc-header-inner">
   <div class="doc-stamp">
     <span>ALLOCATION MEMO</span>
     <span>INTERNATIONAL HUMANITARIAN NGO</span>
@@ -222,6 +264,7 @@
     <div class="doc-meta-item">METHOD<strong>K-Means Clustering + PCA</strong></div>
     <div class="doc-meta-item">AUDIENCE<strong>Senior Leadership &amp; Allocation Committee</strong></div>
   </div>
+</div>
 </div>
 
 <!-- ══════════ BODY ══════════ -->
@@ -255,85 +298,85 @@
     <p><strong>Exports and imports as percent of GDP</strong> are trade openness measures. Their direct relevance to humanitarian need is indirect: trade openness correlates with development stage and institutional quality, but high openness alone does not reduce poverty. These features contribute to the clustering geometry without being primary drivers of the need signal.</p>
 
     <!-- DIAGRAM 1: Decision Slate (need × feasibility matrix) -->
-    <figure>
+    <figure class="wide-diagram">
       <div class="diagram-scroll">
-        <svg height="430" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 430" width="720" style="max-width:100%;display:block;">
-          <rect width="740" height="430" fill="#fff"/>
-          <text x="30" y="22" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#888" letter-spacing="1.5">FIG. 1 — ALLOCATION DECISION SLATE: NEED × DELIVERY FEASIBILITY MATRIX</text>
+        <svg height="560" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 500" width="1040" style="max-width:100%;display:block;">
+          <rect width="860" height="500" fill="#fff"/>
+          <text x="34" y="28" font-family="JetBrains Mono,monospace" font-size="11" fill="#888" letter-spacing="1.8">FIG. 1 — ALLOCATION DECISION SLATE: NEED × DELIVERY FEASIBILITY MATRIX</text>
 
           <!-- axes -->
           <!-- X: Delivery Feasibility (low→high) -->
-          <line x1="80" y1="350" x2="660" y2="350" stroke="#111" stroke-width="1.5"/>
-          <text x="80" y="370" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#888">LOW FEASIBILITY</text>
-          <text x="540" y="370" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#888">HIGH FEASIBILITY</text>
-          <text x="350" y="385" font-family="Source Sans 3,sans-serif" font-size="9" fill="#888" text-anchor="middle">← Delivery Feasibility (infrastructure, access, stability) →</text>
+          <line x1="110" y1="420" x2="780" y2="420" stroke="#111" stroke-width="1.8"/>
+          <text x="110" y="445" font-family="JetBrains Mono,monospace" font-size="10" fill="#888">LOW FEASIBILITY</text>
+          <text x="732" y="445" font-family="JetBrains Mono,monospace" font-size="10" fill="#888" text-anchor="end">HIGH FEASIBILITY</text>
+          <text x="445" y="468" font-family="Source Sans 3,sans-serif" font-size="11" fill="#888" text-anchor="middle">← Delivery Feasibility (infrastructure, access, stability) →</text>
 
           <!-- Y: Need (low→high) -->
-          <line x1="80" y1="50" x2="80" y2="350" stroke="#111" stroke-width="1.5"/>
-          <text x="20" y="345" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#888">LOW</text>
-          <text x="20" y="75" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#888">HIGH</text>
-          <text x="22" y="200" font-family="Source Sans 3,sans-serif" font-size="9" fill="#888" text-anchor="middle" transform="rotate(-90 22 200)">← Development Need (mortality, income, health) →</text>
+          <line x1="110" y1="72" x2="110" y2="420" stroke="#111" stroke-width="1.8"/>
+          <text x="34" y="414" font-family="JetBrains Mono,monospace" font-size="10" fill="#888">LOW</text>
+          <text x="34" y="110" font-family="JetBrains Mono,monospace" font-size="10" fill="#888">HIGH</text>
+          <text x="36" y="246" font-family="Source Sans 3,sans-serif" font-size="11" fill="#888" text-anchor="middle" transform="rotate(-90 36 246)">← Development Need (mortality, income, health) →</text>
 
           <!-- quadrant fills -->
           <!-- Q1: High Need, Low Feasibility -->
-          <rect x="81" y="51" width="289" height="149" fill="#f0f0f0" stroke="#ddd"/>
+          <rect x="111" y="73" width="339" height="172" fill="#f0f0f0" stroke="#ddd"/>
           <!-- Q2: High Need, High Feasibility -->
-          <rect x="371" y="51" width="288" height="149" fill="#1a1a1a"/>
+          <rect x="450" y="73" width="330" height="172" fill="#1a1a1a"/>
           <!-- Q3: Low Need, Low Feasibility -->
-          <rect x="81" y="201" width="289" height="148" fill="#f8f8f8" stroke="#ddd"/>
+          <rect x="111" y="245" width="339" height="174" fill="#f8f8f8" stroke="#ddd"/>
           <!-- Q4: Low Need, High Feasibility -->
-          <rect x="371" y="201" width="288" height="148" fill="#f0f0f0" stroke="#ddd"/>
+          <rect x="450" y="245" width="330" height="174" fill="#f0f0f0" stroke="#ddd"/>
 
           <!-- Quadrant labels -->
-          <text x="226" y="110" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="600" fill="#555" text-anchor="middle">HIGH NEED</text>
-          <text x="226" y="126" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="600" fill="#555" text-anchor="middle">LOW ACCESS</text>
-          <text x="226" y="148" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">Fragile states; conflict zones</text>
-          <text x="226" y="162" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">→ Triage / proxy delivery</text>
+          <text x="280" y="144" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#555" text-anchor="middle">HIGH NEED</text>
+          <text x="280" y="168" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#555" text-anchor="middle">LOW ACCESS</text>
+          <text x="280" y="206" font-family="JetBrains Mono,monospace" font-size="11" fill="#888" text-anchor="middle">Fragile states; conflict zones</text>
+          <text x="280" y="226" font-family="JetBrains Mono,monospace" font-size="11" fill="#888" text-anchor="middle">→ Triage / proxy delivery</text>
 
-          <text x="515" y="106" font-family="Source Sans 3,sans-serif" font-size="12" font-weight="600" fill="#fff" text-anchor="middle">PRIMARY</text>
-          <text x="515" y="122" font-family="Source Sans 3,sans-serif" font-size="12" font-weight="600" fill="#fff" text-anchor="middle">ALLOCATION</text>
-          <text x="515" y="144" font-family="JetBrains Mono,monospace" font-size="9" fill="#bbb" text-anchor="middle">High need + accessible</text>
-          <text x="515" y="158" font-family="JetBrains Mono,monospace" font-size="9" fill="#bbb" text-anchor="middle">→ Full program deployment</text>
+          <text x="615" y="160" font-family="Source Sans 3,sans-serif" font-size="18" font-weight="600" fill="#fff" text-anchor="middle">PRIMARY</text>
+          <text x="615" y="186" font-family="Source Sans 3,sans-serif" font-size="18" font-weight="600" fill="#fff" text-anchor="middle">ALLOCATION</text>
+          <text x="615" y="220" font-family="JetBrains Mono,monospace" font-size="11" fill="#ddd" text-anchor="middle">High need + accessible</text>
+          <text x="615" y="242" font-family="JetBrains Mono,monospace" font-size="11" fill="#ddd" text-anchor="middle">→ Full program deployment</text>
 
-          <text x="226" y="262" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="600" fill="#aaa" text-anchor="middle">LOW NEED</text>
-          <text x="226" y="278" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="600" fill="#aaa" text-anchor="middle">LOW ACCESS</text>
-          <text x="226" y="300" font-family="JetBrains Mono,monospace" font-size="9" fill="#bbb" text-anchor="middle">→ Not prioritized</text>
+          <text x="280" y="324" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#aaa" text-anchor="middle">LOW NEED</text>
+          <text x="280" y="348" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#aaa" text-anchor="middle">LOW ACCESS</text>
+          <text x="280" y="386" font-family="JetBrains Mono,monospace" font-size="11" fill="#bbb" text-anchor="middle">→ Not prioritized</text>
 
-          <text x="515" y="262" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="600" fill="#555" text-anchor="middle">LOW NEED</text>
-          <text x="515" y="278" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="600" fill="#555" text-anchor="middle">HIGH ACCESS</text>
-          <text x="515" y="300" font-family="JetBrains Mono,monospace" font-size="9" fill="#888" text-anchor="middle">→ Capacity building / exit</text>
+          <text x="615" y="324" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#555" text-anchor="middle">LOW NEED</text>
+          <text x="615" y="348" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#555" text-anchor="middle">HIGH ACCESS</text>
+          <text x="615" y="386" font-family="JetBrains Mono,monospace" font-size="11" fill="#888" text-anchor="middle">→ Capacity building / exit</text>
 
           <!-- CONSTRAINT CORRIDOR: diagonal band showing viable allocation zone -->
           <!-- A corridor from upper-right (ideal) slanting toward upper-left edge (high need priority) -->
-          <polygon points="371,51 659,51 659,200 371,200" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="6,3" opacity="0.5"/>
-          <text x="515" y="46" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#555" text-anchor="middle">CONSTRAINT CORRIDOR</text>
-          <text x="515" y="57" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#888" text-anchor="middle">(budget ceiling limits this zone)</text>
+          <polygon points="450,73 780,73 780,245 450,245" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="6,3" opacity="0.5"/>
+          <text x="615" y="62" font-family="JetBrains Mono,monospace" font-size="10" fill="#555" text-anchor="middle">CONSTRAINT CORRIDOR</text>
+          <text x="615" y="76" font-family="JetBrains Mono,monospace" font-size="10" fill="#888" text-anchor="middle">(budget ceiling limits this zone)</text>
 
           <!-- cluster dots representing country groups -->
           <!-- Cluster 1: Dire - high need, moderate feasibility (upper center-right) -->
-          <circle cx="420" cy="80" r="22" fill="none" stroke="#fff" stroke-width="2"/>
-          <circle cx="415" cy="78" r="4" fill="#fff"/><circle cx="425" cy="90" r="4" fill="#fff"/>
-          <circle cx="432" cy="72" r="4" fill="#fff"/><circle cx="408" cy="85" r="4" fill="#fff"/>
-          <text x="420" y="110" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#ddd" text-anchor="middle">CLUSTER 1</text>
-          <text x="420" y="121" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#ddd" text-anchor="middle">Dire (→ Priority)</text>
+          <circle cx="505" cy="120" r="30" fill="none" stroke="#fff" stroke-width="2.5"/>
+          <circle cx="496" cy="117" r="5.5" fill="#fff"/><circle cx="513" cy="136" r="5.5" fill="#fff"/>
+          <circle cx="524" cy="106" r="5.5" fill="#fff"/><circle cx="485" cy="128" r="5.5" fill="#fff"/>
+          <text x="505" y="164" font-family="JetBrains Mono,monospace" font-size="10.5" fill="#ddd" text-anchor="middle">CLUSTER 1</text>
+          <text x="505" y="180" font-family="JetBrains Mono,monospace" font-size="10.5" fill="#ddd" text-anchor="middle">Dire (→ Priority)</text>
 
           <!-- Cluster 2: High feasibility + high need -->
-          <circle cx="560" cy="90" r="22" fill="none" stroke="#fff" stroke-width="2"/>
-          <circle cx="555" cy="85" r="4" fill="#fff"/><circle cx="565" cy="98" r="4" fill="#fff"/>
-          <circle cx="572" cy="80" r="4" fill="#fff"/><circle cx="548" cy="95" r="4" fill="#fff"/>
-          <text x="560" y="120" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#ddd" text-anchor="middle">CLUSTER 2</text>
-          <text x="560" y="131" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#ddd" text-anchor="middle">Stressed (→ Deploy)</text>
+          <circle cx="705" cy="135" r="28" fill="none" stroke="#fff" stroke-width="2.5"/>
+          <circle cx="696" cy="126" r="5.5" fill="#fff"/><circle cx="712" cy="145" r="5.5" fill="#fff"/>
+          <circle cx="724" cy="118" r="5.5" fill="#fff"/><circle cx="685" cy="139" r="5.5" fill="#fff"/>
+          <text x="705" y="176" font-family="JetBrains Mono,monospace" font-size="10.5" fill="#ddd" text-anchor="middle">CLUSTER 2</text>
+          <text x="705" y="192" font-family="JetBrains Mono,monospace" font-size="10.5" fill="#ddd" text-anchor="middle">Stressed (→ Deploy)</text>
 
           <!-- Cluster 3: Mid range -->
-          <circle cx="450" cy="250" r="20" fill="none" stroke="#888" stroke-width="1.5"/>
-          <circle cx="445" cy="245" r="3.5" fill="#888"/><circle cx="455" cy="258" r="3.5" fill="#888"/>
-          <circle cx="460" cy="243" r="3.5" fill="#888"/>
-          <text x="460" y="280" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#888" text-anchor="middle">CLUSTER 3: Mid</text>
+          <circle cx="540" cy="314" r="26" fill="none" stroke="#888" stroke-width="2"/>
+          <circle cx="531" cy="306" r="4.8" fill="#888"/><circle cx="548" cy="326" r="4.8" fill="#888"/>
+          <circle cx="556" cy="303" r="4.8" fill="#888"/>
+          <text x="540" y="360" font-family="JetBrains Mono,monospace" font-size="10.5" fill="#888" text-anchor="middle">CLUSTER 3: Mid</text>
 
           <!-- Cluster 4: Developed -->
-          <circle cx="590" cy="280" r="18" fill="none" stroke="#ccc" stroke-width="1.5"/>
-          <circle cx="585" cy="275" r="3" fill="#ccc"/><circle cx="595" cy="285" r="3" fill="#ccc"/>
-          <text x="600" y="308" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#aaa" text-anchor="middle">CLUSTER 4: Developed</text>
+          <circle cx="700" cy="340" r="22" fill="none" stroke="#ccc" stroke-width="2"/>
+          <circle cx="692" cy="332" r="4" fill="#ccc"/><circle cx="708" cy="348" r="4" fill="#ccc"/>
+          <text x="700" y="374" font-family="JetBrains Mono,monospace" font-size="10.5" fill="#aaa" text-anchor="middle">CLUSTER 4: Developed</text>
         </svg>
       </div>
       <figcaption><em>Fig. 1 — Allocation Decision Slate. Countries land in the matrix based on their composite need score (vertical axis) and delivery feasibility estimate (horizontal axis). The constraint corridor (dashed box, upper right) marks the zone where both need is high and delivery is feasible — the primary allocation target under budget limits. Countries with high need but low feasibility require triage-mode or proxy delivery arrangements and cannot absorb the same program formats as the primary corridor.</em></figcaption>
@@ -390,68 +433,68 @@ country_df['cluster'] = kmeans.fit_predict(X_pca)
     <p>A pure need-plus-feasibility ranking will systematically produce lists dominated by Sub-Saharan African countries, which have both high need and moderate delivery environments. That is not a bias — it reflects reality. But it creates political and donor-relations challenges for organizations that have historical programming commitments in South Asia or that receive funds from donors with geographic preferences. Acknowledging this explicitly — rather than allowing it to silently distort the scoring framework — is an ethical obligation. If geographic distribution constraints are applied, they should appear in the methodology as explicit parameters with documented justification, not as unstated post-hoc adjustments to the ranked list.</p>
 
     <!-- DIAGRAM 2: Score-to-Recommendation Ladder -->
-    <figure>
+    <figure class="wide-diagram">
       <div class="diagram-scroll">
-        <svg height="330" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 330" width="680" style="max-width:100%;display:block;">
-          <rect width="680" height="330" fill="#fff"/>
-          <text x="30" y="22" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#888" letter-spacing="1.5">FIG. 2 — SCORE-TO-RECOMMENDATION LADDER</text>
+        <svg height="380" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 360" width="960" style="max-width:100%;display:block;">
+          <rect width="820" height="360" fill="#fff"/>
+          <text x="34" y="24" font-family="JetBrains Mono,monospace" font-size="10" fill="#888" letter-spacing="1.5">FIG. 2 — SCORE-TO-RECOMMENDATION LADDER</text>
 
           <!-- Ladder rungs: 5 levels -->
           <!-- Rung 1 (top, highest need): full black fill -->
-          <rect x="80" y="40" width="360" height="44" fill="#111"/>
+          <rect x="80" y="40" width="430" height="44" fill="#111"/>
           <text x="100" y="58" font-family="JetBrains Mono,monospace" font-size="9" font-weight="500" fill="#fff">TIER 1: DIRE</text>
           <text x="100" y="73" font-family="Source Sans 3,sans-serif" font-size="9" fill="#bbb">Child mort. &gt;100 · Income &lt;$1,200 · Life exp. &lt;58 · Cluster 1</text>
-          <text x="455" y="57" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#111">→</text>
-          <rect x="470" y="40" width="180" height="44" fill="#111"/>
-          <text x="480" y="58" font-family="Source Sans 3,sans-serif" font-size="9" font-weight="600" fill="#fff">Full program deploy</text>
-          <text x="480" y="72" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#bbb">Budget priority: HIGH</text>
+          <text x="528" y="57" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#111">→</text>
+          <rect x="546" y="40" width="210" height="44" fill="#111"/>
+          <text x="560" y="58" font-family="Source Sans 3,sans-serif" font-size="9" font-weight="600" fill="#fff">Full program deploy</text>
+          <text x="560" y="72" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#bbb">Budget priority: HIGH</text>
 
           <!-- connector line -->
-          <line x1="220" y1="84" x2="220" y2="100" stroke="#111" stroke-width="1.5"/>
+          <line x1="255" y1="84" x2="255" y2="100" stroke="#111" stroke-width="1.5"/>
 
           <!-- Rung 2 -->
-          <rect x="80" y="100" width="360" height="44" fill="#333"/>
+          <rect x="80" y="100" width="430" height="44" fill="#333"/>
           <text x="100" y="118" font-family="JetBrains Mono,monospace" font-size="9" font-weight="500" fill="#fff">TIER 2: STRESSED</text>
           <text x="100" y="133" font-family="Source Sans 3,sans-serif" font-size="9" fill="#bbb">Child mort. 50–100 · Moderate income · Cluster 2</text>
-          <rect x="470" y="100" width="180" height="44" fill="#333"/>
-          <text x="480" y="118" font-family="Source Sans 3,sans-serif" font-size="9" font-weight="600" fill="#fff">Targeted intervention</text>
-          <text x="480" y="132" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#bbb">Budget priority: HIGH</text>
+          <rect x="546" y="100" width="210" height="44" fill="#333"/>
+          <text x="560" y="118" font-family="Source Sans 3,sans-serif" font-size="9" font-weight="600" fill="#fff">Targeted intervention</text>
+          <text x="560" y="132" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#bbb">Budget priority: HIGH</text>
 
-          <line x1="220" y1="144" x2="220" y2="160" stroke="#111" stroke-width="1.5"/>
+          <line x1="255" y1="144" x2="255" y2="160" stroke="#111" stroke-width="1.5"/>
 
           <!-- Rung 3 -->
-          <rect x="80" y="160" width="360" height="44" fill="#555"/>
+          <rect x="80" y="160" width="430" height="44" fill="#555"/>
           <text x="100" y="178" font-family="JetBrains Mono,monospace" font-size="9" font-weight="500" fill="#fff">TIER 3: DEVELOPING</text>
           <text x="100" y="193" font-family="Source Sans 3,sans-serif" font-size="9" fill="#ddd">Child mort. 20–50 · Lower-middle income · Cluster 3</text>
-          <rect x="470" y="160" width="180" height="44" fill="#555"/>
-          <text x="480" y="178" font-family="Source Sans 3,sans-serif" font-size="9" font-weight="600" fill="#fff">Systemic capacity support</text>
-          <text x="480" y="192" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#ddd">Budget priority: MED</text>
+          <rect x="546" y="160" width="210" height="44" fill="#555"/>
+          <text x="560" y="178" font-family="Source Sans 3,sans-serif" font-size="9" font-weight="600" fill="#fff">Systemic capacity support</text>
+          <text x="560" y="192" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#ddd">Budget priority: MED</text>
 
-          <line x1="220" y1="204" x2="220" y2="220" stroke="#111" stroke-width="1.5"/>
+          <line x1="255" y1="204" x2="255" y2="220" stroke="#111" stroke-width="1.5"/>
 
           <!-- Rung 4 -->
-          <rect x="80" y="220" width="360" height="44" fill="#888"/>
+          <rect x="80" y="220" width="430" height="44" fill="#888"/>
           <text x="100" y="238" font-family="JetBrains Mono,monospace" font-size="9" font-weight="500" fill="#fff">TIER 4: TRANSITIONING</text>
           <text x="100" y="253" font-family="Source Sans 3,sans-serif" font-size="9" fill="#eee">Child mort. &lt;20 · Upper-middle income · Cluster 4a</text>
-          <rect x="470" y="220" width="180" height="44" fill="#888"/>
-          <text x="480" y="238" font-family="Source Sans 3,sans-serif" font-size="9" font-weight="600" fill="#fff">Policy advisory / exit prep</text>
-          <text x="480" y="252" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#eee">Budget priority: LOW</text>
+          <rect x="546" y="220" width="210" height="44" fill="#888"/>
+          <text x="560" y="238" font-family="Source Sans 3,sans-serif" font-size="9" font-weight="600" fill="#fff">Policy advisory / exit prep</text>
+          <text x="560" y="252" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#eee">Budget priority: LOW</text>
 
-          <line x1="220" y1="264" x2="220" y2="280" stroke="#111" stroke-width="1.5"/>
+          <line x1="255" y1="264" x2="255" y2="280" stroke="#111" stroke-width="1.5"/>
 
           <!-- Rung 5 -->
-          <rect x="80" y="280" width="360" height="38" fill="#f0f0f0" stroke="#ddd"/>
+          <rect x="80" y="280" width="430" height="38" fill="#f0f0f0" stroke="#ddd"/>
           <text x="100" y="298" font-family="JetBrains Mono,monospace" font-size="9" fill="#555">TIER 5: DEVELOPED</text>
           <text x="100" y="312" font-family="Source Sans 3,sans-serif" font-size="9" fill="#888">High income · Low mortality · Cluster 4b</text>
-          <rect x="470" y="280" width="180" height="38" fill="#f0f0f0" stroke="#ddd"/>
-          <text x="480" y="298" font-family="Source Sans 3,sans-serif" font-size="9" fill="#555">No active allocation</text>
-          <text x="480" y="312" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#aaa">Not in current cycle</text>
+          <rect x="546" y="280" width="210" height="38" fill="#f0f0f0" stroke="#ddd"/>
+          <text x="560" y="298" font-family="Source Sans 3,sans-serif" font-size="9" fill="#555">No active allocation</text>
+          <text x="560" y="312" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#aaa">Not in current cycle</text>
 
           <!-- arrow heads for right column -->
-          <text x="455" y="123" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#888">→</text>
-          <text x="455" y="183" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#888">→</text>
-          <text x="455" y="243" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#888">→</text>
-          <text x="455" y="300" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#888">→</text>
+          <text x="528" y="123" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#888">→</text>
+          <text x="528" y="183" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#888">→</text>
+          <text x="528" y="243" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#888">→</text>
+          <text x="528" y="300" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#888">→</text>
         </svg>
       </div>
       <figcaption><em>Fig. 2 — Score-to-recommendation ladder. Each tier maps a cluster profile to an allocation action type and budget priority. The ladder converts statistical group membership into an operational recommendation. Note that Tier 1 and Tier 2 together define the primary allocation corridor — both receive high priority, but program formats differ based on delivery feasibility assessed separately from need scoring.</em></figcaption>

@@ -116,7 +116,7 @@
     /* SVG Figure Container */
     .full-width-figure {
       grid-column: 1 / -1;
-      max-width: 1200px;
+      max-width: 1360px;
       margin: 4rem auto;
       width: 100%;
       padding: 0 1rem;
@@ -126,7 +126,7 @@
       width: 100%;
       border: 2px solid var(--border-thick);
       background-color: #ffffff;
-      padding: 2rem;
+      padding: 1.25rem;
       box-shadow: 10px 10px 0 var(--surface);
     }
     
@@ -217,63 +217,63 @@
 
       <div class="full-width-figure">
         <div class="svg-blueprint">
-          <svg height="280" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 280" width="100%">
-            <rect width="1100" height="280" fill="#ffffff" />
+          <svg height="360" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="100%">
+            <rect width="1200" height="360" fill="#ffffff" />
             
             <!-- Grid Lines -->
-            <line x1="0" y1="140" x2="1100" y2="140" stroke="#f4f4f4" stroke-width="2" />
-            <line x1="50" y1="0" x2="50" y2="280" stroke="#f4f4f4" stroke-width="2" />
+            <line x1="0" y1="185" x2="1200" y2="185" stroke="#f4f4f4" stroke-width="2" />
+            <line x1="55" y1="0" x2="55" y2="360" stroke="#f4f4f4" stroke-width="2" />
 
             <!-- The Pipeline Track -->
-            <path d="M 80 140 L 980 140" fill="none" stroke="#111111" stroke-width="4" />
+            <path d="M 100 185 L 1080 185" fill="none" stroke="#111111" stroke-width="5" />
             
             <!-- Start Node -->
-            <circle cx="80" cy="140" r="10" fill="#111111" />
-            <text x="80" y="115" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">GIT PUSH</text>
+            <circle cx="100" cy="185" r="14" fill="#111111" />
+            <text x="100" y="150" font-family="'Space Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#111111">GIT PUSH</text>
 
             <!-- Stage Boxes -->
             <!-- 1. Build -->
-            <rect x="180" y="110" width="100" height="60" fill="#ffffff" stroke="#111111" stroke-width="2" />
-            <text x="230" y="145" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">BUILD</text>
-            <circle cx="280" cy="140" r="4" fill="#ffffff" stroke="#111111" stroke-width="2" /> <!-- Hard Stop marker -->
-            <line x1="280" y1="140" x2="280" y2="200" stroke="#111111" stroke-width="1" stroke-dasharray="2 2" />
-            <text x="280" y="215" font-family="'Karla', sans-serif" font-size="10" fill="#777777" text-anchor="middle">Syntax/Dep Fail</text>
+            <rect x="210" y="146" width="130" height="78" fill="#ffffff" stroke="#111111" stroke-width="2.5" />
+            <text x="275" y="192" font-family="'Space Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#111111">BUILD</text>
+            <circle cx="340" cy="185" r="6" fill="#ffffff" stroke="#111111" stroke-width="2.5" />
+            <line x1="340" y1="185" x2="340" y2="270" stroke="#111111" stroke-width="1.5" stroke-dasharray="4 4" />
+            <text x="340" y="294" font-family="'Karla', sans-serif" font-size="14" fill="#777777" text-anchor="middle">Syntax/Dep Fail</text>
 
             <!-- 2. Test -->
-            <rect x="360" y="110" width="100" height="60" fill="#f4f4f4" stroke="#111111" stroke-width="2" />
-            <text x="410" y="145" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">TEST</text>
-            <circle cx="460" cy="140" r="4" fill="#ffffff" stroke="#111111" stroke-width="2" />
-            <line x1="460" y1="140" x2="460" y2="200" stroke="#111111" stroke-width="1" stroke-dasharray="2 2" />
-            <text x="460" y="215" font-family="'Karla', sans-serif" font-size="10" fill="#777777" text-anchor="middle">Spec Failure</text>
+            <rect x="405" y="146" width="130" height="78" fill="#f4f4f4" stroke="#111111" stroke-width="2.5" />
+            <text x="470" y="192" font-family="'Space Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#111111">TEST</text>
+            <circle cx="535" cy="185" r="6" fill="#ffffff" stroke="#111111" stroke-width="2.5" />
+            <line x1="535" y1="185" x2="535" y2="270" stroke="#111111" stroke-width="1.5" stroke-dasharray="4 4" />
+            <text x="535" y="294" font-family="'Karla', sans-serif" font-size="14" fill="#777777" text-anchor="middle">Spec Failure</text>
 
             <!-- 3. Trivy Scan -->
-            <rect x="540" y="110" width="100" height="60" fill="#ffffff" stroke="#111111" stroke-width="2" />
-            <text x="590" y="145" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">SCAN</text>
-            <circle cx="640" cy="140" r="4" fill="#ffffff" stroke="#111111" stroke-width="2" />
-            <line x1="640" y1="140" x2="640" y2="200" stroke="#111111" stroke-width="1" stroke-dasharray="2 2" />
-            <text x="640" y="215" font-family="'Karla', sans-serif" font-size="10" fill="#777777" text-anchor="middle">CRITICAL CVE</text>
+            <rect x="600" y="146" width="130" height="78" fill="#ffffff" stroke="#111111" stroke-width="2.5" />
+            <text x="665" y="192" font-family="'Space Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#111111">SCAN</text>
+            <circle cx="730" cy="185" r="6" fill="#ffffff" stroke="#111111" stroke-width="2.5" />
+            <line x1="730" y1="185" x2="730" y2="270" stroke="#111111" stroke-width="1.5" stroke-dasharray="4 4" />
+            <text x="730" y="294" font-family="'Karla', sans-serif" font-size="14" fill="#777777" text-anchor="middle">CRITICAL CVE</text>
 
             <!-- 4. Deploy -->
-            <rect x="720" y="110" width="100" height="60" fill="#111111" />
-            <text x="770" y="145" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#ffffff">DEPLOY</text>
-            <circle cx="820" cy="140" r="4" fill="#ffffff" stroke="#111111" stroke-width="2" />
-            <line x1="820" y1="140" x2="820" y2="80" stroke="#111111" stroke-width="1" stroke-dasharray="2 2" />
-            <text x="820" y="70" font-family="'Karla', sans-serif" font-size="10" fill="#777777" text-anchor="middle">Health Check Fail</text>
+            <rect x="795" y="146" width="130" height="78" fill="#111111" />
+            <text x="860" y="192" font-family="'Space Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#ffffff">DEPLOY</text>
+            <circle cx="925" cy="185" r="6" fill="#ffffff" stroke="#111111" stroke-width="2.5" />
+            <line x1="925" y1="185" x2="925" y2="104" stroke="#111111" stroke-width="1.5" stroke-dasharray="4 4" />
+            <text x="925" y="84" font-family="'Karla', sans-serif" font-size="14" fill="#777777" text-anchor="middle">Health Check Fail</text>
 
             <!-- 5. Observe & Rollback Loop -->
-            <path d="M 820 60 C 880 60, 940 80, 940 140 C 940 200, 880 220, 820 220" fill="none" stroke="#333333" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrow)" />
-            <rect x="910" y="125" width="60" height="30" fill="#ffffff" stroke="#111111" stroke-width="1"/>
-            <text x="940" y="143" font-family="'Space Mono', monospace" font-size="10" font-weight="700" text-anchor="middle" fill="#111111">OBSERVE</text>
-            <text x="880" y="235" font-family="'Space Mono', monospace" font-size="10" font-weight="700" text-anchor="middle" fill="#111111">‹‹ ROLLBACK</text>
+            <path d="M 925 104 C 1002 104, 1068 132, 1068 185 C 1068 240, 1002 274, 925 274" fill="none" stroke="#333333" stroke-width="2.5" stroke-dasharray="7 6" marker-end="url(#arrow)" />
+            <rect x="1008" y="164" width="96" height="42" fill="#ffffff" stroke="#111111" stroke-width="1.5"/>
+            <text x="1056" y="190" font-family="'Space Mono', monospace" font-size="14" font-weight="700" text-anchor="middle" fill="#111111">OBSERVE</text>
+            <text x="998" y="306" font-family="'Space Mono', monospace" font-size="14" font-weight="700" text-anchor="middle" fill="#111111">‹‹ ROLLBACK</text>
 
             <!-- End target -->
-            <circle cx="1020" cy="140" r="10" fill="none" stroke="#111111" stroke-width="4" />
-            <circle cx="1020" cy="140" r="4" fill="#111111" />
-            <text x="1020" y="115" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">LIVE</text>
+            <circle cx="1140" cy="185" r="14" fill="none" stroke="#111111" stroke-width="5" />
+            <circle cx="1140" cy="185" r="6" fill="#111111" />
+            <text x="1140" y="150" font-family="'Space Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#111111">LIVE</text>
 
             <defs>
-              <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-                <polygon points="0 0, 6 3, 0 6" fill="#333333" />
+              <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+                <polygon points="0 0, 9 4.5, 0 9" fill="#333333" />
               </marker>
             </defs>
           </svg>
@@ -320,48 +320,48 @@
 
       <div class="full-width-figure">
         <div class="svg-blueprint">
-          <svg height="420" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" width="100%">
-            <rect width="1100" height="420" fill="#ffffff" />
+          <svg height="520" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" width="100%">
+            <rect width="1200" height="520" fill="#ffffff" />
 
             <!-- Title -->
-            <text x="550" y="35" font-family="'Space Mono', monospace" font-size="14" font-weight="700" text-anchor="middle" fill="#111111">BEFORE / AFTER COMPARISON</text>
-            <line x1="50" y1="50" x2="1050" y2="50" stroke="#dddddd" stroke-width="1" />
+            <text x="600" y="48" font-family="'Space Mono', monospace" font-size="20" font-weight="700" text-anchor="middle" fill="#111111">BEFORE / AFTER COMPARISON</text>
+            <line x1="80" y1="68" x2="1120" y2="68" stroke="#dddddd" stroke-width="1.5" />
 
             <!-- Column Headers -->
-            <text x="200" y="80" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#777777">BEFORE (MANUAL)</text>
-            <text x="900" y="80" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">AFTER (PIPELINE)</text>
+            <text x="240" y="112" font-family="'Space Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#777777">BEFORE (MANUAL)</text>
+            <text x="960" y="112" font-family="'Space Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#111111">AFTER (PIPELINE)</text>
 
             <!-- Metric 1: Deploy Time -->
-            <text x="550" y="120" font-family="'Karla', sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#111111">Deployment Time</text>
-            <rect x="80" y="130" width="240" height="30" fill="#f4f4f4" stroke="#dddddd" stroke-width="1" />
-            <text x="200" y="150" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">45 MINUTES</text>
-            <rect x="830" y="130" width="140" height="30" fill="#111111" />
-            <text x="900" y="150" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#ffffff">4 MINUTES</text>
+            <text x="600" y="170" font-family="'Karla', sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#111111">Deployment Time</text>
+            <rect x="100" y="185" width="330" height="42" fill="#f4f4f4" stroke="#dddddd" stroke-width="1.5" />
+            <text x="265" y="212" font-family="'Space Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#111111">45 MINUTES</text>
+            <rect x="860" y="185" width="190" height="42" fill="#111111" />
+            <text x="955" y="212" font-family="'Space Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#ffffff">4 MINUTES</text>
 
             <!-- Metric 2: Frequency -->
-            <text x="550" y="190" font-family="'Karla', sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#111111">Deploy Frequency</text>
-            <rect x="105" y="200" width="190" height="30" fill="#f4f4f4" stroke="#dddddd" stroke-width="1" />
-            <text x="200" y="220" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">2x / MONTH</text>
-            <rect x="830" y="200" width="140" height="30" fill="#111111" />
-            <text x="900" y="220" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#ffffff">3x / WEEK</text>
+            <text x="600" y="258" font-family="'Karla', sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#111111">Deploy Frequency</text>
+            <rect x="130" y="273" width="280" height="42" fill="#f4f4f4" stroke="#dddddd" stroke-width="1.5" />
+            <text x="270" y="300" font-family="'Space Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#111111">2x / MONTH</text>
+            <rect x="860" y="273" width="220" height="42" fill="#111111" />
+            <text x="970" y="300" font-family="'Space Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#ffffff">3x / WEEK</text>
 
             <!-- Metric 3: Failure Rate -->
-            <text x="550" y="260" font-family="'Karla', sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#111111">Failed Deployment Rate</text>
-            <rect x="120" y="270" width="160" height="30" fill="#f4f4f4" stroke="#dddddd" stroke-width="1" />
-            <text x="200" y="290" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">30%</text>
-            <rect x="860" y="270" width="80" height="30" fill="#111111" />
-            <text x="900" y="290" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#ffffff">4%</text>
+            <text x="600" y="346" font-family="'Karla', sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#111111">Failed Deployment Rate</text>
+            <rect x="155" y="361" width="220" height="42" fill="#f4f4f4" stroke="#dddddd" stroke-width="1.5" />
+            <text x="265" y="388" font-family="'Space Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#111111">30%</text>
+            <rect x="890" y="361" width="100" height="42" fill="#111111" />
+            <text x="940" y="388" font-family="'Space Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#ffffff">4%</text>
 
             <!-- Metric 4: Rollback Time -->
-            <text x="550" y="330" font-family="'Karla', sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#111111">Rollback Time</text>
-            <rect x="80" y="340" width="240" height="30" fill="#f4f4f4" stroke="#dddddd" stroke-width="1" />
-            <text x="200" y="360" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">1-2 HOURS</text>
-            <rect x="830" y="340" width="140" height="30" fill="#111111" />
-            <text x="900" y="360" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#ffffff">90 SECONDS</text>
+            <text x="600" y="434" font-family="'Karla', sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#111111">Rollback Time</text>
+            <rect x="100" y="449" width="330" height="42" fill="#f4f4f4" stroke="#dddddd" stroke-width="1.5" />
+            <text x="265" y="476" font-family="'Space Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#111111">1-2 HOURS</text>
+            <rect x="860" y="449" width="220" height="42" fill="#111111" />
+            <text x="970" y="476" font-family="'Space Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#ffffff">90 SECONDS</text>
 
             <!-- Additional note -->
-            <line x1="50" y1="390" x2="1050" y2="390" stroke="#dddddd" stroke-width="1" />
-            <text x="550" y="410" font-family="'Karla', sans-serif" font-size="11" text-anchor="middle" fill="#777777">Trivy scanning caught 12 critical CVEs in the first month. Build reproducibility: 100%. Additional infrastructure cost: $0.</text>
+            <line x1="80" y1="500" x2="1120" y2="500" stroke="#dddddd" stroke-width="1.5" />
+            <text x="600" y="515" font-family="'Karla', sans-serif" font-size="14" text-anchor="middle" fill="#777777">Trivy scanning caught 12 critical CVEs in the first month. Build reproducibility: 100%. Additional infrastructure cost: $0.</text>
           </svg>
         </div>
         <figcaption>Fig 2. - Before/After deployment metrics. The left column represents the manual SSH/SCP deployment process. The right column represents the automated Jenkins + Docker pipeline. Rollback went from a multi-hour manual process to a single-command Docker image swap taking 90 seconds.</figcaption>

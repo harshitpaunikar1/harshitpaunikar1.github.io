@@ -835,39 +835,48 @@
             </div>
 
             <figure class="flow-figure">
-              <svg height="240" width="1160" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 240" role="img" aria-labelledby="flow-title flow-caption">
+              <svg height="252" width="1320" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 252" role="img" aria-labelledby="flow-title flow-caption">
                 <title id="flow-title">Slim flow from mobile submission to Tableau refresh</title>
-                <rect x="14" y="28" width="1132" height="184" rx="28" fill="#fbfbfb" stroke="#d0d0d0"/>
+                <rect x="14" y="28" width="1292" height="196" rx="28" fill="#fbfbfb" stroke="#d0d0d0"/>
                 <text x="38" y="58" font-family="IBM Plex Mono" font-size="13" letter-spacing="2" fill="#696969">MOBILE SUBMISSION TO TABLEAU REFRESH</text>
-                <g transform="translate(38 88)">
-                  <rect x="0" y="0" width="166" height="76" rx="18" fill="#111111"/>
+                <g transform="translate(38 86)">
+                  <rect x="0" y="0" width="212" height="84" rx="18" fill="#111111"/>
                   <text x="18" y="28" font-family="IBM Plex Mono" font-size="11" letter-spacing="1.8" fill="#d8d8d8">1 / MOBILE CAPTURE</text>
-                  <text x="18" y="50" font-family="IBM Plex Sans" font-size="15" font-weight="700" fill="#ffffff">Visit, stock, lead, display</text>
+                  <text x="18" y="50" font-family="IBM Plex Sans" font-size="14" font-weight="700" fill="#ffffff">
+                    <tspan x="18" dy="0">Visit, stock, lead,</tspan>
+                    <tspan x="18" dy="18">display</tspan>
+                  </text>
                 </g>
-                <g transform="translate(256 88)">
-                  <rect x="0" y="0" width="166" height="76" rx="18" fill="#4b4b4b"/>
+                <g transform="translate(284 86)">
+                  <rect x="0" y="0" width="214" height="84" rx="18" fill="#4b4b4b"/>
                   <text x="18" y="28" font-family="IBM Plex Mono" font-size="11" letter-spacing="1.8" fill="#dedede">2 / API + WEBHOOK</text>
-                  <text x="18" y="50" font-family="IBM Plex Sans" font-size="15" font-weight="700" fill="#ffffff">Secure payload receipt</text>
+                  <text x="18" y="54" font-family="IBM Plex Sans" font-size="14" font-weight="700" fill="#ffffff">Secure payload receipt</text>
                 </g>
-                <g transform="translate(474 88)">
-                  <rect x="0" y="0" width="166" height="76" rx="18" fill="#757575"/>
+                <g transform="translate(530 86)">
+                  <rect x="0" y="0" width="210" height="84" rx="18" fill="#757575"/>
                   <text x="18" y="28" font-family="IBM Plex Mono" font-size="11" letter-spacing="1.8" fill="#f4f4f4">3 / PYTHON STREAM</text>
-                  <text x="18" y="50" font-family="IBM Plex Sans" font-size="15" font-weight="700" fill="#ffffff">Validate + deduplicate</text>
+                  <text x="18" y="50" font-family="IBM Plex Sans" font-size="14" font-weight="700" fill="#ffffff">
+                    <tspan x="18" dy="0">Validate +</tspan>
+                    <tspan x="18" dy="18">deduplicate</tspan>
+                  </text>
                 </g>
-                <g transform="translate(692 88)">
-                  <rect x="0" y="0" width="166" height="76" rx="18" fill="#aaaaaa"/>
+                <g transform="translate(776 86)">
+                  <rect x="0" y="0" width="210" height="84" rx="18" fill="#aaaaaa"/>
                   <text x="18" y="28" font-family="IBM Plex Mono" font-size="11" letter-spacing="1.8" fill="#232323">4 / ENRICH + STORE</text>
-                  <text x="18" y="50" font-family="IBM Plex Sans" font-size="15" font-weight="700" fill="#121212">Territory-ready tables</text>
+                  <text x="18" y="54" font-family="IBM Plex Sans" font-size="14" font-weight="700" fill="#121212">Territory-ready tables</text>
                 </g>
-                <g transform="translate(910 88)">
-                  <rect x="0" y="0" width="198" height="76" rx="18" fill="#e4e4e4" stroke="#909090"/>
+                <g transform="translate(1022 86)">
+                  <rect x="0" y="0" width="236" height="84" rx="18" fill="#e4e4e4" stroke="#909090"/>
                   <text x="18" y="28" font-family="IBM Plex Mono" font-size="11" letter-spacing="1.8" fill="#414141">5 / TABLEAU REFRESH</text>
-                  <text x="18" y="50" font-family="IBM Plex Sans" font-size="15" font-weight="700" fill="#121212">Heatmaps, velocity, alerts</text>
+                  <text x="18" y="50" font-family="IBM Plex Sans" font-size="14" font-weight="700" fill="#121212">
+                    <tspan x="18" dy="0">Heatmaps, velocity,</tspan>
+                    <tspan x="18" dy="18">alerts</tspan>
+                  </text>
                 </g>
-                <path d="M206 126 H246" stroke="#111111" stroke-width="4" stroke-linecap="round"/>
-                <path d="M424 126 H464" stroke="#444444" stroke-width="4" stroke-linecap="round"/>
-                <path d="M642 126 H682" stroke="#666666" stroke-width="4" stroke-linecap="round"/>
-                <path d="M860 126 H900" stroke="#8d8d8d" stroke-width="4" stroke-linecap="round"/>
+                <path d="M250 128 H284" stroke="#111111" stroke-width="4" stroke-linecap="round"/>
+                <path d="M498 128 H530" stroke="#444444" stroke-width="4" stroke-linecap="round"/>
+                <path d="M740 128 H776" stroke="#666666" stroke-width="4" stroke-linecap="round"/>
+                <path d="M986 128 H1022" stroke="#8d8d8d" stroke-width="4" stroke-linecap="round"/>
               </svg>
               <figcaption id="flow-caption">Figure 2. The flow is intentionally slim because the operating requirement is speed with control: secure submission, validation, de-duplication, enrichment, and a Tableau refresh that exposes fresh conditions before the route loses value.</figcaption>
             </figure>

@@ -927,6 +927,10 @@
 
   function slugToId(s) { return s.replace(/[^a-z0-9-]/g, ''); }
 
+  function injectLayoutShift() {
+    return;
+  }
+
   /* ── INJECT SKIP LINK ── */
   function injectSkipLink() {
     var link = document.createElement('a');
@@ -1165,13 +1169,20 @@
     if (!slug || !CATALOG[slug]) return;
 
     var project = CATALOG[slug];
+    document.documentElement.classList.add('bc-blog-page');
+    document.body.classList.add('bc-blog-page', 'bc-page-' + slugToId(slug));
 
     // Add main-content id for skip link
-    var firstContentEl = document.querySelector('.page, .viewport, .console, .article-shell, .container, body > div:not(.bc-header):not(.bc-mobile-nav), body > main');
+    var firstContentEl =
+      document.querySelector('.page, .viewport, .console, .article-shell, .grid-container, .article-body, .main-content, body > main') ||
+      document.querySelector('header:not(.bc-header)') ||
+      document.querySelector('body > div:not(.bc-header):not(.bc-mobile-nav)');
     if (firstContentEl) {
       firstContentEl.id = firstContentEl.id || 'main-content';
+      firstContentEl.classList.add('bc-main-shell');
     }
 
+    injectLayoutShift();
     injectSkipLink();
     injectHeader();
     injectArticleMeta(project);

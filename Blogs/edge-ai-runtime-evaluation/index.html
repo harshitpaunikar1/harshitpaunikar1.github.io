@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;700;800&family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
   <style>
     /* 
       DESIGN SYSTEM: "Technical Memo"
@@ -19,6 +21,7 @@
       --text-muted: #555555;
       --border-heavy: #000000;
       --border-light: #dddddd;
+      --surface: #f6f6f6;
       --f-body: 'Gothic A1', sans-serif;
       --f-mono: 'Source Code Pro', monospace;
       --code-bg: #111111;
@@ -38,21 +41,20 @@
       font-size: 1.1rem;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      padding-top: 84px;
       padding-bottom: 5rem;
     }
 
     .memo-shell {
-      max-width: 960px;
+      max-width: 980px;
       margin: 0 auto;
-      padding: 3rem;
-      border: 6px solid var(--border-heavy);
-      margin-top: 2rem;
-      box-shadow: 12px 12px 0px var(--border-heavy);
+      padding: 3rem 2rem 5rem;
+      margin-top: 1.5rem;
     }
 
     /* Header */
-    header {
-      border-bottom: 4px solid var(--border-heavy);
+    header.page-header {
+      border-bottom: 2px solid var(--border-heavy);
       padding-bottom: 2rem;
       margin-bottom: 3rem;
     }
@@ -90,6 +92,32 @@
     /* Paragraphs */
     p {
       margin-bottom: 1.5rem;
+    }
+
+    .role-note {
+      border-left: 3px solid #333;
+      padding: 0.75rem 1.2rem;
+      margin: 1.5rem 0 1rem;
+      background: rgba(0,0,0,0.04);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.95rem;
+    }
+
+    .stack-row {
+      margin: 0.5rem 0 2rem;
+      font-size: 0.85rem;
+      color: #666;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .stack-chip {
+      background: #f1f1f1;
+      border: 1px solid #ccc;
+      padding: 2px 10px;
+      border-radius: 12px;
     }
 
     /* H2 Testing Parameters */
@@ -149,7 +177,7 @@
     .figure-block {
       margin: 4rem 0;
       padding: 2rem;
-      border: 2px solid var(--border-heavy);
+      border: 1px solid var(--border-heavy);
       background: var(--bg);
     }
 
@@ -196,43 +224,65 @@
     .c-keyword { color: #fff; font-weight: 700; }
     .c-string { color: #ccc; }
 
+    .bc-header {
+      background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .bc-header-inner {
+      max-width: 1120px;
+    }
+
+    .bc-logo,
+    .bc-footer-name,
+    .bc-footer-top {
+      color: #0f172a;
+    }
+
+    .bc-nav a,
+    .bc-mobile-nav a,
+    .bc-summary-item p,
+    .bc-related-summary,
+    .bc-best-for {
+      color: #475569;
+    }
+
+    .bc-header-cta {
+      background: #0f172a;
+      color: #ffffff;
+    }
+
     @media (max-width: 800px) {
       .memo-shell {
         margin: 0;
-        border: none;
-        box-shadow: none;
-        padding: 2rem 1rem;
+        padding: 2rem 1rem 4rem;
       }
       h1 { font-size: 2.5rem; }
     }
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
   <script src="../blog-common.js" defer></script>
 </head>
 <body>
 
 <div class="memo-shell">
 
-  <header>
+  <header class="page-header">
     <div class="doc-class">Benchmark Engineering Note</div>
     <h1>Edge Runtime Optimization</h1>
     <p class="lede">A persistent delusion in machine learning is that the neural network architecture dictates inference speed. It doesn't. Model architecture dictates theoretical FLOPs. The execution runtime dictates actual latency. Failing to drag a model out of its native Python environment and into a compiled hardware-accelerated engine guarantees that your edge hardware will choke.</p>
   </header>
 
-  <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
+  <div class="role-note">
     <strong>My Role:</strong> I built and ran the runtime optimization pipeline — PyTorch to ONNX export, TensorRT engine compilation, INT8 calibration, and the benchmark harness that measured latency and throughput across all three runtimes on the actual Jetson Nano hardware. The benchmarks were run in production conditions (device strapped to a forklift, ambient temperature, competing background processes) rather than in a lab, which is why the numbers look different from published benchmarks.
   </div>
-  <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+  <div class="stack-row">
     <strong style="margin-right:4px;">Stack:</strong>
-    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">PyTorch</span>
-    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">ONNX</span>
-    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">TensorRT</span>
-    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">INT8 calibration</span>
-    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Nvidia Jetson Nano</span>
-    <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Python</span>
+    <span class="stack-chip">PyTorch</span>
+    <span class="stack-chip">ONNX</span>
+    <span class="stack-chip">TensorRT</span>
+    <span class="stack-chip">INT8 calibration</span>
+    <span class="stack-chip">Nvidia Jetson Nano</span>
+    <span class="stack-chip">Python</span>
   </div>
 
   <p>The vast majority of object detection and classification models are trained in PyTorch. For rapid prototyping inside a cloud cluster with 80GB VRAM A100 GPUs, native PyTorch execution is frictionless. But when you move that exact same <code>.pt</code> weights file to an Nvidia Jetson Nano strapped to a warehouse forklift, the application will hemorrhage RAM and drop to 4 frames per second.</p>

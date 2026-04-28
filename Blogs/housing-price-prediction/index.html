@@ -145,6 +145,16 @@
       line-height: 1.55;
     }
     .diagram-scroll { overflow-x: auto; }
+    .valuation-figure {
+      width: min(1320px, calc(100vw - 2rem));
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+    .valuation-figure figcaption {
+      max-width: 1160px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
     /* code */
     pre {
@@ -209,9 +219,9 @@
   <p>For the numerical features in this dataset, the most important correlations to check are: <strong>area with bedrooms</strong> (larger properties tend to have more bedrooms, so a model with both features will split the area-driven price signal between the two coefficients), and <strong>bedrooms with bathrooms</strong> (similar compositional correlation). The coefficient on bedrooms in a model that also includes area will be smaller than in a model that only includes bedrooms, because area is absorbing most of the variance that bedrooms would otherwise explain.</p>
 
   <!-- DIAGRAM: Two-part valuation board -->
-  <figure>
+  <figure class="valuation-figure">
     <div class="diagram-scroll">
-      <svg height="440" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 440" width="820" style="max-width:100%;display:block;">
+      <svg height="620" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 440" width="1160" style="max-width:100%;display:block;">
         <rect width="820" height="440" fill="#fff"/>
         <text x="30" y="22" font-family="Inconsolata,monospace" font-size="9" fill="#888" letter-spacing="1.5">VALUATION BOARD — FEATURE ELASTICITY (LEFT) · RESIDUAL FIELD (RIGHT)</text>
 

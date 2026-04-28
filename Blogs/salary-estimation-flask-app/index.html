@@ -467,7 +467,7 @@
           <figure>
             <div class="diagram-frame">
               <?xml version="1.0" encoding="utf-8"?>
-<svg aria-labelledby="ladder-title ladder-desc" height="960" role="img" viewBox="0 0 760 960" width="760" xmlns="http://www.w3.org/2000/svg">
+<svg aria-labelledby="ladder-title ladder-desc" height="1008" role="img" viewBox="0 0 760 1008" width="760" xmlns="http://www.w3.org/2000/svg">
 <title id="ladder-title">Request ladder for the Flask salary estimator</title>
 <desc id="ladder-desc">A stacked route diagram showing how browser or client input moves through the Flask application and into the pickled regression model before returning a rendered salary response.</desc>
 <defs>
@@ -475,56 +475,51 @@
 <path d="M0,0 L10,5 L0,10 z" fill="#111111"/>
 </marker>
 </defs>
-<rect fill="#ffffff" height="912" stroke="#111111" stroke-width="1.5" width="712" x="24" y="24"/>
+<rect fill="#ffffff" height="960" stroke="#111111" stroke-width="1.5" width="712" x="24" y="24"/>
 <rect fill="#f5f5f5" height="96" stroke="#111111" stroke-width="1.5" width="420" x="78" y="78"/>
 <text fill="#111111" font-size="13.1" font-weight="600" text-anchor="start" x="100.0" y="110.4">1. Browser form</text>
 <text fill="#111111" font-size="12.3" text-anchor="start" x="100.0" y="130.8">Fields: experience, test_score, interview_score</text>
 <text fill="#555555" font-size="10.7" text-anchor="start" x="100.0" y="149.6">Source: templates/index.html</text>
-<rect fill="#ffffff" height="80" stroke="#333333" stroke-width="1.2" width="156" x="530" y="86"/>
+<rect fill="#ffffff" height="118" stroke="#333333" stroke-width="1.2" width="190" x="512" y="80"/>
 <text fill="#111111" font-size="12" font-weight="600" text-anchor="start" x="546.0" y="117.4">User obligation</text>
-<text fill="#111111" font-size="10" text-anchor="start" x="546.0" y="135.5"><tspan x="546.0" y="135.5">Provide three values</tspan><tspan x="546.0" y="147.7">in</tspan></text>
-<text fill="#111111" font-size="10" text-anchor="start" x="546.0" y="165.7">the expected order.</text>
+<text fill="#111111" font-size="10" text-anchor="start" x="546.0" y="141.5"><tspan x="546.0" y="141.5">Provide three values</tspan><tspan x="546.0" y="155.5">in the expected</tspan><tspan x="546.0" y="169.5">order.</tspan></text>
 <line marker-end="url(#arrow)" stroke="#111111" stroke-width="1.5" x1="288" x2="288" y1="174" y2="226"/>
 <text fill="#555555" font-size="12" x="311" y="208">POST /predict</text>
 <rect fill="#ffffff" height="104" stroke="#111111" stroke-width="1.5" width="420" x="78" y="226"/>
 <text fill="#111111" font-size="16" font-weight="600" text-anchor="start" x="100.0" y="261.2">2. Flask route parses form data</text>
 <text fill="#111111" font-size="15" text-anchor="start" x="100.0" y="284.2">[int(x) for x in request.form.values()]</text>
 <text fill="#555555" font-size="13" text-anchor="start" x="100.0" y="305.4">Strings become integers before prediction.</text>
-<rect fill="#f5f5f5" height="80" stroke="#333333" stroke-width="1.2" width="156" x="530" y="238"/>
+<rect fill="#f5f5f5" height="114" stroke="#333333" stroke-width="1.2" width="190" x="512" y="230"/>
 <text fill="#111111" font-size="12" font-weight="600" text-anchor="start" x="546.0" y="269.4">Risk</text>
-<text fill="#111111" font-size="10" text-anchor="start" x="546.0" y="287.5"><tspan x="546.0" y="287.5">No validation for</tspan><tspan x="546.0" y="299.7">blanks,</tspan></text>
-<text fill="#111111" font-size="10" text-anchor="start" x="546.0" y="317.7">floats, or stray text.</text>
+<text fill="#111111" font-size="10" text-anchor="start" x="546.0" y="293.5"><tspan x="546.0" y="293.5">No validation for</tspan><tspan x="546.0" y="307.5">blanks, floats, or</tspan><tspan x="546.0" y="321.5">stray text.</tspan></text>
 <line marker-end="url(#arrow)" stroke="#111111" stroke-width="1.5" x1="288" x2="288" y1="330" y2="382"/>
 <text fill="#555555" font-size="12" x="305" y="363">array packaging</text>
 <rect fill="#111111" height="110" stroke="#111111" stroke-width="1.5" width="420" x="78" y="382"/>
 <text fill="#f5f5f5" font-size="16" font-weight="600" text-anchor="start" x="100.0" y="417.2">3. Loaded model artifact</text>
 <text fill="#f5f5f5" font-size="15" text-anchor="start" x="100.0" y="440.2">model = pickle.load(open('model.pkl', 'rb'))</text>
 <text fill="#dddddd" font-size="13" text-anchor="start" x="100.0" y="461.4">The artifact is imported once at app startup.</text>
-<rect fill="#ffffff" height="78" stroke="#333333" stroke-width="1.2" width="156" x="530" y="398"/>
+<rect fill="#ffffff" height="106" stroke="#333333" stroke-width="1.2" width="190" x="512" y="390"/>
 <text fill="#111111" font-size="12" font-weight="600" text-anchor="start" x="546.0" y="429.4">Environment note</text>
-<text fill="#111111" font-size="10" text-anchor="start" x="546.0" y="447.5">Pickle ties runtime</text>
-<text fill="#111111" font-size="10" text-anchor="start" x="546.0" y="465.5"><tspan x="546.0" y="465.5">to training</tspan><tspan x="546.0" y="477.7">dependencies.</tspan></text>
+<text fill="#111111" font-size="10" text-anchor="start" x="546.0" y="449.5"><tspan x="546.0" y="449.5">Pickle ties runtime</tspan><tspan x="546.0" y="463.5">to training</tspan><tspan x="546.0" y="477.5">dependencies.</tspan></text>
 <line marker-end="url(#arrow)" stroke="#111111" stroke-width="1.5" x1="288" x2="288" y1="492" y2="544"/>
 <text fill="#555555" font-size="12" x="312" y="525">predict()</text>
 <rect fill="#f5f5f5" height="96" stroke="#111111" stroke-width="1.5" width="420" x="78" y="544"/>
 <text fill="#111111" font-size="16" font-weight="600" text-anchor="start" x="100.0" y="579.2">4. Regression output</text>
 <text fill="#111111" font-size="15" text-anchor="start" x="100.0" y="602.2">[2, 9, 6] → 53290.89</text>
 <text fill="#555555" font-size="13" text-anchor="start" x="100.0" y="623.4">The project rounds to two decimals for display.</text>
-<rect fill="#ffffff" height="80" stroke="#333333" stroke-width="1.2" width="156" x="530" y="552"/>
+<rect fill="#ffffff" height="116" stroke="#333333" stroke-width="1.2" width="190" x="512" y="544"/>
 <text fill="#111111" font-size="12" font-weight="600" text-anchor="start" x="546.0" y="583.4"><tspan x="546.0" y="583.4">Interpretation</tspan><tspan x="546.0" y="598.0">limit</tspan></text>
-<text fill="#111111" font-size="10" text-anchor="start" x="546.0" y="616.1"><tspan x="546.0" y="616.1">A single point</tspan><tspan x="546.0" y="628.3">estimate is</tspan></text>
-<text fill="#111111" font-size="10" text-anchor="start" x="546.0" y="646.3">not a hiring policy.</text>
+<text fill="#111111" font-size="10" text-anchor="start" x="546.0" y="616.5"><tspan x="546.0" y="616.5">A single point</tspan><tspan x="546.0" y="630.5">estimate is</tspan><tspan x="546.0" y="644.5">not a hiring</tspan><tspan x="546.0" y="658.5">policy.</tspan></text>
 <line marker-end="url(#arrow)" stroke="#111111" stroke-width="1.5" x1="288" x2="288" y1="640" y2="692"/>
 <text fill="#555555" font-size="12" x="312" y="674">render or jsonify</text>
 <rect fill="#ffffff" height="108" stroke="#111111" stroke-width="1.5" width="420" x="78" y="692"/>
 <text fill="#111111" font-size="16" font-weight="600" text-anchor="start" x="100.0" y="727.2">5. Response surface</text>
 <text fill="#111111" font-size="15" text-anchor="start" x="100.0" y="750.2">Estimated salary is ₹ {output}</text>
 <text fill="#111111" font-size="15" text-anchor="start" x="100.0" y="773.2">API: raw JSON numeric response</text>
-<rect fill="#f5f5f5" height="80" stroke="#333333" stroke-width="1.2" width="156" x="530" y="706"/>
+<rect fill="#f5f5f5" height="116" stroke="#333333" stroke-width="1.2" width="190" x="512" y="698"/>
 <text fill="#111111" font-size="12" font-weight="600" text-anchor="start" x="546.0" y="737.4">Why this matters</text>
-<text fill="#111111" font-size="10" text-anchor="start" x="546.0" y="755.5"><tspan x="546.0" y="755.5">The model is now</tspan><tspan x="546.0" y="767.7">callable</tspan></text>
-<text fill="#111111" font-size="10" text-anchor="start" x="546.0" y="785.7"><tspan x="546.0" y="785.7">by a person or a</tspan><tspan x="546.0" y="797.9">script.</tspan></text>
-<text fill="#555555" font-size="13" x="78" y="866">Files involved: templates/index.html → app.py → model.pkl → app.py / request.py</text>
+<text fill="#111111" font-size="10" text-anchor="start" x="546.0" y="757.5"><tspan x="546.0" y="757.5">The model is now</tspan><tspan x="546.0" y="771.5">callable</tspan><tspan x="546.0" y="785.5">by a person or a</tspan><tspan x="546.0" y="799.5">script.</tspan></text>
+<text fill="#555555" font-size="13" x="78" y="912">Files involved: templates/index.html → app.py → model.pkl → app.py / request.py</text>
 </svg>
             </div>
             <figcaption>The application is thin, but not imaginary. The important shift is that prediction now passes through specific files, specific inputs, and specific failure points.</figcaption>

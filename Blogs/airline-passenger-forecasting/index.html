@@ -479,69 +479,80 @@
       <div class="wide-figure">
         <p class="figure-tag">Figure A / Seasonal strip</p>
         <figure>
-          <svg height="700" width="1100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 700" role="img" aria-label="Layered seasonal strip showing raw passenger series, monthly seasonal pattern, and forecast band">
+          <svg height="730" width="1100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 730" role="img" aria-label="Layered seasonal strip showing raw passenger series, monthly seasonal pattern, and forecast band">
             <defs>
               <marker id="arrow-head" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
                 <path d="M0,0 L10,5 L0,10 z" fill="#111111"></path>
               </marker>
             </defs>
 
-            <rect x="24" y="24" width="1052" height="652" fill="#ffffff" stroke="#111111" stroke-width="1.5"></rect>
+            <rect x="24" y="24" width="1052" height="682" fill="#ffffff" stroke="#111111" stroke-width="1.5"></rect>
 
-            <text x="50" y="62" font-family="IBM Plex Sans, sans-serif" font-size="22" font-weight="600" fill="#111111">Monthly demand behaves like a growing seasonal system, not a flat trend</text>
+            <text x="50" y="60" font-family="IBM Plex Sans, sans-serif" font-size="18" font-weight="600" fill="#111111">
+              <tspan x="50" dy="0">Monthly demand behaves like a growing seasonal system,</tspan>
+              <tspan x="50" dy="24">not a flat trend</tspan>
+            </text>
 
-            <rect x="50" y="90" width="1000" height="150" fill="#ffffff" stroke="#111111" stroke-width="1"></rect>
-            <text x="64" y="116" font-family="IBM Plex Mono, monospace" font-size="12" fill="#555555">RAW SERIES</text>
-            <line x1="90" y1="215" x2="1020" y2="215" stroke="#ddd" stroke-width="1"></line>
-            <line x1="90" y1="165" x2="1020" y2="165" stroke="#ddd" stroke-width="1"></line>
-            <line x1="90" y1="115" x2="1020" y2="115" stroke="#ddd" stroke-width="1"></line>
-            <text x="58" y="219" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">100</text>
-            <text x="58" y="169" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">250</text>
-            <text x="58" y="119" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">400</text>
-            <polyline fill="none" stroke="#111111" stroke-width="2.2" points="90,208 110,201 130,186 150,189 170,197 190,183 210,170 230,171 250,181 270,199 290,211 310,202 330,198 350,188 370,173 390,176 410,184 430,169 450,155 470,157 490,169 510,188 530,200 550,190 570,184 590,170 610,154 630,158 650,164 670,148 690,131 710,134 730,147 750,165 770,177 790,167 810,158 830,143 850,121 870,126 890,136 910,108 930,85 950,90 970,108 990,128 1010,144" />
-            <line x1="850" y1="92" x2="850" y2="238" stroke="#111111" stroke-width="1" stroke-dasharray="4 5"></line>
-            <text x="862" y="108" font-family="IBM Plex Mono, monospace" font-size="11" fill="#555555">train/test cut</text>
-            <text x="90" y="236" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">1949</text>
-            <text x="400" y="236" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">1953</text>
-            <text x="708" y="236" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">1957</text>
-            <text x="968" y="236" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">1960</text>
+            <rect x="50" y="106" width="1000" height="160" fill="#ffffff" stroke="#111111" stroke-width="1"></rect>
+            <text x="64" y="132" font-family="IBM Plex Mono, monospace" font-size="12" fill="#555555">RAW SERIES</text>
+            <line x1="90" y1="223" x2="1020" y2="223" stroke="#ddd" stroke-width="1"></line>
+            <line x1="90" y1="173" x2="1020" y2="173" stroke="#ddd" stroke-width="1"></line>
+            <line x1="90" y1="123" x2="1020" y2="123" stroke="#ddd" stroke-width="1"></line>
+            <text x="58" y="227" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">100</text>
+            <text x="58" y="177" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">250</text>
+            <text x="58" y="127" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">400</text>
+            <polyline fill="none" stroke="#111111" stroke-width="2.2" points="90,216 110,209 130,194 150,197 170,205 190,191 210,178 230,179 250,189 270,207 290,219 310,210 330,206 350,196 370,181 390,184 410,192 430,177 450,163 470,165 490,177 510,196 530,208 550,198 570,192 590,178 610,162 630,166 650,172 670,156 690,139 710,142 730,155 750,173 770,185 790,175 810,166 830,151 850,129 870,134 890,144 910,116 930,93 950,98 970,116 990,136 1010,152" />
+            <line x1="850" y1="108" x2="850" y2="264" stroke="#111111" stroke-width="1" stroke-dasharray="4 5"></line>
+            <rect x="858" y="114" width="118" height="18" fill="#ffffff"></rect>
+            <text x="862" y="127" font-family="IBM Plex Mono, monospace" font-size="11" fill="#555555">train/test cut</text>
+            <text x="90" y="252" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">1949</text>
+            <text x="400" y="252" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">1953</text>
+            <text x="708" y="252" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">1957</text>
+            <text x="968" y="252" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">1960</text>
 
-            <rect x="50" y="278" width="1000" height="145" fill="#ffffff" stroke="#111111" stroke-width="1"></rect>
-            <text x="64" y="304" font-family="IBM Plex Mono, monospace" font-size="12" fill="#555555">SEASONAL PROFILE</text>
-            <line x1="90" y1="350" x2="1020" y2="350" stroke="#111111" stroke-width="1"></line>
-            <polyline fill="none" stroke="#111111" stroke-width="2.2" points="110,352 180,338 250,304 320,312 390,333 460,302 530,279 600,281 670,304 740,336 810,359 880,341" />
-            <circle cx="530" cy="279" r="5" fill="#111111"></circle>
-            <text x="544" y="283" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#111111">summer crest</text>
-            <circle cx="810" cy="359" r="5" fill="#111111"></circle>
-            <text x="824" y="363" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#111111">late-year trough</text>
-            <text x="102" y="388" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Jan</text>
-            <text x="172" y="388" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Feb</text>
-            <text x="242" y="388" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Mar</text>
-            <text x="312" y="388" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Apr</text>
-            <text x="382" y="388" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">May</text>
-            <text x="452" y="388" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Jun</text>
-            <text x="522" y="388" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Jul</text>
-            <text x="592" y="388" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Aug</text>
-            <text x="662" y="388" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Sep</text>
-            <text x="732" y="388" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Oct</text>
-            <text x="802" y="388" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Nov</text>
-            <text x="872" y="388" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Dec</text>
+            <rect x="50" y="294" width="1000" height="155" fill="#ffffff" stroke="#111111" stroke-width="1"></rect>
+            <text x="64" y="320" font-family="IBM Plex Mono, monospace" font-size="12" fill="#555555">SEASONAL PROFILE</text>
+            <line x1="90" y1="382" x2="1020" y2="382" stroke="#111111" stroke-width="1"></line>
+            <polyline fill="none" stroke="#111111" stroke-width="2.2" points="110,384 180,360 250,326 320,334 390,355 460,324 530,301 600,303 670,326 740,358 810,381 880,363" />
+            <circle cx="530" cy="301" r="5" fill="#111111"></circle>
+            <line x1="530" y1="301" x2="530" y2="286" stroke="#111111" stroke-width="1"></line>
+            <rect x="546" y="286" width="122" height="18" fill="#ffffff"></rect>
+            <text x="550" y="299" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#111111">summer crest</text>
+            <circle cx="810" cy="381" r="5" fill="#111111"></circle>
+            <line x1="810" y1="381" x2="810" y2="395" stroke="#111111" stroke-width="1"></line>
+            <rect x="824" y="387" width="132" height="18" fill="#ffffff"></rect>
+            <text x="828" y="400" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#111111">late-year trough</text>
+            <text x="102" y="421" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Jan</text>
+            <text x="172" y="421" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Feb</text>
+            <text x="242" y="421" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Mar</text>
+            <text x="312" y="421" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Apr</text>
+            <text x="382" y="421" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">May</text>
+            <text x="452" y="421" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Jun</text>
+            <text x="522" y="421" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Jul</text>
+            <text x="592" y="421" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Aug</text>
+            <text x="662" y="421" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Sep</text>
+            <text x="732" y="421" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Oct</text>
+            <text x="802" y="421" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Nov</text>
+            <text x="872" y="421" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">Dec</text>
 
-            <rect x="50" y="460" width="1000" height="165" fill="#ffffff" stroke="#111111" stroke-width="1"></rect>
-            <text x="64" y="486" font-family="IBM Plex Mono, monospace" font-size="12" fill="#555555">FORECAST WITH UNCERTAINTY</text>
-            <line x1="90" y1="595" x2="1020" y2="595" stroke="#ddd" stroke-width="1"></line>
-            <line x1="90" y1="545" x2="1020" y2="545" stroke="#ddd" stroke-width="1"></line>
-            <line x1="90" y1="495" x2="1020" y2="495" stroke="#ddd" stroke-width="1"></line>
-            <polyline fill="none" stroke="#555555" stroke-width="2" points="90,590 140,571 190,554 240,560 290,573 340,548 390,520 440,524 490,548 540,576 590,588 640,573 690,558 740,530 790,502 840,510" />
-            <line x1="840" y1="472" x2="840" y2="623" stroke="#111111" stroke-width="1" stroke-dasharray="4 5"></line>
-            <polygon points="840,512 900,486 960,494 1020,520 1020,572 960,548 900,540 840,566" fill="#e8e8e8" stroke="#111111" stroke-width="1"></polygon>
-            <polyline fill="none" stroke="#111111" stroke-width="2.4" points="840,539 900,514 960,521 1020,548" />
-            <line x1="1020" y1="548" x2="1043" y2="548" stroke="#111111" stroke-width="1.5" marker-end="url(#arrow-head)"></line>
-            <text x="888" y="506" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#111111">central forecast path</text>
-            <text x="868" y="566" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#111111">uncertainty band widens forward</text>
-            <text x="90" y="618" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">1958</text>
-            <text x="530" y="618" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">1960</text>
-            <text x="965" y="618" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">next 12 months</text>
+            <rect x="50" y="486" width="1000" height="180" fill="#ffffff" stroke="#111111" stroke-width="1"></rect>
+            <text x="64" y="512" font-family="IBM Plex Mono, monospace" font-size="12" fill="#555555">FORECAST WITH UNCERTAINTY</text>
+            <line x1="90" y1="629" x2="1020" y2="629" stroke="#ddd" stroke-width="1"></line>
+            <line x1="90" y1="579" x2="1020" y2="579" stroke="#ddd" stroke-width="1"></line>
+            <line x1="90" y1="529" x2="1020" y2="529" stroke="#ddd" stroke-width="1"></line>
+            <polyline fill="none" stroke="#555555" stroke-width="2" points="90,622 140,603 190,586 240,592 290,605 340,580 390,552 440,556 490,580 540,608 590,620 640,605 690,590 740,562 790,534 840,542" />
+            <line x1="840" y1="500" x2="840" y2="659" stroke="#111111" stroke-width="1" stroke-dasharray="4 5"></line>
+            <polygon points="840,544 900,518 960,526 1020,552 1020,604 960,580 900,572 840,598" fill="#e8e8e8" stroke="#111111" stroke-width="1"></polygon>
+            <polyline fill="none" stroke="#111111" stroke-width="2.4" points="840,571 900,546 960,553 1020,580" />
+            <line x1="1020" y1="580" x2="1043" y2="580" stroke="#111111" stroke-width="1.5" marker-end="url(#arrow-head)"></line>
+            <rect x="886" y="516" width="138" height="18" fill="#ffffff"></rect>
+            <text x="890" y="529" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#111111">central forecast path</text>
+            <rect x="858" y="596" width="166" height="34" fill="#ffffff"></rect>
+            <text x="862" y="609" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#111111">uncertainty band</text>
+            <text x="862" y="624" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#111111">widens forward</text>
+            <text x="90" y="649" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">1958</text>
+            <text x="530" y="649" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">1960</text>
+            <text x="1038" y="649" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="11" fill="#888888">next 12 months</text>
           </svg>
           <figcaption>The series grows, the seasonal wave widens with that growth, and any usable forecast must show both the projected path and the widening room for error. The operational lesson is simple: plan with a band, not a point.</figcaption>
         </figure>

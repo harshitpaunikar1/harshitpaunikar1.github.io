@@ -176,7 +176,7 @@
     }
 
     .metric-strip {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       margin-top: 1rem;
     }
 
@@ -188,12 +188,13 @@
 
     .metric strong {
       display: block;
-      font-size: 1.4rem;
+      font-size: clamp(1.1rem, 2.2vw, 1.4rem);
       margin-top: 0.28rem;
+      overflow-wrap: anywhere;
     }
 
     .check-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       margin-top: 1rem;
     }
 
@@ -230,7 +231,6 @@
     .wide-figure svg {
       display: block;
       width: 100%;
-      min-width: 960px;
       height: auto;
     }
 
@@ -448,75 +448,78 @@
     </section>
 
     <figure class="wide-figure" aria-labelledby="rail-caption">
-      <svg height="360" width="1440" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 360" role="img" aria-label="Monochrome frame rail showing capture, handoff, inference, render, crop log, and report stages with timing badges.">
+      <svg height="420" width="1240" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 420" role="img" aria-label="Monochrome frame rail showing capture, handoff, inference, render, crop log, and report stages with timing badges.">
         <defs>
           <linearGradient id="panelFill" x1="0" x2="0" y1="0" y2="1">
             <stop offset="0%" stop-color="#ffffff"/>
             <stop offset="100%" stop-color="#e7e7e7"/>
           </linearGradient>
+          <marker id="railArrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#757575"/>
+          </marker>
         </defs>
-        <rect x="20" y="18" width="1400" height="324" rx="24" fill="#f7f7f7" stroke="#b6b6b6" stroke-width="2"/>
-        <text x="70" y="62" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="2" fill="#5b5b5b">FRAME RAIL / SINGLE PASS THROUGH THE BROWSER LOOP</text>
-        <line x1="88" y1="190" x2="1350" y2="190" stroke="#111111" stroke-width="8" stroke-linecap="round"/>
+        <rect x="20" y="18" width="1200" height="324" rx="24" fill="#f7f7f7" stroke="#b6b6b6" stroke-width="2"/>
+        <text x="60" y="62" font-family="IBM Plex Mono, monospace" font-size="17" letter-spacing="2" fill="#5b5b5b">FRAME RAIL / SINGLE PASS THROUGH THE BROWSER LOOP</text>
+        <line x1="76" y1="206" x2="1168" y2="206" stroke="#111111" stroke-width="8" stroke-linecap="round"/>
         <g fill="url(#panelFill)" stroke="#111111" stroke-width="2">
-          <rect x="70" y="100" width="180" height="84" rx="18"/>
-          <rect x="286" y="100" width="180" height="84" rx="18"/>
-          <rect x="502" y="100" width="180" height="84" rx="18"/>
-          <rect x="718" y="100" width="180" height="84" rx="18"/>
-          <rect x="934" y="100" width="180" height="84" rx="18"/>
-          <rect x="1150" y="100" width="180" height="84" rx="18"/>
+          <rect x="62" y="116" width="160" height="86" rx="18"/>
+          <rect x="244" y="116" width="160" height="86" rx="18"/>
+          <rect x="426" y="116" width="160" height="86" rx="18"/>
+          <rect x="608" y="116" width="160" height="86" rx="18"/>
+          <rect x="790" y="116" width="160" height="86" rx="18"/>
+          <rect x="972" y="116" width="170" height="86" rx="18"/>
         </g>
-        <g font-family="IBM Plex Mono, monospace" font-size="17" fill="#111111">
-          <text x="96" y="129">CAPTURE</text>
-          <text x="96" y="153">getUserMedia</text>
-          <text x="96" y="176">video - canvas</text>
+        <g font-family="IBM Plex Mono, monospace" font-size="15" fill="#111111">
+          <text x="86" y="143">CAPTURE</text>
+          <text x="86" y="166">getUserMedia</text>
+          <text x="86" y="189">video - canvas</text>
 
-          <text x="312" y="129">HANDOFF</text>
-          <text x="312" y="153">bitmap or tensor</text>
-          <text x="312" y="176">ring buffer gate</text>
+          <text x="268" y="143">HANDOFF</text>
+          <text x="268" y="166">bitmap or tensor</text>
+          <text x="268" y="189">ring buffer gate</text>
 
-          <text x="528" y="129">INFERENCE</text>
-          <text x="528" y="153">class threshold</text>
-          <text x="528" y="176">NMS + cooldown</text>
+          <text x="450" y="143">INFERENCE</text>
+          <text x="450" y="166">class threshold</text>
+          <text x="450" y="189">NMS + cooldown</text>
 
-          <text x="744" y="129">RENDER</text>
-          <text x="744" y="153">overlay boxes</text>
-          <text x="744" y="176">operator hints</text>
+          <text x="632" y="143">RENDER</text>
+          <text x="632" y="166">overlay boxes</text>
+          <text x="632" y="189">operator hints</text>
 
-          <text x="960" y="129">CROP LOG</text>
-          <text x="960" y="153">encode evidence</text>
-          <text x="960" y="176">POST to Flask</text>
+          <text x="814" y="143">CROP LOG</text>
+          <text x="814" y="166">encode evidence</text>
+          <text x="814" y="189">POST to Flask</text>
 
-          <text x="1176" y="129">REPORT</text>
-          <text x="1176" y="153">SQLite review</text>
-          <text x="1176" y="176">shift export</text>
+          <text x="996" y="143">REPORT</text>
+          <text x="996" y="166">SQLite review</text>
+          <text x="996" y="189">shift export</text>
         </g>
         <g fill="#111111">
-          <circle cx="160" cy="190" r="11"/>
-          <circle cx="376" cy="190" r="11"/>
-          <circle cx="592" cy="190" r="11"/>
-          <circle cx="808" cy="190" r="11"/>
-          <circle cx="1024" cy="190" r="11"/>
-          <circle cx="1240" cy="190" r="11"/>
+          <circle cx="142" cy="206" r="11"/>
+          <circle cx="324" cy="206" r="11"/>
+          <circle cx="506" cy="206" r="11"/>
+          <circle cx="688" cy="206" r="11"/>
+          <circle cx="870" cy="206" r="11"/>
+          <circle cx="1052" cy="206" r="11"/>
         </g>
-        <g font-family="IBM Plex Mono, monospace" font-size="15" text-anchor="middle">
-          <rect x="110" y="76" width="100" height="26" rx="13" fill="#111111"/>
-          <text x="160" y="94" fill="#ffffff">16.7 ms</text>
-          <rect x="326" y="76" width="100" height="26" rx="13" fill="#434343"/>
-          <text x="376" y="94" fill="#ffffff">2.3 ms</text>
-          <rect x="542" y="76" width="100" height="26" rx="13" fill="#111111"/>
-          <text x="592" y="94" fill="#ffffff">24 ms</text>
-          <rect x="758" y="76" width="100" height="26" rx="13" fill="#434343"/>
-          <text x="808" y="94" fill="#ffffff">3.8 ms</text>
-          <rect x="964" y="76" width="120" height="26" rx="13" fill="#111111"/>
-          <text x="1024" y="94" fill="#ffffff">async 40 ms</text>
-          <rect x="1168" y="76" width="144" height="26" rx="13" fill="#434343"/>
-          <text x="1240" y="94" fill="#ffffff">operator paced</text>
+        <g font-family="IBM Plex Mono, monospace" font-size="14" text-anchor="middle">
+          <rect x="92" y="84" width="100" height="26" rx="13" fill="#111111"/>
+          <text x="142" y="102" fill="#ffffff">16.7 ms</text>
+          <rect x="274" y="84" width="100" height="26" rx="13" fill="#434343"/>
+          <text x="324" y="102" fill="#ffffff">2.3 ms</text>
+          <rect x="456" y="84" width="100" height="26" rx="13" fill="#111111"/>
+          <text x="506" y="102" fill="#ffffff">24 ms</text>
+          <rect x="638" y="84" width="100" height="26" rx="13" fill="#434343"/>
+          <text x="688" y="102" fill="#ffffff">3.8 ms</text>
+          <rect x="810" y="84" width="120" height="26" rx="13" fill="#111111"/>
+          <text x="870" y="102" fill="#ffffff">async 40 ms</text>
+          <rect x="980" y="84" width="144" height="26" rx="13" fill="#434343"/>
+          <text x="1052" y="102" fill="#ffffff">operator paced</text>
         </g>
-        <path d="M1024 236 C1080 270, 1160 270, 1240 246" fill="none" stroke="#757575" stroke-width="4" stroke-dasharray="8 8"/>
-        <text x="1180" y="286" font-family="IBM Plex Mono, monospace" font-size="15" fill="#5b5b5b" text-anchor="middle">
-          <tspan x="1180" y="286">async evidence branch keeps</tspan>
-          <tspan x="1180" y="308">report work off the hot frame path</tspan>
+        <path d="M870 250 C930 294, 1005 294, 1052 264" fill="none" stroke="#757575" stroke-width="4" stroke-dasharray="8 8" marker-end="url(#railArrow)"/>
+        <text x="962" y="322" font-family="IBM Plex Mono, monospace" font-size="14" fill="#5b5b5b" text-anchor="middle">
+          <tspan x="962" y="322">async evidence branch keeps</tspan>
+          <tspan x="962" y="342">report work off the hot frame path</tspan>
         </text>
       </svg>
       <figcaption id="rail-caption"><span class="caption-kicker">Figure 01</span>The main rail should remain narrow and predictable: capture, handoff, inference, and render stay on the hot path; crop logging and report generation branch out asynchronously so the browser can keep moving.</figcaption>
@@ -644,70 +647,72 @@ const accepted = rawDetections
     </section>
 
     <figure class="wide-figure" aria-labelledby="log-caption">
-      <svg height="420" width="1440" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 420" role="img" aria-label="Logging and reporting companion diagram for browser detections, Flask intake, SQLite records, crop persistence, reviewer actions, and export paths.">
-        <rect x="20" y="18" width="1400" height="384" rx="24" fill="#f8f8f8" stroke="#b6b6b6" stroke-width="2"/>
-        <text x="68" y="62" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="2" fill="#5b5b5b">LOGGING / REPORTING COMPANION FLOW</text>
+      <svg height="500" width="1240" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 500" role="img" aria-label="Logging and reporting companion diagram for browser detections, Flask intake, SQLite records, crop persistence, reviewer actions, and export paths.">
+        <defs>
+          <marker id="logArrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#111111"/>
+          </marker>
+        </defs>
+        <rect x="20" y="18" width="1200" height="430" rx="24" fill="#f8f8f8" stroke="#b6b6b6" stroke-width="2"/>
+        <text x="58" y="62" font-family="IBM Plex Mono, monospace" font-size="17" letter-spacing="2" fill="#5b5b5b">LOGGING / REPORTING COMPANION FLOW</text>
         <g stroke="#111111" stroke-width="2">
-          <rect x="70" y="104" width="250" height="182" rx="18" fill="#ffffff"/>
-          <rect x="390" y="128" width="210" height="134" rx="18" fill="#ececec"/>
-          <rect x="670" y="88" width="250" height="96" rx="18" fill="#ffffff"/>
-          <rect x="670" y="208" width="250" height="96" rx="18" fill="#ececec"/>
-          <rect x="990" y="88" width="178" height="96" rx="18" fill="#ffffff"/>
-          <rect x="990" y="208" width="178" height="96" rx="18" fill="#ffffff"/>
-          <rect x="1218" y="148" width="140" height="118" rx="18" fill="#ececec"/>
+          <rect x="60" y="112" width="238" height="194" rx="18" fill="#ffffff"/>
+          <rect x="360" y="136" width="198" height="146" rx="18" fill="#ececec"/>
+          <rect x="620" y="92" width="226" height="112" rx="18" fill="#ffffff"/>
+          <rect x="620" y="232" width="226" height="118" rx="18" fill="#ececec"/>
+          <rect x="896" y="92" width="170" height="112" rx="18" fill="#ffffff"/>
+          <rect x="896" y="232" width="170" height="118" rx="18" fill="#ffffff"/>
+          <rect x="1092" y="166" width="110" height="106" rx="18" fill="#ececec"/>
         </g>
-        <g font-family="IBM Plex Mono, monospace" font-size="16" fill="#111111">
-          <text x="94" y="138">BROWSER EVENT PACK</text>
-          <text x="94" y="166">detection_id</text>
-          <text x="94" y="190">frame_ts</text>
-          <text x="94" y="214">label / score / box</text>
-          <text x="94" y="238">crop_blob?</text>
-          <text x="94" y="262">operator_context</text>
+        <g font-family="IBM Plex Mono, monospace" font-size="13" fill="#111111">
+          <text x="84" y="144">BROWSER EVENT PACK</text>
+          <text x="84" y="178">detection_id</text>
+          <text x="84" y="206">frame_ts</text>
+          <text x="84" y="234">label / score / box</text>
+          <text x="84" y="262">crop_blob?</text>
+          <text x="84" y="290">operator_context</text>
 
-          <text x="428" y="164">FLASK INTAKE</text>
-          <text x="428" y="188">validate</text>
-          <text x="428" y="212">dedupe</text>
-          <text x="428" y="236">assign shift keys</text>
+          <text x="392" y="170">FLASK INTAKE</text>
+          <text x="392" y="198">validate</text>
+          <text x="392" y="226">dedupe</text>
+          <text x="392" y="254">assign shift keys</text>
 
-          <text x="694" y="126">SQLITE DETECTION LOG</text>
-          <text x="694" y="150">frame_ts / class / score</text>
-          <text x="694" y="174">camera_id / shift_id</text>
+          <text x="644" y="132">SQLITE DETECTION LOG</text>
+          <text x="644" y="160">frame_ts / class / score</text>
+          <text x="644" y="188">camera_id / shift_id</text>
 
-          <text x="694" y="246">CROP PERSISTENCE</text>
-          <text x="694" y="270">blob path or bytes</text>
-          <text x="694" y="294">linked by detection_id</text>
+          <text x="644" y="266">CROP PERSISTENCE</text>
+          <text x="644" y="294">blob path or bytes</text>
+          <text x="644" y="322">linked by detection_id</text>
 
-          <text x="1014" y="126">REVIEW QUEUE</text>
-          <text x="1014" y="150">confirm</text>
-          <text x="1014" y="174">dismiss</text>
+          <text x="922" y="132">REVIEW QUEUE</text>
+          <text x="922" y="160">confirm</text>
+          <text x="922" y="188">dismiss</text>
 
-          <text x="1014" y="246">ANALYTICS</text>
-          <text x="1014" y="270">filter / trend</text>
-          <text x="1014" y="294">false positive rate</text>
+          <text x="922" y="264">ANALYTICS</text>
+          <text x="922" y="292">filter / trend</text>
+          <text x="922" y="318">false positive</text>
+          <text x="922" y="340">rate</text>
 
-          <text x="1242" y="186">EXPORT</text>
-          <text x="1242" y="210">CSV / PDF</text>
-          <text x="1242" y="234">audit packet</text>
+          <text x="1123" y="205">EXPORT</text>
+          <text x="1123" y="233">CSV / PDF</text>
+          <text x="1123" y="259">audit packet</text>
         </g>
-        <g stroke="#111111" stroke-width="4" fill="none" stroke-linecap="round">
-          <path d="M320 194 H390"/>
-          <path d="M600 170 H670"/>
-          <path d="M600 220 H670"/>
-          <path d="M920 136 H990"/>
-          <path d="M920 256 H990"/>
-          <path d="M1168 148 H1218"/>
-          <path d="M1168 256 H1218"/>
+        <g stroke="#111111" stroke-width="3.2" fill="none" stroke-linecap="round">
+          <path d="M298 210 H360" marker-end="url(#logArrow)"/>
+          <path d="M558 184 H620" marker-end="url(#logArrow)"/>
+          <path d="M558 290 H620" marker-end="url(#logArrow)"/>
+          <path d="M846 148 H896" marker-end="url(#logArrow)"/>
+          <path d="M846 290 H896" marker-end="url(#logArrow)"/>
+          <path d="M1066 148 H1092" marker-end="url(#logArrow)"/>
+          <path d="M1066 290 H1092" marker-end="url(#logArrow)"/>
         </g>
-        <g fill="#111111">
-          <polygon points="382,186 398,194 382,202"/>
-          <polygon points="662,162 678,170 662,178"/>
-          <polygon points="662,212 678,220 662,228"/>
-          <polygon points="982,128 998,136 982,144"/>
-          <polygon points="982,248 998,256 982,264"/>
-          <polygon points="1210,140 1226,148 1210,156"/>
-          <polygon points="1210,248 1226,256 1210,264"/>
-        </g>
-        <text x="70" y="346" font-family="IBM Plex Mono, monospace" font-size="15" fill="#5b5b5b">review actions flow back as durable user events so quality can be measured by shift, class, and camera instead of by anecdote</text>
+        <text x="60" y="396" font-family="IBM Plex Mono, monospace" font-size="14" fill="#5b5b5b">
+          review actions flow back as durable user events so quality can be measured by shift, class,
+        </text>
+        <text x="60" y="418" font-family="IBM Plex Mono, monospace" font-size="14" fill="#5b5b5b">
+          and camera instead of by anecdote
+        </text>
       </svg>
       <figcaption id="log-caption"><span class="caption-kicker">Figure 02</span>The reporting side should join browser detections to durable server records. SQLite is enough when the event schema is disciplined and reviewer actions are treated as first-class evidence instead of afterthought notes.</figcaption>
     </figure>
@@ -843,7 +848,7 @@ def create_detection():
           <p>The team was two engineers: one focused on the browser inference pipeline and operator overlay, the other on the Flask backend, SQLite persistence, and the reporting surface. The build ran 8 weeks from discovery through production deployment. The first two weeks were spent on-site collecting sample footage from the actual cameras at the actual mounting angles, which turned out to be the most valuable phase of the entire project.</p>
         </div>
         <div>
-          <div class="metric-strip">
+          <div class="metric-strip" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
             <div class="metric">
               <span class="mini-label">Client</span>
               <strong>Manufacturing QA</strong>
@@ -918,35 +923,35 @@ def create_detection():
         </div>
       </div>
       <figure class="wide-figure" aria-labelledby="results-caption" style="margin-top: 1.4rem;">
-        <svg height="320" width="900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" role="img" aria-label="Before and after comparison of defect detection metrics.">
-          <rect width="900" height="320" rx="16" fill="#f7f7f7" stroke="#b6b6b6" stroke-width="2"/>
-          <text x="450" y="36" font-family="IBM Plex Mono, monospace" font-size="16" letter-spacing="2" fill="#5b5b5b" text-anchor="middle">BEFORE / AFTER DEPLOYMENT</text>
+        <svg height="360" width="980" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 360" role="img" aria-label="Before and after comparison of defect detection metrics.">
+          <rect width="980" height="360" rx="16" fill="#f7f7f7" stroke="#b6b6b6" stroke-width="2"/>
+          <text x="490" y="40" font-family="IBM Plex Mono, monospace" font-size="16" letter-spacing="2" fill="#5b5b5b" text-anchor="middle">BEFORE / AFTER DEPLOYMENT</text>
           <!-- Before column -->
-          <rect x="60" y="60" width="360" height="230" rx="12" fill="#ececec" stroke="#b6b6b6" stroke-width="1"/>
-          <text x="240" y="90" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="1" fill="#5b5b5b" text-anchor="middle">BEFORE (MANUAL INSPECTION)</text>
+          <rect x="74" y="68" width="380" height="246" rx="12" fill="#ececec" stroke="#b6b6b6" stroke-width="1"/>
+          <text x="264" y="100" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="1" fill="#5b5b5b" text-anchor="middle">BEFORE (MANUAL INSPECTION)</text>
           <!-- Before bars -->
-          <rect x="100" y="115" width="221" height="28" rx="6" fill="#b6b6b6"/>
-          <text x="112" y="134" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">Detection rate: 85%</text>
-          <rect x="100" y="155" width="260" height="28" rx="6" fill="#b6b6b6"/>
-          <text x="112" y="174" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">Missed defects at peak: 15%</text>
-          <rect x="100" y="195" width="130" height="28" rx="6" fill="#b6b6b6"/>
-          <text x="112" y="214" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">Audit trail: none</text>
-          <rect x="100" y="235" width="180" height="28" rx="6" fill="#b6b6b6"/>
-          <text x="112" y="254" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">Review time: manual log</text>
+          <rect x="114" y="126" width="232" height="32" rx="8" fill="#b6b6b6"/>
+          <text x="128" y="147" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">Detection rate: 85%</text>
+          <rect x="114" y="172" width="286" height="32" rx="8" fill="#b6b6b6"/>
+          <text x="128" y="193" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">Missed defects at peak: 15%</text>
+          <rect x="114" y="218" width="186" height="32" rx="8" fill="#b6b6b6"/>
+          <text x="128" y="239" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">Audit trail: none</text>
+          <rect x="114" y="264" width="232" height="32" rx="8" fill="#b6b6b6"/>
+          <text x="128" y="285" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">Review time: manual log</text>
           <!-- After column -->
-          <rect x="480" y="60" width="360" height="230" rx="12" fill="#ffffff" stroke="#111111" stroke-width="2"/>
-          <text x="660" y="90" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="1" fill="#111111" text-anchor="middle">AFTER (BROWSER DETECTION)</text>
+          <rect x="526" y="68" width="380" height="246" rx="12" fill="#ffffff" stroke="#111111" stroke-width="2"/>
+          <text x="716" y="100" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="1" fill="#111111" text-anchor="middle">AFTER (BROWSER DETECTION)</text>
           <!-- After bars -->
-          <rect x="520" y="115" width="280" height="28" rx="6" fill="#111111"/>
-          <text x="532" y="134" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">Detection rate: 96.8%</text>
-          <rect x="520" y="155" width="140" height="28" rx="6" fill="#111111"/>
-          <text x="532" y="174" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">False pos: 3.2%</text>
-          <rect x="520" y="195" width="260" height="28" rx="6" fill="#111111"/>
-          <text x="532" y="214" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">4,500+ events/day logged</text>
-          <rect x="520" y="235" width="220" height="28" rx="6" fill="#111111"/>
-          <text x="532" y="254" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">Review time: 1.8 sec/item</text>
+          <rect x="566" y="126" width="294" height="32" rx="8" fill="#111111"/>
+          <text x="580" y="147" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">Detection rate: 96.8%</text>
+          <rect x="566" y="172" width="176" height="32" rx="8" fill="#111111"/>
+          <text x="580" y="193" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">False pos: 3.2%</text>
+          <rect x="566" y="218" width="264" height="32" rx="8" fill="#111111"/>
+          <text x="580" y="239" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">4,500+ events/day logged</text>
+          <rect x="566" y="264" width="234" height="32" rx="8" fill="#111111"/>
+          <text x="580" y="285" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ffffff">Review time: 1.8 sec/item</text>
           <!-- Arrow between columns -->
-          <polygon points="440,175 460,160 460,190" fill="#111111"/>
+          <polygon points="476,190 496,175 496,205" fill="#111111"/>
         </svg>
         <figcaption id="results-caption"><span class="caption-kicker">Figure — Results</span>The shift from manual inspection to browser-based detection with human review closed the gap on missed defects and created an audit trail that did not exist before.</figcaption>
       </figure>

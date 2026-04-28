@@ -1,5 +1,5 @@
 /* ============================================================
-   Private Search Research Assistant — Dedicated Page CSS
+   Blog Page — Dedicated Component CSS
    Only bc-* component styles for the injected header/footer.
    Does NOT override the page's original editorial design.
    ============================================================ */
@@ -8,8 +8,60 @@
   --bc-header-h: 64px;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--bc-header-h) + 16px);
+}
+
 body {
   padding-top: var(--bc-header-h) !important;
+  overflow-x: hidden;
+}
+
+.bc-main-shell {
+  position: relative;
+  left: 0;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+figure,
+[class*="container"],
+[class*="grid"],
+[class*="split"],
+[class*="layout"],
+[class*="shell"],
+[class*="wrap"] {
+  min-width: 0;
+}
+
+[class*="grid"] > *,
+[class*="split"] > *,
+[class*="layout"] > *,
+[class*="shell"] > *,
+[class*="wrap"] > * {
+  min-width: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+li,
+figcaption,
+td,
+th,
+code,
+pre,
+blockquote {
+  overflow-wrap: anywhere;
 }
 
 /* ── Skip link ── */
@@ -126,12 +178,25 @@ body {
   .bc-nav { display: none; }
   .bc-header-cta { display: none; }
   .bc-nav-toggle { display: flex; }
+  .bc-logo {
+    max-width: calc(100vw - 96px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 /* ── Article meta strip ── */
 .bc-article-meta {
   padding: 0 1.5rem; margin: 0 0 1.5rem;
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+.bc-article-meta,
+.bc-summary-box,
+.bc-toc,
+.bc-section {
+  width: min(100%, 980px);
+  margin-left: auto;
+  margin-right: auto;
 }
 .bc-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
 .bc-badge {
@@ -150,6 +215,8 @@ body {
   margin: 0 1.5rem 2.5rem; padding: 1.5rem;
   background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  margin-left: auto;
+  margin-right: auto;
 }
 .bc-summary-box h2 {
   font-size: 0.72rem; font-weight: 700;
@@ -171,8 +238,35 @@ body {
   .bc-summary-grid { grid-template-columns: 1fr; }
 }
 
+@media (max-width: 900px) {
+  .bc-header-inner {
+    padding: 0 18px;
+    gap: 18px;
+  }
+
+  .bc-article-meta,
+  .bc-summary-box,
+  .bc-toc,
+  .bc-section {
+    width: min(100%, calc(100% - 1.5rem));
+  }
+
+  .bc-summary-box {
+    padding: 1.25rem;
+  }
+
+  .bc-related-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
 /* ── Table of contents ── */
-.bc-toc { margin: 0 1.5rem 2rem; font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+.bc-toc {
+  margin: 0 1.5rem 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
 .bc-toc summary {
   font-size: 0.72rem; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase;
@@ -249,6 +343,128 @@ body {
 @media (max-width: 768px) {
   .bc-footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
   .bc-footer-links { flex-wrap: wrap; gap: 16px; }
+}
+
+body.bc-page-onprem-vision-inference-pipeline .diagram-frame svg {
+  min-width: 0;
+}
+
+body.bc-page-retrieval-tool-use-assistant .grid-container {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 720px) minmax(0, 1fr);
+}
+
+@media (max-width: 980px) {
+  body.bc-page-retrieval-tool-use-assistant .grid-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 3rem 1rem;
+  }
+
+  body.bc-page-retrieval-tool-use-assistant .main-content,
+  body.bc-page-retrieval-tool-use-assistant header {
+    grid-column: 1;
+  }
+
+  body.bc-page-retrieval-tool-use-assistant h2 {
+    margin-left: 0;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  body.bc-page-retrieval-tool-use-assistant pre {
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 901px) {
+  body.bc-page-unified-course-management-platform .roomy-figure {
+    margin-left: clamp(-2rem, -3vw, -1rem);
+    margin-right: clamp(-2rem, -3vw, -1rem);
+    padding-left: clamp(1rem, 3vw, 2rem);
+    padding-right: clamp(1rem, 3vw, 2rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .bc-header-inner {
+    padding: 0 14px;
+    gap: 12px;
+  }
+
+  .bc-article-meta,
+  .bc-summary-box,
+  .bc-toc,
+  .bc-section {
+    width: min(100%, calc(100% - 1rem));
+  }
+
+  .bc-article-meta {
+    padding: 0 0.85rem;
+  }
+
+  .bc-summary-box,
+  .bc-section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .bc-summary-box {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 10px;
+  }
+
+  .bc-toc {
+    margin-bottom: 1.5rem;
+  }
+
+  .bc-footer-inner {
+    padding: 0 18px;
+  }
+
+  body.bc-page-onprem-vision-inference-pipeline .diagram-frame {
+    padding: 14px;
+  }
+
+  body.bc-page-unified-course-management-platform .journey-column {
+    padding: 1.5rem;
+  }
+
+  body.bc-page-unified-course-management-platform .svg-campus-map {
+    padding: 1.5rem 1rem;
+    box-shadow: none;
+  }
+
+  body.bc-page-local-business-profit-planning table,
+  body.bc-page-marketing-process-analytics-dashboard table,
+  body.bc-page-realtime-marketing-decision-engine table,
+  body.bc-page-realtime-web-object-detection table {
+    min-width: 34rem;
+  }
+}
+
+@media (min-width: 1001px) {
+  body.bc-page-ttil-barcode-coldchain-tracking .timestamp-callout {
+    width: min(220px, 100%);
+    margin: 0 0 1.75rem 1.5rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  body.bc-page-ttil-barcode-coldchain-tracking .timestamp-callout {
+    width: 100%;
+    margin: 1.5rem 0;
+  }
+
+  body.bc-page-ttil-barcode-coldchain-tracking .chronology-figure {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  body.bc-page-ttil-barcode-coldchain-tracking .svg-wrapper {
+    padding: 1.25rem 0.9rem;
+  }
 }
 
 /* ── Accessibility ── */

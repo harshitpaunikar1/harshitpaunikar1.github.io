@@ -7,16 +7,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Greyscale Control Room Theme */
+    /* Light control-room theme */
     :root {
-      --bg: #111111;
-      --fg: #ffffff;
-      --panel: #1a1a1a;
-      --border-lit: #444444;
-      --border-dark: #222222;
-      --text: #dddddd;
-      --text-muted: #888888;
-      --accent: #ffffff;
+      --bg: #ffffff;
+      --fg: #111111;
+      --panel: #f7f7f7;
+      --border-lit: #cfcfcf;
+      --border-dark: #e3e3e3;
+      --text: #1f1f1f;
+      --text-muted: #5f5f5f;
+      --accent: #111111;
       
       --font-body: 'Work Sans', sans-serif;
       --font-mono: 'Chivo Mono', monospace;
@@ -71,14 +71,14 @@
       font-family: var(--font-mono);
       font-size: 1rem;
       font-weight: 700;
-      color: var(--bg);
+      color: #ffffff;
       background-color: var(--fg);
       display: inline-block;
       padding: 0.5rem 1rem;
       margin: 4rem 0 2rem 0;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      box-shadow: 0 8px 18px rgba(17,17,17,0.08);
     }
 
     h3 {
@@ -153,7 +153,7 @@
       <p class="synopsis">A distribution yard operates on the edge of chaos. When eighty fifty-foot trailers are bottlenecked at the gate, dock doors are double-booked, and shunters are driving blind, software brochures describing "digital transformation" are worse than useless. A functional Yard Management System replaces ambiguity with strict entity logic, mapping the physical footprint into a deterministic control surface.</p>
     </header>
 
-    <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
+    <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:#f5f5f5;border-radius:0 6px 6px 0;font-size:0.95rem;">
       <strong>My Role:</strong> I designed the entity state machines — the trailer lifecycle from gate-in to gate-out — and the algorithmic dock assignment logic that replaced the manual whiteboard system. Two other engineers built the GPS tracking integration and the driver-facing mobile dispatch UI. An embedded operations manager was the most valuable team member: his domain knowledge about live loads, reefer priority, and driver shift handoffs prevented three major design mistakes before we wrote a line of code.
     </div>
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
@@ -195,50 +195,50 @@
     <div class="atlas-figure">
       <div class="svg-container">
         <svg height="500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" width="100%">
-          <rect width="1000" height="500" fill="#1a1a1a" />
+          <rect width="1000" height="500" fill="#ffffff" />
           
           <!-- Grid Background -->
-          <path d="M 0 50 L 1000 50 M 0 100 L 1000 100 M 0 150 L 1000 150 M 0 200 L 1000 200 M 0 250 L 1000 250 M 0 300 L 1000 300 M 0 350 L 1000 350 M 0 400 L 1000 400 M 0 450 L 1000 450" fill="none" stroke="#222222" stroke-width="1" />
-          <path d="M 100 0 L 100 500 M 200 0 L 200 500 M 300 0 L 300 500 M 400 0 L 400 500 M 500 0 L 500 500 M 600 0 L 600 500 M 700 0 L 700 500 M 800 0 L 800 500 M 900 0 L 900 500" fill="none" stroke="#222222" stroke-width="1" />
+          <path d="M 0 50 L 1000 50 M 0 100 L 1000 100 M 0 150 L 1000 150 M 0 200 L 1000 200 M 0 250 L 1000 250 M 0 300 L 1000 300 M 0 350 L 1000 350 M 0 400 L 1000 400 M 0 450 L 1000 450" fill="none" stroke="#ececec" stroke-width="1" />
+          <path d="M 100 0 L 100 500 M 200 0 L 200 500 M 300 0 L 300 500 M 400 0 L 400 500 M 500 0 L 500 500 M 600 0 L 600 500 M 700 0 L 700 500 M 800 0 L 800 500 M 900 0 L 900 500" fill="none" stroke="#ececec" stroke-width="1" />
 
           <!-- Perimeter -->
-          <rect x="50" y="50" width="900" height="400" fill="none" stroke="#444444" stroke-width="2" />
+          <rect x="50" y="50" width="900" height="400" fill="#fafafa" stroke="#cfcfcf" stroke-width="2" />
           
           <!-- GATE ENTRY -->
-          <rect x="50" y="200" width="40" height="100" fill="#ffffff" />
-          <text x="35" y="255" font-family="'Chivo Mono', monospace" font-size="12" font-weight="700" fill="#ffffff" transform="rotate(-90 35 255)">GATE_IN</text>
+          <rect x="50" y="200" width="40" height="100" fill="#111111" />
+          <text x="35" y="255" font-family="'Chivo Mono', monospace" font-size="12" font-weight="700" fill="#111111" transform="rotate(-90 35 255)">GATE_IN</text>
           
           <!-- STAGING ZONE A -->
-          <rect x="150" y="100" width="300" height="120" fill="none" stroke="#666666" stroke-width="2" stroke-dasharray="4 4" />
-          <text x="300" y="90" font-family="'Chivo Mono', monospace" font-size="10" text-anchor="middle" fill="#888888">STAGING ZONE ALPHA (INBOUND)</text>
+          <rect x="150" y="100" width="300" height="120" fill="none" stroke="#9d9d9d" stroke-width="2" stroke-dasharray="4 4" />
+          <text x="300" y="90" font-family="'Chivo Mono', monospace" font-size="10" text-anchor="middle" fill="#5f5f5f">STAGING ZONE ALPHA (INBOUND)</text>
           <!-- Slots in Zone A -->
-          <rect x="170" y="120" width="30" height="80" fill="#ffffff" /> <!-- Trailer 1 (Occupied) -->
-          <rect x="220" y="120" width="30" height="80" fill="#333333" /> <!-- Slot Empty -->
-          <rect x="270" y="120" width="30" height="80" fill="#ffffff" /> <!-- Trailer 2 -->
-          <rect x="320" y="120" width="30" height="80" fill="#ffffff" /> <!-- Trailer 3 -->
-          <rect x="370" y="120" width="30" height="80" fill="#333333" /> <!-- Slot Empty -->
+          <rect x="170" y="120" width="30" height="80" fill="#111111" /> <!-- Trailer 1 (Occupied) -->
+          <rect x="220" y="120" width="30" height="80" fill="#dddddd" stroke="#9d9d9d" stroke-width="1" /> <!-- Slot Empty -->
+          <rect x="270" y="120" width="30" height="80" fill="#111111" /> <!-- Trailer 2 -->
+          <rect x="320" y="120" width="30" height="80" fill="#111111" /> <!-- Trailer 3 -->
+          <rect x="370" y="120" width="30" height="80" fill="#dddddd" stroke="#9d9d9d" stroke-width="1" /> <!-- Slot Empty -->
 
           <!-- WAREHOUSE & DOCKS -->
-          <rect x="600" y="100" width="300" height="300" fill="#111111" stroke="#ffffff" stroke-width="2" />
-          <text x="750" y="255" font-family="'Chivo Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#ffffff">MAIN WAREHOUSE</text>
+          <rect x="600" y="100" width="300" height="300" fill="#f1f1f1" stroke="#111111" stroke-width="2" />
+          <text x="750" y="255" font-family="'Chivo Mono', monospace" font-size="16" font-weight="700" text-anchor="middle" fill="#111111">MAIN WAREHOUSE</text>
           
           <!-- Dock Doors -->
-          <rect x="580" y="120" width="20" height="30" fill="#ffffff" /> <text x="560" y="140" fill="#888888" font-size="8" font-family="'Chivo Mono'">D1</text>
-          <rect x="580" y="170" width="20" height="30" fill="#333333" /> <text x="560" y="190" fill="#888888" font-size="8" font-family="'Chivo Mono'">D2</text>
-          <rect x="580" y="220" width="20" height="30" fill="#ffffff" /> <text x="560" y="240" fill="#888888" font-size="8" font-family="'Chivo Mono'">D3</text>
-          <rect x="580" y="270" width="20" height="30" fill="#ffffff" /> <text x="560" y="290" fill="#888888" font-size="8" font-family="'Chivo Mono'">D4</text>
+          <rect x="580" y="120" width="20" height="30" fill="#111111" /> <text x="560" y="140" fill="#5f5f5f" font-size="8" font-family="'Chivo Mono'">D1</text>
+          <rect x="580" y="170" width="20" height="30" fill="#d9d9d9" stroke="#9d9d9d" stroke-width="1" /> <text x="560" y="190" fill="#5f5f5f" font-size="8" font-family="'Chivo Mono'">D2</text>
+          <rect x="580" y="220" width="20" height="30" fill="#111111" /> <text x="560" y="240" fill="#5f5f5f" font-size="8" font-family="'Chivo Mono'">D3</text>
+          <rect x="580" y="270" width="20" height="30" fill="#111111" /> <text x="560" y="290" fill="#5f5f5f" font-size="8" font-family="'Chivo Mono'">D4</text>
           
           <!-- MOVE REQUEST PATH (Shunter) -->
-          <path d="M 285 200 L 285 285 L 535 285 L 535 235 L 580 235" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow)" />
-          <circle cx="360" cy="285" r="8" fill="#ffffff" />
-          <text x="360" y="270" font-family="'Chivo Mono', monospace" font-size="10" text-anchor="middle" fill="#ffffff">SHUNTER_01</text>
+          <path d="M 285 200 L 285 285 L 535 285 L 535 235 L 580 235" fill="none" stroke="#111111" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow)" />
+          <circle cx="360" cy="285" r="8" fill="#111111" />
+          <text x="360" y="270" font-family="'Chivo Mono', monospace" font-size="10" text-anchor="middle" fill="#111111">SHUNTER_01</text>
           
-          <rect x="360" y="300" width="120" height="30" fill="#222222" stroke="#ffffff" stroke-width="1" />
-          <text x="420" y="320" font-family="'Chivo Mono', monospace" font-size="9" text-anchor="middle" fill="#ffffff">TASK: MOVE [A3] -> [D3]</text>
+          <rect x="360" y="300" width="120" height="30" fill="#f1f1f1" stroke="#111111" stroke-width="1" />
+          <text x="420" y="320" font-family="'Chivo Mono', monospace" font-size="9" text-anchor="middle" fill="#111111">TASK: MOVE [A3] -&gt; [D3]</text>
 
           <defs>
             <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-              <polygon points="0 0, 6 3, 0 6" fill="#ffffff" />
+              <polygon points="0 0, 6 3, 0 6" fill="#111111" />
             </marker>
           </defs>
         </svg>
@@ -290,79 +290,79 @@
     <div class="atlas-figure">
       <div class="svg-container">
         <svg height="480" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" width="100%">
-          <rect width="1000" height="480" fill="#1a1a1a" />
+          <rect width="1000" height="480" fill="#ffffff" />
 
-          <text x="500" y="30" font-family="'Chivo Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#ffffff">OPERATIONAL COMPARISON: BEFORE / AFTER</text>
+          <text x="500" y="30" font-family="'Chivo Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">OPERATIONAL COMPARISON: BEFORE / AFTER</text>
 
           <!-- BEFORE Column -->
-          <rect x="40" y="50" width="430" height="400" fill="none" stroke="#444444" stroke-width="2" />
-          <text x="255" y="75" font-family="'Chivo Mono', monospace" font-size="11" font-weight="700" text-anchor="middle" fill="#ffffff">BEFORE: PAPER AND RADIO</text>
+          <rect x="40" y="50" width="430" height="400" fill="#f7f7f7" stroke="#cfcfcf" stroke-width="2" />
+          <text x="255" y="75" font-family="'Chivo Mono', monospace" font-size="11" font-weight="700" text-anchor="middle" fill="#111111">BEFORE: PAPER AND RADIO</text>
 
           <!-- Metric bars BEFORE -->
-          <text x="60" y="110" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">DWELL TIME</text>
-          <rect x="60" y="118" width="390" height="20" fill="#222222" stroke="#444444" stroke-width="1" />
-          <rect x="60" y="118" width="390" height="20" fill="#444444" />
+          <text x="60" y="110" font-family="'Chivo Mono', monospace" font-size="9" fill="#5f5f5f">DWELL TIME</text>
+          <rect x="60" y="118" width="390" height="20" fill="#e8e8e8" stroke="#cfcfcf" stroke-width="1" />
+          <rect x="60" y="118" width="390" height="20" fill="#7a7a7a" />
           <text x="255" y="132" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">4.2 HOURS AVG</text>
 
-          <text x="60" y="162" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">DEMURRAGE</text>
-          <rect x="60" y="170" width="390" height="20" fill="#444444" />
+          <text x="60" y="162" font-family="'Chivo Mono', monospace" font-size="9" fill="#5f5f5f">DEMURRAGE</text>
+          <rect x="60" y="170" width="390" height="20" fill="#7a7a7a" />
           <text x="255" y="184" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">$28,000 / MONTH</text>
 
-          <text x="60" y="214" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">DOCK UTILIZATION</text>
-          <rect x="60" y="222" width="242" height="20" fill="#444444" />
+          <text x="60" y="214" font-family="'Chivo Mono', monospace" font-size="9" fill="#5f5f5f">DOCK UTILIZATION</text>
+          <rect x="60" y="222" width="242" height="20" fill="#7a7a7a" />
           <text x="181" y="236" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">62%</text>
 
-          <text x="60" y="266" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">LOST TRAILERS</text>
-          <rect x="60" y="274" width="150" height="20" fill="#444444" />
+          <text x="60" y="266" font-family="'Chivo Mono', monospace" font-size="9" fill="#5f5f5f">LOST TRAILERS</text>
+          <rect x="60" y="274" width="150" height="20" fill="#7a7a7a" />
           <text x="135" y="288" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">2-3 / WEEK</text>
 
-          <text x="60" y="318" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">DISPATCH METHOD</text>
-          <rect x="60" y="326" width="250" height="20" fill="#444444" />
+          <text x="60" y="318" font-family="'Chivo Mono', monospace" font-size="9" fill="#5f5f5f">DISPATCH METHOD</text>
+          <rect x="60" y="326" width="250" height="20" fill="#7a7a7a" />
           <text x="185" y="340" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">RADIO + SHOUTING</text>
 
-          <text x="60" y="374" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">TRACKING</text>
-          <rect x="60" y="382" width="200" height="20" fill="#444444" />
+          <text x="60" y="374" font-family="'Chivo Mono', monospace" font-size="9" fill="#5f5f5f">TRACKING</text>
+          <rect x="60" y="382" width="200" height="20" fill="#7a7a7a" />
           <text x="160" y="396" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">PAPER LOGS</text>
 
           <!-- Arrow -->
-          <line x1="480" y1="250" x2="520" y2="250" stroke="#ffffff" stroke-width="3" marker-end="url(#arr-w)" />
+          <line x1="480" y1="250" x2="520" y2="250" stroke="#111111" stroke-width="3" marker-end="url(#arr-w)" />
 
           <!-- AFTER Column -->
-          <rect x="530" y="50" width="430" height="400" fill="none" stroke="#ffffff" stroke-width="2" />
-          <text x="745" y="75" font-family="'Chivo Mono', monospace" font-size="11" font-weight="700" text-anchor="middle" fill="#ffffff">AFTER: PLATFORM-GOVERNED</text>
+          <rect x="530" y="50" width="430" height="400" fill="#ffffff" stroke="#111111" stroke-width="2" />
+          <text x="745" y="75" font-family="'Chivo Mono', monospace" font-size="11" font-weight="700" text-anchor="middle" fill="#111111">AFTER: PLATFORM-GOVERNED</text>
 
           <!-- Metric bars AFTER -->
-          <text x="550" y="110" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">DWELL TIME</text>
-          <rect x="550" y="118" width="195" height="20" fill="#ffffff" />
-          <text x="647" y="132" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#111111">2.1 HOURS (-50%)</text>
+          <text x="550" y="110" font-family="'Chivo Mono', monospace" font-size="9" fill="#5f5f5f">DWELL TIME</text>
+          <rect x="550" y="118" width="195" height="20" fill="#111111" />
+          <text x="647" y="132" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">2.1 HOURS (-50%)</text>
 
-          <text x="550" y="162" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">DEMURRAGE</text>
-          <rect x="550" y="170" width="112" height="20" fill="#ffffff" />
-          <text x="606" y="184" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#111111">$8K/MO (-71%)</text>
+          <text x="550" y="162" font-family="'Chivo Mono', monospace" font-size="9" fill="#5f5f5f">DEMURRAGE</text>
+          <rect x="550" y="170" width="112" height="20" fill="#111111" />
+          <text x="606" y="184" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">$8K/MO (-71%)</text>
 
-          <text x="550" y="214" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">DOCK UTILIZATION</text>
-          <rect x="550" y="222" width="340" height="20" fill="#ffffff" />
-          <text x="720" y="236" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#111111">87% (+25pts)</text>
+          <text x="550" y="214" font-family="'Chivo Mono', monospace" font-size="9" fill="#5f5f5f">DOCK UTILIZATION</text>
+          <rect x="550" y="222" width="340" height="20" fill="#111111" />
+          <text x="720" y="236" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">87% (+25pts)</text>
 
-          <text x="550" y="266" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">LOST TRAILERS</text>
-          <rect x="550" y="274" width="20" height="20" fill="#ffffff" />
-          <text x="600" y="288" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" fill="#ffffff">0 / WEEK</text>
+          <text x="550" y="266" font-family="'Chivo Mono', monospace" font-size="9" fill="#5f5f5f">LOST TRAILERS</text>
+          <rect x="550" y="274" width="20" height="20" fill="#111111" />
+          <text x="600" y="288" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" fill="#111111">0 / WEEK</text>
 
-          <text x="550" y="318" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">DISPATCH METHOD</text>
-          <rect x="550" y="326" width="300" height="20" fill="#ffffff" />
-          <text x="700" y="340" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#111111">ALGORITHMIC (34% LESS DEADHEAD)</text>
+          <text x="550" y="318" font-family="'Chivo Mono', monospace" font-size="9" fill="#5f5f5f">DISPATCH METHOD</text>
+          <rect x="550" y="326" width="300" height="20" fill="#111111" />
+          <text x="700" y="340" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">ALGORITHMIC (34% LESS DEADHEAD)</text>
 
-          <text x="550" y="374" font-family="'Chivo Mono', monospace" font-size="9" fill="#888888">TRACKING</text>
-          <rect x="550" y="382" width="350" height="20" fill="#ffffff" />
-          <text x="725" y="396" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#111111">GPS 3m RESOLUTION + FULL AUDIT</text>
+          <text x="550" y="374" font-family="'Chivo Mono', monospace" font-size="9" fill="#5f5f5f">TRACKING</text>
+          <rect x="550" y="382" width="350" height="20" fill="#111111" />
+          <text x="725" y="396" font-family="'Chivo Mono', monospace" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">GPS 3m RESOLUTION + FULL AUDIT</text>
 
           <!-- Bottom summary -->
-          <rect x="40" y="430" width="920" height="30" fill="#ffffff" />
-          <text x="500" y="450" font-family="'Chivo Mono', monospace" font-size="10" font-weight="700" text-anchor="middle" fill="#111111">600+ MOVES/DAY | $240K ANNUAL SAVINGS | 99.9% TRAILER VISIBILITY | 50 DOCKS GOVERNED</text>
+          <rect x="40" y="430" width="920" height="30" fill="#111111" />
+          <text x="500" y="450" font-family="'Chivo Mono', monospace" font-size="10" font-weight="700" text-anchor="middle" fill="#ffffff">600+ MOVES/DAY | $240K ANNUAL SAVINGS | 99.9% TRAILER VISIBILITY | 50 DOCKS GOVERNED</text>
 
           <defs>
             <marker id="arr-w" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-              <polygon points="0 0, 6 3, 0 6" fill="#ffffff" />
+              <polygon points="0 0, 6 3, 0 6" fill="#111111" />
             </marker>
           </defs>
         </svg>

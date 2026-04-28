@@ -764,7 +764,7 @@
           <p>The best-performing prompts are then packaged into a reusable library and handbook. That packaging step is still part of reliability work. A prompt that only exists in an experiment sheet is vulnerable to accidental mutation and copy-paste drift. A prompt recorded as an approved library asset, with its intended task pattern and release notes, can be reused with far less entropy. The handbook is not a style guide. It is a controlled release note for prompt assets that have already cleared the evaluation process.</p>
           <div class="diagram-grid">
             <figure>
-              <svg height="700" width="980" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 700" role="img" aria-labelledby="wheel-title wheel-desc">
+              <svg height="740" width="980" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 740" role="img" aria-labelledby="wheel-title wheel-desc">
                 <title id="wheel-title">Evaluation wheel with historical drift strip</title>
                 <desc id="wheel-desc">A monochrome wheel showing prompt versions rotating through test cases, scoring, review, approval, and rework, with a lower strip showing historical drift across released versions.</desc>
                 <defs>
@@ -772,77 +772,78 @@
                     <path d="M0,0 L10,5 L0,10 z" fill="#111111"></path>
                   </marker>
                 </defs>
-                <rect x="20" y="20" width="940" height="660" fill="#fcfcfc" stroke="#d4d4d4"/>
+                <rect x="20" y="20" width="940" height="700" fill="#fcfcfc" stroke="#d4d4d4"/>
                 <text x="44" y="58" font-family="IBM Plex Sans" font-size="24" fill="#111111">Prompt Evaluation Wheel</text>
                 <text x="44" y="84" font-family="IBM Plex Mono" font-size="12" fill="#5b5b5b">Versions rotate through the same cases, the same scoring frame, and the same approval gate</text>
 
-                <circle cx="350" cy="275" r="150" fill="#ffffff" stroke="#111111" stroke-width="2"/>
-                <circle cx="350" cy="275" r="88" fill="#f4f4f4" stroke="#bdbdbd"/>
-                <text x="306" y="262" font-family="IBM Plex Sans" font-size="26" fill="#111111">Prompt</text>
-                <text x="295" y="293" font-family="IBM Plex Sans" font-size="26" fill="#111111">Version Line</text>
+                <circle cx="350" cy="320" r="150" fill="#ffffff" stroke="#111111" stroke-width="2"/>
+                <circle cx="350" cy="320" r="88" fill="#f4f4f4" stroke="#bdbdbd"/>
+                <text x="350" y="301" text-anchor="middle" font-family="IBM Plex Sans" font-size="26" fill="#111111">Prompt</text>
+                <text x="350" y="336" text-anchor="middle" font-family="IBM Plex Sans" font-size="26" fill="#111111">Version Line</text>
 
-                <path d="M350 125 A150 150 0 0 1 492 213" fill="none" stroke="#111111" stroke-width="26"/>
-                <path d="M492 213 A150 150 0 0 1 476 382" fill="none" stroke="#666666" stroke-width="26"/>
-                <path d="M476 382 A150 150 0 0 1 327 423" fill="none" stroke="#9b9b9b" stroke-width="26"/>
-                <path d="M327 423 A150 150 0 0 1 208 334" fill="none" stroke="#c0c0c0" stroke-width="26"/>
-                <path d="M208 334 A150 150 0 0 1 244 156" fill="none" stroke="#e0e0e0" stroke-width="26"/>
+                <path d="M350 170 A150 150 0 0 1 492 258" fill="none" stroke="#111111" stroke-width="26"/>
+                <path d="M492 258 A150 150 0 0 1 476 427" fill="none" stroke="#666666" stroke-width="26"/>
+                <path d="M476 427 A150 150 0 0 1 327 468" fill="none" stroke="#9b9b9b" stroke-width="26"/>
+                <path d="M327 468 A150 150 0 0 1 208 379" fill="none" stroke="#c0c0c0" stroke-width="26"/>
+                <path d="M208 379 A150 150 0 0 1 244 201" fill="none" stroke="#e0e0e0" stroke-width="26"/>
 
-                <circle cx="350" cy="95" r="34" fill="#111111"/>
-                <text x="298" y="101" font-family="IBM Plex Sans" font-size="18" fill="#ffffff">Test Cases</text>
+                <circle cx="350" cy="140" r="38" fill="#111111"/>
+                <text x="350" y="136" text-anchor="middle" font-family="IBM Plex Sans" font-size="14" fill="#ffffff">Test</text>
+                <text x="350" y="153" text-anchor="middle" font-family="IBM Plex Sans" font-size="14" fill="#ffffff">Cases</text>
 
-                <circle cx="522" cy="220" r="34" fill="#5b5b5b"/>
-                <text x="487" y="226" font-family="IBM Plex Sans" font-size="18" fill="#ffffff">Scoring</text>
+                <circle cx="522" cy="265" r="38" fill="#5b5b5b"/>
+                <text x="522" y="271" text-anchor="middle" font-family="IBM Plex Sans" font-size="16" fill="#ffffff">Scoring</text>
 
-                <circle cx="485" cy="415" r="34" fill="#858585"/>
-                <text x="458" y="421" font-family="IBM Plex Sans" font-size="18" fill="#ffffff">Review</text>
+                <circle cx="485" cy="460" r="38" fill="#858585"/>
+                <text x="485" y="466" text-anchor="middle" font-family="IBM Plex Sans" font-size="16" fill="#ffffff">Review</text>
 
-                <circle cx="280" cy="455" r="34" fill="#b0b0b0"/>
-                <text x="249" y="461" font-family="IBM Plex Sans" font-size="18" fill="#111111">Approval</text>
+                <circle cx="280" cy="500" r="38" fill="#b0b0b0"/>
+                <text x="280" y="506" text-anchor="middle" font-family="IBM Plex Sans" font-size="16" fill="#111111">Approval</text>
 
-                <circle cx="176" cy="305" r="34" fill="#dfdfdf" stroke="#8c8c8c"/>
-                <text x="147" y="311" font-family="IBM Plex Sans" font-size="18" fill="#111111">Rework</text>
+                <circle cx="176" cy="350" r="38" fill="#dfdfdf" stroke="#8c8c8c"/>
+                <text x="176" y="356" text-anchor="middle" font-family="IBM Plex Sans" font-size="16" fill="#111111">Rework</text>
 
-                <path d="M579 275 C645 275 690 238 690 188 C690 145 654 114 602 114" fill="none" stroke="#111111" stroke-width="2" marker-end="url(#arrow-a)"/>
-                <text x="619" y="152" font-family="IBM Plex Mono" font-size="12" fill="#5b5b5b">release loop</text>
+                <path d="M579 320 C645 320 690 283 690 233 C690 190 654 159 602 159" fill="none" stroke="#111111" stroke-width="2" marker-end="url(#arrow-a)"/>
+                <text x="619" y="197" font-family="IBM Plex Mono" font-size="12" fill="#5b5b5b">release loop</text>
 
-                <circle cx="350" cy="112" r="13" fill="#ffffff" stroke="#111111" stroke-width="2"/>
-                <circle cx="470" cy="208" r="13" fill="#ffffff" stroke="#111111" stroke-width="2"/>
-                <circle cx="446" cy="378" r="13" fill="#ffffff" stroke="#111111" stroke-width="2"/>
-                <circle cx="301" cy="423" r="13" fill="#ffffff" stroke="#111111" stroke-width="2"/>
-                <circle cx="213" cy="288" r="13" fill="#ffffff" stroke="#111111" stroke-width="2"/>
-                <text x="341" y="117" font-family="IBM Plex Mono" font-size="12" fill="#111111">v1</text>
-                <text x="461" y="213" font-family="IBM Plex Mono" font-size="12" fill="#111111">v2</text>
-                <text x="437" y="383" font-family="IBM Plex Mono" font-size="12" fill="#111111">v3</text>
-                <text x="292" y="428" font-family="IBM Plex Mono" font-size="12" fill="#111111">v4</text>
-                <text x="204" y="293" font-family="IBM Plex Mono" font-size="12" fill="#111111">v5</text>
+                <circle cx="350" cy="198" r="12" fill="#ffffff" stroke="#111111" stroke-width="2"/>
+                <circle cx="454" cy="243" r="12" fill="#ffffff" stroke="#111111" stroke-width="2"/>
+                <circle cx="436" cy="404" r="12" fill="#ffffff" stroke="#111111" stroke-width="2"/>
+                <circle cx="296" cy="436" r="12" fill="#ffffff" stroke="#111111" stroke-width="2"/>
+                <circle cx="236" cy="330" r="12" fill="#ffffff" stroke="#111111" stroke-width="2"/>
+                <text x="350" y="202" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#111111">v1</text>
+                <text x="454" y="247" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#111111">v2</text>
+                <text x="436" y="408" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#111111">v3</text>
+                <text x="296" y="440" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#111111">v4</text>
+                <text x="236" y="334" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#111111">v5</text>
 
-                <rect x="602" y="220" width="300" height="210" fill="#ffffff" stroke="#bdbdbd"/>
-                <text x="624" y="252" font-family="IBM Plex Mono" font-size="12" fill="#5b5b5b">Stage Rules</text>
-                <text x="624" y="292" font-family="IBM Plex Sans" font-size="18" fill="#111111">1. Run the same case IDs</text>
-                <text x="624" y="324" font-family="IBM Plex Sans" font-size="18" fill="#111111">2. Score with the same rubric</text>
-                <text x="624" y="356" font-family="IBM Plex Sans" font-size="18" fill="#111111">3. Record notes before promotion</text>
-                <text x="624" y="388" font-family="IBM Plex Sans" font-size="18" fill="#111111">4. Return regressions to rework</text>
+                <rect x="602" y="250" width="300" height="210" fill="#ffffff" stroke="#bdbdbd"/>
+                <text x="624" y="282" font-family="IBM Plex Mono" font-size="12" fill="#5b5b5b">Stage Rules</text>
+                <text x="624" y="322" font-family="IBM Plex Sans" font-size="18" fill="#111111">1. Run the same case IDs</text>
+                <text x="624" y="354" font-family="IBM Plex Sans" font-size="18" fill="#111111">2. Score with the same rubric</text>
+                <text x="624" y="386" font-family="IBM Plex Sans" font-size="18" fill="#111111">3. Record notes before promotion</text>
+                <text x="624" y="418" font-family="IBM Plex Sans" font-size="18" fill="#111111">4. Return regressions to rework</text>
 
-                <rect x="52" y="520" width="856" height="120" fill="#f6f6f6" stroke="#bdbdbd"/>
-                <text x="76" y="548" font-family="IBM Plex Mono" font-size="12" fill="#5b5b5b">Historical Drift Strip</text>
-                <line x1="76" y1="608" x2="878" y2="608" stroke="#a8a8a8"/>
-                <line x1="76" y1="568" x2="878" y2="568" stroke="#e0e0e0"/>
-                <line x1="76" y1="588" x2="878" y2="588" stroke="#e0e0e0"/>
-                <text x="76" y="623" font-family="IBM Plex Mono" font-size="12" fill="#5b5b5b">Q1</text>
-                <text x="255" y="623" font-family="IBM Plex Mono" font-size="12" fill="#5b5b5b">Q2</text>
-                <text x="434" y="623" font-family="IBM Plex Mono" font-size="12" fill="#5b5b5b">Q3</text>
-                <text x="613" y="623" font-family="IBM Plex Mono" font-size="12" fill="#5b5b5b">Q4</text>
-                <text x="792" y="623" font-family="IBM Plex Mono" font-size="12" fill="#5b5b5b">Q5</text>
-                <polyline points="90,578 245,575 410,584 580,593 844,603" fill="none" stroke="#111111" stroke-width="3"/>
-                <polyline points="90,592 245,588 410,586 580,598 844,610" fill="none" stroke="#707070" stroke-width="3"/>
-                <circle cx="90" cy="578" r="4" fill="#111111"/>
-                <circle cx="245" cy="575" r="4" fill="#111111"/>
-                <circle cx="410" cy="584" r="4" fill="#111111"/>
-                <circle cx="580" cy="593" r="4" fill="#111111"/>
-                <circle cx="844" cy="603" r="4" fill="#111111"/>
-                <rect x="732" y="536" width="146" height="44" fill="#ffffff" stroke="#bdbdbd"/>
-                <text x="748" y="554" font-family="IBM Plex Mono" font-size="11" fill="#5b5b5b">solid: format stability</text>
-                <text x="748" y="570" font-family="IBM Plex Mono" font-size="11" fill="#5b5b5b">gray: usefulness</text>
+                <rect x="52" y="560" width="856" height="120" fill="#f6f6f6" stroke="#bdbdbd"/>
+                <text x="76" y="588" font-family="IBM Plex Mono" font-size="12" fill="#5b5b5b">Historical Drift Strip</text>
+                <line x1="76" y1="648" x2="878" y2="648" stroke="#a8a8a8"/>
+                <line x1="76" y1="608" x2="878" y2="608" stroke="#e0e0e0"/>
+                <line x1="76" y1="628" x2="878" y2="628" stroke="#e0e0e0"/>
+                <text x="76" y="663" font-family="IBM Plex Mono" font-size="12" fill="#5b5b5b">Q1</text>
+                <text x="255" y="663" font-family="IBM Plex Mono" font-size="12" fill="#5b5b5b">Q2</text>
+                <text x="434" y="663" font-family="IBM Plex Mono" font-size="12" fill="#5b5b5b">Q3</text>
+                <text x="613" y="663" font-family="IBM Plex Mono" font-size="12" fill="#5b5b5b">Q4</text>
+                <text x="792" y="663" font-family="IBM Plex Mono" font-size="12" fill="#5b5b5b">Q5</text>
+                <polyline points="90,618 245,615 410,624 580,633 844,643" fill="none" stroke="#111111" stroke-width="3"/>
+                <polyline points="90,632 245,628 410,626 580,638 844,650" fill="none" stroke="#707070" stroke-width="3"/>
+                <circle cx="90" cy="618" r="4" fill="#111111"/>
+                <circle cx="245" cy="615" r="4" fill="#111111"/>
+                <circle cx="410" cy="624" r="4" fill="#111111"/>
+                <circle cx="580" cy="633" r="4" fill="#111111"/>
+                <circle cx="844" cy="643" r="4" fill="#111111"/>
+                <rect x="732" y="576" width="146" height="44" fill="#ffffff" stroke="#bdbdbd"/>
+                <text x="748" y="594" font-family="IBM Plex Mono" font-size="11" fill="#5b5b5b">solid: format stability</text>
+                <text x="748" y="610" font-family="IBM Plex Mono" font-size="11" fill="#5b5b5b">gray: usefulness</text>
               </svg>
               <figcaption>The wheel formalizes circulation. Prompt versions do not move linearly from drafting to release. They cycle through the same cases, scoring, review, approval, and rework. The lower strip holds the longer memory of the system, showing how released versions age over time and where drift begins to appear in metrics that once looked safe.</figcaption>
             </figure>
