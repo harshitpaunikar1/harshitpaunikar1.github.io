@@ -454,8 +454,8 @@
 
     <div class="lede-grid">
       <div class="lede">
-        <p>An airline planner does not need another article that recites method names like badges of seriousness. They need to know whether the series in front of them is stable enough to project, seasonal enough to exploit, and transparent enough to defend when the network team asks why a route got a larger aircraft in July and a narrower one in November.</p>
-        <p>The notebook in this folder is more useful than it first appears because it runs through the correct sequence of questions even when the presentation blurs them: inspect the raw monthly passenger series, repair missing values, decompose trend and seasonality, test stationarity, compare baselines against seasonal models, then see whether an exogenous promotion signal earns its keep. That is the real story here. The algorithm list is just scaffolding.</p>
+        <p>An airline planner does not need another article that recites method names as badges of seriousness. They need to know whether the series in front of them is stable enough to project, seasonal enough to exploit, and transparent enough to defend when the network team asks why a route got a larger aircraft in July and a smaller one in November.</p>
+        <p>The notebook is more useful than it first appears because it runs through the correct sequence of questions: inspect the raw monthly passenger series, repair missing values, decompose trend and seasonality, test stationarity, compare baselines against seasonal models, then see whether an exogenous promotion signal earns its keep. That is the real story. The algorithm list is just scaffolding.</p>
         <p>I read this dataset as a single route-like demand history with 144 monthly observations from January 1949 to December 1960. The notebook trains on the first 120 months and scores the last 24 months out of time. That split is not perfect, but it is honest enough to expose a pattern many forecasting pages hide: once the series is visibly seasonal, any model that pretends the last observation or the global average is sufficient will fail in embarrassingly predictable ways.</p>
       </div>
       <aside class="sidecard">
@@ -473,7 +473,7 @@
       <div class="prose">
         <p>The raw line is not subtle. Passenger counts start near `112` and climb into the `400+` range by the end of the sample. More important, the seasonal wave expands as the level rises. Summer peaks are not just higher in absolute terms because the route is growing; they are sharper relative to adjacent months. That is the textbook signature of multiplicative seasonality, and it should shape the rest of the modeling choices.</p>
         <p>The notebook also walks through missing-value treatment and outlier inspection before it makes any forecasting claims. I like that, even though the classic airline series is usually clean. A quick interpolation step is cheap insurance. The point is not to manufacture sophistication. The point is to stop a forecast from quietly inheriting a data-quality problem and then pretending the residual error belongs to the model.</p>
-        <p>Decomposition is where the notebook starts behaving like a forecaster instead of a classifier wearing a watch. Additive decomposition is a useful first pass, but the multiplicative view is the one that matches the series: trend underneath, repeating monthly pattern on top, and an amplitude that scales with the base level. Once you see that, a lot of weaker ideas can be discarded early. A simple average ignores the calendar. A naive carry-forward ignores both trend and seasonality. Even a bare ARIMA without seasonal structure is fighting uphill.</p>
+        <p>Decomposition is where the notebook starts behaving like a forecaster instead of a classifier wearing a watch. Additive decomposition is a useful first pass, but the multiplicative view matches the series: trend underneath, repeating monthly pattern on top, and amplitude that scales with the base level. Once you see that, weaker ideas can be discarded early. A simple average ignores the calendar. A naive carry-forward ignores both trend and seasonality. Even a bare ARIMA without seasonal structure is fighting uphill.</p>
       </div>
 
       <div class="wide-figure">
@@ -663,7 +663,7 @@
         <h2>ARIMA-family models only become respectable after the series stops wandering</h2>
       </div>
       <div class="prose">
-        <p>This is where forecasting articles often get sloppy. They mention stationarity as if it were a ceremony rather than a requirement. In plain language, a stationary series has a mean, variance, and autocorrelation structure that do not keep sliding around over time. Raw passenger demand here does slide. The notebook proves that with two tests that are best read together, not separately.</p>
+        <p>This is where forecasting articles often get sloppy. They mention stationarity as if it were a ceremony rather than a requirement. In plain language, a stationary series has a mean, variance, and autocorrelation structure that do not slide around over time. Raw passenger demand here does slide. The notebook proves it with two tests that are best read together, not separately.</p>
         <p>On the original series, the Augmented Dickey-Fuller statistic is `0.894609` with a `p-value of 0.993020`, which means we fail to reject the presence of a unit root. The KPSS result goes the other direction on purpose: statistic `1.052050`, `p-value 0.010000`, signaling that stationarity should be rejected. When both tests point toward non-stationarity, I stop debating and transform the series.</p>
         <p>The notebook uses a Box-Cox transform with `lambda = 0`, which is effectively a log transform, and then differences the transformed series once. That is a sensible choice for a passenger count series whose variance expands with level. After the transform, the tests calm down. ADF moves to `-3.290114` with `p = 0.015326`, while KPSS drops to `0.101871` with `p = 0.100000`. That does not make the series magically simple. It does mean the ARIMA family can finally model something more coherent than raw growth.</p>
 
@@ -689,7 +689,7 @@ print(kpss(diffed)[1])      # higher is better here
         <h2>The best no-promotion models win because they respect the calendar, not because they sound sophisticated</h2>
       </div>
       <div class="prose">
-        <p>There is a habit in technical writing that I distrust: treating classical smoothing models as quaint warm-up acts and ARIMA variants as the serious work. On this notebook, that hierarchy collapses. Holt-Winters is not a baseline to apologize for. It is a compact expression of what the data is clearly doing: rising demand, repeating seasonality, and a seasonal effect that scales with the level.</p>
+        <p>There is a habit in technical writing that I distrust: treating classical smoothing models as quaint warm-up acts and ARIMA variants as the serious work. On this data, that hierarchy collapses. Holt-Winters is not a baseline to apologize for. It is a compact expression of what the data is clearly doing: rising demand, repeating seasonality, and a seasonal effect that scales with the level.</p>
         <p>The multiplicative Holt-Winters model slightly beats the additive version on RMSE, while the additive version edges it on MAPE. I read that as a tie broken by interpretation. Because the seasonal wave visibly widens over time, the multiplicative framing is more faithful to the series structure even if the margin is narrow. By contrast, the seasonal ARIMA run with `order=(1,1,1)` and `seasonal_order=(1,1,1,12)` reaches `RMSE 37.51` and `MAPE 7.36`. That is strong, but it is not obviously better than the simpler seasonal smoother.</p>
 
 <pre><code>from statsmodels.tsa.holtwinters import ExponentialSmoothing
@@ -819,7 +819,7 @@ forecast = np.exp(
           <li>Backtest on rolling windows before expanding the model to more routes, because one clean holdout can flatter a method that will not travel well.</li>
           <li>Report prediction intervals beside every operational forecast. A single passenger count is presentation theater. A bounded range is planning information.</li>
         </ol>
-        <p>The notebook's best contribution is not that it tried many methods. It is that, read carefully, it exposes the right order of operations. See the seasonal structure. Stabilize the series. Beat the baselines honestly. Add outside signals only when the business can know them in advance. That is the difference between a forecast you can defend and a line chart you can merely admire.</p>
+        <p>The notebook's best contribution is not that it tried many methods. It is that, read carefully, it exposes the right order of operations: see the seasonal structure, stabilize the series, beat the baselines honestly, and add outside signals only when the business can know them in advance. That is the difference between a forecast you can defend and a line chart you can merely admire.</p>
       </div>
     </section>
   </main>

@@ -447,10 +447,10 @@
       </aside>
 
       <article class="prose">
-        <p>The notebook begins with a useful instinct. It warns against reading total emissions rankings as moral rankings. China, the United States, and India dominate total CO2 counts partly because they are large countries. The notebook’s own corrective move is to say: if the policy question is responsibility per person, or the structure of emissions relative to development and energy use, then per-capita CO2 is the more defensible target.</p>
-        <p>That is exactly the right starting point for a policy brief. It takes the reader out of the easy politics of raw totals and into the harder task of variable definition. The problem is that the current page does not respect its own opening discipline. It drifts too quickly from “this model predicts emissions” to “this can be used to create regulatory policy,” as if the jump from regression to regulation were automatic. It is not.</p>
+        <p>The notebook opens with a valuable instinct: it warns against reading total emissions rankings as moral rankings. China, the United States, and India dominate total CO2 counts partly because they are large countries. The corrective move is clear -- if the policy question is responsibility per person, or the structure of emissions relative to development and energy use, then per-capita CO2 is the more defensible target.</p>
+        <p>That is the right starting point for a policy brief. It moves the reader past the easy politics of raw totals and into the harder task of variable definition. The problem is that the analysis does not sustain its own opening discipline. It drifts too quickly from “this model predicts emissions” to “this can be used to create regulatory policy,” as if the jump from regression to regulation were automatic. It is not.</p>
         <p>The notebook gives us a country-level merged panel of development, energy, transport, and land-use variables. For the broader assembled dataset in year `2007`, it reports a frame of `56` rows and `11` columns after dropping the `geo` identifier from the display slice. Six missing values appear in the vehicle-density variable, and rows with missing data are then dropped. After that cleanup, the model uses per-capita CO2 as the target and keeps explanatory variables such as income per person, industry share of GDP, hydro generation per person, electricity generation per person, vehicle density, coal consumption per capita, electricity use per person, forest coverage, total yearly emissions, and oil consumption per capita.</p>
-        <p>That is enough material to support a cautious analysis brief. It is not enough to support a causal policy manifesto.</p>
+        <p>That is enough material for a cautious analysis brief. It is not enough to support a causal policy manifesto.</p>
 
         <div class="caution">
           <span>Policy Caution</span>
@@ -463,7 +463,7 @@
             <h2>The notebook’s first real contribution is definitional: it separates total emissions from per-capita emissions before doing any modeling.</h2>
           </div>
           <p>For year `2014`, the notebook first loads total CO2 emissions in thousand tonnes, trims the frame to `192` country rows with two columns, and computes a median total-emissions value of `11,300.0`. It then plots countries above that median. That is a ranking picture, not yet a policy model. The next step is more meaningful: it loads per-capita CO2 emissions, computes a median per-capita value of `2.265`, and plots countries above that threshold instead.</p>
-          <p>That sequence matters because it changes the question being asked. Total emissions are useful for aggregate climate burden and negotiation politics. Per-capita emissions are more useful when the analytic goal is cross-country comparison conditioned on population scale. If a policy reader misses that distinction, the rest of the notebook will be misread from the start.</p>
+          <p>That sequence matters because it reframes the question entirely. Total emissions are useful for aggregate climate burden and negotiation politics. Per-capita emissions are more useful when the goal is cross-country comparison conditioned on population scale. If a policy reader misses that distinction, everything that follows will be misread.</p>
           <p>Income and forest coverage are then merged into the simpler per-capita CO2 frame, first as scatter relationships and later as part of the broader merged dataset built by <code>read_and_merge_files</code>. The merge function itself is straightforward: walk a directory, keep only files containing the requested year and more than `50` rows, reduce each frame to `geo` plus the selected year, rename the metric column to the filename, and inner-join everything on country code. That is a practical way to assemble a country panel, and it already hints at the notebook’s real strength: harmonizing disparate indicators into one comparable policy-facing table.</p>
 
 <pre><code>def read_and_merge_files(root_folder, year="2007"):
@@ -586,9 +586,9 @@
             <h2>The model fit is respectable, but “respectable” is not the same thing as “decision-ready on its own.”</h2>
           </div>
           <p>After dropping rows with missing values, the notebook splits the data into train and test sets and fits two model families: ordinary linear regression and Lasso with <code>alpha = 0.001</code>. The reported train and test <code>R2</code> scores are around `0.8736` and `0.8650` respectively for the linear model, and essentially the same for the chosen Lasso specification. That is strong predictive performance for a cross-country panel with a relatively small sample.</p>
-          <p>It tells us that a basket of observable country characteristics can explain a large share of variation in per-capita CO2 across the sample. It does not tell us that any given coefficient is a reliable policy lever in the intervention sense. The distinction matters. A model can be good at prediction because variables travel together across countries, not because changing one of them mechanically changes emissions by the amount implied by the coefficient.</p>
+          <p>It tells us that a basket of observable country characteristics can explain a large share of variation in per-capita CO2 across the sample. It does not tell us that any single coefficient is a reliable policy lever. The distinction matters. A model can predict well because variables travel together across countries, not because changing one of them mechanically changes emissions by the amount the coefficient implies.</p>
           <p>The coefficient pattern is still useful as a screening device. Coal consumption per capita shows a strong positive fitted effect. Hydro power generation per person comes in negative. Forest coverage also carries a negative sign. Electricity generation per person is positive in the linear fit, while electricity use per person is slightly negative. Income per person is tiny and effectively zeroed out in the Lasso result. Total yearly emissions also vanish toward zero once the per-capita framing and the other predictors are in the equation.</p>
-          <p>That is a coherent predictive story: energy mix, industrial structure, and intensity measures matter more than symbolic country size variables once you move to a per-person target. If a policy unit used this notebook properly, it would use those signs to rank questions for deeper investigation, not to draft laws directly from the coefficient table.</p>
+          <p>That is a coherent predictive story: energy mix, industrial structure, and intensity measures matter more than symbolic country-size variables once the target is per-person. A policy unit using this notebook properly would treat those signs as a ranked agenda for deeper investigation, not as grounds for drafting laws from the coefficient table.</p>
 
           <table class="scenario-table" aria-label="Evidence and policy interpretation table">
             <thead>
@@ -653,7 +653,7 @@ test_r2 = metrics.r2_score(y_test, lm.predict(X_test))
             <li>The coefficients may partly reflect omitted institutions, geography, energy history, or industrial composition that are only imperfectly captured by the included variables.</li>
             <li>Inner-joining many country datasets produces a usable common sample, but it may exclude countries precisely where data scarcity is itself part of the policy problem.</li>
           </ol>
-          <p>None of those caveats kill the project. They simply place it where it belongs: as an agenda-setting model rather than a dispositive one.</p>
+          <p>None of these caveats kill the project. They place it where it belongs: as an agenda-setting model, not a dispositive one.</p>
 
           <div class="finding">
             <span>Best Use</span>
@@ -682,7 +682,7 @@ test_r2 = metrics.r2_score(y_test, lm.predict(X_test))
             <h2>This model can help structure a regulatory conversation. It cannot, by itself, settle one.</h2>
           </div>
           <p>The notebook’s strongest move is the opening correction from total emissions to per-capita emissions. Its second-strongest move is the merged country panel that brings energy, development, transport, and land-use variables into one predictive frame. Its weakest move is the implied jump from predictive success to policy prescription.</p>
-          <p>Read carefully, the right conclusion is narrower and more useful. The model says that cross-country differences in per-capita CO2 are meaningfully associated with a cluster of structural variables, and that some of those variables retain signal even after regularization. That is enough to guide where regulatory analysis should look next. It is not enough to say which policy caused what, or what any one government should do without further evidence.</p>
+          <p>Read carefully, the right conclusion is narrower and more useful. Cross-country differences in per-capita CO2 are meaningfully associated with a cluster of structural variables, and some of those variables retain signal even after regularization. That is enough to guide where regulatory analysis should look next. It is not enough to determine which policy caused what, or what any government should do without further evidence.</p>
         </section>
       </article>
     </section>

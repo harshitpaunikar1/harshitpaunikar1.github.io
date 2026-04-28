@@ -236,11 +236,11 @@
     </div>
   </div>
 
-  <p>This memorandum presents the underlying logic, assumptions, and scenario sensitivities for the proposed property investment model. The intent is to transition our acquisition dialogue away from abstract machine-learning accuracy claims (e.g., $R^2$ scores) toward a disciplined, hard-nosed evaluation of absolute cashflow and downside risk. Properties are not valuable because a regression model says they are; they are valuable because of the cash they generate and the capital they protect. Our data models must be subordinated to this reality.</p>
+  <p>This memorandum presents the underlying logic, assumptions, and scenario sensitivities for the proposed property investment model. The intent is to move our acquisition dialogue away from abstract machine-learning accuracy claims (e.g., $R^2$ scores) toward a disciplined evaluation of absolute cashflow and downside risk. Properties are not valuable because a regression model says they are. They are valuable because of the cash they generate and the capital they protect. Our data models must serve this reality, not substitute for it.</p>
 
   <h2>1. The Opportunity and The Underwriting Baseline</h2>
 
-  <p>The proposed quantitative model ingests standard housing features (square footage, locality indices, structural age) to output an expected market acquisition price. While the algorithmic prediction component is sound (verifying against a historical baseline with an $R^2$ of 0.87), treating the predicted price as the sole decision criteria invites disaster. A high-accuracy model merely tells us what the market *is* paying. It does not tell us whether the market is *right*, nor does it confirm if the yield justifies the capital outlay.</p>
+  <p>The proposed quantitative model ingests standard housing features (square footage, locality indices, structural age) to output an expected market acquisition price. While the algorithmic prediction component is sound (verified against a historical baseline with an $R^2$ of 0.87), treating the predicted price as the sole decision criterion invites disaster. A high-accuracy model merely tells us what the market is paying. It does not tell us whether the market is right, nor does it confirm whether the yield justifies the capital outlay.</p>
 
   <p>We are underwriting this acquisition model against the following baseline assumptions over a standard 5-year hold period:</p>
 
@@ -254,7 +254,7 @@
 
   <h2>2. The Cashflow Ladder Logic</h2>
 
-  <p>To justify a purchase decision, the predicted price from the model must feed directly into the cashflow ladder. The cashflow ladder is the mechanism that proves whether the price demanded by the seller transforms into an acceptable yield or destroys equity. The diagram below illustrates how top-line rental income is brutally stripped down to Levered Free Cash Flow.</p>
+  <p>To justify a purchase decision, the predicted price from the model must feed directly into the cashflow ladder. The cashflow ladder is the mechanism that proves whether the seller's asking price transforms into an acceptable yield or destroys equity. The diagram below illustrates how top-line rental income is stripped down to Levered Free Cash Flow.</p>
 
   <div class="figure-block">
     <svg height="280" width="800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280" preserveAspectRatio="xMidYMid meet">
@@ -322,7 +322,7 @@
 
   <h2>4. Scenario Analysis and Sensitivity Pressure</h2>
 
-  <p>A deterministic prediction is worthless in an environment defined by volatility. The primary risk to this business model is not that the algorithm incorrectly predicts today's price by $2\%$. The risk is that macroeconomic headwinds compress rents, spike vacancies, or expand exit Cap Rates, wiping out downside equity.</p>
+  <p>A deterministic prediction has limited value in an environment defined by volatility. The primary risk is not that the algorithm mispredicts today's price by $2\%$. The risk is that macroeconomic headwinds compress rents, spike vacancies, or expand exit Cap Rates, wiping out downside equity.</p>
 
   <p>We stress-test the model's target price through a two-dimensional sensitivity grid. Because real estate valuations are highly levered, a $5\%$ miss on rental growth compounded over five years can compress the IRR by several hundred basis points.</p>
 
@@ -390,7 +390,7 @@
 
   <h2>5. Recommendation and Discipline</h2>
 
-  <p>The quantitative model is an input, not an underwriter. We recommend proceeding with acquisitions scored by this model <strong>only if</strong> the asset clears the $15.0\%$ IRR hurdle after the predicted price is subjected to the following downside stress tests:</p>
+  <p>The quantitative model is an input to the decision, not the underwriter. We recommend proceeding with acquisitions scored by this model <strong>only if</strong> the asset clears the $15.0\%$ IRR hurdle after the predicted price is subjected to the following downside stress tests:</p>
 
   <ol>
     <li>OpEx assumptions are inflated by an additional $15\%$ over historical trendlines to account for inflationary pressures on labor, materials, and insurance.</li>
@@ -398,7 +398,7 @@
     <li>Exit Cap Rate is expanded by $50$ basis points over entry, eliminating the assumption that we can rely on multiple-expansion to engineer returns.</li>
   </ol>
 
-  <p>If the model’s target acquisition price cannot survive these operational impacts while preserving equity, the asset must be discarded. We are in the business of pricing risk, and any valuation model that treats risk as a static coefficient in a pandas dataframe fundamentally misunderstands the mandate of this firm.</p>
+  <p>If the model’s target acquisition price cannot survive these operational impacts while preserving equity, the asset must be rejected. We are in the business of pricing risk. Any valuation model that treats risk as a static coefficient in a pandas dataframe fundamentally misunderstands the mandate of this firm.</p>
 
 </div>
 

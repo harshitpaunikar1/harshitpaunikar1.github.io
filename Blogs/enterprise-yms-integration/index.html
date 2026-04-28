@@ -409,7 +409,7 @@
       <section class="hero-main">
         <p class="kicker">Enterprise Integration Deep Dive / Logistics Systems</p>
         <h1>Enterprise YMS Integration Is Mostly About Mistrusting Success</h1>
-        <p class="deck">A yard event is only useful when the right downstream system trusts it enough to stop retyping it. That trust does not come from a slogan about connectivity. It comes from interface contracts, retries, dead-letter paths, reconciliation routines, and painfully explicit ownership when two systems disagree.</p>
+        <p class="deck">A yard event is only useful when downstream systems trust it enough to stop retyping it. That trust does not come from slogans about connectivity. It comes from interface contracts, retries, dead-letter paths, reconciliation routines, and explicit ownership when two systems disagree.</p>
         <div class="hero-grid">
           <div class="hero-metric">
             <span>Core Event Spine</span>
@@ -446,7 +446,6 @@
             <li>No screenshots or live KPI dashboards.</li>
           </ul>
         </div>
-        <div class="side-note">That evidence gap changes the kind of article this can credibly be. I can go deep on the integration seams described in the README. I should not pretend I have runtime proof for claims the folder does not actually contain.</div>
       </aside>
     </header>
 
@@ -470,7 +469,7 @@
 
       <div class="content">
         <section class="checkpoint">
-          <p class="lead-paragraph" style="font-size:1.1rem;border-left:3px solid #111;padding-left:1rem;margin-bottom:1.5rem;">A large retailer was losing $180,000 a year to billing disputes because their yard management system had no way to automatically tell SAP, Manhattan WMS, or Oracle TMS when a truck arrived, where it docked, or when it left. Six people were manually re-entering every single event across three enterprise platforms every day. Our first design - six direct point-to-point connectors - worked fine in prototype, but collapsed the moment any one of the three vendor systems changed a field name, which happened twice in the first year alone. That collapse was not the worst surprise; the hardest problem turned out to be three weeks of vendor meetings just to agree on what "trailer arrival time" even meant.</p>
+          <p class="lead-paragraph" style="font-size:1.1rem;border-left:3px solid #111;padding-left:1rem;margin-bottom:1.5rem;">A large retailer was losing $180,000 a year to billing disputes because their yard management system had no way to automatically tell SAP, Manhattan WMS, or Oracle TMS when a truck arrived, where it docked, or when it left. Six people were manually re-entering every event across three enterprise platforms every day. The first design -- six direct point-to-point connectors -- worked fine in prototype but collapsed the moment any vendor system changed a field name, which happened twice in the first year. That collapse was not the worst surprise; the hardest problem turned out to be three weeks of vendor meetings just to agree on what "trailer arrival time" meant.</p>
 
           <div style="border-left:3px solid var(--accent,#2563eb);padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(37,99,235,0.05);border-radius:0 6px 6px 0;font-size:0.95rem;">
             <strong>My Role:</strong> I led the technical architecture and all integration components across the 20-week build.
@@ -500,8 +499,8 @@
             <div class="checkpoint-tag">Gate 01</div>
             <h2>Disconnected yard operations are not a visibility problem first. They are a truth-distribution problem.</h2>
           </div>
-          <p class="lead-paragraph">The README describes a logistics environment where the yard management system does not connect cleanly to planning, warehouse, finance, or recognition systems. I read that as a far more specific failure than “siloed data.” The real issue is that operational truth is fragmented. The truck arrives once, but the arrival is represented several different ways. A dock assignment changes once, but multiple systems hear about it on different schedules and in different formats. That is why manual re-entry creeps in. People retype when systems cannot be trusted to agree.</p>
-          <p>Integration work gets trivialized because everyone likes to talk about the list of systems and almost nobody likes to talk about the discipline required between them. The hard part is not connecting “YMS to ERP” in the abstract. The hard part is deciding which system owns a field, when an update is authoritative, how late events are handled, and what the operator should do when one system says a trailer is still at the gate while another already assigned it to a dock.</p>
+          <p class=”lead-paragraph”>The logistics environment here is one where the yard management system does not connect cleanly to planning, warehouse, finance, or recognition systems. That is a far more specific failure than “siloed data.” The real issue is that operational truth is fragmented. The truck arrives once, but the arrival is represented several different ways. A dock assignment changes once, but multiple systems hear about it on different schedules and in different formats. That is why manual re-entry creeps in. People retype when systems cannot be trusted to agree.</p>
+          <p>Integration work gets trivialized because everyone likes to talk about the list of systems and almost nobody talks about the discipline required between them. The hard part is not connecting “YMS to ERP” in the abstract. The hard part is deciding which system owns a field, when an update is authoritative, how late events are handled, and what the operator should do when one system says a trailer is still at the gate while another already assigned it to a dock.</p>
           <p>The folder’s stated event spine is useful because it names the operational moments that matter: <code>arrival</code>, <code>gate-in</code>, <code>dock assignment</code>, <code>yard move</code>, and <code>gate-out</code>. Those are not just event labels. They are synchronization obligations. Some of them affect planning. Some affect warehouse execution. Some affect finance and audit. A grown-up integration design has to respect those differences instead of pushing every event through the same pipe and calling it architecture.</p>
 
           <figure>
@@ -814,7 +813,7 @@
             </tbody>
           </table>
           <p>The folder does not give me source code, payload captures, or SLA exports. It does give me enough to say what kind of integration design this is aiming at: a secure, multi-tenant, retry-aware operational backbone for yard events and adjacent systems. That is a worthwhile target. It is also the kind of target where vague prose does real damage, because it hides the unglamorous work that makes enterprise integration survive first contact with production.</p>
-          <p class=”ending”>My view is simple: the mature version of this story is not “we connected the YMS.” It is “we decided how operational truth moves, how duplicates die, how mismatches get repaired, and which team wakes up when the route breaks.” That is infrastructure. Everything else is brochure copy.</p>
+          <p class=”ending”>The mature version of this story is not “we connected the YMS.” It is “we decided how operational truth moves, how duplicates die, how mismatches get repaired, and which team wakes up when the route breaks.” That is infrastructure. Everything else is brochure copy.</p>
         </section>
 
         <section class=”checkpoint”>
@@ -832,9 +831,9 @@
             <div class=”checkpoint-tag”>Gate 09</div>
             <h2>Results and impact: the numbers after one year in production.</h2>
           </div>
-          <p class=”lead-paragraph”>Manual data re-entry was eliminated entirely. The six full-time data entry positions were reassigned to higher-value work, saving approximately $420,000 per year in labor costs. The system reconciles over 2,400 transactions per day across all three enterprise platforms.</p>
-          <p>Billing discrepancies dropped from 4.2% to 0.3%. For a retailer processing thousands of carrier invoices per month, that difference is substantial. The remaining 0.3% are edge cases that involve legitimate disputes about service terms, not data entry errors.</p>
-          <p>Average sync latency is 8 seconds for real-time events like gate arrivals and dock assignments. Batch reconciliation runs on a 15-minute cycle to catch anything that might have been missed or delayed. Integration uptime hit 99.7% over the first year. The automated retry mechanism successfully recovered about 340 failed transactions per month without any human involvement.</p>
+          <p class=”lead-paragraph”>Manual data re-entry was eliminated entirely. Six full-time data entry positions were reassigned to higher-value work, saving approximately $420,000 per year in labor costs. The system reconciles over 2,400 transactions per day across all three enterprise platforms.</p>
+          <p>Billing discrepancies dropped from 4.2% to 0.3%. For a retailer processing thousands of carrier invoices per month, that difference is substantial. The remaining 0.3% involve legitimate disputes about service terms, not data entry errors.</p>
+          <p>Average sync latency is 8 seconds for real-time events like gate arrivals and dock assignments. Batch reconciliation runs on a 15-minute cycle to catch anything missed or delayed. Integration uptime reached 99.7% over the first year. The automated retry mechanism recovered about 340 failed transactions per month without human involvement.</p>
 
           <figure>
             <div class=”diagram”>

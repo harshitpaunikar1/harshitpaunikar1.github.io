@@ -150,11 +150,11 @@
   <div class="dashboard-shell">
     <header>
       <h1>Command Architecture: The Supervisor's Yard</h1>
-      <p class="synopsis">A distribution yard operates on the edge of chaos. When eighty fifty-foot trailers are bottlenecked at the gate, dock doors are double-booked, and shunters are driving blind, software brochures describing "digital transformation" are worse than useless. A functional Yard Management System replaces ambiguity with strict entity logic, mapping the physical footprint into a deterministic control surface.</p>
+      <p class="synopsis">A distribution yard operates on the edge of chaos. When eighty trailers are bottlenecked at the gate, dock doors are double-booked, and shunters are driving blind, talk of "digital transformation" is meaningless. A functional Yard Management System replaces ambiguity with strict entity logic, mapping the physical yard into a deterministic control surface.</p>
     </header>
 
     <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:#f5f5f5;border-radius:0 6px 6px 0;font-size:0.95rem;">
-      <strong>My Role:</strong> I designed the entity state machines - the trailer lifecycle from gate-in to gate-out - and the algorithmic dock assignment logic that replaced the manual whiteboard system. Two other engineers built the GPS tracking integration and the driver-facing mobile dispatch UI. An embedded operations manager was the most valuable team member: his domain knowledge about live loads, reefer priority, and driver shift handoffs prevented three major design mistakes before we wrote a line of code.
+      <strong>My Role:</strong> I designed the entity state machines -- the trailer lifecycle from gate-in to gate-out -- and the algorithmic dock assignment logic that replaced the manual whiteboard system. Two other engineers built the GPS tracking integration and the driver-facing mobile dispatch UI. An embedded operations manager brought critical domain knowledge about live loads, reefer priority, and driver shift handoffs; his input prevented three major design mistakes before we wrote a line of code.
     </div>
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
       <strong style="margin-right:4px;">Stack:</strong>
@@ -165,13 +165,13 @@
       <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Audit trail logging</span>
     </div>
 
-    <p>Congestion is rarely a problem of physical space; it is a problem of informational latency. When a supervisor is standing in an elevated portakabin looking out over two hundred staging slots, the danger lies not in the trailers they can see, but in the status of the trailers they cannot verify.</p>
+    <p>Congestion is rarely a problem of physical space; it is a problem of informational latency. When a supervisor stands in an elevated portakabin looking out over two hundred staging slots, the danger lies not in the trailers they can see but in the status of those they cannot verify.</p>
 
-    <p>Is that reefer in slot B4 empty, loaded, or broken? Is the yard truck deadheading across the tarmac because it wasn't assigned a return move? To govern a yard, the software must strip away operational ambiguity. It does this by binding physical objects to digital state machines, enforcing a rigid lifecycle from gate arrival to gate departure, and exposing every variance immediately to the command layer.</p>
+    <p>Is that reefer in slot B4 empty, loaded, or broken? Is the yard truck deadheading across the tarmac because nobody assigned a return move? To govern a yard, the software must eliminate operational ambiguity by binding physical objects to digital state machines, enforcing a rigid lifecycle from gate arrival to gate departure, and exposing every variance to the command layer immediately.</p>
 
     <h2>[BOARD_01 :: ENTITY DEFINITION]</h2>
 
-    <p>A yard is composed of three moving variables: Trailers, Docks, and Tractors. If the software allows a user to type "Trailer 123" into an unlinked free-text field, the system is fundamentally broken. A supervisor needs architectural entities, not text inputs.</p>
+    <p>A yard is composed of three core entities: Trailers, Docks, and Tractors. If the software allows a user to type "Trailer 123" into an unlinked free-text field, the system is fundamentally broken. A supervisor needs structured entities, not text inputs.</p>
 
     <div class="status-panel">
       <div class="header">Core Entity State Machines</div>
@@ -248,9 +248,9 @@
 
     <h2>[BOARD_03 :: DISPATCH ALGORITHMS]</h2>
 
-    <p>A manual yard relies on radios and shouting. A supervisor keys a radio and asks, "Who is free to move trailer T-44 to Door 5?" This is a catastrophic waste of latency. The platform shifts this to algorithmic dispatch.</p>
+    <p>A manual yard relies on radios and shouting. A supervisor keys a radio and asks, "Who is free to move trailer T-44 to Door 5?" That is a waste of everyone's time. The platform replaces this with algorithmic dispatch.</p>
 
-    <p>When the warehouse management system (WMS) declares a dock empty, the yard platform instantly flags the move request. In the shunter's cab, a ruggedized tablet pings. The algorithm dispatches the task to the shunter closest to the staging slot, chaining moves together. If a shunter is dropping an empty trailer in Zone C, the algorithm will assign an inbound fetch from Zone C to minimize deadheading (driving without a load).</p>
+    <p>When the warehouse management system (WMS) declares a dock empty, the yard platform instantly flags the move request. In the shunter's cab, a ruggedized tablet pings with the assignment. The algorithm dispatches the task to the shunter closest to the staging slot, chaining moves together. If a shunter is dropping an empty trailer in Zone C, the algorithm assigns an inbound fetch from Zone C to minimize deadheading (driving without a load).</p>
 
     <div class="status-panel">
       <div class="header">Metric Audit: Dwell Time</div>
@@ -259,17 +259,17 @@
 
     <h2>[BOARD_04 :: THE INTEGRATION HUB]</h2>
 
-    <p>No yard exists in isolation. If the Yard Management System does not talk to the Warehouse Management System (WMS) and the Transportation Management System (TMS), it is merely an expensive map.</p>
+    <p>No yard exists in isolation. If the Yard Management System does not talk to the Warehouse Management System (WMS) and the Transportation Management System (TMS), it is just an expensive map.</p>
 
-    <p>The platform must act as the integration layer. When a truck arrives at the gate, the gateway API queries the TMS to verify the appointment block. When a trailer hits the dock, a webhook is fired into the WMS, altering the labor forecast to ensure forklift drivers are dispatched to Door 3. When the WMS seals the trailer, the yard platform is notified to generate the outbound move task, instructing the shunter to pull it to the outbound lot.</p>
+    <p>The platform acts as the integration layer. When a truck arrives at the gate, the gateway API queries the TMS to verify the appointment block. When a trailer hits the dock, a webhook fires into the WMS, adjusting the labor forecast so forklift drivers are dispatched to Door 3. When the WMS seals the trailer, the yard platform generates the outbound move task, instructing the shunter to pull it to the outbound lot.</p>
 
-    <p>This is the actual product: the complete synchronization of physical assets with data payloads. By managing the space perfectly, the platform transforms the yard from a sprawling liability into a high-throughput, tightly governed node in the supply chain.</p>
+    <p>This is the actual product: complete synchronization of physical assets with data payloads. By governing the space precisely, the platform transforms the yard from a sprawling liability into a high-throughput node in the supply chain.</p>
 
     <h2>[BOARD_05 :: PROJECT CONTEXT]</h2>
 
-    <p>The client was a large distribution center handling over 600 trailer moves every day across a 50-dock yard. Before the platform existed, the entire yard ran on paper logs and radio communication. Supervisors had no real-time visibility into where trailers were parked, which docks were available, or which drivers were assigned to which moves.</p>
+    <p>The client was a large distribution center handling over 600 trailer moves daily across a 50-dock yard. Before the platform, the entire yard ran on paper logs and radio communication. Supervisors had no real-time visibility into trailer locations, dock availability, or driver assignments.</p>
 
-    <p>The cost of this blindness was measurable. Demurrage charges - the fees carriers impose when their trailers sit idle beyond the allotted free time - averaged $28,000 per month. Trailers regularly got "lost" in the yard, meaning nobody could confirm their exact location without physically driving around to look. This happened two to three times per week.</p>
+    <p>The cost of this blindness was measurable. Demurrage charges -- fees carriers impose when their trailers sit idle beyond allotted free time -- averaged $28,000 per month. Trailers regularly got "lost" in the yard; nobody could confirm their exact location without physically driving around to look. This happened two to three times per week.</p>
 
     <div class="status-panel">
       <div class="header">Engagement Parameters</div>
@@ -279,13 +279,13 @@
       <p>Core pain: No real-time visibility, $28K/month demurrage, paper-based dispatch, 2-3 "lost trailer" incidents per week.</p>
     </div>
 
-    <p>The operations manager worked alongside the engineering team for the full 16-week build. He brought the domain knowledge we lacked - the difference between a live load and a drop trailer, why reefers need priority docking, how driver shift changes create handoff gaps. Without that expertise embedded in the team, we would have built a technically clean system that ignored the physical realities of yard operations.</p>
+    <p>The operations manager worked alongside the engineering team for the full 16-week build. He brought domain knowledge we lacked: the difference between a live load and a drop trailer, why reefers need priority docking, how driver shift changes create handoff gaps. Without that expertise embedded in the team, we would have built a technically sound system that ignored the physical realities of yard operations.</p>
 
     <h2>[BOARD_06 :: RESULTS & IMPACT]</h2>
 
-    <p>The platform went live across all 50 docks and the full staging yard. Every trailer, dock door, and tractor was tracked through its complete lifecycle in real time. The operational improvements were immediate and sustained.</p>
+    <p>The platform went live across all 50 docks and the full staging yard. Every trailer, dock door, and tractor was tracked through its complete lifecycle in real time. Operational improvements were immediate and sustained.</p>
 
-    <p>Average trailer dwell time - the total time a trailer spends on the property from gate-in to gate-out - dropped from 4.2 hours to 2.1 hours, a 50% reduction. Demurrage charges fell from $28,000 per month to $8,000 per month, saving roughly $240,000 per year. Dock utilization climbed from 62% to 87% because the system eliminated scheduling gaps and double-bookings.</p>
+    <p>Average trailer dwell time -- from gate-in to gate-out -- dropped from 4.2 hours to 2.1 hours, a 50% reduction. Demurrage charges fell from $28,000 to $8,000 per month, saving roughly $240,000 annually. Dock utilization climbed from 62% to 87% as the system eliminated scheduling gaps and double-bookings.</p>
 
     <div class="atlas-figure">
       <div class="svg-container">
@@ -370,13 +370,13 @@
       <figcaption>Fig 2. - Before/After operational comparison. Paper-and-radio yard operations replaced with platform-governed state tracking. Dwell time halved, demurrage dropped 71%, dock utilization jumped 25 percentage points, and lost-trailer incidents went to zero.</figcaption>
     </div>
 
-    <p>Deadhead moves - where a tractor drives across the yard without pulling anything - dropped 34% thanks to the algorithmic dispatch system chaining moves together. GPS tracking at 3-meter resolution meant the supervisor always knew where every asset was. The "lost trailer" incidents that happened two to three times a week were completely eliminated through real-time state tracking and a full audit trail for every movement.</p>
+    <p>Deadhead moves -- a tractor crossing the yard without pulling anything -- dropped 34% thanks to the algorithmic dispatch system chaining moves together. GPS tracking at 3-meter resolution gave supervisors constant visibility into every asset. "Lost trailer" incidents that occurred two to three times per week were completely eliminated through real-time state tracking and a full audit trail for every movement.</p>
 
     <h2>[BOARD_07 :: LESSONS LEARNED]</h2>
 
-    <p>The first version of the platform was a simple check-in/check-out system. A trailer arrived, we marked it as "arrived." A trailer left, we marked it as "departed." That was the entire model. It took about two days on the yard floor to realize this approach was useless - it told the supervisor that a trailer was somewhere on the property, but not where it was or what stage of the process it was in.</p>
+    <p>The first version was a simple check-in/check-out system. A trailer arrived, we marked it "arrived." A trailer left, we marked it "departed." That was the entire model. It took two days on the yard floor to realize this was useless -- it told the supervisor a trailer was somewhere on the property, but not where or what stage of the process it was in.</p>
 
-    <p>The state machine approach changed everything. By defining a strict lifecycle - registered, staged, docked, loaded, departed - with enforced transitions between each state, the platform could tell the supervisor exactly where every trailer was in the process at any moment. A trailer could not jump from "arrived" to "departed" without passing through staging and docking. Every transition was timestamped, creating perfect dwell-time data.</p>
+    <p>The state machine approach changed everything. By defining a strict lifecycle -- registered, staged, docked, loaded, departed -- with enforced transitions between each state, the platform could tell the supervisor exactly where every trailer was at any moment. A trailer could not jump from "arrived" to "departed" without passing through staging and docking. Every transition was timestamped, producing precise dwell-time data.</p>
 
     <div class="status-panel">
       <div class="header">The Surprise: Who Loved It Most</div>
@@ -385,9 +385,9 @@
       <code>DRIVER FEEDBACK: "I used to drive around looking for trailers. Now I just follow the screen."</code>
     </div>
 
-    <p>The biggest surprise was who valued the system most. We assumed supervisors would be the biggest champions - they got the bird's-eye dashboard, the analytics, the demurrage alerts. But the drivers were the ones who loved it. The mobile dispatch feature replaced the chaos of radio communication with clear, direct instructions on their ruggedized tablets. No more deciphering garbled radio calls. No more driving to the wrong staging slot because they misheard a location.</p>
+    <p>The biggest surprise was who valued the system most. We assumed supervisors would be the primary champions -- they got the bird's-eye dashboard, the analytics, the demurrage alerts. But the drivers loved it more. The mobile dispatch feature replaced chaotic radio communication with clear, direct instructions on their ruggedized tablets. No more deciphering garbled radio calls. No more driving to the wrong staging slot because they misheard a location.</p>
 
-    <p>If we built this again, we would add predictive dock scheduling from day one. The current system assigns docks reactively - when a trailer arrives, it finds the best available dock. A predictive system would pre-assign docks based on appointment data and historical unloading times, so the yard is already optimized before the truck even arrives at the gate. That level of planning would push dock utilization even higher and further reduce wait times at the gate.</p>
+    <p>If we built this again, we would add predictive dock scheduling from day one. The current system assigns docks reactively -- when a trailer arrives, it finds the best available dock. A predictive system would pre-assign docks based on appointment data and historical unloading times, optimizing the yard before the truck even reaches the gate. That would push dock utilization higher still and further reduce gate wait times.</p>
   </div>
 
 <script type="application/json" id="blog-config">{"slug":"yard-management-platform"}</script>

@@ -257,15 +257,15 @@
     <div class="strike-bar"></div>
     <span class="eyebrow">Retrofit & Remediation Report</span>
     <h1>An Honest Cleanup of a Rough ML Deployment</h1>
-    <p class="deck">When evaluating a rudimentary Flask deployment for a marriage age prediction model, simply hitting "run" is not enough. The artifact demands editorial cleanup, explicit boundary-setting, and an unsparing assessment of what the system can-and absolutely cannot-claim to accomplish.</p>
+    <p class="deck">Evaluating a rudimentary Flask deployment for a marriage age prediction model requires more than hitting "run." The artifact demands editorial cleanup, explicit boundary-setting, and an honest assessment of what the system can -- and cannot -- claim to accomplish.</p>
   </header>
 
   <main>
-    <p class="drop-cap">We inherited an artifact that tells a common, unglamorous story. The repository arrived containing a baseline machine learning estimator, a scattering of unpinned dependencies, a notebook with raw install outputs bleeding into the markdown, and a rudimentary Flask application exposing a form. In the world of enterprise data science, nothing dates a project faster than visible junk text. When a reader sees raw pip install logs wedged between problem statements and architecture diagrams, they immediately stop trusting the narrative. There has clearly been no editorial cleanup, and by extension, one assumes no operational discipline.</p>
+    <p class="drop-cap">The repository tells a common, unglamorous story. It arrived containing a baseline machine learning estimator, unpinned dependencies, a notebook with raw install outputs bleeding into the markdown, and a rudimentary Flask application exposing a form. In enterprise data science, nothing dates a project faster than visible junk text. When a reader sees raw pip install logs wedged between problem statements and architecture diagrams, they stop trusting the narrative. No editorial cleanup signals no operational discipline.</p>
 
     <p>Let us confront the artifact honestly. It is a model trained on a small, sparse dataset describing marriage ages against attributes like religion, height, and gender. The deployment surface is a thin HTML form submitting a POST request to a Flask route, which unpickles an estimator to return a single floating-point number. We are not looking at a high-availability microservice. We are looking at a <span class="candid-correction">state-of-the-art predictive solution</span> fragile, notebook-adjacent artifact dressed in web clothing.</p>
 
-    <p>This is not a polished success story. It is a rough deployment. But rough deployments are the reality of internal tooling. The value of this writeup lies not in pretending the artifact is a finished, production-grade system, but in walking through the retrofit. We will untangle the Flask routes, examine the prediction loop, and put up the necessary ethical guardrails that the original author forgot. A model that predicts a deeply personal life event based on crude demographic bucketing requires explicit constraints. It is an exercise in interface trust as much as in software engineering.</p>
+    <p>This is not a polished success story. It is a rough deployment, and rough deployments are the reality of internal tooling. The value of this writeup lies in walking through the retrofit honestly. We untangle the Flask routes, examine the prediction loop, and add the ethical guardrails the original author forgot. A model that predicts a deeply personal life event based on crude demographic bucketing requires explicit constraints. It is an exercise in interface trust as much as in software engineering.</p>
 
     <h2>The Form Submission Path</h2>
     
@@ -391,7 +391,7 @@ def predict():
       <li><strong>Edge cases are treated as noise.</strong> Because it is a regression model minimizing mean squared error, it will fail spectacularly on outliers. It has no mechanism for "I don't know." The Flask route is designed to always return an answer, even if a user inputs an age of 145 and a height of 10 inches.</li>
     </ul>
 
-    <p>Ultimately, a successful deployment of a toy model is not one that successfully tricks a user into thinking it is an Oracle. A successful retrofit is one that exposes the seams. By stripping the junk text from the repository, explicitly enforcing route contracts, and attaching severe disclaimers to the interface, we transition the project from a sloppy notebook export into a coherent, responsible demonstration of machine learning constraints.</p>
+    <p>A successful deployment of a toy model does not trick a user into thinking it is an oracle. A successful retrofit exposes the seams. By stripping junk text from the repository, enforcing route contracts, and attaching clear disclaimers to the interface, the project transitions from a sloppy notebook export into a coherent, responsible demonstration of machine learning constraints.</p>
 
   </main>
 </div>

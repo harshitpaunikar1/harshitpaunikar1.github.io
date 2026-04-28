@@ -500,9 +500,9 @@
     <header class="masthead">
       <p class="kicker">Retail / Browser AI · LLM / RAG / Agentic Systems · Build Breakdown</p>
       <h1>Transformer.js Local Retail Copilot</h1>
-      <p class="deck">A local retail copilot that turns a storefront into a privacy-first AI surface. The browser downloads a quantized Transformer model, loads product and FAQ embeddings from CDN storage, classifies user intent locally, and answers questions without shipping raw chat to a central model endpoint by default. This is a strong fit for retail, insurance, education, and internal knowledge portals where teams want lower inference cost, faster first response, and better control over data exposure.</p>
+      <p class="deck">A local retail copilot that turns any storefront into a privacy-first AI surface. The browser downloads a quantized Transformer model, loads product and FAQ embeddings from CDN storage, classifies user intent locally, and answers questions without shipping raw chat to a central endpoint. A strong fit for retail, insurance, education, and internal knowledge portals where lower inference cost, faster first response, and tighter data control matter.</p>
       <div class="summary-strip" aria-label="Executive summary strip">
-        <article><h2>Primary Use</h2><p>A customer wants to buy a laptop bag but does not know which option fits a 16-inch MacBook, has water resistance, and is suitable for travel. The copilot understands the query, filters catalogue data, compares available products, and recommends the best option with a direct checkout link.</p></article><article><h2>System Built</h2><p>A browser-native assistant using Transformers.js for local understanding plus retrieval-backed support and commerce actions.</p></article><article><h2>Critical Control</h2><p>No raw chat leaves browser by default</p></article><article><h2>Business Outcome</h2><p>The result was a retail AI assistant that reduced repetitive support load, improved product discovery, gave customers faster answers, and created a clearer path from conversation to purchase.</p></article>
+        <article><h2>Primary Use</h2><p>A customer wants to buy a laptop bag but does not know which option fits a 16-inch MacBook, has water resistance, and is suitable for travel. The copilot understands the query, filters catalogue data, compares available products, and recommends the best option with a direct checkout link.</p></article><article><h2>System Built</h2><p>A browser-native assistant using Transformers.js for local understanding plus retrieval-backed support and commerce actions.</p></article><article><h2>Critical Control</h2><p>No raw chat leaves browser by default</p></article><article><h2>Business Outcome</h2><p>Reduced repetitive support load, improved product discovery, faster customer answers, and a clearer path from conversation to purchase -- all without per-query cloud inference cost.</p></article>
       </div>
     </header>
 
@@ -523,7 +523,7 @@
           </aside>
           <div class="section-body">
             <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
-            <p>The idea behind Transformer.js Local Retail Copilot came from a practical retail problem: customers were visiting an online store, browsing products, asking repetitive questions, and leaving before checkout because they could not quickly find the right item. The client already had a product catalogue, FAQs, return policy pages, and support documents, but this information was scattered across the website and the support team was answering the same questions repeatedly.</p><p>Instead of building a normal chatbot that sends every query to a cloud model, the project was designed around browser-side AI inference using Transformer.js. The goal was to make the shopping assistant fast, private, and cost-efficient. The copilot could answer product questions, compare items, recommend products, explain return policies, and push customers toward checkout without depending on a heavy backend for every response.</p><p>The assistant was designed to behave like a knowledgeable store associate rather than a generic bot. When a customer searched for something like comfortable shoes for long standing hours, the system translated that phrasing into product attributes, checked the catalogue, ranked relevant products, and generated a practical recommendation.</p>
+            <p>This project started from a practical retail problem: customers visited an online store, browsed products, asked repetitive questions, and left before checkout because they could not quickly find the right item. The client had a product catalogue, FAQs, return policy pages, and support documents -- but the information was scattered across the site, and the support team answered the same questions repeatedly.</p><p>Instead of building a conventional chatbot that routes every query to a cloud model, the project was designed around browser-side AI inference using Transformer.js. The goal: make the shopping assistant fast, private, and cost-efficient. The copilot answers product questions, compares items, recommends products, explains return policies, and guides customers toward checkout -- all without depending on a heavy backend for every response.</p><p>The assistant was designed to behave like a knowledgeable store associate, not a generic bot. When a customer searched for something like "comfortable shoes for long standing hours," the system translated that phrasing into product attributes, checked the catalogue, ranked relevant products, and generated a practical recommendation.</p>
             <div class="callout">
               <p><strong>Value delivered.</strong> The result was a retail AI assistant that reduced repetitive support load, improved product discovery, gave customers faster answers, and created a clearer path from conversation to purchase.</p>
             </div>
@@ -622,8 +622,8 @@
             <div class="comparison-grid">
               <article class="comparison-card">
                 <h3>Difficulty Faced</h3>
-                <p>The hardest part was performance. Running AI directly in the browser creates real constraints around model size, loading time, mobile compatibility, and memory usage. The team solved this with smaller optimized models, cached embeddings, lazy loading, and lightweight recommendation logic.</p>
-                <p>Keeping the browser experience fast enough while separating safe local reasoning from higher-trust commerce actions.</p>
+                <p>The hardest part was performance. Running AI directly in the browser creates real constraints around model size, loading time, mobile compatibility, and memory usage. The team addressed this with smaller optimized models, cached embeddings, lazy loading, and lightweight recommendation logic.</p>
+                <p>The core tension: keeping the browser experience fast enough while cleanly separating safe local reasoning from higher-trust commerce actions that require server-side confirmation.</p>
               </article>
               <article class="comparison-card">
                 <h3>Team Management Method</h3>
@@ -664,7 +664,7 @@
           </aside>
           <div class="section-body">
             <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
-            <p>Shows how to turn local inference into a commercial product, not just a demo: model packaging, retrieval, security controls, and operational integrations all have to line up.</p>
+            <p>This project shows how to turn local inference into a commercial product, not just a demo. Model packaging, retrieval, security controls, and operational integrations all have to line up.</p>
             <p>The critical boundary is not whether the model can answer locally. It is whether the local answer is allowed to trigger a business action without a server-side confirmation layer.</p>
             <div class="policy-grid">
               <article class="policy-card">

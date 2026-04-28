@@ -172,11 +172,11 @@
   <div class="viewport">
     <header>
       <h1>Automation with Control: The Bound Support Copilot</h1>
-      <p class="synopsis">The central metric of customer support is resolution accuracy, not reply speed. When artificial intelligence is integrated into an inbox purely to maximize ticket deflection, the result is hallucinated policies, infuriated users, and severe reputational damage. A sustainable support architecture treats AI not as an autonomous responder, but as a rigid drafting layer gated by human oversight.</p>
+      <p class="synopsis">The central metric of customer support is resolution accuracy, not reply speed. When AI is integrated into an inbox purely to maximize ticket deflection, the result is hallucinated policies, infuriated users, and reputational damage. A sustainable support architecture treats AI not as an autonomous responder but as a rigid drafting layer gated by human oversight.</p>
     </header>
 
     <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-      <strong>My Role:</strong> I built the ML pipeline - the embedding-based semantic triage, confidence threshold system, retrieval grounding against Shopify/Zendesk/Stripe, and the draft generation layer. The support ops lead was the other half of the team: they set the confidence thresholds based on real historical ticket data, and when the first version over-automated (causing an incorrect refund confirmation in week one), it was their domain knowledge that identified exactly where the cutoff needed to drop.
+      <strong>My Role:</strong> I built the ML pipeline -- embedding-based semantic triage, the confidence threshold system, retrieval grounding against Shopify/Zendesk/Stripe, and the draft generation layer. The support ops lead was the other half of the team: they set confidence thresholds based on real historical ticket data. When the first version over-automated (causing an incorrect refund confirmation in week one), their domain knowledge identified exactly where the cutoff needed to drop.
     </div>
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
       <strong style="margin-right:4px;">Stack:</strong>
@@ -189,9 +189,9 @@
       <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Confidence thresholds</span>
     </div>
 
-    <p>Deploying a Large Language Model directly connected to a customer email address is a profound operational error. LLMs are structurally designed to appease the user, meaning they are inherently predisposed to issuing unauthorized refunds, inventing feature timelines, and apologizing for system mechanics that are functioning exactly as intended.</p>
+    <p>Deploying a Large Language Model directly connected to a customer email address is a profound operational error. LLMs are structurally inclined to appease the user -- issuing unauthorized refunds, inventing feature timelines, and apologizing for system mechanics that are functioning exactly as intended.</p>
 
-    <p>A Support Copilot should not be defined by its text generation capabilities. Its value is defined by its routing thresholds. A system must know precisely when to act, when to prepare a draft for a human, and when to refuse engagement entirely. We achieve this by inserting a deterministic confidence threshold meter into the semantic triage pipeline.</p>
+    <p>A Support Copilot should not be defined by its text generation capabilities. Its value is defined by its routing thresholds: knowing precisely when to act, when to prepare a draft for a human, and when to refuse engagement entirely. We achieved this by inserting a deterministic confidence threshold into the semantic triage pipeline.</p>
 
     <h2>[BOUNDARY 01] Semantic Triage & Thresholds</h2>
 
@@ -307,15 +307,15 @@
 
     <h2>[BOUNDARY 03] Data Grounding over Guesswork</h2>
 
-    <p>Generative text without grounding is fiction. To ensure the copilot drafts are rooted in reality, the retrieval architecture operates in a constrained chain. Before the LLM generates a single token of the draft, it executes rigid API calls-fetching the user's specific Shopify order history, Zendesk historical interactions, and Stripe invoice states. The prompt is injected with this JSON payload, alongside the strict instruction: <em>If the intent requests a refund and the Stripe payload indicates the window has passed, decline the request regardless of sentiment.</em></p>
+    <p>Generative text without grounding is fiction. To ensure copilot drafts are rooted in reality, the retrieval architecture operates in a constrained chain. Before the LLM generates a single token, it executes rigid API calls -- fetching the user's Shopify order history, Zendesk historical interactions, and Stripe invoice states. The prompt is injected with this JSON payload alongside a strict instruction: <em>If the intent requests a refund and the Stripe payload indicates the window has passed, decline the request regardless of sentiment.</em></p>
 
-    <p>By enforcing this workflow, we strip the language model of its most dangerous feature: autonomy. A support inbox copilot succeeds precisely because the engineering team builds walls around it, treating the AI as an incredibly fast typing assistant tethered securely to the database and gated faithfully by the human operator.</p>
+    <p>By enforcing this workflow, we strip the language model of its most dangerous feature: autonomy. The copilot succeeds precisely because the engineering team builds walls around it -- treating the AI as a fast drafting assistant tethered to the database and gated by the human operator.</p>
 
     <h2>[BOUNDARY 04] Project Context</h2>
 
     <p>This system was built for an <strong>e-commerce company receiving 800+ support tickets per day</strong>. Their previous chatbot was an unbounded GPT wrapper connected directly to the customer inbox. It had no retrieval grounding, no confidence thresholds, and no human oversight layer. It simply generated responses based on whatever the customer wrote.</p>
 
-    <p>The consequences were predictable. The bot hallucinated order statuses, invented return policies that did not exist, and in one incident, <strong>promised a customer a full refund on a non-returnable item</strong>. That single mistake cost the company $2,400 and was shared widely on social media. The bot was shut down, and the support team went back to handling every ticket manually, creating a 4-hour response queue.</p>
+    <p>The consequences were predictable. The bot hallucinated order statuses, invented return policies that did not exist, and in one incident <strong>promised a customer a full refund on a non-returnable item</strong>. That single mistake cost $2,400 and was shared widely on social media. The bot was shut down, and the support team reverted to handling every ticket manually -- creating a 4-hour response queue.</p>
 
     <p>The project team was <strong>1 ML engineer and 1 support operations lead</strong>, working over a 10-week build. The support ops lead was essential because they understood the actual ticket patterns, knew which categories were safe to automate, and could validate the confidence thresholds against real historical data.</p>
 

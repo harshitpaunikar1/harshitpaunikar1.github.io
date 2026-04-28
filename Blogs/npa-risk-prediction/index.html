@@ -809,8 +809,8 @@ def map_scoreband(pd):
       </aside>
       <div class="section-body">
         <h2>Project Context</h2>
-        <p>The client was a mid-size NBFC (non-banking finance company) in India with a loan portfolio of INR 2,400 crore. Over 18 months, their NPA ratio had crept from 3.2 percent to 5.1 percent. The existing system for flagging risky accounts was entirely rule-based: simple thresholds on days past due, income brackets, and loan-to-value ratios. Those rules caught borrowers who were already in trouble, but they missed the early warning signals that show up weeks before a payment is actually missed.</p>
-        <p>The credit committee needed something better. Not a black box that replaces human judgment, but a data-driven scoring system that could rank borrowers by risk early enough to act. The team was lean: 1 data scientist and 1 credit risk officer who understood the portfolio inside out. Development ran 10 weeks, from data extraction through model validation and scoreband construction.</p>
+        <p>The client was a mid-size NBFC (non-banking finance company) in India with a loan portfolio of INR 2,400 crore. Over 18 months, their NPA ratio had crept from 3.2 percent to 5.1 percent. The existing system was entirely rule-based: simple thresholds on days past due, income brackets, and loan-to-value ratios. Those rules caught borrowers already in trouble but missed the early warning signals that appear weeks before a payment is actually missed.</p>
+        <p>The credit committee needed something better -- not a black box replacing human judgment, but a data-driven scoring system that could rank borrowers by risk early enough to intervene. The team was lean: 1 data scientist and 1 credit risk officer who understood the portfolio inside out. Development ran 10 weeks, from data extraction through model validation and scoreband construction.</p>
         <table class="committee-table">
           <caption>Project details at a glance.</caption>
           <thead>
@@ -857,7 +857,7 @@ def map_scoreband(pd):
       </aside>
       <div class="section-body">
         <h2>Results and Impact</h2>
-        <p>The new model reached an AUC of 0.847, compared to 0.72 for the existing rule-based system. That improvement translated into earlier and more accurate identification of at-risk accounts. Early warning alerts now flag accounts 45 days before default, compared to the old system's 15 days. That extra month of lead time is the difference between a phone call that saves an account and a collections case that costs money.</p>
+        <p>The new model reached an AUC of 0.847, compared to 0.72 for the existing rule-based system. That improvement translated directly into earlier and more accurate identification of at-risk accounts. Early warning alerts now flag accounts 45 days before default, compared to the old system's 15 days. That extra 30 days of lead time is the difference between a phone call that saves an account and a collections case that costs money.</p>
         <p>Within 2 quarters of deployment, the NPA ratio stabilized from 5.1 percent to 4.0 percent. Portfolio at risk (PAR-30) visibility improved by 60 percent, meaning the credit team could see problems forming much earlier. The scoreband system also enabled differential pricing: high-risk borrowers paid 200 basis points more, which improved overall portfolio yield by 0.4 percent. The model was adopted by 3 branch offices, covering 18,000 active loan accounts.</p>
         <figure aria-labelledby="results-ba-caption">
           <p class="diagram-title">Before and After Deployment</p>
@@ -911,7 +911,7 @@ def map_scoreband(pd):
       <div class="section-body">
         <h2>Lessons Learned</h2>
         <p>The first model used only financial features: income, debt ratio, repayment history, and bureau scores. It reached an AUC of 0.79, which was already better than the rule-based system, but left a meaningful gap. What pushed it to 0.847 was adding behavioral features: payment timing patterns (how many days between due date and actual payment over the last 6 months), inquiry frequency, and cash-flow volatility from bank statements.</p>
-        <p>The biggest surprise was which single feature turned out to be the most predictive. It was not income. It was not debt-to-income ratio. It was "number of days between due date and actual payment" averaged over the last 6 months. Borrowers who consistently paid 3 to 5 days late were far more likely to eventually default than those who paid on the exact due date, even when their income and debt levels looked identical. That pattern was invisible to the old rule-based system, which only looked at whether a payment was 30+ or 60+ days overdue.</p>
+        <p>The biggest surprise was which single feature proved most predictive. Not income. Not debt-to-income ratio. It was the average number of days between due date and actual payment over the last 6 months. Borrowers who consistently paid 3 to 5 days late were far more likely to eventually default than those who paid on the due date, even when their income and debt levels looked identical. That pattern was invisible to the old rule-based system, which only flagged payments at 30+ or 60+ days overdue.</p>
         <p>For the next iteration, the team would integrate bureau data directly through API rather than batch files, which would cut data freshness lag from weekly to near-real-time. They would also add vintage analysis as a standard monitoring tool, tracking how each origination month cohort behaves over time, rather than relying only on point-in-time snapshots of portfolio health.</p>
         <div class="comparison-grid">
           <article class="comparison-card">

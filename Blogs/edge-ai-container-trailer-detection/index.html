@@ -184,11 +184,11 @@
   <header>
     <div class="doc-identifier">Engineering Brief // Vision Pipeline</div>
     <h1>Edge Compute at the Gate</h1>
-    <p class="lede">Evaluating an object detection model on a pristine, well-lit Kaggle dataset breeds catastrophic overconfidence. At a physical logistics gate, the neural network is merely the final, easiest step in a brittle sequence. The actual engineering problem is conquering the optics, the physics of a moving 80,000-pound object, and the raw environment to deliver an image worth running inference on in the first place.</p>
+    <p class="lede">Evaluating an object detection model on a clean, well-lit Kaggle dataset breeds overconfidence. At a physical logistics gate, the neural network is the final, easiest step in a brittle sequence. The real engineering problem is conquering the optics, the physics of a moving 80,000-pound object, and the raw environment to deliver an image worth running inference on in the first place.</p>
   </header>
 
 <div style="border-left:3px solid #111;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;color:#111;">
-  <strong>My Role:</strong> I designed and built the three-stage vision pipeline - spatial trigger integration, the YOLOv8-based region-of-interest cropper, and the OpenCV morphological preprocessing layer that feeds Tesseract OCR. The hardware engineer handled IP camera and IR illuminator installation at all six gate lanes. The key insight I drove was that IR illumination quality mattered more than model architecture - night-shift accuracy collapsed until we got the 850nm lighting right.
+  <strong>My Role:</strong> I designed and built the three-stage vision pipeline: spatial trigger integration, the YOLOv8-based region-of-interest cropper, and the OpenCV morphological preprocessing layer that feeds Tesseract OCR. The hardware engineer handled IP camera and IR illuminator installation at all six gate lanes. The key insight I drove was that IR illumination quality mattered more than model architecture. Night-shift accuracy collapsed until we got the 850nm lighting right.
 </div>
 <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#555;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
   <strong style="margin-right:4px;">Stack:</strong>
@@ -203,7 +203,7 @@
   <div class="content-partition">
     <h2>PIPELINE_STAGE_01: Optic Physics and Spatial Triggering</h2>
 
-    <p>A shipping container gate does not resemble a photography studio. It is subjected to blinding morning glare, total darkness at midnight, horizontal rain, and trucks moving at highly variable speeds. We cannot run a heavy YOLOv8 inference loop continuously at 60 FPS purely to watch an empty concrete slab. Continuous inference melts edge GPUs and destroys local network bandwidth.</p>
+    <p>A shipping container gate does not resemble a photography studio. It faces blinding morning glare, total darkness at midnight, horizontal rain, and trucks moving at variable speeds. Running a heavy YOLOv8 inference loop continuously at 60 FPS just to watch an empty concrete slab is not viable. Continuous inference overloads edge GPUs and saturates local network bandwidth.</p>
 
     <p>The vision pipeline must therefore remain dormant until a physical event demands execution. We rely on spatial triggering. Infrared break-beams or inductive ground loops inform the edge appliance that a mass has crossed the threshold. This hardware trigger wakes the optical pipeline, initiating a burst capture sequence from the IP cameras.</p>
 
@@ -370,13 +370,13 @@
 
     <p>The team was small: one machine learning engineer, one hardware engineer, and one operations lead who understood the physical gate environment. The entire build took 12 weeks, including the physical installation of cameras, IR illuminators, and the edge appliance hardware at six gate lanes.</p>
 
-    <p>The core problem was not complicated to describe. Trucks were waiting too long. Operators were expensive. And manual typing introduced errors that caused downstream headaches in the warehouse management system. The terminal needed a way to read container codes automatically, accurately, and fast enough that the truck never had to fully stop.</p>
+    <p>The core problem was straightforward. Trucks were waiting too long. Operators were expensive. Manual typing introduced errors that caused downstream problems in the warehouse management system. The terminal needed a way to read container codes automatically, accurately, and fast enough that the truck never had to fully stop.</p>
   </div>
 
   <div class="content-partition">
     <h2>RESULTS_AND_IMPACT: BEFORE VS. AFTER</h2>
 
-    <p>The numbers tell a clear story. Gate cycle time dropped from 45 seconds to 6 seconds per truck. That is an 87% reduction. The terminal eliminated four full-time gate operator positions, saving roughly $220,000 per year in labor costs alone. The system paid for itself in four months.</p>
+    <p>The numbers speak for themselves. Gate cycle time dropped from 45 seconds to 6 seconds per truck -- an 87% reduction. The terminal eliminated four full-time gate operator positions, saving roughly $220,000 per year in labor costs alone. The system paid for itself in four months.</p>
 
     <p>OCR accuracy landed at 97.3% on containers in good condition and 91.8% on weathered or rusty ones. The false rejection rate was 2.1%, meaning about 17 out of every 800 daily events got sent to a manual review queue instead of being auto-cleared. The system runs across all six gate lanes and handles the full daily volume without any human in the loop for the vast majority of transactions.</p>
 
@@ -432,11 +432,11 @@
   <div class="content-partition">
     <h2>LESSONS_LEARNED: WHAT ACTUALLY HAPPENED</h2>
 
-    <p>The first approach used a single wide-angle camera to capture the entire truck and container in one frame. It seemed logical: fewer cameras, simpler wiring, lower hardware cost. But the container codes were too small in the image. At the distance needed to see the full truck, the individual characters on the container wall were only a few pixels tall. No OCR model could reliably read them.</p>
+    <p>The first approach used a single wide-angle camera to capture the entire truck and container in one frame. It seemed logical: fewer cameras, simpler wiring, lower hardware cost. But the container codes were too small in the resulting image. At the distance needed to see the full truck, individual characters on the container wall were only a few pixels tall. No OCR model could reliably read them.</p>
 
     <p>The breakthrough was the three-stage capture approach described earlier in this brief: wide burst capture, YOLO region crop, then OCR on the cropped sector only. By isolating the container code region first and then running character recognition on a tightly cropped, high-resolution patch, the text was suddenly large enough and clean enough to read consistently.</p>
 
-    <p>The biggest surprise had nothing to do with the neural network. It was the IR illumination. During daytime testing, everything worked well. But when the system went live on night shifts, accuracy collapsed. The cameras were starved for light. Even the best model in the world cannot read text it cannot see. Once the team installed 850nm IR illuminators at each gate lane, night-shift accuracy jumped to match daytime performance almost exactly. The lighting was more important than the model.</p>
+    <p>The biggest surprise had nothing to do with the neural network. It was IR illumination. During daytime testing, everything worked well. When the system went live on night shifts, accuracy collapsed. The cameras were starved for light. Even the best model cannot read text it cannot see. Once 850nm IR illuminators were installed at each gate lane, night-shift accuracy jumped to match daytime performance almost exactly. The lighting mattered more than the model.</p>
 
     <p>If the team were to do this again, they would add a second camera angle specifically for damaged or dented containers. When a container is crushed or warped, the code can wrap around a bent panel, making it partially invisible from a single viewpoint. A second angle would catch those cases and reduce the 2.1% false rejection rate further.</p>
   </div>

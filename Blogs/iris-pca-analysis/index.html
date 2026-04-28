@@ -364,7 +364,7 @@
 
   <p>This is the situation PCA addresses &mdash; not "too many features" in the abstract, but specifically <em>redundant information packed into correlated columns</em>. The technique finds linear combinations of the original variables that capture the maximum variance in successively orthogonal directions. Those combinations are the principal components: new axes that replace the old ones.</p>
 
-  <p>The Iris dataset is used here not because flowers are interesting but because the structure is well-understood, the correlation pattern is clean, and the two-dimensional result can be verified against ground truth (species labels). It is a specimen for examining the technique, not the other way around.</p>
+  <p>The Iris dataset is used here not because flowers are inherently interesting but because its structure is well-understood, the correlation pattern is clean, and the two-dimensional result can be verified against ground truth (species labels). It serves as a specimen for examining the technique, not the other way around.</p>
 
   <h2>Why Dropping Columns Fails</h2>
 
@@ -562,7 +562,7 @@
 
   <p>PCA maximizes variance. That sounds desirable until you notice that features with larger numerical scales will dominate variance by sheer magnitude &mdash; not because they carry more information. A feature measured in millimetres will swamp one measured in units, even if the unit-measured feature carries more discriminating signal.</p>
 
-  <p>The fix is to standardize: subtract the mean, divide by the standard deviation, so every feature enters with unit variance. For Iris, the four measurements are already in comparable units (centimetres), but the rule holds generally. Skipping standardization is the most common silent mistake in PCA applications outside academic toy datasets.</p>
+  <p>The fix is standardization: subtract the mean, divide by the standard deviation, so every feature enters with unit variance. For Iris, the four measurements are already in comparable units (centimetres), but the rule holds generally. Skipping standardization is the most common silent mistake in PCA applications outside academic toy datasets.</p>
 
   <div class="math-note">
     <p class="math-label">Standardization &middot; z-score transform</p>
@@ -744,7 +744,7 @@ mse = np.mean((X_scaled - X_reconstructed) ** 2)
 
   <hr class="section-rule">
 
-  <p>PCA is worth understanding at the geometric level rather than the function-call level. The rotation is the algorithm. The rest &mdash; standardization, eigendecomposition, variance thresholds, loading interpretation &mdash; is the discipline of applying the rotation without misreading its outputs. The Iris dataset is a good specimen precisely because its structure is well-understood enough that you can check your interpretation against ground truth. The habit of checking interpretations against external ground truth is the one PCA skill that transfers to every other dataset.</p>
+  <p>PCA is worth understanding at the geometric level rather than the function-call level. The rotation is the algorithm. Everything else &mdash; standardization, eigendecomposition, variance thresholds, loading interpretation &mdash; is the discipline of applying the rotation without misreading its outputs. The Iris dataset works as a specimen precisely because its structure is well-understood enough that you can check your interpretation against ground truth. That habit &mdash; checking interpretations against external evidence &mdash; is the one PCA skill that transfers to every other dataset.</p>
 
 </main>
 <script type="application/json" id="blog-config">{"slug":"iris-pca-analysis"}</script>

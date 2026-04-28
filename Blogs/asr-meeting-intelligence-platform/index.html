@@ -507,7 +507,7 @@
     </header>
 
     <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-      <strong>Implementation Lens:</strong> Designed the pipeline from audio ingestion through transcript searchability instead of stopping at raw speech recognition. Added diarization, summary extraction, and task or CRM sync so the system produces follow-through artifacts instead of passive text dumps.
+      <strong>My Role:</strong> Designed the full pipeline from audio ingestion through transcript searchability, rather than stopping at raw speech recognition. Added diarization, summary extraction, and task/CRM sync so the system produces actionable follow-through artifacts instead of passive text dumps.
     </div>
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
       <strong style="margin-right:4px;">Stack:</strong>
@@ -523,7 +523,7 @@
           </aside>
           <div class="section-body">
             <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
-            <p>ASR Meeting Intelligence Platform was built because teams were losing important information inside meetings. Decisions, action items, objections, risks, and commitments were discussed verbally but were not being captured properly.</p><p>The platform used automatic speech recognition to transcribe meetings and then converted conversations into structured outputs: summary, action items, decisions, risks, follow-ups, and owner assignments.</p><p>The hardest challenge was accuracy in real meeting conditions. People interrupt each other, speak with accents, use domain terms, and join from noisy environments, so a simple transcript is rarely enough.</p>
+            <p>This platform was built because teams were losing critical information inside meetings. Decisions, action items, objections, risks, and commitments were discussed verbally but never captured properly.</p><p>The platform uses automatic speech recognition to transcribe meetings and converts conversations into structured outputs: summaries, action items, decisions, risks, follow-ups, and owner assignments.</p><p>The hardest challenge was accuracy in real meeting conditions. People interrupt each other, speak with accents, use domain-specific terms, and join from noisy environments -- so a simple transcript is rarely enough.</p>
             <div class="callout">
               <p><strong>Value delivered.</strong> The platform delivered meeting memory. Teams could search past discussions, track commitments, and reduce follow-up confusion.</p>
             </div>
@@ -622,12 +622,12 @@
             <div class="comparison-grid">
               <article class="comparison-card">
                 <h3>Difficulty Faced</h3>
-                <p>The design addressed this through speaker diarization, glossary support, confidence scoring, and human correction workflows so the transcript could support business use rather than only archival use.</p>
-                <p>Maintaining transcript utility while handling diarization errors, privacy constraints, and high-risk-domain accuracy expectations.</p>
+                <p>The design addressed this through speaker diarization, glossary support, confidence scoring, and human correction workflows so the transcript could support active business use rather than passive archival.</p>
+                <p>The core difficulty was maintaining transcript utility while handling diarization errors, privacy constraints, and accuracy expectations in high-risk domains.</p>
               </article>
               <article class="comparison-card">
                 <h3>Client Coordination Method</h3>
-                <p>Meeting recordings were reviewed with project managers to understand what they actually wanted from the system. The conclusion was that teams needed decisions and accountability, not just transcripts.</p>
+                <p>Meeting recordings were reviewed with project managers to understand what they actually needed. The conclusion was clear: teams wanted decisions and accountability, not just transcripts.</p>
                 <p>Best fit: Speech AI roles, Productivity platform roles, Applied AI roles</p>
                 <ul class="metric-list">
                   <li>Connected the product to meeting sources, CRMs, and task systems so the transcript becomes part of the workflow.</li><li>Structured monetization around usage pricing plus SaaS subscriptions and domain-specific compliance packages.</li>
@@ -662,8 +662,8 @@
           </aside>
           <div class="section-body">
             <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
-            <p>Speech systems create value when transcription, summarization, search, and follow-up actions are designed as one chain.</p>
-            <p>The product is more useful when transcripts are treated as source material for actions, not as the final deliverable.</p>
+            <p>Speech systems create the most value when transcription, summarization, search, and follow-up actions are designed as a single chain.</p>
+            <p>Transcripts are most useful when treated as source material for actions, not as the final deliverable.</p>
             <div class="policy-grid">
               <article class="policy-card">
                 <h3>Biggest Surprise</h3>

@@ -500,7 +500,7 @@
     <header class="masthead">
       <p class="kicker">Video Analytics / AIoT · Computer Vision / Edge AI · Architecture Review</p>
       <h1>Hikvision AIoT Camera Intelligence Platform</h1>
-      <p class="deck">A camera intelligence platform for Hikvision deployments where events from cameras or NVRs are pulled through ISAPI, enriched by an AI service, and correlated with business or security systems. The design fits retail loss prevention, perimeter monitoring, smart parking, people counting, and industrial safety settings where camera events become part of broader workflows rather than isolated alerts.</p>
+      <p class="deck">A camera intelligence platform for Hikvision deployments where events from cameras or NVRs are pulled through ISAPI, enriched by an AI service, and correlated with business or security systems. Built for retail loss prevention, perimeter monitoring, smart parking, people counting, and industrial safety -- settings where camera events need to become part of broader workflows rather than isolated alerts.</p>
       <div class="summary-strip" aria-label="Executive summary strip">
         <article><h2>Primary Use</h2><p>A retail chain wants to know when checkout queues become too long. The system detects crowd buildup and sends an alert to open another counter.</p></article><article><h2>System Built</h2><p>A Hikvision-focused AIoT event platform connecting ISAPI metadata to business and security workflows.</p></article><article><h2>Critical Control</h2><p>Firmware updates</p></article><article><h2>Business Outcome</h2><p>The platform delivered operational visibility by turning existing camera infrastructure into an analytics layer.</p></article>
       </div>
@@ -523,9 +523,9 @@
           </aside>
           <div class="section-body">
             <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
-            <p>Hikvision AIoT Camera Intelligence Platform was created for businesses that already had Hikvision cameras but were not extracting business value from them. Cameras were being used mainly for recording, not for operations intelligence.</p><p>The project connected cameras, NVRs, and event APIs with an AI enrichment layer. It could detect people, vehicles, queues, parking violations, safety events, and restricted-zone activity. In retail it supported people counting and loss-prevention workflows, while in industrial settings it supported safety monitoring.</p><p>The hardest problem was integration diversity. Different camera models, firmware versions, NVR configurations, and network policies created inconsistent event data.</p>
+            <p>Hikvision AIoT Camera Intelligence Platform was built for businesses that already owned Hikvision cameras but were not extracting operational value from them. Cameras were used mainly for recording, not for intelligence.</p><p>The project connected cameras, NVRs, and event APIs with an AI enrichment layer capable of detecting people, vehicles, queues, parking violations, safety events, and restricted-zone activity. In retail, it supported people counting and loss-prevention workflows. In industrial settings, it supported safety monitoring.</p><p>The hardest problem was integration diversity. Different camera models, firmware versions, NVR configurations, and network policies created inconsistent event data across sites.</p>
             <div class="callout">
-              <p><strong>Value delivered.</strong> The platform delivered operational visibility by turning existing camera infrastructure into an analytics layer.</p>
+              <p><strong>Value delivered.</strong> Turned existing camera infrastructure into an operational analytics layer, delivering visibility that did not exist before.</p>
             </div>
           </div>
         </section>
@@ -537,8 +537,8 @@
           </aside>
           <div class="section-body">
             <h2>Section II · The system must be readable as a flow before it can be trusted in production</h2>
-            <p>Hikvision-centric event intelligence platform using ISAPI, enrichment services, dashboards, and site security controls.</p>
-            <p>Real-life use case solved: A retail chain wants to know when checkout queues become too long. The system detects crowd buildup and sends an alert to open another counter.</p>
+            <p>A Hikvision-centric event intelligence platform using ISAPI, enrichment services, dashboards, and site security controls.</p>
+            <p>Real-life use case: A retail chain needs to know when checkout queues become too long. The system detects crowd buildup and sends an alert to open another counter.</p>
             <figure aria-labelledby="architecture-caption">
               <p class="diagram-title">Diagram A · Architecture Overview</p>
               <svg viewBox="0 0 1160 330" role="img" aria-label="Hikvision AIoT Camera Intelligence Platform architecture diagram">
@@ -623,7 +623,7 @@
               <article class="comparison-card">
                 <h3>Difficulty Faced</h3>
                 <p>The inconsistency problem was solved by building an adapter layer that normalized camera events before they reached the analytics engine.</p>
-                <p>Merging camera events with business context while keeping the site security posture disciplined enough for enterprise use.</p>
+                <p>The broader challenge was merging camera events with business context while keeping the site security posture disciplined enough for enterprise deployment.</p>
               </article>
               <article class="comparison-card">
                 <h3>Client Coordination Method</h3>
@@ -663,12 +663,12 @@
           </aside>
           <div class="section-body">
             <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
-            <p>The interesting work here is not just computer vision. It is how event systems, business context, and security posture are combined into something operators can trust.</p>
-            <p>The platform gets better when it treats the camera event as a trigger for correlation, not as the final truth about what happened.</p>
+            <p>The interesting work here is not just computer vision. It is how event systems, business context, and security posture combine into something operators actually trust.</p>
+            <p>The platform becomes more powerful when camera events are treated as triggers for correlation rather than as the final truth about what happened.</p>
             <div class="policy-grid">
               <article class="policy-card">
                 <h3>Biggest Surprise</h3>
-                <p>Basic security hygiene such as credential vaulting and VLAN separation often unlocks more enterprise confidence than any extra model feature.</p>
+                <p>Basic security hygiene -- credential vaulting and VLAN separation -- often unlocked more enterprise confidence than any additional model feature.</p>
               </article>
               <article class="policy-card">
                 <h3>Next Step</h3>

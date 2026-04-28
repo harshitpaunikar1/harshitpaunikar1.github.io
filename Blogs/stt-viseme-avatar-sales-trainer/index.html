@@ -500,9 +500,9 @@
     <header class="masthead">
       <p class="kicker">Voice AI / Training · Real-Time Systems · Build Breakdown</p>
       <h1>STT + Viseme Avatar Sales Trainer</h1>
-      <p class="deck">A sales training platform where the user speaks, the system transcribes the response, evaluates tone and content, generates coaching feedback, and drives a lip-synced avatar using viseme events. It is suited to sales enablement, call-center coaching, language practice, and interview rehearsal where static LMS content is too passive to build real behavior.</p>
+      <p class="deck">A sales training platform where the user speaks, the system transcribes in real time, evaluates tone and content, generates coaching feedback, and drives a lip-synced avatar using viseme events. Built for sales enablement, call-center coaching, language practice, and interview rehearsal -- contexts where static LMS content is too passive to build real conversational skill.</p>
       <div class="summary-strip" aria-label="Executive summary strip">
-        <article><h2>Primary Use</h2><p>A new salesperson practices selling a SaaS product. The avatar says that a competitor is cheaper, the salesperson responds verbally, and the system evaluates whether the objection was handled with value, proof, and confidence.</p></article><article><h2>System Built</h2><p>A real-time coaching loop combining STT, evaluation, TTS, viseme animation, and training analytics.</p></article><article><h2>Critical Control</h2><p>Consent before recording</p></article><article><h2>Business Outcome</h2><p>The value delivered was scalable sales coaching. New team members could practice anytime while managers tracked improvement through dashboards.</p></article>
+        <article><h2>Primary Use</h2><p>A new salesperson practices selling a SaaS product. The avatar says that a competitor is cheaper, the salesperson responds verbally, and the system evaluates whether the objection was handled with value, proof, and confidence.</p></article><article><h2>System Built</h2><p>A real-time coaching loop combining STT, evaluation, TTS, viseme animation, and training analytics.</p></article><article><h2>Critical Control</h2><p>Consent before recording</p></article><article><h2>Business Outcome</h2><p>Scalable sales coaching -- new team members practice anytime, managers track improvement through dashboards, and the feedback loop no longer depends on manager availability.</p></article>
       </div>
     </header>
 
@@ -523,9 +523,9 @@
           </aside>
           <div class="section-body">
             <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
-            <p>STT + Viseme Avatar Sales Trainer was created to solve a recurring training problem: sales teams practice scripts, but they rarely receive objective feedback on tone, clarity, objection handling, and confidence. Managers cannot listen to every practice call, and new salespeople often improve slowly because feedback comes too late.</p><p>The project turned sales training into an interactive avatar-based simulation. The user speaks to a virtual customer, speech-to-text converts the response into text, the AI evaluates the answer, and the avatar responds naturally using speech synthesis plus viseme-based lip movement.</p><p>The system was designed not just as a talking avatar but as a repeatable coaching loop. Every session generated a scorecard covering opening quality, objection handling, product understanding, confidence, filler words, and closing strength.</p>
+            <p>This project solved a recurring training problem: sales teams practice scripts, but they rarely receive objective feedback on tone, clarity, objection handling, and confidence. Managers cannot listen to every practice call, and new salespeople often improve slowly because feedback arrives too late.</p><p>The solution turned sales training into an interactive avatar-based simulation. The user speaks to a virtual customer, speech-to-text converts the response, the AI evaluates the answer, and the avatar responds naturally using speech synthesis with viseme-based lip movement.</p><p>The system was designed not as a talking avatar demo but as a repeatable coaching loop. Every session generated a scorecard covering opening quality, objection handling, product understanding, confidence, filler words, and closing strength.</p>
             <div class="callout">
-              <p><strong>Value delivered.</strong> The value delivered was scalable sales coaching. New team members could practice anytime while managers tracked improvement through dashboards.</p>
+              <p><strong>Value delivered.</strong> Scalable, on-demand sales coaching. New team members practice anytime without waiting for manager availability, and managers track improvement over time through structured dashboards.</p>
             </div>
           </div>
         </section>
@@ -622,8 +622,8 @@
             <div class="comparison-grid">
               <article class="comparison-card">
                 <h3>Difficulty Faced</h3>
-                <p>The hardest challenge was synchronization. Voice, transcription, AI response, avatar animation, and scoring all had to feel connected. The team solved this by splitting the pipeline into a real-time conversation layer and a post-session deep-analysis layer.</p>
-                <p>Keeping transcript latency, avatar lip-sync, and coaching usefulness aligned closely enough that the simulation feels believable.</p>
+                <p>The hardest challenge was synchronization. Voice capture, transcription, AI response, avatar animation, and scoring all had to feel connected in real time. The solution: split the pipeline into a real-time conversation layer (optimized for responsiveness) and a post-session deep-analysis layer (optimized for accuracy).</p>
+                <p>The core tension: keeping transcript latency, avatar lip-sync, and coaching quality aligned closely enough that the simulation feels believable.</p>
               </article>
               <article class="comparison-card">
                 <h3>Client Coordination Method</h3>
@@ -662,7 +662,7 @@
           </aside>
           <div class="section-body">
             <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
-            <p>This is a good example of multimodal system design where the value comes from coordination between media pipelines, not any one model alone.</p>
+            <p>This project illustrates multimodal system design where the value comes from coordination between media pipelines, not from any single model alone.</p>
             <p>The trainer works best when scoring is attached to specific moments in the conversation, not an abstract overall grade at the end.</p>
             <div class="policy-grid">
               <article class="policy-card">

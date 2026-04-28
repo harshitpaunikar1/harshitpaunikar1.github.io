@@ -507,7 +507,7 @@
     </header>
 
     <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-      <strong>Implementation Lens:</strong> Started from the camera edge rather than from the dashboard so event generation, metadata transport, and verification paths stay realistic. Used ARTPEC event metadata as the first signal and kept heavier AI verification as a selective second pass.
+      <strong>My Role:</strong> Started from the camera edge rather than the dashboard so event generation, metadata transport, and verification paths stay grounded in reality. Used ARTPEC event metadata as the first signal and reserved heavier AI verification for a selective second pass.
     </div>
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
       <strong style="margin-right:4px;">Stack:</strong>
@@ -523,7 +523,7 @@
           </aside>
           <div class="section-body">
             <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
-            <p>Axis ARTPEC Smart Surveillance Analytics was built for security teams that needed more than passive video recording. The client had cameras installed, but most footage was only reviewed after incidents. The goal was to convert camera infrastructure into a real-time intelligence layer.</p><p>The system used Axis camera capabilities and edge analytics to detect motion, restricted-area entry, object presence, and suspicious events. Instead of sending every frame to the cloud, the design worked with camera-side event metadata wherever possible.</p><p>The major challenge was false alarms. Security systems lose trust when they alert too often, so the design had to reduce noise without missing meaningful events.</p>
+            <p>This platform was built for security teams that needed more than passive video recording. The client had cameras installed, but most footage was only reviewed after incidents. The goal was to convert existing camera infrastructure into a real-time intelligence layer.</p><p>The system uses Axis camera capabilities and edge analytics to detect motion, restricted-area entry, object presence, and suspicious events. Instead of sending every frame to the cloud, the design works with camera-side event metadata wherever possible.</p><p>The core challenge was false alarms. Security systems lose trust when they alert too often, so the design had to reduce noise without missing meaningful events.</p>
             <div class="callout">
               <p><strong>Value delivered.</strong> The platform delivered faster incident response, reduced alert noise, and better use of existing camera investment.</p>
             </div>
@@ -623,11 +623,11 @@
               <article class="comparison-card">
                 <h3>Difficulty Faced</h3>
                 <p>False alarms were reduced through a multi-step verification pipeline. The camera generated the first event, an AI verification service checked context, business rules decided priority, and only meaningful alerts reached operators.</p>
-                <p>Getting reliable event verification and workflow automation without losing the performance and trust benefits of edge analytics.</p>
+                <p>The core difficulty was achieving reliable event verification and workflow automation without losing the performance and trust benefits of edge analytics.</p>
               </article>
               <article class="comparison-card">
                 <h3>Client Coordination Method</h3>
-                <p>The project required coordination across the physical security team, IT networking team, and compliance team. Security cared about response, IT cared about segmentation, and compliance cared about privacy and retention.</p>
+                <p>The project required coordination across three teams: physical security (focused on response time), IT networking (focused on segmentation), and compliance (focused on privacy and retention).</p>
                 <p>Best fit: Security platform roles, Edge analytics roles, Computer vision roles</p>
                 <ul class="metric-list">
                   <li>Made secure boot, signed OS assumptions, certificate lifecycle, and least-privilege VMS accounts explicit parts of the design.</li><li>Positioned the platform as per-camera analytics plus managed security operations and incident automation services.</li>
@@ -659,8 +659,8 @@
           </aside>
           <div class="section-body">
             <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
-            <p>It shows how camera analytics should be designed as a security system, not just a computer vision pipeline.</p>
-            <p>The clean architecture is metadata-first. Raw video should not be the default integration payload when edge events can narrow the expensive path.</p>
+            <p>This project demonstrates how camera analytics should be designed as a security system, not just a computer vision pipeline.</p>
+            <p>The clean architecture is metadata-first: raw video should not be the default integration payload when edge events can narrow the expensive processing path.</p>
             <div class="policy-grid">
               <article class="policy-card">
                 <h3>Biggest Surprise</h3>

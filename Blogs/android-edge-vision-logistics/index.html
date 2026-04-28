@@ -207,7 +207,7 @@
   <header>
     <div class="meta-tag">Post-Mortem / Mobile Edge Ops</div>
     <h1>Edge Vision Diagnostics</h1>
-    <p class="abstract">Computer vision tutorials love to pretend hardware is infinite. In reality, deploying an object-detection model to a $150 Android handheld in a poorly lit warehouse is essentially a fight against hardware physics. This is a tear-down of the memory limits, battery bleed, and camera-thread contention that dictate true edge performance.</p>
+    <p class="abstract">Computer vision tutorials love to pretend hardware is infinite. In reality, deploying an object-detection model to a $150 Android handheld in a poorly lit warehouse is a fight against hardware physics. This is a tear-down of the memory limits, battery drain, and camera-thread contention that dictate real edge performance.</p>
   </header>
 
 <div style="border-left:3px solid #111;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
@@ -250,9 +250,9 @@
 
     <div class="main-column">
 
-      <p>The original architecture for this logistics scanning tool was built on a lie: that mobile internet inside a concrete fulfillment center is reliable. We attempted to stream camera frames to a cloud-based inference API. In lab testing, the latency was 150ms. On the warehouse floor, surrounded by metal racking and competing Wi-Fi signals, latency spiked to 2.5 seconds. For a worker attempting to scan 40 boxes a minute, a 2.5-second freeze on a viewfinder isn't just annoying-it effectively destroys the operational utility of the application.</p>
+      <p>The original architecture for this logistics scanning tool was built on a false assumption: that mobile internet inside a concrete fulfillment center is reliable. We streamed camera frames to a cloud-based inference API. In the lab, latency was 150ms. On the warehouse floor, surrounded by metal racking and competing Wi-Fi signals, latency spiked to 2.5 seconds. For a worker scanning 40 boxes a minute, a 2.5-second freeze on the viewfinder destroys the operational utility of the application.</p>
 
-      <p>If you cannot guarantee network transit time, you cannot execute on the cloud. The model had to be forced down to the client device. But shifting inference to the edge meant trading network latency for local hardware constraints. We were no longer fighting Wi-Fi dropouts; we were fighting RAM allocation limits, CPU thermal throttling, and battery drain on cheap, three-year-old Android scanners.</p>
+      <p>If you cannot guarantee network transit time, you cannot rely on the cloud. The model had to move to the device. But shifting inference to the edge meant trading network latency for local hardware constraints. We were no longer fighting Wi-Fi dropouts -- we were fighting RAM allocation limits, CPU thermal throttling, and battery drain on cheap, three-year-old Android scanners.</p>
 
       <h2>> TRACE_01: FORCED LOCAL ISOLATION</h2>
 
@@ -347,7 +347,7 @@ imageAnalyzer.setAnalyzer(cameraExecutor, { imageProxy <span class="c-type">-></
 
       <p>A standard Float32 neural network exported from Python is roughly 15MB. That sounds small, but when you load it into RAM and attempt to run matrix multiplication on a continuous video feed, the device's CPU spikes to 100%. Within five minutes, the physical back of the phone becomes hot to the touch. The OS detects the thermal limit and aggressively throttles the CPU clock speed. Your 30ms inference time silently deteriorates to 180ms. The app turns to sludge.</p>
 
-      <p>To survive prolonged shifts on the floor, we had to brutally compress the logic. The model was converted from 32-bit floats down to an 8-bit integer quantized format (INT8). Post-training quantization shrinks the model footprint by 4x. Yes, we sacrificed approximately 3% of our baseline accuracy-but in edge engineering, an 80% accurate model that runs for an entire 8-hour shift without catching fire is infinitely more valuable than a 99% accurate model that drains the battery and crashes the CPU inside of twenty minutes.</p>
+      <p>To survive prolonged shifts on the floor, we had to aggressively compress the model. We converted it from 32-bit floats to 8-bit integer quantized format (INT8). Post-training quantization shrinks the model footprint by 4x. We sacrificed approximately 3% of baseline accuracy -- but in edge engineering, a model that runs reliably for an entire 8-hour shift is far more valuable than one with perfect accuracy that drains the battery and crashes the CPU within twenty minutes.</p>
 
       <div class="svg-wrapper">
         <svg height="280" width="800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280" preserveAspectRatio="xMidYMid meet">
@@ -407,9 +407,9 @@ imageAnalyzer.setAnalyzer(cameraExecutor, { imageProxy <span class="c-type">-></
 
       <h2>> EXIT_CODE: REAL-WORLD ACCEPTANCE</h2>
 
-      <p>We launched the edge-architected application to the floor. By cutting out the HTTP roundtrip, scanning latency stabilized at a deterministic 45ms. By quantizing the model to INT8, we stopped melting the CPUs, allowing the handheld batteries to clear a full eight hours. And by strictly isolating the <code>ImageAnalysis</code> loops from the Android UI thread, the application felt native and fluid, even as it quietly dumped two-thirds of the frames the camera sensor captured.</p>
+      <p>We launched the edge-architected application to the floor. By cutting out the HTTP roundtrip, scanning latency stabilized at a deterministic 45ms. By quantizing the model to INT8, we stopped overheating the CPUs, allowing batteries to last a full eight hours. And by strictly isolating the <code>ImageAnalysis</code> loops from the Android UI thread, the application felt native and fluid -- even as it quietly dropped two-thirds of the frames the camera sensor captured.</p>
 
-      <p>Logistics computer vision is almost entirely about systems engineering. The cleanest neural network architecture means nothing if you carelessly lock the main rendering thread or bleed out the battery. Moving to the edge is powerful, but only if you respect the brutal physics of the device you are trapped inside.</p>
+      <p>Logistics computer vision is almost entirely about systems engineering. The cleanest neural network architecture means nothing if you lock the main rendering thread or drain the battery. Moving to the edge is powerful, but only if you respect the physical constraints of the device you are building on.</p>
 
     </div>
   </div>
@@ -443,9 +443,9 @@ imageAnalyzer.setAnalyzer(cameraExecutor, { imageProxy <span class="c-type">-></
     <div class="main-column">
       <p>This project was built for a logistics company operating 5 warehouses. Workers on the floor used Android tablets to scan and sort packages - pointing the camera at a label, waiting for the system to identify the package, then routing it to the correct bin or pallet.</p>
 
-      <p>The existing system sent every camera frame to a cloud server for processing. In the office, during demos, it worked fine - about 150 milliseconds per scan. But on the warehouse floor, surrounded by concrete walls and metal racking, WiFi was unreliable. Latency jumped to 2.5 seconds per scan. For a worker trying to sort 40 boxes a minute, a 2.5-second freeze on the screen made the app useless. They would give up and go back to manual label reading.</p>
+      <p>The existing system sent every camera frame to a cloud server for processing. In the office, during demos, it worked fine -- about 150 milliseconds per scan. On the warehouse floor, surrounded by concrete walls and metal racking, WiFi was unreliable. Latency jumped to 2.5 seconds per scan. For a worker sorting 40 boxes a minute, a 2.5-second freeze made the app useless. Workers would give up and revert to manual label reading.</p>
 
-      <p>The team was 3 engineers working on a 10-week sprint. The goal was straightforward: get inference off the cloud and onto the device itself, so scanning worked even with zero network connectivity. The challenge was making a neural network run fast enough on cheap, three-year-old Android tablets without overheating them or killing the battery halfway through a shift.</p>
+      <p>The team was 3 engineers on a 10-week sprint. The goal was straightforward: get inference off the cloud and onto the device itself so scanning worked even with zero network connectivity. The challenge was making a neural network run fast enough on cheap, three-year-old Android tablets without overheating them or killing the battery halfway through a shift.</p>
     </div>
   </div>
 
@@ -476,9 +476,9 @@ imageAnalyzer.setAnalyzer(cameraExecutor, { imageProxy <span class="c-type">-></
     </aside>
 
     <div class="main-column">
-      <p>After deploying the edge-based system, inference latency dropped from 2,500 milliseconds on the cloud to 45 milliseconds on-device. That is a 55x speed improvement. Battery life improved dramatically - devices lasted full 8-hour shifts instead of dying at the 5-hour mark from constant cloud polling and WiFi radio usage.</p>
+      <p>After deploying the edge-based system, inference latency dropped from 2,500ms on the cloud to 45ms on-device -- a 55x speed improvement. Battery life improved dramatically: devices lasted full 8-hour shifts instead of dying at the 5-hour mark from constant cloud polling and WiFi radio usage.</p>
 
-      <p>Scan throughput per worker went from 15 boxes per minute to 40 boxes per minute. The system was deployed on 85 Android tablets across all 5 warehouse sites. The accuracy trade-off from quantization was small: 93.8% on-device versus 96.2% on the cloud baseline. That 2.4% drop was considered acceptable given the massive speed and reliability gains.</p>
+      <p>Scan throughput per worker went from 15 boxes per minute to 40. The system was deployed on 85 Android tablets across all 5 warehouse sites. The accuracy trade-off from quantization was small: 93.8% on-device versus 96.2% on the cloud baseline. That 2.4% drop was acceptable given the massive gains in speed and reliability.</p>
 
       <div class="svg-wrapper">
         <svg height="350" width="800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350" preserveAspectRatio="xMidYMid meet">
@@ -550,13 +550,13 @@ imageAnalyzer.setAnalyzer(cameraExecutor, { imageProxy <span class="c-type">-></
     </aside>
 
     <div class="main-column">
-      <p>Before going full edge, we first tried to optimize the cloud pipeline. We added aggressive caching - if a label had been scanned before, return the cached result without hitting the model. This helped for repeat scans but did nothing for new packages, which were the majority. Latency on fresh scans was still 2+ seconds. The caching approach was a band-aid that did not address the core problem: unreliable network on the warehouse floor.</p>
+      <p>Before going full edge, we first tried to optimize the cloud pipeline. We added aggressive caching -- if a label had been scanned before, return the cached result without hitting the model. This helped for repeat scans but did nothing for new packages, which were the majority. Latency on fresh scans was still 2+ seconds. Caching was a band-aid that did not address the core problem: unreliable network on the warehouse floor.</p>
 
-      <p>We then moved to TensorFlow Lite for on-device inference. The model converted cleanly, but we hit a wall with NNAPI driver bugs on the specific Zebra tablets we were using. The neural network API layer would silently produce garbage outputs on certain input sizes. We spent two weeks debugging before switching to a custom inference pipeline that bypassed NNAPI entirely and ran directly on the CPU with our own memory management.</p>
+      <p>We then moved to TensorFlow Lite for on-device inference. The model converted cleanly, but we hit a wall with NNAPI driver bugs on the Zebra tablets. The neural network API layer silently produced garbage outputs on certain input sizes. We spent two weeks debugging before switching to a custom inference pipeline that bypassed NNAPI entirely and ran directly on the CPU with our own memory management.</p>
 
-      <p>The biggest surprise was thermal throttling. After about 2 hours of continuous scanning, the tablets got hot. The Android OS would automatically slow down the CPU to prevent hardware damage, and our 45-millisecond inference time would silently degrade to 180 milliseconds. The fix was simple but non-obvious: we added a 50-millisecond cooldown pause between consecutive scans. Workers did not notice the delay, but it kept the CPU temperature below the throttling threshold for the entire shift.</p>
+      <p>The biggest surprise was thermal throttling. After about 2 hours of continuous scanning, the tablets got hot. Android automatically slowed the CPU to prevent hardware damage, and our 45ms inference time silently degraded to 180ms. The fix was simple but non-obvious: a 50-millisecond cooldown pause between consecutive scans. Workers did not notice the delay, but it kept CPU temperature below the throttling threshold for the entire shift.</p>
 
-      <p>If we were starting over, we would choose hardware with dedicated NPU (neural processing unit) support from day one. Running inference on the CPU works, but it pushes the thermal and battery limits of consumer-grade tablets. A device with a dedicated chip for neural network math would eliminate the throttling problem entirely and leave more CPU headroom for the rest of the application.</p>
+      <p>If starting over, we would choose hardware with dedicated NPU (neural processing unit) support from day one. Running inference on the CPU works, but it pushes the thermal and battery limits of consumer-grade tablets. A device with a dedicated neural network chip would eliminate the throttling problem entirely and leave more CPU headroom for the rest of the application.</p>
     </div>
   </div>
 

@@ -500,14 +500,14 @@
     <header class="masthead">
       <p class="kicker">AI Infrastructure · DevOps / Infrastructure · Architecture Review</p>
       <h1>OpenRouter Model Gateway for AI Apps</h1>
-      <p class="deck">A gateway for AI applications that want one routing layer instead of direct provider-specific integrations everywhere. The app submits a request, policy decides which model to use, OpenRouter-compatible APIs handle execution, fallback logic catches failures, and observability tracks cost, latency, and quality. It suits SaaS teams and enterprises that need reliability and pricing leverage across multiple models.</p>
+      <p class="deck">A single routing layer for AI applications, replacing direct provider-specific integrations. The app submits a request, policy selects the model, OpenRouter-compatible APIs handle execution, fallback logic catches failures, and observability tracks cost, latency, and quality. Built for SaaS teams and enterprises that need reliability and pricing leverage across multiple model providers.</p>
       <div class="summary-strip" aria-label="Executive summary strip">
         <article><h2>Primary Use</h2><p>A SaaS product uses one model for low-cost classification, another for complex reasoning, and a third as fallback when the primary model is unavailable.</p></article><article><h2>System Built</h2><p>A policy-driven model gateway for routing AI requests across providers with one operational layer.</p></article><article><h2>Critical Control</h2><p>API-key vault</p></article><article><h2>Business Outcome</h2><p>The gateway delivered reliability and cost control. The client could change models without rewriting the entire application.</p></article>
       </div>
     </header>
 
     <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-      <strong>Implementation Lens:</strong> Defined the gateway around policy and observability, not just provider multiplexing. Separated request policy, provider routing, fallback behavior, and logging so teams can change strategy without rewriting apps.
+      <strong>My Role:</strong> Designed the gateway around policy and observability, not just provider multiplexing. Separated request policy, provider routing, fallback behavior, and logging so teams can change strategy without rewriting application code.
     </div>
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
       <strong style="margin-right:4px;">Stack:</strong>
@@ -523,9 +523,9 @@
           </aside>
           <div class="section-body">
             <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
-            <p>OpenRouter Model Gateway for AI Apps was created for teams that were tired of being locked into one model provider. Different models perform better for different tasks, and the client wanted the flexibility to optimize for cost, latency, and task fit without rewriting the application stack.</p><p>The project acted as a model-routing gateway. Applications sent requests to one internal API, and the gateway selected the best model based on task type, cost limit, latency requirement, and fallback rules.</p><p>The most difficult design question was the routing policy itself. It was not enough to call different models. The system had to define when to use each model, how to retry failures, how to track cost, and how to compare quality over time.</p>
+            <p>This gateway was built for teams tired of being locked into a single model provider. Different models perform better for different tasks, and the client needed the flexibility to optimize for cost, latency, and task fit without rewriting the application stack every time they switched.</p><p>Applications send requests to one internal API. The gateway selects the best model based on task type, cost limit, latency requirement, and fallback rules.</p><p>The hardest design question was the routing policy itself. Calling different models was straightforward. Defining when to use each model, how to retry failures, how to track cost, and how to compare quality over time required a different kind of engineering discipline.</p>
             <div class="callout">
-              <p><strong>Value delivered.</strong> The gateway delivered reliability and cost control. The client could change models without rewriting the entire application.</p>
+              <p><strong>Value delivered.</strong> Reliability and cost control through a single routing layer. The client could change models, swap providers, or adjust budgets without touching application code.</p>
             </div>
           </div>
         </section>
@@ -622,8 +622,8 @@
             <div class="comparison-grid">
               <article class="comparison-card">
                 <h3>Difficulty Faced</h3>
-                <p>The main challenge was converting model choice into policy. Routing had to be task-aware, budget-aware, and measurable instead of turning into arbitrary provider switching.</p>
-                <p>Optimizing for cost and reliability without turning the gateway into a black box that teams cannot reason about.</p>
+                <p>The main challenge was converting model choice into policy. Routing had to be task-aware, budget-aware, and measurable rather than arbitrary provider switching.</p>
+                <p>The harder constraint: optimizing for cost and reliability without turning the gateway into a black box that teams cannot reason about or explain to customers.</p>
               </article>
               <article class="comparison-card">
                 <h3>Client Coordination Method</h3>
@@ -662,8 +662,8 @@
           </aside>
           <div class="section-body">
             <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
-            <p>As model ecosystems fragment, routing and governance become competitive engineering capabilities in their own right.</p>
-            <p>The policy layer has to be inspectable. Teams will not trust routing they cannot explain to customers or finance.</p>
+            <p>As model ecosystems fragment, routing and governance become competitive engineering capabilities in their own right, not just plumbing.</p>
+            <p>The policy layer must be inspectable. Teams will not trust routing they cannot explain to customers or finance.</p>
             <div class="policy-grid">
               <article class="policy-card">
                 <h3>Biggest Surprise</h3>

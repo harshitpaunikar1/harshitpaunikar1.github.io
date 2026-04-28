@@ -245,11 +245,11 @@
       <span>OP_MODE: AUTO_ROUTING</span>
     </div>
     <h1>Adaptive Yard Routing</h1>
-    <p class="lede">Yard management software is rarely useful when it stays at the altitude of "optimize operations." To understand adaptive routing, we must descend from the dashboard and experience the yard as a living, breathing state machine defined by queues, handoffs, and relentless contention under time pressure.</p>
+    <p class="lede">Yard management software is rarely useful when it stays at the altitude of "optimize operations." To understand adaptive routing, you have to descend from the dashboard and experience the yard as a living state machine -- defined by queues, handoffs, and relentless contention under time pressure.</p>
   </header>
 
 <div style="border-left:3px solid #111;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;color:#111;">
-  <strong>My Role:</strong> I designed and built the core routing engine - the constraint-based dock assignment logic, the real-time jockey dispatch system, and the exception-handling state machine. My co-engineer handled the gate scanner integration and driver-facing ticket UI. The hardest part was discovering mid-project that a simple FIFO queue caused more chaos than the whiteboard it replaced, which forced a complete rethink of the assignment algorithm.
+  <strong>My Role:</strong> I designed and built the core routing engine: constraint-based dock assignment logic, real-time jockey dispatch, and the exception-handling state machine. My co-engineer handled gate scanner integration and the driver-facing ticket UI. The hardest part was discovering mid-project that a simple FIFO queue created more chaos than the whiteboard it replaced, which forced a complete rethink of the assignment algorithm.
 </div>
 <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#555;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
   <strong style="margin-right:4px;">Stack:</strong>
@@ -264,17 +264,17 @@
   <div class="prose-container">
 
     <div class="main-text">
-      <p>The failure of most logistics automation begins at the gate. At 14:00 on a Tuesday, an inbound carrier arrives. The driver rolls down the window and hands the guard a bill of lading. Behind him, three more trucks sit idling, bleeding air-brakes on the access road. Inside the facility, the control room is staring at a clipboard, a radio, and a static spreadsheet that was obsolete the second it was printed.</p>
+      <p>Most logistics automation fails at the gate. At 14:00 on a Tuesday, an inbound carrier arrives. The driver rolls down the window and hands the guard a bill of lading. Behind him, three more trucks idle on the access road. Inside the facility, the control room is staring at a clipboard, a radio, and a spreadsheet that was obsolete the moment it was printed.</p>
 
-      <p>The yard supervisor needs to assign a dock. But assigning a dock requires knowing which docks are empty, which docks are supposed to be empty but still have a lingering trailer, and which empty slots are reserved for an outbound load scheduled to depart in twenty minutes. If the supervisor guesses wrong, the inbound truck is routed to a full dock, where it blocks the fire lane. A jockey is then radioed to blindly search the yard for an empty drop lot. Suddenly, three disparate assets-a carrier, a jockey, and a dock-are deadlocked.</p>
+      <p>The yard supervisor needs to assign a dock. But that requires knowing which docks are empty, which ones should be empty but still have a lingering trailer, and which open slots are reserved for an outbound load departing in twenty minutes. If the supervisor guesses wrong, the inbound truck is routed to a full dock, where it blocks the fire lane. A jockey is radioed to blindly search the yard for an empty drop lot. Suddenly, three assets -- a carrier, a jockey, and a dock -- are deadlocked.</p>
 
-      <p>This is not an "optimization" problem. It is a state-management crisis. The yard is a massive, physical state machine where entities (trucks, trailers, jockeys, docks) change status in real time. Adaptive routing is the discipline of catching those state changes the split second they occur and automatically resolving the next routing instruction before a human has to pick up a radio.</p>
+      <p>This is not an "optimization" problem. It is a state-management crisis. The yard is a massive physical state machine where entities (trucks, trailers, jockeys, docks) change status in real time. Adaptive routing catches those state changes the moment they occur and resolves the next routing instruction before a human has to pick up a radio.</p>
 
       <h2>[STATE_01]: Gate-In and Entity Registration</h2>
 
-      <p>The moment the guard scans the inbound paperwork, the system does not merely log a timestamp. It instantiates a digital twin of the trailer. This entity carries properties: length, temperature constraints (reefer vs. dry van), cargo priority, and carrier identity. Before the physical gate arm rises, the decision engine evaluates the state of the yard against the inbound entity properties.</p>
+      <p>The moment the guard scans the inbound paperwork, the system does more than log a timestamp. It instantiates a digital twin of the trailer carrying key properties: length, temperature constraints (reefer vs. dry van), cargo priority, and carrier identity. Before the gate arm rises, the decision engine evaluates the yard state against the inbound entity properties.</p>
 
-      <p>We are not relying on predictive AI here. We are relying on deterministic, highly constrained state transitions. The engine queries the dock matrix. It filters out docks that cannot accommodate a 53-foot reefer. It filters out docks assigned to conflicting carriers. It finds the nearest compatible, verifiably empty dock-or, if no dock is available, the nearest drop-lot slot. The driver receives a printed ticket with a barcode and a specific parking coordinate: <code>SLOT_B4</code>.</p>
+      <p>This is not predictive AI. It is deterministic, highly constrained state transitions. The engine queries the dock matrix, filters out docks that cannot accommodate a 53-foot reefer, eliminates docks assigned to conflicting carriers, and finds the nearest compatible, verifiably empty dock -- or, if none is available, the nearest drop-lot slot. The driver receives a printed ticket with a barcode and a specific parking coordinate: <code>SLOT_B4</code>.</p>
 
       <div class="diagram-panel">
         <div class="diagram-title">SYS_GEO // Yard Atlas State Map</div>
@@ -288,7 +288,7 @@
           <rect x="30" y="28" width="940" height="360" fill="#ffffff" stroke="#cfcfcf" stroke-width="2" />
 
           <rect x="34" y="112" width="128" height="220" fill="none" stroke="#d6d6d6" stroke-width="1.5" stroke-dasharray="5 5"/>
-          <text x="98" y="222" font-family="Space Mono" font-size="13" fill="#666" transform="rotate(-90 98 222)" text-anchor="middle">GATE_IN</text>
+          <text x="46" y="222" font-family="Space Mono" font-size="13" fill="#666" transform="rotate(-90 46 222)" text-anchor="middle">GATE_IN</text>
 
           <rect x="62" y="146" width="46" height="22" fill="#ececec" stroke="#111" stroke-width="1.2" />
           <rect x="62" y="190" width="46" height="22" fill="#ececec" stroke="#111" stroke-width="1.2" />
@@ -425,9 +425,9 @@
 
       <h2>[STATE_04]: What Changes for the Operator</h2>
 
-      <p>The control room stops being a center of frantic coordination. The yard supervisor transforms from a human router into an exception manager. Because the system autonomously matches nearest empty docks, continuously guides arriving trucks, and commands the jockey terminals, the supervisor spends zero time yelling into a radio about blind spots.</p>
+      <p>The control room stops being a center of frantic coordination. The yard supervisor transforms from a human router into an exception manager. Because the system autonomously matches the nearest empty docks, continuously guides arriving trucks, and commands the jockey terminals, the supervisor spends zero time on radio calls about blind spots.</p>
 
-      <p>The metrics that matter-dwell time, move turnaround times, dock utilization-fall into line naturally. The automation strips away the latency between decisions. In logistics, time is crushed in the handoffs. By digitizing those handoffs and strictly enforcing state boundaries, the yard stops swallowing trailers whole. It becomes a predictable, observable engine.</p>
+      <p>The metrics that matter -- dwell time, move turnaround, dock utilization -- fall into line naturally. The automation strips away decision latency. In logistics, time is lost in the handoffs. By digitizing those handoffs and strictly enforcing state boundaries, the yard stops swallowing trailers. It becomes a predictable, observable engine.</p>
     </div>
 
     <aside class="route-callout">
@@ -463,11 +463,11 @@
 
   <div class="prose-container">
     <div class="main-text">
-      <p>This system was built for a mid-size third-party logistics company running 3 distribution yards with over 120 dock doors combined. Before the project, yard supervisors were managing truck routing with walkie-talkies and whiteboards. There was no digital record of where trailers were parked, which docks were free, or which jockeys were available.</p>
+      <p>This system was built for a mid-size third-party logistics company running 3 distribution yards with over 120 dock doors combined. Before the project, yard supervisors managed truck routing with walkie-talkies and whiteboards. There was no digital record of trailer locations, dock availability, or jockey status.</p>
 
-      <p>The average truck wait time from gate-in to dock assignment was 47 minutes. Drivers would idle in the access road while supervisors made radio calls trying to figure out what was open. Demurrage charges were piling up. The existing warehouse management system had a "yard module" on paper, but it could not handle real-time state changes or contention between multiple inbound trucks competing for the same dock.</p>
+      <p>Average truck wait time from gate-in to dock assignment was 47 minutes. Drivers idled on the access road while supervisors made radio calls trying to figure out what was open. Demurrage charges were piling up. The existing warehouse management system had a "yard module" on paper, but it could not handle real-time state changes or contention between multiple inbound trucks competing for the same dock.</p>
 
-      <p>The team was small: two engineers working directly with the operations lead at one yard. The full build took 14 weeks from kickoff to production deployment at all three yards. The first yard went live at week 8, and the remaining two were rolled out over the following 6 weeks.</p>
+      <p>The team was small: two engineers working directly with the operations lead at one yard. The full build took 14 weeks from kickoff to production deployment across all three yards. The first yard went live at week 8, and the remaining two rolled out over the following 6 weeks.</p>
     </div>
 
     <aside class="route-callout">
@@ -494,9 +494,9 @@
 
   <div class="prose-container">
     <div class="main-text">
-      <p>After full deployment across all three yards, average truck wait time dropped from 47 minutes to 18 minutes - a 62% reduction. Dock utilization climbed from 61% to 84%. The biggest financial win was demurrage charges: the company saved $340,000 per year across the three yards because trucks were no longer sitting idle waiting for dock assignments.</p>
+      <p>After full deployment across all three yards, average truck wait time dropped from 47 minutes to 18 minutes -- a 62% reduction. Dock utilization climbed from 61% to 84%. The biggest financial win came from demurrage: the company saved $340,000 per year across the three yards because trucks were no longer sitting idle waiting for assignments.</p>
 
-      <p>The system now handles over 400 moves per day across the three facilities. Deployment was incremental - one yard at a time over 6 weeks - which let the team fix edge cases at the first site before rolling out to the next two.</p>
+      <p>The system now handles over 400 moves per day across all three facilities. Deployment was incremental -- one yard at a time over 6 weeks -- which let the team fix edge cases at the first site before rolling out to the next two.</p>
 
       <div class="diagram-panel">
         <div class="diagram-title">SYS_METRICS // Before vs After Deployment</div>
@@ -569,11 +569,11 @@
 
   <div class="prose-container">
     <div class="main-text">
-      <p>The first version of the routing engine was a simple first-in-first-out queue. A truck arrived, it went to the next open dock in order. This failed within the first week of testing because it could not handle priority loads (perishable goods that needed reefer docks immediately) or dock-type constraints (you cannot back a 53-foot trailer into a 40-foot door). The queue kept sending trucks to incompatible docks, creating more chaos than the whiteboard it replaced.</p>
+      <p>The first version of the routing engine was a simple first-in-first-out queue. A truck arrived and went to the next open dock in order. This failed within the first week of testing because it could not handle priority loads (perishable goods needing reefer docks immediately) or dock-type constraints (you cannot back a 53-foot trailer into a 40-foot door). The queue kept sending trucks to incompatible docks, creating more chaos than the whiteboard it replaced.</p>
 
-      <p>The fix was switching to a constraint-based assignment engine that filtered docks by compatibility first, then optimized by proximity. This added complexity but eliminated the mismatches that were causing the worst bottlenecks.</p>
+      <p>The fix was switching to a constraint-based assignment engine that filtered docks by compatibility first, then optimized by proximity. This added complexity but eliminated the mismatches causing the worst bottlenecks.</p>
 
-      <p>The biggest surprise was operator resistance. Yard supervisors had been doing this job for years with radios and gut instinct. They did not trust the system initially. The turning point came when they realized the exception-only alert model meant their radio calls dropped by 70%. Instead of coordinating every move, they only got pinged when something went wrong. That shift - from active coordinator to exception manager - is what finally got buy-in.</p>
+      <p>The biggest surprise was operator resistance. Yard supervisors had been doing this job for years with radios and gut instinct. They did not trust the system initially. The turning point came when they realized the exception-only alert model meant their radio calls dropped by 70%. Instead of coordinating every move, they only got pinged when something went wrong. That shift -- from active coordinator to exception manager -- is what finally earned buy-in.</p>
 
       <p>If we did this again, we would build a mobile app for truck drivers from day one. The printed ticket with a barcode works, but drivers frequently lose them or misread the slot codes. A phone-based direction system would have cut gate-to-slot errors significantly.</p>
     </div>

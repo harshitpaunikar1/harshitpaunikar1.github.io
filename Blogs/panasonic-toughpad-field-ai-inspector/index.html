@@ -507,7 +507,7 @@
     </header>
 
     <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-      <strong>Implementation Lens:</strong> Designed for the physical device first, including offline data capture, battery reality, camera workflow, and rugged field ergonomics. Built the inspection flow around structured evidence capture plus optional local SLM support for checklist guidance and anomaly flagging.
+      <strong>My Role:</strong> Designed the system for the physical device first: offline data capture, battery constraints, camera workflow, and rugged field ergonomics. Built the inspection flow around structured evidence capture with optional local SLM support for checklist guidance and anomaly flagging.
     </div>
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
       <strong style="margin-right:4px;">Stack:</strong>
@@ -523,9 +523,9 @@
           </aside>
           <div class="section-body">
             <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
-            <p>Panasonic Toughpad Field AI Inspector was designed for rugged field environments where normal laptops and tablets are not practical. The target users were inspection teams in utilities, telecom, factories, logistics, and industrial maintenance.</p><p>The project transformed a rugged tablet into an AI-powered inspection device. Field workers could capture photos, scan barcodes, record notes, work offline, complete checklists, and sync reports when connectivity returned.</p><p>The most persistent deployment issue was unreliable network access. Field workers often operate in basements, remote plants, warehouses, or outdoor locations where the internet is unstable.</p>
+            <p>This system was designed for rugged field environments where standard laptops and tablets fail. The target users were inspection teams in utilities, telecom, factories, logistics, and industrial maintenance.</p><p>The project turned a rugged tablet into an AI-powered inspection device. Field workers capture photos, scan barcodes, record notes, complete checklists offline, and sync reports when connectivity returns.</p><p>The most persistent deployment challenge was unreliable network access. Field workers routinely operate in basements, remote plants, warehouses, and outdoor locations where internet connectivity is intermittent or absent.</p>
             <div class="callout">
-              <p><strong>Value delivered.</strong> The platform delivered faster inspection completion, fewer missing fields, better evidence collection, and cleaner reporting.</p>
+              <p><strong>Value delivered.</strong> Faster inspection completion, fewer missing fields, stronger evidence collection, and cleaner reporting -- all while working fully offline in harsh environments.</p>
             </div>
           </div>
         </section>
@@ -622,12 +622,12 @@
             <div class="comparison-grid">
               <article class="comparison-card">
                 <h3>Difficulty Faced</h3>
-                <p>The system was designed with an offline-first architecture. Data was stored locally in encrypted form and synchronized automatically when the device returned online.</p>
-                <p>Bridging rugged hardware constraints with modern AI assistance without making the field workflow fragile.</p>
+                <p>The system was designed offline-first from the ground up. Data is stored locally in encrypted form and synchronizes automatically when the device comes back online.</p>
+                <p>The core difficulty: bridging rugged hardware constraints with modern AI assistance without making the field workflow fragile or dependent on connectivity.</p>
               </article>
               <article class="comparison-card">
                 <h3>Client Coordination Method</h3>
-                <p>The team used field ride-alongs and checklist-conversion workshops. Paper-based forms were converted into digital workflows and AI assistance was added only where it genuinely saved time.</p>
+                <p>The team used field ride-alongs and checklist-conversion workshops. Paper-based forms were converted into digital workflows, and AI assistance was added only where it genuinely reduced time or prevented missed fields.</p>
                 <p>Best fit: Field systems roles, Enterprise mobility roles, Edge AI roles</p>
                 <ul class="metric-list">
                   <li>Added MDM readiness, device attestation, encrypted offline storage, and tamper-resistant logging for enterprise deployment.</li><li>Framed the commercial model as enterprise licensing plus rugged-device bundling and per-asset inspection fees.</li>
@@ -660,8 +660,8 @@
           </aside>
           <div class="section-body">
             <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
-            <p>This is applied edge software: hardware assumptions, sync behavior, and security posture matter more than demo polish.</p>
-            <p>The inspection checklist must continue working even when every online service is unavailable. That assumption drives almost every technical choice.</p>
+            <p>This is applied edge software. Hardware assumptions, sync behavior, and security posture matter far more than demo polish.</p>
+            <p>The inspection checklist must continue working even when every online service is unavailable. That single constraint drives almost every technical choice in the system.</p>
             <div class="policy-grid">
               <article class="policy-card">
                 <h3>Biggest Surprise</h3>

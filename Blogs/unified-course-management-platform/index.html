@@ -190,11 +190,11 @@
   <div class="viewport">
     <header>
       <h1>Integration over Sprawl: Rebuilding the Learning Architecture</h1>
-      <p class="subtitle">Higher education technology suffers from tool sprawl. An institution typically runs a video platform, a separate grading rubric logic module, a third-party assessment engine, and an early-warning analytics dashboard. A unified course management platform replaces these fractured silos with a connected operating surface, defined by how data flows gracefully from the instructor's desk to the learner's screen.</p>
+      <p class="subtitle">Higher education technology suffers from tool sprawl. A typical institution runs a video platform, a separate grading module, a third-party assessment engine, and an early-warning analytics dashboard -- none of which talk to each other. This project replaced those fractured silos with a single connected surface where data flows naturally from the instructor's desk to the learner's screen.</p>
     </header>
 
     <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-      <strong>My Role:</strong> I led the platform architecture - the DAG-based course state machine, unified gradebook module, and the at-risk learner analytics pipeline. The pivotal decision was abandoning the build-everything approach at week 6 and integrating best-of-breed services behind a unified interface instead; that call cut our timeline by 60% and was driven by what the instructors told us they actually needed.
+      <strong>My Role:</strong> I led the platform architecture, owning the DAG-based course state machine, unified gradebook module, and the at-risk learner analytics pipeline. The pivotal decision came at week 6: I pushed to abandon the build-everything approach and instead integrate best-of-breed services behind a unified interface. That call, driven by direct instructor feedback, cut our timeline by 60%.
     </div>
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
       <strong style="margin-right:4px;">Stack:</strong>
@@ -206,13 +206,13 @@
       <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Analytics pipeline</span>
     </div>
 
-    <p>A learning platform is not a collection of web forms for uploading PDFs. It is an orchestration engine. When a university strings together disparate software packages via loose LTI (Learning Tools Interoperability) links, they offload the integration pain directly onto the users. Instructors are forced to duplicate rubrics across three systems, and learners are forced to authenticate into distinct portals to match their lecture video with their quiz assignment.</p>
+    <p>A learning platform is not a collection of web forms for uploading PDFs. It is an orchestration engine. When a university strings together disparate tools via loose LTI links, the integration burden falls directly on users. Instructors duplicate rubrics across three systems. Learners authenticate into separate portals just to match a lecture video with the corresponding quiz.</p>
 
-    <p>A unified architecture solves this by treating the course as a central state machine. Assessments, gradebooks, and analytics are not separate apps; they are strictly defined views querying the exact same underlying course data structure. To understand the architectural value, we must trace how a single educational intent travels through the platform.</p>
+    <p>A unified architecture solves this by treating the course as a central state machine. Assessments, gradebooks, and analytics are not separate apps; they are views querying the same underlying data structure. To understand the architectural value, trace how a single educational intent travels through the platform.</p>
 
     <h2>[MILESTONE :: COURSE_ASSEMBLY]</h2>
 
-    <p>The first interaction with the platform dictates the structural integrity of everything that follows. In a fragmented system, authoring is merely document storage. In a unified architecture, authoring is the explicit binding of content to measurable outcomes.</p>
+    <p>The first interaction with the platform sets the structural integrity of everything that follows. In a fragmented system, authoring is just document storage. In a unified architecture, authoring means explicitly binding content to measurable outcomes.</p>
 
     <div class="journey-split">
       <div class="journey-column instructor">
@@ -288,7 +288,7 @@
 
     <h2>[MILESTONE :: EVALUATION_LEDGER]</h2>
 
-    <p>Assessments in disconnected systems generate orphaned scores. A grade is dropped into an external CSV, imported manually by a TA, and mapped loosely to a student ID. If the submission is updated, the sync script fails, and the gradebook diverges from reality.</p>
+    <p>Assessments in disconnected systems produce orphaned scores. A grade lands in an external CSV, gets imported manually by a TA, and is loosely mapped to a student ID. If the submission is updated, the sync script fails and the gradebook diverges from reality.</p>
 
     <div class="journey-split">
       <div class="journey-column learner">
@@ -303,7 +303,7 @@
 
     <h2>[MILESTONE :: TELEMETRY_ALERTS]</h2>
 
-    <p>The final, perhaps most vital architectural benefit of a unified system is the ability to generate a reliable At-Risk Learner pipeline. Disconnected systems attempt this by patching together delayed gradebook data with clumsy login timestamps.</p>
+    <p>The most vital architectural benefit of a unified system is the ability to generate a reliable at-risk learner pipeline. Disconnected systems attempt this by patching together delayed gradebook data with unreliable login timestamps.</p>
 
     <p>Our unified campus map allows the <strong>Analytics</strong> module to observe the entire ecosystem asynchronously. It watches the delivery surface (Did the learner complete the video?), the assessment boundary (Has the quiz been started 24 hours before the deadline?), and the gradebook ledger (Is the rolling average dropping below the cohort median?).</p>
 
@@ -313,13 +313,13 @@
       <code>THEN Emit Pipeline Alert to Subject TA</code>
     </div>
 
-    <p>By enforcing a strict, unified data model beneath the course management layer, the platform restores agency to the educators. They stop debugging complex API handshakes between third-party vendors and return to the work of analyzing intervention signals. A unified architecture is not merely about aesthetic convenience; it is about establishing a singular, dependable truth that allows the institution to teach reliably at scale.</p>
+    <p>By enforcing a strict, unified data model beneath the course management layer, the platform restores agency to educators. They stop debugging API handshakes between third-party vendors and return to analyzing intervention signals. A unified architecture is not about convenience; it is about establishing a single, dependable source of truth that allows the institution to teach reliably at scale.</p>
 
     <h2>[MILESTONE :: PROJECT_CONTEXT]</h2>
 
-    <p>The client was a private university running 120 courses each semester with 3,500 enrolled students. Faculty relied on five separate tools to manage a single course: Zoom for live lectures, Google Forms for assessments, Excel spreadsheets for grade tracking, email blasts for announcements, and Google Drive for distributing materials. Nothing talked to anything else.</p>
+    <p>The client was a private university running 120 courses per semester with 3,500 enrolled students. Faculty relied on five separate tools to manage a single course: Zoom for live lectures, Google Forms for assessments, Excel for grade tracking, email for announcements, and Google Drive for materials. Nothing talked to anything else.</p>
 
-    <p>Students complained loudly. They checked five platforms daily just to keep up. Deadlines slipped through the cracks because a quiz lived on one tool and its instructions lived on another. IT support staff spent roughly 20 hours every week troubleshooting broken integrations between these tools - sync failures, permission mismatches, expired OAuth tokens.</p>
+    <p>Students checked five platforms daily just to keep up. Deadlines slipped through the cracks because a quiz lived on one tool and its instructions lived on another. IT support staff spent roughly 20 hours every week troubleshooting broken integrations -- sync failures, permission mismatches, expired OAuth tokens.</p>
 
     <div class="constraint-box">
       <span>Engagement Parameters</span>
@@ -329,13 +329,13 @@
       <code>CORE PAIN: 5 disconnected tools, 20 hrs/week IT overhead, poor student experience</code>
     </div>
 
-    <p>The academic coordinator embedded with us full-time. She bridged the gap between what faculty actually needed and what we were building. Without her, we would have over-engineered the assessment engine and completely missed the notification problem that students cared about most.</p>
+    <p>An academic coordinator embedded with the team full-time, bridging the gap between what faculty actually needed and what we were building. Without her, we would have over-engineered the assessment engine and completely missed the notification problem that students cared about most.</p>
 
     <h2>[MILESTONE :: RESULTS_AND_IMPACT]</h2>
 
-    <p>The platform went live across all 120 courses over a single semester. The numbers told a clear story: consolidation eliminated waste at every layer.</p>
+    <p>The platform went live across all 120 courses in a single semester. The numbers told a clear story: consolidation eliminated waste at every layer.</p>
 
-    <p>Faculty course setup time dropped from three full days of copying content across five tools down to four hours in a single interface. Grade publishing became instant - no more two-day manual export-import cycles. Assessment completion rates climbed 22% simply because students could find their quizzes without hunting across platforms.</p>
+    <p>Faculty course setup time dropped from three days of copying content across five tools to four hours in a single interface. Grade publishing became instant -- no more two-day manual export-import cycles. Assessment completion rates climbed 22%, simply because students could find their quizzes without hunting across platforms.</p>
 
     <div class="roomy-figure">
       <div class="svg-campus-map">
@@ -400,13 +400,13 @@
       <figcaption>Fig 2. - Before/After. Five disconnected tools collapsed into one platform. IT support tickets for integration issues dropped from 40 per week to 6. Student satisfaction jumped from 3.1 to 4.4 out of 5.</figcaption>
     </div>
 
-    <p>IT support tickets specifically related to tool integration dropped 85% - from 40 per week down to 6. The remaining tickets were mostly password resets and browser compatibility issues, not systemic integration failures. Student satisfaction scores climbed from 3.1 out of 5 to 4.4 out of 5. The system handles 3,500 active students with 99.8% uptime across the semester.</p>
+    <p>Integration-related IT support tickets dropped 85% -- from 40 per week to 6. The remaining tickets were mostly password resets and browser compatibility issues, not systemic failures. Student satisfaction scores rose from 3.1 to 4.4 out of 5. The system served 3,500 active students with 99.8% uptime across the semester.</p>
 
     <h2>[MILESTONE :: LESSONS_LEARNED]</h2>
 
-    <p>The original plan was to build every component from scratch - our own video streaming engine, our own quiz builder, our own grade calculation system. Two weeks into the project, we realized this would take over a year and produce inferior versions of tools that already existed.</p>
+    <p>The original plan was to build every component from scratch -- our own video streaming engine, quiz builder, and grade calculation system. Two weeks in, we realized this would take over a year and produce inferior versions of tools that already existed.</p>
 
-    <p>We pivoted. Instead of reinventing each tool, we integrated best-of-breed services (a video streaming API, a proven assessment engine) behind a single unified interface. The student and the instructor never saw the seams. This decision cut our development timeline by roughly 60%. We shipped in 18 weeks instead of the 45 we had originally estimated for the build-everything approach.</p>
+    <p>We pivoted. Instead of reinventing each tool, we integrated best-of-breed services (a video streaming API, a proven assessment engine) behind a single unified interface. Students and instructors never saw the seams. This decision cut our development timeline by roughly 60%. We shipped in 18 weeks instead of the 45 originally estimated.</p>
 
     <div class="constraint-box">
       <span>The Surprise Nobody Predicted</span>
@@ -415,9 +415,9 @@
       <code>REASON: Students wanted ONE place to see all deadlines and announcements</code>
     </div>
 
-    <p>The biggest surprise had nothing to do with video quality or assessment logic. The most requested feature, by a wide margin, was a unified notification system. Students did not care which tool generated the deadline - they just wanted a single feed showing everything due this week, every announcement from every course, in one place. We built it in sprint 6 and it became the most-used screen in the entire platform.</p>
+    <p>The biggest surprise had nothing to do with video quality or assessment logic. The most requested feature, by a wide margin, was a unified notification feed. Students did not care which tool generated the deadline -- they wanted one place showing everything due this week and every announcement from every course. We built it in sprint 6, and it became the most-used screen in the entire platform.</p>
 
-    <p>If we built this again, we would add offline access from day one. A meaningful number of students had unreliable internet connections at home. They could not download lecture materials or complete timed assessments without a stable connection. Progressive offline caching would have made the platform accessible to every student regardless of connectivity.</p>
+    <p>If we built this again, we would add offline access from day one. A meaningful number of students had unreliable internet connections at home and could not download materials or complete timed assessments without a stable connection. Progressive offline caching would have made the platform accessible to every student regardless of connectivity.</p>
   </div>
 
 <script type="application/json" id="blog-config">{"slug":"unified-course-management-platform"}</script>

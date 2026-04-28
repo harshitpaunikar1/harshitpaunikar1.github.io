@@ -208,7 +208,7 @@
   <header>
     <div class="doc-meta">Architecture Specification // Rev 2.1</div>
     <h1>Lifecycle State Automation</h1>
-    <p class="abstract">Marketing automation guides treat triggers as a copywriting exercise. In reality, scaling personalized, engagement-triggered follow-ups is an infrastructure engineering challenge. When a user downloads a technical whitepaper, firing a blind email five minutes later exposes the brand as robotic. Real automation is defined by its state-machine logic: catching webhook payloads asynchronously, enforcing waiting periods, resolving race conditions, and executing strict terminal states before transmitting payload events to an outbound queue.</p>
+    <p class="abstract">Marketing automation guides treat triggers as a copywriting exercise. In practice, scaling personalized, engagement-triggered follow-ups is an infrastructure engineering challenge. When a user downloads a technical whitepaper, firing a blind email five minutes later exposes the brand as robotic. Real automation is defined by its state-machine logic: catching webhook payloads asynchronously, enforcing waiting periods, resolving race conditions, and executing terminal-state checks before transmitting events to an outbound queue.</p>
   </header>
 
   <div class="system-container">
@@ -224,9 +224,9 @@
 
     <div class="core-column">
       
-      <p>The standard failure mode of early automation builds is assuming synchronicity. A user clicks a link, the system logs the click, and the system attempts to send an email in the same thread. When volume spikes, or an external SMTP server lags, the database connection pools exhaust and the application crashes.</p>
+      <p>The standard failure mode of early automation builds is assuming synchronicity. A user clicks a link, the system logs the click, and the system tries to send an email in the same thread. When volume spikes or an external SMTP server lags, connection pools exhaust and the application crashes.</p>
 
-      <p>The fundamental rule of event-driven infrastructure is isolation. User engagement happens on the client side. Logic processing happens in an isolated worker node. Outbound transmission happens via a decoupled queue. The only thread connecting them is standard JSON webhook payloads passed over HTTP.</p>
+      <p>The fundamental rule of event-driven infrastructure is isolation. User engagement happens on the client side. Logic processing happens in an isolated worker node. Outbound transmission happens via a decoupled queue. The only thread connecting them is JSON webhook payloads passed over HTTP.</p>
 
       <h2>STATE_01: INGESTION // ASYNC WEBHOOKS</h2>
 
@@ -311,9 +311,9 @@
 
       <h2>STATE_03: DEDUPLICATION // IDEMPOTENCY</h2>
 
-      <p>A user might click the "Download Whitepaper" button four times in five seconds because their browser lagged. If the webhook architecture is naive, it registers four ingestion events. When the 24-hour cron job triggers, the worker pulls all four events and slams the user with four identical welcome emails in a frantic one-second window. The automation immediately looks broken.</p>
+      <p>A user might click the "Download Whitepaper" button four times in five seconds because their browser lagged. If the webhook architecture is naive, it registers four ingestion events. When the 24-hour cron job triggers, the worker pulls all four events and sends four identical welcome emails in rapid succession. The automation immediately looks broken.</p>
 
-      <p>Idempotency locks are mandatory. The automation engine must possess memory. Before advancing to an active state, the logic flowchart requires an atomic lookup against the user's historically executed event hash. If an identically named state mutation exists within a prescribed cool-down window, the worker must violently terminate the duplicate loop.</p>
+      <p>Idempotency locks are mandatory. The automation engine must have memory. Before advancing to an active state, the logic requires an atomic lookup against the user's historically executed event hash. If an identical state mutation exists within a prescribed cool-down window, the worker must terminate the duplicate loop.</p>
 
       <div class="vector-block">
         <div class="schema-title">FIG 2 // RACE-CONDITION LOCKOUT FLOW</div>
@@ -361,9 +361,9 @@
 
       <h2>STATE_04: TERMINAL_EVAL // EXIT CONDITIONS</h2>
 
-      <p>The final constraint of an automated sequence is knowing when to abort. If a user downloads a whitepaper, enters a 24-hour wait state, but explicitly purchases the SaaS subscription within that 24 hours, sending them an introductory "buy now" email at T+24 is an apocalyptic breach of context.</p>
+      <p>The final constraint of an automated sequence is knowing when to stop. If a user downloads a whitepaper, enters a 24-hour wait state, but purchases the SaaS subscription within that 24 hours, sending them an introductory "buy now" email at T+24 is a serious breach of context.</p>
 
-      <p>Every node in a lifecycle sequence must map to a terminal exit condition. Just because the database swept a record out of a <code>Wait State</code> does not mean it is globally authorized to transmit to the Outbound Queue. A master <code>TERMINAL_EVAL</code> hook must execute microseconds before dispatch, interrogating the active CRM state for suppressions (e.g., <code>has_active_subscription == true</code>). If the terminal flag is raised, the entire state machine collapses gracefully, canceling the sequence and writing an abort log. The user experiences nothing. In lifecycle automation, avoiding a bad execution is intrinsically more valuable than forcing a good one.</p>
+      <p>Every node in a lifecycle sequence must map to a terminal exit condition. Just because the database swept a record out of a <code>Wait State</code> does not mean it is authorized to transmit to the Outbound Queue. A master <code>TERMINAL_EVAL</code> hook must execute before dispatch, checking the active CRM state for suppressions (e.g., <code>has_active_subscription == true</code>). If the terminal flag is raised, the state machine collapses gracefully, canceling the sequence and writing an abort log. The user experiences nothing. In lifecycle automation, avoiding a bad execution is more valuable than forcing a good one.</p>
 
       <h2>STATE_05: PROJECT_CONTEXT // THE OPERATION</h2>
 
@@ -375,9 +375,9 @@
 
       <h2>STATE_06: RESULTS_AND_IMPACT // BEFORE VS. AFTER</h2>
 
-      <p>Followup email delivery went from 6-8 hour delays to under 90 seconds after engagement. Webhook processing throughput increased from 200 events per second to 12,000 events per second with Redis queues. Email sequence completion rate improved from 34% to 78%, because timely followups got better engagement and kept people moving through the sequence.</p>
+      <p>Followup email delivery dropped from 6-8 hour delays to under 90 seconds after engagement. Webhook processing throughput increased from 200 events per second to 12,000 events per second with Redis queues. Email sequence completion rate improved from 34% to 78% because timely followups drove better engagement and kept recipients moving through the sequence.</p>
 
-      <p>Campaign revenue attribution increased 23% because sequences were now completing properly and the tracking could actually connect the dots between the first touch and the final conversion. The system ran for six months in production with zero race condition incidents.</p>
+      <p>Campaign revenue attribution increased 23% because sequences were completing properly and tracking could connect the first touch to the final conversion. The system ran for six months in production with zero race condition incidents.</p>
 
       <div class="vector-block">
         <div class="schema-title">FIG 3 // BEFORE vs. AFTER DEPLOYMENT METRICS</div>
@@ -447,7 +447,7 @@
 
       <h2>STATE_07: LESSONS_LEARNED // WHAT FAILED FIRST</h2>
 
-      <p>The first instinct was to scale the existing synchronous system. The marketing team added four more application servers, bringing the total to six. Throughput improved briefly, but the underlying bottleneck was not CPU or memory. It was the SMTP rate limits imposed by the email service provider and the database locks that occurred when multiple threads tried to update the same recipient records simultaneously. More servers just meant more threads hitting the same walls faster.</p>
+      <p>The first instinct was to scale the existing synchronous system. The team added four more application servers, bringing the total to six. Throughput improved briefly, but the underlying bottleneck was not CPU or memory. It was SMTP rate limits imposed by the email service provider and database locks that occurred when multiple threads tried to update the same recipient records simultaneously. More servers just meant more threads hitting the same walls faster.</p>
 
       <p>The async event-driven approach with Redis was not only faster, it was 10x cheaper to operate. Instead of six application servers all trying to send emails in real time, the system used a single Redis queue that absorbed the webhook spikes and fed events to workers at a controlled pace that matched the SMTP rate limits exactly. The bottleneck disappeared because the architecture stopped fighting the constraints and started working with them.</p>
 

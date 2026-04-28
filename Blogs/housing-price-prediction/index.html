@@ -194,7 +194,7 @@
     <span>LINEAR REGRESSION MODEL</span>
   </div>
   <h1>What a Housing Regression Can and Cannot Tell You About Price</h1>
-  <p class="subhead">A model is not a valuation - it is a hypothesis about which property attributes correlate with price in historical data. The useful question is when that hypothesis holds and when market judgment takes over.</p>
+  <p class="subhead">A model is not a valuation. It is a hypothesis about which property attributes correlate with price in historical data. The useful question is when that hypothesis holds and when market judgment should take over.</p>
   <hr class="header-rule">
 </div>
 
@@ -203,7 +203,7 @@
 
   <h2>§ Valuation Context</h2>
 
-  <p>The Delhi housing dataset used in this project captures transaction prices alongside a compact set of observable property attributes: built area in square feet, number of bedrooms, bathrooms, stories, and parking spaces, plus binary indicators for main road access, guest room presence, basement, hot water heating, air conditioning, and furnishing status. For a city as heterogeneous as Delhi - spanning DDA flats in outer districts, builder floors in South Delhi, independent houses in Dwarka, and new-construction high-rises in Gurgaon fringe - this attribute set captures perhaps 60–70 percent of what determines a property's price. The rest is locality, builder reputation, floor level, facing direction, maintenance status, and the specific negotiating circumstances of the transaction.</p>
+  <p>The Delhi housing dataset captures transaction prices alongside a compact set of observable property attributes: built area in square feet, number of bedrooms, bathrooms, stories, and parking spaces, plus binary indicators for main road access, guest room presence, basement, hot water heating, air conditioning, and furnishing status. For a city as heterogeneous as Delhi -- spanning DDA flats in outer districts, builder floors in South Delhi, independent houses in Dwarka, and new-construction high-rises on the Gurgaon fringe -- this attribute set captures perhaps 60-70 percent of what determines a property's price. The rest comes from locality, builder reputation, floor level, facing direction, maintenance status, and the specific negotiating circumstances of each transaction.</p>
 
   <p>The regression model treats the observable attributes as the complete world. That is the right starting assumption for understanding directional relationships; it is an incomplete assumption for building a pricing tool that anyone would use in an actual transaction.</p>
 
@@ -372,9 +372,9 @@
 
   <p><strong>Bathrooms carry more independent signal than bedrooms</strong> once area is controlled for. This reflects something real about the market: the number of bathrooms is a reliable proxy for the quality level of the fit-out, which correlates with builder grade and finish quality in ways that bedroom count does not. An extra bathroom in a mid-segment property often means the builder's premium tier; an extra bedroom may simply mean the same square footage was partitioned differently.</p>
 
-  <p><strong>Air conditioning has a meaningful positive coefficient</strong> that is larger than most buyers would intuit. This is not purely about the air conditioning unit itself; it is a proxy for construction quality, as AC-fitted properties in this dataset skew toward newer construction with better electrical infrastructure and often better overall build quality. Using the AC dummy to represent "better-built property" is statistically reasonable but conceptually sloppy.</p>
+  <p><strong>Air conditioning carries a meaningful positive coefficient</strong> that is larger than most buyers would expect. This is not purely about the AC unit itself; it acts as a proxy for construction quality, since AC-fitted properties in this dataset skew toward newer builds with better electrical infrastructure and overall finish. Using the AC dummy to represent "better-built property" is statistically reasonable but conceptually imprecise.</p>
 
-  <p><strong>Furnishing status is ambiguous.</strong> The furnished versus unfurnished comparison should produce a positive coefficient for furnished properties, but the magnitude varies substantially depending on what furnishings are included. A "furnished" property with builder-grade furniture may not command the premium that a fully equipped, professionally designed property would. The binary dummy treats all furnished properties as equivalent, which they are not.</p>
+  <p><strong>Furnishing status is ambiguous.</strong> The furnished-versus-unfurnished comparison should produce a positive coefficient for furnished properties, but the magnitude varies substantially depending on what furnishings are included. A "furnished" property with builder-grade furniture may not command the premium that a fully equipped, professionally designed property would. The binary dummy treats all furnished properties as equivalent, and they are not.</p>
 
   <h2>§ Where the Model Breaks Down</h2>
 
@@ -417,7 +417,7 @@ print(vif_df.sort_values('VIF', ascending=False))</code></pre>
 
   <p><strong>Override the model</strong> when: locality is a dominant factor and you know the locality-specific premium; the property has characteristics outside the training data (e.g., a heritage property, an industrial conversion, a penthouse with an unusual floor area ratio); the market is in a transitional moment (interest rate shift, new infrastructure announcement) that the historical training data does not capture; or the residual for comparable properties in recent transactions is systematically large and directional.</p>
 
-  <p>A real estate agent with deep locality knowledge will consistently beat this model for individual property valuations, because they have access to the signal that matters most - where the property is - and the model does not. The model's comparative advantage is processing many properties simultaneously with consistent criteria, flagging outliers for manual review, and providing a quantitative framework for feature-value negotiation ("the AC unit is worth approximately ₹X based on comparables") that is harder to do reliably by eye.</p>
+  <p>A real estate agent with deep locality knowledge will consistently outperform this model on individual property valuations, because they have access to the signal that matters most -- where the property sits -- and the model does not. The model's comparative advantage lies in processing many properties simultaneously with consistent criteria, flagging outliers for manual review, and providing a quantitative framework for feature-value negotiation ("the AC unit is worth approximately X based on comparables") that is difficult to do reliably by intuition alone.</p>
 
   <h2>§ What the Coefficients Would Say to a Seller</h2>
 

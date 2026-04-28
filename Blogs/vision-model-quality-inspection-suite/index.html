@@ -500,14 +500,14 @@
     <header class="masthead">
       <p class="kicker">Computer Vision / Operations · Computer Vision / Edge AI · Architecture Review</p>
       <h1>Vision Model Quality Inspection Suite</h1>
-      <p class="deck">A vision inspection suite that connects camera feeds to detection, rule classification, alerting, and reporting. It is designed for factories, warehouses, hospitals, construction sites, agriculture, and retail shelves where image understanding becomes an operational system rather than a lab model. The platform supports object detection, counting, safety monitoring, and visual Q&amp;A surfaces backed by dashboards and business reports.</p>
+      <p class="deck">A vision inspection suite connecting camera feeds to detection, rule-based classification, alerting, and reporting. Designed for factories, warehouses, hospitals, construction sites, agriculture, and retail environments where image understanding must function as an operational system, not a lab demo. The platform supports object detection, counting, safety monitoring, and visual Q&amp;A -- all backed by dashboards and business reports.</p>
       <div class="summary-strip" aria-label="Executive summary strip">
         <article><h2>Primary Use</h2><p>A packaging line must confirm whether each product box has the correct label, seal, barcode, and visible condition. The system detects missing labels and alerts the supervisor immediately.</p></article><article><h2>System Built</h2><p>A production inspection suite that connects vision outputs to actioning, dashboards, and cross-site business visibility.</p></article><article><h2>Critical Control</h2><p>Face and license-plate blurring</p></article><article><h2>Business Outcome</h2><p>The suite delivered faster inspection, better traceability, and reduced defect leakage.</p></article>
       </div>
     </header>
 
     <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-      <strong>Implementation Lens:</strong> Scoped the platform around a layered pipeline: capture, inference, event rules, alerting, analytics, and business reporting. Kept model choice flexible across YOLO-style local detection and API-backed multimodal analysis depending sensitivity and latency requirements.
+      <strong>Implementation Lens:</strong> I scoped the platform around a layered pipeline: capture, inference, event rules, alerting, analytics, and business reporting. Model choice stayed flexible -- YOLO-style local detection for low-latency needs, API-backed multimodal analysis for more complex queries -- depending on sensitivity and latency requirements at each site.
     </div>
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
       <strong style="margin-right:4px;">Stack:</strong>
@@ -523,7 +523,7 @@
           </aside>
           <div class="section-body">
             <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
-            <p>Vision Model Quality Inspection Suite was built for a manufacturing environment where manual inspection was slow, inconsistent, and expensive. Operators were checking products visually, but fatigue and human error led to missed defects.</p><p>The project used computer vision to detect defects, count objects, verify packaging, and alert supervisors when quality issues appeared. The goal was not to replace humans blindly but to assist quality teams and make defect detection more consistent.</p><p>The biggest field challenge was image variability. Lighting changed, camera angles shifted, products had different textures, and some defects were very small. A model trained on perfect images failed in the real factory environment.</p>
+            <p>This suite was built for a manufacturing environment where manual inspection was slow, inconsistent, and expensive. Operators checked products visually, but fatigue and human error led to missed defects reaching customers.</p><p>The project applied computer vision to detect defects, count objects, verify packaging, and alert supervisors when quality issues appeared. The goal was not to replace humans but to augment quality teams with consistent, tireless detection.</p><p>The biggest field challenge was image variability. Lighting changed shift to shift, camera angles drifted, products had different textures, and some defects were barely visible. A model trained on controlled images failed in the real factory environment.</p>
             <div class="callout">
               <p><strong>Value delivered.</strong> The suite delivered faster inspection, better traceability, and reduced defect leakage.</p>
             </div>
@@ -537,8 +537,8 @@
           </aside>
           <div class="section-body">
             <h2>Section II · The system must be readable as a flow before it can be trusted in production</h2>
-            <p>A multi-surface vision inspection platform for defects, counting, safety events, and visual question answering across industrial environments.</p>
-            <p>Real-life use case solved: A packaging line must confirm whether each product box has the correct label, seal, barcode, and visible condition. The system detects missing labels and alerts the supervisor immediately.</p>
+            <p>The platform provides multi-surface vision inspection: defect detection, counting, safety event monitoring, and visual question answering across industrial environments.</p>
+            <p>A concrete use case: a packaging line must confirm whether each product box has the correct label, seal, barcode, and visible condition. The system detects missing labels and alerts the supervisor immediately, before defective products reach shipping.</p>
             <figure aria-labelledby="architecture-caption">
               <p class="diagram-title">Diagram A · Architecture Overview</p>
               <svg viewBox="0 0 1160 330" role="img" aria-label="Vision Model Quality Inspection Suite architecture diagram">
@@ -577,7 +577,7 @@
           </aside>
           <div class="section-body">
             <h2>Section III · Integrations, monetization, and security define whether the system is commercially real</h2>
-            <p>The platform only becomes credible when surrounding surfaces are designed alongside the core model or workflow. Integrations decide where the output lands. Revenue model determines what deployment shape is sustainable. Security controls decide whether teams will approve the system for real use.</p>
+            <p>The platform becomes credible only when surrounding surfaces are designed alongside the core model. Integrations decide where the output lands. The revenue model determines what deployment shape is sustainable. Security controls decide whether teams will approve the system for production use.</p>
             <div class="comparison-grid">
               <article class="comparison-card">
                 <h3>Key Features</h3>
@@ -622,12 +622,12 @@
             <div class="comparison-grid">
               <article class="comparison-card">
                 <h3>Difficulty Faced</h3>
-                <p>The team solved the variability problem by collecting real production images, building a defect taxonomy, improving lighting where possible, and creating a human review loop for uncertain predictions.</p>
-                <p>Making varied vision tasks consistent enough to fit one operational control plane across different environments and camera qualities.</p>
+                <p>The core difficulty was making varied vision tasks consistent enough to fit one operational control plane across different environments and camera qualities.</p>
+                <p>We solved the variability problem by collecting real production images, building a defect taxonomy, improving lighting where possible, and creating a human review loop for uncertain predictions.</p>
               </article>
               <article class="comparison-card">
                 <h3>Client Coordination Method</h3>
-                <p>Coordination was highly practical. Time was spent with line operators, not only managers, to understand which defects truly mattered, which were acceptable, and which ones caused customer complaints.</p>
+                <p>Coordination was hands-on. We spent time with line operators, not just managers, to understand which defects truly mattered, which were acceptable, and which ones drove customer complaints.</p>
                 <p>Best fit: Computer vision roles, MLOps roles, Industrial AI roles</p>
                 <ul class="metric-list">
                   <li>Added privacy controls such as face or plate blurring, edge inference modes, secure RTSP handling, and role-based dashboards.</li><li>Positioned the commercial model around per-camera licensing plus higher-margin analytics and defect-reduction services.</li>
@@ -661,8 +661,8 @@
           </aside>
           <div class="section-body">
             <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
-            <p>This is the systems side of vision work: detection quality matters, but deployment, alert logic, and operator trust matter just as much.</p>
-            <p>The platform becomes useful only when detections are classified into severity and response policies that operators can actually act on.</p>
+            <p>This is the systems side of vision work: detection quality matters, but deployment reliability, alert logic, and operator trust matter just as much.</p>
+            <p>The platform becomes useful only when detections are classified into severity levels and response policies that operators can act on immediately.</p>
             <div class="policy-grid">
               <article class="policy-card">
                 <h3>Biggest Surprise</h3>

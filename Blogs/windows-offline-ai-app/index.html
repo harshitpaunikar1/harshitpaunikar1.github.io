@@ -141,11 +141,11 @@
   <div class="viewport">
     <header>
       <h1>Engineering the Edge: AI on Boring Hardware</h1>
-      <p class="directive">A utility company's 60 field technicians were inspecting power lines across three regions - but 40% of their sites had no internet at all. Their cloud AI model was useless in the field. We had 10 weeks and two engineers to fix it. The first thing we tried loaded fine in the office and drained the tablet battery before lunch on the first real field day.</p>
+      <p class="directive">A utility company's 60 field technicians inspected power lines across three regions, but 40% of their sites had no internet. Their cloud-based AI model was useless in the field. We had 10 weeks and two engineers to fix it. Our first attempt loaded fine in the office and drained the tablet battery before lunch on the first real field day.</p>
     </header>
 
     <div style="border-left:3px solid #0a0a0a;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(10,10,10,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;font-family:var(--font-body);">
-      <strong>My Role:</strong> I led the model optimization and ONNX conversion pipeline. My co-engineer built the Windows application shell, the SQLite persistence layer, and the background sync mechanism. We both shared responsibility for field testing on the actual hardware - which meant driving to dead zones to verify the offline experience worked under real conditions.
+      <strong>My Role:</strong> I led the model optimization and ONNX conversion pipeline -- taking the model from 148MB/4.2s down to 37MB/320ms through INT8 quantization. My co-engineer built the Windows application shell, the SQLite persistence layer, and the background sync mechanism. We shared responsibility for field testing on the actual hardware, which meant driving to dead zones to verify the offline experience worked under real conditions.
     </div>
 
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#555;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:var(--font-body);">
@@ -167,15 +167,15 @@
       <code>> OUTCOME: 180 hrs/month saved, zero offline backlog, 13x faster inference</code>
     </div>
 
-    <p>The real edge isn't a specialized hardware rack in a datacenter. It's an underpowered Windows 10 tablet on the passenger seat of an inspection truck - dual-core CPU, intermittent cellular signal, and a technician who needs to classify a defect right now, not when they drive back to the office.</p>
+    <p>The real edge is not a specialized hardware rack in a datacenter. It is an underpowered Windows 10 tablet on the passenger seat of an inspection truck -- dual-core CPU, intermittent cellular signal, and a technician who needs to classify a defect right now, not after driving back to the office.</p>
 
-    <p>When we tried loading the standard 16-bit PyTorch model on these tablets, it consumed nearly all the RAM, took 4.2 seconds per inference, and drained the battery in three hours. A technician inspecting 40 poles in a day would lose their device before lunch. We needed a completely different approach.</p>
+    <p>When we loaded the standard PyTorch model on these tablets, it consumed nearly all available RAM, took 4.2 seconds per inference, and drained the battery in three hours. A technician inspecting 40 poles in a day would lose their device before lunch. We needed a fundamentally different approach.</p>
 
     <h2>[PANEL_01: HARDWARE LIMITS & QUANTIZATION]</h2>
 
-    <p>We cannot change the physical hardware, so we must mutate the model. Standard neural networks utilize FP32 (32-bit floating point) weights, providing high precision at the cost of massive memory allocation and slow matrix multiplication on a CPU.</p>
+    <p>We could not change the physical hardware, so we had to change the model. Standard neural networks use FP32 (32-bit floating point) weights, providing high precision at the cost of large memory allocation and slow matrix multiplication on a CPU.</p>
 
-    <p>The core deployment strategy relies on transforming the original model into an ONNX (Open Neural Network Exchange) format and applying <strong>INT8 Quantization</strong>. Quantization aggressively rounds the 32-bit floating calculations into 8-bit integers. While this risks slight accuracy degradation (usually less than 2%), it reduces the model's physical footprint by 75% and massively accelerates CPU execution because integer math is exponentially cheaper than floating-point math.</p>
+    <p>The core deployment strategy was converting the original model to ONNX (Open Neural Network Exchange) format and applying <strong>INT8 Quantization</strong>. Quantization aggressively rounds 32-bit floating-point calculations into 8-bit integers. While this risks slight accuracy degradation (typically under 2%), it reduces the model footprint by 75% and massively accelerates CPU execution because integer math is far cheaper than floating-point math.</p>
 
     <div class="utility-callout">
       <strong>CPU Execution Target</strong>
@@ -261,23 +261,23 @@
 
     <h2>[PANEL_02: PERSISTENCE & DEFERRED SYNC]</h2>
 
-    <p>An application operating in a concrete basement will experience 100% packet loss. If the inference pipeline attempts an API call to a central server to save the analyzed data, the application will hang.</p>
+    <p>An application operating in a concrete basement will experience 100% packet loss. If the inference pipeline attempts an API call to save data, the application hangs.</p>
 
-    <p>To survive disconnection, the application treats the cloud as an eventual convenience rather than a runtime dependency. The ONNX inference deposits its findings directly into a local SQLite database that resides on the tablet's hard drive. The SQLite file acts as an immutable queue layer. The user captures an image, the model infers a defect, the local database logs the row, and the UI immediately clears for the next capture.</p>
+    <p>To survive disconnection, the application treats the cloud as an eventual convenience, not a runtime dependency. ONNX inference deposits results directly into a local SQLite database on the tablet's hard drive. The SQLite file acts as an immutable queue: the user captures an image, the model infers a defect, the local database logs the row, and the UI immediately clears for the next capture.</p>
 
-    <p>A background <code>SyncWorker</code> thread runs constantly, pinging for network availability. When the technician finally drives into a 4G zone, the worker detects the connection and quietly drains the SQLite logs via bulk REST payloads to the central server. If the connection drops mid-sync, the transaction is rolled back locally and retried dynamically an hour later.</p>
+    <p>A background <code>SyncWorker</code> thread runs continuously, pinging for network availability. When the technician drives into a 4G zone, the worker detects connectivity and quietly drains the SQLite logs via bulk REST payloads to the central server. If the connection drops mid-sync, the transaction rolls back locally and retries an hour later.</p>
 
     <h2>[PANEL_03: DEPLOYMENT PRAGMATISM]</h2>
 
-    <p>Shipping updates to laptops on the move requires an evasion of friction. We avoid convoluted Docker architectures that struggle on obscure Windows builds. The application is packaged as a static, self-contained binary using standard Windows installers (MSI), carrying the required ONNX runtime DLLs locally. The entire application directory lives securely outside of the OS update paths so Microsoft Patch Tuesdays do not silently brick the ML dependencies.</p>
+    <p>Shipping updates to tablets on the move demands minimal friction. We avoided convoluted Docker architectures that struggle on obscure Windows builds. The application is packaged as a self-contained binary using standard Windows installers (MSI), carrying the required ONNX runtime DLLs locally. The entire application directory lives outside OS update paths so Microsoft Patch Tuesdays do not silently brick the ML dependencies.</p>
 
-    <p>Building for boring hardware enforces necessary discipline. When you cannot rely on a GPU to cover up inefficient code, you write efficient code. When you cannot rely on LTE, you build bulletproof local persistence. The resulting application is devoid of architectural vanity; it simply launches instantly, infers reliably, and never loses the user's data.</p>
+    <p>Building for boring hardware enforces discipline. When you cannot rely on a GPU to mask inefficient code, you write efficient code. When you cannot rely on LTE, you build bulletproof local persistence. The resulting application has no architectural vanity: it launches instantly, infers reliably, and never loses the user's data.</p>
 
     <h2>[PANEL_04: PROJECT CONTEXT]</h2>
 
-    <p>The client was a utility company with 60 field technicians responsible for inspecting power line equipment across three service regions. Their existing workflow depended on a cloud-based defect detection system that required a strong internet connection. The problem: roughly 40% of their inspection sites - rural areas, underground substations, remote corridor sections - had no reliable connectivity.</p>
+    <p>The client was a utility company with 60 field technicians inspecting power line equipment across three service regions. Their existing workflow depended on a cloud-based defect detection system that required a strong internet connection. The problem: roughly 40% of inspection sites -- rural areas, underground substations, remote corridor sections -- had no reliable connectivity.</p>
 
-    <p>When technicians hit a dead zone, they fell back to manual processes. They photographed every defect with their tablet cameras, drove back to the office, and classified everything by hand at their desks. This created a backlog that grew every week and introduced errors from delayed classification - a cracked insulator photographed in the morning looked different on a screen eight hours later without the physical context.</p>
+    <p>When technicians hit a dead zone, they reverted to manual processes: photograph every defect, drive back to the office, classify everything by hand. This created a backlog that grew weekly and introduced errors from delayed classification -- a cracked insulator photographed in the morning looked different on a screen eight hours later without the physical context.</p>
 
     <div class="utility-callout">
       <strong>Engagement Parameters</strong>
@@ -287,13 +287,13 @@
       <code>> CORE PAIN: Cloud AI unusable at 40% of inspection sites (no connectivity)</code>
     </div>
 
-    <p>The team was small by design - two engineers for ten weeks. One focused on model optimization and the ONNX conversion pipeline. The other built the Windows application shell, the SQLite persistence layer, and the sync mechanism. We shared responsibility for testing on the actual field tablets, which meant driving out to dead zones to verify the offline experience was seamless.</p>
+    <p>The team was small by design: two engineers for ten weeks. I focused on model optimization and the ONNX conversion pipeline. My co-engineer built the Windows application shell, SQLite persistence layer, and sync mechanism. We shared responsibility for testing on the actual field tablets, which meant driving to dead zones to verify the offline experience firsthand.</p>
 
     <h2>[PANEL_05: RESULTS & IMPACT]</h2>
 
-    <p>The deployment covered all 60 tablets across all three service regions. The numbers reflected a complete shift from office-based re-classification to on-site real-time detection.</p>
+    <p>The deployment covered all 60 tablets across three service regions. The numbers reflected a complete shift from office-based reclassification to on-site real-time detection.</p>
 
-    <p>Model size dropped from 148MB in its original PyTorch form to 37MB after ONNX conversion and INT8 quantization - a 75% reduction. Inference speed went from 4.2 seconds per frame to 320 milliseconds - 13 times faster. The application ran comfortably on the 2-core tablets with 4GB of RAM and no GPU. Post-quantization accuracy held at 94.1%, compared to the 95.8% FP32 baseline - a 1.7% drop that the client's quality team deemed acceptable for field use.</p>
+    <p>Model size dropped from 148MB (PyTorch FP32) to 37MB after ONNX conversion and INT8 quantization -- a 75% reduction. Inference speed went from 4.2 seconds per frame to 320 milliseconds, 13 times faster. The application ran comfortably on the 2-core tablets with 4GB of RAM and no GPU. Post-quantization accuracy held at 94.1%, compared to the 95.8% FP32 baseline -- a 1.7% trade-off that the client's quality team deemed acceptable for field use.</p>
 
     <!-- Before/After Comparison Diagram -->
     <div class="hardware-diagram-grid">
@@ -385,13 +385,13 @@
     </div>
     <figcaption>Fig 2. - Before: technicians photographed defects and drove back to the office to classify them manually. After: on-device ONNX inference classifies defects in 320ms at the inspection site, with zero internet dependency. Data syncs automatically when connectivity returns.</figcaption>
 
-    <p>The offline inspection backlog was completely eliminated. Technicians now classify defects on-site in real time, and the data syncs automatically when their tablets reconnect. The monthly time savings across the 60-person field team came to roughly 180 hours - time previously spent on manual re-classification back at the office.</p>
+    <p>The offline inspection backlog was completely eliminated. Technicians now classify defects on-site in real time, and data syncs automatically when tablets reconnect. Monthly time savings across the 60-person field team totaled roughly 180 hours -- time previously spent on manual reclassification back at the office.</p>
 
     <h2>[PANEL_06: LESSONS LEARNED]</h2>
 
-    <p>The first attempt was straightforward and wrong. We tried to run the full PyTorch model directly on the tablets. It consumed nearly all available RAM, took 4.2 seconds per inference, and drained the battery in about three hours. A technician inspecting 40 poles in a day would lose their device before lunch.</p>
+    <p>The first attempt was straightforward and wrong. We tried running the full PyTorch model directly on the tablets. It consumed nearly all available RAM, took 4.2 seconds per inference, and drained the battery in about three hours. A technician inspecting 40 poles per day would lose their device before lunch.</p>
 
-    <p>ONNX conversion alone improved things significantly - inference dropped to 1.1 seconds. But that was still too slow for the rapid-fire capture workflow technicians needed. INT8 quantization was the final push that brought inference down to 320 milliseconds, making the tool feel instant.</p>
+    <p>ONNX conversion alone improved things significantly, dropping inference to 1.1 seconds. But that was still too slow for the rapid-fire capture workflow technicians needed. INT8 quantization was the final push that brought inference down to 320 milliseconds, making the tool feel instant.</p>
 
     <div class="utility-callout">
       <strong>The Real Complexity Was Not The Model</strong>
@@ -401,9 +401,9 @@
       <code>> SOLUTION: Last-write-wins with full audit trail and manual conflict review queue</code>
     </div>
 
-    <p>The biggest surprise was that the SQLite offline queue turned out to be more complex than the model optimization itself. The model conversion followed a well-documented path: export to ONNX, calibrate, quantize. But the sync layer had to handle a tricky real-world scenario: what happens when a technician modifies an inspection record on their tablet while someone at the office also modifies the same record in the central system? We built a last-write-wins strategy with a full audit trail and a manual conflict review queue for disputed records.</p>
+    <p>The biggest surprise was that the SQLite offline queue turned out to be more complex than the model optimization itself. Model conversion followed a well-documented path: export to ONNX, calibrate, quantize. But the sync layer had to handle a tricky real-world scenario: what happens when a technician modifies an inspection record on their tablet while someone at the office also modifies the same record in the central system? We built a last-write-wins strategy with a full audit trail and a manual conflict review queue for disputed records.</p>
 
-    <p>If we built this again, we would add a model update distribution system from day one. Right now, when we retrain the detection model with new defect types, updating 60 tablets requires a manual process. We would build an automatic push mechanism that downloads new model versions over WiFi when the tablets are charging overnight at the depot.</p>
+    <p>If we built this again, we would add a model update distribution system from day one. Currently, retraining the detection model with new defect types requires a manual update across 60 tablets. An automatic push mechanism -- downloading new model versions over WiFi when tablets charge overnight at the depot -- would have saved significant maintenance effort.</p>
   </div>
 <script type="application/json" id="blog-config">{"slug":"windows-offline-ai-app"}</script>
 </body>

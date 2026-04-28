@@ -500,14 +500,14 @@
     <header class="masthead">
       <p class="kicker">Edge Security / Embedded AI · DevOps / Infrastructure · Architecture Review</p>
       <h1>Secure AI SoC Reference Platform</h1>
-      <p class="deck">A reference security platform for AI-enabled SoC devices such as cameras, kiosks, tablets, sensors, and industrial endpoints. The design begins at Boot ROM and follows the trust chain through secure bootloader, signed OS, trusted runtime, model loading, OTA updates, and fleet monitoring. The target buyer is an OEM or hardware startup that wants a practical blueprint before committing to large-scale manufacturing.</p>
+      <p class="deck">A reference security platform for AI-enabled SoC devices -- cameras, kiosks, tablets, sensors, and industrial endpoints. The design starts at Boot ROM and traces the trust chain through secure bootloader, signed OS, trusted runtime, model loading, OTA updates, and fleet monitoring. Built for OEMs and hardware startups that need a practical security blueprint before committing to large-scale manufacturing.</p>
       <div class="summary-strip" aria-label="Executive summary strip">
         <article><h2>Primary Use</h2><p>A company building an AI camera wants to prevent attackers from replacing the model, extracting keys, or installing malicious firmware. The reference platform provides the secure foundation.</p></article><article><h2>System Built</h2><p>A secure SoC reference architecture covering trust chain, AI runtime, updates, and fleet operations.</p></article><article><h2>Critical Control</h2><p>Secure boot</p></article><article><h2>Business Outcome</h2><p>The project delivered a production-ready security reference for AI edge devices.</p></article>
       </div>
     </header>
 
     <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-      <strong>Implementation Lens:</strong> Defined the system from hardware requirements outward, starting with trust anchors, secure boot chain, and key storage. Connected trusted runtime decisions to the AI application layer so model weights, debug ports, and update logic are protected coherently.
+      <strong>Implementation Lens:</strong> Designed the system from hardware requirements outward -- starting with trust anchors, secure boot chain, and key storage. Connected trusted runtime decisions to the AI application layer so that model weights, debug ports, and update logic are protected as a coherent whole.
     </div>
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
       <strong style="margin-right:4px;">Stack:</strong>
@@ -523,9 +523,9 @@
           </aside>
           <div class="section-body">
             <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
-            <p>Secure AI SoC Reference Platform was designed for edge AI hardware products such as smart cameras, kiosks, industrial sensors, robots, and rugged devices. The goal was to create a secure blueprint for building AI into hardware from the chip level up to the application layer.</p><p>Many AI hardware projects focus only on model performance, but real deployment makes security equally important. If the device can be accessed physically, attacked through firmware, or updated insecurely, the AI system becomes a risk.</p><p>The project covered secure boot, signed firmware, encrypted model storage, device identity, attestation, OTA updates, and runtime protection across the hardware and software boundary.</p>
+            <p>This platform was designed for edge AI hardware products -- smart cameras, kiosks, industrial sensors, robots, and rugged devices. The goal: create a secure blueprint for embedding AI into hardware from the chip level up to the application layer.</p><p>Most AI hardware projects focus exclusively on model performance. But in real deployment, security is equally critical. If the device can be accessed physically, attacked through firmware, or updated insecurely, the entire AI system becomes a liability.</p><p>The project addressed secure boot, signed firmware, encrypted model storage, device identity, attestation, OTA updates, and runtime protection across the full hardware-software boundary.</p>
             <div class="callout">
-              <p><strong>Value delivered.</strong> The project delivered a production-ready security reference for AI edge devices.</p>
+              <p><strong>Value delivered.</strong> A production-ready security reference that gives OEMs a clear path from prototype to certified, field-deployable AI edge devices.</p>
             </div>
           </div>
         </section>
@@ -622,8 +622,8 @@
             <div class="comparison-grid">
               <article class="comparison-card">
                 <h3>Difficulty Faced</h3>
-                <p>The hardest challenge was connecting hardware security with software delivery. Hardware teams think in boot chains and chips while software teams think in APIs and deployment, so the solution used one shared lifecycle diagram from boot ROM to cloud monitoring.</p>
-                <p>Linking embedded security primitives to the realities of model delivery, OTA reliability, and AI application lifecycle.</p>
+                <p>The hardest challenge was bridging hardware security with software delivery. Hardware teams think in boot chains and chips; software teams think in APIs and deployment pipelines. The solution was a single shared lifecycle diagram spanning boot ROM to cloud monitoring that both sides could reason from.</p>
+                <p>The core tension: linking embedded security primitives to the realities of model delivery, OTA reliability, and AI application lifecycle management.</p>
               </article>
               <article class="comparison-card">
                 <h3>Client Coordination Method</h3>
@@ -666,11 +666,11 @@
             <div class="policy-grid">
               <article class="policy-card">
                 <h3>Biggest Surprise</h3>
-                <p>Model weight protection is often discussed separately from firmware security even though the runtime boundary connects both.</p>
+                <p>Model weight protection is routinely discussed separately from firmware security, even though the runtime boundary connects both. Treating them as one attack surface changes the architecture significantly.</p>
               </article>
               <article class="policy-card">
                 <h3>Next Step</h3>
-                <p>The next step should add per-device manufacturing enrollment and attestation verification flows for real OEM rollout.</p>
+                <p>The next iteration should add per-device manufacturing enrollment and attestation verification flows to support real OEM rollout at scale.</p>
               </article>
             </div>
             <p class="fine-print">Related directions for the same portfolio theme: axis-artpec-smart-surveillance-analytics, secure-ai-compliance-control-plane, windows-offline-ai-app.</p>

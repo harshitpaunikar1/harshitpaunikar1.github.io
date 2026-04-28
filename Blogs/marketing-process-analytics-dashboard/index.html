@@ -427,7 +427,7 @@
           <h1>Why this dashboard has four panels instead of forty.</h1>
           <p class="deck">Marketing teams do not need another wall of charts. They need a visible ranking of what is broken now, what is slowing down next, and where response effort is actually worth spending.</p>
           <div class="lede">
-            <p>The fastest way to make a dashboard useless is to treat every metric as equally deserving of attention. I see this constantly in marketing operations: opens beside pipeline revenue, DAU beside bounce rate, segment scores beside workflow failures, all squeezed into one screen as if visual proximity creates managerial clarity. It does not. It creates a polite kind of blindness.</p>
+            <p>The fastest way to make a dashboard useless is to treat every metric as equally important. I see this constantly in marketing operations: opens beside pipeline revenue, DAU beside bounce rate, segment scores beside workflow failures, all squeezed onto one screen as if visual proximity creates managerial clarity. It does not. It creates a polite kind of blindness.</p>
             <p>This page takes the dashboard apart panel by panel and asks the only question that matters: what decision does this panel make faster? If the answer is vague, the panel does not belong. That is the standard.</p>
           </div>
         </div>
@@ -836,7 +836,7 @@ FROM customer_rollup;
               </div>
 
               <div class="closing">
-                <p>Dashboards become credible when they make omission feel intentional. This one works, at least in concept, because it resists the urge to show everything. It chooses a hierarchy, exposes process delay, keeps segmentation accountable to value, and tries to send the operator somewhere useful after each insight. That is what KPI intent looks like in practice. Not more charts. Better consequences.</p>
+                <p>Dashboards become credible when omission feels intentional. This one works because it resists the urge to show everything. It chooses a hierarchy, exposes process delay, keeps segmentation accountable to value, and sends the operator somewhere useful after each insight. That is what KPI intent looks like in practice. Not more charts. Better consequences.</p>
               </div>
             </div>
           </div>
@@ -852,8 +852,8 @@ FROM customer_rollup;
       <div class="band-body">
         <div class="body-grid">
           <div>
-            <p>The client was a 25-person marketing team at a SaaS company running more than 30 campaigns per month across paid search, email, social, and events. Each channel had its own reporting tool. The CMO spent 2 hours every Monday morning assembling a unified view of what happened the previous week -- copying numbers from 4 platforms, pasting them into a slide deck, and trying to figure out which campaigns needed attention before the team standup.</p>
-            <p>That 2-hour ritual was the symptom. The real problem was that nobody had a shared view of campaign performance that updated faster than once a week. Bottlenecks were discovered in Monday review meetings, which meant the team was always reacting to problems that were already 3 to 7 days old. A paid search campaign could burn budget for a full week before anyone noticed the conversion rate had dropped.</p>
+            <p>The client was a 25-person marketing team at a SaaS company running over 30 campaigns per month across paid search, email, social, and events. Each channel had its own reporting tool. The CMO spent 2 hours every Monday morning assembling a unified view of the previous week -- copying numbers from 4 platforms, pasting them into a slide deck, and trying to identify which campaigns needed attention before the team standup.</p>
+            <p>That 2-hour ritual was the symptom. The real problem was that nobody had a shared view of campaign performance that updated faster than once a week. Bottlenecks surfaced in Monday review meetings, which meant the team was always reacting to problems that were already 3 to 7 days old. A paid search campaign could burn budget for a full week before anyone noticed the conversion rate had dropped.</p>
             <p>The build team was small: one data engineer and one designer. The data engineer handled pipeline architecture, event modeling, and query logic. The designer handled layout, information hierarchy, and user testing. Total build time was 8 weeks, including 2 weeks of iteration after the first version was rejected by the team for having too many panels.</p>
             <div class="metric-strip">
               <div class="metric-box"><span>Team size</span><strong>25 marketers</strong></div>
@@ -883,8 +883,8 @@ FROM customer_rollup;
       <div class="band-body">
         <div class="body-grid single">
           <div>
-            <p>Monday reporting assembly time dropped from 2 hours to 5 minutes. That single number was the CMO's primary success metric and the reason the project got approved in the first place. Instead of pulling data from 4 platforms, she loaded one dashboard and had the full cross-channel picture.</p>
-            <p>But the more important change was speed of detection. Bottleneck identification went from "discovered in weekly review" to "alerted within 15 minutes." The automation alerts panel -- which was originally an afterthought in the design -- became the most-checked feature on the dashboard. Campaign pause and adjust decisions happened 3 times faster because the team saw problems when they started, not days later.</p>
+            <p>Monday reporting assembly time dropped from 2 hours to 5 minutes. That single number was the CMO's primary success metric and the reason the project was approved in the first place. Instead of pulling data from 4 platforms, she loaded one dashboard and had the full cross-channel picture.</p>
+            <p>The more important change was detection speed. Bottleneck identification went from "discovered in weekly review" to "alerted within 15 minutes." The automation alerts panel -- originally an afterthought in the design -- became the most-checked feature on the dashboard. Campaign pause-and-adjust decisions happened 3 times faster because the team saw problems when they started, not days later.</p>
             <p>The 4-panel layout replaced 11 separate reports that different team members had been maintaining. That consolidation also eliminated 2 redundant analytics tool subscriptions, saving $14,000 per year. The dashboard was used daily by 8 team members -- the CMO, 3 channel leads, 2 campaign managers, and 2 analysts.</p>
 
             <figure class="figure">
@@ -945,7 +945,7 @@ FROM customer_rollup;
       <div class="band-body">
         <div class="body-grid">
           <div>
-            <p>The first version of the dashboard had 9 panels showing every available metric. The team ignored it. Not because the data was wrong, but because there was too much of it. Nobody could tell what mattered at a glance, so nobody looked at it regularly. Usage dropped to near zero within 10 days of launch.</p>
+            <p>The first version had 9 panels showing every available metric. The team ignored it -- not because the data was wrong, but because there was too much of it. Nobody could tell what mattered at a glance, so nobody looked at it regularly. Usage dropped to near zero within 10 days of launch.</p>
             <p>The fix came from a single conversation. I sat with the CMO and asked her one question: "What decisions do you actually make each week based on campaign data?" Her list had 4 items. Not 9, not 15 -- four. Is the system healthy? Where are campaigns slowing down? Which audiences deserve more attention? What needs a human fix right now? Those four questions became the four panels.</p>
             <p>The biggest surprise was the automation alerts panel. It was added late in the build as a "nice to have" feature. Within two weeks of launch, it became the most-checked panel on the entire dashboard. Team members told us they preferred being told when something needed attention over hunting for problems in charts. The alerts panel turned the dashboard from a monitoring tool into a notification system.</p>
             <p>If I were building this again, I would add cohort comparison as a default view -- this week versus last week, side by side. The team kept asking for it during the first month. Without it, they had to mentally remember what last week's numbers looked like, which introduced exactly the kind of vague comparison that the dashboard was supposed to eliminate.</p>

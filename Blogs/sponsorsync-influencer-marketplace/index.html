@@ -156,12 +156,12 @@
   <div class="container">
     <header>
       <h1>Market Mechanics: Engineering a Sponsorship Exchange</h1>
-      <p class="lead">A marketplace is not a database of users. It is an economic engine designed to reduce the transaction friction between supply and demand. By flattening the architecture into a standard software platform, we risk ignoring the choreography of incentives, risk, and negotiation that actually make the market function.</p>
+      <p class="lead">A marketplace is not a database of users. It is an economic engine designed to reduce transaction friction between supply and demand. Flatten the architecture into a standard software platform, and you risk ignoring the choreography of incentives, risk, and negotiation that actually make the market function.</p>
     </header>
 
-    <p>Building a platform to connect brand sponsors with creators is fundamentally different from building a typical SaaS application. In a standard application, you solve for one user's workflow. In a two-sided marketplace, you are solving a coordination problem between two mutually suspicious participants.</p>
+    <p>Connecting brand sponsors with creators is fundamentally different from building a typical SaaS application. In a standard application, you solve for one user's workflow. In a two-sided marketplace, you solve a coordination problem between two mutually suspicious participants.</p>
 
-    <p>Brands (demand) want predictable reach, high engagement, and brand-safe alignment, but they lack the tooling to discover the right creators efficiently. Creators (supply) want monetization and creative autonomy, but they lack access to structured deal flow and timely payment enforcement. The marketplace architecture must act as the trusted intermediary, lowering the discovery cost and structuring the negotiation into a safe, repeatable funnel.</p>
+    <p>Brands (demand) want predictable reach, high engagement, and brand-safe alignment but lack tooling to discover the right creators efficiently. Creators (supply) want monetization and creative autonomy but lack access to structured deal flow and timely payment enforcement. The marketplace must act as the trusted intermediary -- lowering discovery cost and structuring negotiation into a safe, repeatable funnel.</p>
 
     <h2>STAGE_01: The Discovery Friction</h2>
 
@@ -231,7 +231,7 @@
 
     <h2>STAGE_03: Structure over Conversation</h2>
 
-    <p>A fatal error in marketplace design is providing a free text chat window and hoping a deal materializes. Free text chat removes constraints. It leads to endless scope creep, vague deliverable definitions, and payment disputes. The system must force the negotiation into defined states.</p>
+    <p>A fatal error in marketplace design is providing a free-text chat window and hoping a deal materializes. Free-text chat removes constraints, leading to scope creep, vague deliverable definitions, and payment disputes. The system must force negotiation into defined states.</p>
 
     <div class="negotiation-callout">
       <strong>The Milestone Enforcer</strong>
@@ -242,17 +242,17 @@
 
     <h2>STAGE_04: Bounding the LLM Assistant</h2>
 
-    <p>Modern architectures often bolt on LLM-assisted chat functions as a marketing feature. In a marketplace, an unbounded agent is a liability-it might hallucinate contract terms or misrepresent user metrics. We introduce language models into the exchange strictly as a bounded QA layer.</p>
+    <p>Modern architectures often bolt on LLM-assisted chat as a marketing feature. In a marketplace, an unbounded agent is a liability -- it might hallucinate contract terms or misrepresent user metrics. We introduced language models into the exchange strictly as a bounded QA layer.</p>
 
-    <p>When an influencer is reviewing a highly technical sponsor brand guideline document (often dozens of PDF pages regarding logo placement, tone, and forbidden words), extracting the core constraints is tedious. We utilize an embedded LLM assistant that has access <em>only</em> to that specific active brief document. The influencer can query: "Does this require me to hold the product in the thumbnail?" and the assistant responds strictly grounded in the PDF text.</p>
+    <p>When an influencer reviews a sponsor's brand guideline document -- often dozens of PDF pages covering logo placement, tone, and forbidden words -- extracting the core constraints is tedious. We embedded an LLM assistant with access <em>only</em> to that specific active brief document. The influencer can ask "Does this require me to hold the product in the thumbnail?" and the assistant responds strictly grounded in the PDF text.</p>
 
-    <p>The AI does not negotiate on behalf of the user, it does not draft the proposal, and it does not guarantee legal safety. It operates defensively, reducing the reading burden and minimizing technical misunderstandings during the proposal phase.</p>
+    <p>The AI does not negotiate on behalf of the user, does not draft the proposal, and does not guarantee legal safety. It operates defensively -- reducing the reading burden and minimizing technical misunderstandings during the proposal phase.</p>
 
     <h2>STAGE_05: Trust as an Engineering Artifact</h2>
 
-    <p>The ultimate product of a two-sided marketplace is trust. Trust is not established by a slick landing page; it is earned by the system's edge cases. How does the architecture handle a creator ghosting after capturing escrow? How does it protect a creator if a sponsor demands three unplanned revision cycles?</p>
+    <p>The ultimate product of a two-sided marketplace is trust. Trust is not established by a slick landing page -- it is earned by how the system handles edge cases. How does the architecture respond when a creator ghosts after capturing escrow? How does it protect a creator when a sponsor demands three unplanned revision cycles?</p>
 
-    <p>These questions are answered by the state machine governing the escrow contract. By engineering explicit resolution routes, mandatory timeline intervals, and algorithmic mediation triggers, the marketplace replaces the chaos of the open creator economy with the predictable rails of software execution.</p>
+    <p>These questions are answered by the state machine governing the escrow contract. By engineering explicit resolution routes, mandatory timeline intervals, and algorithmic mediation triggers, the marketplace replaces the chaos of the open creator economy with predictable software rails.</p>
 
     <h2>STAGE_06: Project Context</h2>
 

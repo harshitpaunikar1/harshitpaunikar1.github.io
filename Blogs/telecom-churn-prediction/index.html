@@ -273,7 +273,7 @@
     <h1>The Churn Retention Playbook
       <span>From Signal to Save Offer</span>
     </h1>
-    <p class="pb-deck">A churn model without a save strategy is an early warning system that nobody acts on. The useful question is not "can we predict who will leave?" - most operators can - it is "which customers should we try to save, with what offer, and at what cost?"</p>
+    <p class="pb-deck">A churn model without a save strategy is an early warning system that nobody acts on. The useful question is not "can we predict who will leave?" -- most operators can. It is "which customers should we try to save, with what offer, and at what cost?"</p>
 
     <div class="stat-strip">
       <div class="stat-item">
@@ -301,7 +301,7 @@
 
   <h2>The Economics of Leaving</h2>
 
-  <p>Churn in a telecom context means a customer has ended their contract or ported their number to a competitor. The industry's 15–25 percent annual average implies that roughly one in five customers will leave in any given year - which, at scale, means a mid-size operator is replacing tens of thousands of customers annually just to hold its subscriber base flat. The acquisition cost to replace each lost customer (sales commission, device subsidy, advertising attribution, onboarding overhead) runs 5–10× higher than what it would cost to retain them with a targeted offer.</p>
+  <p>Churn in a telecom context means a customer has ended their contract or ported their number to a competitor. The industry's 15-25 percent annual average means roughly one in five customers will leave in any given year. At scale, a mid-size operator replaces tens of thousands of customers annually just to hold its subscriber base flat. The acquisition cost per lost customer (sales commission, device subsidy, advertising attribution, onboarding overhead) runs 5-10x higher than what it would cost to retain them with a targeted offer.</p>
 
   <p>That asymmetry is the entire economic case for churn modeling. If you can identify a customer who is about to leave with three to four weeks of lead time, and a targeted discount or service upgrade costs ₹200 to deliver, then the break-even threshold is simple: the save offer is worth it as long as the expected additional revenue from retention exceeds ₹200. For a customer on a ₹499/month plan, retaining them for two additional months covers the offer cost. The model doesn't need to be perfect - it needs to be good enough that the customers it flags are <em>more likely</em> to churn than the average customer, so the retention spend is concentrated where it actually changes behavior.</p>
 
@@ -417,7 +417,7 @@
 
   <h2>Model Comparison: Why Accuracy Is the Wrong Metric</h2>
 
-  <p>The notebook reports accuracy scores around 83 percent for the best-performing model. That sounds reasonable until you consider the class distribution: if roughly 8–10 percent of customers churn, a model that predicts "not churn" for every customer achieves 90–92 percent accuracy. The 83 percent accuracy figure means nothing without knowing the class breakdown and without knowing how the model handles the minority class.</p>
+  <p>The notebook reports accuracy scores around 83 percent for the best-performing model. That sounds reasonable until you consider the class distribution: if roughly 8-10 percent of customers churn, a model that predicts "not churn" for every customer achieves 90-92 percent accuracy. The 83 percent figure is meaningless without knowing the class breakdown and how the model handles the minority class.</p>
 
   <p>For churn prediction, the relevant metrics are <strong>precision and recall on the churner class</strong>, and the trade-off between them at the operating threshold. A model with high recall and low precision flags many customers as risky, including many who would have stayed anyway - this produces a large false-positive population that receives save offers they don't need, inflating the retention budget without producing retention. A model with high precision and low recall flags only customers it is very confident about, missing many actual churners - the saves it makes are efficient but incomplete.</p>
 
@@ -558,7 +558,7 @@ print(f"CV AUC: {auc_scores.mean():.3f} ± {auc_scores.std():.3f}")
 
   <h2>Closing: Prediction Is the Easy Part</h2>
 
-  <p>An 83 percent accuracy classification model is not a churn-retention strategy. It is one component of one. The strategy requires a scoring pipeline that runs frequently enough to catch the early signal window, a save-offer portfolio with tier-appropriate cost structures, an intervention delivery system that can fire the right offer to the right customer within days (not weeks) of the model scoring them, and a feedback loop that tracks save outcomes by tier and threshold so the model and the offer design can be updated quarterly.</p>
+  <p>An 83 percent accuracy classification model is not a churn-retention strategy. It is one component of one. The full strategy requires a scoring pipeline that runs frequently enough to catch the early signal window, a save-offer portfolio with tier-appropriate cost structures, an intervention delivery system that fires the right offer to the right customer within days (not weeks) of scoring, and a feedback loop that tracks save outcomes by tier so the model and offer design can be updated quarterly.</p>
 
   <p>The operators who get retention right are not the ones with the most sophisticated models. They are the ones who have disciplined the connection between the model's output and the frontline team's behavior - where every customer who scores above the Tier 1 threshold receives a call within 72 hours, where every save interaction is logged with an outcome, and where the retention budget is allocated proportionally to where the model says the risk actually lives.</p>
 

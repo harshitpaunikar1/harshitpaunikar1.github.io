@@ -236,20 +236,20 @@
   <header>
     <div class="case-number">EDA Investigation / Ops-09A</div>
     <h1>The Suburb Vacuum</h1>
-    <p class="lede">For three consecutive weeks, the dispatch desk observed a highly contagious symptom: by 09:30 AM, total fleet utilization collapsed by a staggering 34%. This is a forensic reconstruction of the data-discarding false assumptions and tracing the anomaly back to the asymmetrical physical reality of the commuter cycle.</p>
+    <p class="lede">For three consecutive weeks, the dispatch desk observed the same symptom: by 09:30 AM, total fleet utilization collapsed by 34%. This is a forensic reconstruction of the data -- discarding false assumptions and tracing the anomaly back to the asymmetrical physical reality of the commuter cycle.</p>
   </header>
 
   <div class="investigation-grid">
     
     <div class="evidence-column">
       
-      <p>Data analysis without physical context is merely trivia. When a fleet manager stares at an overarching line-chart indicating a 34% drop in active carsharing sessions every Tuesday and Thursday morning, the immediate reaction is generally marketing-driven: <em>Why aren't people renting our cars?</em> Are competitor prices undercutting us? Is ad spend insufficient?</p>
+      <p>Data analysis without physical context is trivia. When a fleet manager sees a 34% drop in active carsharing sessions every Tuesday and Thursday morning, the immediate reaction is marketing-driven: <em>Why aren't people renting our cars?</em> Are competitor prices undercutting us? Is ad spend insufficient?</p>
 
-      <p>But when dealing with physical assets anchored to geography, treating a drop in utilization as a lack of demand is a fatal error. Often, the users desperately want to rent the product. The utilization drops because the physical inventory has been structurally drained from the zone where the demand lives. To prove this, we pull the raw telemetry and begin tearing apart the timeline.</p>
+      <p>But when dealing with physical assets anchored to geography, treating a utilization drop as a lack of demand is a fatal error. Often, users desperately want to rent. Utilization drops because the physical inventory has been structurally drained from the zone where demand lives. To prove this, we pulled the raw telemetry and began tearing apart the timeline.</p>
 
       <h2>Where exactly does the utilization die?</h2>
 
-      <p>We extracted the timestamp logs for all ignition events across the metropolitan grid. A naive time-series of total city-wide revenue merely mirrors the symptom. We must isolate the anomaly by geography. By segmenting the operating map into core business districts (Zone 1) and residential outer-rings (Zones 3 and 4), the geometry of the failure instantly materializes.</p>
+      <p>We extracted the timestamp logs for all ignition events across the metropolitan grid. A naive time-series of total city-wide revenue merely mirrors the symptom. The anomaly has to be isolated by geography. By segmenting the operating map into core business districts (Zone 1) and residential outer-rings (Zones 3 and 4), the geometry of the failure instantly materializes.</p>
 
 <pre><code><span class="c-comment"># Extracting aggregate start/end locations by hour</span>
 <span class="c-keyword">import</span> pandas <span class="c-keyword">as</span> pd
@@ -311,9 +311,9 @@ net_flow = (trip_logs[trip_logs['end_zone'] == 'Zone_1'].shape[0]) - \
 
       <h2>Why doesn't the grid balance itself out?</h2>
 
-      <p>If cars are leaving Zone 4 at a rapid clip, why aren't they being replaced by users driving back? The answer is dictated by labor geography. The users depleting Zone 4 are white-collar commuters driving into the central business district (Zone 1) between 07:00 and 09:00 AM. A carsharing system only stays balanced if trips are symmetrical.</p>
+      <p>If cars are leaving Zone 4 at a rapid clip, why are they not being replaced by users driving back? The answer is dictated by labor geography. The users depleting Zone 4 are white-collar commuters driving into the central business district (Zone 1) between 07:00 and 09:00 AM. A carsharing system only stays balanced if trips are symmetrical.</p>
 
-      <p>But commuting is severely asymmetric. Once thousands of vehicles arrive in Zone 1, they are locked, billed, and abandoned on city streets. The commuters go into their offices for eight hours. Throughout the mid-day, Zone 4 residents attempting to run local errands open the app and see an empty map. The vehicles are geographically marooned in the urban core, completely inaccessible to the latent suburban demand.</p>
+      <p>Commuting is severely asymmetric. Once thousands of vehicles arrive in Zone 1, they are locked, billed, and abandoned on city streets. The commuters go into their offices for eight hours. Throughout the mid-day, Zone 4 residents trying to run local errands open the app and see an empty map. The vehicles are geographically marooned in the urban core, completely inaccessible to suburban demand.</p>
 
       <div class="figure-block">
         <div class="figure-title">EVIDENCE.B // The Commuter Vacuum Effect</div>
@@ -375,9 +375,9 @@ net_flow = (trip_logs[trip_logs['end_zone'] == 'Zone_1'].shape[0]) - \
 
       <h2>How do we break the deadlock?</h2>
 
-      <p>Data exploration is only useful if it dictates an operational response. Identifying this commuter vacuum fundamentally alters the business strategy. We cannot run marketing campaigns in Zone 4 at 11:00 AM; there is nothing for the users to buy.</p>
+      <p>Data exploration is only useful if it dictates an operational response. Identifying this commuter vacuum fundamentally altered the business strategy. You cannot run marketing campaigns in Zone 4 at 11:00 AM when there is nothing for users to rent.</p>
 
-      <p>To repair this gridlock, operations must intentionally disrupt the physical migration. This data explicitly justifies heavy tactical pricing interventions. By isolating the cars pooling in Zone 1 at 10:00 AM and aggressively cutting the per-minute rate by 60% for any user willing to drive them <em>out</em> of the urban core, the business can construct an artificial counter-flow. We bribe mid-day freelancers to reposition our inventory back to the suburbs, priming the grid before the evening rush.</p>
+      <p>To break the gridlock, operations must intentionally disrupt the physical migration. This data justified heavy tactical pricing interventions. By isolating the cars pooling in Zone 1 at 10:00 AM and cutting the per-minute rate by 60% for any user willing to drive them <em>out</em> of the urban core, the business constructed an artificial counter-flow -- effectively paying mid-day freelancers to reposition inventory back to the suburbs, priming the grid before the evening rush.</p>
 
       <p>A true exploratory data analysis rarely ends with "the model is accurate." It ends with dragging vehicles back across a city because the geometry of human movement broke the system.</p>
 
@@ -404,11 +404,11 @@ net_flow = (trip_logs[trip_logs['end_zone'] == 'Zone_1'].shape[0]) - \
 
   <div class="investigation-grid">
     <div class="evidence-column">
-      <p>This analysis was done for a carsharing operator running 1,200 vehicles across a major metro area. The company had noticed a persistent and mysterious problem: Tuesday and Thursday utilization had dropped 34% over the past 3 months. Management assumed a competitor was undercutting them on pricing. They were about to launch a costly promotional campaign to win back customers.</p>
+      <p>This analysis was done for a carsharing operator running 1,200 vehicles across a major metro area. The company had noticed a persistent problem: Tuesday and Thursday utilization had dropped 34% over the past 3 months. Management assumed a competitor was undercutting them on pricing and was about to launch a costly promotional campaign to win back customers.</p>
 
-      <p>Before spending money on a theory, they brought in a data analyst - a solo 3-week investigation to figure out what was actually going on. The operating hypothesis from leadership was "competitor pricing." The alternative hypotheses included app downtime, vehicle maintenance issues, and seasonal demand shifts. As the investigation would reveal, none of these were correct.</p>
+      <p>Before spending money on a theory, they brought in a data analyst for a solo 3-week investigation. The operating hypothesis from leadership was "competitor pricing." Alternatives included app downtime, vehicle maintenance issues, and seasonal demand shifts. As the investigation revealed, none of these were correct.</p>
 
-      <p>The challenge was not a lack of data. The company had GPS telemetry, trip logs, and pricing records. The challenge was that everyone was looking at city-wide averages, which made the problem invisible. The utilization drop only became visible when the data was sliced by geography and time of day - a combination nobody had thought to check.</p>
+      <p>The challenge was not a lack of data -- the company had GPS telemetry, trip logs, and pricing records. The challenge was that everyone was looking at city-wide averages, which made the problem invisible. The utilization drop only appeared when the data was sliced by geography and time of day, a combination nobody had thought to check.</p>
     </div>
 
     <aside class="marginalia">
@@ -427,9 +427,9 @@ net_flow = (trip_logs[trip_logs['end_zone'] == 'Zone_1'].shape[0]) - \
 
   <div class="investigation-grid">
     <div class="evidence-column">
-      <p>The root cause was confirmed: commuter flow was draining all suburban vehicle inventory into the downtown core by 9 AM every morning. Cars left the suburbs and never came back until evening. Mid-day suburban demand had no vehicles to serve.</p>
+      <p>Root cause confirmed: commuter flow was draining all suburban vehicle inventory into the downtown core by 9 AM every morning. Cars left the suburbs and did not return until evening. Mid-day suburban demand had no vehicles to serve.</p>
 
-      <p>Based on the analysis, the company implemented a 60% discount repositioning campaign. Anyone willing to drive a car from downtown back to the suburbs during mid-morning hours got a steep discount. The campaign cost $8,000 per month to run. Within 6 weeks, utilization recovered from 58% to 81%. The repositioned vehicles generated $47,000 per month in bookings that had previously been lost. Net monthly impact: +$39,000 in recovered revenue.</p>
+      <p>Based on the analysis, the company implemented a 60% discount repositioning campaign. Anyone willing to drive a car from downtown back to the suburbs during mid-morning hours got a steep discount. The campaign cost $8,000 per month. Within 6 weeks, utilization recovered from 58% to 81%. The repositioned vehicles generated $47,000 per month in previously lost bookings. Net monthly impact: +$39,000 in recovered revenue.</p>
 
       <div class="figure-block">
         <div class="figure-title">EVIDENCE.C // Before vs After: Repositioning Campaign Impact</div>
@@ -491,13 +491,13 @@ net_flow = (trip_logs[trip_logs['end_zone'] == 'Zone_1'].shape[0]) - \
 
   <div class="investigation-grid">
     <div class="evidence-column">
-      <p>The first full week was spent testing the "competitor pricing" hypothesis that management believed. We pulled competitor pricing data, cross-referenced it with our booking drop-off dates, and ran correlation analysis. The result was zero meaningful correlation. Competitor prices had not changed. This was a dead end, but it was necessary - leadership needed to see the data before they would let go of their assumption.</p>
+      <p>The first full week was spent testing the "competitor pricing" hypothesis that management believed. We pulled competitor pricing data, cross-referenced it with booking drop-off dates, and ran correlation analysis. The result was zero meaningful correlation. Competitor prices had not changed. A dead end, but a necessary one -- leadership needed to see the data before letting go of their assumption.</p>
 
-      <p>The second hypothesis was "battery and maintenance" - maybe vehicles were showing as unavailable because they were in the shop or had dead batteries. Vehicle health data showed 88% of the fleet had healthy charge levels at dawn. Maintenance holds accounted for less than 3% of the fleet at any given time. Another dead end.</p>
+      <p>The second hypothesis was "battery and maintenance" -- maybe vehicles were showing as unavailable because they were in the shop or had dead batteries. Vehicle health data showed 88% of the fleet had healthy charge levels at dawn. Maintenance holds accounted for less than 3% of the fleet at any given time. Another dead end.</p>
 
-      <p>The breakthrough came from a simple visualization that nobody had run before: plotting net vehicle flow by zone and hour. Instead of asking "how many trips happened," we asked "how many cars entered this zone minus how many left." The chart immediately showed a massive one-directional flow from suburbs to downtown between 7 AM and 9 AM, with near-zero counter-flow. The problem was invisible in aggregate daily statistics - it only appeared when the data was segmented by geography and time of day.</p>
+      <p>The breakthrough came from a simple visualization nobody had run before: plotting net vehicle flow by zone and hour. Instead of asking "how many trips happened," we asked "how many cars entered this zone minus how many left." The chart immediately showed a massive one-directional flow from suburbs to downtown between 7 AM and 9 AM, with near-zero counter-flow. The problem was invisible in aggregate daily statistics -- it only appeared when sliced by geography and time of day.</p>
 
-      <p>The key takeaway: if this investigation were starting over, we would set up automated flow monitoring dashboards from day one. The commuter drain pattern should have been caught months earlier by a simple alert that said "Zone 4 inventory dropped below 20% of starting count by 9 AM." Without that kind of monitoring, the problem festered for 3 months while management chased the wrong explanation.</p>
+      <p>Key takeaway: if starting this investigation over, we would set up automated flow monitoring dashboards from day one. The commuter drain pattern should have been caught months earlier by a simple alert: "Zone 4 inventory dropped below 20% of starting count by 9 AM." Without that monitoring, the problem festered for 3 months while management chased the wrong explanation.</p>
     </div>
 
     <aside class="marginalia">

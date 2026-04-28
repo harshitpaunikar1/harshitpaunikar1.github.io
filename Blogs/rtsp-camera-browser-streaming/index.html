@@ -511,7 +511,7 @@
   </header>
 
   <div class="role-note">
-    <strong>My Role:</strong> I built the signaling server, browser client, and the sidecar archiving system. My co-engineer handled the GStreamer pipeline, RTSP ingest, and WebRTC delivery on the server side. The first week was spent on-site cataloging all 24 camera models - three of them used a non-standard RTSP authentication scheme that nearly derailed week two.
+    <strong>My Role:</strong> I built the signaling server, browser client, and sidecar archiving system. My co-engineer handled the GStreamer pipeline, RTSP ingest, and WebRTC delivery. The first week was spent on-site cataloging all 24 camera models and their RTSP endpoint formats -- three cameras used a non-standard authentication scheme that nearly derailed the project in week two.
   </div>
   <div class="stack-row">
     <strong style="margin-right:4px;">Stack:</strong>
@@ -640,9 +640,9 @@
     <!-- Project Context -->
     <h2>[ L5 Context ] Project Origin</h2>
 
-    <p>This system was built for a logistics warehouse with 24 IP cameras monitoring loading docks, staging areas, and gate lanes. The existing setup required a dedicated VMS (video management software) client installed on each workstation. Supervisors could not check camera feeds from their phones or laptops - they had to walk to a specific desk, launch the VMS application, and wait for it to connect. During busy periods, this meant cameras effectively went unmonitored whenever supervisors were on the warehouse floor.</p>
+    <p>This system was built for a logistics warehouse with 24 IP cameras monitoring loading docks, staging areas, and gate lanes. The existing setup required a dedicated VMS client installed on each workstation. Supervisors could not check camera feeds from their phones or laptops -- they had to walk to a specific desk, launch the VMS application, and wait for it to connect. During busy periods, cameras effectively went unmonitored whenever supervisors were on the warehouse floor.</p>
 
-    <p>The team was two engineers over a 7-week build. One engineer focused on the GStreamer pipeline, RTSP ingest, and WebRTC delivery. The other handled the signaling server, browser client, and the sidecar archiving system. The first week was spent on-site cataloging all 24 camera models, their RTSP endpoint formats, and the network topology of the warehouse - three cameras used a different RTSP authentication scheme that nearly derailed the project in week two.</p>
+    <p>The team was two engineers over a 7-week build. One focused on the GStreamer pipeline, RTSP ingest, and WebRTC delivery; the other handled the signaling server, browser client, and sidecar archiving. The first week was spent on-site cataloging all 24 camera models, their RTSP endpoint formats, and the warehouse network topology. That on-site discovery turned out to be the most valuable phase -- three cameras used a different authentication scheme that would have been invisible in a lab environment.</p>
 
     <div class="notation-band">
       <p><strong>Project details:</strong> Client: logistics warehouse (24 IP cameras across loading docks, staging areas, gate lanes). Problem: VMS desktop client required - no mobile or browser access. Team: 2 engineers, 7-week build. The VMS license cost the warehouse $6,000 per year and still required per-workstation installation.</p>
@@ -698,7 +698,7 @@
 
     <p>The first attempt used HLS transcoding to deliver camera feeds to the browser. HLS is well-supported and straightforward to set up, but the latency floor was 3-5 seconds. For a live monitoring dashboard, 3 seconds of delay means a supervisor sees a truck pull into a dock well after it has already arrived. Switching to WebRTC delivery with GStreamer brought the latency down to 340 milliseconds, which was fast enough that operators treated the browser feed as "live" without hesitation.</p>
 
-    <p>The biggest surprise was what users actually wanted. We expected the primary demand to be "more cameras" or "higher resolution." Instead, the feature request that came up in the first week was "let me rewind 5 minutes." Supervisors needed to review what had just happened when investigating a loading incident or a gate dispute. The sidecar archiving system was added specifically for this use case, and it turned out to be the feature that convinced management to expand the system to additional cameras.</p>
+    <p>The biggest surprise was what users actually wanted. We expected the primary demand to be "more cameras" or "higher resolution." Instead, the most requested feature in the first week was "let me rewind 5 minutes." Supervisors needed to review what had just happened when investigating a loading incident or a gate dispute. The sidecar archiving system was added specifically for this, and it turned out to be the feature that convinced management to expand the system to eight additional cameras.</p>
 
     <p>If we built this again, we would add motion-triggered alerts - sending a browser notification when movement is detected in restricted areas during off-hours. The camera feeds are there and the archive is recording, but right now nobody is watching at 2 AM. A simple motion detection layer on the GStreamer pipeline could push alerts to a supervisor's phone and turn passive monitoring into active security.</p>
 

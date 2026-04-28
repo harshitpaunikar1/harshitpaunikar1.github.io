@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cross-Validation Does Not Guarantee a Honest Model</title>
+  <title>Cross-Validation Does Not Guarantee an Honest Model</title>
   <meta name="description" content="A myth-busting explainer on cross-validation: what k-fold actually measures, the three ways practitioners break it quietly, and a checklist for when CV scores are actually informative.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -203,14 +203,14 @@
 <!-- ════════════ HEADER ════════════ -->
 <div class="essay-head">
   <p class="topic-tag">Method Critique &nbsp;·&nbsp; Model Evaluation &nbsp;·&nbsp; Cross-Validation</p>
-  <h1>Cross-Validation Does Not Guarantee a Honest Model</h1>
+  <h1>Cross-Validation Does Not Guarantee an Honest Model</h1>
   <p class="deck">Using k-fold is not the same as having a valid error estimate. Three silent mistakes - preprocessing leakage, temporal contamination, and threshold shopping across folds - produce optimistic CV scores on models that will fail in production.</p>
 </div>
 
 <!-- ════════════ ESSAY BODY ════════════ -->
 <div class="essay-body">
 
-  <h2>The single-split problem is real, and people really do use it wrong</h2>
+  <h2>The single-split problem is real, and practitioners routinely get it wrong</h2>
 
   <p>The conventional introduction to train-test splits involves splitting your data once - 80 percent train, 20 percent test - fitting a model on the training set, and reporting the metric on the held-out set. The problem is variance: with a single split on a moderately sized dataset, the test score is a function not only of the model's quality but also of which specific examples landed in the test set. An unlucky split can make a good model look bad; a lucky split can make a bad model look good.</p>
 
@@ -429,7 +429,7 @@ print(f"Honest generalization estimate: {outer_scores.mean():.3f}")</code></pre>
 
   <h2>CV is an estimate, not a certificate</h2>
 
-  <p>A CV score tells you, under certain assumptions, approximately how well the model is likely to perform on future data with the same distribution as the training data. The phrase "same distribution" is doing a lot of work. Market conditions change. User populations drift. Feature distributions shift when the product changes. A model that cross-validates at 0.83 R² on Delhi housing data from 2023 may perform materially worse on 2024 data if the real estate market has moved in ways the 2023 training data does not represent.</p>
+  <p>A CV score tells you, under certain assumptions, approximately how well the model is likely to perform on future data drawn from the same distribution as the training data. The phrase "same distribution" is doing a lot of work. Market conditions change. User populations drift. Feature distributions shift when the product evolves. A model that cross-validates at 0.83 R-squared on Delhi housing data from 2023 may perform materially worse on 2024 data if the real estate market has moved in ways the training data does not capture.</p>
 
   <p>Cross-validation is a disciplined way to estimate historical generalization ability. It is not a guarantee of future performance. The three failure modes above - preprocessing leakage, temporal contamination, and selection bias - produce CV scores that overstate even the historical generalization ability. Fixing them gives you an honest estimate of a past quantity. What the model will do in production is a separate question, and answering it requires monitoring, not just a CV score at training time.</p>
 

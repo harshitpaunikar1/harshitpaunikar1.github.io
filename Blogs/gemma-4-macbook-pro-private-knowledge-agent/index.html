@@ -500,7 +500,7 @@
     <header class="masthead">
       <p class="kicker">Local AI / Knowledge Work · LLM / RAG / Agentic Systems · Product Case Study</p>
       <h1>Gemma 4 MacBook Pro Private Knowledge Agent</h1>
-      <p class="deck">A desktop AI workflow for people who cannot send private material to hosted APIs. Documents, codebases, and notes are indexed locally, Gemma 4 runs through Ollama, LM Studio, or a similar local runtime, and the system returns grounded answers with citations plus an exportable report. It is aimed at legal, finance, founder, research, and engineering users working on a MacBook Pro who want personal AI without surrendering their files.</p>
+      <p class="deck">A desktop AI workflow for professionals who cannot send private material to hosted APIs. Documents, codebases, and notes are indexed locally. Gemma 4 runs through Ollama, LM Studio, or a similar local runtime, and the system returns grounded answers with citations plus an exportable report. Built for legal, finance, research, and engineering users on a MacBook Pro who want AI assistance without surrendering their files.</p>
       <div class="summary-strip" aria-label="Executive summary strip">
         <article><h2>Primary Use</h2><p>A lawyer uploads multiple client agreements and asks which contracts have termination clauses shorter than 30 days. The assistant searches locally, extracts the relevant clauses, and returns a comparison table with file references.</p></article><article><h2>System Built</h2><p>A local MacBook knowledge agent using Gemma 4, local retrieval, and citation-backed answer generation for sensitive work.</p></article><article><h2>Critical Control</h2><p>Local-only mode</p></article><article><h2>Business Outcome</h2><p>The value delivered was confidence. Users could ask questions over private files without worrying about external exposure.</p></article>
       </div>
@@ -523,9 +523,9 @@
           </aside>
           <div class="section-body">
             <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
-            <p>Gemma 4 MacBook Pro Private Knowledge Agent was built for professionals who handle private documents and cannot rely entirely on cloud AI. The target users were consultants, lawyers, analysts, researchers, and founders who wanted the power of AI without letting confidential files leave their machine.</p><p>The project was designed as a local-first assistant. Users could upload PDFs, notes, contracts, research papers, code files, or meeting transcripts. The system created a local index, ran the Gemma model locally, and answered questions with references drawn from uploaded material.</p><p>The narrative of the project was privacy. Most assistants are powerful but require uploading data to external servers. This system reversed that model and treated the MacBook as the AI workstation.</p>
+            <p>Gemma 4 MacBook Pro Private Knowledge Agent was built for professionals who handle sensitive documents and cannot rely on cloud AI. The target users were consultants, lawyers, analysts, researchers, and founders who wanted AI capabilities without letting confidential files leave their machine.</p><p>The system was designed as a local-first assistant. Users upload PDFs, notes, contracts, research papers, code files, or meeting transcripts. The system creates a local index, runs the Gemma model locally, and answers questions with references drawn from uploaded material.</p><p>The core premise is privacy. Most assistants are powerful but require uploading data to external servers. This system reverses that model and treats the MacBook as the AI workstation.</p>
             <div class="callout">
-              <p><strong>Value delivered.</strong> The value delivered was confidence. Users could ask questions over private files without worrying about external exposure.</p>
+              <p><strong>Value delivered.</strong> Users could ask questions over private files with full confidence that nothing left their machine.</p>
             </div>
           </div>
         </section>
@@ -537,8 +537,8 @@
           </aside>
           <div class="section-body">
             <h2>Section II · The system must be readable as a flow before it can be trusted in production</h2>
-            <p>Local-first Gemma 4 desktop knowledge agent for sensitive documents, code, and meeting notes with no telemetry by default.</p>
-            <p>Real-life use case solved: A lawyer uploads multiple client agreements and asks which contracts have termination clauses shorter than 30 days. The assistant searches locally, extracts the relevant clauses, and returns a comparison table with file references.</p>
+            <p>A local-first desktop knowledge agent for sensitive documents, code, and meeting notes with no telemetry by default.</p>
+            <p>Real-life use case: A lawyer uploads multiple client agreements and asks which contracts have termination clauses shorter than 30 days. The assistant searches locally, extracts the relevant clauses, and returns a comparison table with file references.</p>
             <figure aria-labelledby="architecture-caption">
               <p class="diagram-title">Diagram A · Architecture Overview</p>
               <svg viewBox="0 0 1160 330" role="img" aria-label="Gemma 4 MacBook Pro Private Knowledge Agent architecture diagram">
@@ -622,8 +622,8 @@
             <div class="comparison-grid">
               <article class="comparison-card">
                 <h3>Difficulty Faced</h3>
-                <p>The biggest difficulty was making local inference feel useful without overloading the machine. Large models can be slow on personal hardware, so the team used quantized models, local vector search, smart chunking, and an explicit hybrid mode where cloud fallback is only suggested if the user allows it.</p>
-                <p>Balancing local runtime limits against the expectation that the assistant still feels useful on real private documents and codebases.</p>
+                <p>The biggest difficulty was making local inference feel useful without overloading the machine. Large models can be slow on personal hardware, so the approach used quantized models, local vector search, smart chunking, and an explicit hybrid mode where cloud fallback is only suggested if the user allows it.</p>
+                <p>The core tension was balancing local runtime limits against the expectation that the assistant still feels responsive on real private documents and codebases.</p>
               </article>
               <article class="comparison-card">
                 <h3>Client Coordination Method</h3>
@@ -660,8 +660,8 @@
           </aside>
           <div class="section-body">
             <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
-            <p>Local AI only becomes useful when packaging, permissions, retrieval quality, and export workflows are treated as product concerns, not side notes.</p>
-            <p>The strongest product decision is making citations mandatory for knowledge tasks so users can verify where the answer came from.</p>
+            <p>Local AI becomes useful only when packaging, permissions, retrieval quality, and export workflows are treated as product concerns rather than side notes.</p>
+            <p>The strongest product decision was making citations mandatory for knowledge tasks so users can verify exactly where each answer came from.</p>
             <div class="policy-grid">
               <article class="policy-card">
                 <h3>Biggest Surprise</h3>

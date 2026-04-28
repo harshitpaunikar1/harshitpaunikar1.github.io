@@ -167,11 +167,11 @@
   <div class="machine-grid">
     <header>
       <h1>Pragmatism in the Pipeline</h1>
-      <p class="deck">Operational fragility is rarely solved by adopting massive, sprawling orchestration frameworks. For a small engineering team, reliability is achieved by enforcing rigid, unglamorous stage gates-packaging, scanning, deploying, and observing-without pretending to be a hyperscaler.</p>
+      <p class="deck">Operational fragility is rarely solved by adopting massive orchestration frameworks. For a small engineering team, reliability comes from enforcing rigid, unglamorous stage gates -- packaging, scanning, deploying, and observing -- without pretending to be a hyperscaler.</p>
     </header>
 
     <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-      <strong>My Role:</strong> I was the sole engineer on this pipeline - I designed and built every stage gate from Docker packaging through Trivy scanning, Jenkins automation, and the Prometheus/Grafana observation layer. The hardest part wasn't the tooling; it was convincing the team to trust a boring, unglamorous pipeline over the Kubernetes architecture they kept proposing.
+      <strong>My Role:</strong> Sole engineer on this pipeline. I designed and built every stage gate -- Docker packaging, Trivy scanning, Jenkins automation, and the Prometheus/Grafana observation layer. The hardest part was not the tooling; it was convincing the team to trust a boring, unglamorous pipeline over the Kubernetes architecture they kept proposing.
     </div>
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
       <strong style="margin-right:4px;">Stack:</strong>
@@ -185,9 +185,9 @@
     </div>
 
     <main>
-      <p>The standard DevOps narrative sold to small teams is profoundly hazardous. It encourages adopting Kubernetes when a single virtual machine will do, and pushes sprawling microservice meshes when the actual underlying business logic fits in a single Docker container. This "infrastructure tourism" inevitably leads to operational fragility: the team spends more time tending to the deployment machinery than advancing the product.</p>
+      <p>The standard DevOps narrative sold to small teams is profoundly hazardous. It encourages adopting Kubernetes when a single virtual machine will do, and pushes sprawling microservice meshes when the business logic fits in a single Docker container. This "infrastructure tourism" leads to operational fragility: the team spends more time tending deployment machinery than advancing the product.</p>
 
-      <p>True operational reliability for small teams requires aggressive pragmatism. The goal is not an impressive stack; the goal is a boring, predictable lifecycle. A developer commits code, a machine builds it, a scanner checks it, and an automation server deploys it. When it breaks, the observation layer flags it, and the rollback is a one-command retreat. The focus is entirely on the stage gates.</p>
+      <p>True operational reliability for small teams requires aggressive pragmatism. The goal is not an impressive stack -- it is a boring, predictable lifecycle. A developer commits code, a machine builds it, a scanner checks it, and an automation server deploys it. When something breaks, the observation layer flags it and the rollback is a one-command retreat. The focus is entirely on the stage gates.</p>
 
       <h2>STAGE_01 :: Docker Packaging</h2>
 
@@ -285,7 +285,7 @@
 
       <p>Security in a small team often suffers because manual audits are slow and compliance tools are overwhelmingly noisy. We address this by embedding Trivy directly into the Jenkins pipeline immediately following the test suite. Trivy is a static vulnerability scanner targeting container images.</p>
 
-      <p>The critical design choice here is thresholding. A scanner that breaks a build for "Low" or "Medium" severity CVEs in obscure OS libraries will teach developers to ignore or disable the scanner. We configure the stage gate sequentially to fail only on <code>CRITICAL</code> and <code>HIGH</code> vulnerabilities that have published fixes. This ensures the Pipeline is a high-signal security enforcer, not a hindrance.</p>
+      <p>The critical design choice here is thresholding. A scanner that breaks a build for "Low" or "Medium" severity CVEs in obscure OS libraries will teach developers to ignore or disable it entirely. We configured the stage gate to fail only on <code>CRITICAL</code> and <code>HIGH</code> vulnerabilities with published fixes. This keeps the pipeline a high-signal security enforcer, not a hindrance.</p>
 
       <div class="stop-condition">
         <h4>Pipeline Logic</h4>
@@ -294,13 +294,13 @@
 
       <h2>STAGE_04 :: Continuous Deployment & Observation</h2>
 
-      <p>With the image built, tested, and scanned, it lands in the registry. The deployment stage involves logging into the production machine via SSH from the CI runner and triggering a pull and a container swap. This does not involve Kubernetes rolling updates; it frequently relies on robust Docker Compose or systemd configurations.</p>
+      <p>With the image built, tested, and scanned, it lands in the registry. The deployment stage logs into the production machine via SSH from the CI runner and triggers a pull and container swap. No Kubernetes rolling updates -- it relies on Docker Compose and systemd configurations.</p>
 
-      <p>Deploying is only half the contract. The other half is observing the aftermath. The team utilizes a standard Prometheus and Grafana stack, observing the four golden signals: latency, traffic, errors, and saturation. A new release is not considered "Done" when the container starts; it is "Done" when it has baked in production for an hour without elevating the error rate or pegging the CPU.</p>
+      <p>Deploying is only half the contract. The other half is observing the aftermath. The team uses a standard Prometheus and Grafana stack, monitoring the four golden signals: latency, traffic, errors, and saturation. A new release is not "Done" when the container starts. It is "Done" when it has baked in production for an hour without elevating the error rate or pegging the CPU.</p>
 
       <h2>STAGE_05 :: The Immediate Rollback</h2>
 
-      <p>Despite tests and scans, bad logic will eventually infiltrate production. The defining characteristic of a mature, small-team pipeline is not that it achieves zero errors, but that it recovers instantly.</p>
+      <p>Despite tests and scans, bad logic will eventually reach production. The defining characteristic of a mature small-team pipeline is not that it prevents all errors -- it is that it recovers instantly.</p>
 
       <p>Because the Docker images are tagged immutably (e.g., using Git commit SHAs rather than the dreaded <code>:latest</code> tag), reverting a deployment does not require rebuilding or tracing code paths. The deployment script simply points the configuration back to the previous known-good SHA and restarts the container. This mechanical rollback is executed in seconds. The developers can then conduct a postmortem on the broken image locally, detached from the pressure of a live outage.</p>
 
@@ -310,7 +310,7 @@
 
       <p>This pipeline was built for a <strong>6-person startup engineering team</strong> that had been deploying manually via SSH and SCP for over a year. Every deployment was a 45-minute ritual: an engineer would SSH into the production server, pull the latest code, run the build manually, restart the process, and pray nothing broke. Deployments happened once every two weeks because nobody wanted to go through the pain more often than that.</p>
 
-      <p>The failure rate was brutal. Roughly <strong>30% of deployments failed</strong>, and each failure required 1-2 hours of manual rollback work. There was no automated testing, no container images, and no reproducible builds. The production server had accumulated months of manual configuration drift that nobody fully understood.</p>
+      <p>The failure rate was brutal. Roughly <strong>30% of deployments failed</strong>, and each failure required 1-2 hours of manual rollback. There was no automated testing, no container images, and no reproducible builds. The production server had accumulated months of configuration drift that nobody fully understood.</p>
 
       <p>The project was executed by a <strong>solo DevOps engineer over 8 weeks</strong>. The constraint was clear: build a reliable delivery pipeline using the existing infrastructure budget. No new servers, no new cloud accounts, no additional monthly costs. Jenkins would run on the existing server, and Docker would run on the existing VMs.</p>
 

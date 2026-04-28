@@ -502,12 +502,12 @@
       <h1>Secure AI Compliance Control Plane</h1>
       <p class="deck">A control plane for teams building AI products that need evidence, not vague policy decks. The platform registers projects, classifies data, maps controls, runs code and model checks, enforces deployment approval, and preserves audit-ready evidence across the lifecycle. It is aimed at organizations using models, prompts, APIs, vector stores, and observability pipelines that all need traceable governance.</p>
       <div class="summary-strip" aria-label="Executive summary strip">
-        <article><h2>Primary Use</h2><p>A company wants to launch an AI document summarizer for legal contracts. Before launch, the control plane checks whether documents contain confidential data, whether prompts are logged safely, whether model providers are approved, and whether human review is required.</p></article><article><h2>System Built</h2><p>A control plane that treats AI governance as an engineering workflow with approvals, test evidence, and runtime monitoring.</p></article><article><h2>Critical Control</h2><p>NIST SSDF mapping</p></article><article><h2>Business Outcome</h2><p>The platform delivered both technical security and operational speed. Instead of blocking teams late, governance became part of system design from the beginning and made approvals clearer.</p></article>
+        <article><h2>Primary Use</h2><p>A company wants to launch an AI document summarizer for legal contracts. Before launch, the control plane checks whether documents contain confidential data, whether prompts are logged safely, whether model providers are approved, and whether human review is required.</p></article><article><h2>System Built</h2><p>A control plane that treats AI governance as an engineering workflow with approvals, test evidence, and runtime monitoring.</p></article><article><h2>Critical Control</h2><p>NIST SSDF mapping</p></article><article><h2>Business Outcome</h2><p>Security rigor and engineering velocity, together. Governance moved from a late-stage blocker to an integrated part of system design.</p></article>
       </div>
     </header>
 
     <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-      <strong>Implementation Lens:</strong> Structured the platform around secure software delivery rather than one-off compliance questionnaires, starting with project registration and data classification. Mapped each workflow stage to NIST SSDF, OWASP Secure Coding, OWASP ASVS, and NIST AI RMF so controls can be defended during review.
+      <strong>My Role:</strong> I structured the platform around secure software delivery rather than one-off compliance questionnaires, starting with project registration and data classification. I mapped each workflow stage to NIST SSDF, OWASP Secure Coding, OWASP ASVS, and NIST AI RMF so every control can be defended with evidence during review -- not just claimed in a spreadsheet.
     </div>
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
       <strong style="margin-right:4px;">Stack:</strong>
@@ -523,9 +523,9 @@
           </aside>
           <div class="section-body">
             <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
-            <p>Secure AI Compliance Control Plane was created for organizations that wanted to build AI products but were worried about security, privacy, governance, and audit risk. The client engineering team was already experimenting with LLMs, RAG systems, document automation, and internal copilots, but there was no consistent answer to basic control questions such as which data was entering the model, who could access prompts and outputs, whether logs stored sensitive content, and who approved production deployment.</p><p>The project was positioned not as a security checklist but as a full AI governance layer. Teams could register AI projects, classify data, map risks, define controls, run security checks, and generate audit-ready evidence.</p><p>The hard part was language alignment. Developers wanted APIs and CI/CD checks, security wanted threat models and logs, legal wanted privacy controls, and business teams wanted speed. The solution was a shared control plane where every AI project moved through the same lifecycle: intake, risk classification, design review, security testing, deployment approval, and monitoring.</p>
+            <p>This control plane was built for an organization that wanted to ship AI products but had no consistent answer to basic control questions: which data enters the model, who can access prompts and outputs, whether logs store sensitive content, and who approves production deployment. The engineering team was already experimenting with LLMs, RAG systems, document automation, and internal copilots -- all without traceable governance.</p><p>The project was positioned not as a security checklist but as a full AI governance layer. Teams register AI projects, classify data, map risks, define controls, run security checks, and generate audit-ready evidence -- all in one workflow.</p><p>The hardest part was language alignment. Developers wanted APIs and CI/CD checks. Security wanted threat models and logs. Legal wanted privacy controls. Business teams wanted speed. The solution was a shared control plane where every AI project moves through the same lifecycle: intake, risk classification, design review, security testing, deployment approval, and monitoring.</p>
             <div class="callout">
-              <p><strong>Value delivered.</strong> The platform delivered both technical security and operational speed. Instead of blocking teams late, governance became part of system design from the beginning and made approvals clearer.</p>
+              <p><strong>Value delivered.</strong> The platform delivered both security rigor and engineering velocity. Instead of blocking teams late in the cycle, governance became part of system design from the start, making approvals faster and more transparent.</p>
             </div>
           </div>
         </section>
@@ -587,8 +587,8 @@
               </article>
               <article class="comparison-card">
                 <h3>Business Context</h3>
-                <p>A company wants to launch an AI document summarizer for legal contracts. Before launch, the control plane checks whether documents contain confidential data, whether prompts are logged safely, whether model providers are approved, and whether human review is required.</p>
-                <p>The platform delivered both technical security and operational speed. Instead of blocking teams late, governance became part of system design from the beginning and made approvals clearer.</p>
+                <p>A company wants to launch an AI document summarizer for legal contracts. Before launch, the control plane verifies whether documents contain confidential data, whether prompts are logged safely, whether model providers are approved, and whether human review is required.</p>
+                <p>The platform delivered security rigor and engineering velocity together. Instead of blocking teams late, governance became part of system design from the start.</p>
               </article>
             </div>
             <table class="committee-table">
@@ -663,8 +663,8 @@
           </aside>
           <div class="section-body">
             <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
-            <p>This is the difference between AI governance slides and a real control system engineers can operate every day.</p>
-            <p>The product only becomes credible when deployment approval is tied to evidence already generated by engineering work, not manual spreadsheet attestations.</p>
+            <p>This is the difference between AI governance slide decks and a real control system that engineers can operate daily.</p>
+            <p>The product becomes credible only when deployment approval is tied to evidence already generated by engineering work -- not manual spreadsheet attestations.</p>
             <div class="policy-grid">
               <article class="policy-card">
                 <h3>Biggest Surprise</h3>

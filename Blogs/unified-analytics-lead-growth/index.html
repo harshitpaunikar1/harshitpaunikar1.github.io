@@ -149,18 +149,18 @@
   <div class="viewport">
     <header>
       <h1>The Architecture of Truth: Centralizing Growth Analytics</h1>
-      <p class="thesis">A business fails to scale not because it lacks data, but because it possesses competing, fractured truths. When the Marketing team’s HubSpot dashboard claims seventy new pipeline leads and the Finance team’s Stripe extract recognizes twenty paying accounts, the resulting gap breeds distrust. Bringing growth metrics into a governed warehouse is an exercise in enforcing grammatical discipline.</p>
+      <p class="thesis">A business fails to scale not because it lacks data, but because it possesses competing, fractured truths. When Marketing’s HubSpot dashboard claims seventy new pipeline leads and Finance’s Stripe extract recognizes twenty paying accounts, the gap breeds distrust. Bringing growth metrics into a governed warehouse is an exercise in enforcing definitional discipline across the organization.</p>
     </header>
 
-    <p>Raw data is meaningless. SaaS applications (Salesforce, Marketo, Amplitude) generate endless logs of user state transitions, but these tools do not natively speak to one another. When an analyst downloads a CSV from an email tool and attempts an ad-hoc VLOOKUP against a billing export, they are not performing analytics-they are performing manual, error-prone data duct-taping.</p>
+    <p>Raw data is meaningless. SaaS applications (Salesforce, Marketo, Amplitude) generate endless logs of user state transitions, but these tools do not natively speak to one another. When an analyst downloads a CSV from an email tool and runs a VLOOKUP against a billing export, they are not performing analytics -- they are performing manual, error-prone data duct-taping.</p>
 
-    <p>A mature growth analytics function requires structural stability. It abandons "dashboard-first" thinking, where charts are bolted directly to opaque API endpoints. Instead, it builds a massive, central data funnel: extracting the chaotic, unstructured source data, rigorously modeling it into a resilient dimensional warehouse, and only then allowing BI tools to consume the agreed-upon truth.</p>
+    <p>A mature growth analytics function requires structural stability. It abandons "dashboard-first" thinking, where charts are bolted directly to opaque API endpoints. Instead, it builds a central data funnel: extracting chaotic source data, rigorously modeling it into a resilient dimensional warehouse, and only then allowing BI tools to consume the agreed-upon truth.</p>
 
     <h2>[CONSTRAINT_01] Centralized Extraction (ELT)</h2>
 
-    <p>The foundation of the architecture is the ELT pipeline (Extract, Load, Transform). We rely on automated extraction tools (like Fivetran or Airbyte) to securely pull raw tables from every business tool on a schedule and dump them unmodified into the Data Warehouse (e.g., Snowflake, BigQuery).</p>
+    <p>The foundation is the ELT pipeline (Extract, Load, Transform). Automated extraction tools (Fivetran, Airbyte) securely pull raw tables from every business tool on a schedule and load them unmodified into the data warehouse (Snowflake, BigQuery).</p>
 
-    <p>This "Load" step is brutally literal. The warehouse now contains a carbon copy of the Salesforce <code>Lead</code> table alongside the Stripe <code>Invoices</code> table. At this stage, querying the data is dangerous. The schemas are dense, column names are obscured by legacy API standards, and dropped data types are rampant. This staging area is closed to business users. It exists solely to provide data engineers raw material for the transformation layer.</p>
+    <p>This "Load" step is brutally literal. The warehouse now contains a carbon copy of the Salesforce <code>Lead</code> table alongside the Stripe <code>Invoices</code> table. At this stage, querying the data is dangerous -- schemas are dense, column names are obscured by legacy API standards, and dropped data types are rampant. This staging area is closed to business users. It exists solely to give data engineers raw material for the transformation layer.</p>
 
     <!-- DIAGRAM: THE DATA FUNNEL -->
     <div class="architecture-diagram">
@@ -253,7 +253,7 @@
 
     <h2>[CONSTRAINT_02] The Dimensional Model</h2>
 
-    <p>Transformation is the act of imposing business logic onto raw code. We utilize tools like dbt (data build tool) to write SQL models that normalize the chaos into a structured "Star Schema"-a dimensional modeling technique consisting of Fact and Dimension tables.</p>
+    <p>Transformation is the act of imposing business logic onto raw data. We use dbt (data build tool) to write SQL models that normalize the chaos into a structured Star Schema -- a dimensional modeling technique consisting of Fact and Dimension tables.</p>
 
     <div class="definition-block">
       <code>MODEL :: FACT_GROWTH_EVENTS</code>
@@ -269,7 +269,7 @@
 
     <h2>[CONSTRAINT_03] Singular Logic</h2>
 
-    <p>The most important function of the Transformation layer is destroying analytical ambiguity. Consider a "Lead." Marketing considers anyone who downloaded a PDF a Lead. Sales demands a verified phone number to count it. If these definitions remain siloed in different SaaS tools, the resulting conversion metrics are a fiction.</p>
+    <p>The most important function of the transformation layer is destroying analytical ambiguity. Consider a "Lead." Marketing considers anyone who downloaded a PDF a lead. Sales demands a verified phone number to count it. If these definitions remain siloed in different SaaS tools, the resulting conversion metrics are fiction.</p>
 
     <p>By enforcing the dimensional model, the business is forced to write a singular SQL <code>CASE WHEN</code> statement that defines a <code>is_qualified_lead</code> boolean. This exact code becomes the institutional definition of a lead. If marketing disagrees, they must argue for a pull request modifying the underlying SQL model, not quietly change a filter on a Tableau report.</p>
 
@@ -295,7 +295,7 @@
       </tbody>
     </table>
 
-    <p>The resulting architecture serves as more than a reporting engine. With historical conversion paths modeled into clean Fact tables, the data science layer can run lead-scoring backtests-quantifying exactly which campaign dimensions led to retention versus churn-and feed those explicit scores back into the warehouse. When analytics are fundamentally unified in the warehouse layer, growth ceases to be an argument over spreadsheet mechanics and becomes an argument about the business itself.</p>
+    <p>The resulting architecture is more than a reporting engine. With historical conversion paths modeled into clean Fact tables, the data science layer can run lead-scoring backtests -- quantifying which campaign dimensions led to retention versus churn -- and feed those scores back into the warehouse. When analytics are unified at the warehouse layer, growth discussions stop being arguments over spreadsheet mechanics and become arguments about the business itself.</p>
 
     <h2>[CONSTRAINT_04] Project Context</h2>
 
@@ -372,14 +372,14 @@
 
     <h2>[CONSTRAINT_06] Lessons Learned</h2>
 
-    <p>The first approach was to build <strong>direct API connectors between Hubspot and Salesforce</strong>. This seemed like the fastest path: pull data from one system and push it into the other. In practice, it was a maintenance disaster. Hubspot rate-limited the API calls during business hours. Salesforce changed field schemas without warning. Every connector broke independently, and debugging required understanding both systems simultaneously.</p>
+    <p>The first approach was building <strong>direct API connectors between Hubspot and Salesforce</strong>. It seemed like the fastest path: pull data from one system and push it into the other. In practice, it was a maintenance disaster. Hubspot rate-limited API calls during business hours. Salesforce changed field schemas without warning. Every connector broke independently, and debugging required understanding both systems simultaneously.</p>
 
     <div class="definition-block">
       <code>LESSON :: DECOUPLE INGESTION FROM TRANSFORMATION</code>
       <p>Building a proper ELT warehouse (extract the raw data first, then transform it in dbt) separated the two concerns completely. If the Hubspot API changed a field name, only the extraction layer needed updating. The transformation models downstream continued to work because they read from the stable warehouse staging tables, not from the live APIs.</p>
     </div>
 
-    <p>The biggest surprise was how simple the root cause turned out to be. After 18 months of inter-departmental arguments about lead numbers, the discrepancy came down to this: <strong>marketing counted "form submissions" while finance counted "qualified opportunities."</strong> These were fundamentally different things being called the same word. Writing a single SQL definition of "lead" that both teams reviewed and approved solved a political problem that no amount of meetings had been able to resolve.</p>
+    <p>The biggest surprise was how simple the root cause turned out to be. After 18 months of inter-departmental arguments, the discrepancy came down to this: <strong>marketing counted "form submissions" while finance counted "qualified opportunities."</strong> Two fundamentally different things called by the same word. Writing a single SQL definition of "lead" that both teams reviewed and approved solved a political problem that no number of meetings had been able to resolve.</p>
 
     <p>If building this again, the clear addition would be <strong>data quality monitoring</strong>. An automated alert that fires when the daily lead count deviates more than 10% from the historical baseline would catch upstream data issues (a broken API connector, a changed form) before they silently corrupt the warehouse. The current system assumes the data arriving is correct, which is a fragile assumption when dealing with 4 different source systems.</p>
 

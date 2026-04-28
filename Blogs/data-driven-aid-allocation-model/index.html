@@ -244,14 +244,14 @@
       </tr>
     </table>
     <h1>Directive: Resource Allocation Under Strict Scarcity Limits</h1>
-    <p class="lede">Algorithms deployed in NGO resource allocation environments are fundamentally distinct from commercial recommendation engines. The engine does not solve a shortfall; it is mathematically constructed to distribute the shortfall. This directive outlines the mechanical triage utilized to determine which high-need regions are excluded from distribution when budgetary capital fails to match documented necessity.</p>
+    <p class="lede">Algorithms deployed in NGO resource allocation are fundamentally different from commercial recommendation engines. The engine does not solve a shortfall; it distributes the shortfall as carefully as possible. This directive outlines the triage logic used to determine which high-need regions are excluded from distribution when budgetary capital falls short of documented necessity.</p>
   </header>
 
-  <p>The operating environment is defined by an absolute budgetary ceiling. In the current fiscal quarter, verified regional demand exceeds our disbursement capacity by a factor of 4.2x. When supply is violently outmatched by demand, relying on political sentiment, legacy distribution channels, or subjective "squeaky-wheel" narratives to assign capital is an ethical failure. Triage must be mechanical. The model detailed below does not invent resources. It exists strictly to minimize aggregate harm under absolute constraints, enforcing a hierarchy of deprivation.</p>
+  <p>The operating environment is defined by an absolute budgetary ceiling. In the current fiscal quarter, verified regional demand exceeds disbursement capacity by a factor of 4.2x. When supply is vastly outmatched by demand, relying on political sentiment, legacy distribution channels, or subjective "squeaky-wheel" narratives to assign capital is an ethical failure. Triage must be systematic. The model detailed below does not invent resources. It exists to minimize aggregate harm under absolute constraints by enforcing a hierarchy of deprivation.</p>
 
   <h2><span class="section-marker">1.0</span> The Mathematics of the Scarcity Gap</h2>
 
-  <p>Before examining the clustering logic, we must codify the baseline scenario. The model requires an explicit acknowledgement of the supply-demand threshold. If a given operational zone requires $8.5M in aid to stabilize, but the global distribution limit is capped at $2.0M, the model's mandate is not to distribute the $2.0M evenly and fail everyone equally. Its mandate is to structurally rank the subsections of that zone and deliberately cut off the bottom quartile to ensure the capital reaches a saturation point where its deployment actually functions.</p>
+  <p>Before examining the clustering logic, the baseline scenario must be codified. The model requires an explicit acknowledgment of the supply-demand threshold. If a given operational zone requires $8.5M in aid to stabilize but the global distribution limit is capped at $2.0M, the model's mandate is not to distribute the $2.0M evenly and fail everyone equally. Its mandate is to rank the subsections of that zone and deliberately cut off the bottom quartile so that the capital reaches a saturation point where it can actually function.</p>
 
   <div class="fig-container">
     <div class="fig-header">FIGURE 1A: Supply-Demand Threshold and The Exclusion Zone</div>
@@ -347,9 +347,9 @@ funding_queue = processed_df.sort_values(by=<span class="c-str">'priority_index'
 
   <h2><span class="section-marker">3.0</span> Baseline Corruption vs Optimized Pipeline</h2>
 
-  <p>The resistance to algorithmic assignment in humanitarian aid usually stems from the discomfort of defining exactly who does not receive assistance. However, human-led "baseline" distribution is wildly corruptible by accessibility biases. Regions nearest to logistical hubs or those represented by highly literate advocates systematically extract higher resource ratios than remote, silent sectors suffering deeper physical peril.</p>
+  <p>Resistance to algorithmic assignment in humanitarian aid usually stems from the discomfort of defining exactly who does not receive assistance. However, human-led "baseline" distribution is highly susceptible to accessibility biases. Regions nearest to logistical hubs or those represented by well-connected advocates systematically extract higher resource ratios than remote, silent sectors suffering deeper physical peril.</p>
 
-  <p>The logic pipeline exists strictly to overwrite human bias with mathematical hostility toward inequitable distribution.</p>
+  <p>The logic pipeline exists to replace human bias with a structured, auditable framework that prioritizes equitable distribution.</p>
 
   <div class="fig-container">
     <div class="fig-header">FIGURE 2B: Architectural Logic Flow</div>
@@ -423,9 +423,9 @@ funding_queue = processed_df.sort_values(by=<span class="c-str">'priority_index'
 
   <h2><span class="section-marker">4.0</span> Ethical Friction and Output Defense</h2>
 
-  <p>Defending the outputs of this model is intentionally uncomfortable. It forces program managers to stand in front of Tier 3 communities-communities that are demonstrably suffering and entirely deserving of aid-and confirm that they will receive zero capital in the current cycle because a mathematical matrix ranked them marginally lower than a neighboring district.</p>
+  <p>Defending the outputs of this model is intentionally uncomfortable. It forces program managers to stand in front of Tier 3 communities -- communities that are demonstrably suffering and entirely deserving of aid -- and confirm that they will receive zero capital in the current cycle because a structured ranking placed them marginally below a neighboring district.</p>
 
-  <p>The model does not alleviate the ethical friction of scarcity; it merely strips away the bureaucratic cover that previously allowed administrators to distribute funds inefficiently without accountability. By surfacing the exact threshold where the capital dies, the algorithm forces the organization to confront the brutal reality of its own limitations. Triage is a violent act. The purpose of deploying this algorithmic framework is to guarantee that the violence is inflicted systematically, fairly, and without favor.</p>
+  <p>The model does not alleviate the ethical friction of scarcity; it strips away the bureaucratic cover that previously allowed administrators to distribute funds inefficiently without accountability. By surfacing the exact threshold where the capital runs out, the algorithm forces the organization to confront the reality of its own limitations. Triage is an inherently difficult act. The purpose of this framework is to ensure that difficult decisions are made systematically, fairly, and without favor.</p>
 
   <h2><span class="section-marker">5.0</span> Project Context & The Challenge</h2>
 
@@ -494,7 +494,7 @@ funding_queue = processed_df.sort_values(by=<span class="c-str">'priority_index'
 
   <h2><span class="section-marker">7.0</span> Lessons Learned</h2>
 
-  <p>The first version of the model used equal weighting across all deprivation indicators. Every factor - mortality rate, water access, conflict density, food inflation - carried the same influence on the final score. This produced rankings that felt wrong to the program officer. Regions with poor infrastructure (bad roads, few clinics) but no active conflict were being ranked higher than regions where people were actively dying from violence. Equal weighting treated a broken road the same as a bullet. That was clearly incorrect.</p>
+  <p>The first version of the model used equal weighting across all deprivation indicators. Every factor -- mortality rate, water access, conflict density, food inflation -- carried the same influence on the final score. This produced rankings that felt wrong to the program officer. Regions with poor infrastructure but no active conflict were being ranked higher than regions where people were actively dying from violence. Equal weighting treated a broken road the same as a bullet. That was clearly incorrect.</p>
 
   <p>The fix was adding weighted multipliers. Mortality risk and conflict density received 1.5x weight, while infrastructure gaps received standard weight. This shifted the rankings to prioritize immediate survival over long-term development needs - a distinction that the purely mathematical first version could not make on its own.</p>
 

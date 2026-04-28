@@ -500,9 +500,9 @@
     <header class="masthead">
       <p class="kicker">Edge AI / Support · LLM / RAG / Agentic Systems · Systems Analysis</p>
       <h1>SLM Edge Support Agent - Why SLM, Not LLM</h1>
-      <p class="deck">A support agent architecture built around a deliberate choice: use a small language model when the task is narrow, the domain is controlled, latency must stay low, offline mode is required, and cost per request matters. The platform performs local or edge inference first, checks confidence, and only falls back to a larger hosted model when the query exceeds the local model&#x27;s boundary. It is aimed at kiosks, field devices, factory tablets, and private support surfaces.</p>
+      <p class="deck">A support agent architecture built around a deliberate choice: use a small language model when the task is narrow, the domain is controlled, latency must stay low, offline mode is required, and cost per request matters. The platform runs local or edge inference first, checks confidence, and falls back to a larger hosted model only when the query exceeds the local model's boundary. Built for kiosks, field devices, factory tablets, and private support surfaces.</p>
       <div class="summary-strip" aria-label="Executive summary strip">
-        <article><h2>Primary Use</h2><p>A customer enters an appliance error code. The SLM retrieves the troubleshooting guide, explains the fix, and escalates to human support only if the issue is genuinely complex.</p></article><article><h2>System Built</h2><p>A small-model-first support agent with explicit confidence routing and controlled fallback to larger models.</p></article><article><h2>Critical Control</h2><p>Offline inference</p></article><article><h2>Business Outcome</h2><p>The value delivered was lower inference cost, faster response time, and better privacy in edge environments.</p></article>
+        <article><h2>Primary Use</h2><p>A customer enters an appliance error code. The SLM retrieves the troubleshooting guide, explains the fix, and escalates to human support only if the issue is genuinely complex.</p></article><article><h2>System Built</h2><p>A small-model-first support agent with explicit confidence routing and controlled fallback to larger models.</p></article><article><h2>Critical Control</h2><p>Offline inference</p></article><article><h2>Business Outcome</h2><p>Lower inference cost, faster response times, and stronger privacy in edge environments.</p></article>
       </div>
     </header>
 
@@ -523,9 +523,9 @@
           </aside>
           <div class="section-body">
             <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
-            <p>SLM Edge Support Agent was designed around a practical question: why use a large language model when a smaller model can solve the actual business problem faster and cheaper?</p><p>The client wanted an AI support agent for a narrow domain: device troubleshooting, warranty questions, installation steps, and error-code explanations. A large LLM was powerful but expensive, slower, and unnecessary for repetitive structured support tasks.</p><p>The proposed architecture used a small language model with retrieval, confidence scoring, and optional escalation. The SLM handled common questions locally or at the edge, and only when confidence was low did the request move to a larger model or human support.</p>
+            <p>This project started with a practical question: why use a large language model when a smaller model can solve the actual business problem faster, cheaper, and with better privacy?</p><p>The client needed an AI support agent for a narrow domain -- device troubleshooting, warranty questions, installation steps, and error-code explanations. A large LLM was powerful but expensive, slower, and unnecessary for these repetitive, structured support tasks.</p><p>The architecture used a small language model paired with retrieval, confidence scoring, and optional escalation. The SLM handled common questions locally or at the edge. Only when confidence fell below the threshold did the request route to a larger model or human support.</p>
             <div class="callout">
-              <p><strong>Value delivered.</strong> The value delivered was lower inference cost, faster response time, and better privacy in edge environments.</p>
+              <p><strong>Value delivered.</strong> Lower inference cost, faster response times, and stronger privacy guarantees in edge environments -- without sacrificing answer quality for the target domain.</p>
             </div>
           </div>
         </section>
@@ -622,8 +622,8 @@
             <div class="comparison-grid">
               <article class="comparison-card">
                 <h3>Difficulty Faced</h3>
-                <p>The biggest difficulty was stakeholder perception. Many people assumed bigger models automatically meant better systems, so the design had to demonstrate latency, cost, privacy, and accuracy tradeoffs for the specific support domain.</p>
-                <p>Choosing the right model boundary and keeping fallback rare enough that the economics and privacy story still hold.</p>
+                <p>The biggest difficulty was stakeholder perception. Many people assumed a bigger model automatically meant a better system. The design had to demonstrate concrete latency, cost, privacy, and accuracy tradeoffs for the specific support domain before the team accepted the SLM approach.</p>
+                <p>The core design challenge: choosing the right model boundary and keeping fallback rare enough that the economics and privacy story still held.</p>
               </article>
               <article class="comparison-card">
                 <h3>Client Coordination Method</h3>
@@ -661,7 +661,7 @@
           </aside>
           <div class="section-body">
             <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
-            <p>This project is a useful argument that model choice is a system-design problem, not a popularity contest.</p>
+            <p>This project demonstrates that model choice is a system-design decision, not a popularity contest.</p>
             <p>Confidence routing must be explicit. Without it, teams end up pretending the small model is broader than it really is.</p>
             <div class="policy-grid">
               <article class="policy-card">

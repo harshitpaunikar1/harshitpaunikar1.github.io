@@ -191,11 +191,11 @@
   <header>
     <span class="eyebrow">Architecture Comparison // NLP</span>
     <h1>The Voice Illusion: RAG vs LoRA</h1>
-    <p class="lede">Every modern LLM sounds the same. They are pre-trained to be impossibly helpful, rigidly structured, and excruciatingly polite. Overwriting that sterile, generic tone to match a specific brand requires a brutal architectural choice: do we feed the model contextual knowledge, or do we fundamentally alter its vocal range through fine-tuning?</p>
+    <p class="lede">Every modern LLM sounds the same -- impossibly helpful, rigidly structured, and excruciatingly polite. Overwriting that sterile, generic tone to match a specific brand requires a real architectural choice: do we feed the model contextual knowledge at inference time, or do we alter its vocal range through fine-tuning?</p>
   </header>
 
   <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-    <strong>My Role:</strong> I designed and implemented the dual-track architecture - RAG for volatile fact injection and LoRA for brand voice adaptation. A brand strategist provided the reference conversation samples and the tone brief that the LoRA training data was derived from; without those real examples, the fine-tuned model would have learned the wrong cadence entirely.
+    <strong>My Role:</strong> I designed and implemented the dual-track architecture: RAG for volatile fact injection and LoRA for brand voice adaptation. A brand strategist provided the reference conversation samples and tone brief that the LoRA training data was derived from. Without those real examples, the fine-tuned model would have learned the wrong cadence entirely.
   </div>
   <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
     <strong style="margin-right:4px;">Stack:</strong>
@@ -207,9 +207,9 @@
     <span style="background:#f1f1f1;border:1px solid #ccc;padding:2px 10px;border-radius:12px;">Embeddings</span>
   </div>
 
-  <p>The standard industry response to the "brand voice" problem is a prompt-engineering band-aid. You inject a rigid system prompt detailing exactly how to behave: <em>"You are a sarcastic but helpful skateboard brand assistant. Be edgy."</em> The result is practically unreadable. The model doesn't understand subtext or pacing; it simply begins appending exclamation points and using the word "dude" while retaining a fundamentally academic sentence structure. It is the conversational equivalent of a spreadsheet wearing a backwards baseball cap.</p>
+  <p>The standard industry response to the "brand voice" problem is a prompt-engineering band-aid. You inject a rigid system prompt: <em>"You are a sarcastic but helpful skateboard brand assistant. Be edgy."</em> The result is practically unreadable. The model does not understand subtext or pacing; it appends exclamation points and uses the word "dude" while retaining a fundamentally academic sentence structure. It is the conversational equivalent of a spreadsheet wearing a backwards baseball cap.</p>
 
-  <p>If a support assistant cannot natively mimic the cadences, the brevity, and the highly specific jargon of your human staff, it will relentlessly alienate the customer base. Solving this is an engineering problem, not a prompting exercise. We must split the deployment strategy between <strong>Retrieval-Augmented Generation (RAG)</strong> for factual knowledge isolation, and <strong>Low-Rank Adaptation (LoRA)</strong> for native vocal alteration.</p>
+  <p>If a support assistant cannot natively mimic the cadences, brevity, and jargon of your human staff, it will alienate the customer base. Solving this is an engineering problem, not a prompting exercise. The deployment strategy must split between <strong>Retrieval-Augmented Generation (RAG)</strong> for factual knowledge isolation and <strong>Low-Rank Adaptation (LoRA)</strong> for native vocal alteration.</p>
 
   <h2>Trade-off 1: Injecting Knowledge vs Modifying Behavior</h2>
 
@@ -382,17 +382,17 @@ model = PeftModel.from_pretrained(model, adapter_path)
 
   <h2>Project Context & The Challenge</h2>
 
-  <p>This project was built for a direct-to-consumer lifestyle brand that received over 2,000 support tickets every day. They already had a chatbot - but customers hated it. The bot gave correct answers wrapped in stiff, corporate language that clashed with the brand's casual, friendly tone. Customer satisfaction scores on bot-handled conversations sat at 2.1 out of 5. Human agents scored 4.1 out of 5 on the same types of questions, but they could not keep up with the volume.</p>
+  <p>This project was built for a direct-to-consumer lifestyle brand receiving over 2,000 support tickets daily. They already had a chatbot, but customers hated it. The bot gave correct answers wrapped in stiff, corporate language that clashed with the brand's casual tone. Customer satisfaction on bot-handled conversations sat at 2.1 out of 5. Human agents scored 4.1 on the same question types, but they could not keep up with the volume.</p>
 
-  <p>The company had tried tweaking the chatbot's system prompt dozens of times. They added personality instructions, example responses, even emoji guidelines. The results were inconsistent - sometimes the bot sounded right, sometimes it reverted to robotic corporate-speak mid-conversation. The support lead described it as "talking to someone pretending to be our brand, badly."</p>
+  <p>The company had tried tweaking the chatbot's system prompt dozens of times -- personality instructions, example responses, even emoji guidelines. Results were inconsistent: sometimes the bot sounded right, sometimes it reverted to robotic corporate-speak mid-conversation. The support lead described it as "talking to someone pretending to be our brand, badly."</p>
 
-  <p>This was a solo engineer project with an 8-week timeline. The goal was clear: make the bot sound like the brand's best human agents, handle the majority of tickets without human handoff, and do it at a lower cost than their current setup.</p>
+  <p>This was a solo engineer project with an 8-week timeline. The goal was clear: make the bot sound like the brand's best human agents, handle the majority of tickets without human handoff, and do it at lower cost than the existing setup.</p>
 
   <h2>Results & Impact</h2>
 
-  <p>After deploying the LoRA-tuned model with the RAG knowledge layer, customer satisfaction on bot responses jumped from 2.1 out of 5 to 4.3 out of 5. The bot now handled 68% of tickets without needing a human agent - up from 31% with the old chatbot. Average response time dropped from 4 hours (waiting in the human agent queue) to 12 seconds.</p>
+  <p>After deploying the LoRA-tuned model with the RAG knowledge layer, customer satisfaction on bot responses jumped from 2.1 to 4.3 out of 5. The bot handled 68% of tickets without a human agent -- up from 31% with the old chatbot. Average response time dropped from 4 hours (waiting in the human agent queue) to 12 seconds.</p>
 
-  <p>The LoRA adapter was fine-tuned on 800 carefully curated question-and-answer pairs built in collaboration with the brand's support team. Monthly hosting cost came to $180 for the LoRA model on a modest GPU instance, compared to the $420 per month they had been spending on OpenAI API calls for the old chatbot. The system went live serving all 2,000+ daily tickets.</p>
+  <p>The LoRA adapter was fine-tuned on 800 carefully curated question-and-answer pairs built with the brand's support team. Monthly hosting cost came to $180 on a modest GPU instance, compared to $420 per month on OpenAI API calls for the old chatbot. The system went live serving all 2,000+ daily tickets.</p>
 
   <div class="figure-container">
     <svg height="400" width="1000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid meet">
@@ -446,13 +446,13 @@ model = PeftModel.from_pretrained(model, adapter_path)
 
   <h2>Lessons Learned</h2>
 
-  <p>The first attempt was pure prompt engineering. We wrote detailed system prompts describing the brand's personality, included rules about sentence length, and added lists of words to use and avoid. The bot got the facts right, but the tone was still corporate. It would say things like "I understand your frustration and I am happy to assist you with your concern" - technically correct, but completely wrong for a brand whose human agents would say "Ugh, that sucks. Let me fix it."</p>
+  <p>The first attempt was pure prompt engineering. We wrote detailed system prompts describing the brand's personality, included rules about sentence length, and added word lists. The bot got facts right, but the tone was still corporate. It would say "I understand your frustration and I am happy to assist you with your concern" -- technically correct, but completely wrong for a brand whose human agents would say "Ugh, that sucks. Let me fix it."</p>
 
-  <p>The second attempt used few-shot examples injected into the system prompt. We included 10 real agent conversations as templates. This improved consistency within the topics covered by those examples, but the bot would fall back to generic phrasing on any question outside the example set. The few-shot approach also ate up a huge chunk of the context window on every single request, driving up costs.</p>
+  <p>The second attempt used few-shot examples injected into the system prompt -- 10 real agent conversations as templates. This improved consistency within the topics those examples covered, but the bot fell back to generic phrasing on anything outside the example set. The few-shot approach also consumed a large chunk of the context window on every request, driving up costs.</p>
 
-  <p>LoRA fine-tuning was the breakthrough. But the real bottleneck was not the training - it was curating the 800 question-and-answer pairs. We spent 3 weeks working with the brand's support team, going through real ticket transcripts, rewriting agent responses to match the ideal tone, and discarding pairs that were too generic to teach the model anything useful. That curation process was the most tedious part of the entire project, but it was also the part that made everything else work.</p>
+  <p>LoRA fine-tuning was the breakthrough. But the real bottleneck was not training -- it was curating the 800 question-and-answer pairs. We spent 3 weeks with the brand's support team, going through real ticket transcripts, rewriting agent responses to match the ideal tone, and discarding pairs too generic to teach the model anything useful. That curation process was the most tedious part of the project, but it was the part that made everything else work.</p>
 
-  <p>The biggest surprise came after launch: customers started rating bot interactions higher than human agent interactions. The CSAT on bot responses (4.3) actually exceeded the human agent average (4.1). It turned out the LoRA model had absorbed the tone of the brand's best agents, not the average ones - and it was consistent in a way that humans, who have bad days and rush through tickets at the end of a shift, are not.</p>
+  <p>The biggest surprise came after launch: customers started rating bot interactions higher than human agent interactions. CSAT on bot responses (4.3) actually exceeded the human agent average (4.1). The LoRA model had absorbed the tone of the brand's best agents, not the average ones -- and it was consistent in a way that humans, who have bad days and rush through tickets at the end of a shift, simply are not.</p>
 
 </div>
 

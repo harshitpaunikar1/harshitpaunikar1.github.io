@@ -463,7 +463,7 @@
       <div class="hero-grid">
         <div>
           <h1>Does PCA Actually Help a Housing Model?</h1>
-          <p class="deck">It is easy to treat principal component analysis as a respectable preprocessing step and much harder to prove that compressing a housing feature table buys enough predictive stability to justify the interpretability you lose on the way.</p>
+          <p class="deck">It is easy to treat principal component analysis as a respectable preprocessing step. It is much harder to prove that compressing a housing feature table buys enough predictive stability to justify the interpretability you sacrifice along the way.</p>
         </div>
         <aside class="hero-card">
           <p class="hero-card-title">What the notebook really says</p>
@@ -517,7 +517,7 @@
         <h2 class="section-title">The notebook becomes interesting only when you stop asking whether PCA is valid and start asking whether it is worth the trade.</h2>
       </div>
       <div class="full">
-        <p>A lot of PCA writeups make the same mistake. They treat dimensionality reduction as a sign of methodological maturity, as if “we applied PCA” were already a conclusion. That is not how this housing case reads to me. The notebook gives us a cleaner question: once we have a 15-column feature table and a plain linear model that already works decently, what exactly are we buying by rotating the space?</p>
+        <p>Many PCA writeups make the same mistake. They treat dimensionality reduction as a sign of methodological maturity, as if “we applied PCA” were already a conclusion. This housing case reads differently. The notebook poses a cleaner question: once we have a 15-column feature table and a plain linear model that already works decently, what exactly are we buying by rotating the space?</p>
         <p>The answer is not “better prediction” in any dramatic sense. The baseline linear regression on standardized original predictors lands at mean squared error `0.35` and `R2 0.65`. Running regression on the full PCA-transformed space also lands at `0.35` and `0.65`. That should not surprise anyone. If you keep all components, PCA is mostly a rotation. You gain orthogonality. You do not meaningfully simplify the problem.</p>
         <p>The only moment PCA starts behaving like a substantive choice is when the notebook cuts down to `6` components. Then the model moves to mean squared error `0.33` and `R2 0.66`. That is a modest improvement, not a revolution. Still, it is enough to justify a serious comparison because the dimensionality drop is real: six components instead of fifteen predictors, with cumulative explained variance around `68.4%`.</p>
       </div>
@@ -743,7 +743,7 @@ y_pred = model.predict(Xtest_reduced)  # smaller space, weaker direct meaning
       </div>
       <div class="full">
         <p>The notebook answers its own question more honestly than most PCA demos do. Using every principal component changes almost nothing in predictive performance, which proves that PCA is not a free accuracy hack. Reducing to six components trims the space and nudges fit from `R2 0.65` to `0.66`, which is a respectable result but not a sweeping mandate.</p>
-        <p>So my recommendation is conditional, not devotional. Keep the original standardized features when the model needs to remain interpretable in real-estate language. Use the reduced PCA pipeline only when geometric cleanup and compactness matter more than direct explanation. The right conclusion here is not “PCA is useful.” The right conclusion is narrower: PCA is useful when you can afford to stop speaking in the language of houses.</p>
+        <p>My recommendation is conditional, not devotional. Keep the original standardized features when the model needs to remain interpretable in real-estate language. Use the reduced PCA pipeline only when geometric cleanup and compactness matter more than direct explanation. The right conclusion here is not “PCA is useful.” It is narrower: PCA is useful when you can afford to stop speaking in the language of houses.</p>
       </div>
     </section>
   </main>

@@ -507,7 +507,7 @@
     </header>
 
     <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-      <strong>Implementation Lens:</strong> Defined the extension around explicit user consent and site context rather than background scraping or broad browsing permissions. Used Manifest V3 service worker and content script boundaries to separate extraction, enrichment, and export cleanly.
+      <strong>My Role:</strong> Defined the extension around explicit user consent and site context rather than background scraping or broad browsing permissions. Used Manifest V3 service worker and content script boundaries to cleanly separate extraction, enrichment, and export.
     </div>
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
       <strong style="margin-right:4px;">Stack:</strong>
@@ -523,9 +523,9 @@
           </aside>
           <div class="section-body">
             <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
-            <p>Chrome Extension Web Scraping Intelligence Agent was designed for users who needed structured data from public web pages but did not want to manually copy and paste information into spreadsheets. Use cases included lead research, competitor monitoring, job listing tracking, pricing analysis, and procurement intelligence.</p><p>The extension allowed users to open a webpage, select the type of data they wanted, confirm extraction, and export structured results to Google Sheets, Airtable, CRM, or a database.</p><p>The biggest challenge was building scraping responsibly. A browser extension has access to user pages, so privacy and permission control were critical. Another challenge was page variability, because every website has a different structure.</p>
+            <p>This extension was built for users who needed structured data from public web pages but did not want to manually copy and paste information into spreadsheets. Use cases include lead research, competitor monitoring, job listing tracking, pricing analysis, and procurement intelligence.</p><p>The extension lets users open a webpage, select the type of data they want, confirm extraction, and export structured results to Google Sheets, Airtable, CRM, or a database.</p><p>The biggest challenge was building scraping responsibly. A browser extension has access to user pages, so privacy and permission control were critical. Page variability was the second challenge, because every website has a different DOM structure.</p>
             <div class="callout">
-              <p><strong>Value delivered.</strong> The extension delivered faster research and cleaner data collection.</p>
+              <p><strong>Value delivered.</strong> The extension delivered significantly faster research workflows and cleaner, more structured data collection.</p>
             </div>
           </div>
         </section>
@@ -622,12 +622,12 @@
             <div class="comparison-grid">
               <article class="comparison-card">
                 <h3>Difficulty Faced</h3>
-                <p>The system used minimal permissions, user-triggered scraping only, visible extraction previews, and clear export controls. On the technical side it combined DOM extraction, pattern recognition, and AI-based cleanup so the final output was usable.</p>
-                <p>Balancing flexibility in extraction with Chrome extension security boundaries and marketplace trust requirements.</p>
+                <p>The system uses minimal permissions, user-triggered scraping only, visible extraction previews, and clear export controls. On the technical side it combines DOM extraction, pattern recognition, and AI-based cleanup so the final output is immediately usable.</p>
+                <p>The core difficulty was balancing flexibility in extraction with Chrome extension security boundaries and marketplace trust requirements.</p>
               </article>
               <article class="comparison-card">
                 <h3>Client Coordination Method</h3>
-                <p>Examples of target websites and desired output formats were collected up front. Instead of building a generic scraper, the product used templates for lead lists, product prices, job posts, company profiles, and contact tables.</p>
+                <p>Target websites and desired output formats were collected up front. Instead of building a generic scraper, the product uses templates for lead lists, product prices, job posts, company profiles, and contact tables.</p>
                 <p>Best fit: Browser engineering roles, Growth tooling roles, Full-stack roles</p>
                 <ul class="metric-list">
                   <li>Applied policy and trust constraints: no credential theft, no session hijacking, no silent scraping, and HTTPS-only backend communication.</li><li>Positioned the business model around freemium usage, paid exports, team workspaces, and data-intelligence subscriptions.</li>
@@ -661,12 +661,12 @@
           </aside>
           <div class="section-body">
             <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
-            <p>Browser automation is a product surface where engineering quality and trust boundaries are inseparable.</p>
-            <p>The extension stays credible when every scrape begins with a visible user action and a clear export target.</p>
+            <p>Browser automation is a product surface where engineering quality and trust boundaries are inseparable from each other.</p>
+            <p>The extension maintains credibility when every scrape begins with a visible user action and a clear export target.</p>
             <div class="policy-grid">
               <article class="policy-card">
                 <h3>Biggest Surprise</h3>
-                <p>Users care a lot about data normalization quality because export cleanup is often the real hidden cost of scraping workflows.</p>
+                <p>Users care deeply about data normalization quality because export cleanup is often the real hidden cost of scraping workflows.</p>
               </article>
               <article class="policy-card">
                 <h3>Next Step</h3>

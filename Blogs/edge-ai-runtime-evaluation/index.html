@@ -269,11 +269,11 @@
   <header class="page-header">
     <div class="doc-class">Benchmark Engineering Note</div>
     <h1>Edge Runtime Optimization</h1>
-    <p class="lede">A persistent delusion in machine learning is that the neural network architecture dictates inference speed. It doesn't. Model architecture dictates theoretical FLOPs. The execution runtime dictates actual latency. Failing to drag a model out of its native Python environment and into a compiled hardware-accelerated engine guarantees that your edge hardware will choke.</p>
+    <p class="lede">A persistent misconception in machine learning is that neural network architecture dictates inference speed. It does not. Model architecture dictates theoretical FLOPs. The execution runtime dictates actual latency. Failing to move a model out of its native Python environment and into a compiled, hardware-accelerated engine guarantees that edge hardware will underperform.</p>
   </header>
 
   <div class="role-note">
-    <strong>My Role:</strong> I built and ran the runtime optimization pipeline - PyTorch to ONNX export, TensorRT engine compilation, INT8 calibration, and the benchmark harness that measured latency and throughput across all three runtimes on the actual Jetson Nano hardware. The benchmarks were run in production conditions (device strapped to a forklift, ambient temperature, competing background processes) rather than in a lab, which is why the numbers look different from published benchmarks.
+    <strong>My Role:</strong> I built and ran the full runtime optimization pipeline: PyTorch to ONNX export, TensorRT engine compilation, INT8 calibration, and the benchmark harness that measured latency and throughput across all three runtimes on actual Jetson Nano hardware. Benchmarks ran in production conditions -- device strapped to a forklift, ambient temperature, competing background processes -- which is why the numbers differ from published benchmarks.
   </div>
   <div class="stack-row">
     <strong style="margin-right:4px;">Stack:</strong>
@@ -285,9 +285,9 @@
     <span class="stack-chip">Python</span>
   </div>
 
-  <p>The vast majority of object detection and classification models are trained in PyTorch. For rapid prototyping inside a cloud cluster with 80GB VRAM A100 GPUs, native PyTorch execution is frictionless. But when you move that exact same <code>.pt</code> weights file to an Nvidia Jetson Nano strapped to a warehouse forklift, the application will hemorrhage RAM and drop to 4 frames per second.</p>
+  <p>Most object detection and classification models are trained in PyTorch. For rapid prototyping inside a cloud cluster with 80GB VRAM A100 GPUs, native PyTorch execution is frictionless. But when the same <code>.pt</code> weights file moves to an Nvidia Jetson Nano strapped to a warehouse forklift, the application will consume excessive RAM and drop to 4 frames per second.</p>
 
-  <p>Python is an aggressively interpreted language laced with Global Interpreter Lock (GIL) friction, immense memory overhead, and highly unoptimized dispatch operations. Treating PyTorch as a production edge runtime is engineering negligence. To hit production targets, the model must be frozen, serialized out of Python entirely, and chemically bonded to the physical silicon executing it.</p>
+  <p>Python is an interpreted language with Global Interpreter Lock (GIL) friction, significant memory overhead, and unoptimized dispatch operations. Treating PyTorch as a production edge runtime is an engineering oversight. To hit production targets, the model must be frozen, serialized out of Python entirely, and tightly compiled for the specific silicon executing it.</p>
 
   <h2>TARGET_HARDWARE_EXPORT</h2>
 
@@ -479,9 +479,9 @@ torch.onnx.export(
 
   <h2>DEPLOYMENT_RESULTS</h2>
 
-  <p>The results exceeded expectations. Frames per second jumped from 10.8 (native PyTorch) to 161 (TensorRT with INT8 quantization). That is a 15x improvement on the same hardware. VRAM usage dropped from 480MB to 48MB, which freed enough memory to run a second model on the same device for a different inspection task. Inference latency dropped from 92.6 milliseconds to 6.2 milliseconds per frame.</p>
+  <p>The results exceeded expectations. Frames per second jumped from 10.8 (native PyTorch) to 161 (TensorRT with INT8 quantization) -- a 15x improvement on the same hardware. VRAM usage dropped from 480MB to 48MB, freeing enough memory to run a second model on the same device for a different inspection task. Inference latency dropped from 92.6 milliseconds to 6.2 milliseconds per frame.</p>
 
-  <p>The accuracy loss from INT8 quantization was 1.7%. For this use case, that tradeoff was acceptable. The models were detecting defects on manufactured parts, and the slight accuracy reduction was more than compensated by the ability to actually inspect every item on the belt instead of skipping every third one.</p>
+  <p>Accuracy loss from INT8 quantization was 1.7%. For this use case, that tradeoff was acceptable. The models were detecting defects on manufactured parts, and the slight accuracy reduction was more than compensated by the ability to inspect every item on the belt instead of skipping every third one.</p>
 
   <p>The optimized runtime was deployed across all 12 edge devices on 3 factory lines. Total hardware savings: $36,000. Total engineering investment: 4 weeks of a 2-person team.</p>
 
@@ -555,11 +555,11 @@ torch.onnx.export(
 
   <h2>ENGINEERING_LESSONS</h2>
 
-  <p>The first thing the team tried was ONNX Runtime on its own. Exporting the PyTorch model to ONNX and running it through the ONNX Runtime engine gave a 2.3x improvement. That brought the frame rate from 10.8 to about 25 FPS. Better, but still not fast enough for 30 items per minute on the belt. The conveyor could not slow down to match the camera.</p>
+  <p>The first attempt was ONNX Runtime alone. Exporting the PyTorch model to ONNX and running it through the ONNX Runtime engine yielded a 2.3x improvement, bringing the frame rate from 10.8 to about 25 FPS. Better, but still not fast enough for 30 items per minute on the belt. The conveyor could not slow down to match the camera.</p>
 
   <p>TensorRT provided the remaining jump. Its layer fusion (combining multiple neural network operations into single GPU kernel calls) and automatic kernel tuning (selecting the fastest GPU instruction pattern for the specific chip) pushed the frame rate past 160 FPS. The combination of ONNX export plus TensorRT compilation plus INT8 quantization was the full solution. No single step alone was sufficient.</p>
 
-  <p>The biggest surprise was the compilation step. Converting an ONNX model to a TensorRT engine takes about 25 minutes per model. That sounds painful, but it only needs to happen once per model version per hardware target. Once the engine file is generated, it loads in seconds. The team initially worried the compilation time would slow down their iteration cycle, but since it was a one-time cost per deployment, it turned out to be irrelevant in production.</p>
+  <p>The biggest surprise was the compilation step. Converting an ONNX model to a TensorRT engine takes about 25 minutes per model. That sounds painful, but it only happens once per model version per hardware target. Once the engine file is generated, it loads in seconds. The team initially worried compilation time would slow iteration, but as a one-time cost per deployment, it proved irrelevant in production.</p>
 
   <p>If the team were starting this project again, they would build an automated benchmark pipeline from day one. During the sprint, they manually tracked FPS and latency numbers in a spreadsheet. Twice, a code change caused a regression that went unnoticed for two days. An automated pipeline that ran the benchmark suite on every model export would have caught those regressions immediately and saved roughly a week of debugging time across the four-week sprint.</p>
 

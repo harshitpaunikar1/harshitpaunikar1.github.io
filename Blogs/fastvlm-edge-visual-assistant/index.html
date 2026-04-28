@@ -500,7 +500,7 @@
     <header class="masthead">
       <p class="kicker">Edge Vision / Field Service · Computer Vision / Edge AI · Build Breakdown</p>
       <h1>FastVLM Edge Visual Assistant</h1>
-      <p class="deck">An on-device or edge-assisted visual assistant for field technicians working under latency and privacy constraints. The user captures a photo, the model identifies the asset or visible problem, the system retrieves the relevant manual section, and the workflow can update tickets or inventory. It is aimed at field service environments where sending imagery to the cloud is expensive, slow, or unacceptable.</p>
+      <p class="deck">An on-device visual assistant for field technicians working under latency and privacy constraints. The user captures a photo, the model identifies the asset or visible problem, the system retrieves the relevant manual section, and the workflow updates tickets or inventory. Built for field service environments where sending imagery to the cloud is expensive, slow, or unacceptable.</p>
       <div class="summary-strip" aria-label="Executive summary strip">
         <article><h2>Primary Use</h2><p>A technician photographs an electrical control panel. The assistant identifies the component, detects a loose connection, retrieves the relevant manual section, and creates a maintenance ticket.</p></article><article><h2>System Built</h2><p>An edge visual assistant that pairs image understanding with manual retrieval and service workflow updates.</p></article><article><h2>Critical Control</h2><p>On-device inference</p></article><article><h2>Business Outcome</h2><p>The value delivered was reduced diagnosis time and better first-time fix rates.</p></article>
       </div>
@@ -523,9 +523,9 @@
           </aside>
           <div class="section-body">
             <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
-            <p>FastVLM Edge Visual Assistant was created for field technicians who work with machines, panels, devices, and equipment manuals. In practice, technicians often face an unfamiliar machine, take photos, search manuals, call supervisors, and lose time identifying parts.</p><p>The project allowed a technician to capture an image and ask questions such as what component this is, whether wiring is correct, which manual section to open, or what the next maintenance step should be.</p><p>The system used a fast vision-language-model approach so image understanding could happen with low latency, then connected the visual input with documentation retrieval and service-ticket workflows.</p>
+            <p>FastVLM Edge Visual Assistant was built for field technicians who work with machines, panels, devices, and equipment manuals. In practice, technicians frequently face an unfamiliar machine, take photos, search manuals, call supervisors, and lose valuable time identifying parts.</p><p>The system lets a technician capture an image and ask questions: what component is this, is the wiring correct, which manual section applies, or what is the next maintenance step. A fast vision-language-model approach enables low-latency image understanding, connected to documentation retrieval and service-ticket workflows.</p>
             <div class="callout">
-              <p><strong>Value delivered.</strong> The value delivered was reduced diagnosis time and better first-time fix rates.</p>
+              <p><strong>Value delivered.</strong> Reduced diagnosis time and improved first-time fix rates for field service teams.</p>
             </div>
           </div>
         </section>
@@ -537,8 +537,8 @@
           </aside>
           <div class="section-body">
             <h2>Section II · The system must be readable as a flow before it can be trusted in production</h2>
-            <p>Low-latency edge visual assistant for technicians who point a device at equipment and get repair guidance plus manual retrieval.</p>
-            <p>Real-life use case solved: A technician photographs an electrical control panel. The assistant identifies the component, detects a loose connection, retrieves the relevant manual section, and creates a maintenance ticket.</p>
+            <p>A low-latency edge visual assistant where technicians point a device at equipment and receive repair guidance with manual retrieval.</p>
+            <p>Real-life use case: A technician photographs an electrical control panel. The assistant identifies the component, detects a loose connection, retrieves the relevant manual section, and creates a maintenance ticket.</p>
             <figure aria-labelledby="architecture-caption">
               <p class="diagram-title">Diagram A · Architecture Overview</p>
               <svg viewBox="0 0 1160 330" role="img" aria-label="FastVLM Edge Visual Assistant architecture diagram">
@@ -622,8 +622,8 @@
             <div class="comparison-grid">
               <article class="comparison-card">
                 <h3>Difficulty Faced</h3>
-                <p>The main challenge was context. A model may describe an image correctly but still fail to understand what the technician actually needs. The solution combined image understanding with asset metadata, location, maintenance history, and manuals so the system worked in operational context.</p>
-                <p>Delivering fast enough multimodal behavior on-device while keeping retrieval grounded in service documentation.</p>
+                <p>The main challenge was context. A model may describe an image correctly but still fail to understand what the technician actually needs. The solution combined image understanding with asset metadata, location, maintenance history, and manuals so the system worked within operational context.</p>
+                <p>The technical difficulty was delivering fast multimodal behavior on-device while keeping retrieval grounded in service documentation.</p>
               </article>
               <article class="comparison-card">
                 <h3>Client Coordination Method</h3>
@@ -662,8 +662,8 @@
           </aside>
           <div class="section-body">
             <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
-            <p>It demonstrates that multimodal assistants become valuable when attached to a narrow, high-friction operational loop instead of open-ended chat.</p>
-            <p>Manual retrieval has to be first-class. Visual recognition without service documentation turns into a confidence game instead of a repair tool.</p>
+            <p>This project demonstrates that multimodal assistants become valuable when attached to a narrow, high-friction operational loop rather than open-ended chat.</p>
+            <p>Manual retrieval must be first-class. Visual recognition without service documentation turns into a confidence game instead of a repair tool.</p>
             <div class="policy-grid">
               <article class="policy-card">
                 <h3>Biggest Surprise</h3>

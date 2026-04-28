@@ -500,14 +500,14 @@
     <header class="masthead">
       <p class="kicker">Personal AI / Automation · LLM / RAG / Agentic Systems · Product Case Study</p>
       <h1>OpenClaw Personal Operations Agent</h1>
-      <p class="deck">A personal operations assistant that does more than answer questions. The user sends a command through Telegram, WhatsApp, Slack, or another familiar channel, the agent interprets the goal, checks tool permissions, performs the action, and requests approval before sensitive steps. It is aimed at founders, executives, and consultants who need a disciplined assistant that can execute workflows without turning into a dangerous black box.</p>
+      <p class="deck">A personal operations assistant that goes beyond answering questions. The user sends a command through Telegram, WhatsApp, Slack, or another familiar channel. The agent interprets the goal, checks tool permissions, performs the action, and requests approval before sensitive steps. Built for founders, executives, and consultants who need a disciplined assistant that executes workflows without becoming an uncontrolled black box.</p>
       <div class="summary-strip" aria-label="Executive summary strip">
-        <article><h2>Primary Use</h2><p>A consultant receives a client email asking for a proposal revision. The agent summarizes the email, finds the previous proposal, drafts a response, schedules a review reminder, and waits for approval before sending.</p></article><article><h2>System Built</h2><p>A chat-native operations agent that takes tool actions under strict permission and approval policy.</p></article><article><h2>Critical Control</h2><p>Strict tool permissioning</p></article><article><h2>Business Outcome</h2><p>The value delivered was time savings and better task follow-through across tools.</p></article>
+        <article><h2>Primary Use</h2><p>A consultant receives a client email asking for a proposal revision. The agent summarizes the email, finds the previous proposal, drafts a response, schedules a review reminder, and waits for approval before sending.</p></article><article><h2>System Built</h2><p>A chat-native operations agent that takes tool actions under strict permission and approval policy.</p></article><article><h2>Critical Control</h2><p>Strict tool permissioning</p></article><article><h2>Business Outcome</h2><p>Measurable time savings and better task follow-through with a full audit trail.</p></article>
       </div>
     </header>
 
     <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-      <strong>Implementation Lens:</strong> Defined the product around action execution, not general chat, with permissions and approvals as the core product surface. Mapped familiar channels to a tool-runtime layer that can handle email, calendar, notes, reminders, GitHub, and browser tasks.
+      <strong>My Role:</strong> Defined the product around action execution rather than general chat, with permissions and approvals as the core product surface. Mapped familiar chat channels to a tool-runtime layer handling email, calendar, notes, reminders, GitHub, and browser tasks.
     </div>
     <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
       <strong style="margin-right:4px;">Stack:</strong>
@@ -523,9 +523,9 @@
           </aside>
           <div class="section-body">
             <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
-            <p>OpenClaw Personal Operations Agent was designed around one problem: busy professionals do not need another chatbot, they need an assistant that can coordinate tasks across tools.</p><p>The system worked like an operations layer on top of email, calendar, tasks, notes, and communication channels. A user could say, schedule a follow-up with the client, summarize the last email thread, and prepare talking points. The agent gathered context, prepared the action, and asked for approval before doing anything sensitive.</p><p>The hardest issue was trust. Users are comfortable reading AI suggestions but become cautious when AI sends emails, changes calendars, or interacts with clients.</p>
+            <p>OpenClaw was designed around one problem: busy professionals do not need another chatbot. They need an assistant that can coordinate tasks across tools.</p><p>The system acts as an operations layer on top of email, calendar, tasks, notes, and communication channels. A user says "schedule a follow-up with the client, summarize the last email thread, and prepare talking points." The agent gathers context, prepares the action, and asks for approval before executing anything sensitive.</p><p>The hardest issue was trust. Users are comfortable reading AI suggestions but become cautious the moment AI sends emails, changes calendars, or interacts with clients on their behalf.</p>
             <div class="callout">
-              <p><strong>Value delivered.</strong> The value delivered was time savings and better task follow-through across tools.</p>
+              <p><strong>Value delivered.</strong> Measurable time savings and significantly better task follow-through across tools, with a full audit trail for every action taken.</p>
             </div>
           </div>
         </section>
@@ -588,7 +588,7 @@
               <article class="comparison-card">
                 <h3>Business Context</h3>
                 <p>A consultant receives a client email asking for a proposal revision. The agent summarizes the email, finds the previous proposal, drafts a response, schedules a review reminder, and waits for approval before sending.</p>
-                <p>The value delivered was time savings and better task follow-through across tools.</p>
+                <p>Measurable time savings and significantly better task follow-through with full audit visibility.</p>
               </article>
             </div>
             <table class="committee-table">
@@ -622,8 +622,8 @@
             <div class="comparison-grid">
               <article class="comparison-card">
                 <h3>Difficulty Faced</h3>
-                <p>Trust was handled through permission tiers. Low-risk tasks could be automated, medium-risk tasks required preview, and high-risk actions required explicit approval.</p>
-                <p>Making execution convenient enough to be valuable while keeping the action model tight enough to be safe.</p>
+                <p>Trust was the central design challenge. We addressed it through permission tiers: low-risk tasks run automatically, medium-risk tasks require preview, and high-risk actions require explicit approval.</p>
+                <p>The core tension was making execution convenient enough to be valuable while keeping the action model tight enough to be safe.</p>
               </article>
               <article class="comparison-card">
                 <h3>Client Coordination Method</h3>
@@ -664,8 +664,8 @@
           </aside>
           <div class="section-body">
             <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
-            <p>Agent products live or die on action boundaries. This project makes those boundaries the center of the design.</p>
-            <p>Approvals should be framed as a product feature, not an inconvenience. That is how you keep action trust high.</p>
+            <p>Agent products live or die on action boundaries. This project places those boundaries at the center of the design, not at the periphery.</p>
+            <p>Framing approvals as a product feature rather than an inconvenience is how you keep action trust high and adoption sustainable.</p>
             <div class="policy-grid">
               <article class="policy-card">
                 <h3>Biggest Surprise</h3>

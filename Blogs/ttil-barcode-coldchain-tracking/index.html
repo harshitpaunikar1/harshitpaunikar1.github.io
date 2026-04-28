@@ -169,11 +169,11 @@
 
   <header>
     <h1>Chain of Custody: Proof Protocols in Cold-Chain Traceability</h1>
-    <p class="abstract">Cold-chain logistics is an exercise in paranoia. When a shipping system handles vaccines, highly perishable food, or chemical reagents, a simple location ping is meaningless. The product is viable only if you can mathematically prove uninterrupted temperature control and authoritative possession at every handoff across the world.</p>
+    <p class="abstract">Cold-chain logistics is an exercise in paranoia. When a shipping system handles vaccines, perishable biologics, or chemical reagents, a simple location ping is meaningless. The product is viable only if you can prove uninterrupted temperature control and authoritative possession at every handoff.</p>
   </header>
 
   <div style="border-left:3px solid #333;padding:0.75rem 1.2rem;margin:1.5rem 0 1rem;background:rgba(0,0,0,0.04);border-radius:0 6px 6px 0;font-size:0.95rem;">
-    <strong>My Role:</strong> I built the cryptographic chain of custody system - the payload UUID binding at dispatch, the Bluetooth temperature logger handshake logic, the offline-first event capture on mobile, and the server-side reconciliation that correlates barcode handoffs against the thermal logger's continuous telemetry. A regulatory compliance specialist defined the exact evidence requirements; their knowledge of what a pharmaceutical regulator would actually audit shaped every field in the event schema.
+    <strong>My Role:</strong> I built the cryptographic chain-of-custody system -- payload UUID binding at dispatch, Bluetooth temperature logger handshake logic, offline-first event capture on mobile, and the server-side reconciliation that correlates barcode handoffs against the thermal logger's continuous telemetry. A regulatory compliance specialist defined the exact evidence requirements; their knowledge of what a pharmaceutical auditor would actually inspect shaped every field in the event schema.
   </div>
   <div style="margin:0.5rem 0 2rem;font-size:0.85rem;color:#666;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
     <strong style="margin-right:4px;">Stack:</strong>
@@ -187,9 +187,9 @@
 
   <main class="article-body">
     
-    <p>A shipping system fails the moment the physical reality diverges from the database. In standard freight logistics, a missed scan is an annoyance-a package is delayed, a customer calls, and the tracking page updates the next day. In a critical cold-chain network, a missed scan breaks the chain of custody. Without proof of temperature and possession during a handoff, the payload must be assumed compromised and destroyed.</p>
+    <p>A shipping system fails the moment physical reality diverges from the database. In standard freight logistics, a missed scan is an annoyance -- a package is delayed, a customer calls, and the tracking page updates the next day. In a critical cold-chain network, a missed scan breaks the chain of custody. Without proof of temperature and possession during a handoff, the payload must be assumed compromised and destroyed.</p>
 
-    <p>Designing a traceability system requires abandoning the idea that tracking is a narrative written after the fact. Traceability is an ongoing cryptographic deposition. Every exchange of the payload must generate indisputable evidence: Who took it? What time was it captured locally? What was the hardware's internal clock? What was the sensor telemetry? To be considered true, this evidence must accumulate defensively, anticipating offline dead-zones and malicious interference.</p>
+    <p>Designing a traceability system requires abandoning the idea that tracking is a narrative written after the fact. Traceability is an ongoing cryptographic deposition. Every exchange of the payload must generate indisputable evidence: Who took it? What time was it captured locally? What was the hardware's internal clock reading? What was the sensor telemetry? This evidence must accumulate defensively, anticipating offline dead zones and potential tampering.</p>
 
     <h2>[STATUS // ORIGIN_DISPATCH]</h2>
 
@@ -271,9 +271,9 @@
 
     <h2>[STATUS // TRANSIT_HANDOFF]</h2>
 
-    <p>A chain breaks if it cannot survive the elements, and in digital terms, the elements are connectivity drops. Truck depots, tarmac transfer stations, and the interiors of large cargo vans are frequently 4G dead zones. If the mobile scanning application relies entirely on a synchronous API call to the cloud to validate a handoff, the operational flow halts whenever a driver loses signal.</p>
+    <p>A chain breaks if it cannot survive the elements -- and in digital terms, the elements are connectivity drops. Truck depots, tarmac transfer stations, and the interiors of large cargo vans are frequently 4G dead zones. If the mobile scanning application depends on a synchronous API call to validate a handoff, the operational flow halts whenever a driver loses signal.</p>
 
-    <p>True custody software adopts an offline-first capture paradigm. When a driver scans the barcode to accept a payload, the mobile application captures the event hardware-locally. It locks the device's internal timestamp, forces a short-range Bluetooth handshake to the thermal logger inside the package to confirm current temperature limits, and signs the payload with the driver’s cached cryptographic token.</p>
+    <p>True custody software adopts an offline-first capture paradigm. When a driver scans the barcode to accept a payload, the mobile application captures the event locally. It locks the device’s internal timestamp, forces a short-range Bluetooth handshake to the thermal logger inside the package to confirm current temperature, and signs the payload with the driver’s cached cryptographic token.</p>
 
     <div class="timestamp-callout">
       <span>Offline Event Cache</span>
@@ -319,15 +319,15 @@
       </tbody>
     </table>
 
-    <p>Reconciliation requires processing the entire historical array. The backend correlates the discrete barcode handoff events against the continuous telemetry graph uploaded from the thermal logger at the destination. If the logger records a massive temperature spike, the custody chain provides the exact geographical and temporal coordinates, pinpointing literally which driver left the container on a sunny loading dock during a 30-minute handover gap.</p>
+    <p>Reconciliation requires processing the entire historical array. The backend correlates discrete barcode handoff events against the continuous telemetry graph uploaded from the thermal logger at the destination. If the logger records a temperature spike, the custody chain provides exact geographical and temporal coordinates -- pinpointing which driver left the container on a sunny loading dock during a 30-minute handover gap.</p>
 
-    <p>This is the difference between a tracking system and an evidence system. A tracking system provides an estimated location map. A traceability system constructs an undeniable timeline of possession, constraint adherence, and liability that withstands rigorous regulatory audit.</p>
+    <p>This is the difference between a tracking system and an evidence system. A tracking system provides an estimated location map. A traceability system constructs an undeniable timeline of possession, constraint adherence, and liability that withstands regulatory audit.</p>
 
     <h2>[STATUS // PROJECT_CONTEXT]</h2>
 
     <p>This system was built for a <strong>pharmaceutical distributor transporting temperature-sensitive medications</strong> across 12 delivery routes in a metro area. The company had received two compliance violations in the preceding year. In both cases, product was delivered outside the required temperature range, triggering regulatory warnings and <strong>$85K in total fines</strong>.</p>
 
-    <p>The root problem was visibility. The existing process relied on paper logs and manual temperature checks at pickup and delivery only. If something went wrong during transit, nobody knew until the package arrived and the receiving pharmacist measured a temperature outside the acceptable range. By then, the product was compromised and the liability was already incurred.</p>
+    <p>The root problem was visibility. The existing process relied on paper logs and manual temperature checks at pickup and delivery only. If something went wrong during transit, nobody knew until the package arrived and the pharmacist measured a temperature outside the acceptable range. By that point, the product was compromised and the liability already incurred.</p>
 
     <p>The project team was <strong>2 engineers and 1 compliance officer</strong>, working over an 11-week build. The compliance officer was critical because they understood the regulatory requirements for chain-of-custody documentation and could validate that the digital audit trail met the standards that auditors would actually accept.</p>
 

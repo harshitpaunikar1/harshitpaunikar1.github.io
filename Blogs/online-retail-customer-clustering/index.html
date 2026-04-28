@@ -296,9 +296,9 @@
 
   <h2>The Problem with Raw Transaction Data</h2>
 
-  <p>The UCI Online Retail dataset records every purchase from a UK gift-goods wholesaler between December 2010 and December 2011. It has 541,909 rows. Each row is a stock item on an invoice - quantity, unit price, customer ID, country, date. In that form it is a ledger, not an understanding of customers.</p>
+  <p>The UCI Online Retail dataset records every purchase from a UK gift-goods wholesaler between December 2010 and December 2011: 541,909 rows, each representing a stock item on an invoice with quantity, unit price, customer ID, country, and date. In that form it is a ledger, not an understanding of customers.</p>
 
-  <p>The first transformation that makes segmentation possible is collapsing those rows to one row per customer with aggregate behavioral features. A customer who placed 12 orders totaling £4,200 over 11 months, with their most recent order 8 days before the data cutoff, is a fundamentally different entity from a customer who placed one order for £85 fourteen months ago. The ledger can't tell you that; the per-customer summary can.</p>
+  <p>The first transformation that makes segmentation possible is collapsing those rows to one row per customer with aggregate behavioral features. A customer who placed 12 orders totaling 4,200 pounds over 11 months, with their most recent order 8 days before the data cutoff, is a fundamentally different entity from a customer who placed one order for 85 pounds fourteen months ago. The ledger cannot tell you that; the per-customer summary can.</p>
 
   <p>The standard aggregation framework for this purpose is <strong>RFM</strong>: Recency, Frequency, Monetary. These three dimensions capture most of the behavioral variation that drives customer value and informs retention, acquisition, and win-back strategy. They are also interpretable without statistical training, which matters when the segmentation outputs need to land with a campaign manager who did not build the model.</p>
 
@@ -584,7 +584,7 @@ rfm_scaled = scaler.fit_transform(rfm[['Recency','Frequency','Monetary_log']])</
 
   <h2>From Archetypes to Merchandising Decisions</h2>
 
-  <p>The cluster labels are not the output - they are the input to campaign and merchandising decisions. Each archetype implies a different relationship with product mix, promotional price, and message timing.</p>
+  <p>Cluster labels are not the output -- they are the input to campaign and merchandising decisions. Each archetype implies a distinct relationship with product mix, promotional pricing, and message timing.</p>
 
   <h3>Champions: Protect, Don't Discount</h3>
   <p>Champions are already buying frequently and spending at the top of the range. The mistake retailers make with this group is sending them the same promotional discount that goes to everyone else - which trains them to wait for promotions, reducing full-price purchase rate. The right strategy is exclusivity, not price reduction: early access to new product lines, personalised wholesale pricing for the business buyers in this cluster, and acknowledgment of tenure. This group should never receive a generic "15% off everything" email blast.</p>
@@ -603,7 +603,7 @@ rfm_scaled = scaler.fit_transform(rfm[['Recency','Frequency','Monetary_log']])</
 
   <h2>The Silhouette Score and What It Actually Means</h2>
 
-  <p>The silhouette scores reported in the notebook (0.54 at k=4, 0.51 at k=5) indicate moderate cluster separation - better than random assignment, short of tight separation. A score of 0.54 does not mean the clusters are wrong; it means the boundaries between adjacent clusters are fuzzy, which is accurate - real customer behavior does not have hard edges. The valuable insight is not that every customer falls cleanly into one category, but that the centroid of each cluster represents a recognizable type with actionable implications.</p>
+  <p>The silhouette scores (0.54 at k=4, 0.51 at k=5) indicate moderate cluster separation -- better than random assignment, short of tight separation. A score of 0.54 does not mean the clusters are wrong; it means the boundaries between adjacent clusters are fuzzy, which reflects reality. Customer behavior does not have hard edges. The valuable insight is not that every customer falls cleanly into one category, but that each cluster centroid represents a recognizable type with actionable implications.</p>
 
   <p>The score also depends on the feature set. RFM computed on 12 months of data captures behavioral history but not forward-looking signals like time-to-event churn risk or category diversity score. Adding a fourth dimension - <code>category_breadth</code> (number of distinct product categories a customer has purchased) - would sharpen the Champions vs. Loyal Regulars boundary, because Champions in this dataset tend to buy across many gift categories while Loyal Regulars concentrate in two or three. A five-dimensional RFM-plus-breadth model is a natural next step for a production segmentation system on this dataset.</p>
 

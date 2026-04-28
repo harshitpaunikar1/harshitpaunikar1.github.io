@@ -500,9 +500,9 @@
     <header class="masthead">
       <p class="kicker">Automation / AI Ops · Full-Stack / SaaS · Architecture Review</p>
       <h1>n8n AI Workflow Automation Hub</h1>
-      <p class="deck">A workflow automation hub built on self-hosted n8n so AI steps can be inserted into business processes without writing a bespoke platform every time. Triggers from email, forms, apps, or webhooks start workflows, data is pulled from systems of record, AI nodes classify or summarize, actions execute, and notifications or reports are emitted. The design assumes business usefulness and operational hardening are equally important.</p>
+      <p class="deck">A self-hosted workflow automation hub built on n8n, designed so AI steps can be embedded into real business processes without building a bespoke platform each time. Triggers from email, forms, apps, or webhooks start workflows; data flows from systems of record; AI nodes classify or summarize; actions execute; and notifications or audit logs are emitted. The design treats business usefulness and operational hardening as equally important.</p>
       <div class="summary-strip" aria-label="Executive summary strip">
-        <article><h2>Primary Use</h2><p>A support email arrives. n8n classifies the issue, checks the CRM, creates a ticket, drafts a response, and notifies the correct team.</p></article><article><h2>System Built</h2><p>A hardened self-hosted workflow hub where AI nodes operate inside real business processes.</p></article><article><h2>Critical Control</h2><p>SSL</p></article><article><h2>Business Outcome</h2><p>The value delivered was operational speed. The business reduced repetitive work and gained better visibility into workflow performance.</p></article>
+        <article><h2>Primary Use</h2><p>A support email arrives. n8n classifies the issue, checks the CRM, creates a ticket, drafts a response, and notifies the correct team.</p></article><article><h2>System Built</h2><p>A hardened self-hosted workflow hub where AI nodes operate inside real business processes.</p></article><article><h2>Critical Control</h2><p>SSL, SSO, 2FA, credential isolation</p></article><article><h2>Business Outcome</h2><p>Reduced repetitive operational work and gave teams measurable visibility into workflow performance and bottlenecks.</p></article>
       </div>
     </header>
 
@@ -523,9 +523,9 @@
           </aside>
           <div class="section-body">
             <h2>Section I · Why this system exists as an operating product rather than a feature demo</h2>
-            <p>n8n AI Workflow Automation Hub was built for a business that had too many repetitive manual processes across email, spreadsheets, CRM, support tools, and finance systems. The team was copying data from one place to another, sending reminders manually, creating reports by hand, and losing time on operational tasks.</p><p>The project used n8n as the automation backbone and added AI where text understanding or lightweight decisions were needed. For example, an incoming email could be classified, summarized, matched to a client record, and routed to the correct team.</p><p>The hardest challenge was workflow reliability. Automations are only valuable when they are predictable, and one failing API or one changed field can break the process.</p>
+            <p>The business had too many repetitive manual processes spread across email, spreadsheets, CRM, support tools, and finance systems. Teams were copying data between platforms, sending reminders manually, creating reports by hand, and losing hours on tasks that should have been automatic.</p><p>I used n8n as the automation backbone and added AI where text understanding or lightweight decisions were needed. An incoming support email could be classified, summarized, matched to a client record, and routed to the correct team -- all without human intervention.</p><p>The hardest challenge was workflow reliability. Automations are only valuable when they are predictable, and a single failing API call or one changed field can break an entire process chain.</p>
             <div class="callout">
-              <p><strong>Value delivered.</strong> The value delivered was operational speed. The business reduced repetitive work and gained better visibility into workflow performance.</p>
+              <p><strong>Value delivered.</strong> The business reduced repetitive operational work and gained measurable visibility into workflow performance, bottlenecks, and failure points.</p>
             </div>
           </div>
         </section>
@@ -537,8 +537,8 @@
           </aside>
           <div class="section-body">
             <h2>Section II · The system must be readable as a flow before it can be trusted in production</h2>
-            <p>Self-hosted workflow automation hub built on n8n for AI-enabled business processes, credential control, and audit visibility.</p>
-            <p>Real-life use case solved: A support email arrives. n8n classifies the issue, checks the CRM, creates a ticket, drafts a response, and notifies the correct team.</p>
+            <p>The architecture is built around a clear principle: every workflow must be traceable from trigger to outcome. Self-hosting provides credential control and audit visibility that cloud-only platforms cannot guarantee.</p>
+            <p>The primary use case illustrates the end-to-end flow: a support email arrives, n8n classifies the issue, checks the CRM for context, creates a ticket, drafts a response, and notifies the responsible team.</p>
             <figure aria-labelledby="architecture-caption">
               <p class="diagram-title">Diagram A · Architecture Overview</p>
               <svg viewBox="0 0 1160 330" role="img" aria-label="n8n AI Workflow Automation Hub architecture diagram">
@@ -587,8 +587,8 @@
               </article>
               <article class="comparison-card">
                 <h3>Business Context</h3>
-                <p>A support email arrives. n8n classifies the issue, checks the CRM, creates a ticket, drafts a response, and notifies the correct team.</p>
-                <p>The value delivered was operational speed. The business reduced repetitive work and gained better visibility into workflow performance.</p>
+                <p>The primary workflow handles incoming support emails end-to-end: classify the issue, check CRM records, create a ticket, draft a response, and notify the correct team.</p>
+                <p>The value delivered was operational speed and visibility. Teams stopped losing hours on manual routing and gained clear metrics on workflow performance.</p>
               </article>
             </div>
             <table class="committee-table">
@@ -663,8 +663,8 @@
           </aside>
           <div class="section-body">
             <h2>Section V · The most important design choice is usually the boundary that fails first</h2>
-            <p>Automation products succeed when AI is integrated into workflow discipline, not layered on top of broken process design.</p>
-            <p>Self-hosted automation only works at scale when instance hardening and credential hygiene are treated as core delivery work.</p>
+            <p>Automation products succeed when AI is integrated into workflow discipline, not layered on top of broken processes. The model alone does not create value; the surrounding orchestration, error handling, and observability do.</p>
+            <p>Self-hosted automation only works at scale when instance hardening and credential hygiene are treated as core delivery work, not as afterthoughts.</p>
             <div class="policy-grid">
               <article class="policy-card">
                 <h3>Biggest Surprise</h3>
