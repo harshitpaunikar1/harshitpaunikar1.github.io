@@ -467,6 +467,151 @@ body.bc-page-retrieval-tool-use-assistant .grid-container {
   }
 }
 
+/* ── Mobile / half-width hardening ── */
+@media (max-width: 1100px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .bc-main-shell,
+  .page,
+  .viewport,
+  .console,
+  .shell,
+  .frame:not(iframe),
+  .article-shell,
+  .container,
+  .briefing-shell,
+  .dashboard-shell,
+  .directive-shell,
+  .docs-shell,
+  .tear-down-shell,
+  .file-shell,
+  .memo-shell,
+  .prose-container,
+  .system-container,
+  .grid-container,
+  .machine-grid,
+  body > div:first-child:not(.bc-header):not(.bc-mobile-nav):not(.bc-skip):not([class^="bc-"]),
+  body > main,
+  body > article {
+    width: min(100%, calc(100% - 1.25rem)) !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: clamp(0.85rem, 3.5vw, 1.25rem) !important;
+    padding-right: clamp(0.85rem, 3.5vw, 1.25rem) !important;
+  }
+
+  header:not(.bc-header),
+  .masthead,
+  .hero,
+  .cover,
+  .cover-sheet,
+  .sheet,
+  .panel,
+  .figure,
+  .figure-container,
+  .figure-block,
+  .svg-canvas,
+  .svg-panel,
+  .diagram-panel,
+  .callout,
+  .route-callout,
+  .rail,
+  .rail-card,
+  .side-box,
+  .side-block,
+  .sidebar {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .rail,
+  .route-callout,
+  .sidebar,
+  .side-box,
+  .side-block,
+  .nav-column,
+  .hero-side {
+    position: static !important;
+    top: auto !important;
+  }
+
+  h2,
+  pre {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  figure,
+  .figure,
+  .figure-container,
+  .figure-block,
+  .wide-figure,
+  .figure-frame,
+  .diagram-stage,
+  .diagram-scroll,
+  .svg-canvas,
+  .svg-wrapper,
+  .table-wrap,
+  .schema-inset,
+  pre,
+  table {
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 1040px) {
+  [class*="grid"],
+  [class*="layout"],
+  [class*="split"],
+  .section,
+  .topbar,
+  .summary-strip,
+  .navigator,
+  .band-head,
+  .signal-item,
+  .metric-strip,
+  .scoreboard,
+  .tabs,
+  .two-col {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .status-ribbon,
+  .masthead-meta,
+  .hero-metrics,
+  .metric-strip,
+  .tabs,
+  [class*="ribbon"] {
+    flex-wrap: wrap !important;
+    row-gap: 0.5rem !important;
+  }
+}
+
+@media (max-width: 760px) {
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  pre,
+  .diagram-stage,
+  .diagram-scroll,
+  .table-wrap,
+  .wide-figure,
+  .figure-frame,
+  .svg-wrapper {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 /* ── Accessibility ── */
 :focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) {
